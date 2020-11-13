@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner name:</strong>
+  <%= @interview.owner_name %>
+</p>
+
+<p>
+  <strong>Shop name:</strong>
+  <%= @interview.shop_name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @interview.content %>
+</p>
+
+<p>
+  <strong>Image interview:</strong>
+  <%= @interview.image_interview %>
+</p>
+
+<p>
+  <strong>Youtube url:</strong>
+  <%= @interview.youtube_url %>
+</p>
+
+<p>
+  <strong>Music:</strong>
+  <%= @interview.music %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @interview.owner %>
+</p>
+
+<%= link_to 'Edit', edit_interview_path(@interview) %> |
+<%= link_to 'Back', interviews_path %>

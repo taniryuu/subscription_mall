@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'users/new'
-
   root 'static_pages#top'
 
   devise_for :admins, controllers: {
@@ -21,8 +19,18 @@ Rails.application.routes.draw do
   }
 
   resources :admins
+  resources :blogs
+  
   resources :owners
+  resources :interviews
+  resources :shops
+  resources :categories
+  resources :subscriptions
+
   resources :users
+  resources :contacts
+  resources :reviews
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
