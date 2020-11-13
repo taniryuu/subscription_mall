@@ -1,0 +1,57 @@
+<%= form_with(model: subscription, local: true) do |form| %>
+  <% if subscription.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+
+      <ul>
+      <% subscription.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :subscription_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :subscription_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail %>
+    <%= form.text_area :detail, id: :subscription_detail %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image_subscription %>
+    <%= form.text_field :image_subscription, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :subscription_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subscription_detail %>
+    <%= form.text_area :subscription_detail, id: :subscription_subscription_detail %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name, id: :subscription_category_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :owner_id %>
+    <%= form.text_field :owner_id, id: :subscription_owner_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
