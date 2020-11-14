@@ -6,11 +6,8 @@
   <thead>
     <tr>
       <th>Category name</th>
-      <th>Monthly fee</th>
       <th>Phone number</th>
       <th>Store information</th>
-      <th>Payee</th>
-      <th>Line</th>
       <th>Address</th>
       <th>Owner</th>
       <th colspan="3"></th>
@@ -21,13 +18,10 @@
     <% @shops.each do |shop| %>
       <tr>
         <td><%= shop.category_name %></td>
-        <td><%= shop.monthly_fee %></td>
         <td><%= shop.phone_number %></td>
         <td><%= shop.store_information %></td>
-        <td><%= shop.payee %></td>
-        <td><%= shop.line_id %></td>
         <td><%= shop.address %></td>
-        <td><%= shop.owner %></td>
+        <td><%= shop.owner_id %></td>
         <td><%= link_to 'Show', shop %></td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>

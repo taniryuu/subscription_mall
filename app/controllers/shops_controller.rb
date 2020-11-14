@@ -30,6 +30,10 @@ class ShopsController < ApplicationController
       if @shop.save
         format.html { redirect_to @shop, notice: 'Shop was successfully created.' }
         format.json { render :show, status: :created, location: @shop }
+
+        Category.create(
+          name: @shop.category_name
+        )
       else
         format.html { render :new }
         format.json { render json: @shop.errors, status: :unprocessable_entity }

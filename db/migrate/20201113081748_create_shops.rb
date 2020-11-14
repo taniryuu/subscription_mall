@@ -2,7 +2,7 @@ class CreateShops < ActiveRecord::Migration[5.1]
   def change
     create_table :shops do |t|
       t.string :category_name
-      t.string :monthly_fee
+      t.integer :monthly_fee
       t.string :phone_number
       t.string :store_information
       t.string :payee

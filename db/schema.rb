@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20201113105356) do
 
   create_table "shops", force: :cascade do |t|
     t.string "category_name"
-    t.string "monthly_fee"
+    t.integer "monthly_fee"
     t.string "phone_number"
     t.string "store_information"
     t.string "payee"
