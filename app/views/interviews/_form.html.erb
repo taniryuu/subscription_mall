@@ -13,37 +13,17 @@
 
   <div class="field">
     <%= form.label :owner_name %>
-    <%= form.text_field :owner_name, id: :interview_owner_name %>
+    <%= form.text_field :owner_name, id: :interview_owner_name, placeholder: "例)鈴木　太郎", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :shop_name %>
-    <%= form.text_field :shop_name, id: :interview_shop_name %>
+    <%= form.text_field :shop_name, id: :interview_shop_name, placeholder: "例)野郎ラーメン", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_field :content, id: :interview_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image_interview %>
-    <%= form.text_field :image_interview, id: :interview_image_interview %>
-  </div>
-
-  <div class="field">
-    <%= form.label :youtube_url %>
-    <%= form.text_field :youtube_url, id: :interview_youtube_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :music %>
-    <%= form.text_field :music, id: :interview_music %>
-  </div>
-
-  <div class="field">
-    <%= form.label :owner_id %>
-    <%= form.text_field :owner_id, id: :interview_owner_id %>
+    <%= form.text_field :content, id: :interview_content, placeholder: "例)美味しいラーメン", class: 'form-control' %>
   </div>
 
   <div class="actions">

@@ -19,6 +19,13 @@ class ApplicationController < ActionController::Base
         flash[:danger] = "ログインしてください"
         root_path(resource)
       end
+    when Owner
+      if current_owner.present?
+        owner_path(resource)
+      else
+        flash[:danger] = "ログインしてください"
+        root_path(resource)
+      end
     end
   end
 

@@ -1,44 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Category name:</strong>
-  <%= @shop.category_name %>
-</p>
+<% provide(:title, 'Shop Show') %>
+<h1>お店詳細</h1>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table class="table table-bordered" id="table-schedule">
+        <tbody>
+          <tr>
+            <th class="active center">
+              <p>
+              <span><%= Shop.human_attribute_name :category_name %></span>
+              <span><td class="active"><%= @shop.category_name %></span></td>
+              <br><th class="active center"><span><%= Shop.human_attribute_name :monthly_fee %></span></th>
+              <span><td class="active"><%= @shop.monthly_fee %></span></td>
+              </p>
+            </th>
+          </tr>
+          <tr>
+            <th class="active center col-md-2"><%= Shop.human_attribute_name :store_information %></th>
+            <td  class="active" colspan = "3"><%= @shop.store_information %></td>
+          </tr>
+        </tbody>
+          <div class="tool--item">
+            <%= link_to "編集", edit_shop_path(@shop), class: "btn-gradient-3d-simple" %>
+            <%= link_to "削除", @shop, method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+          </div>
+      </table>
+    </div>    
+  </div>
 
-<p>
-  <strong>Monthly fee:</strong>
-  <%= @shop.monthly_fee %>
-</p>
-
-<p>
-  <strong>Phone number:</strong>
-  <%= @shop.phone_number %>
-</p>
-
-<p>
-  <strong>Store information:</strong>
-  <%= @shop.store_information %>
-</p>
-
-<p>
-  <strong>Payee:</strong>
-  <%= @shop.payee %>
-</p>
-
-<p>
-  <strong>Line:</strong>
-  <%= @shop.line_id %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @shop.address %>
-</p>
-
-<p>
-  <strong>Owner:</strong>
-  <%= @shop.owner_id %>
-</p>
-
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>
