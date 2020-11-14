@@ -1,39 +1,33 @@
 <p id="notice"><%= notice %></p>
+<% provide(:title, 'Interview Show') %>
 
-<p>
-  <strong>Owner name:</strong>
-  <%= @interview.owner_name %>
-</p>
+<h1>オーナーインタビュー詳細</h1>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table class="table table-bordered" id="table-schedule">
+        <tbody>
+          <tr>
+            <th class="active center">
+              <p>
+              <span><%= Interview.human_attribute_name :owner_name %></span>
+              <span><td class="active"><%= @interview.owner_name %></span></td>
+              <br><th class="active center"><span><%= Interview.human_attribute_name :shop_name %></span></th>
+              <span><td class="active"><%= @interview.shop_name %></span></td>
+              </p>
+            </th>
+          </tr>
+          <tr>
+            <th class="active center col-md-2"><%= Interview.human_attribute_name :content %></th>
+            <td  class="active" colspan = "3"><%= @interview.content %></td>
+          </tr>
+        </tbody>
+          <div class="tool--item">
+            <%= link_to "編集", edit_interview_path(@interview), class: "btn-gradient-3d-simple" %>
+            <%= link_to "削除", @interview, method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+          </div>
+      </table>
+    </div>    
+  </div>
 
-<p>
-  <strong>Shop name:</strong>
-  <%= @interview.shop_name %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @interview.content %>
-</p>
-
-<p>
-  <strong>Image interview:</strong>
-  <%= @interview.image_interview %>
-</p>
-
-<p>
-  <strong>Youtube url:</strong>
-  <%= @interview.youtube_url %>
-</p>
-
-<p>
-  <strong>Music:</strong>
-  <%= @interview.music %>
-</p>
-
-<p>
-  <strong>Owner:</strong>
-  <%= @interview.owner %>
-</p>
-
-<%= link_to 'Edit', edit_interview_path(@interview) %> |
 <%= link_to 'Back', interviews_path %>
+
