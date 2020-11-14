@@ -12,6 +12,9 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'rails-i18n'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
