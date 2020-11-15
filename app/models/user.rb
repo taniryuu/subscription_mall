@@ -2,16 +2,16 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter, :google_oauth2, :line]
 
-  def self.find_for_oauth(auth)
+  def self.find_for_oauth(auth) # facebook, twitter ログイン用メソッドです
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
     unless user
       user = User.create(
         uid:      auth.uid,
         provider: auth.provider,
-        email:    auth.info.email,
+        email:    User.dummy_email(auth),
         name:  auth.info.name,
         password: Devise.friendly_token[0, 20]
       )
@@ -20,7 +20,7 @@ class User < ApplicationRecord
           user
         end
 
-        has_many :social_profiles, dependent: :destroy
+        has_many :social_profiles, dependent: :destroy # ここから44行目までline ログイン用メソッドです
  def social_profile(provider)
    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
  end
@@ -41,5 +41,12 @@ end
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+  end
+
+
+  private
+
+  def self.dummy_email(auth)  # facebook, twitter ログイン用メソッドです
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end
