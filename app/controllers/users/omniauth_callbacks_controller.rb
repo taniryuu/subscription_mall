@@ -32,11 +32,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :facebook
   end
 
+  def twitter
+    callback_from :twitter
+  end
+
+  def google_oauth2
+    callback_from :google
+  end
+
   def line; basic_action end
 
   private
 
-  def basic_action
+  def basic_action # line ログイン用メソッドです
     @omniauth = request.env['omniauth.auth']
     if @omniauth.present?
       @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
@@ -57,11 +65,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
 
-  def fake_email(uid,provider)
+  def fake_email(uid,provider) # line ログイン用メソッドです
      return "#{auth.uid}-#{auth.provider}@example.com"
   end
 
-  def callback_from(provider)
+  def callback_from(provider) # facebook, twitter ログイン用メソッドです
     provider = provider.to_s
 
     @user = User.find_for_oauth(request.env['omniauth.auth'])
@@ -70,7 +78,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @user, event: :authentication
     else
-      session["devise.#{provider}_data"] = request.env['omniauth.auth']
+      session["devise.#{provider}_data"] = request.env['omniauth.auth'].except("extra")
       redirect_to new_user_registration_url
     end
   end
