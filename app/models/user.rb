@@ -17,7 +17,6 @@ class User < ApplicationRecord
       )
     end
 
-<<<<<<< HEAD
           user
         end
 
@@ -42,8 +41,5 @@ end
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
-=======
-    user
->>>>>>> 48da5da475e4b81df2d3efe93d90fb360c6f0e2a
   end
 end
