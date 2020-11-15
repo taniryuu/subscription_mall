@@ -14,6 +14,8 @@ gem 'font-awesome-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'omniauth-line'
+gem 'omniauth-oauth2', '~> 1.3.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
