@@ -10,9 +10,10 @@
         <li><a href="#interview">オーナーインタビュー</a></li>
         <li><a href="#service">サービス</a></li>
         <li><a href="#inquiry">お問い合わせ</a></li>
-        <li><%= link_to "ショップ開設", new_shop_path %></li>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
+        <li><%= link_to "ショップ開設", new_owner_shop_path(current_owner) %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "ショップ一覧", shops_index_path %></li>
+        <li><%= link_to "ログイン", new_user_session_path %></li>
       </ul>
     </nav>
   </div>

@@ -21,10 +21,15 @@ Rails.application.routes.draw do
 
   resources :admins
   resources :blogs
-  
-  resources :owners
-  resources :interviews
-  resources :shops
+  get 'interviews/index'
+  get 'shops/index'
+  resources :owners do
+    resources :interviews
+      collection do
+        get 'interviews_index'
+      end
+      resources :shops
+  end
   resources :categories
   resources :subscriptions
 
