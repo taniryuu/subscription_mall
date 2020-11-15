@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'admins/show'
+
+  get 'admins/edit'
+
   root 'static_pages#top'
 
   devise_for :admins, controllers: {

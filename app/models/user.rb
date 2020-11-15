@@ -16,12 +16,10 @@ class User < ApplicationRecord
         password: Devise.friendly_token[0, 20]
       )
     end
+    user
+  end
 
-<<<<<<< HEAD
-          user
-        end
-
-        has_many :social_profiles, dependent: :destroy
+  has_many :social_profiles, dependent: :destroy
  def social_profile(provider)
    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
  end
@@ -42,8 +40,6 @@ end
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
-=======
     user
->>>>>>> 48da5da475e4b81df2d3efe93d90fb360c6f0e2a
   end
 end

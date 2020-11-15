@@ -9,6 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem 'momentjs-rails'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'rails-i18n'

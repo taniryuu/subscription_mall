@@ -9,7 +9,6 @@ class InterviewsController < ApplicationController
   end
 
   def interviews_index
-
   end
 
   # GET /interviews/1
