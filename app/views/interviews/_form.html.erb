@@ -1,0 +1,32 @@
+<%= form_with(model: interview, local: true) do |form| %>
+  <% if interview.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(interview.errors.count, "error") %> prohibited this interview from being saved:</h2>
+
+      <ul>
+      <% interview.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :owner_name %>
+    <%= form.text_field :owner_name, id: :interview_owner_name, placeholder: "例)鈴木　太郎", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shop_name %>
+    <%= form.text_field :shop_name, id: :interview_shop_name, placeholder: "例)野郎ラーメン", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :interview_content, placeholder: "例)美味しいラーメン", class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

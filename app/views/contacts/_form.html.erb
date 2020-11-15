@@ -1,0 +1,51 @@
+<%= form_with(model: contact, local: true) do |form| %>
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :contact_name, placeholder: "例)例題　太郎", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :contact_email, placeholder: "例)sample@gmail.com", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, id: :contact_subject, placeholder: "例)利用について", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_area :message, placeholder: "例)アカウント作成とは？", class: 'form-control', id: :contact_message %>
+  </div>
+
+  <%
+=begin%>
+ <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :contact_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :owner_id %>
+    <%= form.text_field :owner_id, id: :contact_owner_id %>
+  </div> 
+<%
+=end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -4,19 +4,20 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
-         def self.find_for_oauth(auth)
-          user = User.where(uid: auth.uid, provider: auth.provider).first
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
 
-          unless user
-            user = User.create(
-              uid:      auth.uid,
-              provider: auth.provider,
-              email:    auth.info.email,
-              name:  auth.info.name,
-              password: Devise.friendly_token[0, 20]
-            )
-          end
+    unless user
+      user = User.create(
+        uid:      auth.uid,
+        provider: auth.provider,
+        email:    auth.info.email,
+        name:  auth.info.name,
+        password: Devise.friendly_token[0, 20]
+      )
+    end
 
+<<<<<<< HEAD
           user
         end
 
@@ -41,5 +42,8 @@ end
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+=======
+    user
+>>>>>>> 48da5da475e4b81df2d3efe93d90fb360c6f0e2a
   end
 end
