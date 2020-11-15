@@ -1,5 +1,53 @@
+<% provide(:title, "お店開設") %>
+
 <h1>New Shop</h1>
 
-<%= render 'form', shop: @shop %>
+<%= form_with(model: @shop, url: owner_shops_path, local: true) do |form| %>
+  <%= render 'shared/error_messages' , object: @shop %>
 
-<%= link_to 'ショップ一覧', shops_path %>
+  <div class="field">
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name, id: :shop_category_name, placeholder: "例)カレー", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :monthly_fee %>
+    <%= form.select :monthly_fee, Shop.monthly_fees.keys, { include_blank: true }, placeholder: "例)利用料金を選択してください", class: 'form-control' %>
+  </div>
+
+  <%
+=begin%>
+ <div class="field">
+    <%= form.label :電話番号 %>
+    <%= shop.phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :店舗情報 %>
+    <%= form.text_area :store_information, id: :shop_store_information %>
+  </div>
+
+  <div class="field">
+    <%= form.label :振込先 %>
+    <%= form.text_field :payee, id: :shop_payee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :LineID %>
+    <%= form.text_field :line_id, id: :shop_line_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お店の場所 %>
+    <%= form.text_field :address, id: :shop_address %>
+  </div>
+  <% 
+<%
+=end%>
+  <%= form.hidden_field :owner_id, :value => @owner.id %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'ショップ一覧', owner_shops_path %>

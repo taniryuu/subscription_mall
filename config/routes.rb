@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'admins/show'
+
+  get 'admins/edit'
+
   root 'static_pages#top'
 
   devise_for :admins, controllers: {
@@ -21,10 +25,15 @@ Rails.application.routes.draw do
 
   resources :admins
   resources :blogs
-  
-  resources :owners
-  resources :interviews
-  resources :shops
+  get 'interviews/index'
+  get 'shops/index'
+  resources :owners do
+    resources :interviews
+      collection do
+        get 'interviews_index'
+      end
+      resources :shops
+  end
   resources :categories
   resources :subscriptions
 

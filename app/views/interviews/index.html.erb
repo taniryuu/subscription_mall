@@ -7,26 +7,29 @@
     <% @interviews.each do |interview| %>
     <hr class="tool-bar">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-1">
+          <%= interview.owner_id %>
+        </div>
+        <div class="col-md-2">
           <%= interview.owner_name %>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
           <%= interview.shop_name %>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
           <%= interview.content %>
         </div>
 
         <div class="col-md-1 tool--item">
-          <%= link_to "詳細", interview, class: "btn-gradient-3d-simple" %>
+          <%= link_to "詳細", owner_interview_path(interview, owner_id:@owner.id), class: "btn-gradient-3d-simple" %>
         </div>
         <div class="col-md-1 tool--item">
-          <%= link_to "編集", edit_interview_path(interview), class: "btn-gradient-3d-simple" %>
+          <%= link_to "編集", edit_owner_interview_path(interview, owner_id:@owner.id), class: "btn-gradient-3d-simple" %>
         </div>
         <div class="col-md-1 btn--del">
-          <%= link_to "削除", interview, method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+          <%= link_to "削除", owner_interview_path(interview, owner_id:@owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
         </div>
       </div>
     <% end %>
@@ -34,4 +37,4 @@
 </table>
 <br>
 
-<%= link_to 'New Interview', new_interview_path %>
+<%= link_to 'New Interview', new_owner_interview_path %>

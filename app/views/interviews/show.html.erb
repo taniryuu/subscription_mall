@@ -22,12 +22,12 @@
           </tr>
         </tbody>
           <div class="tool--item">
-            <%= link_to "編集", edit_interview_path(@interview), class: "btn-gradient-3d-simple" %>
-            <%= link_to "削除", @interview, method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+            <%= link_to "編集", edit_owner_interview_path(@interview, owner_id:@owner.id), class: "btn-gradient-3d-simple" %>
+            <%= link_to "削除", owner_interview_path(@interview, owner_id:@owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
           </div>
       </table>
     </div>    
   </div>
 
-<%= link_to 'Back', interviews_path %>
+<%= link_to 'Back', owner_interviews_path %>
 

@@ -1,5 +1,11 @@
 class OwnersController < ApplicationController
   def index
+    @owners = Owner.all
+  end
+
+  def interviews_index
+    # owner = Owner.find(params[:id])
+    # @interviews = owner.interviews
   end
 
   def show
