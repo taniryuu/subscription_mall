@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /subscriptions
   # GET /subscriptions.json
@@ -15,6 +16,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @subscription = Subscription.new
+    # @subscription.images.build
   end
 
   # GET /subscriptions/1/edit
@@ -28,7 +30,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+        format.html { redirect_to owner_subscriptions_url, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to owner_subscriptions_url, notice: 'Subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     respond_to do |format|
-      format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully destroyed.' }
+      format.html { redirect_to owner_subscriptions_url, notice: 'Subscription was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +67,10 @@ class SubscriptionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
       @subscription = Subscription.find(params[:id])
+    end
+
+    def set_owner
+      @owner = Owner.find(params[:owner_id])
     end
 
     # Only allow a list of trusted parameters through.

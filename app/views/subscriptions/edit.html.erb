@@ -1,6 +1,47 @@
-<h1>Editing Subscription</h1>
+<% provide(:title, "サブスクページ編集") %>
 
-<%= render 'form', subscription: @subscription %>
+<h1>サブスクページ編集</h1>
 
-<%= link_to 'Show', @subscription %> |
-<%= link_to 'Back', subscriptions_path %>
+<%= form_with(model: @subscription, url: owner_subscription_path, local: true) do |form| %>
+  <%= render 'shared/error_messages' , object: @subscription %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :subscription_name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :subscription_title, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail %>
+    <%= form.text_area :detail, id: :subscription_detail, class: 'form-control' %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.select :price, Subscription.prices.keys, { include_blank: true }, id: :subscription_price, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subscription_detail %>
+    <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name, id: :subscription_category_name, class: 'form-control' %>
+  </div>
+
+  <%= form.hidden_field :owner_id, :value => @owner.id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', owner_subscription_path(@subscription, owner_id: @owner.id) %> |
+<%= link_to 'Back', owner_subscriptions_path %>

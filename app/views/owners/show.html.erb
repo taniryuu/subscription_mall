@@ -1,2 +1,4 @@
 <h1>Myページ</h1>
 <p><%= @owner.email %></p>
+<%= link_to 'サブスク一覧', owner_subscriptions_path(owner_id: @subscription.owner_id), class: "btn btn-info" %>
+

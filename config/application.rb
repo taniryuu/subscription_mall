@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module App
   class Application < Rails::Application
+    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.time_zone = 'Asia/Tokyo' # この１行をここに追加します。

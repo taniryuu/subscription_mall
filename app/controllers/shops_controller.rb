@@ -29,7 +29,7 @@ class ShopsController < ApplicationController
 
     respond_to do |format|
       if @shop.save
-        format.html { redirect_to owner_shops_url, notice: 'Shop was successfully created.' }
+        format.html { redirect_to new_owner_subscription_url, notice: 'Shop was successfully created.' }
         format.json { render :index, status: :created, location: @shop }
 
         Category.create(

@@ -98,8 +98,8 @@ ja:
           updated_at: 更新日
         subscription:
           id: ID
-          name: 名前
-          title: タイトル
+          name: お店の名前
+          title: サブスクタイトル
           detail: 詳細
           image_subscription: 写真
           price: 金額

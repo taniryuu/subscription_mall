@@ -1,44 +1,46 @@
+<% provide(:title, "サブスクページ") %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @subscription.name %>
-</p>
+<h1>サブスクページ</h1>
 
-<p>
-  <strong>Title:</strong>
-  <%= @subscription.title %>
-</p>
+<div class="row" >
+  <div class="col-sm-6 col-sm-offset-1">
+    <p>ここに写真</p>
+  </div>
+  <div class="col-sm-4">
+    <div class="box">
+      <div class="box-inner">
+        <h5><%= @subscription.name %></h5>
+        <p>
+          <strong><%= @subscription.title %></strong>
+        </p>
+        <hr class="tool-bar">
+        <h5><%= @subscription.detail %></h5>
+        <h5><%= @subscription.subscription_detail %></h5>
+        <hr class="tool-bar">
+        <p>
+          <strong><%= @subscription.price %>円/月（税込）</strong>
+        </p>
+        <p>
+          <strong>お支払い方法</strong>
+        </p>
+        <p>
+          <strong>・クレジットカード払い（VISA,Master）</strong>
+        </p>
+        <hr class="tool-bar">
+        <p class="red">
+          <strong><%= @subscription.created_at %></strong>
+        </p>
+        <p>
+          <strong><%= @subscription.updated_at %></strong>
+        </p>
+        <p>
+          <strong><%= @subscription.owner_id %></strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Detail:</strong>
-  <%= @subscription.detail %>
-</p>
-
-<p>
-  <strong>Image subscription:</strong>
-  <%= @subscription.image_subscription %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @subscription.price %>
-</p>
-
-<p>
-  <strong>Subscription detail:</strong>
-  <%= @subscription.subscription_detail %>
-</p>
-
-<p>
-  <strong>Category name:</strong>
-  <%= @subscription.category_name %>
-</p>
-
-<p>
-  <strong>Owner:</strong>
-  <%= @subscription.owner %>
-</p>
-
-<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
-<%= link_to 'Back', subscriptions_path %>
+<%= link_to 'Edit', edit_owner_subscription_path(@subscription, owner_id: @owner.id) %> |
+<%= link_to 'Back', owner_subscriptions_path %>

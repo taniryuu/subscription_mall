@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Suports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Subject</th>
+      <th>Message</th>
+      <th>User</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @suports.each do |suport| %>
+      <tr>
+        <td><%= suport.name %></td>
+        <td><%= suport.email %></td>
+        <td><%= suport.subject %></td>
+        <td><%= suport.message %></td>
+        <td><%= suport.user %></td>
+        <td><%= suport.owner %></td>
+        <td><%= link_to 'Show', suport %></td>
+        <td><%= link_to 'Edit', edit_suport_path(suport) %></td>
+        <td><%= link_to 'Destroy', suport, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Suport', new_suport_path %>
