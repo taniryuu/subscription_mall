@@ -25,8 +25,8 @@
 
   <div class="field">
     <%= form.fields_for :images do |f_img|%>
-      <%= f_img.label :image_subscription %>
-      <%= f_img.file_field :image_subscription, class: "hidden image_upload" %>
+      <%= f_img.label :サブスク写真 %>
+      <%= f_img.file_field :image_subscription_id %>
     <% end %>
   </div>
 
