@@ -46,7 +46,7 @@
         </div>
 
         <div class="box-google"></br>
-            <%= link_to "#" do %>
+            <%= link_to user_google_oauth2_omniauth_authorize_path do %>
             <i class="fa fa-google"></i> Googleでログイン
             <% end %>
         </div>
@@ -54,6 +54,12 @@
         <div class="box-twitter"></br>
             <%= link_to user_twitter_omniauth_authorize_path do %>
             <i class="fa fa-twitter"></i> Twitterでログイン
+            <% end %>
+        </div>
+
+        <div class="box-instagram"></br>
+            <%= link_to user_instagram_omniauth_authorize_path do %>
+            <i class="fa fa-instagram"></i> Instagramでログイン
             <% end %>
         </div>
 

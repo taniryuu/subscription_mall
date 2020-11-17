@@ -17,10 +17,11 @@ gem 'rails-i18n'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem 'omniauth-instagram'
 gem 'dotenv-rails'
 gem 'omniauth-line'
-gem 'omniauth-oauth2', '~> 1.3.1'
+gem 'omniauth-oauth2', '>= 1.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

@@ -42,6 +42,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def line; basic_action end
 
+  def instagram
+    callback_from :instagram
+  end
+
   private
 
   def basic_action # line ログイン用メソッドです
