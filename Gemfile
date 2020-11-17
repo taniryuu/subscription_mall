@@ -16,7 +16,7 @@ gem 'font-awesome-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'#ファイルアップロードgem
 gem "refile-mini_magick"#画像処理のgem
 gem 'carrierwave', '~> 2.0'#複数画像投稿のgem
-gem 'mini_magick'
+gem 'rmagick'#画像をリサイズしたりする
 gem 'rails-i18n'
 gem 'omniauth'
 gem 'omniauth-facebook'

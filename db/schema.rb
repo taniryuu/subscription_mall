@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20201116105348) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.string "image_subscription"
-    t.string "image_interview"
+    t.string "image_subscription_id"
+    t.string "image_interview_id"
     t.text "comment"
     t.datetime "time"
     t.integer "user_id"

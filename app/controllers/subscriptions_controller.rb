@@ -18,7 +18,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @subscription = Subscription.new
-    # @subscription.images.build
+    @subscription.images.build
   end
 
   # GET /subscriptions/1/edit

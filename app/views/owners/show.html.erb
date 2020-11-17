@@ -1,3 +1,8 @@
 <h1>Myページ</h1>
 <p><%= @owner.email %></p>
-  <%= link_to 'サブスク一覧', "#", class: "btn btn-info" %>
+  <% if @subscriptions == 0 %>
+    <%= link_to 'サブスクページ作成はこちら', new_owner_shop_path(@owner), class: "btn btn-info" %>
+  <% else %>
+    <%= link_to 'サブスクページ', owner_shop_subscriptions_path(@owner, @subscription), class: "btn btn-info" %>
+  <% end %>
+
