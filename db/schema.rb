@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201113120600) do
+ActiveRecord::Schema.define(version: 20201116105348) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -60,6 +60,25 @@ ActiveRecord::Schema.define(version: 20201113120600) do
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_contacts_on_owner_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "image_subscription"
+    t.string "image_interview"
+    t.text "comment"
+    t.datetime "time"
+    t.integer "user_id"
+    t.integer "owner_id"
+    t.integer "subscription_id"
+    t.integer "interview_id"
+    t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_images_on_blog_id"
+    t.index ["interview_id"], name: "index_images_on_interview_id"
+    t.index ["owner_id"], name: "index_images_on_owner_id"
+    t.index ["subscription_id"], name: "index_images_on_subscription_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -122,13 +141,27 @@ ActiveRecord::Schema.define(version: 20201113120600) do
     t.string "title"
     t.text "detail"
     t.string "image_subscription"
-    t.string "price"
+    t.integer "price"
     t.text "subscription_detail"
     t.string "category_name"
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shop_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
+  end
+
+  create_table "suports", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "subject"
+    t.string "message"
+    t.integer "user_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_suports_on_owner_id"
+    t.index ["user_id"], name: "index_suports_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

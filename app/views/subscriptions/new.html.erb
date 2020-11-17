@@ -1,5 +1,49 @@
-<h1>New Subscription</h1>
+<% provide(:title, "サブスクページ作成") %>
 
-<%= render 'form', subscription: @subscription %>
+<h1>続いてサブスクページ作成</h1>
 
-<%= link_to 'Back', subscriptions_path %>
+<%= form_with(model: @subscription, url: owner_shop_subscriptions_path, local: true) do |form| %>
+  <%= render 'shared/error_messages' , object: @subscription %>
+
+  <%= form.hidden_field :owner_id, :value => @owner.id %>
+  <%= form.hidden_field :shop_id, :value => @shop.id %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail %>
+    <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.fields_for :images do |f_img|%>
+      <%= f_img.label :image_subscription %>
+      <%= f_img.file_field :image_subscription, class: "hidden image_upload" %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subscription_detail %>
+    <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name, id: :subscription_subscription_detail, class: 'form-control' %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', owner_shop_subscriptions_path %>
