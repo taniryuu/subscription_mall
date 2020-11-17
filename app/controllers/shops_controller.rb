@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :set_subscription, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /shops
   # GET /shops.json
@@ -29,11 +30,13 @@ class ShopsController < ApplicationController
 
     respond_to do |format|
       if @shop.save
-        format.html { redirect_to new_owner_subscription_url, notice: 'Shop was successfully created.' }
+        format.html { redirect_to new_owner_shop_subscription_url(@owner, @shop), notice: 'Shop was successfully created.' }
         format.json { render :index, status: :created, location: @shop }
 
-        Category.create(
-          name: @shop.category_name
+        Subscription.update(
+          subscription_detail: @shop.store_information,
+          owner_id: @shop.owner_id,
+          shop_id: @shop.id
         )
       else
         format.html { render :new }
@@ -47,7 +50,7 @@ class ShopsController < ApplicationController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html { redirect_to owner_shops_url, notice: 'Shop was successfully updated.' }
+        format.html { redirect_to new_owner_shop_subscription_url(@owner, @shop), notice: 'Shop was successfully updated.' }
         format.json { render :index, status: :ok, location: @shop }
       else
         format.html { render :edit }
@@ -71,8 +74,13 @@ class ShopsController < ApplicationController
     def set_shop
       @shop = Shop.find(params[:id])
     end
+
     def set_owner
       @owner = Owner.find(params[:owner_id])
+    end
+
+    def set_subscription
+      @subscription = Subscription.find_by(params[:subscription_id])
     end
 
     # Only allow a list of trusted parameters through.

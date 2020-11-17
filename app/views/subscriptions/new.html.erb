@@ -2,8 +2,11 @@
 
 <h1>続いてサブスクページ作成</h1>
 
-<%= form_with(model: @subscription, url: owner_subscriptions_path, local: true) do |form| %>
+<%= form_with(model: @subscription, url: owner_shop_subscriptions_path, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
+
+  <%= form.hidden_field :owner_id, :value => @owner.id %>
+  <%= form.hidden_field :shop_id, :value => @shop.id %>
 
   <div class="field">
     <%= form.label :name %>
@@ -32,11 +35,15 @@
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
-  <%= form.hidden_field :owner_id, :value => @owner.id %>
+  <div class="field">
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name, id: :subscription_subscription_detail, class: 'form-control' %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 
-<%= link_to 'Back', owner_subscriptions_path %>
+<%= link_to 'Back', owner_shop_subscriptions_path %>

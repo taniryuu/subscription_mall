@@ -5,33 +5,41 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Detail</th>
-      <th>Image subscription</th>
-      <th>Price</th>
-      <th>Subscription detail</th>
-      <th colspan="3"></th>
-    </tr>
   </thead>
 
   <tbody>
     <% @subscriptions.each do |subscription| %>
-      <tr>
-        <td><%= subscription.name %></td>
-        <td><%= subscription.title %></td>
-        <td><%= subscription.detail %></td>
-        <td><%= subscription.price %></td>
-        <td><%= subscription.subscription_detail %></td>
-        <td><%= link_to 'Show', owner_subscription_path(subscription, owner_id: @owner.id) %></td>
-        <td><%= link_to 'Edit', edit_owner_subscription_path(subscription, owner_id: @owner.id) %></td>
-        <td><%= link_to 'Destroy', owner_subscription_path(subscription, owner_id: @owner.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-2">
+          <%= subscription.name %>
+        </div>
+
+        <div class="col-sm-2">
+          <%= subscription.title %>
+        </div>
+        <div class="col-sm-2">
+          <%= subscription.detail %>
+        </div>
+
+        <div class="col-sm-2">
+          <%= subscription.subscription_detail %>
+        </div>
+
+        <div class="col-sm-1 tool--item">
+          <%= link_to "詳細", owner_shop_subscription_path(subscription, owner_id: @owner.id, shop_id: @shop.id), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-1 tool--item">
+          <%= link_to "編集", edit_owner_shop_subscription_path(subscription, owner_id: @owner.id, shop_id: @shop.id), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-1 btn--del">
+          <%= link_to "削除", owner_shop_subscription_path(subscription, owner_id: @owner.id, shop_id: @shop.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+        </div>
+      </div>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Subscription', new_owner_subscription_path %>
+<%= link_to 'New Subscription', new_owner_shop_subscription_path %>

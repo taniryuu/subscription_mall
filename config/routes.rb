@@ -30,9 +30,10 @@ Rails.application.routes.draw do
       collection do
         get 'interviews_index'
       end
-      resources :shops
-      resources :subscriptions
-    end
+      resources :shops do
+        resources :subscriptions
+      end
+  end
   resources :categories
 
   resources :users

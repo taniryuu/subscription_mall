@@ -15,9 +15,11 @@
           <strong><%= @subscription.title %></strong>
         </p>
         <hr class="tool-bar">
+
         <h5><%= @subscription.detail %></h5>
         <h5><%= @subscription.subscription_detail %></h5>
         <hr class="tool-bar">
+        
         <p>
           <strong><%= @subscription.price %>円/月（税込）</strong>
         </p>
@@ -42,5 +44,5 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_owner_subscription_path(@subscription, owner_id: @owner.id) %> |
-<%= link_to 'Back', owner_subscriptions_path %>
+<%= link_to 'Edit', edit_owner_shop_subscription_path(@subscription, owner_id: @owner.id, shop_id: @shop.id) %> |
+<%= link_to 'Back', owner_shop_subscriptions_path %>
