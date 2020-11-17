@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201113012118) do
+ActiveRecord::Schema.define(version: 20201116105348) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +27,71 @@ ActiveRecord::Schema.define(version: 20201113012118) do
     t.string "phone_number"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.string "image_photo"
+    t.integer "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_blogs_on_admin_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_categories_on_owner_id"
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "subject"
+    t.string "message"
+    t.integer "user_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_contacts_on_owner_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "image_subscription_id"
+    t.string "image_interview_id"
+    t.text "comment"
+    t.datetime "time"
+    t.integer "user_id"
+    t.integer "owner_id"
+    t.integer "subscription_id"
+    t.integer "interview_id"
+    t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_images_on_blog_id"
+    t.index ["interview_id"], name: "index_images_on_interview_id"
+    t.index ["owner_id"], name: "index_images_on_owner_id"
+    t.index ["subscription_id"], name: "index_images_on_subscription_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
+  create_table "interviews", force: :cascade do |t|
+    t.string "owner_name"
+    t.string "shop_name"
+    t.string "content"
+    t.string "image_interview"
+    t.string "youtube_url"
+    t.string "music"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_interviews_on_owner_id"
   end
 
   create_table "owners", force: :cascade do |t|
@@ -47,6 +112,58 @@ ActiveRecord::Schema.define(version: 20201113012118) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.integer "score"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "category_name"
+    t.integer "monthly_fee"
+    t.string "phone_number"
+    t.string "store_information"
+    t.string "payee"
+    t.string "line_id"
+    t.string "address"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_shops_on_owner_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.text "detail"
+    t.string "image_subscription"
+    t.integer "price"
+    t.text "subscription_detail"
+    t.string "category_name"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "shop_id"
+    t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
+  end
+
+  create_table "suports", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "subject"
+    t.string "message"
+    t.integer "user_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_suports_on_owner_id"
+    t.index ["user_id"], name: "index_suports_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,6 +177,8 @@ ActiveRecord::Schema.define(version: 20201113012118) do
     t.string "line_id"
     t.string "address"
     t.string "phone_number"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

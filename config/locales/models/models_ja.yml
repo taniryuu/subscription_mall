@@ -1,0 +1,146 @@
+ja:
+  activerecord:
+    models:
+      admin: 管理者
+      user: ユーザー
+      owner: 経営者
+      blog: サブスクnews
+      review: 利用者レビュー
+      contact: お問い合わせ
+      suport: サポート
+      map: 地図
+      shop: ショップ開設
+      category: カテゴリ
+      subscription: サブスクページ
+      image: 写真
+      interview: 経営者インタビュー
+    attributes:
+        admin:
+          id: ID
+          name: 名前
+          kana: カナ
+          email: メールアドレス
+          phone_number: 電話番号
+          line_id: LineID
+          address: 住所
+          password: パスワード
+          password_confirmation: パスワード再入力
+          created_at: 作成日
+          updated_at: 更新日
+        user:
+          id: ID
+          name: 名前
+          kana: カナ
+          email: メールアドレス
+          phone_number: 電話番号
+          line_id: LineID
+          address: 住所
+          password: パスワード
+          password_confirmation: パスワード再入力
+          created_at: 作成日
+          updated_at: 更新日
+        owner:
+          id: ID
+          name: 名前
+          kana: カナ
+          sex: 性別
+          email: メールアドレス
+          phone_number: 電話番号
+          line_id: LineID
+          address: 住所
+          password: パスワード
+          password_confirmation: パスワード再入力
+          created_at: 作成日
+          updated_at: 更新日
+        blog:
+          id: ID
+          title: タイトル
+          body: 文章
+          image_photo: 写真
+          created_at: 作成日
+          updated_at: 購入日
+        review:
+          id: ID
+          name: 名前
+          content: コメント
+          email: メールアドレス
+          score: 星スコア
+          created_at: 作成日
+          updated_at: 更新日
+        contact:
+          id: ID
+          name: 名前
+          email: メールアドレス
+          subject: 件名
+          message: メッセージ
+          created_at: 作成日
+          updated_at: 購入日
+        suport:
+          id: ID
+          name: 名前
+          email: メールアドレス
+          subject: 件名
+          message: メッセージ
+          created_at: 作成日
+          updated_at: 購入日
+        map:
+          id: ID
+          address: 住所
+          latitude: 緯度
+          longitude: 軽度
+          distance: 距離
+          created_at: 作成日
+          updated_at: 更新日
+        shop:
+          id: ID
+          category_name: カテゴリ
+          monthly_fee: 月額利用料金
+          store_information: 店舗情報
+          payee: 振込先
+          phone_number: 電話番号
+          address: 住所
+          created_at: 作成日
+          updated_at: 更新日
+        category:
+          id: ID
+          category_name: カテゴリ
+          created_at: 作成日
+          updated_at: 更新日
+        subscription:
+          id: ID
+          name: お店の名前
+          title: サブスクタイトル
+          detail: 商品詳細
+          image_subscription: 写真
+          price: 金額
+          subscription_detail: 店舗詳細
+          category_name: カテゴリ
+          created_at: 作成日
+          updated_at: 更新日
+        image:
+          id: ID
+          image_subscription: サブスク写真
+          image_interview: インタビュー写真
+          comment: コメント
+          time: 時間
+          created_at: 作成日
+          updated_at: 更新日
+          subscription_id: サブスク
+          interview_id: インタビュー
+          blog_id: news
+        interview:
+          id: ID
+          owner_name: 経営者名前
+          shop_name: お店の名前
+          content: 内容
+          image_interview: 写真
+          youtube_url: 動画
+          music: 音楽
+          created_at: 作成日
+          updated_at: 更新日
+
+
+
+
+
+

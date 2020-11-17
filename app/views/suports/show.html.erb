@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @suport.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @suport.email %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @suport.subject %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @suport.message %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @suport.user %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @suport.owner %>
+</p>
+
+<%= link_to 'Edit', edit_suport_path(@suport) %> |
+<%= link_to 'Back', suports_path %>

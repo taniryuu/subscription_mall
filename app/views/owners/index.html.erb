@@ -1,0 +1,34 @@
+<% provide(:title, 'All Owners') %>
+<div>
+  <h1>経営者一覧</h1>
+
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table-condensed table-hover" id="table-users">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>名前</th>
+          <th>アドレス</th>
+          <th>電話番号</th>
+        </tr>
+      </thead>
+
+      <% @owners.each do |owner| %>
+        <tr>
+          <td><%= owner.id %></td>
+          <td><%= link_to owner.name ,owner_path(owner) %></td>
+          <td><%= owner.email %></td>
+          <td><%= owner.phone_number %></td>
+          <td>
+              <%= link_to "削除", owner, method: :delete,
+                  data: { confirm: "削除してよろしいですか？" },
+                  class: "btn btn-danger" %>
+          </td>
+          <td>
+              <%= link_to "編集", edit_owner_path(owner), class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

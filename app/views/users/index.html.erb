@@ -1,0 +1,36 @@
+<% provide(:title, 'All Users') %>
+<div>
+  <h1>お客様一覧</h1>
+
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table-condensed table-hover" id="table-users">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>名前</th>
+          <th>かな</th>
+          <th>アドレス</th>
+          <th>電話番号</th>
+        </tr>
+      </thead>
+
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.name ,user_path(user) %></td>
+          <td><%= user.kana %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone_number %></td>
+          <td>
+              <%= link_to "削除", user, method: :delete,
+                  data: { confirm: "削除してよろしいですか？" },
+                  class: "btn btn-danger" %>
+          </td>
+          <td>
+              <%= link_to "編集", edit_user_path(user), class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

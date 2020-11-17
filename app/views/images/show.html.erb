@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image subscription:</strong>
+  <%= @image.image_subscription %>
+</p>
+
+<p>
+  <strong>Image interview:</strong>
+  <%= @image.image_interview %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @image.comment %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @image.time %>
+</p>
+
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

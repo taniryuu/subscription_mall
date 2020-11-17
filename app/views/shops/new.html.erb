@@ -1,0 +1,45 @@
+<% provide(:title, "お店開設") %>
+
+<h1>New Shop</h1>
+
+<%= form_with(model: @shop, url: owner_shops_path, local: true) do |form| %>
+  <%= render 'shared/error_messages' , object: @shop %>
+
+  <%= form.hidden_field :owner_id, :value => @owner.id %>
+
+  <div class="field">
+    <%= form.label :monthly_fee %>
+    <%= form.select :monthly_fee, Shop.monthly_fees.keys, { include_blank: true }, placeholder: "例)利用料金を選択してください", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payee %>
+    <%= form.text_field :payee, id: :shop_payee, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :LineID %>
+    <%= form.text_field :line_id, id: :shop_line_id, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :shop_address, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_information %>
+    <%= form.text_area :store_information, id: :shop_store_information, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'ショップ一覧', owner_shops_path %>

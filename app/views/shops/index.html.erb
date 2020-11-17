@@ -1,0 +1,32 @@
+<% provide(:title, "お店一覧") %>
+
+<h1>Shops</h1>
+<table>
+  <tbody>
+    <% @shops.each do |shop| %>
+    <hr class="tool-bar">
+      <div class="row">
+        <div class="col-md-8">
+          <%= shop.owner_id %>
+        </div>
+
+        <div class="col-md-8">
+          <%= shop.category_name %>
+        </div>
+
+        <div class="col-md-1 tool--item">
+          <%= link_to "詳細", owner_shop_path(shop, owner_id:@owner.id), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-md-1 tool--item">
+          <%= link_to "編集", edit_owner_shop_path(shop, owner_id:@owner.id), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-md-1 btn--del">
+          <%= link_to "削除", owner_shop_path(shop, owner_id:@owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+        </div>
+      </div>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Shop', new_owner_shop_path %>
