@@ -182,6 +182,7 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    pg (0.20.0)
     orm_adapter (0.5.0)
     public_suffix (4.0.6)
     puma (3.12.6)
@@ -319,6 +320,7 @@ DEPENDENCIES
   omniauth-line
   omniauth-oauth2 (>= 1.6)
   omniauth-twitter
+  pg (= 0.20.0)
   puma (~> 3.7)
   rails (~> 5.1.6)
   rails-i18n
