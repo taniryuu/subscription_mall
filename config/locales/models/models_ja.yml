@@ -110,7 +110,7 @@ ja:
           id: ID
           name: お店の名前
           title: サブスクタイトル
-          detail: 商品詳細
+          detail: 商品紹介
           image_subscription: 写真
           price: 金額
           subscription_detail: 店舗詳細

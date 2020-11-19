@@ -6,13 +6,13 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.all
+    @subscriptions = @owner.subscriptions
   end
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    # @subscription = @owner.subscriptions.find_by(params[:id])
+    @subscriptions = @subscription.images
   end
 
   # GET /subscriptions/new
@@ -51,7 +51,7 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to owner_shop_subscription_url(@owner, @shop), notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to owner_shop_subscription_url(@subscription, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @subscription }
 
         Category.update(
@@ -70,7 +70,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     respond_to do |format|
-      format.html { redirect_to owner_shop_subscriptions_url, notice: 'Subscription was successfully destroyed.' }
+      format.html { redirect_to owner_shop_subscriptions_url(@subscription, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -78,7 +78,7 @@ class SubscriptionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
-      @subscription = Subscription.find_by(params[:id])
+      @subscription = Subscription.find(params[:id])
     end
 
     def set_owner
@@ -91,6 +91,6 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:name, :title, :detail, :image_subscription, :price, :subscription_detail, :category_name, :owner_id, :shop_id)
+      params.require(:subscription).permit(:name, :title, :detail, :image_subscription_id, :subscription_detail, :category_name, :owner_id, :shop_id, images_attributes: [:image])
     end
 end
