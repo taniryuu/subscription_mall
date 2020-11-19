@@ -3,6 +3,15 @@
   <% if @subscriptions == 0 %>
     <%= link_to 'サブスクページ作成はこちら', new_owner_shop_path(@owner), class: "btn btn-info" %>
   <% else %>
-    <%= link_to 'サブスクページ', owner_shop_subscriptions_path(@owner, @subscription), class: "btn btn-info" %>
+    <%
+=begin%>
+ <%= link_to 'サブスクページ', owner_shop_subscriptions_path(@owner.id, shop_id:@shop.id), class: "btn btn-info" %> 
+<%
+=end%>
   <% end %>
+    <%
+=begin%>
+ <%= link_to 'サブスクページ', owner_shop_subscriptions_path(@subscription, owner_id: @owner.id, shop_id: @shop.id), class: "btn btn-info" %> 
+<%
+=end%>
 

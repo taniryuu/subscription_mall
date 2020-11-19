@@ -2,7 +2,7 @@
 
 <h1>続いてサブスクページ作成</h1>
 
-<%= form_with(model: @subscription, url: owner_shop_subscriptions_path, local: true) do |form| %>
+<%= form_with(model: @subscription, url: owner_shop_subscriptions_path(@subscription, owner_id: @owner.id, shop_id: @shop.id), local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
@@ -26,7 +26,7 @@
   <div class="field">
     <%= form.fields_for :images do |f_img|%>
       <%= f_img.label :サブスク写真 %>
-      <%= f_img.file_field :image_subscription_id %>
+      <%= f_img.file_field :image_subscription_id, multiple: true %>
     <% end %>
   </div>
 

@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   resources :admins
   resources :blogs
-  resources :images
   resources :suports
   get 'interviews/index'
   get 'shops/index'
@@ -31,7 +30,9 @@ Rails.application.routes.draw do
         get 'interviews_index'
       end
       resources :shops do
-        resources :subscriptions
+        resources :subscriptions do
+          resources :images
+        end
       end
   end
   resources :categories

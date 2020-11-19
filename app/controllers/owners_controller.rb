@@ -10,9 +10,13 @@ class OwnersController < ApplicationController
   end
 
   def show
-    @owner = Owner.find(params[:id])
-    @subscription = Subscription.find(params[:id])
-    @subscriptions = Subscription.where.not(name: nil).size
+      @owner = Owner.find(params[:id])
+    if @subscriptions == 0 
+      @subscription = Subscription.find(params[:id])
+    else
+      # @shop = Shop.find(params[:shop_id])
+      @subscriptions = Subscription.where.not(name: nil).size
+    end
   end
 
   def edit

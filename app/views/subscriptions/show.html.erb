@@ -6,7 +6,11 @@
 <div class="row" >
   <div class="col-sm-6 col-sm-offset-1">
     <p>ここに写真</p>
-    <p>< %= image_tag @subscription.images.image_subscription_id.thumb.url %></p>
+    <% @subscriptions.each do |s| %>
+      <p><%= image_tag s.image_subscription_id.thumb.url %></p>
+      <div class="content_post" style="background-image: url(<%= image_tag s.image_subscription_id.url %>);">
+      </div>
+    <% end %>
   </div>
   <div class="col-sm-4">
     <div class="box">
@@ -22,7 +26,22 @@
         <hr class="tool-bar">
         
         <p>
-          <strong><%= @subscription.price %>円/月（税込）</strong>
+          <strong>
+            <%= form_with(model: @subscription, url: "#", local: true) do |form| %>
+              <%= render 'shared/error_messages' , object: @subscription %>
+
+              <%= form.hidden_field :owner_id, :value => @owner.id %>
+              <%= form.hidden_field :id, :value => @subscription.id %>
+
+              <div class="field">
+                <%= form.label :price %>
+                <%= form.select :price, Subscription.prices.keys, { include_blank: true } %>円/月（税込）
+              </div>
+              <div class="actions">
+                <%= form.submit %>
+              </div>
+            <% end %>
+          </strong>
         </p>
         <p>
           <strong>お支払い方法</strong>
