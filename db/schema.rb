@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20201116105348) do
     t.string "title"
     t.text "detail"
     t.string "image_subscription"
-    t.integer "price"
+    t.string "price"
     t.text "subscription_detail"
     t.string "category_name"
     t.integer "owner_id"
