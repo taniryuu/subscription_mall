@@ -1,41 +1,47 @@
 <% provide(:title, "Top") %>
 
-<%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, width: "1150vw", height: "550vh", class: 'video-content') %>
+  <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, width: "1150vw", height: "550vh", class: 'video-content') %>
+  <h1><%= link_to "まずはご相談ください", static_pages_discussion_path, class: "btn btn-lg btn-info" %></h1>
 
+<div class="row">  
+  <dt><div class="col-sm-4"><%= image_tag "yakiniku.jpeg" %></div></dt>
+  <dt><div class="col-sm-4"><%= image_tag "yakiniku2.jpg" %></div></dt>
+  <dt><div class="col-sm-4"><%= image_tag "yakiniku3.jpeg" %></div></dt>
+</div>
 <main class="scroll-container">
   <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
       <h1 id="home">ホーム</h1></br>
-      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %></h1></br>
+      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="plan">プラン</h1></br>
       <h1 id="recommend">おすすめ店舗</h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", owner_interviews_path(current_owner), class: "btn btn-lg btn-link" %></h1></br>
+      <h1 id="interview"><%= link_to "オーナーインタビュー", owner_interviews_path(current_owner), class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-link" %></h1>
+      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
       <h1 id="home">ホーム</h1></br>
-      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %></h1></br>
+      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="plan">プラン</h1></br>
       <h1 id="recommend">おすすめ店舗</h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_index_owners_path, class: "btn btn-lg btn-link" %></h1></br>
+      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_index_owners_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-link" %></h1>
+      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
       <h1 id="home">ホーム</h1></br>
-      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %></h1></br>
+      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="plan">プラン</h1></br>
       <h1 id="recommend">おすすめ店舗</h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_index_owners_path, class: "btn btn-lg btn-link" %></h1></br>
+      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_index_owners_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-link" %></h1>
+      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
     <% end %>
   <% else %> <%# ログインしてない %>
     <h1 id="home">ホーム</h1></br>
-    <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %></h1></br>
+    <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="plan">プラン</h1></br>
     <h1 id="recommend">おすすめ店舗</h1></br>
-    <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_index_owners_path, class: "btn btn-lg btn-link" %></h1></br>
+    <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_index_owners_path, class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="service">サービス</h1></br>
-    <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-link" %></h1>
+    <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
   <% end %>
 </main>

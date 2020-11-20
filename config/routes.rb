@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'
+  get 'static_pages/discussion'
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -22,8 +23,11 @@ Rails.application.routes.draw do
   resources :admins
   resources :blogs
   resources :suports
+  resources :contacts
   get 'interviews/index'
-  get 'shops/index'
+  get 'subscriptions/index'
+  get 'blogs/index'
+
   resources :owners do
     resources :interviews
       collection do
@@ -38,7 +42,6 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :users
-  resources :contacts
   resources :reviews
 
 

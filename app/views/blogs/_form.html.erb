@@ -13,24 +13,18 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :blog_title %>
+    <%= form.text_field :title, id: :blog_title, placeholder: "例)美味しいラーメン", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :body %>
-    <%= form.text_area :body, id: :blog_body %>
+    <%= form.text_area :body, id: :blog_body, placeholder: "例)美味しいラーメン", class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :image_photo %>
-    <%= form.text_field :image_photo, id: :blog_image_photo %>
+    <%= form.file_field :image_photo %>
   </div>
-
-  <div class="field">
-    <%= form.label :admin_id %>
-    <%= form.text_field :admin_id, id: :blog_admin_id %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
