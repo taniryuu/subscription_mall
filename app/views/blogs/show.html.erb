@@ -18,10 +18,11 @@
       <strong>Body:</strong>
       <%= @blog.body %>
     </p>
-
-    <%= link_to 'Edit', edit_blog_path(@blog) %> |
     <%= link_to 'Back', blogs_path %>
-    <%= link_to 'New Blog', new_blog_path, class: "btn btn-info" %><br>
+    <% if current_admin.present? %>
+      <%= link_to 'Edit', edit_blog_path(@blog) %> |
+      <%= link_to 'New Blog', new_blog_path, class: "btn btn-info" %><br>
+    <% end %>
 
 
   <h1><%= link_to "お問い合わせはこちら", static_pages_discussion_path, class: "btn btn-lg btn-info" %></h1>
@@ -32,23 +33,25 @@
     <% @blogs.each do |blog| %>
       <hr class="tool-bar">
       <div>
-        <%= blog.title %>
+        <%= link_to "#{blog.title}", blog_path(blog) %>
       </div><br>
       <div>
         <div class="grid-item-image"><%= image_tag blog.image_photo.url %>
         </div><br>
       <div>
-        <%= blog.body %>
+        <%= link_to "#{blog.body}", blog_path(blog) %>
       </div><br>
-      <div class="col-sm-2">
-        <%= link_to "詳細", blog_path(blog), class: "btn-gradient-3d-simple" %>
-      </div>
-      <div class="col-sm-2">
-        <%= link_to "編集", edit_blog_path(blog), class: "btn-gradient-3d-simple" %>
-      </div>
-      <div class="col-sm-2">
-        <%= link_to "削除", blog_path(blog), method: :delete, class: "btn-gradient-3d-simple-destroy", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
-      </div>
+      <% if current_admin.present? %>
+        <div class="col-sm-2">
+          <%= link_to "詳細", blog_path(blog), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-2">
+          <%= link_to "編集", edit_blog_path(blog), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-2">
+          <%= link_to "削除", blog_path(blog), method: :delete, class: "btn-gradient-3d-simple-destroy", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
