@@ -28,10 +28,11 @@ Rails.application.routes.draw do
   get 'subscriptions/index'
   get 'blogs/index'
 
+  resources :interviews
   resources :owners do
-    resources :interviews
       collection do
         get 'interviews_index'
+        get 'owner_account'#アカウントページ
       end
       resources :shops do
         resources :subscriptions do
@@ -41,7 +42,11 @@ Rails.application.routes.draw do
   end
   resources :categories
 
-  resources :users
+  resources :users do
+    member do
+      get 'user_account'#アカウントページ
+    end
+  end
   resources :reviews
 
 

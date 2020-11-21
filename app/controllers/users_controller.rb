@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def show_account
+    @user = User.find(params[:id])
+  end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -31,4 +35,10 @@ class UsersController < ApplicationController
     flash[:success] = "#{@user.name}のデータを削除しました。"
     redirect_to users_url
   end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
+    end
 end

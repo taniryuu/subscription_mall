@@ -1,17 +1,42 @@
-<h1>Myページ</h1>
-<p><%= @owner.email %></p>
-  <% if @subscriptions == 0 %>
-    <%= link_to 'サブスクページ作成はこちら', new_owner_shop_path(@owner), class: "btn btn-info" %>
-  <% else %>
-    <%
-=begin%>
- <%= link_to 'サブスクページ', owner_shop_subscriptions_path(@owner.id, shop_id:@shop.id), class: "btn btn-info" %> 
-<%
-=end%>
-  <% end %>
-    <%
-=begin%>
- <%= link_to 'サブスクページ', owner_shop_subscriptions_path(@subscription, owner_id: @owner.id, shop_id: @shop.id), class: "btn btn-info" %> 
-<%
-=end%>
+<% provide(:title, @owner.name) %>
+<link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">  
+<div class="staff-show-body">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <table border="2" style="border-collapse: collapse; border-color: black">
+          <h1>Myページ</h1>
+          <p><%= @owner.email %></p>
+            <% if @subscriptions == 0 %>
+              <%= link_to 'サブスクページ作成はこちら', new_owner_shop_path(@owner), class: "btn btn-info" %>
+            <% else %>
+
+            <% end %>
+
+            <tr>
+              <th height="40" class=col-sm-2>名前</th><td class=col-sm-4><%= @owner.name %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-sm-2>住所</th><td class=col-sm-4><%= @owner.address %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-sm-2>TEL</th><td class=col-sm-4><%= @owner.phone_number %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-sm-2>LINE_ID</th><td class=col-sm-4><%= @owner.line_id %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-sm-2>メールアドレス</th><td class=col-sm-4><%= @owner.email %></td>
+            </tr>
+          </table>
+          <div class="user-show-btn">
+            <%= link_to owners_path, class: "btn btn--blue btn-sm btn--shadow" do %>
+            <i class="fas fa-reply"> 戻る</i>
+            <% end %>
+            <%= link_to "編集", edit_owner_path, class: "btn btn--blue btn-sm btn--shadow" %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
 
