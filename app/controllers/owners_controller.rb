@@ -19,6 +19,10 @@ class OwnersController < ApplicationController
     end
   end
 
+  def owner_account
+    @owner = Owner.find(params[:id])
+  end
+
   def edit
   end
 
