@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201116105348) do
+ActiveRecord::Schema.define(version: 20201122120737) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -62,6 +62,26 @@ ActiveRecord::Schema.define(version: 20201116105348) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
+  create_table "cupons", force: :cascade do |t|
+    t.string "product"
+    t.string "discount"
+    t.integer "status"
+    t.string "image"
+    t.string "writing"
+    t.integer "limit"
+    t.text "reason"
+    t.integer "review_id"
+    t.integer "owner_id"
+    t.integer "user_id"
+    t.integer "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_cupons_on_admin_id"
+    t.index ["owner_id"], name: "index_cupons_on_owner_id"
+    t.index ["review_id"], name: "index_cupons_on_review_id"
+    t.index ["user_id"], name: "index_cupons_on_user_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "image_subscription_id"
     t.string "image_interview_id"
@@ -110,6 +130,23 @@ ActiveRecord::Schema.define(version: 20201116105348) do
     t.string "address"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "price"
+    t.text "subscription_detail"
+    t.integer "subscription_id"
+    t.integer "owner_id"
+    t.integer "user_id"
+    t.integer "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_products_on_admin_id"
+    t.index ["owner_id"], name: "index_products_on_owner_id"
+    t.index ["subscription_id"], name: "index_products_on_subscription_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|

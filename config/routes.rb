@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :cupons
+  resources :products
   root 'static_pages#top'
   get 'static_pages/discussion'
 
@@ -20,8 +22,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :admins
-  resources :blogs
+resources :admins do
+  member do
+    get 'admin_account'#アカウントページ
+  end
+end
+resources :blogs
   resources :suports
   resources :contacts
   get 'interviews/index'
@@ -30,7 +36,7 @@ Rails.application.routes.draw do
 
   resources :interviews
   resources :owners do
-      collection do
+      member do
         get 'interviews_index'
         get 'owner_account'#アカウントページ
       end

@@ -1,4 +1,5 @@
 class OwnersController < ApplicationController
+  before_action :set_owner, only: [:new, :create, :show, :edit, :update, :destroy]
   
   def index
     @owners = Owner.all
@@ -10,7 +11,6 @@ class OwnersController < ApplicationController
   end
 
   def show
-      @owner = Owner.find(params[:id])
     if @subscriptions == 0 
       @subscription = Subscription.find(params[:id])
     else
@@ -27,8 +27,27 @@ class OwnersController < ApplicationController
   end
 
   def update
+    if @owner.update_attributes(owner_params)
+      flash[:success] = "#{@owner.name}様の情報を更新しました。"
+      redirect_to owners_url
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @owner.destroy
+    flash[:success] = "#{@owner.name}様ののデータを削除しました。"
+    redirect_to owners_url
   end
+
+  private
+
+    def set_owner
+      @owner = Owner.find(params[:id])
+    end
+
+    def owner_params
+      params.require(:owner).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
+    end
 end

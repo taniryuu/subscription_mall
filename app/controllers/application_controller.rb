@@ -13,21 +13,21 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       if current_admin.present?
-        admin_path(resource)
+        admin_account_admin_path(resource)
       else
         flash[:danger] = "ログインしてください"
         root_path(resource)
       end
     when User
       if current_user.present?
-        user_path(resource)
+        user_account_user_path(resource)
       else
         flash[:danger] = "ログインしてください"
         root_path(resource)
       end
     when Owner
       if current_owner.present?
-        owner_path(resource)
+        owner_account_owner_path(resource)
       else
         flash[:danger] = "ログインしてください"
         root_path(resource)
