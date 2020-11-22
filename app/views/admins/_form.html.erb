@@ -1,6 +1,6 @@
-<%= form_with(model: @owner, local: true) do |f| %>
+<%= form_with(model: @admin, local: true) do |f| %>
 
- <%= render 'shared/error_messages', object: @owner %>  
+ <%= render 'shared/error_messages', object: @admin %>  
 
   <%= f.label :name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :name, class: "form-control" %>

@@ -12,6 +12,8 @@ ja:
       shop: ショップ開設
       category: カテゴリ
       subscription: サブスクページ
+      product: QRコード
+      cupon: クーポン
       image: 写真
       interview: 経営者インタビュー
     attributes:
@@ -115,6 +117,25 @@ ja:
           price: 金額
           subscription_detail: 店舗詳細
           category_name: カテゴリ
+          created_at: 作成日
+          updated_at: 更新日
+        product:
+          id: ID
+          title: サブスクタイトル
+          content: 詳細
+          price: 金額
+          subscription_detail: 店舗詳細
+          created_at: 作成日
+          updated_at: 更新日
+        cupon:
+          id: ID
+          product: 商品名
+          discount: 割引きやサービス内容
+          status: クーポンの有効、無効
+          image: イメージ画像
+          writing: セールストーク
+          limit: 有効期限
+          reason: セールスの理由
           created_at: 作成日
           updated_at: 更新日
         image:

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cupons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Discount</th>
+      <th>Status</th>
+      <th>Image</th>
+      <th>Writing</th>
+      <th>Limit</th>
+      <th>Reason</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cupons.each do |cupon| %>
+      <tr>
+        <td><%= cupon.product %></td>
+        <td><%= cupon.discount %></td>
+        <td><%= cupon.status %></td>
+        <td><%= cupon.image %></td>
+        <td><%= cupon.writing %></td>
+        <td><%= cupon.limit %></td>
+        <td><%= cupon.reason %></td>
+        <td><%= link_to 'Show', cupon %></td>
+        <td><%= link_to 'Edit', edit_cupon_path(cupon) %></td>
+        <td><%= link_to 'Destroy', cupon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cupon', new_cupon_path %>

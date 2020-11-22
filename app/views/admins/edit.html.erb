@@ -1,2 +1,11 @@
-<h1>Admins#edit</h1>
-<p>Find me in app/views/admins/edit.html.erb</p>
+<% provide(:title, "Edit") %>
+<% provide(:class_text, 'admin--edit') %>
+<% provide(:button_text, '更新') %>
+<h1>管理者様情報の更新</h1>
+
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= render 'form' %>
+  </div>
+</div>

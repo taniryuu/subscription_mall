@@ -30,21 +30,6 @@
     <%= form.label :message %>
     <%= form.text_area :message, placeholder: "例)アカウント作成とは？", class: 'form-control', id: :contact_message %>
   </div>
-
-  <%
-=begin%>
- <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :contact_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :owner_id %>
-    <%= form.text_field :owner_id, id: :contact_owner_id %>
-  </div> 
-<%
-=end%>
-
   <div class="actions">
     <%= form.submit %>
   </div>
