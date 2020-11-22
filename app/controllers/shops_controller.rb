@@ -33,8 +33,7 @@ class ShopsController < ApplicationController
         format.html { redirect_to new_owner_shop_subscription_url(@owner, @shop), notice: 'Shop was successfully created.' }
         format.json { render :index, status: :created, location: @shop }
 
-        Subscription.update(
-          subscription_detail: @shop.store_information,
+        @owner.subscriptions.update(
           owner_id: @shop.owner_id,
           shop_id: @shop.id
         )

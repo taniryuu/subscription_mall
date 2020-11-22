@@ -1,24 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
+<h1>サブスクnews</h1>
+<hr class="tool-bar">
+<div class="row">
+  <div class="col-md-offset-2 col-sm-8">
+    <p>
+      <strong>Title:</strong>
+      <h1><%= @blog.title %></h1>
+    </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @blog.body %>
-</p>
+    <p>
+      <strong>Image photo:</strong><br>
+      <%= image_tag @blog.image_photo.thumb.url %>
+    </p>
 
-<p>
-  <strong>Image photo:</strong>
-  <%= @blog.image_photo %>
-</p>
+    <p>
+      <strong>Body:</strong>
+      <%= @blog.body %>
+    </p>
+    <%= link_to 'Back', blogs_path %>
+    <% if current_admin.present? %>
+      <%= link_to 'Edit', edit_blog_path(@blog) %> |
+      <%= link_to 'New Blog', new_blog_path, class: "btn btn-info" %><br>
+    <% end %>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @blog.admin %>
-</p>
 
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+  <h1><%= link_to "お問い合わせはこちら", static_pages_discussion_path, class: "btn btn-lg btn-info" %></h1>
+  </div>
+
+  <div class="col-md-offset-10 col-sm-6">
+  <h5>おすすめnews</h5>
+    <% @blogs.each do |blog| %>
+      <hr class="tool-bar">
+      <div>
+        <%= link_to "#{blog.title}", blog_path(blog) %>
+      </div><br>
+      <div>
+        <div class="grid-item-image"><%= image_tag blog.image_photo.url %>
+        </div><br>
+      <div>
+        <%= link_to "#{blog.body}", blog_path(blog) %>
+      </div><br>
+      <% if current_admin.present? %>
+        <div class="col-sm-2">
+          <%= link_to "詳細", blog_path(blog), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-2">
+          <%= link_to "編集", edit_blog_path(blog), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-2">
+          <%= link_to "削除", blog_path(blog), method: :delete, class: "btn-gradient-3d-simple-destroy", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

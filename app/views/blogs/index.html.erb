@@ -1,33 +1,38 @@
+<% provide(:title, "サブスクnews一覧") %>
 <p id="notice"><%= notice %></p>
 
-<h1>Blogs</h1>
+<h1>サブスクnews一覧</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Image photo</th>
-      <th>Admin</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
+    <% if current_admin.present? %>
+      <%= link_to 'New Blog', new_blog_path, class: "btn btn-info" %>
+    <% end %>
     <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.body %></td>
-        <td><%= blog.image_photo %></td>
-        <td><%= blog.admin %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-2">
+          <%= blog.title %>
+        </div><br>
+        <div class="col-sm-4">
+          <div class="grid-item-image"><%= image_tag blog.image_photo.thumb.url %></div>
+        </div>
+
+        <div class="col-sm-2">
+          <%= blog.body %>
+        </div>
+        <div class="col-sm-2">
+          <%= link_to "詳細", blog_path(blog), class: "btn-gradient-3d-simple" %>
+        </div>
+      <% if current_admin.present? %>
+        <div class="col-sm-2">
+          <%= link_to "編集", edit_blog_path(blog), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-2">
+          <%= link_to "削除", blog_path(blog), method: :delete, class: "btn-gradient-3d-simple-destroy", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
+        </div>
+      <% end %>
+      </div>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>

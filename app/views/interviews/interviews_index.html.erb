@@ -1,0 +1,42 @@
+<% provide(:title, "インタビュー") %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>オーナー様インタビュー</h1>
+
+<table>
+  <tbody>
+    <% @interviews.each do |interview| %>
+    <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
+        </div>
+        <div class="col-sm-2">
+          <%= interview.owner_name %>
+        </div>
+
+        <div class="col-sm-2">
+          <%= interview.shop_name %>
+        </div>
+
+        <div class="col-sm-2">
+          <%= interview.content %>
+        </div>
+
+        <div class="col-sm-1">
+          <%= link_to "詳細", owner_interview_path(interview, owner_id:@owner.id), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-1">
+          <%= link_to "編集", edit_owner_interview_path(interview, owner_id:@owner.id), class: "btn-gradient-3d-simple" %>
+        </div>
+        <div class="col-sm-1">
+          <%= link_to "削除", owner_interview_path(interview, owner_id:@owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+        </div>
+      </div>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Interview', new_owner_interview_path %>

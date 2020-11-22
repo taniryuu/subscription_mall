@@ -22,7 +22,7 @@ textarea {
 .center h1 {
   margin-bottom: 10px;
 }
-//リンクボタン
+//詳細、編集リンクボタン
 .btn-gradient-3d-simple {
   display: inline-block;
   padding: 0.5em 1em;
@@ -30,6 +30,17 @@ textarea {
   border-radius: 4px;
   color: #ffffff;
   background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #5e7fca;
+}
+//削除リンクボタン
+.btn-gradient-3d-simple-destroy {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-image: linear-gradient(#f01010 0%, #f0a417 100%);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
   border-bottom: solid 3px #5e7fca;
 }
@@ -86,6 +97,19 @@ p {
 #logo:hover {
   color: #fff;
   text-decoration: none;
+}
+
+//  トップ画面背景画像
+
+.fluid-box{
+  width: 100vw;
+  position: relative;
+  height: 80vh;
+  background: url(yakiniku.jpg) no-repeat center center;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color:#fff;
+  padding: 20px;
 }
 
 /* topページのヘッダーからスクロールさせる */

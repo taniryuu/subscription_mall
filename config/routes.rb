@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :cupons
+  resources :products
   root 'static_pages#top'
+  get 'static_pages/discussion'
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -19,25 +22,37 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :admins
-  resources :blogs
-  resources :images
+resources :admins do
+  member do
+    get 'admin_account'#アカウントページ
+  end
+end
+resources :blogs
   resources :suports
+  resources :contacts
   get 'interviews/index'
-  get 'shops/index'
+  get 'subscriptions/index'
+  get 'blogs/index'
+
+  resources :interviews
   resources :owners do
-    resources :interviews
-      collection do
+      member do
         get 'interviews_index'
+        get 'owner_account'#アカウントページ
       end
       resources :shops do
-        resources :subscriptions
+        resources :subscriptions do
+          resources :images
+        end
       end
   end
   resources :categories
 
-  resources :users
-  resources :contacts
+  resources :users do
+    member do
+      get 'user_account'#アカウントページ
+    end
+  end
   resources :reviews
 
 

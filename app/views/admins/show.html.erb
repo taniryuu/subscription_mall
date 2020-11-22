@@ -1,2 +1,37 @@
-<h1>Admins#show</h1>
-<p><%= @admin.email %></p>
+<% provide(:title, @admin.name) %>
+<link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">  
+<div class="show-body">
+  <div class="container">
+    <h1 class="show-title">管理者様ご紹介ページ</h1>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <table border="2" style="border-collapse: collapse; border-color: black">
+            <tr>
+              <th height="40" class=col-md-2>名前</th><td class=col-md-4><%= @admin.name %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>カナ</th><td class=col-md-4><%= @admin.kana %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>住所</th><td class=col-md-4><%= @admin.address %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>TEL</th><td class=col-md-4><%= @admin.phone_number %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>メールアドレス</th><td class=col-md-4><%= @admin.email %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>LINE_ID</th><td class=col-md-4><%= @admin.line_id %></td>
+            </tr>
+          </table>
+          <div class="user-show-btn">
+            <%= link_to admins_path, class: "btn btn--blue btn-md btn--shadow" do %>
+            <i class="fas fa-reply"> 戻る</i>
+            <% end %>
+            <%= link_to "編集", edit_admin_path(@admin), class: "btn btn--blue btn-md btn--shadow" %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

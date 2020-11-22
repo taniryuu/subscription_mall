@@ -1,83 +1,100 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "Subscription_mall", root_path, id: "logo" %>
+    <%= link_to "巡グルメ", root_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if signed_in? %> <%# ログインしているかどうか %>
-          <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-            <li><a href="#home">ホーム</a></li>
-            <li><a href="#category">カテゴリ</a></li>
-            <li><a href="#plan">プラン</a></li>
-            <li><a href="#recommend">おすすめ店舗</a></li>
-            <li><%= link_to "ショップ開設", new_owner_shop_path(current_owner) %></li>
-            <li><a href="#interview">オーナーインタビュー</a></li>
-            <li><a href="#service">サービス</a></li>
-            <li><a href="#inquiry">お問い合わせ</a></li>
-         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              メニュー <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
-              <li><%= link_to "Myアカウント", owner_path(current_owner) %></li>
-            </ul>
-         </li>
-          <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-            <li><a href="#home">ホーム</a></li>
-            <li><a href="#category">カテゴリ</a></li>
-            <li><a href="#plan">プラン</a></li>
-            <li><a href="#recommend">おすすめ店舗</a></li>
-            <li><a href="#interview">オーナーインタビュー</a></li>
-            <li><a href="#service">サービス</a></li>
-            <li><a href="#inquiry">お問い合わせ</a></li>
-         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              メニュー <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to "Myアカウント", @user %></li>
-            </ul>
-         </li>
-          <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-            <li><a href="#home">ホーム</a></li>
-            <li><a href="#category">カテゴリ</a></li>
-            <li><a href="#plan">プラン</a></li>
-            <li><a href="#recommend">おすすめ店舗</a></li>
-            <li><a href="#interview">オーナーインタビュー</a></li>
-            <li><a href="#service">サービス</a></li>
-            <li><a href="#inquiry">お問い合わせ</a></li>
-         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              メニュー <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-              <li><%= link_to "Myアカウント", @admin %></li>
-              <li><%= link_to "会員ユーザー一覧", users_path %></li>
-              <li><%= link_to "経営者一覧", owners_path %></li>
-            </ul>
-         </li>
-          <% end %>
-        <% else %> <%# ログインしてない %>
-            <li><a href="#home">ホーム</a></li>
-            <li><a href="#category">カテゴリ</a></li>
-            <li><a href="#plan">プラン</a></li>
-            <li><a href="#recommend">おすすめ店舗</a></li>
-            <li><a href="#interview">オーナーインタビュー</a></li>
-            <li><a href="#service">サービス</a></li>
-            <li><a href="#inquiry">お問い合わせ</a></li>
-         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              会員登録 <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "ログイン", new_user_session_path %></li>
-              <li><%= link_to "会員登録", new_user_registration_path %></li>
-            </ul>
-         </li>
-        <% end %>
-      </ul>
+      <ul class="nav navbar-right">
+        <div class="dropdown" aria-labelledby="dropdownMenuButton">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          🍴🍴🍴
+          </button> 
+          <div class="dropdown-menu">         
+            <% if signed_in? %> <%# ログインしているかどうか %>
+              <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#category">カテゴリ</a></li>
+                <li><a href="#plan">プラン</a></li>
+                <li><a href="#recommend">おすすめ店舗</a></li>
+                <li><%= link_to "ショップ開設", new_owner_shop_path(current_owner) %></li>
+                <li><a href="#interview">オーナーインタビュー</a></li>
+                <li><a href="#service">サービス</a></li>
+                <li><a href="#inquiry">お問い合わせ</a></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    メニュー <b class="caret"></b>
+                  </a>
+                  <ul>
+                    <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
+                    <li><%= link_to "Myアカウント", owner_account_owner_path(current_owner) %></li>
+                    <li><%= link_to "会員者様一覧", users_path %></li>
+                    <li><%= link_to "サブスクnews", blogs_path %></li>
+                    <li><%= link_to "オーナーインタビュー", interviews_path %></li>
+                  </ul>
+              </li>
+              <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#category">カテゴリ</a></li>
+                <li><a href="#plan">プラン</a></li>
+                <li><a href="#recommend">おすすめ店舗</a></li>
+                <li><a href="#interview">オーナーインタビュー</a></li>
+                <li><a href="#service">サービス</a></li>
+                <li><a href="#inquiry">お問い合わせ</a></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    メニュー <b class="caret"></b>
+                  </a>
+                  <ul>
+                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                    <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
+                    <li><%= link_to "解約について", edit_user_registration_path(current_user) %></li>
+                    <li><%= link_to "サブスクnews", blogs_path %></li>
+                  </ul>
+              </li>
+              <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#category">カテゴリ</a></li>
+                <li><a href="#plan">プラン</a></li>
+                <li><a href="#recommend">おすすめ店舗</a></li>
+                <li><a href="#interview">オーナーインタビュー</a></li>
+                <li><a href="#service">サービス</a></li>
+                <li><a href="#inquiry">お問い合わせ</a></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    メニュー <b class="caret"></b>
+                  </a>
+                  <ul>
+                    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+                    <li><%= link_to "Myアカウント", admin_account_admin_path(current_admin) %></li>
+                    <li><%= link_to "サブスクnews", blogs_path %></li>
+                    <li><%= link_to "オーナーインタビュー", interviews_path %></li>
+                    <li><%= link_to "会員ユーザー一覧", users_path %></li>
+                    <li><%= link_to "経営者一覧", owners_path %></li>
+                  </ul>
+              </li>
+              <% end %>
+            <% else %> <%# ログインしてない %>
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#category">カテゴリ</a></li>
+                <li><a href="#plan">プラン</a></li>
+                <li><a href="#recommend">おすすめ店舗</a></li>
+                <li><a href="#interview">オーナーインタビュー</a></li>
+                <li><a href="#service">サービス</a></li>
+                <li><a href="#inquiry">お問い合わせ</a></li>
+              <li class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle">
+                    会員登録<b class="caret"></b>
+                  </a>
+                  <ul>
+                    <li><%= link_to "ログイン", new_user_session_path %></li>
+                    <li><%= link_to "会員登録", new_user_registration_path %></li>
+                    <li><%= link_to "サブスクnews", blogs_path %></li>
+                    <li><%= link_to "インタビュー", interviews_path %></li>
+                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                  <ul>
+              </li>
+            <% end %>
+      　</div>
+      　</div>
+    　</ul>
     </nav>
   </div>
 </header>
