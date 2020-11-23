@@ -22,12 +22,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-resources :admins do
-  member do
-    get 'admin_account'#アカウントページ
+  resources :admins do
+    member do
+      get 'admin_account'#アカウントページ
+    end
   end
-end
-resources :blogs
+  resources :blogs
   resources :suports
   resources :contacts
   get 'interviews/index'
