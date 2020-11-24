@@ -1,5 +1,5 @@
 class OwnersController < ApplicationController
-  
+
   def index
     @owners = Owner.all
   end
@@ -11,7 +11,7 @@ class OwnersController < ApplicationController
 
   def show
     @owner = Owner.find(params[:id])
-    @subscription = Subscription.find(params[:id])
+    @subscription = Subscription.find_by(params[:id])
     @subscriptions = Subscription.where.not(name: nil).size
   end
 

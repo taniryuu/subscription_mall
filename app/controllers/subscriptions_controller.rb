@@ -13,6 +13,23 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1.json
   def show
     # @subscription = @owner.subscriptions.find_by(params[:id])
+    @session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product_data: {
+            name: 'サンプル商品',
+          },
+          unit_amount: 1980,
+        },
+        quantity: 1,
+      }],
+      mode: 'payment',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
   end
 
   # GET /subscriptions/new
@@ -74,6 +91,16 @@ class SubscriptionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def setup
+  end
+
+  def cancel
+  end
+
+  def success
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

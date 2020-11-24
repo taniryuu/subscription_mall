@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201116105348) do
+ActiveRecord::Schema.define(version: 20201122075510) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -141,13 +141,14 @@ ActiveRecord::Schema.define(version: 20201116105348) do
     t.string "title"
     t.text "detail"
     t.string "image_subscription"
-    t.string "price"
+    t.integer "price"
     t.text "subscription_detail"
     t.string "category_name"
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "shop_id"
+    t.string "script"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
