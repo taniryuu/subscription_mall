@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :cupons
-  resources :products
   root 'static_pages#top'
   get 'static_pages/discussion'
 
@@ -22,23 +20,29 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-resources :admins do
-  member do
-    get 'admin_account'#アカウントページ
+  resources :admins do
+    member do
+      get 'admin_account'#アカウントページ
+    end
   end
-end
-resources :blogs
-  resources :suports
-  resources :contacts
+  
+  resources :blogs
   get 'interviews/index'
   get 'subscriptions/index'
   get 'blogs/index'
 
+  resources :suports
+  resources :contacts
   resources :interviews
+  resources :cupons
+  resources :products
+
+  get 'owners/deleted_owners'
   resources :owners do
       member do
         get 'interviews_index'
         get 'owner_account'#アカウントページ
+        patch 'update_deleted_owners'
       end
       resources :shops do
         resources :subscriptions do
@@ -47,10 +51,11 @@ resources :blogs
       end
   end
   resources :categories
-
+  get 'users/deleted_users'
   resources :users do
     member do
       get 'user_account'#アカウントページ
+      patch 'users/update_deleted_users'
     end
   end
   resources :reviews

@@ -10,3 +10,31 @@ Admin.create!(name: "中野さん",
               email: "sample@email.com",
               password: "password",
               password_confirmation: "password")
+
+puts "Admin Created"
+
+10.times do |n|
+  name  = Faker::Name.name
+  email = "sample-#{n+1}@email.com"
+  password = "password"
+  User.create!(name: name,
+                email: email,
+                password: password,
+                password_confirmation: password)
+end        
+  
+puts "User Created"
+
+10.times do |n|
+  name  = Faker::Name.name
+  email = "sample#{n+1}@email.com"
+  password = "password"
+  Owner.create!(name: name,
+                email: email,
+                password: password,
+                password_confirmation: password)
+end        
+  
+puts "Owner Created"
+      
+                

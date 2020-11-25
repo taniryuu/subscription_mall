@@ -1,43 +1,15 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% provide(:title, "解約ページ") %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<p id="notice"><%= notice %></p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<h1>解約について</h1>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<div class="col-sm-12">
+  <h3 class="center">解約後は全てのデータが削除されますのでご注意ください</h3>
+</div>
+<div class="col-sm-12">
+  <h1><%= button_to "解約する", user_registration_path(resource_name), data: { confirm: "本当に解約してよろしいですか？" }, method: :delete, class:"btn btn-lg btn-default" %></h1>
+</div>
+<div class="col-sm-12">
+  <h1><%= link_to "Myアカウントへ戻る", :back, class:"btn btn-lg btn-default" %></h1>
+</div>

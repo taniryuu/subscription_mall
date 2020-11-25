@@ -1,3 +1,6 @@
+<% provide(:title, "Myアカウント") %>
+
+<p id="notice"><%= notice %></p>
 <link href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" rel="stylesheet">
 <div class="show-account-body">
   <h1 class="show-account-title"><i class="far fa-user"></i>&ensp;マイアカウント</h1>
@@ -18,7 +21,7 @@
           </tr>
           <tr>
             <th class="col-md-4", height="50">登録日</th>
-            <td class="show-account"><%= @admin.created_at %></td>
+            <td class="show-account"><%= l(@admin.created_at, format: :date) %></td>
           </tr>
         </table>
       </div>

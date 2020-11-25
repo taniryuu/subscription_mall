@@ -5,6 +5,15 @@ class OwnersController < ApplicationController
     @owners = Owner.all
   end
 
+  def deleted_owners
+    @owners = Owner.with_deleted.where.not(deleted_at: nil)
+  end
+
+  def update_deleted_owners
+    @owner = Owner.with_deleted.find(params[:id]).restore
+    redirect_to owners_url
+  end
+
   def interviews_index
     # owner = Owner.find(params[:id])
     # @interviews = owner.interviews
@@ -36,8 +45,10 @@ class OwnersController < ApplicationController
   end
 
   def destroy
-    @owner.destroy
-    flash[:success] = "#{@owner.name}様ののデータを削除しました。"
+    @owner.soft_delete
+    Devise.sign_out_all_scopes ? sign_out : sign_out(@owner)
+    yield @owner if block_given?
+    flash[:danger] = "#{@owner.name}様のデータを削除しました"
     redirect_to owners_url
   end
 
