@@ -68,7 +68,7 @@
           </div>
         <% end %>
       <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
+      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
       <h1><%= link_to "サブスクnews", blogs_path %></h1>
         <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
          <hr class="tool-bar">
@@ -99,7 +99,7 @@
           </div>
         <% end %>
       <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
+      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
       <h1><%= link_to "サブスクnews", blogs_path %></h1>
         <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
          <hr class="tool-bar">
@@ -130,7 +130,7 @@
           </div>
         <% end %>
       <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
+      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
       <h1><%= link_to "サブスクnews", blogs_path %></h1>
         <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
          <hr class="tool-bar">
@@ -162,8 +162,8 @@
           </div>
         <% end %>
     <h1 id="service">サービス</h1></br>
-    <h1 id="inquiry"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
-    <h1 id="inquiry"><%= link_to "サポート", new_suport_path, class: "btn btn-lg btn-default" %></h1>
+    <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
+    <h1 id="inquiry"><%= link_to "サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
     <h1><%= link_to "サブスクnews", blogs_path %></h1>
     <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
      <hr class="tool-bar">

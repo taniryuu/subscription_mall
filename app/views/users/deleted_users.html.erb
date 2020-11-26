@@ -24,7 +24,7 @@
           <td><%= user.email %></td>
           <td><%= user.phone_number %></td>
           <td>
-              <%= link_to "復帰", users_update_deleted_users_user_path(user), method: :patch,
+              <%= link_to "復帰", update_deleted_users_user_path(user), method: :patch,
                   data: { confirm: "復帰してよろしいですか？" },
                   class: "btn btn-info" %>
           </td>

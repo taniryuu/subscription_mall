@@ -1,9 +1,8 @@
 class ContactMailer < ApplicationMailer
-  default from: 'megurume@subscription.com'
+  default from: 'megurume@subscription.com'# 送信元アドレス
 
-  def contact_email
-    @contact = params[:contact]
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: '私の素敵なサイトへようこそ')
+  def contact_email(contact)
+    @contact = contact
+    mail(:to => contact.email, :subject => 'お問い合わせを承りました')
   end
 end
