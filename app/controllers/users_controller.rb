@@ -5,6 +5,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def deleted_users
+    @users = User.with_deleted.where.not(deleted_at: nil)
+  end
+
+  def update_deleted_users
+    @user = User.with_deleted.find(params[:id]).restore
+    redirect_to users_url
+  end
+
   def show
   end
 
@@ -28,8 +37,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:success] = "#{@user.name}様のデータを削除しました。"
+    @user.soft_delete
+    Devise.sign_out_all_scopes ? sign_out : sign_out(@user)
+    yield @user if block_given?
+    flash[:danger] = "#{@user.name}様のデータを削除しました"
     redirect_to users_url
   end
 

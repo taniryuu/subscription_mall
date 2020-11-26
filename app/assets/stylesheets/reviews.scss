@@ -1,3 +1,148 @@
-// Place all the styles related to the Reviews controller here.
+// Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// 口コミ
+.edit-review-body {
+  margin-top: 30px;
+}
+.review-container {
+  border: 1px solid #DCDCDC;
+  background-color: #fff0f0;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  height: 535px;
+  margin-top: 10px;
+}
+.review {
+  border: 1px solid #A9A9A9;
+  border-radius: 5px;
+  width: 1100;
+  height: 160px;
+  margin: 20px 20px 20px 20px;
+  background-color: #F8F8FF;
+  position: relative;
+}
+.review-title {
+  display: inline-block;
+  position: relative;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  padding: 7px 0;
+  font-size: 18px;/*文字サイズ*/
+  background: #7f9dfb;/*背景色*/
+  color: #FFF;/*文字色*/
+  box-sizing: border-box;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  letter-spacing: 0.1em;
+}
+.review-title h3 {
+  margin: 0;
+  padding: 0 30px 0 15px;
+  border-top: dashed 1px #FFF;
+  border-bottom: dashed 1px #FFF;
+  line-height: 46px;
+}
+.review-title:after {
+  position: absolute;
+  content: '';
+  z-index: 1;
+  top: 0;
+  right: 0;
+  width: 0px;
+  height: 0px;
+  border-width: 30px 15px 30px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
+// お客様満足度
+.review-cs {
+  display: inline-block;
+  font-size: 19px;
+  position: absolute;
+  top: 10px;
+  left: 200px;
+}
+// 星
+.review-star {
+  position: absolute;
+  top: 10px;
+  left: 340px;
+}
+.star-img img {
+  height: 20px;
+  width: 20px;
+}
+.form-group-star img {
+  height: 25px;
+  width: 25px;
+  // margin-bottom: 20px;
+}
+// コメント
+.review-comment {
+position: absolute;
+top: 50px;
+left: 200px;
+margin-right: 50px;
+font-size: 15px;
+}
+.review-coment-new {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+// ボタン
+.review-edit-btn {
+  position: absolute;
+  top: 120px;
+  right: 100px;
+}
+.review-delete-btn {
+  position: absolute;
+  top: 120px;
+  right: 30px;
+}
+// アンケート画像
+.review-item-image {
+  width: 120px;
+  height: 120px;
+}
+.review-date {
+  position: absolute;
+  top: 120px;
+  right: 200px;
+}
+.review-new {
+  float: right;
+  margin-top: 80px;
+}
+.index-review-photo {
+  overflow: hidden;	/*拡大時にはみ出た部分を隠す*/
+	width: 120px;	/*画像の幅*/
+  height: 120px;	/*画像の高さ*/
+  border-radius: 5px;
+  border: 1px solid #808080;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+.index-review-photo {
+	display: block;
+	transition-duration: 0.5s;	/*変化に掛かる時間*/
+}
+.index-review-photo:hover {
+	transform: scale(1.6);	/*画像の拡大率*/
+	transition-duration: 0.5s;	/*変化に掛かる時間*/
+}
+.fa-hand-point-left {
+  position: absolute;
+  top: 130px;
+  left: 150px;
+  color: rgba(0, 0, 0, 0.5);
+}
+// review新規、編集ボタン位置
+.review-star-edit {
+  margin-top: 10px;
+}
+.csv-btn {
+  margin-left: 770px;
+  margin-top: 20px;
+}

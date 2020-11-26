@@ -1,4 +1,5 @@
 <% provide(:title, "会員登録") %>
+<p id="notice"><%= notice %></p>
 
 <h1 class="new-title index-title-post">新規会員登録</h1>
 <div class="row">
@@ -23,18 +24,8 @@
       </div>
 
       <div class="field">
-        <%= f.label :住所 %> <span class="must">必須</span><br/>
-        <%= f.text_field :address, class: 'form-control' %>
-      </div>
-
-      <div class="field">
         <%= f.label :電話番号 %> <span class="must">必須</span><br/>
         <%= f.text_field :phone_number, class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :LINE_ID %>
-        <%= f.text_field :line_id, class: 'form-control' %>
       </div>
 
       <div class="field">

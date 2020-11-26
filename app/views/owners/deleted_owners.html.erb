@@ -1,0 +1,33 @@
+<% provide(:title, 'All Owners') %>
+<div>
+  <h1>削除された経営者アカウント</h1>
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table-condensed table-hover" id="table-users">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>名前</th>
+          <th>アドレス</th>
+          <th>電話番号</th>
+        </tr>
+      </thead>
+
+      <% @owners.each do |owner| %>
+        <tr>
+          <td><%= owner.id %></td>
+          <td><%= link_to owner.name ,owner_path(owner) %></td>
+          <td><%= owner.email %></td>
+          <td><%= owner.phone_number %></td>
+          <td>
+              <%= link_to "復帰", update_deleted_owners_owner_path(owner), method: :patch,
+                  data: { confirm: "復帰してよろしいですか？" },
+                  class: "btn btn-danger" %>
+          </td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+      <%= link_to "経営者一覧へ", owners_path, class: "btn btn-primary" %>
+    </table>
+  </div>
+</div>

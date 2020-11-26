@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require bootstrap
+//= require owl.carousel
 //= require moment
 //= require turbolinks
 //= require_tree .

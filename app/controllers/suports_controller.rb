@@ -4,7 +4,29 @@ class SuportsController < ApplicationController
   # GET /suports
   # GET /suports.json
   def index
-    @suports = Suport.all
+    @suport = Suport.new
+    render :action => 'index'
+  end
+
+  def confirm
+    # 入力値のチェック
+    @suport = Suport.new(params[:suport].permit(:name, :email, :message))
+    if @suport.valid?
+      # OK。確認画面を表示
+      render :action => 'confirm'
+    else
+      # NG。入力画面を再表示
+      render :action => 'index'
+    end
+  end
+
+  def thanks
+    # メール送信
+    @suport = Suport.new(params[:suport].permit(:name, :email, :message))
+    SuportMailer.suport_email(@suport).deliver
+
+    # 完了画面を表示
+    render :action => 'thanks'
   end
 
   # GET /suports/1
