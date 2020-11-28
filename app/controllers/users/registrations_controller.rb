@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  # before_action :set_user, only: [:new, :create, :show]
 
   # GET /resource/sign_up
   # def new
@@ -10,10 +11,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
 
+    # @user = User.new(user_params)
+
+    # respond_to do |format|
+    #   if @user.save
+    #     # 保存後にUserMailerを使ってwelcomeメールを送信
+    #     UserMailer.with(user: @user).welcome_email.deliver_later
+
+    #     format.html { redirect_to(@user, notice: 'ユーザーが正常に作成されました。') }
+    #     format.json { render json: @user, status: :created, location: @user }
+    #   else
+    #     format.html { render :new } and return
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+  end
   # GET /resource/edit
   # def edit
   #   super
@@ -25,10 +40,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
-
+  def destroy
+    resource.soft_delete
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    set_flash_message :notice, :destroyed
+    yield resource if block_given?
+    redirect_to root_url(resource_name)
+  end
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
@@ -59,4 +77,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
+    end
 end

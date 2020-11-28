@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'
+  get 'static_pages/discussion'
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
   get '/cancel', to: 'subscriptions#cancel'
@@ -23,25 +24,52 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :admins
+  resources :admins do
+    member do
+      get 'admin_account'#アカウントページ
+    end
+  end
+  
   resources :blogs
-  resources :images
-  resources :suports
   get 'interviews/index'
-  get 'shops/index'
+  get 'subscriptions/index'
+  get 'blogs/index'
+
+  get 'suports', to: "suports#index"#サポート画面
+  post 'suports/confirm' => "suports#confirm"#サポート確認画面
+  post 'suports/thanks' => "suports#thanks"#サポート完了通知仮面
+
+  get 'contacts', to: "contacts#index"#お問い合わせ画面
+  post 'contacts/confirm' => "contacts#confirm"#お問い合わせ確認画面
+  post 'contacts/thanks' => "contacts#thanks"#お問い合わせ完了通知仮面
+
+  resources :interviews
+  resources :cupons
+  resources :products
+
+  get 'owners/deleted_owners'
   resources :owners do
-    resources :interviews
-      collection do
+      member do
         get 'interviews_index'
+        post "thanks"#会員登録完了通知仮面
+        get 'owner_account'#アカウントページ
+        patch 'update_deleted_owners'
       end
       resources :shops do
-        resources :subscriptions
+        resources :subscriptions do
+          resources :images
+        end
       end
   end
   resources :categories
-
-  resources :users
-  resources :contacts
+  get 'users/deleted_users'
+  resources :users do
+    member do
+      post "thanks"#会員完了通知仮面
+      get 'user_account'#アカウントページ
+      patch 'update_deleted_users'
+    end
+  end
   resources :reviews
 
 

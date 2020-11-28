@@ -1,6 +1,6 @@
 class Subscription < ApplicationRecord
   belongs_to :owner
-  belongs_to :shop, dependent: :destroy
+  belongs_to :shop
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 

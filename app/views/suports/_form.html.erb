@@ -13,35 +13,24 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :suport_name %>
+    <%= form.text_field :name, id: :contact_name, placeholder: "例)例題　太郎", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, id: :suport_email %>
+    <%= form.text_field :email, id: :contact_email, placeholder: "例)sample@gmail.com", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :subject %>
-    <%= form.text_field :subject, id: :suport_subject %>
+    <%= form.text_field :subject, id: :contact_subject, placeholder: "例)サブスクページの作り方", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :message %>
-    <%= form.text_field :message, id: :suport_message %>
+    <%= form.text_area :message, placeholder: "例)やり方がわからないので教えて欲しい", class: 'form-control', id: :contact_message %>
   </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :suport_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :owner_id %>
-    <%= form.text_field :owner_id, id: :suport_owner_id %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "送信する" %>
   </div>
 <% end %>

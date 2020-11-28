@@ -1,37 +1,43 @@
-<%= form_with(model: review, local: true) do |form| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <%= form_with(model: review, local: true) do |form| %>
+        <% if review.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-      <ul>
-      <% review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+            <% review.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <span class="form-group-star" id="star">
+          <%= form.hidden_field :score, id: :review_star %>
+        </span>
+
+        <div class="review-coment-new">
+          <%= form.text_area :content, size: "30x6", :required => true, class: "form-control"%>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :名前, class: "label-signup" %>
+          <%= form.text_field :name, class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= form.label :メールアドレス, class: "label-signup" %>
+          <%= form.email_field :email, class: "form-control" %>
+        </div>
+        <%= form.submit "投稿する", class:  "btn btn-primary" %>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :review_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content, id: :review_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :score %>
-    <%= form.number_field :score, id: :review_score %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :review_user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<!-- 星評価javascript -->
+<script>
+$('#star').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[rate]',
+  half: true,
+});
+</script>
