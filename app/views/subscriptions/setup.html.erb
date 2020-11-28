@@ -1,0 +1,92 @@
+<% provide(:title, "サブスクページ") %>
+<div class="togethere-background"></div>
+    <div class="sr-root">
+      <div class="sr-main">
+        <header class="sr-header">
+          <div class="sr-header__logo"></div>
+        </header>
+        <h1>巡グルメプランを選択して下さい</h1>
+
+        <div class="price-table-container">
+
+          <section>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
+              width="120"
+              height="120"
+            />
+            <div class="name">巡グルメ1（仮）</div>
+            <div class="price">￥1980</div>
+            <div class="duration">/月</div>
+            <button id="checkout-button">選択</button>
+            <% # link_to '選択', owner_shop_subscription_path(plan: "price_1HpOFzLKoWxnLyg76fWVCydG", plan_id: Rails.application.secrets.price_1HpOFzLKoWxnLyg76fWVCydG), class: 'btn btn-xs btn-primary', remote: true %>
+
+
+          </section>&nbsp;
+
+          <section>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
+              width="120"
+              height="120"
+            />
+            <div class="name">巡グルメ2（仮）</div>
+            <div class="price">￥4980</div>
+            <div class="duration">/月</div>
+            <button id="checkout-button-2">選択</button>
+          </section>&nbsp;
+
+          <section>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
+              width="120"
+              height="120"
+            />
+            <div class="name">巡グルメ3（仮）</div>
+            <div class="price">￥19800</div>
+            <div class="duration">/月</div>
+            <button id="checkout-button-3">選択</button>
+          </section>
+
+        </div>
+        <div id="error-message"></div>
+      </div>
+    </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var checkoutButton = document.getElementById('checkout-button');
+
+  checkoutButton.addEventListener('click', function() {
+    stripe.redirectToCheckout({
+      sessionId: '<%= @plan1.id %>'
+    }).then(function (result) {
+    });
+  });
+</script>
+
+<script>
+  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var checkoutButton = document.getElementById('checkout-button-2');
+
+  checkoutButton.addEventListener('click', function() {
+    stripe.redirectToCheckout({
+      sessionId: '<%= @plan2.id %>'
+    }).then(function (result) {
+    });
+  });
+</script>
+
+<script>
+  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var checkoutButton = document.getElementById('checkout-button-3');
+
+  checkoutButton.addEventListener('click', function() {
+    stripe.redirectToCheckout({
+      sessionId: '<%= @plan3.id %>'
+    }).then(function (result) {
+    });
+  });
+</script>
+

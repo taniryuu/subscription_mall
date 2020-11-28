@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get 'static_pages/discussion'
 
+  get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
+  get '/cancel', to: 'subscriptions#cancel'
+  get '/success', to: 'subscriptions#success'
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',

@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20201125114111) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "shop_id"
+    t.string "script"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
