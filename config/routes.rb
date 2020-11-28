@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#top'
 
-  post '/setup', to: 'subscriptions#setup'
+  get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
 

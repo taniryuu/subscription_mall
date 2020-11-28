@@ -12,23 +12,6 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    # @subscription = @owner.subscriptions.find_by(params[:id])
-    @session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product_data: {
-            name: 'サンプル商品',
-          },
-          unit_amount: 1980,
-        },
-        quantity: 1,
-      }],
-      mode: 'payment',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
 
   end
 
@@ -49,7 +32,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to owner_shop_subscription_url(@subscription, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully created.' }
+        format.html { redirect_to setup_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
 
         Category.create(
@@ -93,7 +76,61 @@ class SubscriptionsController < ApplicationController
   end
 
   def setup
-  end
+# @subscription = @owner.subscriptions.find_by(params[:id])
+@owner = Owner.find(params[:id])
+@plan1 = Stripe::Checkout::Session.create(
+  payment_method_types: ['card'],
+  customer_email: @owner.email,
+  line_items: [{
+    price_data: {
+      currency: 'jpy',
+      product: 'prod_IQEjlDvOeRJkqv',
+      unit_amount: 1980,
+      recurring: {interval: "month"}
+    },
+    quantity: 1,
+  }],
+  mode: 'subscription',
+  success_url: success_url,
+  cancel_url: cancel_url,
+)
+
+@plan2 = Stripe::Checkout::Session.create(
+  payment_method_types: ['card'],
+  customer_email: @owner.email,
+  line_items: [{
+    price_data: {
+      currency: 'jpy',
+      product: 'prod_IQEjlDvOeRJkqv',
+      unit_amount: 4980,
+      recurring: {interval: "month"}
+    },
+    quantity: 1,
+  }],
+  mode: 'subscription',
+  success_url: success_url,
+  cancel_url: cancel_url,
+)
+
+@plan3 = Stripe::Checkout::Session.create(
+  payment_method_types: ['card'],
+  customer_email: @owner.email,
+  line_items: [{
+    price_data: {
+      currency: 'jpy',
+      product: 'prod_IQEjlDvOeRJkqv',
+      unit_amount: 19800,
+      recurring: {interval: "month"}
+    },
+    quantity: 1,
+  }],
+  mode: 'subscription',
+  success_url: success_url,
+  cancel_url: cancel_url,
+)
+
+end
+
 
   def cancel
   end
