@@ -1,6 +1,6 @@
 class OwnersController < ApplicationController
   before_action :set_owner, only: [:new, :create, :show, :edit, :update, :destroy]
-  
+
   def index
     @owners = Owner.all
   end
@@ -20,7 +20,7 @@ class OwnersController < ApplicationController
   end
 
   def show
-    if @subscriptions == 0 
+    if @subscriptions == 0
       @subscription = Subscription.find(params[:id])
     else
       # @shop = Shop.find(params[:shop_id])
@@ -30,6 +30,11 @@ class OwnersController < ApplicationController
 
   def owner_account
     @owner = Owner.find(params[:id])
+<<<<<<< HEAD
+    @subscription = Subscription.find_by(params[:id])
+    @subscriptions = Subscription.where.not(name: nil).size
+=======
+>>>>>>> 305115559b5d741103cefeb86499e4bb8277a055
   end
 
   def edit
