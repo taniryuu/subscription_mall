@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#top'
-  get 'static_pages/discussion'
+  root 'static_pages#top'#トップページ
+  get 'static_pages/discussion'#相談窓口
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -27,9 +27,9 @@ Rails.application.routes.draw do
   end
   
   resources :blogs
-  get 'interviews/index'
-  get 'subscriptions/index'
-  get 'blogs/index'
+  get 'interviews/index'#まだ決まってない。使わないかもしれない
+  get 'subscriptions/index'#まだ決まってない。使わないかもしれない
+  get 'blogs/index'#まだ決まってない。使わないかもしれない
 
   get 'suports', to: "suports#index"#サポート画面
   post 'suports/confirm' => "suports#confirm"#サポート確認画面
@@ -43,13 +43,13 @@ Rails.application.routes.draw do
   resources :cupons
   resources :products
 
-  get 'owners/deleted_owners'
+  get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
       member do
-        get 'interviews_index'
+        get 'interviews_index'#まだ決まってない。使わないかもしれない
         post "thanks"#会員登録完了通知仮面
         get 'owner_account'#アカウントページ
-        patch 'update_deleted_owners'
+        patch 'update_deleted_owners'#アカウントページ論理削除
       end
       resources :shops do
         resources :subscriptions do
@@ -58,12 +58,12 @@ Rails.application.routes.draw do
       end
   end
   resources :categories
-  get 'users/deleted_users'
+  get 'users/deleted_users'##論理削除された利用者
   resources :users do
     member do
       post "thanks"#会員完了通知仮面
       get 'user_account'#アカウントページ
-      patch 'update_deleted_users'
+      patch 'update_deleted_users'#アカウントページ論理削除
     end
   end
   resources :reviews
