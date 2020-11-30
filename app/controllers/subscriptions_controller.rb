@@ -77,6 +77,11 @@ class SubscriptionsController < ApplicationController
   def setup
 # @subscription = @owner.subscriptions.find_by(params[:id])
 @owner = Owner.find(params[:id])
+@shop = @owner.shops.find(8)
+@subscription = @owner.subscriptions.find(8)
+
+@shops = Shop.all
+
 @plan1 = Stripe::Checkout::Session.create(
   payment_method_types: ['card'],
   customer_email: @owner.email,

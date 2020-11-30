@@ -90,3 +90,14 @@
   });
 </script>
 
+<%= @owner.name %></br>
+<%= @owner.email %></br>
+<%= @shop.id %></br>
+<%= @shop.monthly_fee %></br>
+<%= @shop.phone_number %></br>
+<%= @subscription.name %></br>
+<%= @subscription.subscription_detail %></br>
+
+<% @shops.each do |shop| %>
+<%= shop.monthly_fee %>
+<% end %>

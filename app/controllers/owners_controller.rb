@@ -30,11 +30,8 @@ class OwnersController < ApplicationController
 
   def owner_account
     @owner = Owner.find(params[:id])
-<<<<<<< HEAD
     @subscription = Subscription.find_by(params[:id])
     @subscriptions = Subscription.where.not(name: nil).size
-=======
->>>>>>> 305115559b5d741103cefeb86499e4bb8277a055
   end
 
   def edit
