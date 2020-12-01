@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201125114111) do
+ActiveRecord::Schema.define(version: 20201130203638) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -190,6 +190,9 @@ ActiveRecord::Schema.define(version: 20201125114111) do
     t.datetime "updated_at", null: false
     t.integer "shop_id"
     t.string "script"
+    t.string "image_subscription2"
+    t.string "image_subscription3"
+    t.string "image_subscription4"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
