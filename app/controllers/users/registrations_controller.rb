@@ -13,20 +13,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    # @resource = User.new(user_params)
 
-    # @user = User.new(user_params)
+    # if @resource.save
+    #   # 保存後にUserMailerを使ってwelcomeメールを送信
+    #   UserMailer.with(resource: @resource).welcome_email.deliver_later
 
-    # respond_to do |format|
-    #   if @user.save
-    #     # 保存後にUserMailerを使ってwelcomeメールを送信
-    #     UserMailer.with(user: @user).welcome_email.deliver_later
-
-    #     format.html { redirect_to(@user, notice: 'ユーザーが正常に作成されました。') }
-    #     format.json { render json: @user, status: :created, location: @user }
-    #   else
-    #     format.html { render :new } and return
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
+    #   redirect_to thanks_user_url(@resource)
+    # else
+    #   render :new
     # end
   end
   # GET /resource/edit
