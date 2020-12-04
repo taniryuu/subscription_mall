@@ -1,0 +1,29 @@
+<% provide(:title, 'メール') %>
+<%= form_with(model: @user, url: to_user_email_owner_path, method: :post, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :name %>:
+    <%= form.hidden_field :name %>
+    <%= @user.name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>:
+    <%= form.hidden_field :email %>
+    <%= @user.email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_area :message, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "送信する" %>
+  </div>
+<% end %>

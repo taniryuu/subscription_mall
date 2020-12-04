@@ -31,6 +31,9 @@
           <td>
               <%= link_to "編集", edit_user_path(user), class: "btn btn-primary" %>
           </td>
+          <td>
+              <%= link_to "メール作成", user_email_owner_path(user), class: "btn btn-primary" %>
+          </td>
         </tr>
       <% end %>
       <% if current_admin.present? %>

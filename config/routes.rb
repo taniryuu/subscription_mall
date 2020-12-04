@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
+  devise_scope :users do
+   get 'users/sign_up', to: 'users#new'
+  end
 
   resources :admins do
     member do
@@ -51,8 +54,10 @@ Rails.application.routes.draw do
   resources :owners do
       member do
         get 'interviews_index'#まだ決まってない。使わないかもしれない
-        post "thanks"#会員登録完了通知仮面
+        post "thanks"#会員登録完了通知画面
         get 'owner_account'#アカウントページ
+        get 'user_email'#経営者から利用者へメール作成
+        post 'to_user_email'
         patch 'update_deleted_owners'#アカウントページ論理削除
       end
       resources :shops do
@@ -65,14 +70,13 @@ Rails.application.routes.draw do
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
     member do
-      post "thanks"#会員完了通知仮面
+      get "thanks"#会員完了通知仮面
       get 'user_account'#アカウントページ
       patch 'update_deleted_users'#アカウントページ論理削除
     end
   end
   resources :reviews
-
-
+  resources :questions
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

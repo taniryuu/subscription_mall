@@ -3,8 +3,6 @@
 <p id="notice"><%= notice %></p>
 <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, width: "1150vw", height: "550vh", class: 'video-content') %>
 
-
-
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -81,6 +79,18 @@
             </div>
           </div>
         <% end %>
+      <h1><%= link_to "よくある質問", questions_path %></h1>
+        <% @questions.each do |question| %><%# よくある質問を全てeach %>
+          <hr class="tool-bar">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <%= link_to "#{question.detail}", questions_path %>
+            </div><br>
+            <div class="col-sm-offset-8 col-sm-6">
+                <%= link_to "#{question.answer}", questions_path %>
+            </div>
+          </div>
+        <% end %>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
       <h1 id="home">ホーム</h1></br>
       <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
@@ -109,6 +119,18 @@
             </div><br>
             <div class="col-md-offset-8 col-sm-6">
               <%= link_to "#{blog.body}", blog_path(blog) %>
+            </div>
+          </div>
+        <% end %>
+      <h1><%= link_to "よくある質問", questions_path %></h1>
+        <% @questions.each do |question| %><%# よくある質問を全てeach %>
+          <hr class="tool-bar">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <%= link_to "#{question.detail}", questions_path %>
+            </div><br>
+            <div class="col-sm-offset-8 col-sm-6">
+                <%= link_to "#{question.answer}", questions_path %>
             </div>
           </div>
         <% end %>
@@ -143,13 +165,25 @@
             </div>
           </div>
         <% end %>
-    <% end %>
+      <h1><%= link_to "よくある質問", questions_path %></h1>
+        <% @questions.each do |question| %><%# よくある質問を全てeach %>
+          <hr class="tool-bar">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <%= link_to "#{question.detail}", questions_path %>
+            </div><br>
+            <div class="col-sm-offset-8 col-sm-6">
+                <%= link_to "#{question.answer}", questions_path %>
+            </div>
+          </div>
+        <% end %>
+    <% end %>   
   <% else %> <%# ログインしてない %>
     <h1 id="home">ホーム</h1></br>
     <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="plan">プラン</h1></br>
     <h1 id="recommend">おすすめ店舗</h1></br>
-        <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
+      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
         <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
           <hr class="tool-bar">
           <div class="row">
@@ -165,16 +199,28 @@
     <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
     <h1 id="inquiry"><%= link_to "サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
     <h1><%= link_to "サブスクnews", blogs_path %></h1>
-    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-     <hr class="tool-bar">
-      <div class="row">
-        <div class="col-md-offset-3 col-sm-6">
-          <%= link_to "#{blog.title}", blog_path(blog) %>
-        </div><br>
-        <div class="col-md-offset-8 col-sm-6">
-          <%= link_to "#{blog.body}", blog_path(blog) %>
-        </div>
-      </div>
-    <% end %>
+        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+        <hr class="tool-bar">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+              <%= link_to "#{blog.title}", blog_path(blog) %>
+            </div><br>
+            <div class="col-sm-offset-8 col-sm-6">
+              <%= link_to "#{blog.body}", blog_path(blog) %>
+            </div>
+          </div>
+        <% end %>
+    <h1><%= link_to "よくある質問", questions_path %></h1>
+        <% @questions.each do |question| %><%# よくある質問を全てeach %>
+          <hr class="tool-bar">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <%= link_to "#{question.detail}", questions_path %>
+            </div><br>
+            <div class="col-sm-offset-8 col-sm-6">
+                <%= link_to "#{question.answer}", questions_path %>
+            </div>
+          </div>
+        <% end %>
   <% end %>
 </main>

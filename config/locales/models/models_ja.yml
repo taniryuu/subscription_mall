@@ -16,6 +16,7 @@ ja:
       cupon: クーポン
       image: 写真
       interview: 経営者インタビュー
+      question: よくある質問
     attributes:
         admin:
           id: ID
@@ -37,6 +38,8 @@ ja:
           phone_number: 電話番号
           line_id: LineID
           address: 住所
+          subject: 件名
+          message: メッセージ
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
@@ -50,6 +53,8 @@ ja:
           phone_number: 電話番号
           line_id: LineID
           address: 住所
+          subject: 件名
+          message: メッセージ
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
@@ -157,6 +162,12 @@ ja:
           image_interview: 写真
           youtube_url: 動画
           music: 音楽
+          created_at: 作成日
+          updated_at: 更新日
+        question:
+          id: ID
+          detail: 質問内容
+          answer: 回答
           created_at: 作成日
           updated_at: 更新日
 
