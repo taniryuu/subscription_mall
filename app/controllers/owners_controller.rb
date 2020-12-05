@@ -14,6 +14,17 @@ class OwnersController < ApplicationController
     redirect_to owners_url
   end
 
+  def user_email
+    @user = User.find(params[:id])
+  end
+
+  def to_user_email
+    @user = User.find(params[:id])
+    @user = User.new(params[:user].permit(:name, :email, :subject, :message))
+    OwnerMailer.owner_email(@user).deliver
+    redirect_to users_url
+  end
+
   def interviews_index
     # owner = Owner.find(params[:id])
     # @interviews = owner.interviews
