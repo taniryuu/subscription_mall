@@ -77,8 +77,6 @@ class SubscriptionsController < ApplicationController
   def setup
 # @subscription = @owner.subscriptions.find_by(params[:id])
 @owner = Owner.find(params[:id])
-@shop = @owner.shops.find(1)
-@subscription = @owner.subscriptions.find(1)
 
 @plan1 = Stripe::Checkout::Session.create(
   payment_method_types: ['card'],
@@ -140,6 +138,9 @@ end
   def success
   end
 
+  def show_sample
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -157,6 +158,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:name, :title, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :owner_id, :shop_id, images_attributes: [:image])
+      params.require(:subscription).permit(:name, :title, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :owner_id, :shop_id, images_attributes: [:image])
     end
 end

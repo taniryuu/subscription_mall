@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+
   end
 
   # GET /categories/new
@@ -59,6 +60,14 @@ class CategoriesController < ApplicationController
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def shop_list
+    @subscriptions = Subscription.all
+  end
+
+  def recommend
+    @subscriptions = Subscription.all
   end
 
   private
