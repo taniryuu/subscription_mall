@@ -1,13 +1,12 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "巡グルメ", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-right">
+<header>
+    <nav class="navbar navbar-expand-md  navbar-light" style="background-color:#f5c1d2;">
+     <%= link_to "巡グルメ", root_path, id: "logo" %>
+      <ul class="collapse navbar-collapse justify-content-end">
         <div class="dropdown" aria-labelledby="dropdownMenuButton">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          🍴🍴🍴
-          </button> 
-          <div class="dropdown-menu">         
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="dropdown-menu">
             <% if signed_in? %> <%# ログインしているかどうか %>
               <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
                 <li><a href="#home">ホーム</a></li>
@@ -100,9 +99,8 @@
                   <ul>
               </li>
             <% end %>
-      　</div>
-      　</div>
-    　</ul>
+      </div>
+      </div>
+    </ul>
     </nav>
-  </div>
 </header>

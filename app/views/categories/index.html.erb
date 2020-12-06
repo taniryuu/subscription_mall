@@ -1,27 +1,416 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
+<h1>お店のカテゴリー（仮）</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container pt-5 my-5 z-depth-1">
+  <section class="p-md-3 mx-md-5 text-lg-left">
+    <h2 class="text-center font-weight-bold mb-4 pb-1">料理ジャンルから選ぶ</h2>
+    <p class="text-center lead mb-5 pb-2 text-muted">気になるお料理のジャンルを選択して下さい。</p>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "和食", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              寿司、お蕎麦...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2016/10/23/05/40/restaurant-1762236__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "洋食", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              イタリアン、フレンチ...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/dim-sum-picture-id839958568?k=6&m=839958568&s=612x612&w=0&h=J6WOpiwMZofS02B_EYhYU8FjBjBG619qMpY99K_oDFM="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "中華", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              らーめん、四川料理...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2020/06/08/16/49/pizza-5275191__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "イタリアン", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              パスタ、ピザ...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2016/12/09/04/15/scotland-1893646__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "フレンチ", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              コース料理...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/raw-fish-sushi-pokebowl-meal-with-red-napkin-picture-id665627062?k=6&m=665627062&s=612x612&w=0&h=HesE-dNsbnmgKyTimQoMRiyYuZhwvSvUw920CrRE5fw="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "ハワイアン", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              ハワイ料理...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/nasi-goreng-famous-indonesian-food-picture-id1187617921?k=6&m=1187617921&s=612x612&w=0&h=7eNOTVc4tmUj-IWizG2qTLB01mEus84XqlLL9H0ybtk="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "東南アジア料理", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              東南アジア料理...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/closeup-of-food-served-in-containers-on-table-picture-id946283686?k=6&m=946283686&s=612x612&w=0&h=mOwQbGo_7NxPAtPigtqOmZ5boZqWXkajmKzebPt_Qak="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "韓国料理", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              韓国料理...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "その他", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              その他
+            </p>
+          </div>
+        </div>
+      </div>
+     </div>
+     <hr class="my-5">
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= link_to "#{category.name}", "#" %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %>
+    <h2 class="text-center font-weight-bold mb-4 pb-1">お店のカテゴリーから選ぶ</h2>
+    <p class="text-center lead mb-5 pb-2 text-muted">気になるカテゴリーを選択して下さい。</p>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "カフェ", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              コーヒー...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2018/03/15/10/33/bars-ramen-in-saigon-3227779__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "らーめん", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              豚骨、味噌、塩...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2017/04/26/11/03/bread-2262333__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "パン屋", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              パン...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.istockphoto.com/photos/curry-rice-on-the-table-picture-id1066427100?b=1&k=6&m=1066427100&s=170667a&w=0&h=afrJvnBbrXqxUZMwtkJUeMbqenBy5YyaajWa2j-UsBk="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "カレー", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              カレー、インドカレー...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2019/11/15/10/05/stalls-4628091__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "居酒屋", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              生ビール...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/bar-picture-id183760198?k=6&m=183760198&s=612x612&w=0&h=w2Yn7MIx2H_VWiV8A4RUrqB_FJsYwgs9hSE4W8WCB4o="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "BAR", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              カクテル...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://cdn.pixabay.com/photo/2018/05/01/18/21/eclair-3366430__480.jpg"
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "ケーキ", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              ケーキ...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.istockphoto.com/photos/top-view-of-premium-rare-slices-many-parts-of-wagyu-a5-beef-with-on-picture-id1169410279?b=1&k=6&m=1169410279&s=170667a&w=0&h=CiQvMWUK7x73uERbummOpcLLwGYPt1W9Xi2VahlrYhE="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "焼肉", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              焼肉...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "定食屋", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              ランチ定食...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/burger-picture-id1055177264?k=6&m=1055177264&s=612x612&w=0&h=Tv_R4cXvQzvPbNzKJ0C_1kyq7d19yKkMBDb07rHjIZk="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "バーガー", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              バーガー...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/cafebar-in-moscow-picture-id1158221681?k=6&m=1158221681&s=612x612&w=0&h=JykZfmjm8VJtSMBVstQP3UP4Vp0Of7t-VokP63NSnXo="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "レストラン", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              レストラン...etc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
+              class="img-fluid rounded-circle z-depth-1"
+              Style="height: 100px"
+            />
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= link_to "その他", shop_list_categories_path %></h6>
+            <p class="text-muted">
+              その他...etc
+            </p>
+          </div>
+        </div>
+      </div>
+  </section>
+</div>

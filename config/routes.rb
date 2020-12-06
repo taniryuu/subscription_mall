@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
 
+  get 'categories/shop_list', to: 'categories#shop_list', as: :shop_list_categories
+  get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories
+
+  get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -32,7 +37,7 @@ Rails.application.routes.draw do
       get 'admin_account'#アカウントページ
     end
   end
-  
+
   resources :blogs
   get 'interviews/index'#まだ決まってない。使わないかもしれない
   get 'subscriptions/index'#まだ決まってない。使わないかもしれない

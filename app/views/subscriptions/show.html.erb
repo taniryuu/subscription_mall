@@ -1,0 +1,135 @@
+<div class="container my-5">
+  <section>
+    <style>
+    	.rgba-black-gradient {
+      	background: linear-gradient(to top, rgba(226, 230, 224) 55%,rgba(0,0,0,0) 90%);
+    	}
+    </style>
+    <div class="row">
+      <div class="col-12">
+        <div class="view zoom z-depth-1 rounded mb-4">
+          <%= image_tag @subscription.image_subscription_url ,width: '100%', height: "300" %>
+            <div class="mask rgba-black-gradient d-md-flex align-items-end">
+              <div class="text-bottom white-text p-4">
+                <span class="badge badge-success"><%= @subscription.category_name %></span>
+                <span class="badge badge-success"><%= @subscription.category_genre %></span>
+                <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
+                <p class="font-weight-normal mb-2">住所：東京都 港区 1-1-1 TEL：0120-123-123</p>
+                <button class="btn btn-success btn-sm btn-rounded mx-0 mb-0 d-none d-sm-inline-block">サブスク開始</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="container my-5 py-5 z-depth-1">
+  <section class="text-center">
+    <h3 class="font-weight-bold mb-5"><%= @subscription.name %> 店舗紹介（仮）</h3>
+    <div class="row">
+      <div class="col-lg-6">
+        <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
+          <div class="carousel-inner text-center text-md-left" role="listbox">
+            <div class="carousel-item active">
+              <%= image_tag @subscription.image_subscription2_url ,size: '700x350', alt: "First slide", class: "img-fluid" %>
+            </div>
+            <div class="carousel-item">
+              <%= image_tag @subscription.image_subscription3_url ,size: '700x350', alt: "Second slide", class: "img-fluid" %>
+            </div>
+            <div class="carousel-item">
+              <%= image_tag @subscription.image_subscription4_url ,size: '700x350', alt: "Third slide", class: "img-fluid" %>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel-thumb1" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel-thumb1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <div id="mdb-lightbox-ui"></div>
+            <div class="mdb-lightbox no-margin">
+             <div class="row">
+              <figure class="col-md-4">
+                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+              </figure>
+              <figure class="col-md-4">
+                  <%= image_tag @subscription.image_subscription3_url ,class: "img-fluid" %>
+              </figure>
+              <figure class="col-md-4">
+                  <%= image_tag @subscription.image_subscription4_url ,class: "img-fluid" %>
+              </figure>
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>
+
+      <div class="col-lg-5 text-center text-md-left">
+
+        <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4"><%= @subscription.name %></h2>
+        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">NEW</span>
+
+        <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
+          <span class="red-text font-weight-bold">
+            <strong><%= @subscription.title %></strong>
+          </span>
+        </h3>
+
+        <div class="font-weight-normal">
+
+          <p class="ml-xl-0 ml-4">
+            <strong>店舗詳細: </strong><%= @subscription.detail %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>サブスク詳細: </strong><%= @subscription.subscription_detail %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>住所: </strong>東京都 サンプル1ー1ー1</p>
+          <p class="ml-xl-0 ml-4">
+            <strong>TEL: </strong>0120-123-123</p>
+
+          <div class="mt-5">
+
+            <div class="row text-center text-md-left">
+
+              <div class="row mt-3 mb-4">
+              <div class="col-md-12 text-center text-md-left text-md-right">
+                <button class="btn btn-outline-success btn-rounded">
+                  ブログ</button>
+              </div>
+            </div>&nbsp;
+
+            <div class="row mt-3 mb-4">
+              <div class="col-md-12 text-center text-md-left text-md-right">
+                <button class="btn btn-outline-danger btn-rounded">
+                  MAP</button>
+              </div>
+            </div>&nbsp;
+
+            <div class="row mt-3 mb-4">
+              <div class="col-md-12 text-center text-md-left text-md-right">
+                <button class="btn btn-outline-warning btn-rounded">
+                  レビュー</button>
+              </div>
+            </div>&nbsp;
+
+            <div class="row mt-3 mb-4">
+              <div class="col-md-12 text-center text-md-left text-md-right">
+                <button class="btn btn-outline-primary btn-rounded">
+                  お問い合わせ</button>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
