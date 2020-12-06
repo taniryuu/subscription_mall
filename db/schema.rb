@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201122120737) do
+ActiveRecord::Schema.define(version: 20201204063450) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -128,6 +128,9 @@ ActiveRecord::Schema.define(version: 20201122120737) do
     t.string "payee"
     t.string "line_id"
     t.string "address"
+    t.datetime "deleted_at"
+    t.text "message"
+    t.string "subject"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
@@ -149,6 +152,13 @@ ActiveRecord::Schema.define(version: 20201122120737) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "detail"
+    t.text "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.string "name"
     t.string "content"
@@ -156,6 +166,9 @@ ActiveRecord::Schema.define(version: 20201122120737) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "rate"
+    t.string "image_id"
+    t.string "email"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -185,6 +198,11 @@ ActiveRecord::Schema.define(version: 20201122120737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "shop_id"
+    t.string "script"
+    t.string "image_subscription2"
+    t.string "image_subscription3"
+    t.string "image_subscription4"
+    t.string "category_genre"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -216,6 +234,9 @@ ActiveRecord::Schema.define(version: 20201122120737) do
     t.string "phone_number"
     t.string "uid"
     t.string "provider"
+    t.datetime "deleted_at"
+    t.text "message"
+    t.string "subject"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

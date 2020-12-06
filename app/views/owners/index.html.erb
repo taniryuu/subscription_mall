@@ -25,9 +25,12 @@
                   class: "btn btn-danger" %>
           </td>
           <td>
-              <%= link_to "編集", edit_owner_path(owner), class: "btn btn-primary" %>
+          <%= link_to "編集", edit_owner_path(owner), class: "btn btn-primary" %>
           </td>
         </tr>
+      <% end %>
+      <% if current_admin.present? %>
+        <%= link_to "削除されたアカウント履歴", owners_deleted_owners_path, class: "btn btn-primary" %>
       <% end %>
     </table>
   </div>

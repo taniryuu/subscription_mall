@@ -8,14 +8,18 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'momentjs-rails'
+gem 'faker'#サンプル追加
+gem 'will_paginate' #ページネート
+gem 'bootstrap-will_paginate'#ページネート
+gem 'owlcarousel-rails'#カルーセル
 gem 'devise'
+gem 'paranoia', '~> 2.3', '>= 2.3.1'#論理削除
 gem 'font-awesome-rails'
-gem "refile", require: "refile/rails", github: 'manfe/refile'#ファイルアップロードgem
-gem "refile-mini_magick"#画像処理のgem
 gem 'carrierwave', '~> 2.0'#複数画像投稿のgem
+gem 'cloudinary'
 gem 'rmagick'#画像をリサイズしたりする
 gem 'rails-i18n'
 gem 'omniauth'
@@ -26,6 +30,7 @@ gem 'omniauth-instagram'
 gem 'dotenv-rails'
 gem 'omniauth-line'
 gem 'omniauth-oauth2', '>= 1.6'
+gem 'stripe'
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

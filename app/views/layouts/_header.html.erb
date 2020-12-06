@@ -1,13 +1,12 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "巡グルメ", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-right">
+<header>
+    <nav class="navbar navbar-expand-md  navbar-light" style="background-color:#f5c1d2;">
+     <%= link_to "巡グルメ", root_path, id: "logo" %>
+      <ul class="collapse navbar-collapse justify-content-end">
         <div class="dropdown" aria-labelledby="dropdownMenuButton">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          🍴🍴🍴
-          </button> 
-          <div class="dropdown-menu">         
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="dropdown-menu">
             <% if signed_in? %> <%# ログインしているかどうか %>
               <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
                 <li><a href="#home">ホーム</a></li>
@@ -27,7 +26,9 @@
                     <li><%= link_to "Myアカウント", owner_account_owner_path(current_owner) %></li>
                     <li><%= link_to "会員者様一覧", users_path %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
+                    <li><%= link_to "レビュー", reviews_path %></li>
                     <li><%= link_to "オーナーインタビュー", interviews_path %></li>
+                    <li><%= link_to "よくある質問", questions_path %></li>
                   </ul>
               </li>
               <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
@@ -47,6 +48,8 @@
                     <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
                     <li><%= link_to "解約について", edit_user_registration_path(current_user) %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
+                    <li><%= link_to "レビュー", reviews_path %></li>
+                    <li><%= link_to "よくある質問", questions_path %></li>
                   </ul>
               </li>
               <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
@@ -65,9 +68,11 @@
                     <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
                     <li><%= link_to "Myアカウント", admin_account_admin_path(current_admin) %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
+                    <li><%= link_to "レビュー", reviews_path %></li>
                     <li><%= link_to "オーナーインタビュー", interviews_path %></li>
                     <li><%= link_to "会員ユーザー一覧", users_path %></li>
                     <li><%= link_to "経営者一覧", owners_path %></li>
+                    <li><%= link_to "よくある質問", questions_path %></li>
                   </ul>
               </li>
               <% end %>
@@ -87,14 +92,15 @@
                     <li><%= link_to "ログイン", new_user_session_path %></li>
                     <li><%= link_to "会員登録", new_user_registration_path %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
+                    <li><%= link_to "レビュー", reviews_path %></li>
                     <li><%= link_to "インタビュー", interviews_path %></li>
                     <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                    <li><%= link_to "よくある質問", questions_path %></li>
                   <ul>
               </li>
             <% end %>
-      　</div>
-      　</div>
-    　</ul>
+      </div>
+      </div>
+    </ul>
     </nav>
-  </div>
 </header>
