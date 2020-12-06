@@ -1,12 +1,26 @@
 <% provide(:title, "まずはご相談") %>
 
+<p id="notice"><%= notice %></p>
+
 <h1>新規でショップ開設のご相談</h1>
 
 
 <div>
-  <h1><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-lg btn-default" %></h1>
+  <h1><%= link_to "カスタマイズサポート", suports_path, class: "btn btn-lg btn-default" %></h1>
 </div>
 
 <div>
-  <h1><%= link_to "サポート", new_suport_path, class: "btn btn-lg btn-default" %></h1>
+  <h1><%= link_to "顧客管理サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
+</div>
+
+<div>
+  <h1><%= link_to "集客サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
+</div>
+
+<div>
+  <h1><%= link_to "お問い合わせサポート", suports_path, class: "btn btn-lg btn-default" %></h1>
+</div>
+
+<div>
+  <h1><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
 </div>
