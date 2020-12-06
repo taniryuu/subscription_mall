@@ -188,15 +188,9 @@
   <% else %> <%# ログインしてない %>
     <h1 id="home"><%= link_to "ホーム", "#", class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
-<<<<<<< HEAD
     <h1 id="plan"><%= link_to "プラン", "#", class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
         <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-=======
-    <h1 id="plan">プラン</h1></br>
-    <h1 id="recommend">おすすめ店舗</h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
->>>>>>> 526c6fa2f2d64a7b8a2262a262641181ef2979c8
         <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
           <hr class="tool-bar">
           <div class="row">
