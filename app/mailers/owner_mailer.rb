@@ -1,8 +1,9 @@
 class OwnerMailer < ApplicationMailer
 
-  def owner_email(user)
+  def owner_email(user, owner)
     @user = user
-    mail(:to => @user.email, :subject => 'メッセージが届きました')
+    @owner = owner
+    mail(:to => @owner.email, :subject => '#{@owner.name}様からメッセージが届きました')
   end
   
 end
