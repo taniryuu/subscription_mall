@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201204063450) do
+ActiveRecord::Schema.define(version: 20201208045435) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20201204063450) do
     t.datetime "deleted_at"
     t.text "message"
     t.string "subject"
+    t.string "kana"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end

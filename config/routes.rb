@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'#トップページ
+  get 'static_pages/top_owner' => "static_pages#top_owner"#経営者様トップページ
+  get 'static_pages/top_user' => "static_pages#top_user"#利用者様トップページ
   get 'static_pages/discussion'#相談窓口
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
+
+
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -38,12 +42,7 @@ Rails.application.routes.draw do
     end
   end
   resources :blogs
-  get 'interviews/index'
-  get 'subscriptions/index'
-  get 'blogs/index'
-
-  resources :blogs
-  get 'interviews/index'#まだ決まってない。使わないかもしれない
+  get 'reviews/list' => "reviews#list"#利用者ではない人用の表示ページ
   get 'subscriptions/index'#まだ決まってない。使わないかもしれない
   get 'blogs/index'#まだ決まってない。使わないかもしれない
 
@@ -55,14 +54,13 @@ Rails.application.routes.draw do
   post 'contacts/confirm' => "contacts#confirm"#お問い合わせ確認画面
   post 'contacts/thanks' => "contacts#thanks"#お問い合わせ完了通知仮面
 
-  resources :interviews
-  resources :cupons
-  resources :products
+  resources :interviews#経営者様インタビュー
+  resources :cupons#クーポン
+  resources :products#QRコード
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
       member do
-        get 'interviews_index'#まだ決まってない。使わないかもしれない
         post "thanks"#会員登録完了通知画面
         get 'owner_account'#アカウントページ
         get 'user_email'#経営者から利用者へメール作成
@@ -78,14 +76,14 @@ Rails.application.routes.draw do
   resources :categories
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
+    resources :reviews#利用者レビュー
     member do
       get "thanks"#会員完了通知仮面
       get 'user_account'#アカウントページ
       patch 'update_deleted_users'#アカウントページ論理削除
     end
   end
-  resources :reviews
-  resources :questions
+  resources :questions#よくある質問
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

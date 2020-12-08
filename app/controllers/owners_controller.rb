@@ -51,7 +51,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    if @owner.update_attributes(owner_params)
+    if @owner.update(owner_params)
       flash[:success] = "#{@owner.name}様の情報を更新しました。"
       redirect_to owners_url
     else

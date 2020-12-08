@@ -1,6 +1,50 @@
-<h1>Editing Review</h1>
+<% provide(:title, "編集レビュー") %>
+<h1>利用者様レビュー編集</h1>
 
-<%= render 'form', review: @review %>
+      <%= form_with(model: @review, url: user_review_path, local: true) do |form| %>
+        <% if @review.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+            <ul>
+            <% @review.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <span class="form-group-star" id="star">
+          <%= form.hidden_field :score, :required => true, id: :review_star %>
+        </span>
+
+        <div class="review-coment-new">
+          <%= form.label :content, class: "label-signup" %>
+          <%= form.text_area :content, :required => true, size: "30x6", :required => true, class: "form-control"%>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :name, class: "label-signup" %>
+          <%= form.text_field :name, :required => true, class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= form.label :email, class: "label-signup" %>
+          <%= form.email_field :email, :required => true, class: "form-control" %>
+        </div>
+        <%= form.submit "投稿する", class:  "btn btn-primary" %>
+      <% end %>
+
+<!-- 星評価javascript -->
+<script>
+$('#star').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[rate]',
+  half: true,
+});
+</script>
+
+<%= link_to '詳細', user_review_path %> |
+<%= link_to '利用者様レビュー一覧へ', user_reviews_path %>

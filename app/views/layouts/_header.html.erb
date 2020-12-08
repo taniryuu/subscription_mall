@@ -14,7 +14,7 @@
                 <li><a href="#plan">プラン</a></li>
                 <li><a href="#recommend">おすすめ店舗</a></li>
                 <li><%= link_to "ショップ開設", new_owner_shop_path(current_owner) %></li>
-                <li><a href="#interview">オーナーインタビュー</a></li>
+                <li><a href="#interview">経営者様インタビュー</a></li>
                 <li><a href="#service">サービス</a></li>
                 <li><a href="#inquiry">お問い合わせ</a></li>
               <li class="dropdown">
@@ -22,13 +22,14 @@
                     メニュー <b class="caret"></b>
                   </a>
                   <ul>
-                    <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
                     <li><%= link_to "Myアカウント", owner_account_owner_path(current_owner) %></li>
                     <li><%= link_to "会員者様一覧", users_path %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "レビュー", reviews_path %></li>
-                    <li><%= link_to "オーナーインタビュー", interviews_path %></li>
+                    <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
+                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
                     <li><%= link_to "よくある質問", questions_path %></li>
+                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                    <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
                   </ul>
               </li>
               <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
@@ -44,12 +45,13 @@
                     メニュー <b class="caret"></b>
                   </a>
                   <ul>
-                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                     <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
-                    <li><%= link_to "解約について", edit_user_registration_path(current_user) %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "レビュー", reviews_path %></li>
+                    <li><%= link_to "利用者様レビュー", user_reviews_path(current_user) %></li>
+                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
+                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
                     <li><%= link_to "よくある質問", questions_path %></li>
+                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                   </ul>
               </li>
               <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
@@ -57,7 +59,7 @@
                 <li><a href="#category">カテゴリ</a></li>
                 <li><a href="#plan">プラン</a></li>
                 <li><a href="#recommend">おすすめ店舗</a></li>
-                <li><a href="#interview">オーナーインタビュー</a></li>
+                <li><a href="#interview">経営者様インタビュー</a></li>
                 <li><a href="#service">サービス</a></li>
                 <li><a href="#inquiry">お問い合わせ</a></li>
               <li class="dropdown">
@@ -65,14 +67,14 @@
                     メニュー <b class="caret"></b>
                   </a>
                   <ul>
-                    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
                     <li><%= link_to "Myアカウント", admin_account_admin_path(current_admin) %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "レビュー", reviews_path %></li>
-                    <li><%= link_to "オーナーインタビュー", interviews_path %></li>
-                    <li><%= link_to "会員ユーザー一覧", users_path %></li>
-                    <li><%= link_to "経営者一覧", owners_path %></li>
+                    <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
+                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
+                    <li><%= link_to "会員者様一覧", users_path %></li>
+                    <li><%= link_to "経営者様一覧", owners_path %></li>
                     <li><%= link_to "よくある質問", questions_path %></li>
+                    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
                   </ul>
               </li>
               <% end %>
@@ -81,7 +83,7 @@
                 <li><a href="#category">カテゴリ</a></li>
                 <li><a href="#plan">プラン</a></li>
                 <li><a href="#recommend">おすすめ店舗</a></li>
-                <li><a href="#interview">オーナーインタビュー</a></li>
+                <li><a href="#interview">経営者様インタビュー</a></li>
                 <li><a href="#service">サービス</a></li>
                 <li><a href="#inquiry">お問い合わせ</a></li>
               <li class="dropdown">
@@ -89,12 +91,11 @@
                     会員登録<b class="caret"></b>
                   </a>
                   <ul>
-                    <li><%= link_to "ログイン", new_user_session_path %></li>
                     <li><%= link_to "会員登録", new_user_registration_path %></li>
+                    <li><%= link_to "ログイン", new_user_session_path %></li>
                     <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "レビュー", reviews_path %></li>
-                    <li><%= link_to "インタビュー", interviews_path %></li>
-                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                    <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
+                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
                     <li><%= link_to "よくある質問", questions_path %></li>
                   <ul>
               </li>

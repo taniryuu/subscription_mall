@@ -1,5 +1,6 @@
-<h1>New Blog</h1>
+<% provide(:title, "サブスクnews作成") %>
+<h1>サブスクnews　新規作成</h1>
 
 <%= render 'form', blog: @blog %>
 
-<%= link_to 'Back', blogs_path %>
+<%= link_to 'news一覧へ', blogs_path %>
