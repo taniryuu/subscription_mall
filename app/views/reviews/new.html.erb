@@ -1,5 +1,7 @@
 <% provide(:title, "新規レビュー") %>
 
+<p id="notice"><%= notice %></p>
+
 <h1>新規レビュー</h1>
 
       <%= form_with(model: @review, url: user_reviews_path, local: true) do |form| %>
@@ -16,9 +18,16 @@
         <% end %>
         <%= form.hidden_field :user_id, :value => @user.id %>
 
-        <span class="form-group-star" id="star">
+        <span class="form-group-star rating" id="star">
           <%= form.hidden_field :score, :required => true, id: :review_star %>
         </span>
+            <div id="star-rate-<%= @review.id %>">
+              <i class="fa fa-star active"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
 
         <div class="review-coment-new">
           <%= form.label :content, class: "label-signup" %>

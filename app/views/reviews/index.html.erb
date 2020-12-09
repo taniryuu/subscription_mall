@@ -1,5 +1,7 @@
 <% provide(:title, "レビュー一覧") %>
 
+<p id="notice"><%= notice %></p>
+
 <div class="review-title">
   <h3>レビュー</h3>
 </div>
@@ -10,7 +12,19 @@
   <% end %>    
   <% @reviews.each do |review| %>
     <div class="review">
-          <div class="review-cs">お客様満足度</div>
+          <div class="review-cs">お客様満足度
+            <div id="star-rate-<%= review.id %>">
+              <i class="fa fa-star active"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>          
+          </div>
+          <div class="review-star">
+            <span class="star-img" id="star-rate-<%= review.id %>"></span>
+          </div>
+
           <div class="review-star">
             <span class="star-img" id="star-rate-<%= review.id %>"></span>
           </div>
