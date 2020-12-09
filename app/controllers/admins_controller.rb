@@ -14,7 +14,7 @@ class AdminsController < ApplicationController
   def update
     if @admin.update_attributes(admin_params)
       flash[:success] = "#{@admin.name}様の情報を更新しました。"
-      redirect_to admin_url
+      redirect_to admin_account_admin_url(current_admin)
     else
       render :edit
     end
@@ -23,7 +23,7 @@ class AdminsController < ApplicationController
   def destroy
     @admin.destroy
     flash[:success] = "#{@admin.name}様のデータを削除しました。"
-    redirect_to admin_url
+    redirect_to admins_url
   end
 
   private

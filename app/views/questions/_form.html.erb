@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :detail %>
-    <%= form.text_field :detail, id: :question_detail, class: 'form-control' %>
+    <%= form.label :detail %><span class="must">必須</span><br/>
+    <%= form.text_field :detail, :required => true, id: :question_detail, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :answer %>
-    <%= form.text_area :answer, id: :question_answer, class: 'form-control' %>
+    <%= form.label :answer %><span class="must">必須</span><br/>
+    <%= form.text_area :answer, :required => true, id: :question_answer, class: 'form-control' %>
   </div>
 
   <div class="actions">

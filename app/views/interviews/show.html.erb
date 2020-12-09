@@ -1,10 +1,10 @@
-<% provide(:title, 'インタビュー詳細') %>
+<% provide(:title, '経営者様インタビュー詳細') %>
 <p id="notice"><%= notice %></p>
 
 
-<h1>オーナーインタビュー詳細</h1>
+<h1>経営者様インタビュー詳細</h1>
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-sm-10 col-md-offset-1">
       <table class="table table-bordered" id="table-schedule">
         <tbody>
           <tr>
@@ -20,23 +20,27 @@
           <tr>
             <th class="active center">
               <p>
-              <span><%= Interview.human_attribute_name :owner_name %></span>
+              <span><%= Interview.human_attribute_name :image_interview %></span>
               <span><td class="active center" colspan="3"><%= image_tag @interview.image_interview.thumb.url %></span></td>
               </p>
             </th>
           </tr>
           <tr>
-            <th class="active center col-md-2"><%= Interview.human_attribute_name :content %></th>
+            <th class="active center col-sm-2"><%= Interview.human_attribute_name :content %></th>
             <td  class="active" colspan = "3"><%= @interview.content %></td>
           </tr>
         </tbody>
-          <div class="tool--item">
-            <%= link_to "編集", edit_interview_path(@interview), class: "btn-gradient-3d-simple" %>
-            <%= link_to "削除", interview_path(@interview), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
-          </div>
+        <% if signed_in? %>
+          <% if !current_owner.present? %>
+            <div class="tool--item">
+              <%= link_to "編集", edit_interview_path(@interview), class: "btn-gradient-3d-simple" %>
+              <%= link_to "削除", interview_path(@interview), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+            </div>
+          <% end %>    
+        <% end %>
       </table>
     </div>    
   </div>
 
-<%= link_to 'Back', interviews_path %>
+<%= link_to '経営者様インタビュー', interviews_path %>
 
