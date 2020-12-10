@@ -1,7 +1,7 @@
 <% provide(:title, 'メール') %>
 
 <div class="page-header">
-  <h1>メール内容</h1>
+  <h1>経営者から利用者へのメール内容</h1>
 </div>
 
 <%= form_with(model: @user, url: to_user_email_owner_path, method: :post, local: true) do |form| %>

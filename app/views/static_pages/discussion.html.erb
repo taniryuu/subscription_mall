@@ -16,11 +16,12 @@
 <div>
   <h1><%= link_to "集客サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
 </div>
+<% if signed_in? %> <%# ログインしているかどうか %>
+  <div>
+    <h1><%= link_to "お問い合わせサポート", suports_path, class: "btn btn-lg btn-default" %></h1>
+  </div>
 
-<div>
-  <h1><%= link_to "お問い合わせサポート", suports_path, class: "btn btn-lg btn-default" %></h1>
-</div>
-
-<div>
-  <h1><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-</div>
+  <div>
+    <h1><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
+  </div>
+<% end %>

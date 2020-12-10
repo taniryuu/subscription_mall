@@ -62,7 +62,7 @@
   font-size: 19px;
   position: absolute;
   top: 10px;
-  left: 200px;
+  left: 20px;
 }
 // 星
 .review-star {
@@ -83,7 +83,7 @@
 .review-comment {
 position: absolute;
 top: 50px;
-left: 200px;
+left: 20px;
 margin-right: 50px;
 font-size: 15px;
 }
@@ -101,11 +101,6 @@ font-size: 15px;
   position: absolute;
   top: 120px;
   right: 30px;
-}
-// アンケート画像
-.review-item-image {
-  width: 120px;
-  height: 120px;
 }
 .review-date {
   position: absolute;

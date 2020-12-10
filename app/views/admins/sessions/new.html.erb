@@ -6,7 +6,7 @@
       <h1>管理ユーザー ログイン</h1>
       <div class="box-email">
         <%= f.label :email, "メールアドレス" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, :required => true, autofocus: true, autocomplete: "email" %>
       </div>
       <div class="box-password">
         <div class="a-row">
@@ -17,38 +17,49 @@
             <%= link_to "パスワードを忘れた場合", new_admin_password_path %>
           </div>
         </div>
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, :required => true, autocomplete: "current-password" %>
       </div>
       <div class="box-login">
         <%= f.submit "ログイン" %>
         <div class="legal-text">
-          ショップオーナーはこちらからログイン
+          経営者様はこちらからログイン
           <div class="box-newusr"></br>
-            <%= link_to "ショップオーナーはこちらからログイン", new_owner_session_path %>
+            <%= link_to "経営者様はこちらからログイン", new_owner_session_path %>
           </div>
         </div>
           <div class="box-newusr"></br>
             <%= link_to "会員ユーザー はこちらからログイン", new_user_session_path %>
           </div>
-        <h2>SNSアカウントでログイン</h2>
+    <h2><span>------------</span>SNSアカウントでログイン<span>------------</span></h2>
+    <div class="box-facebook"></br>
+        <%= link_to user_facebook_omniauth_authorize_path do %>
+        <i class="fa fa-facebook-official"></i> Facebookでログイン
+        <% end %>
+    </div>
 
-        <div class="box-facebook"></br>
-            <%= link_to user_facebook_omniauth_authorize_path do %>
-            <i class="fa fa-facebook-official"></i> Facebookでログイン
-            <% end %>
-        </div>
+    <div class="box-line"></br>
+        <%= link_to user_line_omniauth_authorize_path do %>
+        <i class="fa fa-mobile"></i> LINEでログイン
+        <% end %>
+    </div>
 
-        <div class="box-line"></br>
-            <%= link_to user_line_omniauth_authorize_path do %>
-            <i class="fa fa-mobile"></i> LINEでログイン
-            <% end %>
-        </div>
+    <div class="box-google"></br>
+        <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+        <i class="fa fa-google"></i> Googleでログイン
+        <% end %>
+    </div>
 
-        <div class="box-google"></br>
-            <%= link_to "#" do %>
-            <i class="fa fa-google"></i> Googleでログイン
-            <% end %>
-        </div>
+    <div class="box-twitter"></br>
+        <%= link_to user_twitter_omniauth_authorize_path do %>
+        <i class="fa fa-twitter"></i> Twitterでログイン
+        <% end %>
+    </div>
+
+    <div class="box-instagram"></br>
+        <%= link_to user_instagram_omniauth_authorize_path do %>
+        <i class="fa fa-instagram"></i> Instagramでログイン
+        <% end %>
+    </div>
 
       </div>
     <% end %>

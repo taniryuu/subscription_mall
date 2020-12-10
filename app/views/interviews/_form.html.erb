@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :owner_name %>
-    <%= form.text_field :owner_name, id: :interview_owner_name, placeholder: "例)鈴木　太郎", class: 'form-control' %>
+    <%= form.text_field :owner_name, :required => true, id: :interview_owner_name, placeholder: "例)鈴木　太郎", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :shop_name %>
-    <%= form.text_field :shop_name, id: :interview_shop_name, placeholder: "例)野郎ラーメン", class: 'form-control' %>
+    <%= form.text_field :shop_name, :required => true, id: :interview_shop_name, placeholder: "例)野郎ラーメン", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_field :content, id: :interview_content, placeholder: "例)美味しいラーメン", class: 'form-control' %>
+    <%= form.text_field :content, :required => true, id: :interview_content, placeholder: "例)美味しいラーメン", class: 'form-control' %>
   </div>
 
   <div class="actions">

@@ -1,6 +1,7 @@
-<h1>Editing Blog</h1>
+<% provide(:title, "Edit") %>
+<h1>サブスクnews編集</h1>
 
 <%= render 'form', blog: @blog %>
 
-<%= link_to 'Show', @blog %> |
-<%= link_to 'Back', blogs_path %>
+<%= link_to '詳細', @blog %> |
+<%= link_to 'news一覧へ', blogs_path %>
