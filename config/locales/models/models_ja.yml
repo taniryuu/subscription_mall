@@ -156,7 +156,7 @@ ja:
           blog_id: news
         interview:
           id: ID
-          owner_name: 経営者名前
+          owner_name: 経営者様名前
           shop_name: お店の名前
           content: 内容
           image_interview: 写真

@@ -12,20 +12,21 @@
         <% end %>
 
         <span class="form-group-star" id="star">
-          <%= form.hidden_field :score, id: :review_star %>
+          <%= form.hidden_field :score, :required => true, id: :review_star %>
         </span>
 
         <div class="review-coment-new">
-          <%= form.text_area :content, size: "30x6", :required => true, class: "form-control"%>
+          <%= form.label :content, class: "label-signup" %>
+          <%= form.text_area :content, :required => true, size: "30x6", :required => true, class: "form-control"%>
         </div>
 
         <div class="form-group">
-          <%= form.label :名前, class: "label-signup" %>
-          <%= form.text_field :name, class: "form-control"%>
+          <%= form.label :name, class: "label-signup" %>
+          <%= form.text_field :name, :required => true, class: "form-control"%>
         </div>
         <div class="form-group">
-          <%= form.label :メールアドレス, class: "label-signup" %>
-          <%= form.email_field :email, class: "form-control" %>
+          <%= form.label :email, class: "label-signup" %>
+          <%= form.email_field :email, :required => true, class: "form-control" %>
         </div>
         <%= form.submit "投稿する", class:  "btn btn-primary" %>
       <% end %>

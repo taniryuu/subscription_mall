@@ -1,6 +1,14 @@
 <% provide(:title, 'メール') %>
-<%= form_with(model: @user, url: to_user_email_owner_path, method: :post, local: true) do |form| %>
 
+<div class="page-header">
+  <h1>経営者から利用者へのメール内容</h1>
+</div>
+
+<%= form_with(model: @user, url: to_user_email_owner_path, method: :post, local: true) do |form| %>
+  <% if current_owner.present?%>
+    <%= form.hidden_field :owner, :value => current_owner.id %>
+  <% end %>
+    <%= form.hidden_field :user, :value => @user.id %>
   <div class="field">
     <%= form.label :name %>:
     <%= form.hidden_field :name %>

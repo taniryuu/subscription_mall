@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :reviews
   acts_as_paranoid # 追加
   devise :database_authenticatable,
          :registerable,
@@ -13,7 +14,9 @@ class User < ApplicationRecord
   scope :without_soft_deleted, -> { where(deleted_at: nil) }
   # validatable相当の検証を追加
   validates_uniqueness_of :email, scope: :deleted_at
-  validates_format_of :email, with: Devise.email_regexp, if: :will_save_change_to_email?
+  validates :name, presence: true
+  # validates :kana, presence: true
+  validates_format_of :email, presence: true, with: Devise.email_regexp, if: :will_save_change_to_email?
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
 

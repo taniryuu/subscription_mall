@@ -1,8 +1,8 @@
-<% provide(:title, "インタビュー") %>
+<% provide(:title, "経営者様インタビュー") %>
 
 <p id="notice"><%= notice %></p>
 
-<h1>オーナー様インタビュー</h1>
+<h1>経営者様インタビュー</h1>
 
 <table>
   <tbody>
@@ -24,6 +24,7 @@
           <%= interview.content %>
         </div>
 
+      <% if current_owner.present? or current_admin.present? %>
         <div class="col-sm-1">
           <%= link_to "詳細", interview_path(interview), class: "btn-gradient-3d-simple" %>
         </div>
@@ -33,10 +34,13 @@
         <div class="col-sm-1">
           <%= link_to "削除", interview_path(interview), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
         </div>
+      <% end %>
       </div>
+    <% end %>
+    <% if current_owner.present? or current_admin.present? %>
+      <%= link_to '経営者様インタビュー作成', new_interview_path %>
     <% end %>
   </tbody>
 </table>
 <br>
 
-<%= link_to 'New Interview', new_interview_path %>

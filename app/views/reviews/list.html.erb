@@ -6,32 +6,20 @@
   <h3>レビュー</h3>
 </div>
   <% if signed_in? %>
-    <% if !current_owner.present? %>
+    <% if current_user.present? %>
         <div class="review-new"><%= link_to "新規投稿", new_user_review_path, class: "btn btn-success" %></div>
     <% end %>    
   <% end %>    
   <% @reviews.each do |review| %>
     <div class="review">
-          <div class="review-cs">お客様満足度
-            <div id="star-rate-<%= review.id %>">
-              <i class="fa fa-star active"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-            </div>          
-          </div>
-          <div class="review-star">
-            <span class="star-img" id="star-rate-<%= review.id %>"></span>
-          </div>
-
+          <div class="review-cs">お客様満足度</div>
           <div class="review-star">
             <span class="star-img" id="star-rate-<%= review.id %>"></span>
           </div>
           <div class="review-comment"><%= review.content %></div>
           <div class="review-date">投稿日&nbsp;<%= l(review.created_at, format: :date) %></div>
           <% if signed_in? %>
-            <% if !current_owner.present? %>
+            <% if current_user.present? %>
               <div class="review-edit-btn">
                 <%= link_to "編集", edit_user_review_path(@user, review), class: "btn btn-primary" %>
               </div>

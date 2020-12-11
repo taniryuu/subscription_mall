@@ -9,27 +9,17 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :名前 %> <span class="must">必須</span><br/>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.label :name %> <span class="must">必須</span><br/>
+        <%= f.text_field :name, :required => true, class: 'form-control' %>
       </div>
 
       <div class="field">
-        <%= f.label :ふりがな %> <span class="must">必須</span><br/>
-        <%= f.text_field :kana, class: 'form-control' %>
+        <%= f.label :email %><span class="must">必須</span><br/>
+        <%= f.email_field :email, :required => true, autofocus: true, autocomplete: "email", class: 'form-control' %>
       </div>
 
       <div class="field">
-        <%= f.label :メールアドレス %><span class="must">必須</span><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :電話番号 %> <span class="must">必須</span><br/>
-        <%= f.text_field :phone_number, class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :パスワード %><span class="must">必須</span>
+        <%= f.label :password %><span class="must">必須</span>
         <% if @minimum_password_length %>
         <em>(最小<%= @minimum_password_length %>文字)</em>
         <% end %><br/>
@@ -37,7 +27,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :パスワード確認 %><span class="must">必須</span><br/>
+        <%= f.label :password_confirmation %><span class="must">必須</span><br/>
         <%= f.password_field :password_confirmation, :required => true,autocomplete: "new-password", class: 'form-control' %>
       </div>
 
@@ -45,6 +35,36 @@
         <%= f.submit "登録", class: "btn btn-primary btn-block btn-login" %>
       </div>
     <% end %>
-  <%= render "users/shared/links" %>
+    <h2><span>------------</span>SNSアカウントでログイン<span>------------</span></h2>
+    <div class="box-facebook"></br>
+        <%= link_to user_facebook_omniauth_authorize_path do %>
+        <i class="fa fa-facebook-official"></i> Facebookでログイン
+        <% end %>
+    </div>
+
+    <div class="box-line"></br>
+        <%= link_to user_line_omniauth_authorize_path do %>
+        <i class="fa fa-mobile"></i> LINEでログイン
+        <% end %>
+    </div>
+
+    <div class="box-google"></br>
+        <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+        <i class="fa fa-google"></i> Googleでログイン
+        <% end %>
+    </div>
+
+    <div class="box-twitter"></br>
+        <%= link_to user_twitter_omniauth_authorize_path do %>
+        <i class="fa fa-twitter"></i> Twitterでログイン
+        <% end %>
+    </div>
+
+    <div class="box-instagram"></br>
+        <%= link_to user_instagram_omniauth_authorize_path do %>
+        <i class="fa fa-instagram"></i> Instagramでログイン
+        <% end %>
+    </div>
+  </div>
  </div>
 </div>

@@ -1,27 +1,29 @@
 class OwnersController < ApplicationController
-  before_action :set_owner, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy]
 
   def index
     @owners = Owner.all
   end
 
-  def deleted_owners
+  def deleted_owners#論理削除した経営者
     @owners = Owner.with_deleted.where.not(deleted_at: nil)
   end
 
-  def update_deleted_owners
+  def update_deleted_owners#論理削除用のアクション
     @owner = Owner.with_deleted.find(params[:id]).restore
     redirect_to owners_url
   end
 
-  def user_email
+  def user_email#経営者から利用者へメール作成
     @user = User.find(params[:id])
   end
 
-  def to_user_email
-    @user = User.find(params[:id])
-    @user = User.new(params[:user].permit(:name, :email, :subject, :message))
-    OwnerMailer.owner_email(@user).deliver
+  def to_user_email#経営者から利用者へメール送信アクション
+    user = User.find(params[:id])
+    owner = Owner.find(params[:id])
+    User.new(user_params)
+    
+    OwnerMailer.owner_email(owner, user).deliver
     redirect_to users_url
   end
 
@@ -49,7 +51,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    if @owner.update_attributes(owner_params)
+    if @owner.update(owner_params)
       flash[:success] = "#{@owner.name}様の情報を更新しました。"
       redirect_to owners_url
     else
@@ -73,5 +75,13 @@ class OwnersController < ApplicationController
 
     def owner_params
       params.require(:owner).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
+    end
+
+    def user_params
+      params.require(:user).params(:name, :email, :subject, :message)
+    end
+
+    def email_params
+      params.require(:user).permit(owner: [:name, :email])
     end
 end
