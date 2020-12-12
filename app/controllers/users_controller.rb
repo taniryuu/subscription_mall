@@ -48,6 +48,11 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def ticket
+
+
+  end
+
   private
 
     def set_user
