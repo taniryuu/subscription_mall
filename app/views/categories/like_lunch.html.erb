@@ -1,0 +1,48 @@
+<% provide(:title, "カテゴリー") %>
+
+<h1><%= @category.name %></h1>
+<h1>
+<% if @category.id == 1 %>
+  <%= link_to "#{@category.name}のページへ！", washoku_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 2 %>
+  <%= link_to "#{@category.name}のページへ！", teishoku_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 3 %>
+  <%= link_to "#{@category.name}のページへ！", ramen_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 4 %>
+  <%= link_to "#{@category.name}のページへ！", cafe_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 5 %>
+  <%= link_to "#{@category.name}のページへ！", pan_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 6 %>
+  <%= link_to "#{@category.name}のページへ！", izakaya_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 7 %>
+  <%= link_to "#{@category.name}のページへ！", itarian_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 8 %>
+  <%= link_to "#{@category.name}のページへ！", chuuka_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 9 %>
+  <%= link_to "#{@category.name}のページへ！", french_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 10 %>
+  <%= link_to "#{@category.name}のページへ！", hawaian_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 11 %>
+  <%= link_to "#{@category.name}のページへ！", tonanajia_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 12 %>
+  <%= link_to "#{@category.name}のページへ！", bar_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 13 %>
+  <%= link_to "#{@category.name}のページへ！", cake_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 14 %>
+  <%= link_to "#{@category.name}のページへ！", yakiniku_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 15 %>
+  <%= link_to "#{@category.name}のページへ！", yoshoku_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 16 %>
+  <%= link_to "#{@category.name}のページへ！", curry_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 17 %>
+  <%= link_to "#{@category.name}のページへ！", humburger_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 18 %>
+  <%= link_to "#{@category.name}のページへ！", kankokuryori_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 19 %>
+  <%= link_to "#{@category.name}のページへ！", restaurant_categories_path, class: "btn btn-success" %>
+<% elsif @category.id == 20 %>
+  <%= link_to "#{@category.name}のページへ！", other_categories_path, class: "btn btn-success" %>
+<% end %>
+</h1>
+<br>
+<%= link_to 'Back', categories_path %>

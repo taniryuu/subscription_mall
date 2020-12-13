@@ -49,6 +49,18 @@
   </div>
 
   <div class="field">
+    <%= form.label :category_name %>
+    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => true, id: :subscription_subscription_detail, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_genre %>
+    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => true , id: :subscription_subscription_detail, class:"form-control" %>
+  </div>
+
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :ジャンル %>
     <%= form.select :category_name, [["和食", "和食"],["洋食", "洋食"],["中華", "中華"],["イタリアン", "イタリアン"],["フレンチ", "フレンチ"],["ハワイアン", "ハワイアン"],["東南アジア料理", "東南アジア料理"],["韓国料理", "韓国料理"],["その他", "その他"]],:include_blank => true, id: :subscription_subscription_detail, class:"form-control" %>
   </div>
@@ -56,7 +68,9 @@
   <div class="field">
     <%= form.label :カテゴリー %>
     <%= form.select :category_genre, [["カフェ", "カフェ"],["らーめん", "らーめん"],["パン屋", "パン屋"],["カレー", "カレー"],["居酒屋", "居酒屋"],["BAR", "BAR"],["ケーキ", "ケーキ"],["焼肉", "焼肉"],["定食屋", "定食屋"],["バーガー", "バーガー"],["レストラン", "レストラン"],["その他", "その他"]],:include_blank => true ,id: :subscription_subscription_detail, class:"form-control" %>
-  </div>
+  </div> 
+<%
+=end%>
 
 
   <div class="actions">

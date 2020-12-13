@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201208045435) do
+ActiveRecord::Schema.define(version: 20201212071841) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "genre"
+    t.string "image_category"
     t.index ["owner_id"], name: "index_categories_on_owner_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
@@ -194,7 +196,7 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
-    t.string "category_name"
+    t.integer "category_name"
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -203,7 +205,7 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.string "image_subscription2"
     t.string "image_subscription3"
     t.string "image_subscription4"
-    t.string "category_genre"
+    t.integer "category_genre"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 

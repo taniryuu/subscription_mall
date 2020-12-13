@@ -33,11 +33,6 @@ class SubscriptionsController < ApplicationController
       if @subscription.save
         format.html { redirect_to setup_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
-
-        Category.create(
-          name: @subscription.category_name,
-          owner_id: @subscription.owner_id
-        )
       else
         format.html { render :new }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
