@@ -72,7 +72,7 @@ Category.create!(name: "ハワイアン",
 Category.create!(name: "東南アジア",
                 image_category: "https://media.gettyimages.com/photos/nasi-goreng-famous-indonesian-food-picture-id1187617921?k=6&m=1187617921&s=612x612&w=0&h=7eNOTVc4tmUj-IWizG2qTLB01mEus84XqlLL9H0ybtk="
                 )
-Category.create!(name: "Bar",
+Category.create!(name: "バー",
                 image_category: "https://media.gettyimages.com/photos/bar-picture-id183760198?k=6&m=183760198&s=612x612&w=0&h=w2Yn7MIx2H_VWiV8A4RUrqB_FJsYwgs9hSE4W8WCB4o="
                 )
 Category.create!(name: "ケーキ",

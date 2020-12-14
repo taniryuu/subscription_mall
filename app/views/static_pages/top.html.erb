@@ -56,10 +56,34 @@
 <main class="scroll-container">
   <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-      <h1 id="home">ホーム</h1></br>
+    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+      <%= form_with(model: @category, method: :get, local: true) do |f| %>
+        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
+        <%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
+      <% end %>
+        <div class="row">
+          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+            <% if category.image_category.present? && category.name.present? %>
+              <div class="col-lg-4 col-sm-6 mb-5">
+                <div class="row d-flex align-items-center">
+                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
+                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
+                  </div>
+                  <div class="col-7">
+                    <h6 class="font-weight-bold pt-2">
+                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <h1>見つかりません</h1>
+            <% end %>
+          <% end %>
+        </div>
       <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="plan">プラン</h1></br>
-      <h1 id="recommend">おすすめ店舗</h1></br>
+      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
         <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
           <hr class="tool-bar">
@@ -99,10 +123,33 @@
           </div>
         <% end %>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-      <h1 id="home">ホーム</h1></br>
-      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
+      <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+      <%= form_with(model: @category, method: :get, local: true) do |f| %>
+        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
+        <%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
+      <% end %>
+        <div class="row">
+          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+            <% if category.image_category.present? && category.name.present? %>
+              <div class="col-lg-4 col-sm-6 mb-5">
+                <div class="row d-flex align-items-center">
+                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
+                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
+                  </div>
+                  <div class="col-7">
+                    <h6 class="font-weight-bold pt-2">
+                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <h1>見つかりません</h1>
+            <% end %>
+          <% end %>
+        </div>
       <h1 id="plan">プラン</h1></br>
-      <h1 id="recommend">おすすめ店舗</h1></br>
+      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
         <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
           <hr class="tool-bar">
@@ -129,7 +176,7 @@
             </div>
           </div>
         <% end %>
-      <h1><%= link_to "よくある質問", questions_path %></h1>
+        <h1><%= link_to "よくある質問", questions_path %></h1>
         <% @questions.each do |question| %><%# よくある質問を全てeach %>
           <hr class="tool-bar">
           <div class="row">
@@ -142,10 +189,33 @@
           </div>
         <% end %>
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-      <h1 id="home">ホーム</h1></br>
-      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
+    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+      <%= form_with(model: @category, method: :get, local: true) do |f| %>
+        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
+        <%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
+      <% end %>
+        <div class="row">
+          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+            <% if category.image_category.present? && category.name.present? %>
+              <div class="col-lg-4 col-sm-6 mb-5">
+                <div class="row d-flex align-items-center">
+                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
+                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
+                  </div>
+                  <div class="col-7">
+                    <h6 class="font-weight-bold pt-2">
+                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <h1>見つかりません</h1>
+            <% end %>
+          <% end %>
+        </div>
       <h1 id="plan">プラン</h1></br>
-      <h1 id="recommend">おすすめ店舗</h1></br>
+      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
         <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
           <hr class="tool-bar">
@@ -186,184 +256,27 @@
         <% end %>
     <% end %>
   <% else %> <%# ログインしてない %>
-      <%= form_tag(search_categories_path, :method => 'get') do %>
-        <%= text_field_tag :search , "",placeholder: "キーワードからカテゴリーを検索しますか？" %><%= submit_tag '検索', :name => nil %>
+    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+      <%= form_with(model: @category, method: :get, local: true) do |f| %>
+        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
+        <%= text_field_tag :search , "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-          <div class="row">
-            <div class="col-7">
-              <h6 class="font-weight-bold pt-2">
-                  <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-              </h6>
+        <div class="row">
+          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+            <div class="col-lg-4 col-sm-6 mb-5">
+              <div class="row d-flex align-items-center">
+                <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
+                    <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
+                </div>
+                <div class="col-7">
+                  <h6 class="font-weight-bold pt-2">
+                      <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
+                  </h6>
+                </div>
+              </div>
             </div>
-          </div>
-        <% end %>
-    <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
-    <p class="text-center lead mb-5 pb-2 text-muted">気になるカテゴリーを選択して下さい。</p>
-    <div class="row">
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g="
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "カフェ", cake_categories_path %>
-            </h6>
-          </div>
+          <% end %>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://cdn.pixabay.com/photo/2018/03/15/10/33/bars-ramen-in-saigon-3227779__480.jpg"
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "らーめん", ramen_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://cdn.pixabay.com/photo/2017/04/26/11/03/bread-2262333__480.jpg"
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "パン屋", pan_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://media.istockphoto.com/photos/curry-rice-on-the-table-picture-id1066427100?b=1&k=6&m=1066427100&s=170667a&w=0&h=afrJvnBbrXqxUZMwtkJUeMbqenBy5YyaajWa2j-UsBk="
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "カレー", curry_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://media.gettyimages.com/photos/bar-picture-id183760198?k=6&m=183760198&s=612x612&w=0&h=w2Yn7MIx2H_VWiV8A4RUrqB_FJsYwgs9hSE4W8WCB4o="
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "BAR", bar_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://cdn.pixabay.com/photo/2018/05/01/18/21/eclair-3366430__480.jpg"
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "ケーキ", cake_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://media.istockphoto.com/photos/top-view-of-premium-rare-slices-many-parts-of-wagyu-a5-beef-with-on-picture-id1169410279?b=1&k=6&m=1169410279&s=170667a&w=0&h=CiQvMWUK7x73uERbummOpcLLwGYPt1W9Xi2VahlrYhE="
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "焼肉", yakiniku_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4="
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "定食屋", teishoku_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="row d-flex align-items-center">
-          <div
-            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
-          >
-            <img
-              src="https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
-              class="img-fluid rounded-circle z-depth-1"
-              Style="height: 100px"
-            />
-          </div>
-          <div class="col-7">
-            <h6 class="font-weight-bold pt-2">
-              <%= link_to "その他", other_categories_path %>
-            </h6>
-          </div>
-        </div>
-      </div>
     <h1 id="plan"><%= link_to "プラン", "#", class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>

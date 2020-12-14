@@ -153,6 +153,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:name, :title, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :owner_id, :shop_id, images_attributes: [:image])
+      params.require(:subscription).permit(:monthly_fee, :name, :title, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :owner_id, :shop_id, images_attributes: [:image])
     end
 end

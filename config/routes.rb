@@ -70,7 +70,6 @@ Rails.application.routes.draw do
       end
   end
   resources :categories, only: :index do
-      get 'search', on: :collection
       get 'like_lunch', on: :member
       get 'washoku', on: :collection
       get 'teishoku', on: :collection

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201212071841) do
+ActiveRecord::Schema.define(version: 20201214082540) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20201212071841) do
     t.datetime "updated_at", null: false
     t.string "genre"
     t.string "image_category"
+    t.string "search"
     t.index ["owner_id"], name: "index_categories_on_owner_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
@@ -206,6 +207,7 @@ ActiveRecord::Schema.define(version: 20201212071841) do
     t.string "image_subscription3"
     t.string "image_subscription4"
     t.integer "category_genre"
+    t.integer "monthly_fee"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
