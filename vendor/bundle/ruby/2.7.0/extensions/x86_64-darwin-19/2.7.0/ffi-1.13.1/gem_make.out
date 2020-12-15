@@ -1,5 +1,5 @@
 current directory: /Users/mk/subscription_mall/vendor/bundle/ruby/2.7.0/gems/ffi-1.13.1/ext/ffi_c
-/Users/mk/.rbenv/versions/2.7.2/bin/ruby -I /Users/mk/.rbenv/versions/2.7.2/lib/ruby/2.7.0 -r ./siteconf20201112-45280-b1iius.rb extconf.rb
+/Users/mk/.rbenv/versions/2.7.2/bin/ruby -I /Users/mk/.rbenv/versions/2.7.2/lib/ruby/2.7.0 -r ./siteconf20201212-13099-1386pw4.rb extconf.rb
 checking for ffi_prep_closure_loc() in -lffi... yes
 checking for ffi_prep_cif_var()... yes
 checking for ffi_raw_call()... yes
@@ -39,4 +39,4 @@ linking shared-object ffi_c.bundle
 
 current directory: /Users/mk/subscription_mall/vendor/bundle/ruby/2.7.0/gems/ffi-1.13.1/ext/ffi_c
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20201112-45280-10ymhho
+/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20201212-13099-19td98o
