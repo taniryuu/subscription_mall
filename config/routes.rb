@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'static_pages/discussion'#相談窓口
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
+  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
 
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
 
-
+  get 'user/:id/ticket', to: 'users#ticket', as: :ticket
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',

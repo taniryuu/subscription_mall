@@ -52,7 +52,7 @@
             <i class="fa fa-check-circle fa-2x"></i>
           </div>
           <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">1980円から始める</h5>
+            <h5 class="font-weight-bold mb-3">3000円から始める</h5>
             <p class="grey-text mb-0">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
           </div>
         </div>
@@ -159,7 +159,7 @@
             <% end %>
           <% end %>
         </div>
-      <h1 id="plan">プラン</h1></br>
+      <h1 id="plan"><%= link_to "プラン", user_plans_path(current_user.id), class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
       <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
         <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
@@ -290,7 +290,7 @@
         </div>
     <h1 id="plan"><%= link_to "プラン", "#", class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
+        <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
         <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
           <hr class="tool-bar">
           <div class="row">
