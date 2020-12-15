@@ -1,6 +1,17 @@
 <% provide(:title, "Top") %>
 
 <p id="notice"><%= notice %></p>
+<% if signed_in? %> <%# ログインしているかどうか %>
+  <% if current_user.present? %>
+    <p>ようこそ！<%= current_user.name %>さん</p>
+  <% elsif current_owner.present? %>
+    <p>ようこそ！<%= current_owner.name %>さん</p>
+  <% elsif current_admin.present? %>
+    <p>ようこそ！<%= current_admin.name %>さん</p>
+  <% end %>
+<% else %>
+  <p>ようこそ！ゲストさん</p>
+<% end %>
 
 <div class="top-bg">
  <div class="container my-5 p-5 z-depth-1">
