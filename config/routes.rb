@@ -64,11 +64,9 @@ Rails.application.routes.draw do
         get 'user_email', on: :member#経営者から利用者へメール作成
         post 'to_user_email', on: :member
         patch 'update_deleted_owners', on: :member#アカウントページ論理削除
-      resources :shops do
         resources :subscriptions do
           resources :images
         end
-      end
   end
   resources :categories, only: :index do
       get 'like_lunch', on: :member
@@ -100,6 +98,7 @@ Rails.application.routes.draw do
       get 'user_account', on: :member#アカウントページ
       patch 'update_deleted_users', on: :member#アカウントページ論理削除
   end
+  resources :shops, only: :new
   resources :questions#よくある質問
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

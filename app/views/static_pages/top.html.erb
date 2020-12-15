@@ -69,8 +69,8 @@
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
     <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
-        <%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
+        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
+      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
         <div class="row">
           <% @categories.each do |category| %><%# カテゴリーを全てeach %>
@@ -136,8 +136,8 @@
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
       <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
-        <%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
+        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
+      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
         <div class="row">
           <% @categories.each do |category| %><%# カテゴリーを全てeach %>
@@ -154,7 +154,7 @@
                   </div>
                 </div>
               </div>
-            <% else %>
+            <% elsif category.image_category.nil? && category.name.nil? %>
               <h1>見つかりません</h1>
             <% end %>
           <% end %>
@@ -202,8 +202,8 @@
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
     <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
-        <%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
+        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
+      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
         <div class="row">
           <% @categories.each do |category| %><%# カテゴリーを全てeach %>
@@ -269,8 +269,8 @@
   <% else %> <%# ログインしてない %>
     <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <!--%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索しますか？", class: "form-control"}) %-->
-        <%= text_field_tag :search , "",placeholder: "キーワードからカテゴリーを検索してみよう" %><%= submit_tag '検索', :name => nil %>
+        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
+      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
         <div class="row">
           <% @categories.each do |category| %><%# カテゴリーを全てeach %>

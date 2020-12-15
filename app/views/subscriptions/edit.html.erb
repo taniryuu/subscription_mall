@@ -2,11 +2,11 @@
 
 <h1>サブスクページ編集</h1>
 
-<%= form_with(model: @subscription, url: owner_shop_subscription_path, local: true) do |form| %>
+<%= form_with(model: @subscription, url: owner_subscription_path, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
-  <%= form.hidden_field :shop_id, :value => @shop.id %>
+  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
     <%= form.label :name %>
@@ -37,7 +37,7 @@
 
   <div class="field">
     <%= form.label :category_name %>
-    <%= form.text_field :category_name, id: :subscription_subscription_detail, class: 'form-control' %>
+    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
 
@@ -46,5 +46,5 @@
   </div>
 <% end %>
 
-<%= link_to 'Show', owner_shop_subscription_path(@subscription, owner_id: @owner.id, shop_id: @shop.id) %> |
-<%= link_to 'Back', owner_shop_subscriptions_path %>
+<%= link_to 'Show', owner_subscription_path(@subscription, owner_id: @owner.id, shop_id: @subscription.shop_id) %> |
+<%= link_to 'Back', owner_subscriptions_path %>

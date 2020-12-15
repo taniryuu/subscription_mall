@@ -1,66 +1,66 @@
 <% provide(:title, "サブスクページ作成") %>
 
-<h1>続いてサブスクページ作成</h1>
+<h1>サブスクショップ開設</h1>
 
-<%= form_with(model: @subscription, url: owner_shop_subscriptions_path(@subscription, owner_id: @owner.id, shop_id: @shop.id), local: true) do |form| %>
+<%= form_with(model: @subscription, url: owner_subscriptions_path(@subscription, owner_id: @owner.id), local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
-  <%= form.hidden_field :shop_id, :value => @shop.id %>
+  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
-    <%= form.label :monthly_fee %>
+    <%= form.label :monthly_fee %> <span class="must">必須</span><br/>
     <%= form.select :monthly_fee, Subscription.monthly_fees.keys, { include_blank: "利用料金を選択してください"}, class: 'form-control' %>
   </div>
 
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name %> <span class="must">必須</span><br/>
     <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title %> <span class="must">必須</span><br/>
     <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :detail %>
+    <%= form.label :detail %> <span class="must">必須</span><br/>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :メインの店舗写真 %>
+    <%= form.label :メインの店舗写真 %> <span class="must">必須</span><br/>
     <%= form.file_field :image_subscription, id: :subscription_image_subscription %>
   </div>
 
   <div class="field">
-    <%= form.label :お店紹介写真1 %>
+    <%= form.label :お店紹介写真1 %><br/>
     <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
   </div>
 
   <div class="field">
-    <%= form.label :お店紹介写真2 %>
+    <%= form.label :お店紹介写真2 %><br/>
     <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
   </div>
 
   <div class="field">
-    <%= form.label :お店紹介写真3 %>
+    <%= form.label :お店紹介写真3 %><br/>
     <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
   </div>
 
   <div class="field">
-    <%= form.label :subscription_detail %>
+    <%= form.label :subscription_detail %> <span class="must">必須</span><br/>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :category_name %>
-    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => true, id: :subscription_subscription_detail, class:"form-control" %>
+    <%= form.label :category_name %> <span class="must">必須</span><br/>
+    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :category_genre %>
+    <%= form.label :category_genre %><br/>
     <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => true , id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
@@ -70,4 +70,4 @@
   </div>
 <% end %>
 
-<%= link_to 'Back', owner_shop_subscriptions_path %>
+<%= link_to 'Back', owner_subscriptions_path %>
