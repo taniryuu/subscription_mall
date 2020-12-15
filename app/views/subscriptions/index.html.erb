@@ -43,13 +43,13 @@
         </div>
 
         <div class="col-sm-1 tool--item">
-          <%= link_to "詳細", owner_shop_subscription_path(subscription, owner_id: @owner.id, shop_id: @shop.id), class: "btn-gradient-3d-simple" %>
+          <%= link_to "詳細", owner_subscription_path(subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
         </div>
         <div class="col-sm-1 tool--item">
-          <%= link_to "編集", edit_owner_shop_subscription_path(subscription, owner_id: @owner.id, shop_id: @shop.id), class: "btn-gradient-3d-simple" %>
+          <%= link_to "編集", edit_owner_subscription_path(subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
         </div>
         <div class="col-sm-1 btn--del">
-          <%= link_to "削除", owner_shop_subscription_path(subscription, owner_id: @owner.id, shop_id: @shop.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+          <%= link_to "削除", owner_subscription_path(subscription, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
         </div>
       </div>
     <% end %>
@@ -58,4 +58,4 @@
 
 <br>
 
-<%= link_to 'New Subscription', new_owner_shop_subscription_path %>
+<%= link_to 'New Subscription', new_owner_subscription_path %>
