@@ -20,6 +20,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :shop_introduction %> <span class="must">必須</span><br/>
+    <%= form.text_field :shop_introduction, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
     <%= form.label :title %> <span class="must">必須</span><br/>
     <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control' %>
   </div>

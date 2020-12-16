@@ -268,10 +268,33 @@
     <% end %>
   <% else %> <%# ログインしてない %>
     <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+          <%= form_with(model: @map, local: true) do |f| %>
+            <%= f.label :エリア %>
+            <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+            <%= f.submit '検索' %>
+          <% end %>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
       <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
+        <div id="map"></div>
+        <style>
+        #map{
+          height: 200px;
+        }
+        </style>
+
+        <script>
+          let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
+
+          function initMap(){
+            mapInstance = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+            });
+          }
+        </script>        
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
         <div class="row">
           <% @categories.each do |category| %><%# カテゴリーを全てeach %>
             <div class="col-lg-4 col-sm-6 mb-5">

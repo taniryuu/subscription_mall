@@ -146,4 +146,61 @@
     </div>
   </section>
 </div>
+        <h2>gmap</h2>
 
+          <%= form_with(model: @map, local: true) do |f| %>
+            <%= f.label :エリア %>
+            <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+            <%= f.submit '検索' %>
+          <% end %>
+          <div id='map'>
+          </div>
+
+          <style>
+          #map{
+            height: 300px;
+            width: 400px;
+          }
+          </style>
+
+          <script>
+          /*
+          mapを関数の外で定義(codeAddressでも使うため)
+          geocoderを用意
+          */
+
+          let map
+          let geocoder
+
+          function initMap(){
+            // geocoderを初期化
+            geocoder = new google.maps.Geocoder()
+
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+            });
+          }
+
+          function codeAddress(){
+            // 入力を取得
+            let inputAddress = document.getElementById('address').value;
+
+            // geocodingしたあとmapを移動
+            geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+              if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          }
+          </script>
+          <script async defer
+                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap">
+          </script>

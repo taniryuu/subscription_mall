@@ -68,6 +68,7 @@ Rails.application.routes.draw do
           resources :images
         end
   end
+  resources :maps
   resources :categories, only: :index do
       get 'like_lunch', on: :member
       get 'washoku', on: :collection

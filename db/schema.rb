@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201215111754) do
+ActiveRecord::Schema.define(version: 20201216104947) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -115,6 +115,20 @@ ActiveRecord::Schema.define(version: 20201215111754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_interviews_on_owner_id"
+  end
+
+  create_table "maps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "address"
+    t.float "latitude", limit: 24
+    t.float "longitude", limit: 24
+    t.integer "distance"
+    t.integer "near_distance"
+    t.integer "time"
+    t.integer "near_time"
+    t.text "title"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

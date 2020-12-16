@@ -109,6 +109,7 @@ GEM
     ffi (1.13.1)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
+    geocoder (1.6.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (4.1.0)
@@ -128,7 +129,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.4.0)
     jwt (2.2.2)
-    libv8 (3.16.14.19)
+    libv8 (8.4.255.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -146,6 +147,8 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
+    mini_racer (0.3.1)
+      libv8 (~> 8.4.255)
     minitest (5.14.2)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
@@ -234,7 +237,6 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    ref (2.0.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -297,9 +299,6 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     stripe (5.28.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -343,9 +342,11 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-rails
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_racer
   momentjs-rails
   mysql2
   omniauth
@@ -372,7 +373,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   stripe
-  therubyracer
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
