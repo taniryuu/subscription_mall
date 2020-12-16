@@ -92,13 +92,21 @@
         <div class="font-weight-normal">
 
           <p class="ml-xl-0 ml-4">
-            <strong>店舗詳細: </strong><%= @subscription.detail %></p>
+            <strong>お店紹介: </strong><%= @subscription.shop_introduction %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>サブスク詳細: </strong><%= @subscription.subscription_detail %></p>
+            <strong>お店のブログ: </strong><%= @subscription.blog %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>住所: </strong>東京都 サンプル1ー1ー1</p>
+            <strong>商品紹介: </strong><%= @subscription.detail %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>TEL: </strong>0120-123-123</p>
+            <strong>店舗情報: </strong><%= @subscription.subscription_detail %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>店舗情報: </strong><%= @subscription.owner.store_information %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>TEL: </strong><%= @subscription.owner.phone_number %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>お店のブログ: </strong><%= @subscription.blog %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>レビュー: </strong>1番下にお店に対するレビューを記載。</p>
 
           <div class="mt-5">
 
