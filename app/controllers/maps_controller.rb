@@ -1,5 +1,6 @@
 class MapsController < ApplicationController
   before_action :set_map, only: [:show, :edit, :update, :destroy]
+  before_action :set_map, only: [:create, :show, :edit, :update, :destroy]
 
   # GET /maps
   # GET /maps.json
@@ -28,7 +29,7 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       if @map.save
-        format.html { redirect_to @map, notice: 'Map was successfully created.' }
+        format.html { redirect_to owner_subscription_url(@map, owner_id: @owner.id), notice: 'Map was successfully created.' }
         format.json { render :show, status: :created, location: @map }
       else
         format.html { render :new }
@@ -40,13 +41,13 @@ class MapsController < ApplicationController
   # PATCH/PUT /maps/1
   # PATCH/PUT /maps/1.json
   def update
+    @map = Map.find(1)
+    @map.update_attributes(map_params)
     respond_to do |format|
-      if @map.update(map_params)
-        format.html { redirect_to @map, notice: 'Map was successfully updated.' }
-        format.json { render :show, status: :ok, location: @map }
+      if @map.save
+        format.html { redirect_to owner_subscription_url(@map), notice: 'Map was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @map.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,6 +66,10 @@ class MapsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_map
       @map = Map.find(params[:id])
+    end
+
+    def set_owner
+      @owner = Owner.find(params[:owner_id])
     end
 
     # Only allow a list of trusted parameters through.

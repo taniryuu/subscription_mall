@@ -64,13 +64,13 @@
             <div class="mdb-lightbox no-margin">
              <div class="row">
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+                  <%= image_tag "#{@subscription.image_subscription2_url}", class: "img-fluid" %>
               </figure>
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription3_url,class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
               </figure>
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription4_url,class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription4_url, class: "img-fluid" %>
               </figure>
             </div>
           </div>
@@ -107,6 +107,12 @@
             <strong>お店のブログ: </strong><%= @subscription.blog %></p>
           <p class="ml-xl-0 ml-4">
             <strong>レビュー: </strong>1番下にお店に対するレビューを記載。</p>
+          <%= form_with(model: @map, local: true) do |f| %>
+            <%= f.text_field :address, placeholder: "エリア入力", class: "form-control" %>
+            <%= f.submit '検索' %>
+          <% end %>
+          <div id='map'>
+          </div>
 
           <div class="mt-5">
 
@@ -146,61 +152,42 @@
     </div>
   </section>
 </div>
-        <h2>gmap</h2>
 
-          <%= form_with(model: @map, local: true) do |f| %>
-            <%= f.label :エリア %>
-            <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-            <%= f.submit '検索' %>
-          <% end %>
-          <div id='map'>
-          </div>
+<style>
+#map{
+  height: 200px;
+  width: 250px;
+}
+</style>
 
-          <style>
-          #map{
-            height: 300px;
-            width: 400px;
-          }
-          </style>
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
 
-          <script>
-          /*
-          mapを関数の外で定義(codeAddressでも使うため)
-          geocoderを用意
-          */
+let map
+let geocode
 
-          let map
-          let geocoder
+const display = document.getElementById('display')
 
-          function initMap(){
-            // geocoderを初期化
-            geocoder = new google.maps.Geocoder()
+function initMap(){
+  geocoder = new google.maps.Geocoder()
 
-            map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-            });
-          }
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: 
+    {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+     lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+    zoom: 12,
+  });
 
-          function codeAddress(){
-            // 入力を取得
-            let inputAddress = document.getElementById('address').value;
-
-            // geocodingしたあとmapを移動
-            geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-              if (status == 'OK') {
-                map.setCenter(results[0].geometry.location);
-
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-              } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
-            });
-          }
-          </script>
-          <script async defer
-                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap">
-          </script>
+  marker = new google.maps.Marker({
+    position:  {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+                lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+    map: map
+  });
+}
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap">
+</script>

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'#トップページ
-  get 'static_pages/top_owner' => "static_pages#top_owner"#経営者様トップページ
-  get 'static_pages/top_user' => "static_pages#top_user"#利用者様トップページ
-  get 'static_pages/discussion'#相談窓口
+  get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
+  get 'top_user' => "static_pages#top_user"#利用者様トップページ
+  get 'discussion' => "static_pages#discussion"#相談窓口
+  get 'plan_description' => "subscriptions#plan_description", as: :plan_description
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
   get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans
@@ -68,7 +69,7 @@ Rails.application.routes.draw do
           resources :images
         end
   end
-  resources :maps
+  resources :maps, only: :update
   resources :categories, only: :index do
       get 'like_lunch', on: :member
       get 'washoku', on: :collection

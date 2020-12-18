@@ -14,6 +14,12 @@ class SubscriptionsController < ApplicationController
   def show
     results = Geocoder.search(params[:address])
     @latlng = results.first
+    @map = Map.find(1)
+    @map = [34.9787,138.3830] if @map.nil? 
+  end
+
+  def plan_description
+    
   end
 
   # GET /subscriptions/new
@@ -257,6 +263,10 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:monthly_fee, :name, :title, :shop_introduction, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :owner_id, images_attributes: [:image])
+      params.require(:subscription).permit(:monthly_fee, :name, :title, :shop_introduction, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
+    end
+
+    def map_params
+      params.require(:map).permit(:address, :distance, :time)
     end
 end
