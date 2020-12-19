@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 20201218114651) do
     t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "genre"
+    t.string "image_category"
+    t.string "search"
     t.index ["owner_id"], name: "index_categories_on_owner_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
@@ -194,8 +197,8 @@ ActiveRecord::Schema.define(version: 20201218114651) do
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
-    t.string "category_name"
-    t.bigint "owner_id"
+    t.integer "category_name"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "shop_id"
@@ -203,7 +206,10 @@ ActiveRecord::Schema.define(version: 20201218114651) do
     t.string "image_subscription2"
     t.string "image_subscription3"
     t.string "image_subscription4"
-    t.string "category_genre"
+    t.integer "category_genre"
+    t.integer "monthly_fee"
+    t.text "blog"
+    t.text "shop_introduction"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 

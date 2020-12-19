@@ -51,6 +51,8 @@ ja:
           sex: 性別
           email: メールアドレス
           phone_number: 電話番号
+          store_information: 店舗情報
+          payee: 振込先
           line_id: LineID
           address: 住所
           subject: 件名
@@ -118,9 +120,16 @@ ja:
           name: お店の名前
           title: サブスクタイトル
           detail: 商品紹介
-          image_subscription: 写真
+          shop_introduction: お店紹介
+          blog: ブログ
+          image_subscription: メインの店舗写真
+          image_subscription2: お店紹介写真2
+          image_subscription2: お店紹介写真3
+          image_subscription2: お店紹介写真4
+          monthly_fee: 月額利用料金
           price: 金額
-          subscription_detail: 店舗詳細
+          subscription_detail: 店舗情報
+          category_genre: ジャンル
           category_name: カテゴリ
           created_at: 作成日
           updated_at: 更新日

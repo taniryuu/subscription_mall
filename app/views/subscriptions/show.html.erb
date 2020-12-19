@@ -14,9 +14,11 @@
                 <span class="badge badge-success"><%= @subscription.category_name %></span>
                 <span class="badge badge-success"><%= @subscription.category_genre %></span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
-                <p class="font-weight-normal mb-2">住所：東京都 港区 1-1-1 TEL：0120-123-123</p>
+                <p class="font-weight-normal mb-2">住所：東京都 港区 1-1-1 TEL：0120-123-123<%= @subscription.owner.store_information %></p>
               <% if current_user.present? %>
                 <%= link_to "チケットを使う",ticket_path, class: "btn-gradient-3d-simple" %>
+              <% elsif current_owner.present? or current_admin.present? %>
+
               <% else %>
                 <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>
@@ -65,10 +67,10 @@
                   <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
               </figure>
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription3_url ,class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription3_url,class: "img-fluid" %>
               </figure>
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription4_url ,class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription4_url,class: "img-fluid" %>
               </figure>
             </div>
           </div>

@@ -1,29 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:like_lunch, :edit, :update, :destroy]
 
-  # GET /categories
-  # GET /categories.json
   def index
     @categories = Category.where.not(name: nil)
   end
 
-  # GET /categories/1
-  # GET /categories/1.json
-  def show
-
-  end
-
-  # GET /categories/new
-  def new
-    @category = Category.new
-  end
-
-  # GET /categories/1/edit
-  def edit
-  end
-
-  # POST /categories
-  # POST /categories.json
   def create
     @category = Category.new(category_params)
 
@@ -38,8 +19,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categories/1
-  # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
       if @category.update(category_params)
@@ -52,8 +31,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.json
   def destroy
     @category.destroy
     respond_to do |format|
@@ -62,12 +39,99 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def search
+    @categories = Category.where.not(name: nil)
+  end
+
+  def like_lunch
+  end
+
   def shop_list
     @subscriptions = Subscription.all
   end
 
   def recommend
-    @subscriptions = Subscription.all
+    @subscriptions = Subscription.where(monthly_fee: "19800").order(created_at: :desc).limit(15)
+  end
+
+  def washoku
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "和食")
+  end
+
+  def teishoku
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "定食屋")
+  end
+
+  def ramen
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "らーめん")
+  end
+
+  def cafe
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "カフェ")
+  end
+
+  def pan
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "パン屋")
+  end
+
+  def izakaya
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "居酒屋")
+  end
+
+  def itarian
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "イタリアン")
+  end
+
+  def chuuka
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "中華")
+  end
+
+  def french
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "フレンチ")
+  end
+
+  def hawaian
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "ハワイアン")
+  end
+
+  def tonanajia
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "東南アジア料理")
+  end
+
+  def bar
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "BAR")
+  end
+
+  def cake
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "ケーキ")
+  end
+
+  def yakiniku
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "焼肉")
+  end
+
+  def yoshoku
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "洋食")
+  end
+
+  def curry
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "カレー")
+  end
+
+  def humburger
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "バーガー")
+  end
+
+  def kankokuryori
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "韓国料理")
+  end
+
+  def restaurant
+    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "レストラン")
+  end
+
+  def other
+    @subscriptions = Subscription.order("RANDOM()").where(category_name: "その他")
   end
 
   private
@@ -78,6 +142,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :user_id, :owner_id)
+      params.require(:category).permit(:name, :image_category, :user_id, :owner_id)
     end
 end
