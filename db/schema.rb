@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201208045435) do
+ActiveRecord::Schema.define(version: 20201218114651) do
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -29,40 +29,40 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "blogs", force: :cascade do |t|
+  create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "body"
     t.string "image_photo"
-    t.integer "admin_id"
+    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_blogs_on_admin_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.integer "user_id"
-    t.integer "owner_id"
+    t.bigint "user_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_categories_on_owner_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "contacts", force: :cascade do |t|
+  create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "email"
     t.string "subject"
     t.string "message"
-    t.integer "user_id"
-    t.integer "owner_id"
+    t.bigint "user_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_contacts_on_owner_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
-  create_table "cupons", force: :cascade do |t|
+  create_table "cupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "product"
     t.string "discount"
     t.integer "status"
@@ -70,10 +70,10 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.string "writing"
     t.integer "limit"
     t.text "reason"
-    t.integer "review_id"
-    t.integer "owner_id"
-    t.integer "user_id"
-    t.integer "admin_id"
+    t.bigint "review_id"
+    t.bigint "owner_id"
+    t.bigint "user_id"
+    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_cupons_on_admin_id"
@@ -82,16 +82,16 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.index ["user_id"], name: "index_cupons_on_user_id"
   end
 
-  create_table "images", force: :cascade do |t|
+  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "image_subscription_id"
     t.string "image_interview_id"
     t.text "comment"
     t.datetime "time"
-    t.integer "user_id"
-    t.integer "owner_id"
-    t.integer "subscription_id"
-    t.integer "interview_id"
-    t.integer "blog_id"
+    t.bigint "user_id"
+    t.bigint "owner_id"
+    t.bigint "subscription_id"
+    t.bigint "interview_id"
+    t.bigint "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blog_id"], name: "index_images_on_blog_id"
@@ -101,20 +101,20 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
-  create_table "interviews", force: :cascade do |t|
+  create_table "interviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "owner_name"
     t.string "shop_name"
     t.string "content"
     t.string "image_interview"
     t.string "youtube_url"
     t.string "music"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_interviews_on_owner_id"
   end
 
-  create_table "owners", force: :cascade do |t|
+  create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -136,15 +136,15 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "content"
     t.integer "price"
     t.text "subscription_detail"
-    t.integer "subscription_id"
-    t.integer "owner_id"
-    t.integer "user_id"
-    t.integer "admin_id"
+    t.bigint "subscription_id"
+    t.bigint "owner_id"
+    t.bigint "user_id"
+    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_products_on_admin_id"
@@ -153,27 +153,27 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "questions", force: :cascade do |t|
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "detail"
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "content"
     t.integer "score"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "rate"
+    t.float "rate", limit: 24
     t.string "image_id"
     t.string "email"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "shops", force: :cascade do |t|
+  create_table "shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "category_name"
     t.integer "monthly_fee"
     t.string "phone_number"
@@ -181,13 +181,13 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.string "payee"
     t.string "line_id"
     t.string "address"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_shops_on_owner_id"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
+  create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "title"
     t.text "detail"
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.integer "price"
     t.text "subscription_detail"
     t.string "category_name"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "shop_id"
@@ -207,20 +207,20 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
-  create_table "suports", force: :cascade do |t|
+  create_table "suports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "email"
     t.string "subject"
     t.string "message"
-    t.integer "user_id"
-    t.integer "owner_id"
+    t.bigint "user_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_suports_on_owner_id"
     t.index ["user_id"], name: "index_suports_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -238,8 +238,33 @@ ActiveRecord::Schema.define(version: 20201208045435) do
     t.datetime "deleted_at"
     t.text "message"
     t.string "subject"
+    t.string "session_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "blogs", "admins"
+  add_foreign_key "categories", "owners"
+  add_foreign_key "categories", "users"
+  add_foreign_key "contacts", "owners"
+  add_foreign_key "contacts", "users"
+  add_foreign_key "cupons", "admins"
+  add_foreign_key "cupons", "owners"
+  add_foreign_key "cupons", "reviews"
+  add_foreign_key "cupons", "users"
+  add_foreign_key "images", "blogs"
+  add_foreign_key "images", "interviews"
+  add_foreign_key "images", "owners"
+  add_foreign_key "images", "subscriptions"
+  add_foreign_key "images", "users"
+  add_foreign_key "interviews", "owners"
+  add_foreign_key "products", "admins"
+  add_foreign_key "products", "owners"
+  add_foreign_key "products", "subscriptions"
+  add_foreign_key "products", "users"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "shops", "owners"
+  add_foreign_key "subscriptions", "owners"
+  add_foreign_key "suports", "owners"
+  add_foreign_key "suports", "users"
 end

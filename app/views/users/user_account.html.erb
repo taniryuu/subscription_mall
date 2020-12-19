@@ -26,9 +26,11 @@
         </table>
       </div>
     </div>
+    <% if @user.session_id == "true" %>
     <div class="account-btn">
       <%= link_to "サブスクチケット", ticket_path(@user), class: "btn-gradient-3d-simple" %>
     </div></br>
+    <% end %>
     <div class="account-btn">
       <%= link_to "解約について", edit_user_registration_path(@user), class: "btn-gradient-3d-simple" %>
     </div></br>
