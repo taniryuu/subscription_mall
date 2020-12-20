@@ -51,9 +51,15 @@ class OwnersController < ApplicationController
   end
 
   def update
-    if @owner.update(owner_params)
-      flash[:success] = "#{@owner.name}様の情報を更新しました。"
-      redirect_to owners_url
+    if 
+        current_admin.present?
+        @owner.update(owner_params)
+        flash[:success] = "#{@owner.name}様の情報を更新しました。"
+        redirect_to owners_url
+    elsif current_owner.present?
+        current_owner.update(owner_params)
+        flash[:success] = "#{current_owner.name}様の情報を更新しました。"
+        redirect_to owner_account_owner_url(current_owner.id)
     else
       render :edit
     end
@@ -74,7 +80,7 @@ class OwnersController < ApplicationController
     end
 
     def owner_params
-      params.require(:owner).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
+      params.require(:owner).permit(:name, :kana, :email, :phone_number, :store_information, :password, :password_confirmation)
     end
 
     def user_params

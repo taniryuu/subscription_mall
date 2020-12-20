@@ -43,7 +43,7 @@
 
         <p class="dark-grey-text"><%= subscription.title %></p>
 
-        <%= link_to "サブスクしてみる", owner_shop_subscription_path(id: subscription.id, owner_id: subscription.owner_id, shop_id: subscription.shop_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+        <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id, shop_id: subscription.shop_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
 
       </div>
     </div>

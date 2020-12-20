@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-md  navbar-light" style="background-color:#f5c1d2;">
-     <%= link_to "巡グルメ", root_path, id: "logo" %>
+     <a href="/"><%= image_tag 'gurumelogo.jpeg', Style: "height: 100px" %></a>
       <ul class="collapse navbar-collapse justify-content-end">
         <div class="dropdown" aria-labelledby="dropdownMenuButton">
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -13,7 +13,7 @@
                 <li><a href="#category">カテゴリ</a></li>
                 <li><a href="#plan">プラン</a></li>
                 <li><a href="#recommend">おすすめ店舗</a></li>
-                <li><%= link_to "ショップ開設", new_owner_shop_path(current_owner) %></li>
+                <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
                 <li><a href="#interview">経営者様インタビュー</a></li>
                 <li><a href="#service">サービス</a></li>
                 <li><a href="#inquiry">お問い合わせ</a></li>

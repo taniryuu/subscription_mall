@@ -9,27 +9,12 @@
 
   <div class="field">
     <%= form.label :monthly_fee %>
-    <%= form.select :monthly_fee, Shop.monthly_fees.keys, { include_blank: true }, placeholder: "例)利用料金を選択してください", class: 'form-control' %>
+    <%= form.select :monthly_fee, Shop.monthly_fees.keys, { include_blank: true }, placeholder: "利用料金を選択してください", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :phone_number %>
     <%= form.text_field :phone_number, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :payee %>
-    <%= form.text_field :payee, id: :shop_payee, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :LineID %>
-    <%= form.text_field :line_id, id: :shop_line_id, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, id: :shop_address, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="actions">

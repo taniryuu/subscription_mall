@@ -51,12 +51,32 @@ ja:
           sex: 性別
           email: メールアドレス
           phone_number: 電話番号
+          store_information: お店の住所
+          payee: 振込先
           line_id: LineID
           address: 住所
           subject: 件名
           message: メッセージ
           password: パスワード
           password_confirmation: パスワード再入力
+          created_at: 作成日
+          updated_at: 更新日
+        subscription:
+          id: ID
+          name: お店の名前
+          title: 商品タイトル
+          detail: 商品紹介
+          shop_introduction: お店紹介
+          blog: ブログ
+          image_subscription: メインの店舗写真
+          image_subscription2: お店紹介写真2
+          image_subscription2: お店紹介写真3
+          image_subscription2: お店紹介写真4
+          monthly_fee: 月額利用料金
+          price: 金額
+          subscription_detail: 店舗情報
+          category_genre: ジャンル
+          category_name: カテゴリ
           created_at: 作成日
           updated_at: 更新日
         blog:
@@ -110,17 +130,6 @@ ja:
           updated_at: 更新日
         category:
           id: ID
-          category_name: カテゴリ
-          created_at: 作成日
-          updated_at: 更新日
-        subscription:
-          id: ID
-          name: お店の名前
-          title: サブスクタイトル
-          detail: 商品紹介
-          image_subscription: 写真
-          price: 金額
-          subscription_detail: 店舗詳細
           category_name: カテゴリ
           created_at: 作成日
           updated_at: 更新日

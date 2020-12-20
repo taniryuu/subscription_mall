@@ -7,7 +7,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.string :image_subscription
       t.integer :price
       t.text :subscription_detail
-      t.string :category_name
+      t.integer :category_name
       t.references :owner, foreign_key: true
 
       t.timestamps

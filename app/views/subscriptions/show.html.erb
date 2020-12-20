@@ -14,8 +14,14 @@
                 <span class="badge badge-success"><%= @subscription.category_name %></span>
                 <span class="badge badge-success"><%= @subscription.category_genre %></span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
-                <p class="font-weight-normal mb-2">住所：東京都 港区 1-1-1 TEL：0120-123-123</p>
-                <button class="btn btn-success btn-sm btn-rounded mx-0 mb-0 d-none d-sm-inline-block">サブスク開始</button>
+                <p class="font-weight-normal mb-2">住所：東京都 港区 1-1-1 TEL：0120-123-123<%= @subscription.owner.store_information %></p>
+              <% if current_user.present? %>
+                <%= link_to "チケットを使う",ticket_path, class: "btn-gradient-3d-simple" %>
+              <% elsif current_owner.present? or current_admin.present? %>
+
+              <% else %>
+                <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
+              <% end %>
               </div>
             </div>
           </a>
@@ -58,13 +64,13 @@
             <div class="mdb-lightbox no-margin">
              <div class="row">
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+                  <%= image_tag "#{@subscription.image_subscription2_url}", class: "img-fluid" %>
               </figure>
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription3_url ,class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
               </figure>
               <figure class="col-md-4">
-                  <%= image_tag @subscription.image_subscription4_url ,class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription4_url, class: "img-fluid" %>
               </figure>
             </div>
           </div>
@@ -86,13 +92,27 @@
         <div class="font-weight-normal">
 
           <p class="ml-xl-0 ml-4">
-            <strong>店舗詳細: </strong><%= @subscription.detail %></p>
+            <strong>お店紹介: </strong><%= @subscription.shop_introduction %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>サブスク詳細: </strong><%= @subscription.subscription_detail %></p>
+            <strong>お店のブログ: </strong><%= @subscription.blog %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>住所: </strong>東京都 サンプル1ー1ー1</p>
+            <strong>商品紹介: </strong><%= @subscription.detail %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>TEL: </strong>0120-123-123</p>
+            <strong>店舗情報: </strong><%= @subscription.subscription_detail %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>お店の住所: </strong><%= @subscription.owner.store_information %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>TEL: </strong><%= @subscription.owner.phone_number %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>お店のブログ: </strong><%= @subscription.blog %></p>
+          <p class="ml-xl-0 ml-4">
+            <strong>レビュー: </strong>1番下にお店に対するレビューを記載。</p>
+          <%= form_with(model: @map, url: map_path, local: true) do |f| %>
+            <%= f.text_field :address, placeholder: "エリア入力", class: "form-control" %>
+            <%= f.submit '検索' %>
+          <% end %>
+          <div class="map-2" id='map'>
+          </div>
 
           <div class="mt-5">
 
@@ -133,3 +153,47 @@
   </section>
 </div>
 
+<style>
+#map{
+  height: 200px;
+  width: 250px;
+}
+</style>
+
+<script>
+let map
+let geocode
+
+const display = document.getElementById('display')
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+  zoom: 8
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+
+  // geocodingしたあとmapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+  // map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+
+  // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>

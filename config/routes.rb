@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'#トップページ
-  get 'static_pages/top_owner' => "static_pages#top_owner"#経営者様トップページ
-  get 'static_pages/top_user' => "static_pages#top_user"#利用者様トップページ
-  get 'static_pages/discussion'#相談窓口
+  get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
+  get 'top_user' => "static_pages#top_user"#利用者様トップページ
+  get 'discussion' => "static_pages#discussion"#相談窓口
+  get 'how_to_use' => "subscriptions#how_to_use", as: :how_to_use#ご利用方法について
+  get 'plan_description' => "subscriptions#plan_description", as: :plan_description#プラン説明
+  get 'kiyaku' => "subscriptions#kiyaku", as: :kiyaku#利用規約
+  get 'privacy_policy' => "subscriptions#privacy_policy", as: :privacy_policy#プライバシーポリシー
+  get 'site' => "subscriptions#site", as: :site#サイトについて
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
+  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
 
@@ -14,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
 
-
+  get 'user/:id/ticket', to: 'users#ticket', as: :ticket
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -37,11 +43,9 @@ Rails.application.routes.draw do
   end
 
   resources :admins do
-    member do
-      get 'admin_account'#アカウントページ
-    end
+      get 'admin_account', on: :member#アカウントページ
   end
-  resources :blogs
+  resources :blogs#管理者が書くサブスクnews
   get 'reviews/list' => "reviews#list"#利用者ではない人用の表示ページ
   get 'subscriptions/index'#まだ決まってない。使わないかもしれない
   get 'blogs/index'#まだ決まってない。使わないかもしれない
@@ -60,29 +64,47 @@ Rails.application.routes.draw do
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
-      member do
-        post "thanks"#会員登録完了通知画面
-        get 'owner_account'#アカウントページ
-        get 'user_email'#経営者から利用者へメール作成
-        post 'to_user_email'
-        patch 'update_deleted_owners'#アカウントページ論理削除
-      end
-      resources :shops do
+        post "thanks", on: :member#会員登録完了通知画面
+        get 'owner_account', on: :member#アカウントページ
+        get 'user_email', on: :member#経営者から利用者へメール作成
+        post 'to_user_email', on: :member
+        patch 'update_deleted_owners', on: :member#アカウントページ論理削除
         resources :subscriptions do
           resources :images
         end
-      end
   end
-  resources :categories
+  resources :maps, only: :update
+  resources :categories, only: :index do
+      get 'like_lunch', on: :member
+      get 'washoku', on: :collection
+      get 'teishoku', on: :collection
+      get 'ramen', on: :collection
+      get 'cafe', on: :collection
+      get 'pan', on: :collection
+      get 'izakaya', on: :collection
+      get 'itarian', on: :collection
+      get 'chuuka', on: :collection
+      get 'french', on: :collection
+      get 'hawaian', on: :collection
+      get 'tonanajia', on: :collection
+      get 'bar', on: :collection
+      get 'cake', on: :collection
+      get 'yakiniku', on: :collection
+      get 'yoshoku', on: :collection
+      get 'curry', on: :collection
+      get 'humburger', on: :collection
+      get 'kankokuryori', on: :collection
+      get 'restaurant', on: :collection
+      get 'other', on: :collection
+  end
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
     resources :reviews#利用者レビュー
-    member do
-      get "thanks"#会員完了通知仮面
-      get 'user_account'#アカウントページ
-      patch 'update_deleted_users'#アカウントページ論理削除
-    end
+      get "thanks", on: :member#会員完了通知仮面
+      get 'user_account', on: :member#アカウントページ
+      patch 'update_deleted_users', on: :member#アカウントページ論理削除
   end
+  resources :shops, only: :new
   resources :questions#よくある質問
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  # before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /subscriptions
   # GET /subscriptions.json
@@ -12,6 +12,10 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
+    @map = Map.find(1)
+  end
+
+  def plan_description
   end
 
   # GET /subscriptions/new
@@ -31,13 +35,8 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to setup_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully created.' }
+        format.html { redirect_to setup_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @subscription }
-
-        Category.create(
-          name: @subscription.category_name,
-          owner_id: @subscription.owner_id
-        )
       else
         format.html { render :new }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
@@ -50,13 +49,9 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to owner_shop_subscription_url(@subscription, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @subscription }
 
-        Category.update(
-          name: @subscription.category_name,
-          owner_id: @subscription.owner_id
-        )
       else
         format.html { render :edit }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
@@ -69,7 +64,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     respond_to do |format|
-      format.html { redirect_to owner_shop_subscriptions_url(@subscription, owner_id: @owner.id, shop_id: @shop.id), notice: 'Subscription was successfully destroyed.' }
+      format.html { redirect_to owner_subscriptions_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
       format.json { head :no_content }
     end
   end
@@ -129,8 +124,114 @@ class SubscriptionsController < ApplicationController
       cancel_url: cancel_url,
     )
 
-end
+  end
 
+  def user_plans
+    @user = User.find(params[:id])
+
+    @plan1 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_ITZ5jszNEaQl8t',
+          unit_amount: 3000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+    @plan2 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_ITZ5jszNEaQl8t',
+          unit_amount: 12000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+    @plan3 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_ITZ5jszNEaQl8t',
+          unit_amount: 18000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+    @plan4 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_ITZ5jszNEaQl8t',
+          unit_amount: 25000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+    @plan5 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_ITZ5jszNEaQl8t',
+          unit_amount: 50000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+    @plan6 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_ITZ5jszNEaQl8t',
+          unit_amount: 100000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+  end
 
   def cancel
   end
@@ -152,12 +253,16 @@ end
       @owner = Owner.find(params[:owner_id])
     end
 
-    def set_shop
-      @shop = Shop.find(params[:shop_id])
-    end
+    # def set_shop
+    #   @shop = Shop.find(params[:shop_id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:name, :title, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :owner_id, :shop_id, images_attributes: [:image])
+      params.require(:subscription).permit(:monthly_fee, :name, :title, :shop_introduction, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
+    end
+
+    def map_params
+      params.require(:map).permit(:address, :distance, :time)
     end
 end
