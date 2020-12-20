@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
   get 'top_user' => "static_pages#top_user"#利用者様トップページ
   get 'discussion' => "static_pages#discussion"#相談窓口
-  get 'plan_description' => "subscriptions#plan_description", as: :plan_description
+  get 'how_to_use' => "subscriptions#how_to_use", as: :how_to_use#ご利用方法について
+  get 'plan_description' => "subscriptions#plan_description", as: :plan_description#プラン説明
+  get 'kiyaku' => "subscriptions#kiyaku", as: :kiyaku#利用規約
+  get 'privacy_policy' => "subscriptions#privacy_policy", as: :privacy_policy#プライバシーポリシー
+  get 'site' => "subscriptions#site", as: :site#サイトについて
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
   get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans

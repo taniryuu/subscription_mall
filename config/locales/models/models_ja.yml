@@ -51,7 +51,7 @@ ja:
           sex: 性別
           email: メールアドレス
           phone_number: 電話番号
-          store_information: 店舗情報
+          store_information: お店の住所
           payee: 振込先
           line_id: LineID
           address: 住所

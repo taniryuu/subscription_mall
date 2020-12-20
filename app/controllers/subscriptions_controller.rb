@@ -12,14 +12,10 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    results = Geocoder.search(params[:address])
-    @latlng = results.first
     @map = Map.find(1)
-    @map = [34.9787,138.3830] if @map.nil? 
   end
 
   def plan_description
-    
   end
 
   # GET /subscriptions/new

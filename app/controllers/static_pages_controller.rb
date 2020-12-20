@@ -28,6 +28,9 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def how_to_use
+  end
+
   def discussion
   end
   
