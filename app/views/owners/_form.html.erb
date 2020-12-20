@@ -11,14 +11,14 @@
   <%= f.label :email, class: "label-#{yield(:class_text)}" %> <span class="must">必須</span><br/>
   <%= f.email_field :email, class: "form-control" %>
 
-  <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %> <span>(ハイフンなし)</span><span class="must">必須</span><br/>
+  <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %> <span>(ハイフンなし)連絡がつきやすい番号でお願いします。</span><span class="must">必須</span><br/>
   <%= f.telephone_field :phone_number, class: "form-control" %>
 
   <%= f.label :store_information %> <span class="must">必須</span><br/>
   <%= f.text_field :store_information, :required => true, class: 'form-control' %>
 
   <%= f.label :payee %> <span class="must">必須</span><br/>
-  <%= f.text_field :payee, :required => true, class: 'form-control' %>
+  <%= f.text_field :payee, class: 'form-control' %>
 
   <%= f.label :line_id, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :line_id, class: "form-control" %>

@@ -12,7 +12,10 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @subscriptions = @owner.subscriptions
+    @map = Map.find(1)
+  end
+
+  def plan_description
   end
 
   # GET /subscriptions/new
@@ -32,7 +35,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to setup_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'Subscription was successfully created.' }
+        format.html { redirect_to setup_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -46,7 +49,7 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @subscription }
 
       else
@@ -61,7 +64,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     respond_to do |format|
-      format.html { redirect_to owner_subscriptions_url(@subscription, owner_id: @owner.id), notice: 'Subscription was successfully destroyed.' }
+      format.html { redirect_to owner_subscriptions_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
       format.json { head :no_content }
     end
   end
@@ -256,6 +259,10 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:monthly_fee, :name, :title, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :owner_id, images_attributes: [:image])
+      params.require(:subscription).permit(:monthly_fee, :name, :title, :shop_introduction, :detail, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
+    end
+
+    def map_params
+      params.require(:map).permit(:address, :distance, :time)
     end
 end

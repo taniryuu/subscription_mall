@@ -16,6 +16,10 @@
             <td class="show-account"><%= @owner.email %></td>
           </tr>
           <tr>
+            <th class="col-md-4", height="50">店舗情報</th>
+            <td class="show-account"><%= @owner.store_information %></td>
+          </tr>
+          <tr>
             <th class="col-md-4", height="50">電話番号</th>
             <td class="show-account"><%= @owner.phone_number %></td>
           </tr>
@@ -26,13 +30,15 @@
         </table>
       </div>
     </div>
-    <div class="account-btn">
-      <%= link_to "#{current_owner.name}さんのサブスクショップ", owner_subscriptions_path(@owner), class: "btn-gradient-3d-simple" %>
-    </div></br>
-    <div class="account-btn">
-      <%= link_to "解約について", edit_owner_registration_path(@owner), class: "btn-gradient-3d-simple" %>
-    </div></br>
-    <div class="account-btn">
-      <%= link_to "編集", edit_owner_path(@owner), class: "btn-gradient-3d-simple" %>
-    </div></br>
+    <% if current_owner.present? %>
+      <div class="account-btn">
+        <%= link_to "#{current_owner.name}さんのサブスクショップ", owner_subscriptions_path(@owner), class: "btn-gradient-3d-simple" %>
+      </div></br>
+      <div class="account-btn">
+        <%= link_to "解約について", edit_owner_registration_path(@owner), class: "btn-gradient-3d-simple" %>
+      </div></br>
+      <div class="account-btn">
+        <%= link_to "編集", edit_owner_path(@owner), class: "btn-gradient-3d-simple" %>
+      </div></br>
+    <% end %>
 </div>
