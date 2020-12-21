@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
-    else 
+    else
       Category.order("RAND()").limit(6)
     end
   end
@@ -21,11 +21,11 @@ class StaticPagesController < ApplicationController
     @questions = Question.all
     results = Geocoder.search(params[:address])
     @latlng = results.first
-    @map = Map.find(1)
+    @map = Map.find(params[:id])
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
-    else 
+    else
       Category.order("RAND()").limit(6)
     end
   end
@@ -35,5 +35,5 @@ class StaticPagesController < ApplicationController
 
   def discussion
   end
-  
+
 end

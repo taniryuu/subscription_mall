@@ -12,7 +12,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @map = Map.find(1)
+    @map = Map.find(params[:id])
   end
 
   def plan_description
@@ -230,6 +230,8 @@ class SubscriptionsController < ApplicationController
       success_url: success_url,
       cancel_url: cancel_url,
     )
+
+    @user.update(session_id: "true")
 
   end
 
