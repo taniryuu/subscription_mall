@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
-    else 
+    else
       Category.order("RAND()").limit(6)
     end
   end
@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
-    else 
+    else
       Category.order("RAND()").limit(6)
     end
   end
@@ -33,5 +33,5 @@ class StaticPagesController < ApplicationController
 
   def discussion
   end
-  
+
 end
