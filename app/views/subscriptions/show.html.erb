@@ -155,8 +155,8 @@
 
 <style>
 #map{
-  height: 200px;
-  width: 250px;
+  height: 500px;
+  width: 500px;
 }
 </style>
 
@@ -170,8 +170,10 @@ function initMap(){
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-  zoom: 8
+    center: 
+    {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+     lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+    zoom: 18,
   });
 }
 

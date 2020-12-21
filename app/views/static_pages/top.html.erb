@@ -285,15 +285,28 @@
         </style>
 
         <script>
-          let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
+          let map
+          let geocode
+
+          const display = document.getElementById('display')
 
           function initMap(){
-            mapInstance = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
+            geocoder = new google.maps.Geocoder()
+
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: 
+              {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+              lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+              zoom: 10,
+            });
+
+            marker = new google.maps.Marker({
+              position:  {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+                          lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+              map: map
             });
           }
-        </script>        
+        </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
         <div class="row">
           <% @categories.each do |category| %><%# カテゴリーを全てeach %>

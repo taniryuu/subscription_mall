@@ -45,7 +45,7 @@ class MapsController < ApplicationController
     @map.update_attributes(map_params)
     respond_to do |format|
       if @map.save
-        format.html { redirect_to owner_subscription_url(@map), notice: 'Map was successfully updated.' }
+        format.html { redirect_to owner_subscription_url(@map) }
       else
         format.html { render :edit }
       end
