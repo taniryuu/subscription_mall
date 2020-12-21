@@ -15,10 +15,10 @@
                 <span class="badge badge-success"><%= @subscription.category_genre %></span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
                 <p class="font-weight-normal mb-2">住所：東京都 港区 1-1-1 TEL：0120-123-123<%= @subscription.owner.store_information %></p>
-              <% if current_user.present? %>
-                <%= link_to "チケットを使う",ticket_path, class: "btn-gradient-3d-simple" %>
-              <% elsif current_owner.present? or current_admin.present? %>
-
+              <% if current_user.present? && current_user.session_id == "true" %>
+                <%= link_to "チケットを使う",use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+              <% elsif current_user.present? %>
+                <%= link_to "サブスクを始める",user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
               <% else %>
                 <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>

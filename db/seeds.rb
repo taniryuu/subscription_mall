@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(name: "中野さん",
-              email: "sample@email.com",
+              email: "sample_admin@email.com",
               password: "password",
               password_confirmation: "password")
 
@@ -21,8 +21,8 @@ puts "Admin Created"
                 email: email,
                 password: password,
                 password_confirmation: password)
-end        
-  
+end
+
 puts "User Created"
 
 10.times do |n|
@@ -33,8 +33,8 @@ puts "User Created"
                 email: email,
                 password: password,
                 password_confirmation: password)
-end        
-  
+end
+
 puts "Owner Created"
 
 Category.create!(name: "和食",
@@ -110,4 +110,3 @@ Question.create!(detail: "ぷらん",
 puts "Question Created"
 
 
-                

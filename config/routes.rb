@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
 
-  get 'user/:id/ticket', to: 'users#ticket', as: :ticket
+  get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :interviews#経営者様インタビュー
   resources :cupons#クーポン
   resources :products#QRコード
+  resources :tickets#サブスクチケット
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201218114651) do
+ActiveRecord::Schema.define(version: 20201221005551) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20201218114651) do
     t.integer "price"
     t.text "subscription_detail"
     t.integer "category_name"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "shop_id"
@@ -226,6 +226,22 @@ ActiveRecord::Schema.define(version: 20201218114651) do
     t.index ["user_id"], name: "index_suports_on_user_id"
   end
 
+  create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "owner_name"
+    t.string "owner_email"
+    t.string "owner_phone_number"
+    t.string "owner_store_information"
+    t.string "owner_payee"
+    t.string "subscription_name"
+    t.string "subscription_fee"
+    t.date "use_ticket_day"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "issue_ticket_day"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -245,6 +261,8 @@ ActiveRecord::Schema.define(version: 20201218114651) do
     t.text "message"
     t.string "subject"
     t.string "session_id"
+    t.date "use_ticket_day"
+    t.date "issue_ticket_day"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -273,4 +291,5 @@ ActiveRecord::Schema.define(version: 20201218114651) do
   add_foreign_key "subscriptions", "owners"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
+  add_foreign_key "tickets", "users"
 end

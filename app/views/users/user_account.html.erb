@@ -26,9 +26,9 @@
         </table>
       </div>
     </div>
-    <% if @user.session_id == "true" %>
+    <% if @user.issue_ticket_day.present? %>
     <div class="account-btn">
-      <%= link_to "サブスクチケット", ticket_path(@user), class: "btn-gradient-3d-simple" %>
+      <%= link_to "チケット確認", ticket_path(id: @user.id), class: "btn-gradient-3d-simple" %>
     </div></br>
     <% end %>
     <div class="account-btn">
