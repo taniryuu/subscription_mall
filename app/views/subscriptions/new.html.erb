@@ -9,7 +9,7 @@
   <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
-    <%= form.label :monthly_fee %> <span class="must">必須</span><br/>
+    <%= form.label :monthly_fee %> <span class="must">必須</span>(サブスクショップ立ち上げの基本料金です)<br/>
     <%= form.select :monthly_fee, Subscription.monthly_fees.keys, { include_blank: "利用料金を選択してください"}, class: 'form-control' %>
   </div>
 
@@ -17,6 +17,11 @@
   <div class="field">
     <%= form.label :name %> <span class="must">必須</span><br/>
     <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shop_introduction %> <span class="must">必須</span><br/>
+    <%= form.text_field :shop_introduction, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -62,6 +67,11 @@
   <div class="field">
     <%= form.label :category_genre %><br/>
     <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => true , id: :subscription_subscription_detail, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %> <span class="must">必須</span><br/>
+    <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
   </div>
 
 

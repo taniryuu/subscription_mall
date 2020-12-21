@@ -109,4 +109,6 @@ Question.create!(detail: "ぷらん",
   )
 puts "Question Created"
 
+Map.create!(address: "伊豆急下田駅")
+puts "Map Created"
 

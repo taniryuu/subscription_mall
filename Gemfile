@@ -31,6 +31,7 @@ gem 'dotenv-rails'
 gem 'omniauth-line'
 gem 'omniauth-oauth2', '>= 1.6'
 gem 'stripe'
+gem 'geocoder'#googlemap用
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -66,7 +67,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'rspec-rails'
   gem "rspec_junit_formatter"
 end
 
