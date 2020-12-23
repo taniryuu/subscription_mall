@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201221005551) do
+ActiveRecord::Schema.define(version: 20201221233203) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -189,6 +189,8 @@ ActiveRecord::Schema.define(version: 20201221005551) do
     t.float "rate", limit: 24
     t.string "image_id"
     t.string "email"
+    t.bigint "subscription_id"
+    t.index ["subscription_id"], name: "index_reviews_on_subscription_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -303,6 +305,7 @@ ActiveRecord::Schema.define(version: 20201221005551) do
   add_foreign_key "products", "owners"
   add_foreign_key "products", "subscriptions"
   add_foreign_key "products", "users"
+  add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"
   add_foreign_key "shops", "owners"
   add_foreign_key "subscriptions", "owners"

@@ -28,7 +28,7 @@
                     <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
                     <li><%= link_to "経営者様インタビュー", interviews_path %></li>
                     <li><%= link_to "よくある質問", questions_path %></li>
-                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                    <li><%= link_to "お問い合わせ", "#" %></li>
                     <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
                   </ul>
               </li>
@@ -49,7 +49,7 @@
                     <li><%= link_to "サブスクnews", blogs_path %></li>
                     <li><%= link_to "利用者様レビュー", user_reviews_path(current_user) %></li>
                     <li><%= link_to "経営者様インタビュー", interviews_path %></li>
-                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                    <li><%= link_to "お問い合わせ", "#" %></li>
                     <li><%= link_to "よくある質問", questions_path %></li>
                     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                   </ul>

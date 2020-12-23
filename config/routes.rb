@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
 
-  get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket
+  get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
+
+  get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',

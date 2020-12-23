@@ -12,7 +12,9 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @map = Map.find(1)
+    #@map = Map.find(1)
+
+    @reviews = Review.all
   end
 
   def plan_description
