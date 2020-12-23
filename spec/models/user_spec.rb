@@ -14,10 +14,10 @@ RSpec.describe User, type: :model do
   end
 
   it "名前がない場合、無効である"
-  it "メールアドレスがない場合、無効である" 
+  it "メールアドレスがない場合、無効である"
   it "重複したメールアドレスの場合、無効である"
   it "パスワードがない場合、無効である"
 
 end
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+ # pending "add some examples to (or delete) #{__FILE__}"
+# end
