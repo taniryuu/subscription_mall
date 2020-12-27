@@ -78,8 +78,10 @@ Rails.application.routes.draw do
           resources :images
         end
   end
-  resources :maps, only: :update
-  resources :categories, only: :index do
+  resources :maps, only: :update do
+    patch 'index_update', on: :member
+  end
+resources :categories, only: :index do
       get 'like_lunch', on: :member
       get 'washoku', on: :collection
       get 'teishoku', on: :collection
