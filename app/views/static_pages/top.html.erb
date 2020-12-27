@@ -267,7 +267,7 @@
   <% else %> <%# ログインしてない %>
     <h1><%= link_to "経営者様はこちら", top_owner_path, class: "btn btn-lg btn-info" %></h1>
     <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
-          <%= form_with(model: @map, local: true) do |f| %>
+          <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
             <%= f.label :エリア %>
             <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
             <%= f.submit '検索' %>
@@ -283,17 +283,89 @@
         }
         </style>
 
-        <script>
-          let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
+      <script>
+        let map
+        let geocode
+        let marker = []; // マーカーを複数表示させたいので、配列化
+        let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+        let markerData = gon.owners; // コントローラーで定義したインスタンス変数を変数に代入
 
-          function initMap(){
-            mapInstance = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
+        const data = [
+          { name: "東京タワー", lat: 35.6585805, lng: 139.7454329 },
+          { name: "京都タワー", lat: 34.9875441, lng: 135.7592164 },
+          { name: "通天閣", lat: 34.6524992, lng: 135.5063058 }
+        ];
+
+        const display = document.getElementById('map')
+
+        function initMap(){
+          geocoder = new google.maps.Geocoder()
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: 
+            {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+            lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+            zoom: 18,
+          });
+        
+          // 繰り返し処理でマーカーと吹き出しを複数表示させる
+          for (var i = 0; i < markerData.length; i++) {
+            let id = markerData[i]['store_information']
+
+            // 各地点のマーカーを作成
+            marker[i] = new google.maps.Marker({
+              position: latlng,
+              map: map
             });
+
+            // 各地点の吹き出しを作成
+            infoWindow[i] = new google.maps.InfoWindow({
+              // 吹き出しの内容
+              content: '<div id="map">' + markerData[i]['store_information'] + '</div>'
+            });
+
+            // マーカーにクリックイベントを追加
+            markerEvent(i);
           }
-        </script>        
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
+        
+        // マーカーをクリックしたら吹き出しを表示
+        function markerEvent(i) {
+          marker[i].addListener('click', function () {
+            infoWindow[i].open(map, marker[i]);
+          });
+          }
+            // 各ユーザーのIDを変数化
+          let id = markerData[i]['id']
+
+          infoWindow[i] = new google.maps.InfoWindow({
+            // <a>タグでリンクを作成
+            content: `<a href='/owners/${ id }'>${ markerData[i]['store_information'] }</a>`
+          });
+        }
+
+
+        function codeAddress(){
+          // 入力を取得
+          let inputAddress = document.getElementById('store_information').value;
+
+          // geocodingしたあとmapを移動
+          geocoder.geocode( { 'store_information': inputAddress}, function(results, status) {
+            if (status == 'OK') {
+              // map.setCenterで地図が移動
+              map.setCenter(results[0].geometry.location);
+
+              // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+          });
+        }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
         <div class="row">
           <% @categories.each do |category| %><%# カテゴリーを全てeach %>
             <div class="col-lg-4 col-sm-6 mb-5">

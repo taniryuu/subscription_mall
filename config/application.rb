@@ -31,4 +31,7 @@ module App
   end
 end
 
+<<<<<<< HEAD
 # end
+=======
+>>>>>>> 372797a6932544b3c3e6cdec04f7afcf5e194fed
