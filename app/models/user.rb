@@ -7,10 +7,10 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :registerable,
          :recoverable,
-         :rememberable,
+         :rememberable
         #  :validatable,
-         :omniauthable,
-         omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
+        #  :omniauthable,
+        # omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
 
   scope :without_soft_deleted, -> { where(deleted_at: nil) }
   # validatable相当の検証を追加

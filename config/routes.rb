@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
 
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -35,13 +36,14 @@ Rails.application.routes.draw do
     registrations: 'owners/registrations'
   }
   devise_for :users, controllers: {
-    omniauth_callbacks:  'users/omniauth_callbacks',
+   # omniauth_callbacks:  'users/omniauth_callbacks',
     sessions:      'users/sessions',
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
   devise_scope :users do
    get 'users/sign_up', to: 'users#new'
+   get '/auth/facebook/callback', to: 'users#facebook'
   end
 
   resources :admins do
