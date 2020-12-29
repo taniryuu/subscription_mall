@@ -50,6 +50,8 @@ class UsersController < ApplicationController
 
   def ticket
 
+    @owner = Owner.find(params[:id])
+    @subscription = Subscription.find_by(params[:owner_id])
 
   end
 

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
 
-  get 'user/:id/ticket', to: 'users#ticket', as: :ticket
+  get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   resources :interviews#経営者様インタビュー
   resources :cupons#クーポン
   resources :products#QRコード
+  resources :tickets#サブスクチケット
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
@@ -73,8 +74,10 @@ Rails.application.routes.draw do
           resources :images
         end
   end
-  resources :maps, only: :update
-  resources :categories, only: :index do
+  resources :maps, only: :update do
+    patch 'index_update', on: :member
+  end
+resources :categories, only: :index do
       get 'like_lunch', on: :member
       get 'washoku', on: :collection
       get 'teishoku', on: :collection
