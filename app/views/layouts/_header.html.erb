@@ -1,107 +1,130 @@
 <header>
-    <nav class="navbar navbar-expand-md  navbar-light" style="background-color:#f5c1d2;">
-     <a href="/"><%= image_tag 'gurumelogo.jpeg', Style: "height: 100px" %></a>
-      <ul class="collapse navbar-collapse justify-content-end">
-        <div class="dropdown" aria-labelledby="dropdownMenuButton">
-          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="dropdown-menu">
-            <% if signed_in? %> <%# ログインしているかどうか %>
-              <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-                <li><a href="#home">ホーム</a></li>
-                <li><a href="#category">カテゴリ</a></li>
-                <li><a href="#plan">プラン</a></li>
-                <li><a href="#recommend">おすすめ店舗</a></li>
-                <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
-                <li><a href="#interview">経営者様インタビュー</a></li>
-                <li><a href="#service">サービス</a></li>
-                <li><a href="#inquiry">お問い合わせ</a></li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    メニュー <b class="caret"></b>
-                  </a>
-                  <ul>
-                    <li><%= link_to "Myアカウント", owner_account_owner_path(current_owner) %></li>
-                    <li><%= link_to "会員者様一覧", users_path %></li>
-                    <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
-                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
-                    <li><%= link_to "よくある質問", questions_path %></li>
-                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
-                    <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
-                  </ul>
-              </li>
-              <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-                <li><a href="#home">ホーム</a></li>
-                <li><a href="#category">カテゴリ</a></li>
-                <li><a href="#plan">プラン</a></li>
-                <li><a href="#recommend">おすすめ店舗</a></li>
-                <li><a href="#interview">オーナーインタビュー</a></li>
-                <li><a href="#service">サービス</a></li>
-                <li><a href="#inquiry">お問い合わせ</a></li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    メニュー <b class="caret"></b>
-                  </a>
-                  <ul>
-                    <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
-                    <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "利用者様レビュー", user_reviews_path(current_user) %></li>
-                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
-                    <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
-                    <li><%= link_to "よくある質問", questions_path %></li>
-                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-                  </ul>
-              </li>
-              <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-                <li><a href="#home">ホーム</a></li>
-                <li><a href="#category">カテゴリ</a></li>
-                <li><a href="#plan">プラン</a></li>
-                <li><a href="#recommend">おすすめ店舗</a></li>
-                <li><a href="#interview">経営者様インタビュー</a></li>
-                <li><a href="#service">サービス</a></li>
-                <li><a href="#inquiry">お問い合わせ</a></li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    メニュー <b class="caret"></b>
-                  </a>
-                  <ul>
-                    <li><%= link_to "Myアカウント", admin_account_admin_path(current_admin) %></li>
-                    <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
-                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
-                    <li><%= link_to "会員者様一覧", users_path %></li>
-                    <li><%= link_to "経営者様一覧", owners_path %></li>
-                    <li><%= link_to "よくある質問", questions_path %></li>
-                    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-                  </ul>
-              </li>
-              <% end %>
-            <% else %> <%# ログインしてない %>
-                <li><a href="#home">ホーム</a></li>
-                <li><a href="#category">カテゴリ</a></li>
-                <li><a href="#plan">プラン</a></li>
-                <li><a href="#recommend">おすすめ店舗</a></li>
-                <li><a href="#interview">経営者様インタビュー</a></li>
-                <li><a href="#service">サービス</a></li>
-                <li><a href="#inquiry">お問い合わせ</a></li>
-              <li class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle">
-                    会員登録<b class="caret"></b>
-                  </a>
-                  <ul>
-                    <li><%= link_to "会員登録", new_user_registration_path %></li>
-                    <li><%= link_to "ログイン", new_user_session_path %></li>
-                    <li><%= link_to "サブスクnews", blogs_path %></li>
-                    <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
-                    <li><%= link_to "経営者様インタビュー", interviews_path %></li>
-                    <li><%= link_to "よくある質問", questions_path %></li>
-                  <ul>
-              </li>
-            <% end %>
-      </div>
-      </div>
-    </ul>
-    </nav>
+  <div class="container-fluid"> 
+    <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+      <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
+        <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false"    aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
+          <ul class="navbar-nav">
+            <li class="plan"><a href="#plan">プラン</a></li>
+            <li class="recommend"><a href="#recommend">おすすめ店舗</a></li>
+            <li class="login"><%= link_to "ログイン", new_user_session_path %></li>
+            <li class="new-user"><%= link_to "会員登録", new_user_registration_path %></li>
+          </ul>
+        </div>
+      </nav>
+    <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+  </div>
+
+          
+
+
+
+
+          <%
+=begin%>
+ <div class="dropdown" aria-labelledby="dropdownMenuButton">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+              <ul class="dropdown-menu">
+                <% if signed_in? %> <%# ログインしているかどうか %>
+                  <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#category">カテゴリ</a></li>
+                    <li><a href="#plan">プラン</a></li>
+                    <li><a href="#recommend">おすすめ店舗</a></li>
+                    <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
+                    <li><a href="#interview">経営者様インタビュー</a></li>
+                    <li><a href="#service">サービス</a></li>
+                    <li><a href="#inquiry">お問い合わせ</a></li>
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        メニュー <b class="caret"></b>
+                      </a>
+                      <ul>
+                        <li><%= link_to "Myアカウント", owner_account_owner_path(current_owner) %></li>
+                        <li><%= link_to "会員者様一覧", users_path %></li>
+                        <li><%= link_to "サブスクnews", blogs_path %></li>
+                        <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
+                        <li><%= link_to "経営者様インタビュー", interviews_path %></li>
+                        <li><%= link_to "よくある質問", questions_path %></li>
+                        <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                        <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
+                      </ul>
+                  </li>
+                  <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#category">カテゴリ</a></li>
+                    <li><a href="#plan">プラン</a></li>
+                    <li><a href="#recommend">おすすめ店舗</a></li>
+                    <li><a href="#interview">オーナーインタビュー</a></li>
+                    <li><a href="#service">サービス</a></li>
+                    <li><a href="#inquiry">お問い合わせ</a></li>
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        メニュー <b class="caret"></b>
+                      </a>
+                      <ul>
+                        <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
+                        <li><%= link_to "サブスクnews", blogs_path %></li>
+                        <li><%= link_to "利用者様レビュー", user_reviews_path(current_user) %></li>
+                        <li><%= link_to "経営者様インタビュー", interviews_path %></li>
+                        <li><%= link_to "お問い合わせ", static_pages_discussion_path %></li>
+                        <li><%= link_to "よくある質問", questions_path %></li>
+                        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                      </ul>
+                  </li>
+                  <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#category">カテゴリ</a></li>
+                    <li><a href="#plan">プラン</a></li>
+                    <li><a href="#recommend">おすすめ店舗</a></li>
+                    <li><a href="#interview">経営者様インタビュー</a></li>
+                    <li><a href="#service">サービス</a></li>
+                    <li><a href="#inquiry">お問い合わせ</a></li>
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        メニュー <b class="caret"></b>
+                      </a>
+                      <ul>
+                        <li><%= link_to "Myアカウント", admin_account_admin_path(current_admin) %></li>
+                        <li><%= link_to "サブスクnews", blogs_path %></li>
+                        <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
+                        <li><%= link_to "経営者様インタビュー", interviews_path %></li>
+                        <li><%= link_to "会員者様一覧", users_path %></li>
+                        <li><%= link_to "経営者様一覧", owners_path %></li>
+                        <li><%= link_to "よくある質問", questions_path %></li>
+                        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+                      </ul>
+                  </li>
+                  <% end %>
+                <% else %> <%# ログインしてない %>
+                    <li><a href="#category">カテゴリ</a></li>
+                    <li><a href="#interview">経営者様インタビュー</a></li>
+                    <li><a href="#service">サービス</a></li>
+                    <li><a href="#inquiry">お問い合わせ</a></li>
+                  <li class="dropdown">
+                      <a class="btn btn-secondary dropdown-toggle">
+                        会員登録<b class="caret"></b>
+                      </a>
+                      <ul>
+                        <li><%= link_to "会員登録", new_user_registration_path %></li>
+                        <li><%= link_to "サブスクnews", blogs_path %></li>
+                        <li><%= link_to "利用者様レビュー", reviews_list_path %></li>
+                        <li><%= link_to "経営者様インタビュー", interviews_path %></li>
+                        <li><%= link_to "よくある質問", questions_path %></li>
+                      <ul>
+                  </li>
+                <% end %>
+              </ul>
+          </div> 
+<%
+=end%>
+      <%#= auto_discovery_link_tag (${1|:rss,:atom},{action: "action"},{title:  "title"}) %>
+    <h1 class="text-center">巡グルメで始めるサブスクランチ。</h1>
+    <p class="text-sub-center lead grey-text mx-auto mb-5">好きなランチを好きな場所で毎日食べ歩こう!</p>
 </header>

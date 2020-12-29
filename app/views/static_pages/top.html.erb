@@ -1,6 +1,8 @@
 <% provide(:title, "Top") %>
-
-<p id="notice"><%= notice %></p>
+<hr class="border-solid" />
+<%
+=begin%>
+ <p id="notice"><%= notice %></p>
 <% if signed_in? %> <%# ログインしているかどうか %>
   <% if current_user.present? %>
     <p>ようこそ！<%= current_user.name %>さん</p>
@@ -11,62 +13,37 @@
   <% end %>
 <% else %>
   <p>ようこそ！ゲストさん</p>
-<% end %>
+<% end %> 
+<%
+=end%>
 
-<div class="top-bg">
- <div class="container my-5 p-5 z-depth-1">
-  <section class="dark-grey-text">
-    <h1 class="text-center font-weight-bold mb-4 pb-2">巡グルメで始めるサブスクランチ</h1>
-    <p class="text-center lead grey-text mx-auto mb-5">好きなランチを好きな場所で毎日食べ歩こう!</p>
-
-    <div class="row">
-
-      <div class="col-lg-8 text-center text-lg-left">
-        <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, width: "650vw", height: "500vh", class: 'video-content') %>
-      </div>
-
-       <div class="col-lg-4">
-
-        <div class="row mb-3">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">サブスクで</h5>
-            <p class="grey-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">毎日好きなランチを</h5>
-            <p class="grey-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">3000円から始める</h5>
-            <p class="grey-text mb-0">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
+  <div class="f-container">
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="fas fa-store"></i>&nbsp;サブスクで</span>
+          <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
       </div>
     </div>
-  </section>
- </div>
-</div>
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="fas fa-utensils"></i>&nbsp;毎日好きなランチを</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+      </div>
+    </div>
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="far fa-credit-card"></i>&nbsp;3000円から始める</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+      </div>
+    </div>
+  </div>
+
+
 
 <main class="scroll-container">
   <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <h1 id="category"><p class="text-category lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
       <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
@@ -133,7 +110,7 @@
           </div>
         <% end %>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-      <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+      <h1 id="category"><p class="text-category lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
       <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
@@ -199,7 +176,7 @@
           </div>
         <% end %>
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <h1 id="category"><p class="text-category lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
       <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
@@ -266,8 +243,11 @@
         <% end %>
     <% end %>
   <% else %> <%# ログインしてない %>
-    <h1><%= link_to "経営者様はこちら", top_owner_path, class: "btn btn-lg btn-info" %></h1>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <div class="owner-btn">
+      <%#= link_to "経営者様はこちら", top_owner_path, class: "btn btn-md btn-info" %>
+      <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+    </div>
+    <h1 id="category"><p class="top-category" lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
           <%= form_with(model: @map, local: true) do |f| %>
             <%= f.label :エリア %>
             <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
