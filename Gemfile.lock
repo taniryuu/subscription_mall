@@ -132,16 +132,9 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-<<<<<<< HEAD
     json (2.5.1)
     jwt (2.2.2)
     libv8 (8.4.255.0)
-=======
-    json (2.4.0)
-    jwt (2.2.2)
-    libv8 (8.4.255.0)
-    libv8 (8.4.255.0-x86_64-linux)
->>>>>>> 372797a6932544b3c3e6cdec04f7afcf5e194fed
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -260,12 +253,12 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rmagick (4.1.2)
-    rspec-core (3.10.0)
+    rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.0)
+    rspec-expectations (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-    rspec-mocks (3.10.0)
+    rspec-mocks (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-rails (4.0.2)
@@ -276,7 +269,7 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
-    rspec-support (3.10.0)
+    rspec-support (3.10.1)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
     ruby-vips (2.0.17)
@@ -342,10 +335,6 @@ GEM
 
 PLATFORMS
   ruby
-<<<<<<< HEAD
-=======
-  x86_64-linux
->>>>>>> 372797a6932544b3c3e6cdec04f7afcf5e194fed
 
 DEPENDENCIES
   bootstrap (~> 4.1.1)
