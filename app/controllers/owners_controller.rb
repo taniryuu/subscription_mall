@@ -22,7 +22,7 @@ class OwnersController < ApplicationController
     user = User.find(params[:id])
     owner = Owner.find(params[:id])
     User.new(user_params)
-    
+
     OwnerMailer.owner_email(owner, user).deliver
     redirect_to users_url
   end

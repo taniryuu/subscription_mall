@@ -32,6 +32,7 @@ gem 'omniauth-line'
 gem 'omniauth-oauth2', '>= 1.6'
 gem 'stripe'
 gem 'geocoder'#googlemap用
+gem 'gon'#googlemapお店一覧用
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

@@ -1,14 +1,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :tickets, dependent: :destroy
   has_many :reviews
   acts_as_paranoid # 追加
   devise :database_authenticatable,
          :registerable,
-         :recoverable, 
-         :rememberable, 
-        #  :validatable, 
-         :omniauthable, 
+         :recoverable,
+         :rememberable,
+        #  :validatable,
+         :omniauthable,
          omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
 
   scope :without_soft_deleted, -> { where(deleted_at: nil) }
@@ -69,19 +70,23 @@ class User < ApplicationRecord
   end
 
   # 物理削除の代わりにユーザーの`deleted_at`をタイムスタンプで更新
-  def soft_delete  
-    update_attribute(:deleted_at, Time.current)  
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
   end
 
-  # ユーザーのアカウントが有効であることを確認 
-  def active_for_authentication?  
-    super && !deleted_at  
-  end  
+  # ユーザーのアカウントが有効であることを確認
+  def active_for_authentication?
+    super && !deleted_at
+  end
 
-  # 削除したユーザーにカスタムメッセージを追加します  
-  def inactive_message   
-    !deleted_at ? super : :deleted_account  
-  end 
+  # 削除したユーザーにカスタムメッセージを追加します
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+
+  def subscribed?
+    session_id?
+  end
 
 
   private

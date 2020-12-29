@@ -231,6 +231,8 @@ class SubscriptionsController < ApplicationController
       cancel_url: cancel_url,
     )
 
+    @user.update(session_id: "true")
+
   end
 
   def cancel

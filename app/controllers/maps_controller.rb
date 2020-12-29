@@ -45,9 +45,21 @@ class MapsController < ApplicationController
     @map.update_attributes(map_params)
     respond_to do |format|
       if @map.save
-        format.html { redirect_to owner_subscription_url(@map), notice: 'Map was successfully updated.' }
+        format.html { redirect_to owner_subscription_url(@map) }
       else
         format.html { render :edit }
+      end
+    end
+  end
+
+  def index_update
+    @map = Map.find(1)
+    @map.update_attributes(map_params)
+    respond_to do |format|
+      if @map.save
+        format.html { redirect_to root_url(@map) }
+      else
+        format.html { render :top }
       end
     end
   end
@@ -65,7 +77,7 @@ class MapsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_map
-      @map = Map.find(params[:id])
+      @map = Map.find(1)
     end
 
     def set_owner
