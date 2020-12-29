@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201221233203) do
+ActiveRecord::Schema.define(version: 20201229005402) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -151,6 +151,8 @@ ActiveRecord::Schema.define(version: 20201221233203) do
     t.text "message"
     t.string "subject"
     t.string "kana"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end

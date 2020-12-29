@@ -30,20 +30,28 @@ Rails.application.routes.draw do
     passwords:     'admins/passwords',
     registrations: 'admins/registrations'
   }
-  devise_for :owners, controllers: {
+  devise_for :owners, path: 'owners', controllers: {
     sessions:      'owners/sessions',
     passwords:     'owners/passwords',
     registrations: 'owners/registrations'
   }
-  devise_for :users, controllers: {
+  devise_scope :owner do
+    get "/devise/auth/facebook_owner/callback" => "owners/omniauth_callbacks#facebook_owner"
+    get "/devise/auth/twitter_owner/callback" => "owners/omniauth_callbacks#twitter_owner"
+    get "/devise/auth/line_owner/callback" => "owners/omniauth_callbacks#line_owner"
+  end
+
+  devise_for :users, path: 'users', controllers: {
    # omniauth_callbacks:  'users/omniauth_callbacks',
     sessions:      'users/sessions',
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  devise_scope :users do
+  devise_scope :user do
+   get "/devise/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
+   get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
+   get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
    get 'users/sign_up', to: 'users#new'
-   get '/auth/facebook/callback', to: 'users#facebook'
   end
 
   resources :admins do
@@ -78,10 +86,8 @@ Rails.application.routes.draw do
           resources :images
         end
   end
-  resources :maps, only: :update do
-    patch 'index_update', on: :member
-  end
-resources :categories, only: :index do
+  resources :maps, only: :update
+  resources :categories, only: :index do
       get 'like_lunch', on: :member
       get 'washoku', on: :collection
       get 'teishoku', on: :collection

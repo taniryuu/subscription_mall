@@ -37,34 +37,33 @@
         <h2>SNSアカウントでログイン</h2>
 
         <div class="box-facebook"></br>
-            <%= link_to 'facebookでログイン（仮）', '/auth/facebook/callback' %>
-
+            <%= link_to('/devise/auth/facebook') do %>
             <i class="fa fa-facebook-official"></i> Facebookでログイン
-
+            <% end %>
         </div>
 
         <div class="box-line"></br>
-
+            <%= link_to('/devise/auth/line') do %>
             <i class="fa fa-mobile"></i> LINEでログイン
-
+            <% end %>
         </div>
 
         <div class="box-google"></br>
-
+            <%= link_to('/devise/auth/facebook') do %>
             <i class="fa fa-google"></i> Googleでログイン
-
+            <% end %>
         </div>
 
         <div class="box-twitter"></br>
-
+            <%= link_to('/devise/auth/twitter') do %>
             <i class="fa fa-twitter"></i> Twitterでログイン
-
+            <% end %>
         </div>
 
         <div class="box-instagram"></br>
-
+            <%= link_to('/devise/auth/facebook') do %>
             <i class="fa fa-instagram"></i> Instagramでログイン
-
+            <% end %>
         </div>
 
       </div>
