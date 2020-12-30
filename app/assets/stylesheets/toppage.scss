@@ -251,16 +251,17 @@
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
   }
   
-  .border-solid {
+  hr.border-solid {
+    height: 20px;
+    border: 0;
+    box-shadow: 0 15px 20px -10px #8c8b8b inset;
     width: 100vw;
     position: relative;
-    height: 1px;
     left: 50%;
     transform: translateX(-50%);
-    background: radial-gradient(#f59e79, #fc3538);
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 5px;
+    margin-top: -5px;
+    margin-bottom: 0px;
   }
         /* header項目ここまで */
     
@@ -289,8 +290,8 @@
     height: 50px;
     padding: 0 9px;
     line-height: 1;
-    font-size: 23px;
-    background: #f7f7f7;
+    font-size: 22px;
+    background-color: #f7f7f7;
     color: #eb586f;
     font-weight: bold;
   }
@@ -299,7 +300,7 @@
     padding: 0;
   }
   .comment-text {
-    margin-top: 30px;
+    margin-top: 22px;
     font-size: 15px;
     font-family: Hiragino Sans;
     letter-spacing: 0.05em;
@@ -307,3 +308,38 @@
     color: #393e46;
   }
   
+  .border-solid-down {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-top: 0px;
+    height: 25px;
+    border: 0;
+    box-shadow: 0 -15px 35px -10px #d3d6db inset;
+  }
+
+      /* レスポンシブWebデザインのブレークポイント */
+  @media screen and (max-width: 1100px) {
+    .comment-text{
+      line-height: 2.0;
+    }
+    .box26 .box-title {
+      height: 30px;
+    }
+    .box26 {
+      margin: 25px;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    .comment-text{
+      line-height: 1.7;
+    }
+    .box26 .box-title {
+      height: 25px;
+    }
+    .box26 {
+      margin: 20px;
+    }
+  }

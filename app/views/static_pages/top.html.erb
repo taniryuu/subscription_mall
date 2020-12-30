@@ -20,24 +20,24 @@
   <div class="f-container">
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-store"></i>&nbsp;サブスクで</span>
+        <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;サブスクで</span>
           <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-utensils"></i>&nbsp;毎日好きなランチを</span>
+        <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;毎日好きなランチを</span>
           <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="far fa-credit-card"></i>&nbsp;3000円から始める</span>
+        <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;3000円から始める</span>
           <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
   </div>
-
+  <hr class="border-solid-down" />
 
 
 <main class="scroll-container">
@@ -246,7 +246,9 @@
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <div class="category">
+      <p class="top-category">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p>
+    </div>
           <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
             <%= f.label :エリア %>
             <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
