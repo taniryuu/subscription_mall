@@ -246,22 +246,35 @@
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
-    <div class="category">
-      <p class="top-category">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p>
-    </div>
-          <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
-            <%= f.label :エリア %>
-            <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-            <%= f.submit '検索' %>
-          <% end %>
-      <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+    
+    <div class="category-list">
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+            <%= image_tag category.image_category, class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
+          </div>
+        </div>
       <% end %>
+    </div>
+
+    <div class="category">
+      <div class="all-category">全ての&nbsp;<%= link_to "カテゴリー", categories_path, class: "all-category-btn" %>&nbsp;を見る。</div>
+    </div>
+
+    <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+      <%= f.label :エリア %>
+      <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+      <%= f.submit '検索' %>
+    <% end %>
+    <%= form_with(model: @category, method: :get, local: true) do |f| %>
+      <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
+      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+    <% end %>
         <div id="map"></div>
         <style>
         #map{
-          height: 200px;
+          height: 600px;
         }
         </style>
 
@@ -325,7 +338,6 @@
           });
         }
 
-
         function codeAddress(){
           // 入力を取得
           let inputAddress = document.getElementById('store_information').value;
@@ -346,24 +358,9 @@
             }
           });
         }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <div class="col-lg-4 col-sm-6 mb-5">
-              <div class="row d-flex align-items-center">
-                <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                    <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                </div>
-                <div class="col-7">
-                  <h6 class="font-weight-bold pt-2">
-                      <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                  </h6>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+      </script>
+    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
+        
     <h1 id="plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "btn btn-lg btn-default" %></h1></br>
     <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
         <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>

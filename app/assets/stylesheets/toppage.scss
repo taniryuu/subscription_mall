@@ -23,7 +23,7 @@
       width: 100%;
       max-width: 100%;
       height: auto;
-      max-height: 80vh;
+      max-height: 75vh;
       object-fit: cover;
     }
   }
@@ -53,28 +53,41 @@
   
       /* ナビゲーションバー各項目 */
   .plan {
-    margin-right: 18px;
+    margin-right: 17px;
     margin-left: 500px;
+    padding-top: 5px;
     font-size: 20px;
     text-shadow:2px 2px 3px #000;
   }
   .recommend {
-    margin-right: 18px;
-    margin-left: 18px;
+    margin-right: 17px;
+    margin-left: 17px;
+    padding-top: 5px;
     font-size: 20px;
     text-shadow:2px 2px 3px #000;
   }
   .login {
-    margin-right: 18px;
-    margin-left: 18px;
+    margin-right: 17px;
+    margin-left: 17px;
+    padding-top: 5px;
     font-size: 20px;
     text-shadow:2px 2px 3px #000;
   }
   .new-user {
-    margin-right: 18px;
-    margin-left: 18px;
+    margin-right: 17px;
+    margin-left: 17px;
     font-size: 20px;
     text-shadow:2px 2px 3px #000;
+    display: inline-block;
+    padding: 6px 20px 8px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #FFF;
+    background-image: linear-gradient(45deg, #54e346 0%, #61b15a 100%);
+    transition: .4s;
+  }
+  .new-user:hover {
+    background-image: linear-gradient(45deg, #61b15a 0%, #5aa469 100%);
   }
   .navbar-nav li a {
     color: #fff;
@@ -113,9 +126,9 @@
     }
   }
   @media screen and (max-width: 991px) {
-    .plan {
+    li.plan {
       margin-top: 10px;
-    }
+      margin-left: 18px;    }
     .recommend {
       margin-top: 10px;
     }
@@ -124,6 +137,8 @@
     }
     .new-user {
       margin-top: 10px;
+      padding-bottom: 10px;
+      width: 120px;
     }
     h1.text-center {
       font-size: 30px;
@@ -188,7 +203,7 @@
   }
   
       /* レスポンシブWebデザインのブレークポイント */
-  @media screen and (max-width: 1500px) {
+  @media screen and (max-width: 1520px) {
     .plan {
       margin-left: 300px;
     }
@@ -198,9 +213,9 @@
       margin-left: 200px;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1220px) {
     .plan {
-      margin-left: 20px;
+      margin-left: 50px;
     }
     .gurumelogo {
       margin-right: 50px;
@@ -343,3 +358,80 @@
       margin: 20px;
     }
   }
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  .category-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    width: 280px;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3em;
+  }
+  .category-shop-btn {
+    width: 100%;
+    position: absolute;
+    top: 86%;
+    left: 0%;
+  }
+  .category-shop-btn a {
+    display: block;
+    font-size: 15px;
+    padding: .5em;
+    background: #ffaa64;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+  }
+  .category-shop-btn a:hover {
+    background: #ffaa64;
+  }
+  .image-menu {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 300px;
+    max-width: 100%;
+    max-height: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .category {
+    text-align: center;
+  }
+  .all-category {
+    font-size: 20px;
+    font-family: Hiragino Sans; display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #eb586f;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    background: linear-gradient(#f7f7f7 0%, #eb586f 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+
+
+  }
+  .all-category-btn:hover {
+   text-decoration: none;
+   color: #eb586f;
+   background-color: transparent;
+  }
+
+
