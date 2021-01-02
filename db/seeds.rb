@@ -96,6 +96,30 @@ Category.create!(name: "韓国料理",
 Category.create!(name: "レストラン",
                 image_category: "https://media.gettyimages.com/photos/cafebar-in-moscow-picture-id1158221681?k=6&m=1158221681&s=612x612&w=0&h=JykZfmjm8VJtSMBVstQP3UP4Vp0Of7t-VokP63NSnXo="
                 )
+Category.create!(name: "お好み焼き",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpark.ajinomoto.co.jp%2Frecipe%2Fcard%2F704422%2F&psig=AOvVaw2UgC9_9nDj2hTEDknYjpVG&ust=1609575577842000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDo2sGm-u0CFQAAAAAdAAAAABAE"
+                )
+Category.create!(name: "鍋",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.sbfoods.co.jp%2Frecipe%2Fdetail%2F04401.html&psig=AOvVaw2loUYOcOdK1S2UeYonkpDW&ust=1609575790310000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCODZ_5un-u0CFQAAAAAdAAAAABAF"
+                )
+Category.create!(name: "スイーツ",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Frtrp.jp%2Farticles%2F28088%2F&psig=AOvVaw3elDKtfVuTesDxkFNYInea&ust=1609575822762000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOCkk7en-u0CFQAAAAAdAAAAABAD"
+                )
+Category.create!(name: "唐揚げ",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Flivejapan.com%2Fja%2Farticle-a0002989%2F&psig=AOvVaw3cN0PjVBefWyb24icLunxS&ust=1609575890970000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCID6sNGn-u0CFQAAAAAdAAAAABAD"
+                )
+Category.create!(name: "餃子",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fspi-ra.jp%2Ftokai%2F107517&psig=AOvVaw01f4qrtqfVZPNle6wwIhsQ&ust=1609575938056000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMCd--Wn-u0CFQAAAAAdAAAAABAn"
+                )
+Category.create!(name: "丼モノ",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftokyo-calendar.jp%2Farticle%2F4110%3Fpage%3D2&psig=AOvVaw14m2VD_fhkXrER5NRFvGFo&ust=1609576028387000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDxtY2o-u0CFQAAAAAdAAAAABAa"
+                )
+Category.create!(name: "うどん",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fmi-journey.jp%2Ffoodie%2F33755%2F&psig=AOvVaw1UByzrBSV55IJsXfSgrBj1&ust=1609576097470000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDf4bGo-u0CFQAAAAAdAAAAABAD"
+                )
+Category.create!(name: "そば",
+                image_category: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.acure-fun.net%2Flounge%2Fproducts%2Fentry63.html&psig=AOvVaw1Hi809aVwW5j1fwu2n-coA&ust=1609576124612000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNj0-ryo-u0CFQAAAAAdAAAAABAD"
+                )
 Category.create!(name: "その他",
                 image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
                 )
