@@ -98,6 +98,14 @@ resources :categories, only: :index do
       get 'humburger', on: :collection
       get 'kankokuryori', on: :collection
       get 'restaurant', on: :collection
+      get 'okonomiyaki', on: :collection
+      get 'nabe', on: :collection
+      get 'sweets', on: :collection
+      get 'karaage', on: :collection
+      get 'gyouza', on: :collection
+      get 'don', on: :collection
+      get 'udon', on: :collection
+      get 'soba', on: :collection
       get 'other', on: :collection
   end
   get 'users/deleted_users'##論理削除された利用者
