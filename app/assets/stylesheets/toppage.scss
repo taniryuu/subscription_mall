@@ -1,6 +1,6 @@
 /* ここからheaderの項目を記述 */
 
-  /* 巡グルメアイコン */
+      /* 巡グルメアイコン */
   .gurumelogo {
     margin-right: 150px;
   }
@@ -96,13 +96,44 @@
     background: transparent;
     text-decoration: none;
   }
-  
+    /* 経営者様はこちらボタン */
+  .owner-btn a.btn--pink {
+    color: #fff;
+    background-color: #eb586f;
+  }
+  a.btn--pink:hover {  
+    color: #fff;
+    background: #eb586f;
+  }
+  a.btn--pink.btn--cubic {
+    border-bottom: 5px solid #fd0054;
+  }
+  a.btn--pink.btn--cubic:hover {
+    margin-top: 3px;
+    border-bottom: 2px solid #fd0054;
+  }
+  a.btn-c {
+    font-size: 1.1rem;
+    position: relative;
+    padding: 0.6rem 1.8rem 0.6rem 1.8rem;
+    border-radius: 100vh;
+  }
+  a.btn-c:before {
+    font-family: 'Hiragino Sans';
+    font-size: 1.6rem;
+    line-height: 1;
+    position: absolute;
+    top: calc(50% - .8rem);
+    right: 1rem;
+    margin: 0;
+    padding: 0;
+  }
   .owner-btn {
     position: absolute;
     left: 180px;
     top: 550px;
   }
-      
+
       /* レスポンシブWebデザインのブレークポイント */
   @media screen and (max-width: 1100px) {
     h1.text-center {
@@ -128,7 +159,8 @@
   @media screen and (max-width: 991px) {
     li.plan {
       margin-top: 10px;
-      margin-left: 18px;    }
+      margin-left: 18px;
+    }    
     .recommend {
       margin-top: 10px;
     }
@@ -171,7 +203,7 @@
     .owner-btn {
       position: absolute;
       left: 180px;
-      top: 440px;
+      top: 430px;
     }
   }
   @media screen and (max-width: 850px) {
@@ -183,13 +215,16 @@
     h1.text-center {
       font-size: 25px;
       margin-bottom: 7px;
+      position: absolute;
+      left: 130px;
+      top: 300px;
     }
-  p.text-sub-center {
+    p.text-sub-center {
       font-size: 15px;
       margin-bottom: 10px;
       position: absolute;
-      left: 130px;
-      top: 380px;
+      left: 150px;
+      top: 330px;
     }
     .navbar-nav {
       width: 200px;
@@ -199,6 +234,94 @@
     }
     .navbar-nav li a {
       color: #bedcfa;
+    }
+    .owner-btn {
+      position: absolute;
+      left: 180px;
+      top: 350px;
+    }
+  }
+  @media screen and (max-width: 730px) {
+    .navbar {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+    .navbar-toggler {
+      position: absolute;
+      top: 20px;
+      left: 400px;
+    }
+    .navbar-nav {
+      width: 200px;
+      position: absolute;
+      top: 90px;
+      left: 380px;
+    }
+    .plan {
+      font-size: 15px;
+    }
+    .recommend {
+      font-size: 15px;
+    }
+    .login {
+      font-size: 15px;
+    }
+    .new-user {
+      font-size: 15px;
+      padding: 4px 14px 4px 14px;
+      width: 90px;
+    }
+    h1.text-center {
+      font-size: 20px;
+      margin-bottom: 7px;
+      position: absolute;
+      left: 30px;
+      top: 180px;
+    }
+    p.text-sub-center {
+      font-size: 13px;
+      margin-bottom: 10px;
+      position: absolute;
+      left: 50px;
+      top: 210px;
+    }
+    .owner-btn {
+      position: absolute;
+      left: 100px;
+      top: 230px;
+    }
+       /* 経営者様はこちらボタン */
+    .owner-btn a.btn--pink {
+      color: #fff;
+      background-color: #eb586f;
+    }
+    a.btn--pink:hover {  
+      color: #fff;
+      background: #eb586f;
+    }
+    a.btn--pink.btn--cubic {
+      border-bottom: 5px solid #fd0054;
+    }
+    a.btn--pink.btn--cubic:hover {
+      margin-top: 3px;
+      border-bottom: 2px solid #fd0054;
+    }
+    a.btn-c {
+      font-size: 0.8rem;
+      position: relative;
+      padding: 0.4rem 1.6rem 0.4rem 1.6rem;
+      border-radius: 100vh;
+    }
+    a.btn-c:before {
+      font-family: 'Hiragino Sans';
+      font-size: 1.6rem;
+      line-height: 1;
+      position: absolute;
+      top: calc(50% - .8rem);
+      right: 1rem;
+      margin: 0;
+      padding: 0;
     }
   }
   
@@ -220,39 +343,6 @@
     .gurumelogo {
       margin-right: 50px;
     }
-  }
-
-    /* 経営者様はこちらボタン */
-  .owner-btn a.btn--pink {
-    color: #fff;
-    background-color: #eb586f;
-  }
-  a.btn--pink:hover {  
-    color: #fff;
-    background: #eb586f;
-  }
-  a.btn--pink.btn--cubic {
-    border-bottom: 5px solid #fd0054;
-  }
-  a.btn--pink.btn--cubic:hover {
-    margin-top: 3px;
-    border-bottom: 2px solid #fd0054;
-  }
-  a.btn-c {
-    font-size: 1.1rem;
-    position: relative;
-    padding: 0.6rem 1.8rem 0.6rem 1.8rem;
-    border-radius: 100vh;
-  }
-  a.btn-c:before {
-    font-family: 'Hiragino Sans';
-    font-size: 1.6rem;
-    line-height: 1;
-    position: absolute;
-    top: calc(50% - .8rem);
-    right: 1rem;
-    margin: 0;
-    padding: 0;
   }
 
       /* ハンバーガーメニューアイコン色変更 */
@@ -279,7 +369,8 @@
     margin-bottom: 0px;
   }
         /* header項目ここまで */
-    
+
+        /* ここからtoppage 中央 category */    
   .f-container{
     width: 100vw;
     height: auto;
@@ -322,7 +413,6 @@
     line-height: 2.5;
     color: #393e46;
   }
-  
   .border-solid-down {
     width: 100vw;
     position: relative;
@@ -356,6 +446,11 @@
     }
     .box26 {
       margin: 20px;
+    }
+  }
+  @media screen and (max-width: 730px) {
+    .f-container{
+      flex-direction: column;
     }
   }
   .category-list {
@@ -409,29 +504,78 @@
   .category {
     text-align: center;
   }
-  .all-category {
+  .btn-gradient-radius-orange {
+    height: 40px;
     font-size: 20px;
-    font-family: Hiragino Sans; display: inline-block;
-    position: relative;
+    display: inline-block;
+    padding: 10px 20px 0 20px;
+    border-radius: 25px;
     text-decoration: none;
-    color: #eb586f;
-    width: 400px;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 5px;
+    color: #FFF !important;
+    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+    transition: .4s;
+  }
+  .btn-gradient-radius-orange:hover {
+    background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+  }
+  .btn-gradient-radius-blue {
+    height: 40px;
+    font-size: 20px;
+    display: inline-block;
+    padding: 10px 20px 0 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #FFF !important;
+    background-image: linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+  transition: .4s;
+  }
+  .btn-gradient-radius-blue:hover {
+    background-image: linear-gradient(45deg, #709dff 50%, #b0c9ff 100%);
+  }
+  @media screen and (max-width: 991px) {
+    .category-item {
+      width: 250px;
+      height: 220px;
+      }
+    }
+  @media screen and (max-width: 730px) {
+  .category-item {
+    width: 220px;
+    height: 220px;
+    }
+  }
+      /* toppage 中央 category ここまで */ 
+
+  .google-map {
+    border: solid #ecf0f1;
+    margin-top: 20px;
+  }
+  hr.style1 { 
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    overflow: hidden;
-    font-weight: bold;
-    background: linear-gradient(#f7f7f7 0%, #eb586f 100%);
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-
-
+    margin-top: 20px;
+    border-top: 1px solid #8c8b8b;
   }
-  .all-category-btn:hover {
-   text-decoration: none;
-   color: #eb586f;
-   background-color: transparent;
+  hr.style2 {
+    border-top: 1px dashed #8c8b8b;
+  }
+  hr.style3 {
+    border-top: 1px dotted #8c8b8b;
+  }
+  a.user-service {
+    margin-left: 18px;
+    font-size: 20px;
+    color: #0077cc !important;
+  }
+  a.user-service:hover {
+    background-color: transparent;
+    text-decoration: none;
   }
 
-
+  hr.style4 {
+    border-top: 3px double #393e46;
+    margin-bottom: 1px;
+  }

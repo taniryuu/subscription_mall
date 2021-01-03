@@ -41,7 +41,9 @@
 
 
 <main class="scroll-container">
-  <% if signed_in? %> <%# ログインしているかどうか %>
+  <%
+=begin%>
+ <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
     <h1 id="category"><p class="top-category lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
@@ -242,7 +244,13 @@
           </div>
         <% end %>
     <% end %>
-  <% else %> <%# ログインしてない %>
+  <% else %> <%# ログインしてない %> 
+<%
+=end%>
+
+
+
+
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
@@ -259,127 +267,141 @@
     </div>
 
     <div class="category">
-      <div class="all-category">全ての&nbsp;<%= link_to "カテゴリー", categories_path, class: "all-category-btn" %>&nbsp;を見る。</div>
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
     </div>
-
-    <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
-      <%= f.label :エリア %>
-      <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-      <%= f.submit '検索' %>
-    <% end %>
-    <%= form_with(model: @category, method: :get, local: true) do |f| %>
-      <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
-    <% end %>
-        <div id="map"></div>
-        <style>
-        #map{
-          height: 600px;
-        }
-        </style>
-
-      <script>
-        let map
-        let geocode
-        let marker = []; // マーカーを複数表示させたいので、配列化
-        let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
-        let markerData = gon.owners; // コントローラーで定義したインスタンス変数を変数に代入
-
-        const data = [
-          { name: "東京タワー", lat: 35.6585805, lng: 139.7454329 },
-          { name: "京都タワー", lat: 34.9875441, lng: 135.7592164 },
-          { name: "通天閣", lat: 34.6524992, lng: 135.5063058 }
-        ];
-
-        const display = document.getElementById('map')
-
-        function initMap(){
-          geocoder = new google.maps.Geocoder()
-
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: 
-            {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
-            lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
-            zoom: 18,
-          });
-        
-          // 繰り返し処理でマーカーと吹き出しを複数表示させる
-          for (var i = 0; i < markerData.length; i++) {
-            let id = markerData[i]['store_information']
-
-            // 各地点のマーカーを作成
-            marker[i] = new google.maps.Marker({
-              position: latlng,
-              map: map
-            });
-
-            // 各地点の吹き出しを作成
-            infoWindow[i] = new google.maps.InfoWindow({
-              // 吹き出しの内容
-              content: '<div id="map">' + markerData[i]['store_information'] + '</div>'
-            });
-
-            // マーカーにクリックイベントを追加
-            markerEvent(i);
+    
+    <div class="google-map">
+      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+        <%= f.label :エリア %>
+        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+        <%= f.submit '検索' %>
+      <% end %>
+      <%= form_with(model: @category, method: :get, local: true) do |f| %>
+        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+      <% end %>
+          <div id="map"></div>
+          <style>
+          #map{
+            height: 600px;
           }
-        
-        // マーカーをクリックしたら吹き出しを表示
-        function markerEvent(i) {
-          marker[i].addListener('click', function () {
-            infoWindow[i].open(map, marker[i]);
-          });
-          }
-            // 各ユーザーのIDを変数化
-          let id = markerData[i]['id']
+          </style>
 
-          infoWindow[i] = new google.maps.InfoWindow({
-            // <a>タグでリンクを作成
-            content: `<a href='/owners/${ id }'>${ markerData[i]['store_information'] }</a>`
-          });
-        }
+        <script>
+          let map
+          let geocode
+          let marker = []; // マーカーを複数表示させたいので、配列化
+          let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+          let markerData = gon.owners; // コントローラーで定義したインスタンス変数を変数に代入
 
-        function codeAddress(){
-          // 入力を取得
-          let inputAddress = document.getElementById('store_information').value;
+          const data = [
+            { name: "東京タワー", lat: 35.6585805, lng: 139.7454329 },
+            { name: "京都タワー", lat: 34.9875441, lng: 135.7592164 },
+            { name: "通天閣", lat: 34.6524992, lng: 135.5063058 }
+          ];
 
-          // geocodingしたあとmapを移動
-          geocoder.geocode( { 'store_information': inputAddress}, function(results, status) {
-            if (status == 'OK') {
-              // map.setCenterで地図が移動
-              map.setCenter(results[0].geometry.location);
+          const display = document.getElementById('map')
 
-              // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-              var marker = new google.maps.Marker({
-                  map: map,
-                  position: results[0].geometry.location
+          function initMap(){
+            geocoder = new google.maps.Geocoder()
+
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: 
+              {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+              lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+              zoom: 18,
+            });
+          
+            // 繰り返し処理でマーカーと吹き出しを複数表示させる
+            for (var i = 0; i < markerData.length; i++) {
+              let id = markerData[i]['store_information']
+
+              // 各地点のマーカーを作成
+              marker[i] = new google.maps.Marker({
+                position: latlng,
+                map: map
               });
-            } else {
-              alert('Geocode was not successful for the following reason: ' + status);
+
+              // 各地点の吹き出しを作成
+              infoWindow[i] = new google.maps.InfoWindow({
+                // 吹き出しの内容
+                content: '<div id="map">' + markerData[i]['store_information'] + '</div>'
+              });
+
+              // マーカーにクリックイベントを追加
+              markerEvent(i);
             }
-          });
-        }
-      </script>
-    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
-        
-    <h1 id="plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "btn btn-lg btn-default" %></h1></br>
-    <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-        <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
-            </div>
+          
+          // マーカーをクリックしたら吹き出しを表示
+          function markerEvent(i) {
+            marker[i].addListener('click', function () {
+              infoWindow[i].open(map, marker[i]);
+            });
+            }
+              // 各ユーザーのIDを変数化
+            let id = markerData[i]['id']
+
+            infoWindow[i] = new google.maps.InfoWindow({
+              // <a>タグでリンクを作成
+              content: `<a href='/owners/${ id }'>${ markerData[i]['store_information'] }</a>`
+            });
+          }
+
+          function codeAddress(){
+            // 入力を取得
+            let inputAddress = document.getElementById('store_information').value;
+
+            // geocodingしたあとmapを移動
+            geocoder.geocode( { 'store_information': inputAddress}, function(results, status) {
+              if (status == 'OK') {
+                // map.setCenterで地図が移動
+                map.setCenter(results[0].geometry.location);
+
+                // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          }
+        </script>
+      <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
+    </div> 
+    <div class="recommend-shop">
+      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+ 
+    <hr class="style1">
+    <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "user-service" %></div>
+      <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
+        <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
+              <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.content}", interview_path(interview) %>
           </div>
-        <% end %>
-    <h1 id="service"><%= link_to "ご利用方法について", how_to_use_path, class: "btn btn-lg btn-default" %></h1></br>
-    <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-    <h1 id="inquiry"><%= link_to "サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
-    <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+        </div>
+      <% end %>
+    <hr class="style2"> 
+    <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %>
+      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
         <hr class="tool-bar">
           <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
@@ -389,10 +411,12 @@
               <%= link_to "#{blog.body}", blog_path(blog) %>
             </div>
           </div>
-        <% end %>
-    <h1><%= link_to "よくある質問", questions_path %></h1>
+      <% end %>
+    </div>
+    <hr class="style2">
+    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
         <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
+          <hr class="style3">
           <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
                 <%= link_to "#{question.detail}", questions_path %>
@@ -402,5 +426,5 @@
             </div>
           </div>
         <% end %>
-  <% end %>
+  <%# end %>
 </main>
