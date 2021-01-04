@@ -6,4 +6,9 @@ class UserMailer < ApplicationMailer
     @url  = 'http://localhost:3000/'
     mail(to: @user.email, subject: '巡グルメへの会員登録ありがとうございます！')
   end
+
+  def cancel_email(user) # ユーザー,オーナー退会時メール
+    @user = user
+    mail(to: @user.email, subject: "退会通知")
+  end
 end
