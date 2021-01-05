@@ -22,6 +22,7 @@ gem 'carrierwave', '~> 2.0'#複数画像投稿のgem
 gem 'cloudinary'
 gem 'rmagick'#画像をリサイズしたりする
 gem 'rails-i18n'
+gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
