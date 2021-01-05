@@ -1,7 +1,5 @@
 <header>
 <% if signed_in? %> <%# ログインしているかどうか %>
- <%
-=begin%>
  <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
     <div class="container-fluid"> 
       <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
@@ -15,8 +13,10 @@
             <ul class="navbar-nav">
               <li class="plan"><a href="plan_description">プラン</a></li>
               <li class="recommend"><a href="categories/recommend">おすすめ店舗</a></li>
+              <li><%= link_to "利用者様管理", users_path %></li>
               <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "マイアカウント", owner_account_owner_path(current_owner) %></li>
+              <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
             </ul>
           </div>
         </nav>
@@ -36,7 +36,7 @@
               <li class="plan"><a href="plan_description">プラン</a></li>
               <li class="recommend"><a href="categories/recommend">おすすめ店舗</a></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to "Myアカウント", owner_account_owner_path(current_owner) %></li>
+              <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
             </ul>
           </div>
         </nav>
@@ -55,8 +55,10 @@
             <ul class="navbar-nav">
               <li class="plan"><a href="plan_description">プラン</a></li>
               <li class="recommend"><a href="categories/recommend">おすすめ店舗</a></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to "会員者様一覧", users_path %></li>
+              <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+              <li><%= link_to "経営者様管理", owners_path %></li>
+              <li><%= link_to "利用者様管理", users_path %></li>
+              <li><%= link_to "マイアカウント", admin_account_admin_path(current_admin) %></li>
             </ul>
           </div>
         </nav>
@@ -64,10 +66,8 @@
     </div>
   <% end %> 
  
-<%
-=end%>
 
-<%# else %> <%# ログインしてない %>
+<% else %> <%# ログインしてない %>
   <div class="container-fluid"> 
     <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
       <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
