@@ -10,6 +10,11 @@
 
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, :required => true, class: "form-control" %>
+  
+  <div class="form-check">
+    <%= f.check_box :email_received, class: "form-check-input" %>
+    <%= f.label :email_received, class: "form-check-label" %>
+  </div>
 
   <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :phone_number, class: "form-control" %>
