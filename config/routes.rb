@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   end
   resources :blogs#管理者が書くサブスクnews
   get 'reviews/list' => "reviews#list"#利用者ではない人用の表示ページ
-  get 'subscriptions/index'#まだ決まってない。使わないかもしれない
+  get 'subscriptions/list' => "subscriptions#list"#まだ決まってない。使わないかもしれない
   get 'blogs/index'#まだ決まってない。使わないかもしれない
 
   get 'suports', to: "suports#index"#サポート画面
