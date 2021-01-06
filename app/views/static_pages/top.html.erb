@@ -303,12 +303,15 @@
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
-    
-    <div class="category-list">
+    <h1>↓ここの画像利用者用に変える</h1>
+    <div>
+      <%= image_tag 'nagare.jpeg.png', Style: "height: 350px"%><i class="fas fa-chevron-circle-right"></i>
+    </div>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
         <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
+    <div class="category-list">
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
             <%= image_tag category.image_category, class: "image-menu" %>

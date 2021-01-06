@@ -233,6 +233,10 @@
       まずは相談しましょう&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
+    <a href="https://lin.ee/PrKWtcm">
+    経営者様用のLineのお問い合わせはこちら<img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"  height="36" border="0">
+    </a>
+    <h1>ここに動画</h1>
     <div class="recommend-shop">
       <%= image_tag 'nayami.jpg', Style: "height: 350px"%>
     </div>
@@ -242,14 +246,13 @@
     <div class="recommend-shop">
       <%= image_tag 'service.jpg', Style: "height: 350px"%>
     </div>
-    <%= video_tag("/player.video-share.co/840cebe92684fd7bd1e319b65c813a1d957562cc (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    <h1>ここに動画</h1>
+    <!--%= video_tag("/player.video-share.co/840cebe92684fd7bd1e319b65c813a1d957562cc (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %-->
     <div>
       <%= image_tag 'ryoukin.jpg', Style: "height: 350px"%><i class="fas fa-chevron-circle-right"></i>
     </div>
     <hr class="style1">
-    <div class="service"><%= link_to "プランの説明", plan_description_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="service"><%= link_to "おすすめ店舗", recommend_categories_path, class: "user-service" %></div>
+    <div class="service"><%= link_to "ショップ事例", plan_description_path, class: "user-service" %></div>
     <hr class="style2"> 
     <div class="service"><%= link_to "経営者様インタビュー", interviews_path, class: "user-service" %></div>
       <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
@@ -263,8 +266,6 @@
           </div>
         </div>
       <% end %>
-    <hr class="style2"> 
-    <div class="service"><%= link_to "サービス", how_to_use_path, class: "user-service" %></h1></br>
     <hr class="style2"> 
     <div class="service"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
     <hr class="style2"> 
