@@ -40,7 +40,7 @@ ja:
           address: 住所
           subject: 件名
           message: メッセージ
-          email_received: お知らせメール受信
+          notification_received: お知らせ受信
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日

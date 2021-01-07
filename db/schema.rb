@@ -279,7 +279,7 @@ ActiveRecord::Schema.define(version: 20210104054021) do
     t.string "session_id"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
-    t.boolean "email_received", default: true, null: false
+    t.boolean "notification_received", default: true, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
