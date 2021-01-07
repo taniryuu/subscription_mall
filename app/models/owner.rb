@@ -10,7 +10,8 @@ class Owner < ApplicationRecord
   devise :database_authenticatable, 
          :registerable,
          :recoverable, 
-         :rememberable
+         :rememberable,
+	 :confirmable
         #  :validatable
 
   scope :without_soft_deleted, -> { where(deleted_at: nil) }
