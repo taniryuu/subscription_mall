@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
   def top
     @blogs = Blog.all
-    @interviews = Interview.where.not(shop_name: nil)
+    @reviews = Review.all
     @questions = Question.all
     results = Geocoder.search(params[:address])
     @latlng = results.first
@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
     @questions = Question.all
     results = Geocoder.search(params[:address])
     @latlng = results.first
-    @map = Map.find(params[:id])
+    @map = Map.find(1)
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
