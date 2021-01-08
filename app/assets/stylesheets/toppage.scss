@@ -291,27 +291,43 @@
       left: 100px;
       top: 230px;
     }
-       /* 経営者様はこちらボタン */
+       /* 利用者様はこちらボタン */
     .owner-btn a.btn--pink {
-      color: #fff;
-      background-color: #eb586f;
+      color: rgb(10, 3, 3);
+      background-color: rgb(255, 240, 31);
     }
     a.btn--pink:hover {  
-      color: #fff;
-      background: #eb586f;
+      color:  rgb(10, 3, 3);
+      background: rgb(255, 240, 31);
     }
     a.btn--pink.btn--cubic {
-      border-bottom: 5px solid #fd0054;
+      border-bottom: 5px solid  rgb(255, 240, 31);
     }
     a.btn--pink.btn--cubic:hover {
       margin-top: 3px;
-      border-bottom: 2px solid #fd0054;
+      border-bottom: 2px solid  rgb(255, 240, 31);
+    }
+      /* 経営者様はこちらボタン */
+    .owner-btn a.btn--pink2 {
+      color: rgb(10, 3, 3);
+      background-color: rgb(27, 228, 87);
+    }
+    a.btn--pink2:hover {  
+      color:  rgb(10, 3, 3);
+      background: rgb(27, 228, 87);
+    }
+    a.btn--pink.btn--cubic2 {
+      border-bottom: 5px solid  rgb(27, 228, 87);
+    }
+    a.btn--pink2.btn--cubic2:hover {
+      margin-top: 3px;
+      border-bottom: 2px solid  rgb(27, 228, 87);
     }
     a.btn-c {
-      font-size: 0.8rem;
-      position: relative;
-      padding: 0.4rem 1.6rem 0.4rem 1.6rem;
-      border-radius: 100vh;
+    font-size: 0.8rem;
+    position: relative;
+    padding: 0.4rem 1.6rem 0.4rem 1.6rem;
+    border-radius: 100vh;
     }
     a.btn-c:before {
       font-family: 'Hiragino Sans';
@@ -398,7 +414,20 @@
     line-height: 1;
     font-size: 22px;
     background-color: #f7f7f7;
-    color: #eb586f;
+    color: #cabe12;
+    font-weight: bold;
+  }
+  .box26 .box-title2 {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    height: 50px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 22px;
+    background-color: #f7f7f7;
+    color: #09f764ce;
     font-weight: bold;
   }
   .box26 p {
