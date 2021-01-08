@@ -1,0 +1,159 @@
+/*Style Share modal*/
+
+#share-video-modal .modal-dialog {
+    max-width: none;
+    width: 555px;
+    min-height: 237px;
+}
+#share-video-modal .text_note {
+    font-size: 14px;
+    color: #292828;
+}
+#share-video-modal .wrap_link {
+    width: 100%;
+    overflow:hidden;
+    margin-top: 15px;
+}
+#share-video-modal .wrap_link #visible-input {
+    width: 415px;
+    float: left;
+    border: 1px solid #C8C8C8;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1;
+    padding: 6px 8px;
+}
+#share-video-modal .wrap_link #visible-button {
+    width: 73px;
+    float: right;
+    background: #ff6450;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    border-radius: 3px;
+    line-height: 1;
+    padding: 10px 0;
+}
+#share-video-modal .wrap_link #visible-button:hover {
+    background: #e05146;
+}
+#share-video-modal.modal .modal-header {
+    padding-bottom: 20px;
+}
+#share-video-modal.modal .modal-body {
+    padding: 0 30px 15px;
+}
+#share-video-modal #disable-download-checkbox-warning {
+    margin-top: 8px;
+}
+.block-check-password {
+    margin-top: 5px;
+}
+.block-check-password input {
+    display: none;
+}
+.block-check-password label[for="password-checkbox"] {
+    padding-left: 22px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.43;
+}
+.block-check-password label[for="is-download-checkbox"] {
+    margin-left: 10px;
+    padding-left: 22px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.43;
+}
+.block-check-password input[type=checkbox] + label:before {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border: 1px solid #a1a1a1;
+    border-radius: 3px;
+    position: absolute;
+    top: 3px;
+    left: 0;
+}
+.block-check-password input[type=checkbox]:checked + label:before {
+    background: #ff6450;
+    border: 1px solid #ff6450;
+}
+.block-check-password input[type=checkbox]:checked + label:after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 11px;
+    transform: rotate(40deg);
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+}
+.share-password-block {
+    padding-bottom: 8px;
+}
+.share-password-block .share-password {
+    width: 42%;
+    border: 1px solid #C8C8C8;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1;
+    padding: 6px 8px;
+}
+.share-password-block .btn-black, .share-password-block .btn-black:focus {
+    line-height: 1.4;
+    padding: 7px 8px;
+    font-size: 12px;
+    margin-left: 5px;
+    color: #fff;
+}
+.share-password-block input:placeholder-shown + .btn-black {
+    background: #c8c8c8;
+    border: 1px solid #C8C8C8;
+    pointer-events: none;
+}
+.share-password-block .share-note {
+    width: 42%;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: nomal;
+    position: absolute;
+    color: #a1a1a1;
+}
+.share-password-block .input-message-error {
+    font-size: 12px;
+    line-height: 1.4;
+    color: red;
+    position: absolute;
+    margin-top: 5px;
+}
+.video-share-content p.title-password {
+    margin-top: 4px;
+    margin-left: 100px;
+    width: 18%;
+    font-size: 18px;
+    font-weight: bold;
+    float:left;
+}
+.video-share-content .check-password {
+    width: 35%;
+    line-height: 1.65;
+    margin-right: 5px;
+    float: left;
+}
+.video-share-content .btn-share {
+    position: absolute;
+    float:right;
+}
+.check-pass-block {
+    text-align: left;
+}
+.ml-100 {
+    margin-left: 100px;
+}

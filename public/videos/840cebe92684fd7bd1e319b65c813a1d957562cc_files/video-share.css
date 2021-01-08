@@ -1,0 +1,81 @@
+@charset "utf-8";
+.video {
+  width:90%;
+  max-height: 360px;
+  max-width: 640px;
+  margin:0px auto;
+  padding-top: 60px;
+}
+
+.gif-share {
+  width: auto;
+  max-height: 360px;
+  margin: 0px auto;
+}
+.video-js {
+  overflow: hidden;
+}
+.video-js.vjs-static-controls .vjs-control-bar {
+  display:block;
+}
+
+/* Don't fade out controls */
+.video-js.vjs-static-controls.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Align poster to top */
+.video-js.vjs-static-controls .vjs-poster {
+  background-position: 50% 0;
+}
+
+/* Override tech height:100% */
+.video-js.vjs-static-controls .vjs-tech {
+  /* height: auto; */
+  height: calc(100%);
+}
+.video-js.vjs-fluid, .video-js.vjs-16-9, .video-js.vjs-4-3 {
+  padding-bottom: 0px;
+}
+.video-share-content-footer {
+  margin-top: 20px;
+}
+.btn-red.download {
+  width:110px;
+  line-height:2.5;
+  font-size: 12px;
+  cursor: pointer;
+  color: white!important;
+}
+.ui-loader.ui-corner-all.ui-loader-default.ui-body-a {
+  display: none !important;
+}
+.video-share-content .align-right {
+  text-align: right;
+}
+.video-share-content .align-center {
+  text-align: center;
+  margin-top: 10px;
+}
+.video-share .video-js .vjs-control.vjs-play-control{
+  float: left;
+  width: 30px;
+}
+
+.video-share .video-js .vjs-fullscreen-control .vjs-icon-placeholder:before {
+  content: url(../img/common/vjs-button.svg);
+  transform: scale(1) translateY(3px) translateX(-2px);
+  font-size: 15px;
+}
+
+.video-share .video-js .vjs-fullscreen-control[title='Non-Fullscreen'] .vjs-icon-placeholder:before {
+  content: url(../img/common/icon-play-full-off.svg);
+  transform: scale(1.1) translateY(4px) translateX(-6px);
+  font-size: 15px;
+}
+
+#share-video-download-modal .modal-dialog {
+  max-width: 400px;
+  width: 90%;
+}

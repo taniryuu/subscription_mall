@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
 
-  get 'user/:id/ticket', to: 'users#ticket', as: :ticket
+  get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   end
   resources :blogs#管理者が書くサブスクnews
   get 'reviews/list' => "reviews#list"#利用者ではない人用の表示ページ
-  get 'subscriptions/index'#まだ決まってない。使わないかもしれない
+  get 'subscriptions/list' => "subscriptions#list"#まだ決まってない。使わないかもしれない
   get 'blogs/index'#まだ決まってない。使わないかもしれない
 
   get 'suports', to: "suports#index"#サポート画面
@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   resources :interviews#経営者様インタビュー
   resources :cupons#クーポン
   resources :products#QRコード
+  resources :tickets#サブスクチケット
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
@@ -73,8 +74,10 @@ Rails.application.routes.draw do
           resources :images
         end
   end
-  resources :maps, only: :update
-  resources :categories, only: :index do
+  resources :maps, only: :update do
+    patch 'index_update', on: :member
+  end
+resources :categories, only: :index do
       get 'like_lunch', on: :member
       get 'washoku', on: :collection
       get 'teishoku', on: :collection
@@ -95,6 +98,14 @@ Rails.application.routes.draw do
       get 'humburger', on: :collection
       get 'kankokuryori', on: :collection
       get 'restaurant', on: :collection
+      get 'okonomiyaki', on: :collection
+      get 'nabe', on: :collection
+      get 'sweets', on: :collection
+      get 'karaage', on: :collection
+      get 'gyouza', on: :collection
+      get 'don', on: :collection
+      get 'udon', on: :collection
+      get 'soba', on: :collection
       get 'other', on: :collection
   end
   get 'users/deleted_users'##論理削除された利用者
