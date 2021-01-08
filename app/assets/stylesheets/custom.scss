@@ -1,6 +1,6 @@
 /* universal */
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -14,8 +14,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -27,7 +27,7 @@ time, mark, audio, video {
 	font-family: 'Hiragino Sans','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -195,3 +195,64 @@ p {
   font-size: 16px;
 }
 
+//インスタ画像
+.insta-list {
+  width: 930px;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+}
+
+.insta-list li {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+
+.insta-list li + li{
+  margin: 0 0 10px 10px;
+}
+.insta-list li:nth-child(4){
+  margin: 0;
+}
+.insta-list li img{
+  width: 100%;
+  height: auto;
+}
+
+.insta-image {
+  overflow:		hidden;
+  position:		relative;
+}
+
+.insta-image .caption {
+  font-size:		120%;
+  white-space: pre;
+  text-align: 	center;
+  margin: 30px auto;
+	color:			rgb(255, 255, 255);
+}
+
+.insta-image .mask {
+	width:			100%;
+	height:			100%;
+	position:		absolute;
+	top:			0;
+	left:			0;
+	opacity:		0;	/* マスクを表示しない */
+	background-color:	rgba(0,0,0,0.4);
+	-webkit-transition:	all 1s ease;
+	transition:		all 1s ease;
+}
+.insta-image:hover .mask {
+	opacity:		1;	/* マスクを表示する */
+	padding-left:		10px;	/* ホバーで下にずらす */
+}

@@ -1,7 +1,6 @@
 <% provide(:title, "Top") %>
 <hr class="border-solid" />
-<%
-=begin%>
+
  <p id="notice"><%= notice %></p>
 <% if signed_in? %> <%# ログインしているかどうか %>
   <% if current_user.present? %>
@@ -14,8 +13,7 @@
 <% else %>
   <p>ようこそ！ゲストさん</p>
 <% end %>
-<%
-=end%>
+
 
   <div class="f-container">
     <div class="f-item">
@@ -41,8 +39,8 @@
 
 
 <main class="scroll-container">
-  <%
-=begin%>
+
+
  <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
     <h1 id="category"><p class="top-category lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
@@ -355,6 +353,42 @@
       <% end %>
     </div>
 
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+         <% count = '6' %>
+         <% id = '17841404004573259' %>
+         <% token = 'EAAFsMnMLZBdUBABOhjSpZBQcyKRnUiGIuXuyJ8FPcj6miGELhF9rr40MUPQ3r8c2YDoSY8bGGv3EvKtKty8EB1xoQpiXNOCHHkxYcC2pSpWuPNWf4gh5TEuYc9C1Y1en6UuV4oTpzTSjuhcGxTBUzbSQk1ThXovkWqEAzT2Rg6wHA058zK' %>
+         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+         <% hash_a = JSON.parse(res) %>
+         <% hash_b = hash_a['media']['data'] %>
+         <% insta = [] %>
+           <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+           <% end %>
+
+           <% insta.each do |v| %>
+             <li class='insta-image'>
+               <%= link_to "#{v['link']}" do %>
+                 <% if v['img'].include?("video") %>
+                   <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                 <% else %>
+                   <%= (image_tag "#{v['img']}" ) %>
+                 <% end %>
+                  <div class="mask">
+		               <div class="caption"><%= "#{v['caption']}" %></div>
+	                </div>
+               <% end %>
+             </li>
+           <% end %>
+      </ul>
+    </div>
+
+
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
@@ -403,5 +437,5 @@
             </div>
           </div>
         <% end %>
-  <%# end %>
+   <% end %>
 </main>
