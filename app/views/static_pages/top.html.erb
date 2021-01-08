@@ -1,6 +1,6 @@
 <% provide(:title, "Top") %>
-
-<p id="notice"><%= notice %></p>
+<hr class="border-solid" />
+ <p id="notice"><%= notice %></p>
 <% if signed_in? %> <%# ログインしているかどうか %>
   <% if current_user.present? %>
     <p>ようこそ！<%= current_user.name %>さん</p>
@@ -11,118 +11,110 @@
   <% end %>
 <% else %>
   <p>ようこそ！ゲストさん</p>
-<% end %>
+<% end %> 
 
-<div class="top-bg">
- <div class="container my-5 p-5 z-depth-1">
-  <section class="dark-grey-text">
-    <h1 class="text-center font-weight-bold mb-4 pb-2">巡グルメで始めるサブスクランチ</h1>
-    <p class="text-center lead grey-text mx-auto mb-5">好きなランチを好きな場所で毎日食べ歩こう!</p>
-
-    <div class="row">
-
-      <div class="col-lg-8 text-center text-lg-left">
-        <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, width: "650vw", height: "500vh", class: 'video-content') %>
-      </div>
-
-       <div class="col-lg-4">
-
-        <div class="row mb-3">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">サブスクで</h5>
-            <p class="grey-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">毎日好きなランチを</h5>
-            <p class="grey-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">3000円から始める</h5>
-            <p class="grey-text mb-0">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
+  <div class="f-container">
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;サブスクで</span>
+          <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
       </div>
     </div>
-  </section>
- </div>
-</div>
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;毎日好きなランチを</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+      </div>
+    </div>
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;3000円から始める</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+      </div>
+    </div>
+  </div>
+  <hr class="border-solid-down" />
+
 
 <main class="scroll-container">
-  <% if signed_in? %> <%# ログインしているかどうか %>
+ <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+    </div>
+    
+    <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <% if category.image_category.present? && category.name.present? %>
-              <div class="col-lg-4 col-sm-6 mb-5">
-                <div class="row d-flex align-items-center">
-                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                  </div>
-                  <div class="col-7">
-                    <h6 class="font-weight-bold pt-2">
-                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            <% else %>
-              <h1>見つかりません</h1>
-            <% end %>
-          <% end %>
-        </div>
-      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="plan">プラン</h1></br>
-      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
-            </div>
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+            <%= image_tag category.image_category, class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
-        <% end %>
-      <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-      <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-         <hr class="tool-bar">
+        </div>
+      <% end %>
+    </div>
+
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+    
+    <div class="google-map">
+      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+        <%= f.label :エリア %>
+        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+        <%= f.submit '検索' %>
+      <% end %>
+      <div id="map"></div>
+    </div> 
+    <div class="recommend-shop">
+      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+ 
+    <hr class="style1">
+    <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+      <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
+        <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="grid-item-image"><%= image_tag review.image_interview.thumb.url %></div>
+              <%= link_to "#{review.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.content}", interview_path(interview) %>
+          </div>
+        </div>
+      <% end %>
+    <hr class="style2"> 
+    <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
+      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+        <hr class="tool-bar">
           <div class="row">
-            <div class="col-md-offset-3 col-sm-6">
+            <div class="col-sm-offset-3 col-sm-6">
               <%= link_to "#{blog.title}", blog_path(blog) %>
             </div><br>
-            <div class="col-md-offset-8 col-sm-6">
+            <div class="col-sm-offset-8 col-sm-6">
               <%= link_to "#{blog.body}", blog_path(blog) %>
             </div>
           </div>
-        <% end %>
-      <h1><%= link_to "よくある質問", questions_path %></h1>
+      <% end %>
+    <hr class="style2">
+    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
         <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
           <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
                 <%= link_to "#{question.detail}", questions_path %>
@@ -133,60 +125,81 @@
           </div>
         <% end %>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-      <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+    </div>
+    
+    <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <% if category.image_category.present? && category.name.present? %>
-              <div class="col-lg-4 col-sm-6 mb-5">
-                <div class="row d-flex align-items-center">
-                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                  </div>
-                  <div class="col-7">
-                    <h6 class="font-weight-bold pt-2">
-                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            <% elsif category.image_category.nil? && category.name.nil? %>
-              <h1>見つかりません</h1>
-            <% end %>
-          <% end %>
-        </div>
-      <h1 id="plan"><%= link_to "プラン", user_plans_path(current_user.id), class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
-            </div>
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+            <%= image_tag category.image_category, class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
-        <% end %>
-      <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-      <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-         <hr class="tool-bar">
+        </div>
+      <% end %>
+    </div>
+
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+    
+    <div class="google-map">
+      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+        <%= f.label :エリア %>
+        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+        <%= f.submit '検索' %>
+      <% end %>
+      <div id="map"></div>
+    </div> 
+    <div class="recommend-shop">
+      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+ 
+    <hr class="style1">
+    <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+      <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
+        <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="grid-item-image"><%= image_tag review.image_interview.thumb.url %></div>
+              <%= link_to "#{review.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.content}", interview_path(interview) %>
+          </div>
+        </div>
+      <% end %>
+    <hr class="style2"> 
+    <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
+      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+        <hr class="tool-bar">
           <div class="row">
-            <div class="col-md-offset-3 col-sm-6">
+            <div class="col-sm-offset-3 col-sm-6">
               <%= link_to "#{blog.title}", blog_path(blog) %>
             </div><br>
-            <div class="col-md-offset-8 col-sm-6">
+            <div class="col-sm-offset-8 col-sm-6">
               <%= link_to "#{blog.body}", blog_path(blog) %>
             </div>
           </div>
-        <% end %>
-        <h1><%= link_to "よくある質問", questions_path %></h1>
+      <% end %>
+    <hr class="style2">
+    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
         <% @questions.each do |question| %><%# よくある質問を全てeach %>
           <hr class="tool-bar">
           <div class="row">
@@ -199,62 +212,82 @@
           </div>
         <% end %>
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+    </div>
+    
+    <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <% if category.image_category.present? && category.name.present? %>
-              <div class="col-lg-4 col-sm-6 mb-5">
-                <div class="row d-flex align-items-center">
-                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                  </div>
-                  <div class="col-7">
-                    <h6 class="font-weight-bold pt-2">
-                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            <% else %>
-              <h1>見つかりません</h1>
-            <% end %>
-          <% end %>
-        </div>
-      <h1 id="plan">プラン</h1></br>
-      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
-            </div>
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+            <%= image_tag category.image_category, class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
-        <% end %>
-      <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-      <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-         <hr class="tool-bar">
+        </div>
+      <% end %>
+    </div>
+
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+    
+    <div class="google-map">
+      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+        <%= f.label :エリア %>
+        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+        <%= f.submit '検索' %>
+      <% end %>
+      <div id="map"></div>
+    </div> 
+    <div class="recommend-shop">
+      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+ 
+    <hr class="style1">
+    <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+      <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
+        <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="grid-item-image"><%= image_tag review.image_interview.thumb.url %></div>
+              <%= link_to "#{review.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.content}", interview_path(interview) %>
+          </div>
+        </div>
+      <% end %>
+    <hr class="style2"> 
+    <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
+      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+        <hr class="tool-bar">
           <div class="row">
-            <div class="col-md-offset-3 col-sm-6">
+            <div class="col-sm-offset-3 col-sm-6">
               <%= link_to "#{blog.title}", blog_path(blog) %>
             </div><br>
-            <div class="col-md-offset-8 col-sm-6">
+            <div class="col-sm-offset-8 col-sm-6">
               <%= link_to "#{blog.body}", blog_path(blog) %>
             </div>
           </div>
-        <% end %>
-      <h1><%= link_to "よくある質問", questions_path %></h1>
+      <% end %>
+    <hr class="style2">
+    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
         <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
           <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
                 <%= link_to "#{question.detail}", questions_path %>
@@ -265,71 +298,75 @@
           </div>
         <% end %>
     <% end %>
-  <% else %> <%# ログインしてない %>
-    <h1><%= link_to "経営者様はこちら", top_owner_path, class: "btn btn-lg btn-info" %></h1>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
-          <%= form_with(model: @map, local: true) do |f| %>
-            <%= f.label :エリア %>
-            <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-            <%= f.submit '検索' %>
-          <% end %>
+
+  <% else %> <%# ログインしてない %> 
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink2 btn--cubic2">経営者様はこちら</a>
+      <a href="/users/sign_up" class="btn btn-c btn--pink btn--cubic">利用者様会員登録</a>
+    </div>
+    <h1>↓ここの画像利用者用に変える</h1>
+    <div>
+      <%= image_tag 'nagare.jpeg.png', Style: "height: 350px"%><i class="fas fa-chevron-circle-right"></i>
+    </div>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div id="map"></div>
-        <style>
-        #map{
-          height: 200px;
-        }
-        </style>
-
-        <script>
-          let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
-
-          function initMap(){
-            mapInstance = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-            });
-          }
-        </script>        
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <div class="col-lg-4 col-sm-6 mb-5">
-              <div class="row d-flex align-items-center">
-                <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                    <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                </div>
-                <div class="col-7">
-                  <h6 class="font-weight-bold pt-2">
-                      <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                  </h6>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-    <h1 id="plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "btn btn-lg btn-default" %></h1></br>
-    <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-        <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
-            </div>
+    <div class="category-list">
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+            <%= image_tag category.image_category, class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
-        <% end %>
-    <h1 id="service"><%= link_to "ご利用方法について", how_to_use_path, class: "btn btn-lg btn-default" %></h1></br>
-    <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-    <h1 id="inquiry"><%= link_to "サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
-    <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+    
+    <div class="google-map">
+      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+        <%= f.label :エリア %>
+        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
+        <%= f.submit '検索' %>
+      <% end %>
+      <div id="map"></div>
+    </div> 
+    <div class="recommend-shop">
+      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div>
+ 
+    <hr class="style1">
+    <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+      <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
+        <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="grid-item-image"><%= image_tag review.image_interview.thumb.url %></div>
+              <%= link_to "#{review.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{review.content}", interview_path(interview) %>
+          </div>
+        </div>
+      <% end %>
+    <hr class="style2"> 
+    <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
+      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
         <hr class="tool-bar">
           <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
@@ -339,10 +376,10 @@
               <%= link_to "#{blog.body}", blog_path(blog) %>
             </div>
           </div>
-        <% end %>
-    <h1><%= link_to "よくある質問", questions_path %></h1>
+      <% end %>
+    <hr class="style2">
+    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
         <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
           <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
                 <%= link_to "#{question.detail}", questions_path %>
@@ -354,3 +391,85 @@
         <% end %>
   <% end %>
 </main>
+
+<style>
+    #map{
+      height: 200px;
+    }
+</style>
+<script>
+  let map
+  let geocode
+  let marker = []; // マーカーを複数表示させたいので、配列化
+  let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+  let markerData = gon.owners; // コントローラーで定義したインスタンス変数を変数に代入
+
+  const display = document.getElementById('map')
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: 
+      {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+      lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+      zoom: 18,
+    });
+  
+    // 繰り返し処理でマーカーと吹き出しを複数表示させる
+    for (var i = 0; i < markerData.length; i++) {
+      let id = markerData[i]['store_information']
+
+      // 各地点のマーカーを作成
+      marker[i] = new google.maps.Marker({
+        position: latlng,
+        map: map
+      });
+
+      // 各地点の吹き出しを作成
+      infoWindow[i] = new google.maps.InfoWindow({
+        // 吹き出しの内容
+        content: '<div id="map">' + markerData[i]['store_information'] + '</div>'
+      });
+
+      // マーカーにクリックイベントを追加
+      markerEvent(i);
+    }
+  
+  // マーカーをクリックしたら吹き出しを表示
+  function markerEvent(i) {
+    marker[i].addListener('click', function () {
+      infoWindow[i].open(map, marker[i]);
+    });
+    }
+      // 各ユーザーのIDを変数化
+    let id = markerData[i]['id']
+
+    infoWindow[i] = new google.maps.InfoWindow({
+      // <a>タグでリンクを作成
+      content: `<a href='/owners/${ id }'>${ markerData[i]['store_information'] }</a>`
+    });
+  }
+
+  function codeAddress(){
+    // 入力を取得
+    let inputAddress = document.getElementById('store_information').value;
+
+    // geocodingしたあとmapを移動
+    geocoder.geocode( { 'store_information': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        // map.setCenterで地図が移動
+        map.setCenter(results[0].geometry.location);
+
+        // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script> 

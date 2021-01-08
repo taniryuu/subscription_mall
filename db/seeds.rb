@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(name: "中野さん",
-              email: "sample@email.com",
+              email: "sample_admin@email.com",
               password: "password",
               password_confirmation: "password")
 
@@ -21,8 +21,8 @@ puts "Admin Created"
                 email: email,
                 password: password,
                 password_confirmation: password)
-end        
-  
+end
+
 puts "User Created"
 
 10.times do |n|
@@ -33,9 +33,20 @@ puts "User Created"
                 email: email,
                 password: password,
                 password_confirmation: password)
-end        
-  
+end
+
 puts "Owner Created"
+
+Question.create!(detail: "さぶすくとは",
+  answer: "さぶすくページ"
+  )
+Question.create!(detail: "ぷらん",
+  answer: "お金欲しい"
+  )
+puts "Question Created"
+
+Map.create!(address: "伊豆急下田駅")
+puts "Map Created"
 
 Category.create!(name: "和食",
                 image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
@@ -96,19 +107,33 @@ Category.create!(name: "韓国料理",
 Category.create!(name: "レストラン",
                 image_category: "https://media.gettyimages.com/photos/cafebar-in-moscow-picture-id1158221681?k=6&m=1158221681&s=612x612&w=0&h=JykZfmjm8VJtSMBVstQP3UP4Vp0Of7t-VokP63NSnXo="
                 )
+Category.create!(name: "お好み焼き",
+                image_category: "istockphoto-95396899-170667a.jpg"
+                )
+Category.create!(name: "鍋",
+                image_category: "korean-4147335__340.jpg"
+                )
+Category.create!(name: "スイーツ",
+                image_category: "sweets.jpeg"
+                )
+Category.create!(name: "唐揚げ",
+                image_category: "karaage.jpeg"
+                )
+Category.create!(name: "餃子",
+                image_category: "gyouza.jpeg"
+                )
+Category.create!(name: "丼モノ",
+                image_category: "don.jpeg"
+                )
+Category.create!(name: "うどん",
+                image_category: "udon.jpeg"
+                )
+Category.create!(name: "そば",
+                image_category: "soba.jpeg"
+                )
 Category.create!(name: "その他",
                 image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
                 )
 puts "Category Created"
 
-Question.create!(detail: "さぶすくとは",
-  answer: "さぶすくページ"
-  )
-Question.create!(detail: "ぷらん",
-  answer: "お金欲しい"
-  )
-puts "Question Created"
 
-Map.create!(address: "伊豆急下田駅")
-puts "Map Created"
-                

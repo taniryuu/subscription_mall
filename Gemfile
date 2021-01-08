@@ -22,6 +22,7 @@ gem 'carrierwave', '~> 2.0'#複数画像投稿のgem
 gem 'cloudinary'
 gem 'rmagick'#画像をリサイズしたりする
 gem 'rails-i18n'
+gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -32,6 +33,7 @@ gem 'omniauth-line'
 gem 'omniauth-oauth2', '>= 1.6'
 gem 'stripe'
 gem 'geocoder'#googlemap用
+gem 'gon'#googlemapお店一覧用
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
