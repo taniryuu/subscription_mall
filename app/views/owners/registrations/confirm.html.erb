@@ -1,0 +1,18 @@
+<div>
+
+  <h2>入力情報の確認</h2>
+
+  <%= form_for @owner, url: {action: "complete"} do |f| %>
+
+    <p><%= f.label :name %><%= f.text_field :name, value: @owner.name, readonly: true %></p>
+    <p><%= f.label :email %><%= f.email_field :email, value: @owner.email, readonly: true %></p>
+    <p><%= f.label :phone_number %><%= f.telephone_field :phone_number, value: @owner.phone_number, readonly: true %></p>
+    <p><%= f.label :store_information %><%= f.text_field :store_information, value: @owner.store_information, readonly: true %></p>
+    <p><%= f.label :payee %><%= f.text_field :payee, value: @owner.payee, readonly: true %></p>
+    <p><%= f.label :password %><%= @password %></p>
+
+    <%= f.submit "修正する", name: :back %>
+    <%= f.submit "登録する" %>
+
+  <% end %>
+</div>

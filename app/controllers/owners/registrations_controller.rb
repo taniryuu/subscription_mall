@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Owners::RegistrationsController < Devise::RegistrationsController
+  before_action :create, only: [:confirm, :complete]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -10,9 +11,31 @@ class Owners::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @owner= Owner.new(sign_up_params)
+    render :new and return if params[:back]
+    super
+  end
+
+  def confirm
+    i = 0
+    @password = ""
+    while i < 8
+      @password += "*"
+      i += 1
+    end
+  end
+
+  # 新規追加
+  def complete
+    render :action => 'complete'
+  end
+
+  # アカウント登録後
+  def after_sign_up_path_for(resource)
+    owners_sign_up_complete_path(resource)
+  end
+
 
   # GET /resource/edit
   # def edit

@@ -42,6 +42,11 @@ Rails.application.routes.draw do
    get 'users/sign_up', to: 'users#new'
   end
 
+  devise_scope :owner do
+    post 'owners/sign_up/confirm', to: 'owners/registrations#confirm'
+    patch 'owners/sign_up/complete', to: 'owners/registrations#complete'
+  end
+
   resources :admins do
       get 'admin_account', on: :member#アカウントページ
   end
