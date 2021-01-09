@@ -16,19 +16,19 @@
   <div class="f-container">
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;サブスクショップで！</span>
+        <span class="box-title2">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;サブスクショップで！</span>
           <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;ネット集客で！</span>
+        <span class="box-title2">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;ネット集客で！</span>
           <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;売り上げUPを！</span>
+        <span class="box-title2">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;売り上げUPを！</span>
           <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
@@ -227,15 +227,16 @@
   <% else %> <%# ログインしてない %>
     <div class="owner-btn">
       <a href="/" class="btn btn-c btn--pink btn--cubic">利用者様はこちら</a>
+      <a href="/owners/sign_up" class="btn btn-c btn--pink2 btn--cubic2">経営者様会員登録</a>
     </div>
     <div class="recommend-shop">
       <%= link_to discussion_path, class: "btn-gradient-radius-blue" do%>
       まずは相談しましょう&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-    <a href="https://lin.ee/PrKWtcm">
-    経営者様用のLineのお問い合わせはこちら<img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"  height="36" border="0">
-    </a>
+    <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/PrKWtcm">
+    <i class="fa fa-mobile">
+    </i><span>経営者様用のLINEのお問い合わせはこちら</span></a>
     <h1>ここに動画</h1>
     <div class="recommend-shop">
       <%= image_tag 'nayami.jpg', Style: "height: 350px"%>
