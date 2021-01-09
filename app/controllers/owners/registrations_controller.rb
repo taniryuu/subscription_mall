@@ -19,19 +19,20 @@ class Owners::RegistrationsController < Devise::RegistrationsController
   def confirm
     @owner = Owner.new(sign_up_params)
     if @owner.valid?
-      render :action => 'confirm'
+      render :confirm
     else
-     render :action => 'new'
+     render :new
     end
   end
 
   # 新規追加
   def complete
+    @owner.save
+    OwnerMailer.with(owner: @owner).welcome_email.deliver_now
   end
 
   # アカウント登録後
   def after_sign_up_path_for(resource)
-    debugger
     owners_sign_up_complete_path(resource)
   end
 

@@ -35,11 +35,6 @@ puts "User Created"
                 password_confirmation: password)
 end
 
-Owner.create!(name: "ruffini47",
-	      email: "ruffini47@gmail.com",
-	      password: "password",
-              password_confirmation: "password")
-
 puts "Owner Created"
 
 Question.create!(detail: "さぶすくとは",
