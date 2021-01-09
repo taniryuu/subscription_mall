@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   devise_scope :owner do
     post 'owners/sign_up/confirm', to: 'owners/registrations#confirm'
     patch 'owners/sign_up/complete', to: 'owners/registrations#complete'
+    post 'owners/sign_up/complete', to: 'owners/registrations#complete'
   end
 
   resources :admins do
