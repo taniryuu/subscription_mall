@@ -40,7 +40,6 @@ ja:
           address: 住所
           subject: 件名
           message: メッセージ
-          notification_received: お知らせ受信
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
@@ -73,6 +72,7 @@ ja:
           image_subscription2: お店紹介写真2
           image_subscription2: お店紹介写真3
           image_subscription2: お店紹介写真4
+          qr_image: LINE@QRコード画像
           monthly_fee: 月額利用料金
           price: 金額
           subscription_detail: 店舗情報

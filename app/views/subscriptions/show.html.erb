@@ -153,6 +153,13 @@
   </section>
 </div>
 
+<% if @subscription.qr_image.present? %>
+  <%= image_tag @subscription.qr_image ,size: '150x150', alt: "QR_Code", class: "img-fluid" %>
+  <p>LINE@招待コード</p>
+<% else %>
+  <p>※QRコードが登録されていません</p>
+<% end %>
+
 <style>
 #map{
   height: 500px;
