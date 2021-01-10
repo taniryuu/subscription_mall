@@ -20,7 +20,6 @@ class User < ApplicationRecord
   validates_format_of :email, presence: true, with: Devise.email_regexp, if: :will_save_change_to_email?
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
-  validates :notification_received, inclusion: { in: [true, false] }
 
   # @see https://github.com/heartcombo/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_for_database_authentication(warden_conditions)
