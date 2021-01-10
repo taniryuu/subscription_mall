@@ -24,6 +24,13 @@
   </div>
 
   <div class="field">
+    <%= form.fields_for :images do |f_img|%>
+      <%= f_img.label :サブスク写真 %>
+      <%= f_img.file_field :image_subscription_id, multiple: true %>
+    <% end %>
+  </div>
+  
+  <div class="field">
     <%= form.label :qr_image %><br/>
     <%= form.file_field :qr_image %>
   </div>
