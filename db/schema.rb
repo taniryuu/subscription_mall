@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201229005402) do
+ActiveRecord::Schema.define(version: 20210109054911) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -131,6 +131,19 @@ ActiveRecord::Schema.define(version: 20201229005402) do
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
     t.index ["owner_id"], name: "index_maps_on_owner_id"
+  end
+
+  create_table "megurumereviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "content"
+    t.integer "score"
+    t.float "rate", limit: 24
+    t.string "image_id"
+    t.string "email"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_megurumereviews_on_user_id"
   end
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -303,6 +316,7 @@ ActiveRecord::Schema.define(version: 20201229005402) do
   add_foreign_key "images", "users"
   add_foreign_key "interviews", "owners"
   add_foreign_key "maps", "owners"
+  add_foreign_key "megurumereviews", "users"
   add_foreign_key "products", "admins"
   add_foreign_key "products", "owners"
   add_foreign_key "products", "subscriptions"

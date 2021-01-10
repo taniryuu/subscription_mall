@@ -63,7 +63,9 @@
       全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -77,7 +79,9 @@
       おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-
+<%
+=end
+%>
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
@@ -149,7 +153,9 @@
       全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -163,11 +169,52 @@
       おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
+<%
+=end
+%>
+     <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+         <% count = '6' %>
+         <% id = '17841404004573259' %>
+         <% token = 'EAAFsMnMLZBdUBABOhjSpZBQcyKRnUiGIuXuyJ8FPcj6miGELhF9rr40MUPQ3r8c2YDoSY8bGGv3EvKtKty8EB1xoQpiXNOCHHkxYcC2pSpWuPNWf4gh5TEuYc9C1Y1en6UuV4oTpzTSjuhcGxTBUzbSQk1ThXovkWqEAzT2Rg6wHA058zK' %>
+         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+         <% hash_a = JSON.parse(res) %>
+         <% hash_b = hash_a['media']['data'] %>
+         <% insta = [] %>
+           <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+           <% end %>
+
+           <% insta.each do |v| %>
+             <li class='insta-image'>
+               <%= link_to "#{v['link']}" do %>
+                 <% if v['img'].include?("video") %>
+                   <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                 <% else %>
+                   <%= (image_tag "#{v['img']}" ) %>
+                 <% end %>
+                  <div class="mask">
+		               <div class="caption"><%= "#{v['caption']}" %></div>
+	                </div>
+               <% end %>
+             </li>
+           <% end %>
+      </ul>
+    </div>
+
 
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path(current_user), class: "user-service" %></div>
       <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
@@ -236,7 +283,9 @@
       全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -250,11 +299,13 @@
       おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-
+<%
+=end
+%>
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
       <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
@@ -327,8 +378,10 @@
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
       全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
-    </div>
-
+    </div></br></br>
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -342,7 +395,13 @@
       おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
+<%
+=end
+%>
 
+    <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
     <div> <%# instagramデータ取得 %>
       <ul class="insta-list">
          <% count = '6' %>
@@ -378,11 +437,37 @@
       </ul>
     </div>
 
+    <div id="slider" class="box14">
+      <% @megurumereviews.each do |review| %>
+          <p>お客様満足度 /
+          <span class="star-rating-top mb-2">
+          <span class="star-rating-top-front" style="width: <%= review.score.to_f*100/5 %>%">★★★★★</span>
+          <span class="star-rating-top-back">★★★★★</span>
+          </span>
+          </br></br>
+          <span>投稿日&nbsp;<%= l(review.created_at, format: :date) %></span></br></br>
+          <%= review.content %>
+          </p>
+      <% end %>
+    </div>
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
       <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
