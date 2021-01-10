@@ -405,8 +405,8 @@
     <div> <%# instagramデータ取得 %>
       <ul class="insta-list">
          <% count = '6' %>
-         <% id = '17841404004573259' %>
-         <% token = 'EAAFsMnMLZBdUBABOhjSpZBQcyKRnUiGIuXuyJ8FPcj6miGELhF9rr40MUPQ3r8c2YDoSY8bGGv3EvKtKty8EB1xoQpiXNOCHHkxYcC2pSpWuPNWf4gh5TEuYc9C1Y1en6UuV4oTpzTSjuhcGxTBUzbSQk1ThXovkWqEAzT2Rg6wHA058zK' %>
+         <% id = '17841442005934576' %>
+         <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
          <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
          <% hash_a = JSON.parse(res) %>
          <% hash_b = hash_a['media']['data'] %>
