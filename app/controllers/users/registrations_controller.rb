@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # 新規追加
   def complete
     @user.save
-    #UserMailer.with(user: @user).welcome_email.deliver_now
+    UserMailer.with(user: @user).welcome_email.deliver_now
   end
 
   # アカウント登録後
