@@ -1,5 +1,5 @@
 class OwnerMailer < ApplicationMailer
-  default from: 'ruffini47@gmail.com'
+  default from: 'megurumee@gmail.com'
 
   def welcome_email
     @owner = params[:owner]
