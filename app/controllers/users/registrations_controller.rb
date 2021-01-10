@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :create, only: [:complete]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   # before_action :set_user, only: [:new, :create, :show]
@@ -12,18 +13,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
-    # @resource = User.new(user_params)
-
-    # if @resource.save
-    #   # 保存後にUserMailerを使ってwelcomeメールを送信
-    #   UserMailer.with(resource: @resource).welcome_email.deliver_later
-
-    #   redirect_to thanks_user_url(@resource)
-    # else
-    #   render :new
-    # end
+    @user= User.new(sign_up_params)
+    render :new and return if params[:back]
   end
+
+  def confirm
+    @user = User.new(sign_up_params)
+    if @user.valid?
+      render :confirm
+    else
+     render :new
+    end
+  end
+
+  # 新規追加
+  def complete
+    @user.save
+    #UserMailer.with(user: @user).welcome_email.deliver_now
+  end
+
+  # アカウント登録後
+  def after_sign_up_path_for(resource)
+    users_sign_up_complete_path(resource)
+  end
+
   # GET /resource/edit
   # def edit
   #   super
@@ -80,5 +93,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def user_params
       params.require(:user).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
+    end
+
+    def sign_up_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

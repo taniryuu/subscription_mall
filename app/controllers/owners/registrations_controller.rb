@@ -36,11 +36,6 @@ class Owners::RegistrationsController < Devise::RegistrationsController
     owners_sign_up_complete_path(resource)
   end
 
-  #def after_inactive_sign_up_path_for(resource)
-  #  debugger
-  #  owners_sign_up_complete_path(resource)
-  #end
-
   # GET /resource/edit
   # def edit
   #   super
@@ -93,7 +88,7 @@ class Owners::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def sign_up_params
-    params.require(:owner).permit(:name, :email, :phone_number, :store_information, :payee, :password, :password_confirmation)
-  end
+    def sign_up_params
+      params.require(:owner).permit(:name, :email, :phone_number, :store_information, :payee, :password, :password_confirmation)
+    end
 end

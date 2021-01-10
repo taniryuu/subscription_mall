@@ -38,8 +38,11 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  devise_scope :users do
-   get 'users/sign_up', to: 'users#new'
+  devise_scope :user do
+    #get 'users/sign_up', to: 'users#new'
+    post 'users/sign_up/confirm', to: 'users/registrations#confirm'
+    patch 'users/sign_up/complete', to: 'users/registrations#complete'
+    post 'users/sign_up/complete', to: 'users/registrations#complete'
   end
 
   devise_scope :owner do
