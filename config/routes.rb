@@ -11,14 +11,15 @@ Rails.application.routes.draw do
   get 'site' => "subscriptions#site", as: :site#サイトについて
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
-  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans
+  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans#利用者のプラン内容
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
 
   get 'categories/shop_list', to: 'categories#shop_list', as: :shop_list_categories
-  get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories
+  get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories#おすすめショップ
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
+  get 'subscriptions/shop_case', to: 'subscriptions#shop_case', as: :shop_case#ショップ事例
 
   get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket
 

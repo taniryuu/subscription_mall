@@ -13,6 +13,10 @@ class SubscriptionsController < ApplicationController
     @subscriptions = Subscription.includes(:owner)
   end
 
+  def shop_case
+    @subscriptions = Subscription.includes(:owner)
+  end
+
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
