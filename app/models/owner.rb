@@ -7,9 +7,9 @@ class Owner < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable,
          :registerable,
-         :recoverable, 
+         :recoverable,
          :rememberable
         #  :validatable
 
@@ -27,20 +27,65 @@ class Owner < ApplicationRecord
     conditions = warden_conditions.dup
     self.without_soft_deleted.where(conditions.to_h).first
   end
-       
-  # 物理削除の代わりにユーザーの`deleted_at`をタイムスタンプで更新
-  def soft_delete  
-    update_attribute(:deleted_at, Time.current)  
+
+  def self.find_for_oauth(auth) # facebook, twitter ログイン用メソッドです
+    owner = Owner.where(uid: auth.uid, provider: auth.provider).first
+    unless owner
+      owner = Owner.create(
+        uid:      auth.uid,
+        provider: auth.provider,
+        email:    Owner.dummy_email(auth),
+        name:  auth.info.name,
+        password: Devise.friendly_token[0, 20]
+      )
+    end
+    owner
   end
 
-  # ユーザーのアカウントが有効であることを確認 
-  def active_for_authentication?  
-    super && !deleted_at  
-  end  
+  has_many :social_profiles, dependent: :destroy # ここから44行目までline ログイン用メソッドです
+  def social_profile(provider)
+    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
+  end
 
-  # 削除したユーザーにカスタムメッセージを追加します  
-  def inactive_message   
-    !deleted_at ? super : :deleted_account  
-  end 
+
+  def set_values(omniauth)
+      return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
+      credentials = omniauth['credentials']
+      info = omniauth['info']
+
+      access_token = credentials['refresh_token']
+      access_secret = credentials['secret']
+      credentials = credentials.to_json
+      name = info['name']
+      # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
+  end
+
+  def set_values_by_raw_info(raw_info)
+    self.raw_info = raw_info.to_json
+    self.save!
+    owner
+  end
+
+  # 物理削除の代わりにユーザーの`deleted_at`をタイムスタンプで更新
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
+
+  # ユーザーのアカウントが有効であることを確認
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # 削除したユーザーにカスタムメッセージを追加します
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+
+
+  private
+
+    def self.dummy_email(auth)  # facebook, twitter ログイン用メソッドです
+      "#{auth.uid}-#{auth.provider}@example.com"
+    end
 
 end
