@@ -1,7 +1,7 @@
 <header>
 <% if signed_in? %> <%# ログインしているかどうか %>
  <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-    <div class="container-fluid"> 
+    <div class="container-fluid">
       <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
         <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
           <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
@@ -20,10 +20,10 @@
             </ul>
           </div>
         </nav>
-      <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
-    </div> 
+    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    </div>
  <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-    <div class="container-fluid"> 
+    <div class="container-fluid">
       <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
         <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
           <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
@@ -40,10 +40,10 @@
             </ul>
           </div>
         </nav>
-      <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
-    </div> 
+    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    </div>
  <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-    <div class="container-fluid"> 
+    <div class="container-fluid">
       <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
         <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
           <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
@@ -53,8 +53,8 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li class="plan"><a href="plan_description">プラン</a></li>
-              <li class="recommend"><a href="categories/recommend">おすすめ店舗</a></li>
+              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
               <li><%= link_to "経営者様管理", owners_path %></li>
               <li><%= link_to "利用者様管理", users_path %></li>
@@ -62,13 +62,13 @@
             </ul>
           </div>
         </nav>
-      <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
     </div>
-  <% end %> 
- 
+  <% end %>
+
 
 <% else %> <%# ログインしてない %>
-  <div class="container-fluid"> 
+  <div class="container-fluid">
     <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
       <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
         <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
@@ -78,16 +78,32 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
           <ul class="navbar-nav">
-            <li class="plan"><a href="plan_description">プラン</a></li>
-            <li class="recommend"><a href="categories/recommend">おすすめ店舗</a></li>
+            <li><%= link_to "プラン", plan_description_path %></li>
+            <li><%= link_to "おすすめ店舗", recommend_categories_path %></li>
             <li class="login"><%= link_to "ログイン", new_user_session_path %></li>
             <li class="new-user"><%= link_to "会員登録", new_user_registration_path %></li>
           </ul>
         </div>
       </nav>
-    <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
   </div>
 <% end %>
     <h1 class="text-center">巡グルメで始めるサブスクランチ。</h1>
     <p class="text-sub-center lead grey-text mx-auto mb-5">好きなランチを好きな場所で毎日食べ歩こう!</p>
 </header>
+ <script type="text/javascript">
+            if(!window._pt_sp_2){
+                window._pt_lt = new Date().getTime();
+                window._pt_sp_2 = [];
+                _pt_sp_2.push("setAccount,11882d9b");
+                var _protocol =(("https:" == document.location.protocol) ? " https://" : " http://");
+                (function() {
+                    var atag = document.createElement("script");
+                    atag.type = "text/javascript";
+                    atag.async = true;
+                    atag.src = _protocol + "js.ptengine.jp/11882d9b.js";
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(atag, s);
+                })();
+            }
+	</script>

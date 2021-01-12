@@ -2,15 +2,16 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :tickets, dependent: :destroy
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
+  has_many :megurumereviews, dependent: :destroy
   acts_as_paranoid # 追加
   devise :database_authenticatable,
          :registerable,
          :recoverable,
-         :rememberable,
+         :rememberable
         #  :validatable,
-         :omniauthable,
-         omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
+        #  :omniauthable,
+        # omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
 
   scope :without_soft_deleted, -> { where(deleted_at: nil) }
   # validatable相当の検証を追加
