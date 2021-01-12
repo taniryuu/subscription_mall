@@ -19,7 +19,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.name ,user_path(user) %></td>
+          <td><%= link_to user.name ,user_path(user.restore) %></td>
           <td><%= user.kana %></td>
           <td><%= user.email %></td>
           <td><%= user.phone_number %></td>

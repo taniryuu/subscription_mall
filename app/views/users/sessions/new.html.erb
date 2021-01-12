@@ -6,7 +6,8 @@
   <div class="box-inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-      <h1>会員ユーザー ログイン</h1>
+      <h1>会員ユーザー様</h1>
+      <h1>ログイン</h1>
       <div class="box-email">
         <%= f.label :email, "メールアドレス" %><br />
         <%= f.email_field :email, :required => true, autofocus: true, autocomplete: "email" %>
@@ -24,55 +25,42 @@
       </div>
       <div class="box-login">
         <%= f.submit "ログイン" %>
-        <div class="legal-text">
-          経営者様はこちらからログイン
+        <div class="legal-text"></br>
           <div class="box-newusr"></br>
             <%= link_to "経営者様はこちらからログイン", new_owner_session_path %>
           </div>
         </div>
-        <div class="box-newusr"></br>
-          <%= link_to "管理者はこちらからログイン", new_admin_session_path %>
-        </div>
+          <div class="box-newusr"></br>
+            <%= link_to "管理者はこちらからログイン", new_admin_session_path %>
+          </div>
 
         <h2>SNSアカウントでログイン</h2>
 
         <div class="box-facebook"></br>
-          <%= link_to user_facebook_omniauth_authorize_path do %>
+            <%= link_to('/devise/auth/facebook') do %>
             <i class="fa fa-facebook-official"></i> Facebookでログイン
-          <% end %>
+            <% end %>
         </div>
 
         <div class="box-line"></br>
-          <%= link_to user_line_omniauth_authorize_path do %>
+            <%= link_to('/devise/auth/line') do %>
             <i class="fa fa-mobile"></i> LINEでログイン
-          <% end %>
-        </div>
-
-        <div class="box-google"></br>
-          <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-            <i class="fa fa-google"></i> Googleでログイン
-          <% end %>
+            <% end %>
         </div>
 
         <div class="box-twitter"></br>
-          <%= link_to user_twitter_omniauth_authorize_path do %>
+            <%= link_to('/devise/auth/twitter') do %>
             <i class="fa fa-twitter"></i> Twitterでログイン
-          <% end %>
-        </div>
-
-        <div class="box-instagram"></br>
-          <%= link_to user_instagram_omniauth_authorize_path do %>
-            <i class="fa fa-instagram"></i> Instagramでログイン
-          <% end %>
+            <% end %>
         </div>
 
       </div>
     <% end %>
 
     <div class="box-newusr">
-      <p><span>------------</span> Subscription_mallの会員ですか？ <span>------------</span></p>
+    <p><span>--------------</span> 巡グルメの会員ですか？ <span>----------------</span></p>
 
-      <%= link_to "Subscription_mall会員登録", new_user_registration_path %>
+      <%= link_to "巡グルメ会員登録", new_user_registration_path %>
     </div>
   </div>
 </div>

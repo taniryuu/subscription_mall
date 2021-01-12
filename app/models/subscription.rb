@@ -2,6 +2,7 @@ class Subscription < ApplicationRecord
   belongs_to :owner
   # belongs_to :shop
   has_many :images, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   enum price: { "3,000"=> 1, "12,000"=> 2, "18,000"=> 3, "25,000"=> 4, "50,000"=> 5, "100,000"=> 6}, _prefix: true
@@ -15,4 +16,20 @@ class Subscription < ApplicationRecord
   mount_uploader :image_subscription4, ImageUploader
 
   validates :category_name, presence: true
+
+  def avg_score
+    unless self.reviews.empty?
+      reviews.average(:score).round(1).to_f
+    else
+      0.0
+    end
+  end
+
+  def review_score_percentage
+    unless self.reviews.empty?
+      reviews.average(:score).round(1).to_f*100/5
+    else
+      0.0
+    end
+  end
 end
