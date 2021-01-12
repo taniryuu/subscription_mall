@@ -16,4 +16,4 @@
 //= require bootstrap-sprockets
 //= require owl.carousel
 //= require moment
-//= require turbolinks
+// require turbolinks

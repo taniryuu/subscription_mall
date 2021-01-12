@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
     @latlng = results.first
     @map = Map.find(1)
     @owners = Owner.all
-    gon.owners = Owner.where.not(store_information: nil)
+    gon.owners = Owner.where.not(address: nil)
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)

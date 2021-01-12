@@ -32,7 +32,9 @@ puts "User Created"
   Owner.create!(name: name,
                 email: email,
                 password: password,
-                password_confirmation: password)
+                password_confirmation: password,
+                address: "東京都港区1-#{n}-1"
+               )
 end
 
 puts "Owner Created"
@@ -135,5 +137,3 @@ Category.create!(name: "その他",
                 image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
                 )
 puts "Category Created"
-
-
