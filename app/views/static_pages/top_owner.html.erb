@@ -230,16 +230,20 @@
       <a href="/owners/sign_up" class="btn btn-c btn--pink2 btn--cubic2">経営者様会員登録</a>
     </div>
     <div class="recommend-shop">
-      <%= link_to discussion_path, class: "btn-gradient-radius-blue" do%>
+      <a href="/discussion" class="btn-gradient-radius-blue">
       まずは相談しましょう&nbsp;<i class="fas fa-chevron-circle-right"></i>
-      <% end %>
+      </a>
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/PrKWtcm">
+      <i class="fa fa-mobile">
+      </i><span>経営者様用のLINEのお問い合わせはこちら</span></a>
     </div>
-    <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/PrKWtcm">
-    <i class="fa fa-mobile">
-    </i><span>経営者様用のLINEのお問い合わせはこちら</span></a>
-    <h1>ここに動画</h1>
-    <div class="container-fluid"> 
-      <%= video_tag("/videos/tensura.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    <div class="container-fluid">
+      <iframe width="630" height="400" src="https://www.youtube.com/embed/0SzEXkpFJpc" 
+                                       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+    </div>
+    <div>
+      <%= image_tag 'nagare.jpeg.png', Style: "height: 350px"%><i class="fas fa-chevron-circle-right"></i>
     </div>
     <div class="recommend-shop">
       <%= image_tag 'nayami.jpg', Style: "height: 350px"%>
@@ -250,9 +254,10 @@
     <div class="recommend-shop">
       <%= image_tag 'service.jpg', Style: "height: 350px"%>
     </div>
-    <h1>ここに動画</h1>
-    <div class="container-fluid"> 
-      <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    <div class="container-fluid">
+      <iframe width="630" height="400" src="https://www.youtube.com/embed/39csnRcfVCM" 
+                                       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
     </div>
     <div>
       <%= image_tag 'ryoukin.jpg', Style: "height: 350px"%><i class="fas fa-chevron-circle-right"></i>

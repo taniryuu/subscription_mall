@@ -1,6 +1,6 @@
 /* universal */
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -14,8 +14,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -27,7 +27,7 @@ time, mark, audio, video {
 	font-family: 'Hiragino Sans','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -201,6 +201,9 @@ h1 {font-size:1.5em;margin-bottom:55px;}
   transition:all .5s;
   overflow:hidden
 }
+.discussion {
+  margin:10px;
+}
 
 .btn:hover {
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.45);
@@ -287,14 +290,22 @@ h1 {font-size:1.5em;margin-bottom:55px;}
   background:#09ca19
 }
 
+/*Inatagram*/
+.insta_btn:hover > i,.btn-pinterest:focus > i {
+  color:#eb0db3
+}
+
+.insta_btn > span {
+  background:#eb0db3
+}
 
 /*Pinterest*/
 .btn-pinterest:hover > i,.btn-pinterest:focus > i {
-  color:#cb2028
+  color:#12c96d
 }
 
 .btn-pinterest > span {
-  background:#cb2028
+  background:#12c96d
 }
 
 /*LinkedIn*/
@@ -366,7 +377,7 @@ $email_color: #9F0303;
     transform: scale(1.2);
     box-shadow: 0 0.3125em 0.9375em 0 rgba(0, 0, 0, 0.4);
   }
-  
+
   &:active {
     transform: scale(0.9);
     box-shadow: 0 0.125em 0.1875em 0 rgba(0, 0, 0, 0.4);
@@ -394,4 +405,183 @@ $email_color: #9F0303;
     color: $email_color;
     background: #fff;
   }
+}
+
+//インスタ画像
+.insta-list {
+  width: 930px;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+}
+
+.insta-list li {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+
+.insta-list li + li{
+  margin: 0 0 10px 10px;
+}
+.insta-list li:nth-child(4){
+  margin: 0;
+}
+.insta-list li img{
+  width: 100%;
+  height: auto;
+}
+
+.insta-image {
+  overflow:		hidden;
+  position:		relative;
+}
+
+.insta-image .caption {
+  font-size:		120%;
+  white-space: pre;
+  text-align: 	center;
+  margin: 30px auto;
+	color:			rgb(255, 255, 255);
+}
+
+.insta-image .mask {
+	width:			100%;
+	height:			100%;
+	position:		absolute;
+	top:			0;
+	left:			0;
+	opacity:		0;	/* マスクを表示しない */
+	background-color:	rgba(0,0,0,0.4);
+	-webkit-transition:	all 1s ease;
+	transition:		all 1s ease;
+}
+.insta-image:hover .mask {
+	opacity:		1;	/* マスクを表示する */
+	padding-left:		10px;	/* ホバーで下にずらす */
+}
+
+.insta-title {
+  font-family: cursive;
+  text-align: 	center;
+  font-size:		250%;
+  background: linear-gradient(to bottom,#b331f0,#f8e644);
+  margin: 20px auto;
+  width:			40%;
+  color: #111;
+  border-radius: 0.3125em;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+//レビューの星
+.rating-box .ratings {
+  font-size: 30px;
+  color: #fc0;
+  cursor: pointer;
+}
+
+.rating-value-display {
+  font-size: 20px;
+}
+
+.star-rating {
+  position: relative;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-back {
+  color: #ccc;
+}
+
+.average-score {
+  display: flex;
+}
+.average-score-display {
+  font-size: 16px;
+}
+
+.star-rating2 {
+  position: relative;
+  top: 10px;
+  left: 150px;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating2-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating2-back {
+  color: #ccc;
+}
+
+//top-page-review
+.slick-next {
+  right: 10px !important;
+  z-index: 100;
+}
+
+.slick-prev {
+  left: 10px !important;
+  z-index: 100;
+}
+
+.box14{
+  padding: 0.2em 0.5em;
+  margin: 2em 0;
+  background: #ffeaea;
+  box-shadow: 0px 0px 0px 10px #ffeaea;
+  border: dashed 2px white;
+  position: absolute;
+  width:			500px;
+  height:			250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.box14 p {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2em;
+  word-break: keep-all;
+}
+
+.star-rating-top {
+  position: relative;
+  top: 3px;
+  left: 0px;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating-top-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-top-back {
+  color: #ccc;
 }

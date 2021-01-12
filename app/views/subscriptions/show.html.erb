@@ -120,36 +120,56 @@
 
               <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
-                <button class="btn btn-outline-success btn-rounded">
-                  ブログ</button>
-              </div>
-            </div>&nbsp;
-
-            <div class="row mt-3 mb-4">
-              <div class="col-md-12 text-center text-md-left text-md-right">
-                <button class="btn btn-outline-danger btn-rounded">
-                  MAP</button>
-              </div>
-            </div>&nbsp;
-
-            <div class="row mt-3 mb-4">
-              <div class="col-md-12 text-center text-md-left text-md-right">
-                <button class="btn btn-outline-warning btn-rounded">
-                  レビュー</button>
-              </div>
-            </div>&nbsp;
-
-            <div class="row mt-3 mb-4">
-              <div class="col-md-12 text-center text-md-left text-md-right">
-                <button class="btn btn-outline-primary btn-rounded">
-                  お問い合わせ</button>
-              </div>
-            </div>
+                <%= link_to "ブログ","#", class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "MAP","#", class: "btn btn-outline-danger btn-rounded" %>
+                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %>
+                <%= link_to "お問い合わせ","#", class: "btn btn-outline-primary btn-rounded" %>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
+</div>
+
+
+<div class="container my-5 py-5 z-depth-1">
+  <section class="text-center">
+    <h3 class="font-weight-bold mb-5"><%= @subscription.name %> 店舗レビュー</h3>
+
+            <div class="card-content">
+              <div class="content">
+                <div class="content average-score">
+                  <div class="star-rating mb-2">
+                    <div class="star-rating-front" style="width: <%= @subscription.review_score_percentage %>%">★★★★★</div>
+                    <div class="star-rating-back">★★★★★</div>
+                  </div>
+                  <div class="average-score-display ml-3 pt-2">
+                    平均 <%= @subscription.avg_score %>点（<%= @subscription.reviews.count %>件のレビュー）
+                  </div>
+                </div>
+              </div>
+            </div>
+
+     <table class="table" style="table-layout:fixed;width:100%;">
+       <thead class="thead-light">
+         <tr>
+           <th>コメント</th>
+           <th>評価</th>
+           <th>投稿日</th>
+         </tr>
+       </thead>
+
+       <tbody>
+        <% @reviews.each do |review| %>
+         <tr>
+           <td style="word-wrap:break-word;"><%= review.content %></td>
+           <td><%= review.score %></td>
+           <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
+         </tr>
+        <% end %>
+       </tbody>
+     </table>
   </section>
 </div>
 

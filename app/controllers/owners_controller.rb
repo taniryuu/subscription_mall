@@ -51,7 +51,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    if 
+    if
         current_admin.present?
         @owner.update(owner_params)
         flash[:success] = "#{@owner.name}様の情報を更新しました。"
