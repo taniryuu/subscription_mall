@@ -49,10 +49,19 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   devise_scope :user do
-   get "/devise/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
-   get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
-   get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
-   get 'users/sign_up', to: 'users#new'
+    post 'users/sign_up/confirm', to: 'users/registrations#confirm'
+    patch 'users/sign_up/complete', to: 'users/registrations#complete'
+    post 'users/sign_up/complete', to: 'users/registrations#complete'
+    get "/devise/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
+    get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
+    get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
+    get 'users/sign_up', to: 'users#new'
+  end
+
+  devise_scope :owner do
+    post 'owners/sign_up/confirm', to: 'owners/registrations#confirm'
+    patch 'owners/sign_up/complete', to: 'owners/registrations#complete'
+    post 'owners/sign_up/complete', to: 'owners/registrations#complete'
   end
 
   resources :admins do

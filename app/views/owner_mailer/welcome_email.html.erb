@@ -4,21 +4,21 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @user.name %>様、巡グルメへようこそ。</h1>
+    <h1><%= @owner.name %>様、巡グルメへようこそ。</h1>
     <p>
       巡グルメへのサインアップが成功しました。
     </p>
     <p>
-      ご入会ありがとうございます。どうぞお楽しみくださいませ。
+      この度はアカウント登録頂きましてありがとうございます。
     </p>
     <p>
       このサイトにログインするには、<%= @url %>をクリックしてください。
     </p>
     <p>
-      ユーザー名: <%= @user.name %>
+      ユーザー名: <%= @owner.name %>
     </p>
     <p>
-      メールアドレス: <%= @user.email %>
+      メールアドレス: <%= @owner.email %>
     </p>
   </body>
 </html>

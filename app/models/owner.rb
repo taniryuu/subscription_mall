@@ -11,6 +11,7 @@ class Owner < ApplicationRecord
          :registerable,
          :recoverable,
          :rememberable
+	# :confirmable
         #  :validatable
 
   scope :without_soft_deleted, -> { where(deleted_at: nil) }
