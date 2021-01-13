@@ -3,35 +3,45 @@
 
 <h1>よくある質問</h1>
 
-  <div class="col-sm-10 col-sm-offset-1">
-    <table class="table table-condensed table-hover" id="table-users">
-      <thead>
-        <tr>
-          <th>内容</th>
-          <th>回答</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @questions.each do |question| %>
-          <tr>
-          <% if current_admin.present? %>
-            <td><%= link_to "#{question.detail}", question %></td>
-            <td><%= link_to "#{question.answer}", question %></td>
-            <td><%= link_to '編集', edit_question_path(question) %></td>
-            <td><%= link_to '削除', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% elsif !current_admin.present? %>
-            <td><%= question.detail %></td>
-            <td><%= question.answer %></td>
-          <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-      <br>
-      <% if current_admin.present? %>
-        <%= link_to 'よくある質問新規作成', new_question_path, class: "btn btn-info" %>
-      <% end %>
-    </table>
-  </div>
+<% @questions.each do |question| %>
+  <% if current_admin.present? %>
+    <div>       	  
+      <!--%= link_to "#{question.detail}", question %-->
+    </div>
+    <div>
+      <!--%= link_to "#{question.answer}", question %-->
+    </div>
+    <div>
+      <!--%= link_to '編集', edit_question_path(question) %-->
+    </div>
+    <div>
+      <!--%= link_to '削除', question, method: :delete, data: { confirm: 'Are you sure?' } %-->
+    </div>
+  <% elsif !current_admin.present? %>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= question.id %>"><%= question.detail %></a>
+          </h4>
+        </div>
+	<div id="collapse<%= question.id %>" class="panel-collapse collapse in">
+          <div class="panel-body"><%= question.answer %></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <!--%= question.detail %-->
+    </div>
+    <div>
+      <!--%= question.answer %-->
+    </div>
+  <% end %>
+<% end %>
+ <br>
+ <% if current_admin.present? %>
+   <div>
+     <%= link_to 'よくある質問新規作成', new_question_path, class: "btn btn-info" %>
+   </div>
+ <% end %>
 

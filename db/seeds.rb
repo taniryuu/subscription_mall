@@ -40,11 +40,17 @@ end
 
 puts "Owner Created"
 
-Question.create!(detail: "さぶすくとは",
-  answer: "さぶすくページ"
+Question.create!(detail: "よくある質問1",
+  answer: "よくある質問1に対する答え。よくある質問1に対する答え。よくある質問1に対する答え。よくある質問1に対する答え。"
   )
-Question.create!(detail: "ぷらん",
-  answer: "お金欲しい"
+Question.create!(detail: "よくある質問2",
+  answer: "よくある質問2に対する答え。よくある質問2に対する答え。よくある質問2に対する答え。よくある質問2に対する答え。"
+  )
+Question.create!(detail: "よくある質問3",
+  answer: "よくある質問3に対する答え。よくある質問3に対する答え。よくある質問3に対する答え。よくある質問3に対する答え。"
+  )
+Question.create!(detail: "よくある質問4",
+  answer: "よくある質問4に対する答え。よくある質問4に対する答え。よくある質問4に対する答え。よくある質問4に対する答え。"
   )
 puts "Question Created"
 
