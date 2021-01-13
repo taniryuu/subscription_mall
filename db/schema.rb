@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210109054911) do
+ActiveRecord::Schema.define(version: 20210109091752) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 20210109054911) do
     t.integer "monthly_fee"
     t.text "blog"
     t.text "shop_introduction"
+    t.string "qr_image"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
