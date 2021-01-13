@@ -23,11 +23,11 @@
     <% end %>
 
 
-  <h1><%= link_to "お問い合わせはこちら", discussion_path, class: "btn btn-lg btn-info" %></h1>
+    <h1><%= link_to "お問い合わせはこちら", discussion_path, class: "btn btn-lg btn-info" %></h1>
   </div>
 
   <div class="col-md-offset-10 col-sm-6">
-  <h5>おすすめnews</h5>
+    <h5>おすすめnews</h5>
     <% @blogs.each do |blog| %>
       <hr class="tool-bar">
       <div>
@@ -36,6 +36,7 @@
       <div>
         <div class="grid-item-image"><%= image_tag blog.image_photo.url %>
         </div><br>
+      </div>
       <div>
         <%= link_to "#{blog.body}", blog_path(blog) %>
       </div><br>
