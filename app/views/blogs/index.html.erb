@@ -1,7 +1,7 @@
 <% provide(:title, "サブスクnews一覧") %>
 <p id="notice"><%= notice %></p>
 
-<h1 class="brand-color display-4 mt-6">サブスクnews一覧</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">サブスクnews一覧</h1>
 
 <table>
   <tbody>
@@ -12,18 +12,18 @@
     <hr class="tool-bar">
       <div class="row">
         <div class="col-sm-2">
-          <%= blog.title %>
+          <%= blog.title.truncate(20) %>
         </div><br>
         <div class="col-sm-4">
         <% if blog.image_photo.present? %>
-          <div class="grid-item-image"><%= image_tag blog.image_photo.url %></div>
+          <div class="grid-item-image"><%= image_tag blog.image_photo.url,:size => '300x260' %></div>
         <% else %>
         
         <% end %>
         </div>
 
         <div class="col-sm-2">
-          <%= blog.body %>
+          <%= blog.body.truncate(20) %>
         </div>
         <div class="col-sm-2">
           <%= link_to "詳細", blog_path(blog), class: "btn-gradient-3d-simple" %>
