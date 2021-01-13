@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
     @blogs = Blog.all
     @reviews = Review.all
     @questions = Question.all
+    @megurumereviews = Megurumereview.all
     results = Geocoder.search(params[:address])
     @latlng = results.first
     @map = Map.find(1)

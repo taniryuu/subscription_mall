@@ -1,6 +1,6 @@
 <% provide(:title, "Top") %>
 <hr class="border-solid" />
- <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 <% if signed_in? %> <%# ログインしているかどうか %>
   <% if current_user.present? %>
     <p>ようこそ！<%= current_user.name %>さん</p>
@@ -11,7 +11,7 @@
   <% end %>
 <% else %>
   <p>ようこそ！ゲストさん</p>
-<% end %> 
+<% end %>
 
   <div class="f-container">
     <div class="f-item">
@@ -23,13 +23,13 @@
     <div class="f-item">
       <div class="box26">
         <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;毎日好きなランチを</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
         <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;3000円から始める</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
   </div>
@@ -37,12 +37,12 @@
 
 
 <main class="scroll-container">
- <% if signed_in? %> <%# ログインしているかどうか %>
+  <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
-    
+
     <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
@@ -50,7 +50,7 @@
       <% end %>
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -60,10 +60,12 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-    
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -71,13 +73,15 @@
         <%= f.submit '検索' %>
       <% end %>
       <div id="map"></div>
-    </div> 
+    </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
- 
+<%
+=end
+%>
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
@@ -93,7 +97,7 @@
           </div>
         </div>
       <% end %>
-    <hr class="style2"> 
+    <hr class="style2">
     <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
@@ -101,34 +105,34 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
-          </div>
-      <% end %>
+    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{blog.title}", blog_path(blog) %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+      </div>
+    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
+      <% @questions.each do |question| %><%# よくある質問を全てeach %>
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
+            <%= link_to "#{question.detail}", questions_path %>
+          </div><br>
+          <div class="col-sm-offset-8 col-sm-6">
+            <%= link_to "#{question.answer}", questions_path %>
           </div>
-        <% end %>
-    <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
+        </div>
+      <% end %>
+  <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
-    
+
     <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
@@ -136,7 +140,7 @@
       <% end %>
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -146,10 +150,12 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-    
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -157,17 +163,58 @@
         <%= f.submit '検索' %>
       <% end %>
       <div id="map"></div>
-    </div> 
+    </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
- 
+<%
+=end
+%>
+     <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+         <% count = '6' %>
+         <% id = '17841404004573259' %>
+         <% token = 'EAAFsMnMLZBdUBABOhjSpZBQcyKRnUiGIuXuyJ8FPcj6miGELhF9rr40MUPQ3r8c2YDoSY8bGGv3EvKtKty8EB1xoQpiXNOCHHkxYcC2pSpWuPNWf4gh5TEuYc9C1Y1en6UuV4oTpzTSjuhcGxTBUzbSQk1ThXovkWqEAzT2Rg6wHA058zK' %>
+         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+         <% hash_a = JSON.parse(res) %>
+         <% hash_b = hash_a['media']['data'] %>
+         <% insta = [] %>
+           <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+           <% end %>
+
+           <% insta.each do |v| %>
+             <li class='insta-image'>
+               <%= link_to "#{v['link']}" do %>
+                 <% if v['img'].include?("video") %>
+                   <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                 <% else %>
+                   <%= (image_tag "#{v['img']}" ) %>
+                 <% end %>
+                  <div class="mask">
+		               <div class="caption"><%= "#{v['caption']}" %></div>
+	                </div>
+               <% end %>
+             </li>
+           <% end %>
+      </ul>
+    </div>
+
+
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path(current_user), class: "user-service" %></div>
       <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
@@ -179,7 +226,7 @@
           </div>
         </div>
       <% end %>
-    <hr class="style2"> 
+    <hr class="style2">
     <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
@@ -187,35 +234,35 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
-          </div>
-      <% end %>
+    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{blog.title}", blog_path(blog) %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+      </div>
+    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
-          </div>
-        <% end %>
-    <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
+    <% @questions.each do |question| %><%# よくある質問を全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{question.detail}", questions_path %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+           <%= link_to "#{question.answer}", questions_path %>
+        </div>
+      </div>
+    <% end %>
+  <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
-    
+
     <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
@@ -223,7 +270,7 @@
       <% end %>
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -233,10 +280,12 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-    
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -244,17 +293,19 @@
         <%= f.submit '検索' %>
       <% end %>
       <div id="map"></div>
-    </div> 
+    </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
- 
+<%
+=end
+%>
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
       <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
@@ -266,7 +317,7 @@
           </div>
         </div>
       <% end %>
-    <hr class="style2"> 
+    <hr class="style2">
     <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
@@ -274,32 +325,32 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
-          </div>
-      <% end %>
+    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{blog.title}", blog_path(blog) %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+      </div>
+    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
-          </div>
-        <% end %>
+    <% @questions.each do |question| %><%# よくある質問を全てeach %>
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{question.detail}", questions_path %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{question.answer}", questions_path %>
+        </div>
+      </div>
+    <% end %>
     <% end %>
 
-  <% else %> <%# ログインしてない %> 
+  <% else %> <%# ログインしてない %>
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink2 btn--cubic2">経営者様はこちら</a>
       <a href="/users/sign_up" class="btn btn-c btn--pink btn--cubic">利用者様会員登録</a>
@@ -315,7 +366,7 @@
     <div class="category-list">
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -325,10 +376,12 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
-    </div>
-    
+    </div></br></br>
+<%
+=begin
+%>
     <div class="google-map">
       <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
         <%= f.label :エリア %>
@@ -336,17 +389,85 @@
         <%= f.submit '検索' %>
       <% end %>
       <div id="map"></div>
-    </div> 
+    </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
- 
+<%
+=end
+%>
+
+    <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+         <% count = '6' %>
+         <% id = '17841442005934576' %>
+         <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
+         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+         <% hash_a = JSON.parse(res) %>
+         <% hash_b = hash_a['media']['data'] %>
+         <% insta = [] %>
+           <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+           <% end %>
+
+           <% insta.each do |v| %>
+             <li class='insta-image'>
+               <%= link_to "#{v['link']}" do %>
+                 <% if v['img'].include?("video") %>
+                   <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                 <% else %>
+                   <%= (image_tag "#{v['img']}" ) %>
+                 <% end %>
+                  <div class="mask">
+		               <div class="caption"><%= "#{v['caption']}" %></div>
+	                </div>
+               <% end %>
+             </li>
+           <% end %>
+      </ul>
+    </div>
+
+    <div id="slider" class="box14">
+      <% @megurumereviews.each do |review| %>
+          <p>お客様満足度 /
+          <span class="star-rating-top mb-2">
+          <span class="star-rating-top-front" style="width: <%= review.score.to_f*100/5 %>%">★★★★★</span>
+          <span class="star-rating-top-back">★★★★★</span>
+          </span>
+          </br></br>
+          <span>投稿日&nbsp;<%= l(review.created_at, format: :date) %></span></br></br>
+          <%= review.content %>
+          </p>
+      <% end %>
+    </div>
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  reviews_list_path, class: "user-service" %></div>
+    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
       <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
@@ -358,7 +479,7 @@
           </div>
         </div>
       <% end %>
-    <hr class="style2"> 
+    <hr class="style2">
     <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
@@ -368,27 +489,27 @@
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
       <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
         <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
+            <%= link_to "#{blog.title}", blog_path(blog) %>
+          </div><br>
+          <div class="col-sm-offset-8 col-sm-6">
+            <%= link_to "#{blog.body}", blog_path(blog) %>
           </div>
+        <div>
       <% end %>
-    <hr class="style2">
-    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
-          </div>
-        <% end %>
+      <hr class="style2">
+      <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
+      <% @questions.each do |question| %><%# よくある質問を全てeach %>
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
+            <%= link_to "#{question.detail}", questions_path %>
+          </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+            <%= link_to "#{question.answer}", questions_path %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </main>
 
@@ -410,12 +531,12 @@
     geocoder = new google.maps.Geocoder()
 
     map = new google.maps.Map(document.getElementById('map'), {
-      center: 
+      center:
       {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
       lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
       zoom: 18,
     });
-  
+
     // 繰り返し処理でマーカーと吹き出しを複数表示させる
     for (var i = 0; i < markerData.length; i++) {
       let id = markerData[i]['store_information']
@@ -435,7 +556,7 @@
       // マーカーにクリックイベントを追加
       markerEvent(i);
     }
-  
+
   // マーカーをクリックしたら吹き出しを表示
   function markerEvent(i) {
     marker[i].addListener('click', function () {
@@ -472,4 +593,4 @@
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script> 
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>

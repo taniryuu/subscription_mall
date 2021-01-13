@@ -26,16 +26,11 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to user_reviews_url, notice: 'レビューの新規登録完了です！' }
-        format.json { render :show, status: :created, location: @review }
+      if @review.save!
+        redirect_to user_account_user_path(current_user)
       else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        redirect_to root_path
       end
-    end
   end
 
   # GET /reviews/1/edit
@@ -66,6 +61,11 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def subscription_reviews
+    @subscription = Subscription.find_by(params[:subscription_id])
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
@@ -78,6 +78,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:name, :email, :content, :score, :rate, :user_id)
+      params.require(:review).permit(:email, :content, :score, :subscription_id, :user_id)
     end
 end

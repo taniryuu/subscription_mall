@@ -1,0 +1,15 @@
+<div>
+  
+  <h1>入力情報の確認</h1>
+
+  <%= form_for(resource, as: resource_name, url: users_sign_up_complete_path(resource)) do |f| %>
+
+    <p><%= f.label :name %><%= f.text_field :name, value: resource.name, readonly: true %></p>
+    <p><%= f.label :email %><%= f.email_field :email, value: resource.email, readonly: true %></p>
+    <p><%= f.label :password %><%= f.password_field :password, value: resource.password, readonly: true %></p>
+
+    <%= f.submit "修正する", name: :back %>
+    <%= f.submit "登録する" %>
+
+  <% end %>
+</div>
