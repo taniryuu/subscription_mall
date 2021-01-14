@@ -4,6 +4,8 @@ class Subscription < ApplicationRecord
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
+  has_one :map, dependent: :destroy
+  
   enum price: { "3,000"=> 1, "12,000"=> 2, "18,000"=> 3, "25,000"=> 4, "50,000"=> 5, "100,000"=> 6}, _prefix: true
   enum monthly_fee: { "1980"=> 1, "4980"=> 2, "19800"=> 3}
   enum category_name: { "和食"=> 1, "洋食"=> 2, "中華"=> 3, "イタリアン"=> 4, "フレンチ"=> 5, "ハワイアン"=> 6, "東南アジア料理"=> 7, "鍋"=> 8, "丼モノ"=> 9, "韓国料理"=> 10, "スイーツ"=> 11, "その他"=> 12}, _prefix: true
