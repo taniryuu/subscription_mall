@@ -10,6 +10,10 @@ class TicketsController < ApplicationController
 
   end
 
+  def qrcode
+    @ticket = Ticket.find(params[:id])
+  end
+
   def new
     @ticket = Ticket.new
   end
@@ -30,10 +34,13 @@ class TicketsController < ApplicationController
   def update
     @ticket = Ticket.find(params[:id])
     if @ticket.update_attributes(use_ticket_params)
-      redirect_to root_path
+      redirect_to ticket_success_path
     else
       redirect_to root_path
     end
+  end
+
+  def ticket_success
   end
 
   private
