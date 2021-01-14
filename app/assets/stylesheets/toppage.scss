@@ -96,23 +96,39 @@
     background: transparent;
     text-decoration: none;
   }
-    /* 経営者様はこちらボタン */
+    /* 利用者様はこちらボタン */
   .owner-btn a.btn--pink {
-    color: #fff;
-    background-color: #eb586f;
+    color: rgb(10, 3, 3);
+    background-color: rgb(255, 240, 31);
   }
   a.btn--pink:hover {
-    color: #fff;
-    background: #eb586f;
+    color:  rgb(10, 3, 3);
+    background: rgb(255, 240, 31);
   }
   a.btn--pink.btn--cubic {
-    border-bottom: 5px solid #fd0054;
+    border-bottom: 5px solid  rgb(255, 240, 31);
   }
   a.btn--pink.btn--cubic:hover {
     margin-top: 3px;
-    border-bottom: 2px solid #fd0054;
+    border-bottom: 2px solid  rgb(255, 240, 31);
   }
-  a.btn-c {
+    /* 経営者様はこちらボタン */
+    .owner-btn a.btn--pink2 {
+      color: rgb(10, 3, 3);
+      background-color:  rgb(27, 228, 87);
+    }
+    a.btn--pink2:hover {
+      color:  rgb(10, 3, 3);
+      background: rgb(27, 228, 87);
+    }
+    a.btn--pink2.btn--cubic2 {
+      border-bottom: 5px solid  rgb(27, 228, 87);
+    }
+    a.btn--pink2.btn--cubic2:hover {
+      margin-top: 3px;
+      border-bottom: 2px solid  rgb(27, 228, 87);
+    }
+    a.btn-c {
     font-size: 1.1rem;
     position: relative;
     padding: 0.6rem 1.8rem 0.6rem 1.8rem;

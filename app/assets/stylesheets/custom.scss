@@ -201,6 +201,9 @@ h1 {font-size:1.5em;margin-bottom:55px;}
   transition:all .5s;
   overflow:hidden
 }
+.discussion {
+  margin:10px;
+}
 
 .btn:hover {
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.45);
@@ -287,14 +290,22 @@ h1 {font-size:1.5em;margin-bottom:55px;}
   background:#09ca19
 }
 
+/*Inatagram*/
+.insta_btn:hover > i,.btn-pinterest:focus > i {
+  color:#eb0db3
+}
+
+.insta_btn > span {
+  background:#eb0db3
+}
 
 /*Pinterest*/
 .btn-pinterest:hover > i,.btn-pinterest:focus > i {
-  color:#cb2028
+  color:#12c96d
 }
 
 .btn-pinterest > span {
-  background:#cb2028
+  background:#12c96d
 }
 
 /*LinkedIn*/

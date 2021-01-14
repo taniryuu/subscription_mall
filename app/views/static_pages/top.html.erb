@@ -1,6 +1,6 @@
 <% provide(:title, "Top") %>
 <hr class="border-solid" />
- <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 <% if signed_in? %> <%# ログインしているかどうか %>
   <% if current_user.present? %>
     <p>ようこそ！<%= current_user.name %>さん</p>
@@ -23,13 +23,13 @@
     <div class="f-item">
       <div class="box26">
         <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;毎日好きなランチを</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
         <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;3000円から始める</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
 
 
 <main class="scroll-container">
- <% if signed_in? %> <%# ログインしているかどうか %>
+  <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
@@ -50,7 +50,7 @@
       <% end %>
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -60,7 +60,7 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
 <%
@@ -76,7 +76,7 @@
     </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
 <%
@@ -105,30 +105,30 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
-          </div>
-      <% end %>
+    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{blog.title}", blog_path(blog) %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+      </div>
+    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
+      <% @questions.each do |question| %><%# よくある質問を全てeach %>
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
+            <%= link_to "#{question.detail}", questions_path %>
+          </div><br>
+          <div class="col-sm-offset-8 col-sm-6">
+            <%= link_to "#{question.answer}", questions_path %>
           </div>
-        <% end %>
-    <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
+        </div>
+      <% end %>
+  <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
@@ -140,7 +140,7 @@
       <% end %>
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -150,7 +150,7 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
 <%
@@ -166,7 +166,7 @@
     </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
 <%
@@ -234,31 +234,31 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
-          </div>
-      <% end %>
+    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{blog.title}", blog_path(blog) %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+      </div>
+    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
-          </div>
-        <% end %>
-    <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
+    <% @questions.each do |question| %><%# よくある質問を全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{question.detail}", questions_path %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+           <%= link_to "#{question.answer}", questions_path %>
+        </div>
+      </div>
+    <% end %>
+  <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
@@ -270,7 +270,7 @@
       <% end %>
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -280,7 +280,7 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
 <%
@@ -296,7 +296,7 @@
     </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
 <%
@@ -325,29 +325,29 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
-          </div>
-      <% end %>
+    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
+      <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{blog.title}", blog_path(blog) %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+      </div>
+    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
-          </div>
-        <% end %>
+    <% @questions.each do |question| %><%# よくある質問を全てeach %>
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <%= link_to "#{question.detail}", questions_path %>
+        </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+          <%= link_to "#{question.answer}", questions_path %>
+        </div>
+      </div>
+    <% end %>
     <% end %>
 
   <% else %> <%# ログインしてない %>
@@ -366,7 +366,7 @@
     <div class="category-list">
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-            <%= image_tag category.image_category, class: "image-menu" %>
+          <%= image_tag category.image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
           </div>
@@ -376,7 +376,7 @@
 
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
-      全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div></br></br>
 <%
@@ -392,7 +392,7 @@
     </div>
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-      おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
 <%
@@ -489,27 +489,27 @@
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
       <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
         <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
-            </div>
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
+            <%= link_to "#{blog.title}", blog_path(blog) %>
+          </div><br>
+          <div class="col-sm-offset-8 col-sm-6">
+            <%= link_to "#{blog.body}", blog_path(blog) %>
           </div>
+        <div>
       <% end %>
-    <hr class="style2">
-    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
-          </div>
-        <% end %>
+      <hr class="style2">
+      <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
+      <% @questions.each do |question| %><%# よくある質問を全てeach %>
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
+            <%= link_to "#{question.detail}", questions_path %>
+          </div><br>
+        <div class="col-sm-offset-8 col-sm-6">
+            <%= link_to "#{question.answer}", questions_path %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </main>
 

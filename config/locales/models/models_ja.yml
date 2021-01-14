@@ -72,6 +72,7 @@ ja:
           image_subscription2: お店紹介写真2
           image_subscription2: お店紹介写真3
           image_subscription2: お店紹介写真4
+          qr_image: LINE@QRコード画像
           monthly_fee: 月額利用料金
           price: 金額
           subscription_detail: 店舗情報
@@ -179,9 +180,3 @@ ja:
           answer: 回答
           created_at: 作成日
           updated_at: 更新日
-
-
-
-
-
-

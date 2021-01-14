@@ -11,14 +11,15 @@ Rails.application.routes.draw do
   get 'site' => "subscriptions#site", as: :site#サイトについて
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
-  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans
+  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans#利用者のプラン内容
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
 
   get 'categories/shop_list', to: 'categories#shop_list', as: :shop_list_categories
-  get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories
+  get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories#おすすめショップ
 
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
+  get 'subscriptions/shop_case', to: 'subscriptions#shop_case', as: :shop_case#ショップ事例
 
   get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
 
@@ -50,10 +51,19 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   devise_scope :user do
-   get "/devise/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
-   get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
-   get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
-   get 'users/sign_up', to: 'users#new'
+    post 'users/sign_up/confirm', to: 'users/registrations#confirm'
+    patch 'users/sign_up/complete', to: 'users/registrations#complete'
+    post 'users/sign_up/complete', to: 'users/registrations#complete'
+    get "/devise/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
+    get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
+    get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
+    get 'users/sign_up', to: 'users#new'
+  end
+
+  devise_scope :owner do
+    post 'owners/sign_up/confirm', to: 'owners/registrations#confirm'
+    patch 'owners/sign_up/complete', to: 'owners/registrations#complete'
+    post 'owners/sign_up/complete', to: 'owners/registrations#complete'
   end
 
   resources :admins do

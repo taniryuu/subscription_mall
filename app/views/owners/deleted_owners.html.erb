@@ -15,13 +15,13 @@
       <% @owners.each do |owner| %>
         <tr>
           <td><%= owner.id %></td>
-          <td><%= link_to owner.name ,owner_path(owner) %></td>
+          <td><%= link_to owner.name ,owner_path(owner.restore) %></td>
           <td><%= owner.email %></td>
           <td><%= owner.phone_number %></td>
           <td>
               <%= link_to "復帰", update_deleted_owners_owner_path(owner), method: :patch,
                   data: { confirm: "復帰してよろしいですか？" },
-                  class: "btn btn-danger" %>
+                  class: "btn btn-info" %>
           </td>
           <td>
           </td>

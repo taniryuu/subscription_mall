@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Style -->
+    <link rel="stylesheet" href='/static/css/bootstrap/bootstrap.min.css?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'>
+    <link rel="stylesheet" href='/static/css/tooltipster/tooltipster.css?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'>
+    <link rel="stylesheet" href='/static/css/video-js.css?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'>
+    <link rel="stylesheet" href='/static/css/common.css?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'>
+    <link rel="stylesheet" href='/static/css/share-popup.css?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'>
+    <link rel="stylesheet" href='/static/css/video-share.css?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'>
+    
+    <!-- Script -->
+    <script src='/static/js/jquery/jquery.min.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/jquery/jquery.mobile-1.5.0-rc1.min.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/tether/tether.min.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/bootstrap/bootstrap.min.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/tooltipster/jquery.tooltipster.min.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/video-min.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/csrf_ajax.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/sha1.min.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/bgm.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/script.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/video-share.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script src='/static/js/bgm.js?hs=024a661caad12fa2a7935c57f5044ec7c56ff396'></script>
+    <script>
+        document.write('<div class="video-share">    <div class="video-share-content" style="text-align: center;">        <div class="video" data-video-id="840cebe92684fd7bd1e319b65c813a1d957562cc" data-download-name="巡グルメ.mp4" data-url="https://media.prod.richka.co/tmp/v2_generate_complete_840cebe92684fd7bd1e319b65c813a1d957562cc_1609294461316201.mp4?response-content-disposition=attachment;filename=%E5%B7%A1%E3%82%B0%E3%83%AB%E3%83%A1.mp4&amp;Expires=1610953280&amp;Signature=F9JxfSZuzowOh35oWaXyfH0PozdICg3kAcC4ryW8HAb-LOyJkzsBhPYPJDwV94MntEPVbgwvVay3tkXKThq81ozgnPWk28EpQLVeoBrwUWm29snj7pOJYy~xY4Jiv5b56sM085T08tODFp1qYm7OZ71aaLTgrtNFtmiKxsj-Z1o9ysjXQKt9JIcX79rAf5LMo39lHtPZs2ZaQ8-unGA8FTxQf~0-4t1lNxqcIZYDc9mRUSUeFsY7mHNNUEIjKe7YR3AD-0hgdgzD1lGeC7zwAVEz3~E9lP0lY4TYiTqtCBsJoSKjYaGCKDeq~ZKgFoJMY~oHcQcG7olOk~jsGEQR~A__&amp;Key-Pair-Id=APKAIWI3WPNHD2RW6JQA" >                                                                        <video crossorigin="anonymous" id="shareplay" oncontextmenu="return false;" class="video-js vjs-16-9 vjs-big-play-centered vjs-static-controls"                           controls xxx-poster="/static/medias/poster.png" preload="metadata" data-setup="{&quot;controlBar&quot;: {&quot;volumePanel&quot;: {&quot;inline&quot;: false}}}">                            <source src="https://media.prod.richka.co/tmp/v2_generate_complete_840cebe92684fd7bd1e319b65c813a1d957562cc_1609294461316201.mp4?response-content-disposition=attachment;filename=%E5%B7%A1%E3%82%B0%E3%83%AB%E3%83%A1.mp4&amp;Expires=1610953280&amp;Signature=F9JxfSZuzowOh35oWaXyfH0PozdICg3kAcC4ryW8HAb-LOyJkzsBhPYPJDwV94MntEPVbgwvVay3tkXKThq81ozgnPWk28EpQLVeoBrwUWm29snj7pOJYy~xY4Jiv5b56sM085T08tODFp1qYm7OZ71aaLTgrtNFtmiKxsj-Z1o9ysjXQKt9JIcX79rAf5LMo39lHtPZs2ZaQ8-unGA8FTxQf~0-4t1lNxqcIZYDc9mRUSUeFsY7mHNNUEIjKe7YR3AD-0hgdgzD1lGeC7zwAVEz3~E9lP0lY4TYiTqtCBsJoSKjYaGCKDeq~ZKgFoJMY~oHcQcG7olOk~jsGEQR~A__&amp;Key-Pair-Id=APKAIWI3WPNHD2RW6JQA" type="video/mp4">                        </video>                                                    <div class="video-share-content-footer">                    <p>巡グルメ</p>                </div>                <div class="align-right download">                                    </div>                    </div>    </div></div><div id="share-video-download-modal" class="modal fade">    <div class="modal-dialog">        <div class="modal-content download-video-modal" id="downloadable-content">            <button type="button" class="close" data-dismiss="modal"><img src="/static/img/common/icon-close-modal.png" width="42" alt="Close Modal" /></button>            <div class="modal-header">                <h4>動画をダウンロード</h4>            </div>            <div class="modal-body">                <p class="text_note">この動画をダウンロードしてもよろしいでしょうか？</p>                <p class="text_warning">※ 容量が大きい動画は、ダウンロード開始までに時間が掛かる場合がございます。1〜3分程度でダウンロードが開始されるので、ブラウザを閉じずにお待ちください。</p>            </div>            <!-- modal-body -->            <div class="modal-footer">                <a href="" class="btn-red download" id="confirm-download-video-file-btn" oncontextmenu="return false;">ダウンロード</a>                <button type="button" style="display: none; width: 110px;" class="btn-red a-btn-disabled" data-dismiss="modal" disabled>ダウンロード</button>                <button type="button" class="btn-white" data-dismiss="modal">キャンセル</button>            </div>        </div>    </div></div>');
+    </script>
+</head>
+<body style="overflow-y: hidden;">
+</body>
+</html>
+

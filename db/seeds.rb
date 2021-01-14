@@ -10,8 +10,11 @@ Admin.create!(name: "中野さん",
               email: "sample_admin@email.com",
               password: "password",
               password_confirmation: "password")
-
-puts "Admin Created"
+Admin.create!(name: "中野ゆうさん",
+  email: "yoshisu04183@gmail.com",
+  password: "password",
+  password_confirmation: "password")
+  puts "Admin Created"
 
 10.times do |n|
   name  = Faker::Name.name

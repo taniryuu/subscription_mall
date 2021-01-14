@@ -122,7 +122,7 @@
               <div class="col-md-12 text-center text-md-left text-md-right">
                 <%= link_to "ブログ","#", class: "btn btn-outline-success btn-rounded" %>
                 <%= link_to "MAP","#", class: "btn btn-outline-danger btn-rounded" %>
-                <%= link_to "レビューを投稿する",subscription_reviews_path(current_user), class: "btn btn-outline-warning btn-rounded" %>
+                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %>
                 <%= link_to "お問い合わせ","#", class: "btn btn-outline-primary btn-rounded" %>
             </div>
           </div>
@@ -132,6 +132,12 @@
   </section>
 </div>
 
+<% if @subscription.qr_image.present? %>
+  <%= image_tag @subscription.qr_image ,size: '150x150', alt: "QR_Code", class: "img-fluid" %>
+  <p>LINE@招待コード</p>
+<% else %>
+  <p>※QRコードが登録されていません</p>
+<% end %>
 
 <div class="container my-5 py-5 z-depth-1">
   <section class="text-center">
