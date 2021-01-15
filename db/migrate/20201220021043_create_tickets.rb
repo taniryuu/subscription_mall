@@ -9,6 +9,8 @@ class CreateTickets < ActiveRecord::Migration[5.1]
       t.string :subscription_name
       t.string :subscription_fee
       t.date :use_ticket_day
+      t.date :issue_ticket_day
+
       t.references :user, foreign_key: true
 
       t.timestamps
