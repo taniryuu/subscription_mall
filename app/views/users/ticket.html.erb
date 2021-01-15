@@ -31,7 +31,7 @@
             <% if current_user.issue_ticket_day == Date.today %>
                 <%= "本日のチケットは発券済みです" %>
             <% else %>
-                <%= form_with(model: Ticket, url: tickets_path, local: true, method: :post) do |f| %>
+                <%= form_with(model: Ticket, url: user_tickets_path(current_user), local: true, method: :post) do |f| %>
 
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
                     <%= f.hidden_field :owner_email, :value => @owner.email %>

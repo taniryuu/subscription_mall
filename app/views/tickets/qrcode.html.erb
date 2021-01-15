@@ -24,10 +24,7 @@
 
           <div class="card-body striped mb-1">
 
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> ユーザーのサブスク情報など（仮）</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i>巡グルメを利用するお店に行きQRコードをスキャン</p>
 
                 <h3 class="number"><%= "本日のチケットは使用しました" %></h3>
           </div>
@@ -45,24 +42,17 @@
           <div class="price header white-text indigo rounded-top">
             <h3 class="number"><%= @ticket.subscription_name %></h3>
             <div class="version">
-              <h5 class="mb-0"><i class="fa fa-ticket fa-3x"></i></h5>
+              <h5 class="mb-0"><i class="fa fa-qrcode fa-3x"></i></h5>
             </div>
           </div>
 
           <div class="card-body striped mb-1">
 
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> ユーザーのサブスク情報など（仮）</p>
-
-                <%= form_with(model: @ticket, url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i>巡グルメを利用するお店に行きQRコードをスキャン</p>
 
 
-                    <%= f.hidden_field :use_ticket_day, :value => Date.today %>
 
-                    <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
-                <% end %>
+                <label class="qrcode_button"><input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>QRコード 読み取り画面へ移動</label>
           </div>
         </div>
       </div>
@@ -72,3 +62,22 @@
     </div>
   </section>
 </div>
+
+
+<script>
+    function openQRCamera(node) {
+  var reader = new FileReader();
+  reader.onload = function() {
+    node.value = "";
+    qrcode.callback = function(res) {
+      if(res instanceof Error) {
+        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+      } else {
+        node.parentNode.previousElementSibling.value = res;
+      }
+    };
+    qrcode.decode(reader.result);
+  };
+  reader.readAsDataURL(node.files[0]);
+}
+</script>

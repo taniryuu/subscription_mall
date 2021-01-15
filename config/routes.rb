@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
 
+  get '/users/:user_id/tickets/:id/qrcode', to: 'tickets#qrcode', as: :qrcode #QRコードのページ
+  get '/ticket_success', to: 'tickets#ticket_success', as: :ticket_success
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -83,7 +85,6 @@ Rails.application.routes.draw do
   resources :interviews#経営者様インタビュー
   resources :cupons#クーポン
   resources :products#QRコード
-  resources :tickets#サブスクチケット
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
@@ -130,6 +131,7 @@ Rails.application.routes.draw do
   end
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
+    resources :tickets#サブスクチケット
     resources :reviews#利用者レビュー
       get "thanks", on: :member#会員完了通知仮面
       get 'user_account', on: :member#アカウントページ
