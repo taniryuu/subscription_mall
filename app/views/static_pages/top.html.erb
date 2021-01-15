@@ -153,11 +153,8 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=begin
-%>
     <div class="google-map">
-      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+      <%= form_with(model: @map, url: "#", local: true) do |f| %>
         <%= f.label :エリア %>
         <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
         <%= f.submit '検索' %>
@@ -169,17 +166,14 @@
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=end
-%>
      <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
     <div> <%# instagramデータ取得 %>
       <ul class="insta-list">
          <% count = '6' %>
-         <% id = '17841404004573259' %>
-         <% token = 'EAAFsMnMLZBdUBABOhjSpZBQcyKRnUiGIuXuyJ8FPcj6miGELhF9rr40MUPQ3r8c2YDoSY8bGGv3EvKtKty8EB1xoQpiXNOCHHkxYcC2pSpWuPNWf4gh5TEuYc9C1Y1en6UuV4oTpzTSjuhcGxTBUzbSQk1ThXovkWqEAzT2Rg6wHA058zK' %>
+         <% id = '17841442005934576' %>
+         <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
          <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
          <% hash_a = JSON.parse(res) %>
          <% hash_b = hash_a['media']['data'] %>
@@ -283,11 +277,8 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=begin
-%>
     <div class="google-map">
-      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+      <%= form_with(model: @map, url: "#", local: true) do |f| %>
         <%= f.label :エリア %>
         <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
         <%= f.submit '検索' %>
@@ -299,9 +290,6 @@
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=end
-%>
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
@@ -379,11 +367,8 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div></br></br>
-<%
-=begin
-%>
     <div class="google-map">
-      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+      <%= form_with(model: @map, url: "#", local: true) do |f| %>
         <%= f.label :エリア %>
         <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
         <%= f.submit '検索' %>
@@ -395,10 +380,6 @@
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=end
-%>
-
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -509,11 +490,17 @@
     }
 </style>
 <script>
-  let map
-  let geocode
+  let map;
+  let geocode;
   let marker = []; // マーカーを複数表示させたいので、配列化
   let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
-  let markerData = gon.owners; // コントローラーで定義したインスタンス変数を変数に代入
+  let markerSub = gon.subscriptions;
+  let markerMap = gon.maps
+
+  let center = {
+    lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
+    lng: <%= @map.longitude.present? ? @map.longitude : 138.3830 %>
+  };
 
   const display = document.getElementById('map')
 
@@ -521,44 +508,43 @@
     geocoder = new google.maps.Geocoder()
 
     map = new google.maps.Map(document.getElementById('map'), {
-      center:
-      {lat: <%= @map.latitude.present? ? @map.latitude : 34.9787 %>,
-      lng:<%= @map.longitude.present? ? @map.longitude : 138.3830 %>},
+      center: center,
       zoom: 18,
     });
 
     // 繰り返し処理でマーカーと吹き出しを複数表示させる
-    for (var i = 0; i < markerData.length; i++) {
-      let id = markerData[i]['store_information']
+    for (var i = 0; i < markerSub.length; i++) {
+      let id = markerSub[i]['id']
+
+      markerLatLng = new google.maps.LatLng({
+        lat: markerMap[i]['latitude'],
+        lng: markerMap[i]['longitude']
+      });
 
       // 各地点のマーカーを作成
       marker[i] = new google.maps.Marker({
-        position: latlng,
+        position: markerLatLng,
         map: map
       });
 
       // 各地点の吹き出しを作成
       infoWindow[i] = new google.maps.InfoWindow({
         // 吹き出しの内容
-        content: '<div id="map">' + markerData[i]['store_information'] + '</div>'
+        content: `<div id=map${id}>
+                   <a href=/owners/${markerSub[i]["owner_id"]}/subscriptions/${id}>
+                     ${markerSub[i]["name"]}
+                   </a>
+                 </div>`
       });
-
       // マーカーにクリックイベントを追加
       markerEvent(i);
     }
+  }
 
   // マーカーをクリックしたら吹き出しを表示
   function markerEvent(i) {
     marker[i].addListener('click', function () {
       infoWindow[i].open(map, marker[i]);
-    });
-    }
-      // 各ユーザーのIDを変数化
-    let id = markerData[i]['id']
-
-    infoWindow[i] = new google.maps.InfoWindow({
-      // <a>タグでリンクを作成
-      content: `<a href='/owners/${ id }'>${ markerData[i]['store_information'] }</a>`
     });
   }
 
@@ -581,6 +567,6 @@
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
-  }
+  };
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>

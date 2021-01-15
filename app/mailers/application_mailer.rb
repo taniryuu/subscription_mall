@@ -4,4 +4,9 @@ class ApplicationMailer < ActionMailer::Base
 	  reply_to: "reply@gmail.com"
   layout 'mailer'
 end
+send-welcome-email-with-devise
+
+# app/mailers/user_mailer.rb
+class UserMailer < ApplicationMailer
+end
 

@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
+  require 'rqrcode'
   before_action :set_admin, only: [:new, :create, :show, :edit, :update, :destroy]
-  
+
   def show
   end
 

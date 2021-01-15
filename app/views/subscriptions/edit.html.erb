@@ -29,6 +29,31 @@
       <%= f_img.file_field :image_subscription_id, multiple: true %>
     <% end %>
   </div>
+  
+  <div class="field">
+    <%= form.label :qr_image %><br/>
+    <%= form.file_field :qr_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :メインの店舗写真 %> <span class="must">必須</span><br/>
+    <%= form.file_field :image_subscription, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お店紹介写真1 %><br/>
+    <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お店紹介写真2 %><br/>
+    <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お店紹介写真3 %><br/>
+    <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
+  </div>
 
   <div class="field">
     <%= form.label :subscription_detail %>

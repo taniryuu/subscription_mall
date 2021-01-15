@@ -30,6 +30,6 @@
       <%= link_to "編集", edit_admin_path(@admin), class: "btn-gradient-3d-simple" %>
     </div></br>
     <div class="account-btn">
-      <%= link_to "チケット使用履歴", tickets_path, class: "btn-gradient-3d-simple" %>
+      <%= link_to "チケット使用履歴", user_tickets_path(current_admin), class: "btn-gradient-3d-simple" %>
     </div></br>
 </div>
