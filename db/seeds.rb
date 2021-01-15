@@ -42,17 +42,20 @@ end
 
 puts "Owner Created"
 
-Question.create!(detail: "よくある質問1",
+Question.create!(detail: "サブスクのカテゴリーにはどんな種類がありますか？",
   answer: "よくある質問1に対する答え。よくある質問1に対する答え。よくある質問1に対する答え。よくある質問1に対する答え。"
   )
-Question.create!(detail: "よくある質問2",
+Question.create!(detail: "サブスクのチケットの有効期限は1日だけですか？",
   answer: "よくある質問2に対する答え。よくある質問2に対する答え。よくある質問2に対する答え。よくある質問2に対する答え。"
   )
-Question.create!(detail: "よくある質問3",
+Question.create!(detail: "チケット決済にPayPay以外の決済サービスは使えますか？",
   answer: "よくある質問3に対する答え。よくある質問3に対する答え。よくある質問3に対する答え。よくある質問3に対する答え。"
   )
-Question.create!(detail: "よくある質問4",
+Question.create!(detail: "チケットのキャンセルはできますか？",
   answer: "よくある質問4に対する答え。よくある質問4に対する答え。よくある質問4に対する答え。よくある質問4に対する答え。"
+  )
+Question.create!(detail: "なんでこんなに安いのですか？",
+  answer: "よくある質問5に対する答え。よくある質問5に対する答え。よくある質問5に対する答え。よくある質問5に対する答え。"
   )
 puts "Question Created"
 

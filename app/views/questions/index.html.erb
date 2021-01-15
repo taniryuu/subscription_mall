@@ -1,7 +1,9 @@
 <% provide(:title, "よくある質問") %>
 <p id="notice"><%= notice %></p>
 
-<h1>よくある質問</h1>
+<div class="h2 mx-auto" style="width: 250px; color: #faab05;">Q&A</div>
+
+<hr size="2">
 
 <% @questions.each do |question| %>
   <% if current_admin.present? %>
@@ -21,20 +23,22 @@
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title">
-	    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= question.id %>"><%= question.detail %></a>
-          </h4>
+          <!--h2 class="panel-title"-->
+	     <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= question.id %>">
+	       <div>
+		 <span class = "h4 text-danger">Q. </span><span class = "h6 text-dark border-bottom border-dark"><%= question.detail %></span>
+	       </div>
+             </a>
+          <!--/h2-->
         </div>
 	<div id="collapse<%= question.id %>" class="panel-collapse collapse in">
-          <div class="panel-body"><%= question.answer %></div>
+	  <div class="panel-body">
+	    <!--h2-->
+              <span class = "h4 text-primary mx-3">A. </span><span class = "h6 text-dark"><%= question.answer %></span>
+	    <!--/h2-->
+	  </div>
         </div>
       </div>
-    </div>
-    <div>
-      <!--%= question.detail %-->
-    </div>
-    <div>
-      <!--%= question.answer %-->
     </div>
   <% end %>
 <% end %>
