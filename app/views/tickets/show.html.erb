@@ -27,7 +27,7 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 以下のチケット使用ボタンを店舗スタッフに押してもらう（仮）</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> ユーザーのサブスク情報など（仮）</p>
 
                 <h3 class="number"><%= "本日のチケットは使用しました" %></h3>
           </div>
@@ -54,24 +54,21 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 以下のチケット使用ボタンを店舗スタッフに押してもらう（仮）</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> ユーザーのサブスク情報など（仮）</p>
 
-                <%= form_with(model: @ticket, url: ticket_path, local: true, method: :patch) do |f| %>
+                <%= form_with(model: @ticket, url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
 
 
                     <%= f.hidden_field :use_ticket_day, :value => Date.today %>
 
-                    <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect" %>
+                    <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
                 <% end %>
-
           </div>
         </div>
       </div>
-      <% elsif @ticket.issue_ticket_day != Date.today %>
+      <% else @ticket.issue_ticket_day != Date.today %>
       <h1>本日のチケットは発券されていません</h1>
     <% end %>
     </div>
-
-
   </section>
 </div>

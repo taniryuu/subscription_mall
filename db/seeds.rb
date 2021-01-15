@@ -12,6 +12,11 @@
 #               password_confirmation: "password")
 
 # puts "Admin Created"
+# Admin.create!(name: "中野ゆうさん",
+#   email: "yoshisu04183@gmail.com",
+#   password: "password",
+#   password_confirmation: "password")
+  puts "Admin Created"
 
 # 10.times do |n|
 #   name  = Faker::Name.name
@@ -34,6 +39,17 @@
 #                 password: password,
 #                 password_confirmation: password)
 # end
+10.times do |n|
+  name  = Faker::Name.name
+  email = "sample#{n+1}@email.com"
+  password = "password"
+  Owner.create!(name: name,
+                email: email,
+                password: password,
+                password_confirmation: password,
+                address: "東京都港区1-#{n}-1"
+               )
+end
 
 # puts "Owner Created"
 
@@ -47,6 +63,31 @@
 
 # Map.create!(address: "伊豆急下田駅")
 # puts "Map Created"
+2.times do |n|
+  Subscription.create!(
+    owner_id: 1,
+    name: "サンプル飲食店#{n}",
+    title: "サンプルタイトル#{n}",
+    category_name: "和食"
+  )
+end
+
+# 東京都港区1-1-1
+Map.create!(
+  subscription_id: 1,
+  latitude: 139.7587066,
+  longitude: 35.6582285
+)
+
+# 東京都港区1-1-2
+Map.create!(
+  subscription_id: 2,
+  address: "東京都港区1-1-2",
+  latitude: 139.7549275,
+  longitude: 35.6528864
+)
+
+puts "Subscription&Map Created"
 
 # Category.create!(name: "和食",
 #                 image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
@@ -107,33 +148,31 @@
 # Category.create!(name: "レストラン",
 #                 image_category: "https://media.gettyimages.com/photos/cafebar-in-moscow-picture-id1158221681?k=6&m=1158221681&s=612x612&w=0&h=JykZfmjm8VJtSMBVstQP3UP4Vp0Of7t-VokP63NSnXo="
 #                 )
-Category.create!(name: "お好み焼き",
-                image_category: "istockphoto-95396899-170667a.jpg"
-                )
-Category.create!(name: "鍋",
-                image_category: "korean-4147335__340.jpg"
-                )
-Category.create!(name: "スイーツ",
-                image_category: "sweets.jpeg"
-                )
-Category.create!(name: "唐揚げ",
-                image_category: "karaage.jpeg"
-                )
-Category.create!(name: "餃子",
-                image_category: "gyouza.jpeg"
-                )
-Category.create!(name: "丼モノ",
-                image_category: "don.jpeg"
-                )
-Category.create!(name: "うどん",
-                image_category: "udon.jpeg"
-                )
-Category.create!(name: "そば",
-                image_category: "soba.jpeg"
-                )
+# Category.create!(name: "お好み焼き",
+#                 image_category: "istockphoto-95396899-170667a.jpg"
+#                 )
+# Category.create!(name: "鍋",
+#                 image_category: "korean-4147335__340.jpg"
+#                 )
+# Category.create!(name: "スイーツ",
+#                 image_category: "sweets.jpeg"
+#                 )
+# Category.create!(name: "唐揚げ",
+#                 image_category: "karaage.jpeg"
+#                 )
+# Category.create!(name: "餃子",
+#                 image_category: "gyouza.jpeg"
+#                 )
+# Category.create!(name: "丼モノ",
+#                 image_category: "don.jpeg"
+#                 )
+# Category.create!(name: "うどん",
+#                 image_category: "udon.jpeg"
+#                 )
+# Category.create!(name: "そば",
+#                 image_category: "soba.jpeg"
+#                 )
 # Category.create!(name: "その他",
 #                 image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
 #                 )
 puts "Category Created"
-
-

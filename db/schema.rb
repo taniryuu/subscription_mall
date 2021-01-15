@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201221005551) do
+ActiveRecord::Schema.define(version: 20210109091752) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -127,10 +127,23 @@ ActiveRecord::Schema.define(version: 20201221005551) do
     t.integer "near_time"
     t.text "title"
     t.text "comment"
+    t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "owner_id"
-    t.index ["owner_id"], name: "index_maps_on_owner_id"
+    t.index ["subscription_id"], name: "index_maps_on_subscription_id"
+  end
+
+  create_table "megurumereviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "content"
+    t.integer "score"
+    t.float "rate", limit: 24
+    t.string "image_id"
+    t.string "email"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_megurumereviews_on_user_id"
   end
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -151,6 +164,8 @@ ActiveRecord::Schema.define(version: 20201221005551) do
     t.text "message"
     t.string "subject"
     t.string "kana"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
@@ -189,6 +204,8 @@ ActiveRecord::Schema.define(version: 20201221005551) do
     t.float "rate", limit: 24
     t.string "image_id"
     t.string "email"
+    t.bigint "subscription_id"
+    t.index ["subscription_id"], name: "index_reviews_on_subscription_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -226,6 +243,7 @@ ActiveRecord::Schema.define(version: 20201221005551) do
     t.integer "monthly_fee"
     t.text "blog"
     t.text "shop_introduction"
+    t.string "qr_image"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -298,11 +316,13 @@ ActiveRecord::Schema.define(version: 20201221005551) do
   add_foreign_key "images", "subscriptions"
   add_foreign_key "images", "users"
   add_foreign_key "interviews", "owners"
-  add_foreign_key "maps", "owners"
+  add_foreign_key "maps", "subscriptions"
+  add_foreign_key "megurumereviews", "users"
   add_foreign_key "products", "admins"
   add_foreign_key "products", "owners"
   add_foreign_key "products", "subscriptions"
   add_foreign_key "products", "users"
+  add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"
   add_foreign_key "shops", "owners"
   add_foreign_key "subscriptions", "owners"
