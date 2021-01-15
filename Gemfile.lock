@@ -109,7 +109,7 @@ GEM
       faraday-net_http (~> 1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    faraday-net_http (1.0.0)
+    faraday-net_http (1.0.1)
     ffi (1.14.2)
     font-awesome-rails (4.7.0.6)
       railties (>= 3.2, < 6.2)
@@ -196,9 +196,9 @@ GEM
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
-    omniauth-oauth2 (1.7.0)
+    omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
-      omniauth (~> 1.9)
+      omniauth (>= 1.9, < 3)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack

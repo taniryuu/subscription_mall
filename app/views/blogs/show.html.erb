@@ -3,52 +3,53 @@
 
 <h1 class="brand-color display-4 mt-6 mb-6">サブスクnews</h1>
 <hr class="tool-bar">
-<div class="row">
-  <div class="col-md-offset-2 col-sm-8">
-    <p>
-      <h1><%= @blog.title %></h1>
-    </p>
+<div class="row mb-8">
+  <div class="col-lg-9">
+    <h1 class="mt-3"><%= @blog.title %></h1>
 
     <p>
       <%= image_tag @blog.image_photo.url %>
     </p>
 
-    <p>
-      <%= @blog.body %>
-    </p>
-    <%= link_to 'news一覧へ', blogs_path %>
+    <div class="card mb-5">
+      <p class="card-body"><%= @blog.body %></p>
+    </div>
+
+    <%= link_to 'news一覧へ', blogs_path, class: "btn btn-outline-secondary" %>
     <% if current_admin.present? %>
-      <%= link_to '編集', edit_blog_path(@blog) %> |
-      <%= link_to '新規作成', new_blog_path, class: "btn btn-info" %><br>
+      <%= link_to '編集', edit_blog_path(@blog), class: "btn btn-outline-secondary" %>
+      <%= link_to '新規作成', new_blog_path, class: "btn btn-gradient-radius" %><br>
     <% end %>
 
 
-    <h1><%= link_to "お問い合わせはこちら", discussion_path, class: "btn btn-lg btn-info" %></h1>
+    <h1 class="mt-5"><%= link_to "お問い合わせはこちら", discussion_path, class: "btn-gradient-radius" %></h1>
   </div>
 
-  <div class="col-md-offset-10 col-sm-6">
-    <h5>おすすめnews</h5>
+  <div class="col-lg-3">
+    <h2 class="brand-color my-3">おすすめnews</h2>
     <% @blogs.each do |blog| %>
       <hr class="tool-bar">
       <div>
-        <%= link_to "#{blog.title}", blog_path(blog) %>
+        <h2><%= link_to "#{blog.title.truncate(20)}", blog_path(blog) %></h2>
       </div><br>
       <div>
-        <div class="grid-item-image"><%= image_tag blog.image_photo.url %>
+        <div class="grid-item-image"><%= image_tag blog.image_photo.url,:size => '300x260' %>
         </div><br>
       </div>
       <div>
-        <%= link_to "#{blog.body}", blog_path(blog) %>
+        <%= link_to "#{blog.body.truncate(20)}", blog_path(blog) %>
       </div><br>
       <% if current_admin.present? %>
-        <div class="col-sm-2">
-          <%= link_to "詳細", blog_path(blog), class: "btn-gradient-3d-simple" %>
-        </div>
-        <div class="col-sm-2">
-          <%= link_to "編集", edit_blog_path(blog), class: "btn-gradient-3d-simple" %>
-        </div>
-        <div class="col-sm-2">
-          <%= link_to "削除", blog_path(blog), method: :delete, class: "btn-gradient-3d-simple-destroy", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
+        <div class="row">
+          <div class="col-2">
+            <%= link_to "詳細", blog_path(blog), class: "btn btn-brand" %>
+          </div>
+          <div class="col-2">
+            <%= link_to "編集", edit_blog_path(blog), class: "btn btn-brand" %>
+          </div>
+          <div class="col-2">
+            <%= link_to "削除", blog_path(blog), method: :delete, class: "btn btn-danger", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
+          </div>
         </div>
       <% end %>
     <% end %>
