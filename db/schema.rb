@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.integer "near_time"
     t.text "title"
     t.text "comment"
+    t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "owner_id"
-    t.index ["owner_id"], name: "index_maps_on_owner_id"
+    t.index ["subscription_id"], name: "index_maps_on_subscription_id"
   end
 
   create_table "megurumereviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -316,7 +316,7 @@ ActiveRecord::Schema.define(version: 20210109091752) do
   add_foreign_key "images", "subscriptions"
   add_foreign_key "images", "users"
   add_foreign_key "interviews", "owners"
-  add_foreign_key "maps", "owners"
+  add_foreign_key "maps", "subscriptions"
   add_foreign_key "megurumereviews", "users"
   add_foreign_key "products", "admins"
   add_foreign_key "products", "owners"
