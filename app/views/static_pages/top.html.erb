@@ -153,11 +153,8 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=begin
-%>
     <div class="google-map">
-      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+      <%= form_with(model: @map, url: "#", local: true) do |f| %>
         <%= f.label :エリア %>
         <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
         <%= f.submit '検索' %>
@@ -169,9 +166,6 @@
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=end
-%>
      <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -283,11 +277,8 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=begin
-%>
     <div class="google-map">
-      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+      <%= form_with(model: @map, url: "#", local: true) do |f| %>
         <%= f.label :エリア %>
         <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
         <%= f.submit '検索' %>
@@ -299,9 +290,6 @@
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=end
-%>
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
@@ -379,11 +367,8 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div></br></br>
-<%
-=begin
-%>
     <div class="google-map">
-      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
+      <%= form_with(model: @map, url: "#", local: true) do |f| %>
         <%= f.label :エリア %>
         <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
         <%= f.submit '検索' %>
@@ -395,10 +380,6 @@
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-<%
-=end
-%>
-
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
