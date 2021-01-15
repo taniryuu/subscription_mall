@@ -35,7 +35,9 @@ puts "User Created"
   Owner.create!(name: name,
                 email: email,
                 password: password,
-                password_confirmation: password)
+                password_confirmation: password,
+                address: "東京都港区1-#{n}-1"
+               )
 end
 
 puts "Owner Created"
@@ -48,8 +50,31 @@ Question.create!(detail: "ぷらん",
   )
 puts "Question Created"
 
-Map.create!(address: "伊豆急下田駅")
-puts "Map Created"
+2.times do |n|
+  Subscription.create!(
+    owner_id: 1,
+    name: "サンプル飲食店#{n}",
+    title: "サンプルタイトル#{n}",
+    category_name: "和食"
+  )
+end
+
+# 東京都港区1-1-1
+Map.create!(
+  subscription_id: 1,
+  latitude: 139.7587066,
+  longitude: 35.6582285
+)
+
+# 東京都港区1-1-2
+Map.create!(
+  subscription_id: 2,
+  address: "東京都港区1-1-2",
+  latitude: 139.7549275,
+  longitude: 35.6528864
+)
+
+puts "Subscription&Map Created"
 
 Category.create!(name: "和食",
                 image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
@@ -138,5 +163,3 @@ Category.create!(name: "その他",
                 image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
                 )
 puts "Category Created"
-
-

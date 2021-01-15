@@ -10,6 +10,7 @@ class CreateMaps < ActiveRecord::Migration[5.1]
       t.integer :near_time
       t.text :title
       t.text :comment
+      t.references :subscription, foreign_key: true
 
       t.timestamps
     end

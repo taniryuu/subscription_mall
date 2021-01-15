@@ -7,7 +7,7 @@
   .gurumelogo:hover {
     background: transparent;
   }
-  
+
       /* ナビゲーションバー配置 */
   .navbar {
     position: absolute;
@@ -15,7 +15,7 @@
     top: 60px;
     z-index: 1;
   }
-  
+
       /* 動画 */
   .container-fluid {
     padding: 0;
@@ -27,9 +27,9 @@
       object-fit: cover;
     }
   }
-  
+
       /* ヘッダー中央コメント */
-  .text-center {
+  .text-center-top {
     font-size: 45px;
     font-weight: bold;
     color: #fff;
@@ -40,7 +40,7 @@
     left: 100px;
     top: 420px;
   }
-  .text-sub-center {
+  .text-sub-center-top {
     font-size: 25px;
     color: #fff;
     font-family: Hiragino Sans;
@@ -50,7 +50,7 @@
     left: 180px;
     top: 500px;
   }
-  
+
       /* ナビゲーションバー各項目 */
   .plan {
     margin-right: 17px;
@@ -101,7 +101,7 @@
     color: rgb(10, 3, 3);
     background-color: rgb(255, 240, 31);
   }
-  a.btn--pink:hover {  
+  a.btn--pink:hover {
     color:  rgb(10, 3, 3);
     background: rgb(255, 240, 31);
   }
@@ -117,7 +117,7 @@
       color: rgb(10, 3, 3);
       background-color:  rgb(27, 228, 87);
     }
-    a.btn--pink2:hover {  
+    a.btn--pink2:hover {
       color:  rgb(10, 3, 3);
       background: rgb(27, 228, 87);
     }
@@ -152,14 +152,14 @@
 
       /* レスポンシブWebデザインのブレークポイント */
   @media screen and (max-width: 1100px) {
-    h1.text-center {
+    h1.text-center-top {
       font-size: 30px;
       margin-bottom: 10px;
       position: absolute;
       left: 100px;
       top: 350px;
     }
-    p.text-sub-center {
+    p.text-sub-center-top {
       font-size: 20px;
       margin-bottom: 10px;
       position: absolute;
@@ -176,7 +176,7 @@
     li.plan {
       margin-top: 10px;
       margin-left: 18px;
-    }    
+    }
     .recommend {
       margin-top: 10px;
     }
@@ -188,14 +188,14 @@
       padding-bottom: 10px;
       width: 120px;
     }
-    h1.text-center {
+    h1.text-center-top {
       font-size: 30px;
       margin-bottom: 10px;
       position: absolute;
       left: 100px;
       top: 350px;
     }
-    p.text-sub-center {
+    p.text-sub-center-top {
       font-size: 20px;
       margin-bottom: 10px;
       position: absolute;
@@ -228,14 +228,14 @@
       top: 20px;
       left: 500px;
     }
-    h1.text-center {
+    h1.text-center-top {
       font-size: 25px;
       margin-bottom: 7px;
       position: absolute;
       left: 130px;
       top: 300px;
     }
-    p.text-sub-center {
+    p.text-sub-center-top {
       font-size: 15px;
       margin-bottom: 10px;
       position: absolute;
@@ -288,14 +288,14 @@
       padding: 4px 14px 4px 14px;
       width: 90px;
     }
-    h1.text-center {
+    h1.text-center-top {
       font-size: 20px;
       margin-bottom: 7px;
       position: absolute;
       left: 30px;
       top: 180px;
     }
-    p.text-sub-center {
+    p.text-sub-center-top {
       font-size: 13px;
       margin-bottom: 10px;
       position: absolute;
@@ -312,7 +312,7 @@
       color: rgb(10, 3, 3);
       background-color: rgb(255, 240, 31);
     }
-    a.btn--pink:hover {  
+    a.btn--pink:hover {
       color:  rgb(10, 3, 3);
       background: rgb(255, 240, 31);
     }
@@ -328,7 +328,7 @@
       color: rgb(10, 3, 3);
       background-color: rgb(27, 228, 87);
     }
-    a.btn--pink2:hover {  
+    a.btn--pink2:hover {
       color:  rgb(10, 3, 3);
       background: rgb(27, 228, 87);
     }
@@ -356,7 +356,7 @@
       padding: 0;
     }
   }
-  
+
       /* レスポンシブWebデザインのブレークポイント */
   @media screen and (max-width: 1520px) {
     .plan {
@@ -387,7 +387,7 @@
   .navbar-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
   }
-  
+
   hr.border-solid {
     height: 20px;
     border: 0;
@@ -402,14 +402,14 @@
   }
         /* header項目ここまで */
 
-        /* ここからtoppage 中央 category */    
+        /* ここからtoppage 中央 category */
   .f-container{
     width: 100vw;
     height: auto;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    display:flex;	
+    display:flex;
     justify-content: space-around;
     background-color: #f7f7f7;
   }
@@ -447,7 +447,7 @@
     font-weight: bold;
   }
   .box26 p {
-    margin: 0; 
+    margin: 0;
     padding: 0;
   }
   .comment-text {
@@ -589,13 +589,13 @@
     height: 220px;
     }
   }
-      /* toppage 中央 category ここまで */ 
+      /* toppage 中央 category ここまで */
 
   .google-map {
     border: solid #ecf0f1;
     margin-top: 20px;
   }
-  hr.style1 { 
+  hr.style1 {
     width: 100vw;
     position: relative;
     left: 50%;
