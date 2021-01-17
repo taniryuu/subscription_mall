@@ -2,9 +2,9 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>経営者様インタビュー</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">経営者様インタビュー</h1>
 
-<table>
+<table class="mb-8">
   <tbody>
     <% @interviews.each do |interview| %>
     <hr class="tool-bar">
@@ -21,15 +21,15 @@
         </div>
 
         <div class="col-sm-2">
-          <%= interview.content %>
+          <%= interview.content.truncate(20) %>
         </div>
 
       <% if current_owner.present? or current_admin.present? %>
         <div class="col-sm-1">
-          <%= link_to "詳細", interview_path(interview), class: "btn-gradient-3d-simple" %>
+          <%= link_to "詳細", interview_path(interview), class: "btn btn-brand" %>
         </div>
         <div class="col-sm-1">
-          <%= link_to "編集", edit_interview_path(interview), class: "btn-gradient-3d-simple" %>
+          <%= link_to "編集", edit_interview_path(interview), class: "btn btn-brand" %>
         </div>
         <div class="col-sm-1">
           <%= link_to "削除", interview_path(interview), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
@@ -38,7 +38,7 @@
       </div>
     <% end %>
     <% if current_owner.present? or current_admin.present? %>
-      <%= link_to '経営者様インタビュー作成', new_interview_path %>
+      <%= link_to '経営者様インタビュー作成', new_interview_path, class: "btn-gradient-radius mt-5" %>
     <% end %>
   </tbody>
 </table>
