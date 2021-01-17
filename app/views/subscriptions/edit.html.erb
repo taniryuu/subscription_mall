@@ -19,6 +19,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
     <%= form.label :detail %>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
