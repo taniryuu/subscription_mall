@@ -50,14 +50,25 @@ Question.create!(detail: "ぷらん",
   )
 puts "Question Created"
 
-2.times do |n|
-  Subscription.create!(
-    owner_id: 1,
-    name: "サンプル飲食店#{n}",
-    title: "サンプルタイトル#{n}",
-    category_name: "和食"
-  )
-end
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店1",
+  title: "サンプルタイトル1",
+  category_name: "和食",
+  address: "東京都渋谷区富ヶ谷1丁目",
+  latitude: 35.659020,
+  longitude: 139.702233
+)
+
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店2",
+  title: "サンプルタイトル2",
+  category_name: "和食",
+  address: "東京都渋谷区富ヶ谷2丁目",
+  latitude: 35.658096,
+  longitude: 139.700466
+)
 
 Category.create!(name: "和食",
                 image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
