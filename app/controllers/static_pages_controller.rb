@@ -7,10 +7,8 @@ class StaticPagesController < ApplicationController
     @megurumereviews = Megurumereview.all
     results = Geocoder.search(params[:address])
     @latlng = results.first
-    @map = Map.first
     @owners = Owner.all
     gon.subscriptions = Subscription.all
-    gon.maps = Map.all
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
