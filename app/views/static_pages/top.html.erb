@@ -66,19 +66,8 @@
 <%
 =begin
 %>
-    <div class="google-map">
-      <%= form_with(model: @map, url: index_update_map_path(@map), local: true) do |f| %>
-        <%= f.label :エリア %>
-        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-        <%= f.submit '検索' %>
-      <% end %>
-      <div id="map"></div>
-    </div>
-    <div class="recommend-shop">
-      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-      <% end %>
-    </div>
+    <%# google map %>
+    <%= render "maps/top" %>
 <%
 =end
 %>
@@ -153,14 +142,10 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-    <div class="google-map">
-      <%= form_with(model: @map, url: "#", local: true) do |f| %>
-        <%= f.label :エリア %>
-        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-        <%= f.submit '検索' %>
-      <% end %>
-      <div id="map"></div>
-    </div>
+
+    <%# google map %>
+    <%= render "maps/top" %>
+
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
@@ -277,14 +262,10 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
-    <div class="google-map">
-      <%= form_with(model: @map, url: "#", local: true) do |f| %>
-        <%= f.label :エリア %>
-        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-        <%= f.submit '検索' %>
-      <% end %>
-      <div id="map"></div>
-    </div>
+
+    <%# google map %>
+    <%= render "maps/top" %>
+
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
@@ -367,14 +348,10 @@
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div></br></br>
-    <div class="google-map">
-      <%= form_with(model: @map, url: "#", local: true) do |f| %>
-        <%= f.label :エリア %>
-        <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-        <%= f.submit '検索' %>
-      <% end %>
-      <div id="map"></div>
-    </div>
+
+    <%# google map %>
+    <%= render "maps/top" %>
+
     <div class="recommend-shop">
       <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
@@ -493,10 +470,3 @@
     <% end %>
   <% end %>
 </main>
-
-<style>
-    #map{
-      height: 200px;
-    }
-</style>
-<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
