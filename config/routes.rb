@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   get '/users/:user_id/tickets/:id/qrcode', to: 'tickets#qrcode', as: :qrcode #QRコードのページ
   get '/ticket_success', to: 'tickets#ticket_success', as: :ticket_success
+  patch 'users/:user_id/tickets/:id/ticket_update_after_second_time', to: 'tickets#ticket_update_after_second_time', as: :ticket_update_after_second_time
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
