@@ -3,9 +3,11 @@
 
 
 <h1 class="brand-color display-4 mt-6 mb-6">経営者様インタビュー詳細</h1>
+
+<div class="d-lg-none">
   <div class="row">
-    <div class="col-sm-10 col-md-offset-1">
-      <table class="table table-bordered mt-4" id="table-schedule">
+    <div class="col-12">
+      <table class="table table-bordered table-hover mt-4">
         <tbody>
           <tr>
             <th class="active center">
@@ -41,6 +43,51 @@
       </table>
     </div>    
   </div>
+  <%= link_to '経営者様インタビュー一覧', interviews_path, class: "btn-gradient-radius mt-5 mb-8" %>
+</div>
 
-<%= link_to '経営者様インタビュー', interviews_path, class: "btn-gradient-radius mt-5 mb-8" %>
+
+<%# PC表示 %>
+<div class="d-none d-lg-block">
+  <div class="row">
+    <div class="col-sm-10 col-md-offset-1">
+      <table class="table table-bordered table-hover mt-4" id="table-schedule">
+        <tbody>
+          <tr>
+            <th class="active center">
+              <p>
+              <span><%= Interview.human_attribute_name :owner_name %></span>
+              <span><td class="active"><%= @interview.owner_name %></span></td>
+              <br><th class="active center"><span><%= Interview.human_attribute_name :shop_name %></span></th>
+              <span><td class="active"><%= @interview.shop_name %></span></td>
+              </p>
+            </th>
+          </tr>
+          <tr>
+            <th class="active center">
+              <p>
+              <span><%= Interview.human_attribute_name :image_interview %></span>
+              <span><td class="active center" colspan="3"><%= image_tag @interview.image_interview.thumb.url %></span></td>
+              </p>
+            </th>
+          </tr>
+          <tr>
+            <th class="active center col-sm-2"><%= Interview.human_attribute_name :content %></th>
+            <td  class="active" colspan = "3"><%= @interview.content %></td>
+          </tr>
+        </tbody>
+        <% if signed_in? %>
+          <% if !current_owner.present? %>
+            <div class="tool--item">
+              <%= link_to "編集", edit_interview_path(@interview), class: "btn btn-brand" %>
+              <%= link_to "削除", interview_path(@interview), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+            </div>
+          <% end %>    
+        <% end %>
+      </table>
+    </div>    
+  </div>
+  <%= link_to '経営者様インタビュー一覧', interviews_path, class: "btn-gradient-radius mt-5 mb-8" %>
+</div>
+
 
