@@ -30,6 +30,12 @@
   </div>
 <% end %>
 
+<div class="d-md-none">
+  <%= link_to '詳細', interview_path(@interview), class: "btn btn-lg btn-block btn-brand mt-5" %>
+  <%= link_to '経営者様インタビュー一覧へ', interviews_path, class: "btn btn-lg btn-block btn-brand mt-5 mb-8" %>
+</div>
 
-<%= link_to '詳細', interview_path(@interview), class: "btn btn-gradient-radius mt-5 mb-8" %>
-<%= link_to '経営者様インタビュー一覧へ', interviews_path, class: "btn btn-gradient-radius mt-5 mb-8" %>
+<div class="d-none d-md-block">
+  <%= link_to '詳細', interview_path(@interview), class: "btn btn-gradient-radius mt-5 mb-8" %>
+  <%= link_to '経営者様インタビュー一覧へ', interviews_path, class: "btn btn-gradient-radius mt-5 mb-8" %>
+</div>
