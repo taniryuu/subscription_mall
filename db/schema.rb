@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210109091752) do
+ActiveRecord::Schema.define(version: 20210109054911) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "name"
     t.string "kana"
     t.string "line_id"
     t.string "address"
     t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -43,11 +43,11 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "name"
     t.bigint "user_id"
     t.bigint "owner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "genre"
     t.string "image_category"
     t.string "search"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_categories_on_owner_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
@@ -63,26 +63,6 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_contacts_on_owner_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
-  end
-
-  create_table "cupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "product"
-    t.string "discount"
-    t.integer "status"
-    t.string "image"
-    t.string "writing"
-    t.integer "limit"
-    t.text "reason"
-    t.bigint "review_id"
-    t.bigint "owner_id"
-    t.bigint "user_id"
-    t.bigint "admin_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_id"], name: "index_cupons_on_admin_id"
-    t.index ["owner_id"], name: "index_cupons_on_owner_id"
-    t.index ["review_id"], name: "index_cupons_on_review_id"
-    t.index ["user_id"], name: "index_cupons_on_user_id"
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -117,22 +97,6 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.index ["owner_id"], name: "index_interviews_on_owner_id"
   end
 
-  create_table "maps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text "address"
-    t.float "latitude", limit: 24
-    t.float "longitude", limit: 24
-    t.integer "distance"
-    t.integer "near_distance"
-    t.integer "time"
-    t.integer "near_time"
-    t.text "title"
-    t.text "comment"
-    t.bigint "subscription_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subscription_id"], name: "index_maps_on_subscription_id"
-  end
-
   create_table "megurumereviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "content"
@@ -152,8 +116,6 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "name"
     t.string "phone_number"
     t.string "store_information"
@@ -166,25 +128,10 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "kana"
     t.string "uid"
     t.string "provider"
-    t.index ["email"], name: "index_owners_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
-  end
-
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "price"
-    t.text "subscription_detail"
-    t.bigint "subscription_id"
-    t.bigint "owner_id"
-    t.bigint "user_id"
-    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_id"], name: "index_products_on_admin_id"
-    t.index ["owner_id"], name: "index_products_on_owner_id"
-    t.index ["subscription_id"], name: "index_products_on_subscription_id"
-    t.index ["user_id"], name: "index_products_on_user_id"
+    t.index ["email"], name: "index_owners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -198,29 +145,15 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "name"
     t.string "content"
     t.integer "score"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.float "rate", limit: 24
     t.string "image_id"
     t.string "email"
     t.bigint "subscription_id"
-    t.index ["subscription_id"], name: "index_reviews_on_subscription_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "category_name"
-    t.integer "monthly_fee"
-    t.string "phone_number"
-    t.string "store_information"
-    t.string "payee"
-    t.string "line_id"
-    t.string "address"
-    t.bigint "owner_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_shops_on_owner_id"
+    t.index ["subscription_id"], name: "index_reviews_on_subscription_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -231,9 +164,6 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.integer "price"
     t.text "subscription_detail"
     t.integer "category_name"
-    t.bigint "owner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "shop_id"
     t.string "script"
     t.string "image_subscription2"
@@ -244,6 +174,12 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
+    t.text "address"
+    t.float "latitude", limit: 24
+    t.float "longitude", limit: 24
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -269,10 +205,10 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "subscription_name"
     t.string "subscription_fee"
     t.date "use_ticket_day"
+    t.date "issue_ticket_day"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "issue_ticket_day"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -282,8 +218,6 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "name"
     t.string "kana"
     t.string "line_id"
@@ -297,6 +231,8 @@ ActiveRecord::Schema.define(version: 20210109091752) do
     t.string "session_id"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -306,25 +242,15 @@ ActiveRecord::Schema.define(version: 20210109091752) do
   add_foreign_key "categories", "users"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
-  add_foreign_key "cupons", "admins"
-  add_foreign_key "cupons", "owners"
-  add_foreign_key "cupons", "reviews"
-  add_foreign_key "cupons", "users"
   add_foreign_key "images", "blogs"
   add_foreign_key "images", "interviews"
   add_foreign_key "images", "owners"
   add_foreign_key "images", "subscriptions"
   add_foreign_key "images", "users"
   add_foreign_key "interviews", "owners"
-  add_foreign_key "maps", "subscriptions"
   add_foreign_key "megurumereviews", "users"
-  add_foreign_key "products", "admins"
-  add_foreign_key "products", "owners"
-  add_foreign_key "products", "subscriptions"
-  add_foreign_key "products", "users"
   add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"
-  add_foreign_key "shops", "owners"
   add_foreign_key "subscriptions", "owners"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"

@@ -4,8 +4,9 @@ class Subscription < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
-
-  has_one :map, dependent: :destroy
+  
+  geocoded_by :address
+  after_validation :geocode
   
   enum price: { "3,000"=> 1, "12,000"=> 2, "18,000"=> 3, "25,000"=> 4, "50,000"=> 5, "100,000"=> 6}, _prefix: true
   enum monthly_fee: { "1980"=> 1, "4980"=> 2, "19800"=> 3}

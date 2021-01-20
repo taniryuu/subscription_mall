@@ -61,8 +61,6 @@ Question.create!(detail: "ぷらん",
   )
 puts "Question Created"
 
-# Map.create!(address: "渋谷")
-# puts "Map Created"
 2.times do |n|
   Subscription.create!(
     owner_id: 1,
@@ -77,17 +75,25 @@ Map.create!(
   subscription_id: 1,
   latitude: 139.7587066,
   longitude: 35.6582285
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店1",
+  title: "サンプルタイトル1",
+  category_name: "和食",
+  address: "東京都渋谷区富ヶ谷1丁目",
+  latitude: 35.659020,
+  longitude: 139.702233
 )
 
-# 東京都港区1-1-2
-Map.create!(
-  subscription_id: 2,
-  address: "東京都港区1-1-2",
-  latitude: 139.7549275,
-  longitude: 35.6528864
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店2",
+  title: "サンプルタイトル2",
+  category_name: "和食",
+  address: "東京都渋谷区富ヶ谷2丁目",
+  latitude: 35.658096,
+  longitude: 139.700466
 )
-
-puts "Subscription&Map Created"
 
 Category.create!(name: "和食",
                 image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
