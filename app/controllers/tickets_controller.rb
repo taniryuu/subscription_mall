@@ -7,11 +7,6 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = Ticket.find(params[:id])
-
-  end
-
-  def qrcode
-    @ticket = Ticket.find(params[:id])
   end
 
   def new
