@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :tickets, dependent: :destroy
+  has_one :tickets, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :megurumereviews, dependent: :destroy
   acts_as_paranoid # 追加
@@ -17,6 +17,7 @@ class User < ApplicationRecord
   # validatable相当の検証を追加
   validates_uniqueness_of :email, scope: :deleted_at
   validates :name, presence: true
+  validates :email, presence: true, length: { maximum: 100 }, uniqueness: true
   # validates :kana, presence: true
   validates_format_of :email, presence: true, with: Devise.email_regexp, if: :will_save_change_to_email?
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create

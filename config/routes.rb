@@ -25,8 +25,8 @@ Rails.application.routes.draw do
 
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
 
-  get '/users/:user_id/tickets/:id/qrcode', to: 'tickets#qrcode', as: :qrcode #QRコードのページ
   get '/ticket_success', to: 'tickets#ticket_success', as: :ticket_success
+  patch 'users/:user_id/tickets/:id/ticket_update_after_second_time', to: 'tickets#ticket_update_after_second_time', as: :ticket_update_after_second_time
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -97,7 +97,7 @@ Rails.application.routes.draw do
           resources :images
         end
   end
-  resources :maps, only: :update
+  resources :maps
   resources :categories, only: :index do
       get 'like_lunch', on: :member
       get 'washoku', on: :collection

@@ -78,6 +78,7 @@ ja:
           subscription_detail: 店舗情報
           category_genre: ジャンル
           category_name: カテゴリ
+          address: お店の住所
           created_at: 作成日
           updated_at: 更新日
         blog:
@@ -111,24 +112,6 @@ ja:
           message: メッセージ
           created_at: 作成日
           updated_at: 購入日
-        map:
-          id: ID
-          address: 住所
-          latitude: 緯度
-          longitude: 軽度
-          distance: 距離
-          created_at: 作成日
-          updated_at: 更新日
-        shop:
-          id: ID
-          category_name: カテゴリ
-          monthly_fee: 月額利用料金
-          store_information: 店舗情報
-          payee: 振込先
-          phone_number: 電話番号
-          address: 住所
-          created_at: 作成日
-          updated_at: 更新日
         category:
           id: ID
           category_name: カテゴリ

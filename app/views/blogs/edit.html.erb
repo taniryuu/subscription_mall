@@ -1,7 +1,8 @@
 <% provide(:title, "Edit") %>
-<h1>サブスクnews編集</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">サブスクnews編集</h1>
+<div class="mb-8">
+  <%= render 'form', blog: @blog %>
 
-<%= render 'form', blog: @blog %>
-
-<%= link_to '詳細', @blog %> |
-<%= link_to 'news一覧へ', blogs_path %>
+  <%= link_to '詳細', @blog, class: "btn btn-gradient-radius mt-5" %>
+  <%= link_to 'news一覧へ', blogs_path, class: "btn btn-gradient-radius mt-5" %>
+</div>

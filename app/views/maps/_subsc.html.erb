@@ -1,0 +1,43 @@
+<div class="google-map">
+  <div id="map1"></div>
+</div>
+
+<%# CSS %>
+
+<style>
+  #map1{
+    height: 200px;
+  }
+</style>
+
+<%# JS %>
+
+<script>
+  let map;
+  let geocode;
+  let markerSub = gon.subscriptions;
+
+  let center = {
+    lat: <%= @subscription.latitude %>,
+    lng: <%= @subscription.longitude %>
+  };
+
+  const display = document.getElementById('map1')
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map1'), {
+      center: center,
+      zoom: 18,
+    });
+    let id = markerSub['id']
+    markerLatLng = new google.maps.LatLng( center );
+    // 各地点のマーカーを作成
+    marker = new google.maps.Marker({
+      position: markerLatLng,
+      map: map
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
