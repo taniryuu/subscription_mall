@@ -135,6 +135,7 @@ Map.create!(
   subscription_id: 1,
   latitude: 139.7587066,
   longitude: 35.6582285
+)
 Subscription.create!(
   owner_id: 1,
   name: "サンプル飲食店1",
