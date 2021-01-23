@@ -33,5 +33,6 @@
         <%= link_to "削除されたアカウント履歴", owners_deleted_owners_path, class: "btn btn-primary" %>
       <% end %>
     </table>
+    <%= will_paginate(@pusers, class: "pagination justify-content-center", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
   </div>
 </div>

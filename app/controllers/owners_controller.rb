@@ -2,7 +2,7 @@ class OwnersController < ApplicationController
   before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy]
 
   def index
-    @owners = Owner.all
+    @owners = Owner.paginate(page: params[:page], per_page: 20)
   end
 
   def deleted_owners#論理削除した経営者
