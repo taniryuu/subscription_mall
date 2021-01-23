@@ -38,8 +38,8 @@ Rails.application.configure do
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'gmail.com',
-    user_name:            'ruffini47@gmail.com', # ここに自分のGmailアドレスをいれる
-    password:             'zjfawrodqaqsyidb', # ここに自分のGmailアドレスのパスワードをいれる
+    user_name:            'megurumee@gmail.com', # ここに自分のGmailアドレスをいれる
+    password:             'fxrcwnbuwabzsvrp', # ここに自分のGmailアドレスのパスワードをいれる
     authentication:       'plain',
     enable_starttls_auto: true
   }
