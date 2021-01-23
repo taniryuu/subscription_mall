@@ -1,29 +1,27 @@
 <% provide(:title, "よくある質問") %>
 <p id="notice"><%= notice %></p>
 
+<h1>よくある質問一覧</h1>
+
 <div class = "h2 mx-auto" style = "width: 250px; color: #faab05;">Q&A</div>
 
 <% if current_admin.present? %>
-  <table class = "table table-bordered">
-    <thead>
-      <tr class = "row">
-	<td class = "col-sm-4">内容</td>
-        <td class = "col-sm-6">回答</td>
-	<td class = "col-sm-1"></td>
-	<td class = "col-sm-1"></td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @questions.each do |question| %><%# よくある質問を全てeach %>
-	<tr class = "row"> 
-	  <td class = "col-sm-4"><%= link_to "#{question.detail}", questions_path %></td>
-          <td class = "col-sm-6"><%= link_to "#{question.answer}", questions_path %></td>
-	  <td class = "col-sm-1"><%= button_to '編集', edit_questions_path(question) %></td>
-	  <td class = "col-sm-1"><%= button_to '削除', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	</tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="container">
+    <div class = "row">
+	<div class = "border col-sm-4">内容</div>
+        <div class = "border col-sm-6">回答</div>
+	<div class = "border col-sm-1"></div>
+	<div class = "border col-sm-1"></div>
+    </div>
+    <% @questions.each do |question| %><%# よくある質問を全てeach %>
+      <div class = "row"> 
+	  <div class = "border col-sm-4"><%= question.detail %></div>
+          <div class = "border col-sm-6"><%= question.answer %></div>
+	  <div class = "border col-sm-1"><%= button_to '編集', edit_questions_path(question) %></div>
+	  <div class = "border col-sm-1"><%= button_to '削除', question, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      </div>
+    <% end %>
+  </div>
   <%= link_to 'よくある質問新規作成', new_question_path, class: "btn btn-info" %>
 <% elsif !current_admin.present? %>
   <hr size = "2">
