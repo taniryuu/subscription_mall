@@ -141,6 +141,7 @@ Rails.application.routes.draw do
   resources :questions#よくある質問
   post 'questions/:id/edit', to: 'questions#edit', as: :edit_questions #よくある質問編集
   resources :megurumereviews
+  resources :instablogs
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
