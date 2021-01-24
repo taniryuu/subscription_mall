@@ -33,7 +33,6 @@ class BlogsController < ApplicationController
 	  @blog.update(image_photo: "#{@blog.id}.PNG" )
 	else
 	  flash[:danger] = "写真を指定できませんでした。"
-	  #@post.update(image_photo: "default.jpg")
 	end
 
 	flash[:success] = "作成できました"
