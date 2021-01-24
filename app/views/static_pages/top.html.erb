@@ -94,17 +94,6 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-      <hr class="tool-bar">
-      <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-          <%= link_to "#{blog.title}", blog_path(blog) %>
-        </div><br>
-        <div class="col-sm-offset-8 col-sm-6">
-          <%= link_to "#{blog.body}", blog_path(blog) %>
-        </div>
-      </div>
-    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
   <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
@@ -203,17 +192,6 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-      <hr class="tool-bar">
-      <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-          <%= link_to "#{blog.title}", blog_path(blog) %>
-        </div><br>
-        <div class="col-sm-offset-8 col-sm-6">
-          <%= link_to "#{blog.body}", blog_path(blog) %>
-        </div>
-      </div>
-    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
   <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
@@ -273,17 +251,6 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-    <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-      <hr class="tool-bar">
-      <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-          <%= link_to "#{blog.title}", blog_path(blog) %>
-        </div><br>
-        <div class="col-sm-offset-8 col-sm-6">
-          <%= link_to "#{blog.body}", blog_path(blog) %>
-        </div>
-      </div>
-    <% end %>
     <hr class="style2">
     <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
     <% end %>
@@ -413,17 +380,6 @@
     <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-      <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-        <div class="row">
-          <div class="col-sm-offset-3 col-sm-6">
-            <%= link_to "#{blog.title}", blog_path(blog) %>
-          </div><br>
-          <div class="col-sm-offset-8 col-sm-6">
-            <%= link_to "#{blog.body}", blog_path(blog) %>
-          </div>
-        <div>
-      <% end %>
       <hr class="style2">
       <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
   <% end %>
