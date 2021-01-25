@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
+    @search = params[:search]
   end
 
   def deleted_users
@@ -54,6 +55,16 @@ class UsersController < ApplicationController
     @subscription = Subscription.find_by(params[:owner_id])
 
   end
+
+  # ユーザーの名前をあいまい検索機能
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @users = User.none
+    end
+  end
+
 
   private
 

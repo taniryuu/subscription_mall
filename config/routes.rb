@@ -131,6 +131,7 @@ Rails.application.routes.draw do
   end
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
+    get :search, on: :collection # ユーザーの名前であいまい検索 追加分
     resources :tickets#サブスクチケット
     resources :reviews#利用者レビュー
       get "thanks", on: :member#会員完了通知仮面

@@ -666,3 +666,7 @@ input[type="file"] {
   display: none;
 }
 
+// 消えたフォームの枠を表示する
+.form_border{
+  border: solid 2px #ecf0f1 !important;
+}
