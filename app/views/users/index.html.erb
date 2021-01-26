@@ -1,22 +1,28 @@
 <% provide(:title, 'All Users') %>
+<% provide(:button_text, '検索') %>
 
 <p id="notice"><%= notice %></p>
 <div>
-  <h1>お客様一覧</h1>
+  <h1 class="brand-color display-4 mt-6 mb-6">利用者様一覧</h1>
 
-  <!--ここから先が検索機能の実装部-->
-  <h1>User search</h1>
-  <%= form_with url: search_users_path, method: :get, local: true do |f| %>
-    <%= f.text_field :name, :class => 'form_border' %>
-    <%= f.submit :search %>
-  <% end %>
-  <!--ここまで-->
+  <div class="col-md-10 offset-md-1">
 
-  <div class="col-sm-10 col-sm-offset-1">
+    <!--ここから先が検索機能の実装部-->  
+    <div class="row justify-content-end">
+      <div class="col-md-6">
+        <%= form_with url: search_users_path, method: :get, local: true do |f| %>
+          <%= f.text_field :name, :class => 'form_border', placeholder: "名前で利用者様を検索
+          " %>
+          <%= f.submit "検索", class: "btn btn-lg btn-brand float-right mt-4" %>
+        <% end %>
+      </div>
+    </div>
+    <!--ここまで-->
+
     <% if current_admin.present? %>
-      <%= link_to "削除されたアカウント履歴", users_deleted_users_path, class: "btn btn-primary" %>
+      <%= link_to "削除されたアカウント履歴", users_deleted_users_path, class: "btn btn-brand" %>
     <% end %>
-    <table class="table table-condensed table-hover" id="table-users">
+    <table class="table table-condensed table-hover my-5" id="table-users">
       <thead>
         <tr>
           <th>ID</th>
@@ -45,12 +51,13 @@
                   class: "btn btn-danger" %>
           </td>
           <td>
-              <%= link_to "編集", edit_user_path(user), class: "btn btn-primary" %>
+              <%= link_to "編集", edit_user_path(user), class: "btn btn-brand" %>
           </td>
         </tr>
         <% end %>
       <% end %>
     </table>
-    <%= will_paginate(@pusers, class: "pagination justify-content-center", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+
+    <%= will_paginate(@pusers, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
   </div>
 </div>

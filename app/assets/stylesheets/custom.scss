@@ -668,5 +668,15 @@ input[type="file"] {
 
 // 消えたフォームの枠を表示する
 .form_border{
-  border: solid 2px #ecf0f1 !important;
+  border: solid 1px #c0c0c0 !important;
+}
+
+// フォームのプレイスホルダー色を薄いグレーにする
+.form-control::placeholder{
+  color: #c0c0c0 !important;
+}
+
+// フォームのプレイスホルダー色を薄いグレーにする
+.form_border::placeholder{
+  color: #c0c0c0 !important;
 }
