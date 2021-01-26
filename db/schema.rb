@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210109054911) do
+ActiveRecord::Schema.define(version: 20210123230814) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20210109054911) do
     t.index ["owner_id"], name: "index_images_on_owner_id"
     t.index ["subscription_id"], name: "index_images_on_subscription_id"
     t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
+  create_table "instablogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "content"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "insta_content"
+    t.index ["subscription_id"], name: "index_instablogs_on_subscription_id"
   end
 
   create_table "interviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -180,6 +189,7 @@ ActiveRecord::Schema.define(version: 20210109054911) do
     t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "insta_blog"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -247,6 +257,7 @@ ActiveRecord::Schema.define(version: 20210109054911) do
   add_foreign_key "images", "owners"
   add_foreign_key "images", "subscriptions"
   add_foreign_key "images", "users"
+  add_foreign_key "instablogs", "subscriptions"
   add_foreign_key "interviews", "owners"
   add_foreign_key "megurumereviews", "users"
   add_foreign_key "reviews", "subscriptions"

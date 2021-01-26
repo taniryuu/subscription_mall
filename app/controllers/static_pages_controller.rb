@@ -39,6 +39,9 @@ class StaticPagesController < ApplicationController
   def discussion
   end
 
+  def specified_commercial_transaction_law
+  end
+
   private
 
 end

@@ -1,0 +1,19 @@
+<% provide(:title, "instagram 投稿") %>
+
+<h1>instagram 投稿</h1>
+
+<%= form_with(model: @instablog, url: instablogs_path, local: true) do |form| %>
+
+  <%= form.hidden_field :subscription_id, :value => @subscription.id %>
+
+  <div class="field">
+    <%= form.label :埋め込みコード %>
+    <%= form.text_area :insta_content, placeholder: "こちらにコピーしたinstagram埋め込みコードを添付してください。", class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
+
