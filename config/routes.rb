@@ -88,6 +88,7 @@ Rails.application.routes.draw do
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
+        get :search, on: :collection #オーナーの名前であいまい検索 追加分
         post "thanks", on: :member#会員登録完了通知画面
         get 'owner_account', on: :member#アカウントページ
         get 'user_email', on: :member#経営者から利用者へメール作成

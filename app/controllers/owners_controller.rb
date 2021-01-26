@@ -73,6 +73,15 @@ class OwnersController < ApplicationController
     redirect_to owners_url
   end
 
+  # オーナーの名前をあいまい検索機能
+  def search
+    if params[:name].present?
+      @owners = Owner.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @owners = Owner.none
+    end
+  end
+
   private
 
     def set_owner

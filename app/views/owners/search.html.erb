@@ -1,5 +1,5 @@
-<% provide(:title, 'Search Users') %>
-<h1 class="brand-color display-4 mt-6 mb-6">利用者様検索結果</h1>
+<% provide(:title, 'Search Owners') %>
+<h1 class="brand-color display-4 mt-6 mb-6">経営者検索結果</h1>
 
 <div class="col-md-10 offset-md-1">
   <table class="table table-condensed table-hover my-5" id="table-users">
@@ -17,25 +17,25 @@
       </tr>
     </thead>
 
-    <% @users.each do |user| %>
+    <% @owners.each do |owner| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user.name ,user_path(user) %></td>
-        <td><%= user.kana %></td>
-        <td><%= link_to user.email ,user_email_owner_path(user) %></td>
-        <td><%= user.phone_number %></td>
+        <td><%= owner.id %></td>
+        <td><%= link_to owner.name ,owner_path(owner) %></td>
+        <td><%= owner.kana %></td>
+        <td><%= owner.email %></td>
+        <td><%= owner.phone_number %></td>
       <% if current_admin.present? %>
         <td>
-            <%= link_to "削除", user, method: :delete,
+            <%= link_to "削除", owner, method: :delete,
                 data: { confirm: "削除してよろしいですか？" },
                 class: "btn btn-danger" %>
         </td>
         <td>
-            <%= link_to "編集", edit_user_path(user), class: "btn btn-brand" %>
+            <%= link_to "編集", edit_owner_path(owner), class: "btn btn-brand" %>
         </td>
       </tr>
       <% end %>
     <% end %>
   </table>
-  <%= link_to "利用者様一覧へ戻る", users_path, class: "btn btn-gradient-radius mt-5 mb-8" %>
+  <%= link_to "経営者一覧へ戻る", owners_path, class: "btn btn-gradient-radius mt-5 mb-8" %>
 </div>
