@@ -1,16 +1,41 @@
+<% provide(:title, 'Search Users') %>
 <h1 class="brand-color display-4 mt-6 mb-6">利用者様検索結果</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
+
+<div class="col-md-10 offset-md-1">
+  <table class="table table-condensed table-hover my-5" id="table-users">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>かな</th>
+        <th>アドレス</th>
+        <th>電話番号</th>
+        <% if current_admin.present? %>
+        <th></th>
+        <th></th>
+        <% end %>
+      </tr>
+    </thead>
+
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= user.id %></td>
+        <td><%= link_to user.name ,user_path(user) %></td>
+        <td><%= user.kana %></td>
+        <td><%= link_to user.email ,user_email_owner_path(user) %></td>
+        <td><%= user.phone_number %></td>
+      <% if current_admin.present? %>
+        <td>
+            <%= link_to "削除", user, method: :delete,
+                data: { confirm: "削除してよろしいですか？" },
+                class: "btn btn-danger" %>
+        </td>
+        <td>
+            <%= link_to "編集", edit_user_path(user), class: "btn btn-brand" %>
+        </td>
       </tr>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </table>
+</div>
 <%= link_to "利用者様一覧へ戻る", users_path, class: "btn btn-gradient-radius mt-5 mb-8" %>
