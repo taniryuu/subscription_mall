@@ -1,0 +1,2 @@
+module InstablogsHelper
+end
