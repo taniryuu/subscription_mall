@@ -16,7 +16,7 @@ Admin.create!(name: "中野ゆうさん",
   password_confirmation: "password")
   puts "Admin Created"
 
-10.times do |n|
+30.times do |n|
   name  = Faker::Name.name
   email = "sample-#{n+1}@email.com"
   password = "password"
@@ -28,7 +28,7 @@ end
 
 puts "User Created"
 
-10.times do |n|
+30.times do |n|
   name  = Faker::Name.name
   email = "sample#{n+1}@email.com"
   password = "password"

@@ -1,15 +1,35 @@
 <% provide(:title, 'All Owners') %>
 <div>
-  <h1>経営者一覧</h1>
+  <h1 class="brand-color display-4 mt-6 mb-6">経営者一覧</h1>
 
-  <div class="col-md-10 col-md-offset-1">
-    <table class="table table-condensed table-hover" id="table-users">
+  <div class="col-md-10 offset-md-1">
+
+    <!--ここから先が検索機能の機能-->  
+    <div class="row justify-content-end">
+      <div class="col-md-6">
+        <%= form_with url: search_owners_path, method: :get, local: true do |f| %>
+          <%= f.text_field :name, :class => 'form_border', placeholder: "名前で経営者を検索" %>
+          <%= f.submit "検索", class: "btn btn-lg btn-brand float-right mt-4" %>
+        <% end %>
+      </div>
+    </div>
+    <!--ここまで-->
+
+    <% if current_admin.present? %>
+      <%= link_to "削除されたアカウント履歴", owners_deleted_owners_path, class: "btn btn-brand" %>
+    <% end %>
+
+    <table class="table table-condensed table-hover my-5" id="table-users">
       <thead>
         <tr>
           <th>ID</th>
           <th>名前</th>
           <th>アドレス</th>
           <th>電話番号</th>
+          <% if current_admin.present? %>
+            <th></th>
+            <th></th>
+          <% end %>
         </tr>
       </thead>
 
@@ -19,19 +39,20 @@
           <td><%= link_to owner.name ,owner_path(owner) %></td>
           <td><%= owner.email %></td>
           <td><%= owner.phone_number %></td>
-          <td>
-              <%= link_to "削除", owner, method: :delete,
-                  data: { confirm: "削除してよろしいですか？" },
-                  class: "btn btn-danger" %>
-          </td>
-          <td>
-          <%= link_to "編集", edit_owner_path(owner), class: "btn btn-primary" %>
-          </td>
+          <% if current_admin.present? %>
+            <td>
+                <%= link_to "削除", owner, method: :delete,
+                    data: { confirm: "削除してよろしいですか？" },
+                    class: "btn btn-danger" %>
+            </td>
+            <td>
+              <%= link_to "編集", edit_owner_path(owner), class: "btn btn-brand" %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
-      <% if current_admin.present? %>
-        <%= link_to "削除されたアカウント履歴", owners_deleted_owners_path, class: "btn btn-primary" %>
-      <% end %>
+
     </table>
+    <%= will_paginate(@pusers, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
   </div>
 </div>

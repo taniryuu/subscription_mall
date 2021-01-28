@@ -14,6 +14,7 @@ gem 'momentjs-rails'
 gem 'faker'#サンプル追加
 gem 'will_paginate' #ページネート
 gem 'bootstrap-will_paginate'#ページネート
+gem 'will_paginate-bootstrap4'#ページネート
 gem 'owlcarousel-rails'#カルーセル
 gem 'devise'
 gem 'paranoia', '~> 2.3', '>= 2.3.1'#論理削除

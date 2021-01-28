@@ -90,6 +90,11 @@ class User < ApplicationRecord
     session_id?
   end
 
+  # ユーザーの名前であいまい検索
+  def self.search(search)
+    return User.all unless search
+    User.where(['name LIKE ?', "%#{search}%"])
+  end  
 
   private
 

@@ -651,6 +651,36 @@ margin-top: 5rem;
   border-color: #faab05;
 }
 
+.qrcode_button{
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+// 消えたフォームの枠を表示する
+.form_border{
+  border: solid 1px #c0c0c0 !important;
+}
+
+// フォームのプレイスホルダー色を薄いグレーにする
+.form-control::placeholder{
+  color: #c0c0c0 !important;
+}
+
+// フォームのプレイスホルダー色を薄いグレーにする
+.form_border::placeholder{
+  color: #c0c0c0 !important;
+}
+
 // instablogの表示
 .instablog {
   width: 30rem;
