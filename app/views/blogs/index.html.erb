@@ -17,7 +17,7 @@
         </div><br>
         <div class="col-sm-4">
         <% if blog.image_photo.present? %>
-          <div class="grid-item-image"><%= image_tag blog.image_photo.url,:size => '300x260' %></div>
+          <div class="grid-item-image"><%= image_tag blog.image_photo,:size => '300x260' %></div>
         <% else %>
         
         <% end %>

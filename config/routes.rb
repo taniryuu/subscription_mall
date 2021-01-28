@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
   get 'top_user' => "static_pages#top_user"#利用者様トップページ
   get 'discussion' => "static_pages#discussion"#相談窓口
+  get 'specified_commercial_transaction_law' => "static_pages#specified_commercial_transaction_law"#特定商取引法
   get 'how_to_use' => "subscriptions#how_to_use", as: :how_to_use#ご利用方法について
   get 'plan_description' => "subscriptions#plan_description", as: :plan_description#プラン説明
   get 'kiyaku' => "subscriptions#kiyaku", as: :kiyaku#利用規約
@@ -143,6 +144,7 @@ Rails.application.routes.draw do
   resources :questions#よくある質問
   post 'questions/:id/edit', to: 'questions#edit', as: :edit_questions #よくある質問編集
   resources :megurumereviews
+  resources :instablogs
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
