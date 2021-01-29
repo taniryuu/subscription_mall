@@ -134,7 +134,11 @@
 </div>
 
 <% if @subscription.qr_image.present? %>
-  <%= image_tag @subscription.qr_image ,size: '150x150', alt: "QR_Code", class: "img-fluid" %>
+  <%
+=begin%>
+ <%= image_tag @subscription.qr_image ,size: '150x150', alt: "QR_Code", class: "img-fluid" %> 
+<%
+=end%>
   <p>LINE@招待コード</p>
 <% else %>
   <p>※QRコードが登録されていません</p>
