@@ -13,6 +13,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.string :image_subscription2
       t.string :image_subscription3
       t.string :image_subscription4
+      t.string :image_subscription5
       t.integer :category_genre
       t.integer :monthly_fee
       t.text :blog

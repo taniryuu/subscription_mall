@@ -67,15 +67,15 @@ ja:
           title: 商品タイトル
           detail: 商品紹介
           shop_introduction: お店紹介
-          blog: ブログ
+          subscription_detail: 店舗情報
           image_subscription: メインの店舗写真
           image_subscription2: お店紹介写真2
-          image_subscription2: お店紹介写真3
-          image_subscription2: お店紹介写真4
+          image_subscription3: お店紹介写真3
+          image_subscription4: お店紹介写真4
+          image_subscription5: お店紹介写真5
           qr_image: LINE@QRコード画像
           monthly_fee: 月額利用料金
           price: 金額
-          subscription_detail: 店舗情報
           category_genre: ジャンル
           category_name: カテゴリ
           address: お店の住所

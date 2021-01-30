@@ -11,8 +11,8 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li class="plan"><a href="plan_description">プラン</a></li>
-              <li class="recommend"><a href="categories/recommend">おすすめ店舗</a></li>
+              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "利用者様管理", users_path %></li>
               <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
               <li><%= link_to "マイアカウント", owner_account_owner_path(current_owner) %></li>
@@ -33,8 +33,8 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li class="plan"><a href="plan_description">プラン</a></li>
-              <li class="recommend"><a href="categories/recommend">おすすめ店舗</a></li>
+              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
             </ul>
