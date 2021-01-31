@@ -18,6 +18,7 @@ class Subscription < ApplicationRecord
   mount_uploader :image_subscription2, SubscriptionUploader
   mount_uploader :image_subscription3, SubscriptionUploader
   mount_uploader :image_subscription4, SubscriptionUploader
+  mount_uploader :image_subscription5, SubscriptionUploader
   mount_uploader :qr_image, SubscriptionUploader
 
   validates :category_name, presence: true

@@ -11,7 +11,7 @@ Admin.create!(name: "中野さん",
               password: "password",
               password_confirmation: "password")
 Admin.create!(name: "中野ゆうさん",
-  email: "yoshisu04183@gmail.com",
+  email: "megurumee@gmail.com",
   password: "password",
   password_confirmation: "password")
   puts "Admin Created"
@@ -119,7 +119,7 @@ Subscription.create!(
   subscription_detail: "東京都",
   category_name: "和食",
   monthly_fee: "4,980",
-  price: "4,980",
+  price: "3,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
   image_subscription3: "udon.jpeg",

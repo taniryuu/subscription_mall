@@ -39,10 +39,21 @@
   </div>
 
   <div class="field">
-    <%= form.label :"メインの店舗写真" %> <span class="must">必須</span><br/>
+    <%= form.label :image_subscription %> <span class="must">必須</span><br/>
     <%= form.file_field :image_subscription, id: "file-input" %>
   </div>
-  <% if @subscription.monthly_fee == "4980" %>
+  <% if @subscription.monthly_fee == "4,980" %>
+    <div class="field">
+      <%= form.label :お店紹介写真1 %><br/>
+      <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
+    </div>
+
+    <div class="field">
+      <%= form.label :お店紹介写真2 %><br/>
+      <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
+    </div>
+
+  <% elsif @subscription.monthly_fee == "19,800" %>
     <div class="field">
       <%= form.label :お店紹介写真1 %><br/>
       <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
@@ -57,7 +68,10 @@
       <%= form.label :お店紹介写真3 %><br/>
       <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
     </div>
-  <% else %>
+    <div class="field">
+      <%= form.label :お店紹介写真4 %><br/>
+      <%= form.file_field :image_subscription5, id: :subscription_image_subscription %>
+    </div>
     <p></p>
   <% end %>
   <div class="field">
@@ -68,6 +82,11 @@
   <div class="field">
     <%= form.label :category_name %>
     <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_genre %><br/>
+    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
   <div class="field">
