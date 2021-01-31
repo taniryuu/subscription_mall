@@ -11,7 +11,7 @@ Admin.create!(name: "中野さん",
               password: "password",
               password_confirmation: "password")
 Admin.create!(name: "中野ゆうさん",
-  email: "yoshisu04183@gmail.com",
+  email: "megurumee@gmail.com",
   password: "password",
   password_confirmation: "password")
   puts "Admin Created"
@@ -114,7 +114,17 @@ Subscription.create!(
   owner_id: 1,
   name: "サンプル飲食店1",
   title: "サンプルタイトル1",
+  shop_introduction: "焼きたて",
+  detail: "食べ放題",
+  subscription_detail: "東京都",
   category_name: "和食",
+  monthly_fee: "4,980",
+  price: "3,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷1丁目",
   latitude: 35.659020,
   longitude: 139.702233
@@ -124,11 +134,43 @@ Subscription.create!(
   owner_id: 1,
   name: "サンプル飲食店2",
   title: "サンプルタイトル2",
+  shop_introduction: "焼きたて2",
+  detail: "食べ放題2",
+  subscription_detail: "神奈川",
   category_name: "和食",
+  monthly_fee: "1,980",
+  price: "12,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷2丁目",
   latitude: 35.658096,
   longitude: 139.700466
 )
+
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店3",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  category_name: "和食",
+  monthly_fee: "19,800",
+  price: "25,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "東京都渋谷区富ヶ谷3丁目",
+  latitude: 35.658096,
+  longitude: 139.700466
+)
+
+puts "Subscription Created"
 
 Category.create!(name: "和食",
                 image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
