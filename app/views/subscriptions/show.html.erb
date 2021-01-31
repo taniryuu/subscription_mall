@@ -148,8 +148,6 @@
         </div>
        </div>
       </div> 
-<%
-=end%>
 
       <div class="col-lg-5 text-center text-md-left">
 
@@ -199,11 +197,7 @@
 </div>
 
 <% if @subscription.qr_image.present? %>
-  <%
-=begin%>
  <%= image_tag @subscription.qr_image ,size: '150x150', alt: "QR_Code", class: "img-fluid" %> 
-<%
-=end%>
   <p>LINE@招待コード</p>
 <% else %>
   <p>お問い合わせ※QRコードが登録されていません</p>
