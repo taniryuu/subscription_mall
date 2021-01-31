@@ -8,13 +8,27 @@
     <div class="row">
       <div class="col-12">
         <div class="view zoom z-depth-1 rounded mb-4">
-          <!--%= image_tag @subscription.image_subscription_url ,width: '100%', height: "300", :cloud_name => cloudname %-->
+              <% if @subscription.image_subscription.present? %>
+                <%= image_tag @subscription.image_subscription_url ,width: '100%', height: "300" %>
+              <% else %>
+                <p></p>
+              <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
                 <span class="badge badge-success"><%= @subscription.category_name %></span>
                 <span class="badge badge-success"><%= @subscription.category_genre %></span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
-                <p class="font-weight-normal mb-2">住所：東京都 港区 1-1-1 TEL：0120-123-123<%= @subscription.owner.store_information %></p>
+                <p class="font-weight-normal mb-2">
+                  <% if @subscription.owner.address.present? %>
+                    住所：<%= @subscription.owner.address %>
+                  <% else %>
+                    <p></p>
+                  <% end %>
+                  <% if @subscription.owner.phone_number.present? %>
+                    TEL：<%= @subscription.owner.phone_number %>
+                  <% else %>
+                    <p></p>
+                  <% end %>
               <% if current_user.present? && current_user.session_id == "true" %>
                 <%= link_to "チケットを使う",use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_user.present? %>
@@ -36,19 +50,23 @@
   <section class="text-center">
     <h3 class="font-weight-bold mb-5"><%= @subscription.name %> 店舗紹介（仮）</h3>
     <div class="row">
-      <%
-=begin%>
- <div class="col-lg-6">
+      <div class="col-lg-6">
+      <% if @subscription.monthly_fee == "4,980" %>
         <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
           <div class="carousel-inner text-center text-md-left" role="listbox">
             <div class="carousel-item active">
-              <%= image_tag @subscription.image_subscription2_url ,size: '700x350', alt: "First slide", class: "img-fluid" %>
+              <% if @subscription.image_subscription2.present? %>
+                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+              <% else %>
+              <p></p>
+              <% end %>
             </div>
             <div class="carousel-item">
-              <%= image_tag @subscription.image_subscription3_url ,size: '700x350', alt: "Second slide", class: "img-fluid" %>
-            </div>
-            <div class="carousel-item">
-              <%= image_tag @subscription.image_subscription4_url ,size: '700x350', alt: "Third slide", class: "img-fluid" %>
+              <% if @subscription.image_subscription3.present? %>
+                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
+              <% else %>
+              <p></p>
+              <% end %>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carousel-thumb1" role="button" data-slide="prev">
@@ -60,19 +78,70 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
+      <% elsif @subscription.monthly_fee == "19,800" %>
+        <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
+          <div class="carousel-inner text-center text-md-left" role="listbox">
+            <div class="carousel-item active">
+              <% if @subscription.image_subscription2.present? %>
+                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+              <% else %>
+              <p></p>
+              <% end %>
+            </div>
+            <div class="carousel-item">
+              <% if @subscription.image_subscription3.present? %>
+                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
+              <% else %>
+              <p></p>
+              <% end %>
+            </div>
+            <div class="carousel-item">
+              <% if @subscription.image_subscription4.present? %>
+                  <%= image_tag @subscription.image_subscription4_url, class: "img-fluid" %>
+              <% else %>
+              <p></p>
+              <% end %>
+            </div>
+            <div class="carousel-item">
+              <% if @subscription.image_subscription5.present? %>
+                  <%= image_tag @subscription.image_subscription5_url, class: "img-fluid" %>
+              <% else %>
+              <p></p>
+              <% end %>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel-thumb1" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel-thumb1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      <% end %>
         <div class="row mb-4">
           <div class="col-md-12">
             <div id="mdb-lightbox-ui"></div>
             <div class="mdb-lightbox no-margin">
              <div class="row">
               <figure class="col-md-4">
-                  <%= image_tag "#{@subscription.image_subscription2_url}", class: "img-fluid" %>
+              <% if @subscription.image_subscription2.present? %>
+                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+              <% else %>
+              <% end %>
               </figure>
               <figure class="col-md-4">
+              <% if @subscription.image_subscription3.present? %>
                   <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
+              <% else %>
+              <% end %>
               </figure>
               <figure class="col-md-4">
+              <% if @subscription.image_subscription4.present? %>
                   <%= image_tag @subscription.image_subscription4_url, class: "img-fluid" %>
+              <% else %>
+              <% end %>
               </figure>
             </div>
           </div>
@@ -98,19 +167,13 @@
           <p class="ml-xl-0 ml-4">
             <strong>お店紹介: </strong><%= @subscription.shop_introduction %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>お店のブログ: </strong><%= @subscription.blog %></p>
-          <p class="ml-xl-0 ml-4">
             <strong>商品紹介: </strong><%= @subscription.detail %></p>
           <p class="ml-xl-0 ml-4">
             <strong>店舗情報: </strong><%= @subscription.subscription_detail %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>お店の住所: </strong><%= @subscription.owner.store_information %></p>
+            <strong>月額利用料金: </strong><%= @subscription.monthly_fee %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>TEL: </strong><%= @subscription.owner.phone_number %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>お店のブログ: </strong><%= @subscription.blog %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>レビュー: </strong>1番下にお店に対するレビューを記載。</p>
+            <strong>加入プラン: </strong><%= @subscription.price %></p>
 
           <%# google map %>
           <%#= render "maps/subsc" %>
@@ -121,10 +184,12 @@
 
               <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
+              <% if current_owner.present? %>
                 <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
-                <%#= link_to "MAP","#", class: "btn btn-outline-danger btn-rounded" %>
+              <% elsif current_user.present? %>
+                <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
                 <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %>
-                <%#= link_to "お問い合わせ","#", class: "btn btn-outline-primary btn-rounded" %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -141,7 +206,7 @@
 =end%>
   <p>LINE@招待コード</p>
 <% else %>
-  <p>※QRコードが登録されていません</p>
+  <p>お問い合わせ※QRコードが登録されていません</p>
 <% end %>
 
 <div class="container my-5 py-5 z-depth-1">

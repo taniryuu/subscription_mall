@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210123230814) do
+ActiveRecord::Schema.define(version: 20210122235346) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -178,6 +178,19 @@ ActiveRecord::Schema.define(version: 20210123230814) do
     t.string "image_subscription2"
     t.string "image_subscription3"
     t.string "image_subscription4"
+    t.string "image_subscription5"
+    t.string "sub_image"
+    t.string "sub_image2"
+    t.string "sub_image3"
+    t.string "sub_image4"
+    t.string "sub_image5"
+    t.string "sub_image6"
+    t.string "sub_image7"
+    t.string "sub_image8"
+    t.string "sub_image9"
+    t.string "sub_image10"
+    t.string "sub_image11"
+    t.string "sub_image12"
     t.integer "category_genre"
     t.integer "monthly_fee"
     t.text "blog"

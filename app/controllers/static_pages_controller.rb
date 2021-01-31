@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
     @blogs = Blog.all
     @reviews = Review.all
     @questions = Question.all
+    @interviews = Interview.where.not(shop_name: nil)
     @megurumereviews = Megurumereview.all
     if params[:map].present? && params[:map][:address].present?
       results = Geocoder.search(params[:map][:address])

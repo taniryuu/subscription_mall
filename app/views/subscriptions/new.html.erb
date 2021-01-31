@@ -44,26 +44,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :メインの店舗写真 %> <span class="must">必須</span><br/>
-    <%= form.file_field :image_subscription, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真1 %><br/>
-    <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真2 %><br/>
-    <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真3 %><br/>
-    <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
     <%= form.label :subscription_detail %> <span class="must">必須</span><br/>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
@@ -75,7 +55,7 @@
 
   <div class="field">
     <%= form.label :category_genre %><br/>
-    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => true , id: :subscription_subscription_detail, class:"form-control" %>
+    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
   <div class="field">
