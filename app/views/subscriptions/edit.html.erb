@@ -9,6 +9,11 @@
   <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
+    <%= form.label :monthly_fee %> <span class="must">必須</span>(サブスクショップ立ち上げの基本料金です)<br/>
+    <%= form.select :monthly_fee, Subscription.monthly_fees.keys, { include_blank: "利用料金を選択してください"}, class: 'form-control' %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control form_border' %>
   </div>
@@ -27,13 +32,6 @@
     <%= form.label :detail %>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
-
-  <div class="field">
-    <%= form.fields_for :images do |f_img|%>
-      <%= f_img.label :サブスク写真 %>
-      <%= f_img.file_field :image_subscription_id, multiple: true %>
-    <% end %>
-  </div>
   
   <div class="field">
     <%= form.label :qr_image %><br/>
@@ -41,25 +39,41 @@
   </div>
 
   <div class="field">
-    <%= form.label :メインの店舗写真 %> <span class="must">必須</span><br/>
-    <%= form.file_field :image_subscription, id: :subscription_image_subscription %>
+    <%= form.label :image_subscription %> <span class="must">必須</span><br/>
+    <%= form.file_field :image_subscription, id: "file-input" %>
   </div>
+  <% if @subscription.monthly_fee == "4,980" %>
+    <div class="field">
+      <%= form.label :お店紹介写真1 %><br/>
+      <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
+    </div>
 
-  <div class="field">
-    <%= form.label :お店紹介写真1 %><br/>
-    <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
-  </div>
+    <div class="field">
+      <%= form.label :お店紹介写真2 %><br/>
+      <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
+    </div>
 
-  <div class="field">
-    <%= form.label :お店紹介写真2 %><br/>
-    <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
-  </div>
+  <% elsif @subscription.monthly_fee == "19,800" %>
+    <div class="field">
+      <%= form.label :お店紹介写真1 %><br/>
+      <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
+    </div>
 
-  <div class="field">
-    <%= form.label :お店紹介写真3 %><br/>
-    <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
-  </div>
+    <div class="field">
+      <%= form.label :お店紹介写真2 %><br/>
+      <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
+    </div>
 
+    <div class="field">
+      <%= form.label :お店紹介写真3 %><br/>
+      <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
+    </div>
+    <div class="field">
+      <%= form.label :お店紹介写真4 %><br/>
+      <%= form.file_field :image_subscription5, id: :subscription_image_subscription %>
+    </div>
+    <p></p>
+  <% end %>
   <div class="field">
     <%= form.label :subscription_detail %>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
@@ -70,11 +84,21 @@
     <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
+  <div class="field">
+    <%= form.label :category_genre %><br/>
+    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %> <span class="must">必須</span><br/>
+    <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 
-<%= link_to 'Show', owner_subscription_path(@subscription, owner_id: @owner.id, shop_id: @subscription.shop_id) %> |
-<%= link_to 'Back', owner_subscriptions_path %>
+<%= link_to '詳細', owner_subscription_path(@subscription, owner_id: @owner.id, shop_id: @subscription.shop_id) %> |
+<%= link_to '一覧へ', owner_subscriptions_path %>
