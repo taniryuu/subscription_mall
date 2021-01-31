@@ -7,7 +7,7 @@
           <table border="2" style="border-collapse: collapse; border-color: black">
           <h1>Myページ</h1>
           <p><%= @owner.email %></p>
-            <% if @subscriptions == 0 %>
+            <% if @subscriptions_count == 0 %>
               <%= link_to 'サブスクページ作成はこちら', new_owner_shop_path(@owner), class: "btn btn-info" %>
             <% else %>
 
@@ -31,12 +31,30 @@
             <tr>
               <th height="40" class=col-sm-2>LINE_ID</th><td class=col-sm-4><%= @owner.line_id %></td>
             </tr>
+            <% if @subscriptions != []%>
+              <% @subscriptions.each do |subscription| %>
+                <tr>
+                  <th height="40" class=col-sm-2>サブスク名</th><td class=col-sm-4><%= check_not_set(subscription.name) %></td>
+                </tr>
+                <tr>
+                  <th height="40" class=col-sm-2>サブスク月額料金</th><td class=col-sm-4><%= check_not_set(subscription.monthly_fee) %></td>
+                </tr>
+                <tr>
+                  <th height="40" class=col-sm-2>サブスク金額</th><td class=col-sm-4><%= check_not_set(subscription.price) %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <th height="40" class=col-sm-2>サブスク</th><td class=col-sm-4>現在、サブスクの設定はありません。</td>
+              </tr>
+            <% end %>
           </table>
           <div class="user-show-btn">
             <%= link_to owners_path, class: "btn btn--blue btn-sm btn--shadow" do %>
             <i class="fas fa-reply"> 戻る</i>
             <% end %>
-            <%= link_to "編集", edit_owner_path, class: "btn btn--blue btn-sm btn--shadow" %>
+            <%= link_to "経営者様情報の更新", edit_owner_path, class: "btn btn--blue btn-sm btn--shadow" %>
+            <%= link_to "サブスク情報一覧", owner_subscriptions_path(@owner), class: "btn btn--blue btn-sm btn--shadow" %>
           </div>
         </div>
       </div>
