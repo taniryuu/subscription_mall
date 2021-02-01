@@ -51,34 +51,6 @@
     <h3 class="font-weight-bold mb-5"><%= @subscription.name %> 店舗紹介（仮）</h3>
     <div class="row">
       <div class="col-lg-6">
-      <% if @subscription.monthly_fee == "4,980" %>
-        <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
-          <div class="carousel-inner text-center text-md-left" role="listbox">
-            <div class="carousel-item active">
-              <% if @subscription.image_subscription2.present? %>
-                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
-              <% else %>
-              <p></p>
-              <% end %>
-            </div>
-            <div class="carousel-item">
-              <% if @subscription.image_subscription3.present? %>
-                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
-              <% else %>
-              <p></p>
-              <% end %>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carousel-thumb1" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carousel-thumb1" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      <% elsif @subscription.monthly_fee == "19,800" %>
         <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
           <div class="carousel-inner text-center text-md-left" role="listbox">
             <div class="carousel-item active">
@@ -119,29 +91,94 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-      <% end %>
         <div class="row mb-4">
           <div class="col-md-12">
             <div id="mdb-lightbox-ui"></div>
             <div class="mdb-lightbox no-margin">
              <div class="row">
               <figure class="col-md-4">
-              <% if @subscription.image_subscription2.present? %>
-                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
-              <% else %>
-              <% end %>
+                <% if @subscription.sub_image.present? %>
+                    <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
               </figure>
               <figure class="col-md-4">
-              <% if @subscription.image_subscription3.present? %>
-                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
-              <% else %>
-              <% end %>
+                <% if @subscription.sub_image2.present? %>
+                    <%= image_tag @subscription.sub_image2_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
               </figure>
               <figure class="col-md-4">
-              <% if @subscription.image_subscription4.present? %>
-                  <%= image_tag @subscription.image_subscription4_url, class: "img-fluid" %>
-              <% else %>
-              <% end %>
+                <% if @subscription.sub_image3.present? %>
+                    <%= image_tag @subscription.sub_image3_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image4.present? %>
+                    <%= image_tag @subscription.sub_image4_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image5.present? %>
+                    <%= image_tag @subscription.sub_image5_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image6.present? %>
+                    <%= image_tag @subscription.sub_image6_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image7.present? %>
+                    <%= image_tag @subscription.sub_image7_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image8.present? %>
+                    <%= image_tag @subscription.sub_image8_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image9.present? %>
+                    <%= image_tag @subscription.sub_image9_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image10.present? %>
+                    <%= image_tag @subscription.sub_image10_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image11.present? %>
+                    <%= image_tag @subscription.sub_image11_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
+              </figure>
+              <figure class="col-md-4">
+                <% if @subscription.sub_image12.present? %>
+                    <%= image_tag @subscription.sub_image12_url, class: "img-fluid" %>
+                <% else %>
+                <p></p>
+                <% end %>
               </figure>
             </div>
           </div>
@@ -169,12 +206,10 @@
           <p class="ml-xl-0 ml-4">
             <strong>店舗情報: </strong><%= @subscription.subscription_detail %></p>
           <p class="ml-xl-0 ml-4">
-            <strong>月額利用料金: </strong><%= @subscription.monthly_fee %></p>
-          <p class="ml-xl-0 ml-4">
             <strong>加入プラン: </strong><%= @subscription.price %></p>
 
           <%# google map %>
-          <%#= render "maps/subsc" %>
+          <%= render "maps/subsc" %>
 
           <div class="mt-5">
 
