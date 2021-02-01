@@ -10,10 +10,13 @@ Admin.create!(name: "中野さん",
               email: "sample_admin@email.com",
               password: "password",
               password_confirmation: "password")
+Admin.create!(name: "中野ゆうさん",
+  email: "megurumee@gmail.com",
+  password: "password",
+  password_confirmation: "password")
+  puts "Admin Created"
 
-puts "Admin Created"
-
-10.times do |n|
+30.times do |n|
   name  = Faker::Name.name
   email = "sample-#{n+1}@email.com"
   password = "password"
@@ -25,28 +28,149 @@ end
 
 puts "User Created"
 
-10.times do |n|
+30.times do |n|
   name  = Faker::Name.name
   email = "sample#{n+1}@email.com"
   password = "password"
   Owner.create!(name: name,
                 email: email,
                 password: password,
-                password_confirmation: password)
+                password_confirmation: password,
+                address: "東京都港区1-#{n}-1"
+               )
 end
 
 puts "Owner Created"
+  
 
-Question.create!(detail: "さぶすくとは",
-  answer: "さぶすくページ"
+Question.create!(detail: "サービス料はかかりますか？",
+  answer: "チケットを購入する際に代金がかかりますが、サービス料はいただいておりません。"
   )
-Question.create!(detail: "ぷらん",
-  answer: "お金欲しい"
+Question.create!(detail: "会員登録方法について教えてください？",
+  answer: "トップページの「会員登録」ボタンを押してください。「新規会員登録」画面で、「名前」、「メールアドレス」、「パスワード」、「パスワード再入力」を入力していただき、登録ボタンを押せば、登録できます。"
   )
+Question.create!(detail: "ログインの方法について教えてください？",
+		 answer: "トップページのログインボタンを押してください。メールアドレスでログインする場合、ログイン画面で「メールアドレス」、「パスワード」を入力していただきログインボタンを押せば、ログインできます。その他、SNSアカウントでログインする場合、ログイン画面で「Facebookでログイン」、「LINEでログイン」、「Twitterでログイン」ボタンを押して必要項目に入力すれば各SNSからログインできます。"
+  )
+Question.create!(detail: "ログインパスワードを変更できますか？",
+  answer: "できます。ログイン後、、マイアカウント下の「編集」ボタンを押してください。「ユーザー情報の更新」画面で変更する「パスワード」と「パスワード再入力」を入力し、「更新」ボタンを押すことで、変更できます。"
+  )
+Question.create!(detail: "決済方法について教えてください？",
+  answer: "スマホ決済アプリ「PayPay」で決済できます。"
+  )
+Question.create!(detail: "決済はいつされますか？",
+  answer: "よくある質問6に対する答え。"
+  )
+
+Question.create!(detail: "購入したチケットの自動更新のタイミングはいつですか？",
+  answer: "よくある質問7に対する答え。"
+  )
+
+Question.create!(detail: "購入したチケットのリセットタイミングはいつですか？",
+  answer: "よくある質問8に対する答え。"
+  )
+
+Question.create!(detail: "表記されている金額は税込みですか？",
+  answer: "税込み価格となります。"
+  )
+
+Question.create!(detail: "決済履歴を確認したいです？",
+  answer: "よくある質問10に対する答え。"
+  )
+
+Question.create!(detail: "解約したはずなのに料金の請求があります？",
+  answer: "「解約」を行っても請求がある場合は「お問い合わせ」より巡グルメにご連絡ください。"
+  )
+
+Question.create!(detail: "領収書の発行はできますか？",
+  answer: "決済終了後、領収書発行ボタンを押すことで領収書を発行できます。"
+  )
+
+Question.create!(detail: "購入したチケットはどこで確認できますか？",
+  answer: "よくある質問13に対する答え。"
+  )
+
+Question.create!(detail: "チケットは他の人と共有できますか？",
+  answer: "他の人との共有はできません。チケットをご購入いただいたご本人様のみのご利用いただけます。"
+  )
+
+Question.create!(detail: "月の途中で解約した場合どうなりますか？",
+  answer: "自動更新が解除されます。すでにご購入（更新）いただいたチケットは契約期間終了までご利用いただけます。"
+  )
+
+Question.create!(detail: "1度購入したチケットはキャンセルできますか？",
+  answer: "1度購入していただいたチケットはキャンセルできません。"
+  )
+
+Question.create!(detail: "巡グルメを解約したいです手順を教えてください？",
+  answer: "ログイン後、マイカウント下の「解約について」ボタンを押してください。「解約する」ボタンを押せば解約できます。解約後は全てのデータが削除されますのでご注意ください。"
+  )
+
+
+
 puts "Question Created"
 
-Map.create!(address: "伊豆急下田駅")
-puts "Map Created"
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店1",
+  title: "サンプルタイトル1",
+  shop_introduction: "焼きたて",
+  detail: "食べ放題",
+  subscription_detail: "東京都",
+  category_name: "和食",
+  monthly_fee: "4,980",
+  price: "3,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "東京都渋谷区富ヶ谷1丁目",
+  latitude: 35.659020,
+  longitude: 139.702233
+)
+
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店2",
+  title: "サンプルタイトル2",
+  shop_introduction: "焼きたて2",
+  detail: "食べ放題2",
+  subscription_detail: "神奈川",
+  category_name: "和食",
+  monthly_fee: "1,980",
+  price: "12,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "東京都渋谷区富ヶ谷2丁目",
+  latitude: 35.658096,
+  longitude: 139.700466
+)
+
+Subscription.create!(
+  owner_id: 1,
+  name: "サンプル飲食店3",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  category_name: "和食",
+  monthly_fee: "19,800",
+  price: "25,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "東京都渋谷区富ヶ谷3丁目",
+  latitude: 35.658096,
+  longitude: 139.700466
+)
+
+puts "Subscription Created"
 
 Category.create!(name: "和食",
                 image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
@@ -135,5 +259,3 @@ Category.create!(name: "その他",
                 image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
                 )
 puts "Category Created"
-
-

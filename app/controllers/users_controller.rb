@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:create, :show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 20)
+    @search = params[:search]
   end
 
   def deleted_users
@@ -55,6 +56,16 @@ class UsersController < ApplicationController
 
   end
 
+  # ユーザーの名前をあいまい検索機能
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @users = User.none
+    end
+  end
+
+
   private
 
     def set_user
@@ -64,4 +75,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
     end
+
+
 end

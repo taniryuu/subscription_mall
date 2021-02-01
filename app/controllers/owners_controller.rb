@@ -2,7 +2,7 @@ class OwnersController < ApplicationController
   before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy]
 
   def index
-    @owners = Owner.all
+    @owners = Owner.paginate(page: params[:page], per_page: 20)
   end
 
   def deleted_owners#論理削除した経営者
@@ -51,7 +51,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    if 
+    if
         current_admin.present?
         @owner.update(owner_params)
         flash[:success] = "#{@owner.name}様の情報を更新しました。"
@@ -71,6 +71,15 @@ class OwnersController < ApplicationController
     yield @owner if block_given?
     flash[:danger] = "#{@owner.name}様のデータを削除しました"
     redirect_to owners_url
+  end
+
+  # オーナーの名前をあいまい検索機能
+  def search
+    if params[:name].present?
+      @owners = Owner.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @owners = Owner.none
+    end
   end
 
   private
