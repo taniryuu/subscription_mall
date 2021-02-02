@@ -43,7 +43,7 @@ class OwnersController < ApplicationController
 
   def owner_account
     @owner = Owner.find(params[:id])
-    @subscription = Subscription.find_by(params[:id])
+    # @subscription = Subscription.find_by(params[:id])
     @subscriptions = Subscription.where.not(name: nil).size
   end
 
