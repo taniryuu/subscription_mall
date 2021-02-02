@@ -126,8 +126,6 @@ Subscription.create!(
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷1丁目",
-  latitude: 35.659020,
-  longitude: 139.702233
 )
 
 Subscription.create!(
@@ -146,8 +144,6 @@ Subscription.create!(
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷2丁目",
-  latitude: 35.658096,
-  longitude: 139.700466
 )
 
 Subscription.create!(
@@ -166,8 +162,6 @@ Subscription.create!(
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷3丁目",
-  latitude: 35.658096,
-  longitude: 139.700466
 )
 
 puts "Subscription Created"
