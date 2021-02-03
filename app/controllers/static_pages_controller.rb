@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :map_object, only: %i(top)
+  before_action :map_object, only: :top
 
   def top
     @blogs = Blog.all
