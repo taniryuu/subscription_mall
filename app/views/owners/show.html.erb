@@ -53,7 +53,9 @@
             <%= link_to owners_path, class: "btn btn--blue btn-sm btn--shadow" do %>
             <i class="fas fa-reply"> 戻る</i>
             <% end %>
-            <%= link_to "経営者様情報の更新", edit_owner_path, class: "btn btn--blue btn-sm btn--shadow" %>
+            <% if current_admin.present? || current_owner.present? %>
+              <%= link_to "経営者様情報の更新", edit_owner_path, class: "btn btn--blue btn-sm btn--shadow" %>
+            <% end %>
             <%= link_to "サブスク情報一覧", owner_subscriptions_path(@owner), class: "btn btn--blue btn-sm btn--shadow" %>
           </div>
         </div>

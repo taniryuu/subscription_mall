@@ -1,25 +1,23 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th>店舗オーナー</th>
+      <th>利用ユーザー</th>
       <th>振込先</th>
       <th>サブスク料金</th>
       <th>店舗の名前</th>
-      <th>利用ユーザー</th>
+      <th>店舗オーナー</th>
       <th>利用日</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tickets.each do |ticket| %>
     <tr>
-      <td><%= ticket.owner_name %></td>
-      <td><%= ticket.owner_payee %></td>
-      <td><%= ticket.subscription_fee %></td>
-      <td><%= ticket.subscription_name %></td>
-      <td><%= ticket.user.name %></td>
-      <td><%= ticket.use_ticket_day %></td>
+      <td><%= @ticket.user.name %></td>
+      <td><%= @ticket.owner_payee %></td>
+      <td><%= @ticket.subscription_fee %></td>
+      <td><%= @ticket.subscription_name %></td>
+      <td><%= @ticket.owner_name %></td>
+      <td><%= @ticket.use_ticket_day %></td>
     </tr>
-    <% end %>
   </tbody>
 </table>

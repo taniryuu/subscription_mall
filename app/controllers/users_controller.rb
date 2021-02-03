@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @ticket = Ticket.find(@user.id)
   end
 
   def user_account

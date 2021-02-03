@@ -24,6 +24,9 @@
             <tr>
               <th height="40" class=col-md-2>LINE_ID</th><td class=col-md-4><%= @user.line_id %></td>
             </tr>
+            <tr>
+              <th height="40" class=col-md-2>チケット利用日</th><td class=col-md-4><%= @ticket.use_ticket_day if @ticket.present? %></td>
+            </tr>
           </table>
           <div class="user-show-btn">
             <%= link_to users_path, class: "btn btn--blue btn-md btn--shadow" do %>

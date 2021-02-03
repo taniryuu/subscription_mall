@@ -1,8 +1,8 @@
 class TicketsController < ApplicationController
 
   def index
-    @tickets = Ticket.all
-
+    # @tickets = Ticket.all 変更前
+    @ticket = Ticket.find_by(user_id: params[:id]) # 変更後
   end
 
   def show
@@ -28,7 +28,9 @@ class TicketsController < ApplicationController
 
   def update
     @ticket = Ticket.find(params[:id])
+    @ticket_log = Ticket_log.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)
     if @ticket.update_attributes(use_ticket_params)
+      @ticket_log.save
       TicketMailer.ticket_email(@ticket).deliver_now
       redirect_to ticket_success_path
     else
@@ -42,7 +44,7 @@ class TicketsController < ApplicationController
       flash[:success] = "チケットを発券しました"
       redirect_to user_account_user_path(current_user)
     else
-      flash[:danger] = "チケットが発見できませんせした"
+      flash[:danger] = "チケットが発見できませんでした"
       redirect_to root_path
     end
     current_user.update(issue_ticket_day: Date.today)

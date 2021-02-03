@@ -41,11 +41,11 @@
         <div class="col-sm-2">
           <%= subscription.category_name %>
         </div>
-
-        <div class="col-sm-1 tool--item">
-          <%= link_to "instagram投稿", new_instablog_path(subscription_id: subscription), class: "btn-gradient-3d-simple" %>
-        </div>
-
+        <% if current_admin.present? || current_owner.present? %>
+          <div class="col-sm-1 tool--item">
+            <%= link_to "instagram投稿", new_instablog_path(subscription_id: subscription), class: "btn-gradient-3d-simple" %>
+          </div>
+        <% end %>
         <div class="col-sm-1 tool--item">
           <%= link_to "詳細", owner_subscription_path(subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
         </div>
