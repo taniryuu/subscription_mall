@@ -269,7 +269,7 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:monthly_fee, :name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
+      params.require(:subscription).permit(:monthly_fee, :name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription5, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
     end
 
     def map_params

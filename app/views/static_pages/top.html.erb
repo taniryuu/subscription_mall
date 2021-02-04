@@ -42,6 +42,11 @@
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
+    <div class="recommend-shop">
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/Rtmhky1">
+      <i class="fa fa-mobile">
+      </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
+    </div>
 
     <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
@@ -173,14 +178,14 @@
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path(current_user), class: "user-service" %></div>
-      <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
+      <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
           <div class="col-sm-3">
-            <div class="grid-item-image"><%= image_tag review.image_interview.thumb.url %></div>
-              <%= link_to "#{review.owner_name}", interview_path(interview) %></br>
-              <%= link_to "#{review.shop_name}", interview_path(interview) %></br>
-              <%= link_to "#{review.content}", interview_path(interview) %>
+            <div class="grid-item-image"><%= image_tag interview.image_interview_url %></div>
+              <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.content}", interview_path(interview) %>
           </div>
         </div>
       <% end %>
@@ -232,17 +237,6 @@
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
-      <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
-        <hr class="tool-bar">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="grid-item-image"><%= image_tag review.image_interview.thumb.url %></div>
-              <%= link_to "#{review.owner_name}", interview_path(interview) %></br>
-              <%= link_to "#{review.shop_name}", interview_path(interview) %></br>
-              <%= link_to "#{review.content}", interview_path(interview) %>
-          </div>
-        </div>
-      <% end %>
     <hr class="style2">
     <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
     <hr class="style2">
@@ -361,14 +355,14 @@
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
-      <% @reviews.each do |review| %><%# オーナーインタビューを全てeach %>
+      <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
         <hr class="tool-bar">
         <div class="row">
           <div class="col-sm-3">
-            <div class="grid-item-image"><%= image_tag review.image_interview.thumb.url %></div>
-              <%= link_to "#{review.owner_name}", interview_path(interview) %></br>
-              <%= link_to "#{review.shop_name}", interview_path(interview) %></br>
-              <%= link_to "#{review.content}", interview_path(interview) %>
+            <div class="grid-item-image"><%= image_tag interview.image_interview_url %></div>
+              <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.content}", interview_path(interview) %>
           </div>
         </div>
       <% end %>

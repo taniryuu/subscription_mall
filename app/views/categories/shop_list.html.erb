@@ -33,7 +33,11 @@
     <div class="row align-items-center">
       <div class="col-lg-5 col-xl-3">
         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-          <%= image_tag subscription.image_subscription_url ,width: '100%', height: "135" %>
+          <% if subscription.image_subscription.present? %>
+            <%= image_tag subscription.image_subscription_url ,width: '100%', height: "300" %>
+          <% else %>
+            <p>なし</p>
+          <% end %>
         </div>
       </div>
       <div class="col-lg-7 col-xl-8">
