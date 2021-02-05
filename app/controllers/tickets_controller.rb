@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
    current_user.update(issue_ticket_day: Date.today)
   end
 
-  # 使った日を入れる（１回目以降ずっと）
+  # チケットを使うボタンを押した後の処理（使った日を入れる）（１回目以降ずっと）
   def update
     @ticket = Ticket.find(params[:id])
     @ticket_log = TicketLog.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)

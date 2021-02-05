@@ -6,6 +6,7 @@
         <div class="col-sm-8 col-sm-offset-2">
           <table border="2" style="border-collapse: collapse; border-color: black">
           <h1>Myページ</h1>
+          <%= @subscriptions_count %>
           <p><%= @owner.email %></p>
             <% if @subscriptions_count == 0 %>
               <%= link_to 'サブスクページ作成はこちら', new_owner_shop_path(@owner), class: "btn btn-info" %>
@@ -37,10 +38,7 @@
                   <th height="40" class=col-sm-2>サブスク名</th><td class=col-sm-4><%= check_not_set(subscription.name) %></td>
                 </tr>
                 <tr>
-                  <th height="40" class=col-sm-2>サブスク月額料金</th><td class=col-sm-4><%= check_not_set(subscription.monthly_fee) %></td>
-                </tr>
-                <tr>
-                  <th height="40" class=col-sm-2>サブスク金額</th><td class=col-sm-4><%= check_not_set(subscription.price) %></td>
+                  <th height="40" class=col-sm-2>サブスク加入プラン</th><td class=col-sm-4><%= check_not_set(subscription.price) %></td>
                 </tr>
               <% end %>
             <% else %>
