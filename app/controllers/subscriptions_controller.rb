@@ -135,6 +135,7 @@ class SubscriptionsController < ApplicationController
 
   # end
 
+
   def user_plans
     @user = User.find(params[:id])
 
@@ -144,7 +145,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_IsuwaCWlfspirK',
           unit_amount: 3000,
           recurring: {interval: "month"}
         },
@@ -161,7 +162,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_Isuy5F0njzsi0S',
           unit_amount: 12000,
           recurring: {interval: "month"}
         },
@@ -178,7 +179,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_IsuzWUyD983UwW',
           unit_amount: 18000,
           recurring: {interval: "month"}
         },
@@ -195,7 +196,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_Isv8q13A2P51Ce',
           unit_amount: 25000,
           recurring: {interval: "month"}
         },
@@ -212,7 +213,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_Isv9Go48esDyWG',
           unit_amount: 50000,
           recurring: {interval: "month"}
         },
@@ -229,7 +230,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_IsvAuZhJp3fsYl',
           unit_amount: 100000,
           recurring: {interval: "month"}
         },
