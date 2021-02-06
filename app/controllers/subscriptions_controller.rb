@@ -145,7 +145,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_IsuwaCWlfspirK',
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 3000,
           recurring: {interval: "month"}
         },
@@ -162,8 +162,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_Isuy5F0njzsi0S',
-          unit_amount: 12000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 9000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -179,8 +179,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_IsuzWUyD983UwW',
-          unit_amount: 18000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 11000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -196,8 +196,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_Isv8q13A2P51Ce',
-          unit_amount: 25000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 18000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -213,8 +213,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_Isv9Go48esDyWG',
-          unit_amount: 50000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 25000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -230,7 +230,24 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_IsvAuZhJp3fsYl',
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 50000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+    @plan7 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 100000,
           recurring: {interval: "month"}
         },
