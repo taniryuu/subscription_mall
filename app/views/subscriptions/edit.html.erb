@@ -6,12 +6,6 @@
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
-  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
-
-  <%# <div class="field"> %>
-    <%# <%= form.label :monthly_fee %> <!--<span class="must">必須</span>(サブスクショップ立ち上げの基本料金です)<br/> %>-->
-    <%# <%= form.select :monthly_fee, Subscription.monthly_fees.keys, { include_blank: "利用料金を選択してください"}, class: 'form-control' %> <!-- %>-->
-  <%# </div> %>
 
   <div class="field">
     <%= form.label :name %>
@@ -43,18 +37,6 @@
     <%= form.file_field :image_subscription, id: "file-input" %>
   </div>
   
-  <!-- <% if @subscription.monthly_fee == "4,980" %>
-    <div class="field">
-      <%= form.label :お店紹介写真1 %><br/>
-      <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
-    </div>
-
-    <div class="field">
-      <%= form.label :お店紹介写真2 %><br/>
-      <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
-    </div>
-
-  <% elsif @subscription.monthly_fee == "19,800" %> -->
   <div class="field">
     <%= form.label :お店紹介写真1 %><br/>
     <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
@@ -68,13 +50,10 @@
   <div class="field">
     <%= form.label :お店紹介写真3 %><br/>
     <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
-   <!--</div>
-  <div class="field">
-    <%= form.label :お店紹介写真4 %><br/>
-    <%= form.file_field :image_subscription5, id: :subscription_image_subscription %>
-  </div>-->
+  </div>
+
     <p></p>
-  <!--<% end %> -->
+  
   <div class="field">
     <%= form.label :subscription_detail %>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
