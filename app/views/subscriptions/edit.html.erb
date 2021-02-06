@@ -6,6 +6,10 @@
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
+<<<<<<< HEAD
+=======
+  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
+>>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
 
   <div class="field">
     <%= form.label :name %>
@@ -36,7 +40,10 @@
     <%= form.label :image_subscription %> <span class="must">必須</span><br/>
     <%= form.file_field :image_subscription, id: "file-input" %>
   </div>
+<<<<<<< HEAD
   
+=======
+>>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
   <div class="field">
     <%= form.label :お店紹介写真1 %><br/>
     <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
@@ -52,11 +59,74 @@
     <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
   </div>
 
-    <p></p>
-  
+  <div class="field">
+    <%= form.label :お店紹介写真4 %><br/>
+    <%= form.file_field :image_subscription5, id: :subscription_image_subscription %>
+  </div>
+
   <div class="field">
     <%= form.label :subscription_detail %>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真 %><br/>
+    <%= form.file_field :sub_image, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真2 %><br/>
+    <%= form.file_field :sub_image2, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真3 %><br/>
+    <%= form.file_field :sub_image3, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真4 %><br/>
+    <%= form.file_field :sub_image4, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真5 %><br/>
+    <%= form.file_field :sub_image5, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真6 %><br/>
+    <%= form.file_field :sub_image6, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真7 %><br/>
+    <%= form.file_field :sub_image7, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真8 %><br/>
+    <%= form.file_field :sub_image8, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真9 %><br/>
+    <%= form.file_field :sub_image9, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真10 %><br/>
+    <%= form.file_field :sub_image10, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真11 %><br/>
+    <%= form.file_field :sub_image11, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真12 %><br/>
+    <%= form.file_field :sub_image12, id: :subscription_image_subscription %>
   </div>
 
   <div class="field">

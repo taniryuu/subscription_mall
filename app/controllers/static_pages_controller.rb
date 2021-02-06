@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :map_object, only: :top
 
   def top
     @blogs = Blog.all
@@ -6,12 +7,7 @@ class StaticPagesController < ApplicationController
     @questions = Question.all
     @interviews = Interview.where.not(shop_name: nil)
     @megurumereviews = Megurumereview.all
-    if params[:map].present? && params[:map][:address].present?
-      results = Geocoder.search(params[:map][:address])
-      @latlng = results.first.geometry
-    end
     @owners = Owner.all
-    gon.subscriptions = Subscription.all
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
@@ -24,8 +20,6 @@ class StaticPagesController < ApplicationController
     @blogs = Blog.all
     @interviews = Interview.where.not(shop_name: nil)
     @questions = Question.all
-    results = Geocoder.search(params[:address])
-    @latlng = results.first
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
@@ -41,6 +35,20 @@ class StaticPagesController < ApplicationController
   end
 
   def specified_commercial_transaction_law
+  end
+
+  def map_object
+    if params[:map].present? && params[:map][:address].present?
+      results = Geocoder.search(params[:map][:address])
+      @latlng = results.first.geometry
+      top = @latlng["location"]["lng"] + 0.2
+      bottom = @latlng["location"]["lng"] - 0.2
+      left = @latlng["location"]["lat"] + 0.2
+      right = @latlng["location"]["lat"] - 0.2
+      gon.subscriptions = Subscription.where(longitude: bottom..top).where(latitude: right..left)
+    else
+      gon.subscriptions = Subscription.where(longitude: 139.5..139.9).where(latitude: 35.4..35.8)
+    end
   end
 
   private

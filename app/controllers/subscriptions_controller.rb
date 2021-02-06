@@ -43,7 +43,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to setup_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
+        format.html { redirect_to owner_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -76,62 +76,64 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def setup
-    # @subscription = @owner.subscriptions.find_by(params[:id])
-    @owner = Owner.find(params[:id])
+  #経営者よう決済
+  # def setup
+  #   # @subscription = @owner.subscriptions.find_by(params[:id])
+  #   @owner = Owner.find(params[:id])
 
-    @plan1 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @owner.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_IQEjlDvOeRJkqv',
-          unit_amount: 1980,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
+  #   @plan1 = Stripe::Checkout::Session.create(
+  #     payment_method_types: ['card'],
+  #     customer_email: @owner.email,
+  #     line_items: [{
+  #       price_data: {
+  #         currency: 'jpy',
+  #         product: 'prod_IQEjlDvOeRJkqv',
+  #         unit_amount: 1980,
+  #         recurring: {interval: "month"}
+  #       },
+  #       quantity: 1,
+  #     }],
+  #     mode: 'subscription',
+  #     success_url: success_url,
+  #     cancel_url: cancel_url,
+  #   )
 
-    @plan2 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @owner.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_IQEjlDvOeRJkqv',
-          unit_amount: 4980,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
+  #   @plan2 = Stripe::Checkout::Session.create(
+  #     payment_method_types: ['card'],
+  #     customer_email: @owner.email,
+  #     line_items: [{
+  #       price_data: {
+  #         currency: 'jpy',
+  #         product: 'prod_IQEjlDvOeRJkqv',
+  #         unit_amount: 4980,
+  #         recurring: {interval: "month"}
+  #       },
+  #       quantity: 1,
+  #     }],
+  #     mode: 'subscription',
+  #     success_url: success_url,
+  #     cancel_url: cancel_url,
+  #   )
 
-    @plan3 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @owner.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_IQEjlDvOeRJkqv',
-          unit_amount: 19800,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
+  #   @plan3 = Stripe::Checkout::Session.create(
+  #     payment_method_types: ['card'],
+  #     customer_email: @owner.email,
+  #     line_items: [{
+  #       price_data: {
+  #         currency: 'jpy',
+  #         product: 'prod_IQEjlDvOeRJkqv',
+  #         unit_amount: 19800,
+  #         recurring: {interval: "month"}
+  #       },
+  #       quantity: 1,
+  #     }],
+  #     mode: 'subscription',
+  #     success_url: success_url,
+  #     cancel_url: cancel_url,
+  #   )
 
-  end
+  # end
+
 
   def user_plans
     @user = User.find(params[:id])
@@ -142,7 +144,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_IsuwaCWlfspirK',
           unit_amount: 3000,
           recurring: {interval: "month"}
         },
@@ -159,7 +161,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_Isuy5F0njzsi0S',
           unit_amount: 12000,
           recurring: {interval: "month"}
         },
@@ -176,7 +178,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_IsuzWUyD983UwW',
           unit_amount: 18000,
           recurring: {interval: "month"}
         },
@@ -193,7 +195,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_Isv8q13A2P51Ce',
           unit_amount: 25000,
           recurring: {interval: "month"}
         },
@@ -210,7 +212,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_Isv9Go48esDyWG',
           unit_amount: 50000,
           recurring: {interval: "month"}
         },
@@ -227,7 +229,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_ITZ5jszNEaQl8t',
+          product: 'prod_IsvAuZhJp3fsYl',
           unit_amount: 100000,
           recurring: {interval: "month"}
         },
@@ -268,8 +270,12 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
+<<<<<<< HEAD
       # params.require(:subscription).permit(:monthly_fee, :name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription5, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
       params.require(:subscription).permit(:name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
+=======
+      params.require(:subscription).permit(:name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription5, :sub_image, :sub_image2, :sub_image3, :sub_image4, :sub_image5, :sub_image6, :sub_image7, :sub_image8, :sub_image9, :sub_image10, :sub_image11, :sub_image12, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
+>>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
     end
 
     def map_params

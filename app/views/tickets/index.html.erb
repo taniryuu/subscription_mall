@@ -1,23 +1,38 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
+<<<<<<< HEAD
       <th>利用ユーザー</th>
+=======
+      <th>店舗経営者</th>
+>>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
       <th>振込先</th>
-      <th>サブスク料金</th>
       <th>店舗の名前</th>
+<<<<<<< HEAD
       <th>店舗オーナー</th>
+=======
+      <th>利用者</th>
+>>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
       <th>利用日</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
+<<<<<<< HEAD
       <td><%= @ticket.user.name %></td>
       <td><%= @ticket.owner_payee %></td>
       <td><%= @ticket.subscription_fee %></td>
       <td><%= @ticket.subscription_name %></td>
       <td><%= @ticket.owner_name %></td>
       <td><%= @ticket.use_ticket_day %></td>
+=======
+      <td><%= ticket.owner_name %></td>
+      <td><%= ticket.owner_payee %></td>
+      <td><%= ticket.subscription_name %></td>
+      <td><%= ticket.user.name %></td>
+      <td><%= ticket.use_ticket_day %></td>
+>>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
     </tr>
   </tbody>
 </table>
