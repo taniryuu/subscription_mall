@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210203132230) do
+ActiveRecord::Schema.define(version: 20210206100009) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -211,6 +211,13 @@ ActiveRecord::Schema.define(version: 20210203132230) do
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "owner_name"
+    t.string "owner_email"
+    t.string "owner_phone_number"
+    t.string "owner_store_infomation"
+    t.string "subscription_name"
+    t.string "subscription_fee"
+    t.date "issue_ticket_day"
     t.index ["ticket_id"], name: "index_ticket_logs_on_ticket_id"
   end
 
