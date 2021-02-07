@@ -2,11 +2,11 @@ class TicketsController < ApplicationController
 
   def index
     # @tickets = Ticket.all 変更前
-    @ticket = Ticket.find_by(user_id: params[:id]) # 変更後
+    @ticket = Ticket.find_by(user_id: params[:user_id]) # 変更後
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
+    @ticket = Ticket.find_by(user_id: params[:id])
   end
 
   def new
@@ -29,11 +29,11 @@ class TicketsController < ApplicationController
 
   # チケットを使うボタンを押した後の処理（使った日を入れる）（１回目以降ずっと）
   def update
-    @ticket = Ticket.find(params[:id])
-    @ticket_log = TicketLog.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)
+    @ticket = Ticket.find_by(user_id: params[:user_id])
+    # @ticket_log = TicketLog.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)
     if @ticket.update_attributes(use_ticket_params)
-      # @ticket_log.save
-      TicketMailer.ticket_email(@ticket).deliver_now
+      TicketLog.create(use_ticket_day_log: @ticket.use_ticket_day, ticket_id: @ticket.id, owner_name: @ticket.owner_name, owner_email: @ticket.owner_email, owner_phone_number: @ticket.owner_phone_number, owner_store_information: @ticket.owner_store_information, subscription_name: @ticket.subscription_name, subscription_fee: @ticket.subscription_fee, issue_ticket_day: @ticket.issue_ticket_day)
+      # TicketMailer.ticket_email(@ticket).deliver_now
       redirect_to ticket_success_path
     else
       redirect_to root_path
