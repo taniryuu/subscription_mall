@@ -1,3 +1,6 @@
+/* パソコン（width:960px以上) タブレット（width:600px~959px） */
+@media screen and (min-width:600px) {
+
 .title_parent
 {
   height: 50px;
@@ -42,4 +45,60 @@
   border-left: 1px solid;
   border-color: lightgray;
 }
+
+}
+
+
+/* スマホ（width:599px以下） */
+@media screen and (max-width: 599px) {
+
+.title_parent
+{
+  height: 50px;
+}
+
+.title
+{  
+  line-height: 50px;
+  font-weight: bold;
+  text-align: left;
+  position: relative;
+  left: 220px;
+}
+
+.box
+{
+  //border: 1px solid; border-color: #0000FF;
+  width: 400px;
+  height: 302px;
+  margin-top: 0px;
+}
+
+.parent
+{
+  height: 50px;
+}
+
+.element1
+{
+  font-weight: bold;
+  line-height: 50px;
+  background-color: gainsboro;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-color: lightgray;
+  width: 100px;
+}
+
+.element2
+{
+  line-height: 50px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-color: lightgray;
+  width: 250px;
+}
+
+}
+
 
