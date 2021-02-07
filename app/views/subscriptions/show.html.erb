@@ -29,11 +29,13 @@
                   <% else %>
                     <p></p>
                   <% end %>
+                <%# もしログインしている人が利用者　かつ　利用者のストライプセッションid=true なら　チケットを使うを表示 %>
               <% if current_user.present? && current_user.session_id == "true" %>
                 <%= link_to "チケットを使う",use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                 <%# もし　ログインしているが利用者が存在するなら %>
               <% elsif current_user.present? %>
                 <%= link_to "サブスクを始める",user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
-              <% else %>
+             <% elsif !(owner_signed_in?) %>
                 <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>
               </div>

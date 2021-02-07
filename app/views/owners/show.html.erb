@@ -7,16 +7,7 @@
           <table border="2" style="border-collapse: collapse; border-color: black">
             <h1>Myページ</h1>
 
-            <%# ここからあとで削除する %>
-            <%= @subscriptions_count %>
-            <%# ここまであとで削除する %>
-
             <p><%= @owner.email %></p>
-            <% if @subscriptions_count == 0 %>
-              <%= link_to 'サブスクページ作成はこちら', new_owner_shop_path, class: "btn btn-info" %>
-            <% else %>
-
-            <% end %>
 
             <%# ここから追加分 %>
             <% if @subscriptions == []%> 
