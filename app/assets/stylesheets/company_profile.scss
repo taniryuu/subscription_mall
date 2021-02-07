@@ -1,0 +1,45 @@
+.title_parent
+{
+  height: 50px;
+}
+
+.title
+{  
+  line-height: 50px;
+  font-weight: bold;
+  text-align: left;
+  position: relative;
+  left: 220px;
+}
+
+.box
+{
+  //border: 1px solid; border-color: #0000FF;
+  width: 700px;
+  height: 302px;
+  margin-top: 0px;
+}
+
+.parent
+{
+  height: 50px;
+}
+
+.element1
+{
+  font-weight: bold;
+  line-height: 50px;
+  background-color: gainsboro;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-color: lightgray;
+}
+
+.element2
+{
+  line-height: 50px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-color: lightgray;
+}
+
