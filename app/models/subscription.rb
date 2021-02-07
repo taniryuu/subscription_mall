@@ -17,9 +17,6 @@ class Subscription < ApplicationRecord
   mount_uploader :image_subscription2, SubscriptionUploader
   mount_uploader :image_subscription3, SubscriptionUploader
   mount_uploader :image_subscription4, SubscriptionUploader
-<<<<<<< HEAD
-  # mount_uploader :image_subscription5, SubscriptionUploader
-=======
   mount_uploader :image_subscription5, SubscriptionUploader
   mount_uploader :sub_image, SubscriptionUploader
   mount_uploader :sub_image2, SubscriptionUploader
@@ -33,7 +30,6 @@ class Subscription < ApplicationRecord
   mount_uploader :sub_image10, SubscriptionUploader
   mount_uploader :sub_image11, SubscriptionUploader
   mount_uploader :sub_image12, SubscriptionUploader
->>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
   mount_uploader :qr_image, SubscriptionUploader
 
 

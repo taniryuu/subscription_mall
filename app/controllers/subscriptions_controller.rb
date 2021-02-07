@@ -144,7 +144,7 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_IsuwaCWlfspirK',
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 3000,
           recurring: {interval: "month"}
         },
@@ -161,8 +161,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_Isuy5F0njzsi0S',
-          unit_amount: 12000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 9000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -178,8 +178,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_IsuzWUyD983UwW',
-          unit_amount: 18000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 11000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -195,8 +195,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_Isv8q13A2P51Ce',
-          unit_amount: 25000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 18000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -212,8 +212,8 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_Isv9Go48esDyWG',
-          unit_amount: 50000,
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 25000,
           recurring: {interval: "month"}
         },
         quantity: 1,
@@ -229,7 +229,24 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_IsvAuZhJp3fsYl',
+          product: 'prod_Itdb3ZOVEaX3iU',
+          unit_amount: 50000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+
+    @plan7 = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: @user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 100000,
           recurring: {interval: "month"}
         },
@@ -270,12 +287,7 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-<<<<<<< HEAD
-      # params.require(:subscription).permit(:monthly_fee, :name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription5, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
-      params.require(:subscription).permit(:name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
-=======
       params.require(:subscription).permit(:name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription5, :sub_image, :sub_image2, :sub_image3, :sub_image4, :sub_image5, :sub_image6, :sub_image7, :sub_image8, :sub_image9, :sub_image10, :sub_image11, :sub_image12, :image_subscription_id, :subscription_detail, :category_name, :category_genre, :price, :owner_id, images_attributes: [:image])
->>>>>>> 50e08be266704372ba87eaf31721f781f6cc4661
     end
 
     def map_params
