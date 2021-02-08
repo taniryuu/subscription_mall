@@ -16,19 +16,36 @@
   <div class="f-container">
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;サブスクで</span>
-          <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+        <div class="center">コンセプト</div>
       </div>
     </div>
+  </div>
+  <div class="center">
+    <%= link_to image_tag("megurume.jpg", :size =>'300x300'), "/", class:"gurumelogo" %>
+  </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;毎日好きなランチを</span>
+        <div class="comment-text">スマホで簡単注文・テイクアウト・並ばず受け取れる<br>店内での飲食も出来新しいお店に出会えて定期的でお財布にも安心</div>
+      </div>
+    </div>
+  <hr class="border-solid-down" />
+
+  <div class="f-container">
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "定額制", plan_description_path, class: "user-service" %></span>
         <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;3000円から始める</span>
+        <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;好きなお店に行ける</span>
+          <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+      </div>
+    </div>
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;チケット決済</span>
         <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
@@ -313,9 +330,12 @@
       <a href="top_owner.html" class="btn btn-c btn--pink2 btn--cubic2">経営者様はこちら</a>
       <a href="/users/sign_up" class="btn btn-c btn--pink btn--cubic">利用者様会員登録</a>
     </div>
-    <h1>↓ここの画像利用者用に変える</h1>
+    <div class="container-fluid">
+      <%= video_tag("/videos/promotion for LINE.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    </div>
+    <h1>↓ここに画像利用者用を入れる</h1>
     <div>
-      <%= image_tag 'nagare.jpeg.png', Style: "height: 350px"%><i class="fas fa-chevron-circle-right"></i>
+
     </div>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
@@ -331,21 +351,84 @@
         </div>
       <% end %>
     </div>
-
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div></br></br>
 
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">各値段のサブスク</div>
+        </div>
+      </div>
+    </div>
+
     <%# google map %>
     <%= render "maps/top" %>
 
-    <div class="recommend-shop">
-      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-      <% end %>
+    <hr class="border-solid-down" />
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to how_to_use_path, class: "btn-gradient-radius-blue" do%>
+                使い方３ステップ<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <span class="box-title">&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;携帯でお店検索</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;店内orテイクアウト</span>
+            <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;食事</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">トライアルプラン</div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+    
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -383,7 +466,14 @@
            <% end %>
       </ul>
     </div>
-
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center"><%= link_to "お客さまの声",  megurumereviews_path, class: "user-service" %></div>
+        </div>
+      </div>
+    </div>
+    
     <div id="slider" class="box14">
       <% @megurumereviews.each do |review| %>
           <p>お客様満足度 /
@@ -410,33 +500,88 @@
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="left">メディア掲載</div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="right">お客様一覧</div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
 
-    <hr class="style1">
-    <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
-      <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-        <hr class="tool-bar">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="grid-item-image"><%= image_tag interview.image_interview_url %></div>
-              <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-              <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-              <%= link_to "#{interview.content}", interview_path(interview) %>
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">    
+            <div class="f-container">
+              <div class="f-item">
+                <div class="left">
+                  <a class="btn btn-icon btn-facebook" href="https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616">
+                  <i class="fa fa-facebook">
+                  </i><span>Facebook</span></a>
+                </div>
+              </div>
+              <div class="f-item">
+                <div class="right">
+                  <a class="btn btn-icon btn-twitter" href="https://twitter.com/megurumee">
+                  <i class="fa fa-twitter">
+                  </i><span>Twitter</span></a>
+                </div>
+              </div>
+              <div class="f-item">
+                <div class="left">
+                  <a class="btn btn-icon insta_btn" href="https://www.instagram.com/megurume.world">
+                  <i class="fa  fa-instagram">
+                  </i><span>Instagram</span></a>
+                </div>
+              </div>
+              <div class="f-item">
+                <div class="right">
+                  <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/PrKWtcm">
+                  <i class="fa fa-mobile">
+                  </i><span>LINE@(店舗用)</span></a>
+                </div>
+              </div>
+              <div class="f-item">
+                <div class="right">
+                  <a class="btn btn-icon btn-pinterest" href="https://lin.ee/Rtmhky1">
+                  <i class="fa fa-mobile">
+                  </i><span>LINE@(利用者様用)</span></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      <% end %>
-    <hr class="style2">
-    <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="questions"><%= link_to "特定商取引法に基づく表記", specified_commercial_transaction_law_path, class: "user-service" %></div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center"><div class="questions"><%= link_to "Q&A", questions_path, class: "user-service" %></div></div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center"><div class="news"><%= link_to "サブスクNews", blogs_path, class: "user-service" %></div></div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">空欄</div>
+        </div>
+      </div>
+    </div>
   <% end %>
 </main>
