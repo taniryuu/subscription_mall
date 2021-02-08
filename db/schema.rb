@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210122235346) do
+ActiveRecord::Schema.define(version: 20210208055037) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -235,6 +235,16 @@ ActiveRecord::Schema.define(version: 20210122235346) do
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
+  create_table "user_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "price", default: 0
+    t.bigint "user_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_user_plans_on_subscription_id"
+    t.index ["user_id"], name: "index_user_plans_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -279,4 +289,6 @@ ActiveRecord::Schema.define(version: 20210122235346) do
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
   add_foreign_key "tickets", "users"
+  add_foreign_key "user_plans", "subscriptions"
+  add_foreign_key "user_plans", "users"
 end
