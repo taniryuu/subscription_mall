@@ -1,8 +1,8 @@
 class TicketsController < ApplicationController
 
   def index
-    # @tickets = Ticket.all 変更前
-    @ticket = Ticket.find_by(user_id: params[:user_id]) # 変更後
+    @tickets = Ticket.all # 案１みんなのチケットを表示
+    # @ticket = Ticket.find_by(user_id: params[:user_id]) # 案２　一人のチケットを表示
   end
 
   def show

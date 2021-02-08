@@ -4,34 +4,32 @@
   <h1 class="brand-color display-4 mt-6 mb-6">チケット使用履歴</h1>
 
   <div class="col-md-10 offset-md-1">
+    <% if @tickets != [] %>
+      <table class="table mb-8">
+        <thead class="thead-light">
+          <tr>
+            <th>店舗オーナー</th>
+            <th>振込先</th>
+            <th>サブスク料金</th>
+            <th>店舗の名前</th>
+            <th>利用ユーザー</th>
+            <th>利用日</th>
+          </tr>
+        </thead>
 
-<% if @ticket.present?%>
-  <table class="table">
-  <thead class="thead-light">
-  <tr>
-        <th>利用ユーザー</th>
-        <th>店舗経営者</th>
-        <th>振込先</th>
-        <th>店舗の名前</th>
-        <th>店舗オーナー</th>
-        <th>利用者</th>
-        <th>利用日</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <tr>
-        <td><%= @ticket.owner_name %></td>
-        <td><%= @ticket.owner_payee %></td>
-        <td><%= @ticket.subscription_name %></td>
-        <td><%= @ticket.user.name %></td>
-        <td><%= @ticket.use_ticket_day %></td>
-  </tr>
-  </tbody>
-  </table>
-<% else %>
-  <p>現在、チケットの利用履歴はありません。</p>
-<% end %>
-
-</div>
+        <tbody>
+          <% @tickets.each do |ticket| %>
+          <tr>
+            <td><%= ticket.owner_name %></td>
+            <td><%= ticket.owner_payee %></td>
+            <td><%= ticket.subscription_fee %></td>
+            <td><%= ticket.subscription_name %></td>
+            <td><%= ticket.user.name %></td>
+            <td><%= ticket.use_ticket_day %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
 </div>
