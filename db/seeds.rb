@@ -129,7 +129,6 @@ Subscription.create!(
   detail: "食べ放題",
   subscription_detail: "東京都",
   category_name: "和食",
-  monthly_fee: "4,980",
   price: "3,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
@@ -137,8 +136,6 @@ Subscription.create!(
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷1丁目",
-  latitude: 35.659020,
-  longitude: 139.702233
 )
 
 Subscription.create!(
@@ -149,7 +146,6 @@ Subscription.create!(
   detail: "食べ放題2",
   subscription_detail: "神奈川",
   category_name: "和食",
-  monthly_fee: "1,980",
   price: "12,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
@@ -157,8 +153,6 @@ Subscription.create!(
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷2丁目",
-  latitude: 35.658096,
-  longitude: 139.700466
 )
 
 Subscription.create!(
@@ -169,7 +163,6 @@ Subscription.create!(
   detail: "食べ放題3",
   subscription_detail: "大阪",
   category_name: "和食",
-  monthly_fee: "19,800",
   price: "25,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
@@ -177,8 +170,6 @@ Subscription.create!(
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
   address: "東京都渋谷区富ヶ谷3丁目",
-  latitude: 35.658096,
-  longitude: 139.700466
 )
 
 puts "Subscription Created"

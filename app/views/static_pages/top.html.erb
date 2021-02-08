@@ -105,6 +105,11 @@
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
+    <div class="recommend-shop">
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/Rtmhky1">
+      <i class="fa fa-mobile">
+      </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
+    </div>
 
     <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
@@ -203,6 +208,14 @@
     <div class="owner-btn">
       <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
     </div>
+    <div class="recommend-shop">
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/Rtmhky1">
+      <i class="fa fa-mobile">
+      </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/PrKWtcm">
+      <i class="fa fa-mobile">
+      </i><span>経営者様用のLINEのお問い合わせはこちら</span></a>
+    </div>
 
     <div class="category-list">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
@@ -233,10 +246,57 @@
         おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+         <% count = '6' %>
+         <% id = '17841442005934576' %>
+         <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
+         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+         <% hash_a = JSON.parse(res) %>
+         <% hash_b = hash_a['media']['data'] %>
+         <% insta = [] %>
+           <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+           <% end %>
+
+           <% insta.each do |v| %>
+             <li class='insta-image'>
+               <%= link_to "#{v['link']}" do %>
+                 <% if v['img'].include?("video") %>
+                   <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                 <% else %>
+                   <%= (image_tag "#{v['img']}" ) %>
+                 <% end %>
+                  <div class="mask">
+		               <div class="caption"><%= "#{v['caption']}" %></div>
+	                </div>
+               <% end %>
+             </li>
+           <% end %>
+      </ul>
+    </div>
     <hr class="style1">
     <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
     <hr class="style2">
     <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
+    <hr class="style2">
+    <div class="interview"><%= link_to "経営者インタビュー",  interviews_path, class: "user-service" %></div>
+      <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
+        <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="grid-item-image"><%= image_tag interview.image_interview_url %></div>
+              <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
+              <%= link_to "#{interview.content}", interview_path(interview) %>
+          </div>
+        </div>
+      <% end %>
     <hr class="style2">
     <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
     <hr class="style2">

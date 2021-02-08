@@ -1,8 +1,22 @@
 class OwnersController < ApplicationController
-  before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy, :owner_edit, :owner_edit_update]
 
   def index
     @owners = Owner.paginate(page: params[:page], per_page: 20)
+  end
+
+  def owner_edit
+    
+  end
+
+  def owner_edit_update
+    if
+      @owner.update(owner_params)
+      flash[:success] = "#{current_owner.name}様の情報を更新しました。"
+      redirect_to owner_account_owner_url(current_owner)
+    else
+      render :owner_edit
+    end
   end
 
   def deleted_owners#論理削除した経営者
@@ -89,7 +103,7 @@ class OwnersController < ApplicationController
     end
 
     def owner_params
-      params.require(:owner).permit(:name, :kana, :email, :phone_number, :store_information, :password, :password_confirmation)
+      params.require(:owner).permit(:name, :kana, :email, :phone_number, :address, :password, :password_confirmation)
     end
 
     def user_params

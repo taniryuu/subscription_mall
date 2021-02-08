@@ -1,9 +1,21 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:create, :show, :edit, :update, :destroy]
+  before_action :set_user, only: [:create, :show, :edit, :update, :destroy, :user_edit, :user_edit_update]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
     @search = params[:search]
+  end
+
+  def user_edit
+  end
+
+  def user_edit_update
+    if @user.update_attributes(user_params)
+      flash[:success] = "#{@user.name}様の情報を更新しました。"
+      redirect_to user_account_user_url(current_user)
+    else
+      render :user_edit
+    end
   end
 
   def deleted_users
@@ -73,7 +85,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :kana, :email, :phone_number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :kana, :email, :phone_number, :address, :password, :password_confirmation)
     end
 
 
