@@ -237,8 +237,8 @@ ActiveRecord::Schema.define(version: 20210208055037) do
 
   create_table "user_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "price", default: 0
-    t.bigint "user_id"
-    t.bigint "subscription_id"
+    t.bigint "user_id", null: false
+    t.bigint "subscription_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subscription_id"], name: "index_user_plans_on_subscription_id"
