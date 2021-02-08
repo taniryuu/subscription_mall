@@ -1,2 +1,58 @@
 <h1>TicketLogs#index</h1>
 <p>Find me in app/views/ticket_logs/index.html.erb</p>
+
+<% provide(:title, 'チケット使用履歴') %>
+
+<div>
+  <h1 class="brand-color display-4 mt-6 mb-6">チケット使用履歴</h1>
+
+  <div class="col-md-10 offset-md-1">
+    <% if @ticket_logs != [] %>
+      <table class="table mb-8">
+        <thead class="thead-light">
+          <tr>
+            <th>チケットID</th>
+            <th>店舗オーナー名</th>
+            <th>店舗オーナーEmail</th>
+            <th>店舗オーナーTEL</th>
+            <th>店舗情報</th>
+            <th>サブスク料金</th>
+            <th>サブスク名</th>
+            <th>利用ユーザー</th>
+            <th>発券日</th>
+            <th>利用日</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @ticket_logs.each do |ticket_log| %>
+          <tr>
+
+            <td><%= ticket_log.ticket_id %></td>
+            <td><%= ticket_log.owner_name %></td>
+            <td><%= ticket_log.owner_email %></td>
+            <td><%= ticket_log.owner_phone_number %></td>
+            <td><%= ticket_log.owner_store_information %></td>
+            <td><%= ticket_log.subscription_fee %></td>
+            <td><%= ticket_log.subscription_name %></td>
+            <td>　</td>
+            <td><%= ticket_log.issue_ticket_day %></td>
+            <td><%= ticket_log.use_ticket_day_log %></td>
+
+
+    <%# t.bigint "ticket_id" %>
+    <%# t.string "owner_name" %>
+    <%# t.string "owner_email" %>
+    <%# t.string "owner_phone_number" %>
+    <%# t.string "owner_store_information" %>
+    <%# t.string "subscription_name" %>
+    <%# t.string "subscription_fee" %>
+    <%# t.date "issue_ticket_day" %>
+    <%# t.date "use_ticket_day_log" %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
