@@ -1,6 +1,3 @@
-<h1>TicketLogs#index</h1>
-<p>Find me in app/views/ticket_logs/index.html.erb</p>
-
 <% provide(:title, 'チケット使用履歴') %>
 
 <div>
@@ -19,7 +16,6 @@
             <th>サブスク料金</th>
             <th>サブスク名</th>
             <th>利用ユーザー</th>
-            <th>発券日</th>
             <th>利用日</th>
           </tr>
         </thead>
@@ -35,8 +31,7 @@
             <td><%= ticket_log.owner_store_information %></td>
             <td><%= ticket_log.subscription_fee %></td>
             <td><%= ticket_log.subscription_name %></td>
-            <td>　</td>
-            <td><%= ticket_log.issue_ticket_day %></td>
+            <td><%= User.find(ticket_log.user_id).name if ticket_log.user_id.present? %></td>
             <td><%= ticket_log.use_ticket_day_log %></td>
 
 
