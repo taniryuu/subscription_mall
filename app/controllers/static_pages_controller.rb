@@ -5,9 +5,10 @@ class StaticPagesController < ApplicationController
     @blogs = Blog.all
     @reviews = Review.all
     @questions = Question.all
+    @medias = Medium.all.limit(10)
     @interviews = Interview.where.not(shop_name: nil)
     @megurumereviews = Megurumereview.all
-    @owners = Owner.all
+    @owners = Owner.all.limit(5)
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RAND()").limit(6)
@@ -26,6 +27,10 @@ class StaticPagesController < ApplicationController
     else
       Category.order("RAND()").limit(6)
     end
+  end
+
+  def megurume_line
+    
   end
 
   def how_to_use

@@ -23,18 +23,26 @@
                     住所：<%= @subscription.owner.address %>
                   <% else %>
                     <p></p>
-                  <% end %>
+                  <% end %> | 
                   <% if @subscription.owner.phone_number.present? %>
-                    TEL：<%= @subscription.owner.phone_number %>
+                    テイクアウトTEL：<%= @subscription.owner.phone_number %>
                   <% else %>
                     <p></p>
                   <% end %>
               <% if current_user.present? && current_user.session_id == "true" %>
-                <%= link_to "チケットを使う",use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "利用プラン変更", user_plans_path(current_user), class: "btn-gradient-3d-simple" %>
+                <%= form_with(model: Ticket, url: "#", local: true, method: :patch) do |f| %>
+                    <%= f.hidden_field :issue_ticket_day, :value => nil %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <%= f.submit "サブスク解除", class: "btn btn-outline-success btn-rounded waves-effect" %>
+                <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める",user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを始める", user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
+              <% elsif current_owner.present? %>
+                <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
               <% else %>
-                <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
+                <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>
               </div>
             </div>
@@ -221,7 +229,17 @@
                 <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
               <% elsif current_user.present? %>
                 <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
-                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %>
+                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %><br>
+                  <% if @subscription.owner.address.present? %>
+                    　　　住所：<%= @subscription.owner.address %>
+                  <% else %>
+                    <p></p>
+                  <% end %><br>
+                  <% if @subscription.owner.phone_number.present? %>
+                    　　　テイクアウトTEL：<%= @subscription.owner.phone_number %>
+                  <% else %>
+                    <p></p>
+                  <% end %>
               <% end %>
             </div>
           </div>

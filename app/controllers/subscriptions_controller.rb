@@ -22,6 +22,7 @@ class SubscriptionsController < ApplicationController
   def show
     gon.subscriptions = @subscription
     @reviews = Review.all
+    @ticket = Ticket.includes(:user)
   end
 
   def plan_description
@@ -77,63 +78,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  #経営者よう決済
-  # def setup
-  #   # @subscription = @owner.subscriptions.find_by(params[:id])
-  #   @owner = Owner.find(params[:id])
-
-  #   @plan1 = Stripe::Checkout::Session.create(
-  #     payment_method_types: ['card'],
-  #     customer_email: @owner.email,
-  #     line_items: [{
-  #       price_data: {
-  #         currency: 'jpy',
-  #         product: 'prod_IQEjlDvOeRJkqv',
-  #         unit_amount: 1980,
-  #         recurring: {interval: "month"}
-  #       },
-  #       quantity: 1,
-  #     }],
-  #     mode: 'subscription',
-  #     success_url: success_url,
-  #     cancel_url: cancel_url,
-  #   )
-
-  #   @plan2 = Stripe::Checkout::Session.create(
-  #     payment_method_types: ['card'],
-  #     customer_email: @owner.email,
-  #     line_items: [{
-  #       price_data: {
-  #         currency: 'jpy',
-  #         product: 'prod_IQEjlDvOeRJkqv',
-  #         unit_amount: 4980,
-  #         recurring: {interval: "month"}
-  #       },
-  #       quantity: 1,
-  #     }],
-  #     mode: 'subscription',
-  #     success_url: success_url,
-  #     cancel_url: cancel_url,
-  #   )
-
-  #   @plan3 = Stripe::Checkout::Session.create(
-  #     payment_method_types: ['card'],
-  #     customer_email: @owner.email,
-  #     line_items: [{
-  #       price_data: {
-  #         currency: 'jpy',
-  #         product: 'prod_IQEjlDvOeRJkqv',
-  #         unit_amount: 19800,
-  #         recurring: {interval: "month"}
-  #       },
-  #       quantity: 1,
-  #     }],
-  #     mode: 'subscription',
-  #     success_url: success_url,
-  #     cancel_url: cancel_url,
-  #   )
-
-  # end
 
 
   def user_plans
