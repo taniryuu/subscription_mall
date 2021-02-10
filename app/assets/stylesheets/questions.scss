@@ -29,7 +29,7 @@
   left: 20px;
   font-weight: bold;
   color: #FFF;/*文字色*/
-  background: red;//#FF72D0;
+  background: black;//#FF72D0;
   border-radius: 5px;/*角の丸み*/
 }
 
@@ -112,7 +112,7 @@
   left: 20px;
   font-weight: bold;
   color: #FFF;/*文字色*/
-  background: #00CCFF;
+  background: red;//#00CCFF;
   border-radius: 5px;/*角の丸み*/
 }
 
@@ -128,9 +128,21 @@
   /*border: 1px solid; border-color: #0000FF;*/
 }
 
-.question_answer_strings
+.question_answer_strings_red
 {
-  color: #00CCFF;
+  color: red;//#00CCFF;
+  line-height: 1.5;
+}
+
+.question_answer_strings_black
+{
+  color: black;//#00CCFF;
+  line-height: 1.5;
+}
+
+.question_answer_strings_gray
+{
+  color: #555555;//#00CCFF;
   line-height: 1.5;
 }
 
@@ -163,7 +175,7 @@
   left: 20px;
   font-weight: bold;
   color: #FFF;/*文字色*/
-  background: red;//#FF72D0;
+  background: black;//#FF72D0;
   border-radius: 5px;/*角の丸み*/
 }
 
@@ -245,7 +257,7 @@
   left: 20px;
   font-weight: bold;
   color: #FFF;/*文字色*/
-  background: #00CCFF;
+  background: red;//#00CCFF;
   border-radius: 5px;/*角の丸み*/
 }
 
@@ -261,9 +273,21 @@
   /*border: 1px solid; border-color: #0000FF;*/
 }
 
-.question_answer_strings
+.question_answer_strings_red
 {
-  color: #00CCFF;
+  color: red;//#00CCFF;
+  line-height: 1.5;
+}
+
+.question_answer_strings_black
+{
+  color: black;//#00CCFF;
+  line-height: 1.5;
+}
+
+.question_answer_strings_gray
+{
+  color: #555555;//#00CCFF;
   line-height: 1.5;
 }
 

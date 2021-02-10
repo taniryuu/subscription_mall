@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'kiyaku' => "subscriptions#kiyaku", as: :kiyaku#利用規約
   get 'privacy_policy' => "subscriptions#privacy_policy", as: :privacy_policy#プライバシーポリシー
   get 'site' => "subscriptions#site", as: :site#サイトについて
+  get 'company_profile' => "subscriptions#company_profile", as: :company_profile#会社概要
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions#経営者のプラン内容
   get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans#利用者のプラン内容

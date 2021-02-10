@@ -270,6 +270,8 @@ class SubscriptionsController < ApplicationController
   def show_sample
   end
 
+  def company_profile
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
