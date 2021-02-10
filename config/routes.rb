@@ -95,13 +95,15 @@ Rails.application.routes.draw do
   resources :owners do
         get :search, on: :collection #オーナーの名前であいまい検索 追加分
         get 'owner_edit', on: :member#
-        patch 'owner_edit_update', on: :member#
+        patch 'owner_edit_update', on: :member#個人情報編集
         post "thanks", on: :member#会員登録完了通知画面
         get 'owner_account', on: :member#アカウントページ
         get 'user_email', on: :member#経営者から利用者へメール作成
         post 'to_user_email', on: :member
         patch 'update_deleted_owners', on: :member#アカウントページ論理削除
         resources :subscriptions do
+          get 'edit_recommend', on: :member#おすすめ追加よう
+          patch 'update_recommend', on: :member#おすすめ店舗に加えるよう
           resources :images
         end
   end

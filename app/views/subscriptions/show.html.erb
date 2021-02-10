@@ -41,6 +41,12 @@
                 <%= link_to "サブスクを始める", user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
+              <% elsif current_admin.present? %>
+                <% if @subscription.recommend == true %>
+                  <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
+                <% elsif @subscription.recommend == false %>
+                  <%= link_to "おすすめ店舗に加える", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
+                <% end %>
               <% else %>
                 <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>
