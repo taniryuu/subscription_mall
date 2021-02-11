@@ -4,7 +4,6 @@ class Subscription < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :instablogs, dependent: :destroy
-  has_many :user_plans, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   geocoded_by :address

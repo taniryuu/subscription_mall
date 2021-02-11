@@ -236,12 +236,11 @@ ActiveRecord::Schema.define(version: 20210208055037) do
   end
 
   create_table "user_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "price", default: 0
+    t.string "customer_id", null: false
+    t.integer "subscription_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "subscription_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subscription_id"], name: "index_user_plans_on_subscription_id"
     t.index ["user_id"], name: "index_user_plans_on_user_id"
   end
 
@@ -262,6 +261,7 @@ ActiveRecord::Schema.define(version: 20210208055037) do
     t.text "message"
     t.string "subject"
     t.string "session_id"
+    t.integer "subscription_id"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.datetime "created_at", null: false
@@ -289,6 +289,5 @@ ActiveRecord::Schema.define(version: 20210208055037) do
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
   add_foreign_key "tickets", "users"
-  add_foreign_key "user_plans", "subscriptions"
   add_foreign_key "user_plans", "users"
 end

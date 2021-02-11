@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get 'site' => "subscriptions#site", as: :site#サイトについて
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions#経営者のプラン内容
-  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans#利用者のプラン内容
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
 
@@ -99,6 +98,8 @@ Rails.application.routes.draw do
         patch 'update_deleted_owners', on: :member#アカウントページ論理削除
         resources :subscriptions do
           resources :images
+          get "confirm", on: :member
+          get 'user_plans', on: :member#利用者のプラン内容
         end
   end
   resources :maps

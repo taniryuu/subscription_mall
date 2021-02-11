@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:show, :edit, :update, :destroy]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :set_subscription, only: [:show, :edit, :update, :destroy, :user_plans, :confirm]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :user_plans]
+  before_action :payment_check, only: :show
   # before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /subscriptions
@@ -137,140 +138,65 @@ class SubscriptionsController < ApplicationController
 
 
   def user_plans
-    @user = User.find(params[:id])
-
-    @plan1 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 3000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan2 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 9000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan3 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 11000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan4 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 18000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan5 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 25000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan6 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 50000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan7 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 100000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @user.update(session_id: "true")
-
   end
 
+  def confirm
+    current_user.update!(session_id: params[:session].to_i)
+    @price = current_user.session_id
+
+    # @plan = Stripe::Checkout::Session.create(
+    #   payment_method_types: ['card'],
+    #   customer_email: current_user.email,
+    #   line_items: [{
+    #     price_data: {
+    #       currency: 'jpy',
+    #       product: 'prod_Itdb3ZOVEaX3iU',
+    #       unit_amount: @price,
+    #       recurring: {interval: "month"}
+    #     },
+    #     quantity: 1,
+    #   }],
+    #   mode: 'subscription',
+    #   success_url: success_url,
+    #   cancel_url: cancel_url,
+    # )
+
+    @plan = Stripe::Checkout::Session.create(
+      success_url: success_url,
+      cancel_url: cancel_url,
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+        price: params[:session],
+        quantity: 1},
+      ],
+      mode: 'subscription',
+    )
+
+    current_user.update!(session_id: @plan.id, subscription_id: @subscription.id)
+  end
+
+
   def cancel
+    current_user.update!(session_id: "", subscription_id: "")
   end
 
   def success
+    UserPlan.create!(
+      customer_id: current_user.session_id,
+      user_id: current_user.id,
+      subscription_id: current_user.subscription_id
+    )
+    current_user.update!(session_id: "", subscription_id: "")
   end
 
   def show_sample
   end
 
+  def payment_check
+    payment = current_user.user_plans.find_by(subscription_id: params[:id])
+    @str = Stripe::Checkout::Session.retrieve(payment.customer_id) if payment.present?
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
