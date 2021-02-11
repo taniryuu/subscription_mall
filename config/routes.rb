@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'#トップページ
   get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
   get 'top_user' => "static_pages#top_user"#利用者様トップページ
-  get 'megurume_line' => "static_pages#megurume_line"#利用者様トップページ
+  get 'megurume_line' => "static_pages#megurume_line"#LINE誘導
   get 'discussion' => "static_pages#discussion"#相談窓口
   get 'specified_commercial_transaction_law' => "static_pages#specified_commercial_transaction_law"#特定商取引法
   get 'how_to_use' => "subscriptions#how_to_use", as: :how_to_use#ご利用方法について
@@ -95,7 +95,7 @@ Rails.application.routes.draw do
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
         get :search, on: :collection #オーナーの名前であいまい検索 追加分
-        get 'owner_edit', on: :member#
+        get 'owner_edit', on: :member##個人情報編集
         patch 'owner_edit_update', on: :member#個人情報編集
         post "thanks", on: :member#会員登録完了通知画面
         get 'owner_account', on: :member#アカウントページ
@@ -104,7 +104,7 @@ Rails.application.routes.draw do
         patch 'update_deleted_owners', on: :member#アカウントページ論理削除
         resources :subscriptions do
           get 'edit_recommend', on: :member#おすすめ追加よう
-          patch 'update_recommend', on: :member#おすすめ店舗に加えるよう
+          patch 'update_recommend', on: :member#おすすめ店舗に加えるたり外すよう
           resources :images
         end
   end

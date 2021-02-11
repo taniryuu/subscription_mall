@@ -375,26 +375,34 @@
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
-          <span><%= link_to image_tag("plan1.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-          <div class="comment-text">お試しはこちら</div>
+          <div class="center">
+            <span><%= link_to image_tag("plan1.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+            <div class="comment-text">お試しはこちら</div>
+          </div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span><%= link_to image_tag("plan2.png", :size => '200x100'), root_path %></span>
+          <div class="center">
+            <span><%= link_to image_tag("plan2.png", :size => '200x100'), root_path %></span>
             <div class="comment-text">気になる方はこちら</div>
+          </div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span><%= link_to image_tag("plan3.png", :size => '200x100'), root_path %></span>
-          <div class="comment-text">スタンダードはこちら</div>
+          <div class="center">
+            <span><%= link_to image_tag("plan3.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">スタンダードはこちら</div>
+          </div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span><%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-          <div class="comment-text">ちょっぴりグルメな方はこちら</div>
+          <div class="center">
+            <span><%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+            <div class="comment-text">ちょっぴりグルメな方はこちら</div>
+          </div>
         </div>
       </div>
     </div>
@@ -402,20 +410,26 @@
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
-          <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-          <div class="comment-text">グルメな方はこちら</div>
+          <div class="center">
+            <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+            <div class="comment-text">グルメな方はこちら</div>
+          </div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
+          <div class="center">
+            <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
             <div class="comment-text">慣れてきた方はこちら</div>
+          </div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
-          <div class="comment-text">上級者はこちら</div>
+          <div class="center">
+            <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">上級者はこちら</div>
+          </div>
         </div>
       </div>
     </div>
@@ -434,26 +448,24 @@
               <% end %>
             <div class="category-list">
               <% @subscriptions.each do |subscription| %>
-              <div class="container mt-5">
-                <section class="dark-grey-text">
+              <div>
+                <hr class="tool-bar">
                   <div class="row align-items-center">
                     <div class="col-lg-5 col-xl-3">
                       <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                         <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '200%', height: "200" %>
+                          <%= image_tag subscription.image_subscription_url, width: '300', height: "200" %>
                         <% else %>
                           <p></p>
                         <% end %>
                       </div>
                     </div>
-                    <div class="col-lg-7 col-xl-8">
+                    <div class="col-lg-7 col-xl-10">
                       <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
                       <p class="dark-grey-text"><%= subscription.title %></p>
                       <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
                     </div>
                   </div>
-                  <hr class="my-3">
-                </section>
               </div>
               <% end%>
             </div>
