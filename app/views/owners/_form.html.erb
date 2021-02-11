@@ -15,19 +15,16 @@
   <%= f.telephone_field :phone_number, class: "form-control" %>
 
   <%= f.label :store_information %> <span class="must">必須</span><br/>
-  <%= f.text_field :store_information, :required => true, class: 'form-control' %>
+  <%= f.text_field :store_information, class: 'form-control' %>
 
   <%= f.label :payee %> <span class="must">必須</span><br/>
   <%= f.text_field :payee, class: 'form-control' %>
 
-  <%= f.label :line_id, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :line_id, class: "form-control" %>
-
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
-  <%= f.password_field :password, class: "form-control" %>
+  <%= f.password_field :password, :required => true, class: "form-control" %>
 
   <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
-  <%= f.password_field :password_confirmation, class: "form-control" %>
+  <%= f.password_field :password_confirmation, :required => true, class: "form-control" %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
 <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'ticket_logs' => "ticket_logs#index", as: :ticket_logs#チケット使用履歴
 
   root 'static_pages#top'#トップページ
   get 'paypaytest' => "static_pages#paypaytest"#paypaytest
@@ -11,8 +12,9 @@ Rails.application.routes.draw do
   get 'kiyaku' => "subscriptions#kiyaku", as: :kiyaku#利用規約
   get 'privacy_policy' => "subscriptions#privacy_policy", as: :privacy_policy#プライバシーポリシー
   get 'site' => "subscriptions#site", as: :site#サイトについて
+  get 'company_profile' => "subscriptions#company_profile", as: :company_profile#会社概要
 
-  get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions
+  get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions#経営者のプラン内容
   get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans#利用者のプラン内容
   get '/cancel', to: 'subscriptions#cancel'
   get '/success', to: 'subscriptions#success'
@@ -91,6 +93,8 @@ Rails.application.routes.draw do
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
         get :search, on: :collection #オーナーの名前であいまい検索 追加分
+        get 'owner_edit', on: :member#
+        patch 'owner_edit_update', on: :member#
         post "thanks", on: :member#会員登録完了通知画面
         get 'owner_account', on: :member#アカウントページ
         get 'user_email', on: :member#経営者から利用者へメール作成
@@ -135,6 +139,8 @@ Rails.application.routes.draw do
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
+    get 'user_edit', on: :member#
+    patch 'user_edit_update', on: :member#
     resources :tickets#サブスクチケット
     resources :reviews#利用者レビュー
       get "thanks", on: :member#会員完了通知仮面

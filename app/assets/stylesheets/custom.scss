@@ -662,9 +662,9 @@ margin-top: 5rem;
   cursor: pointer;
 }
 
-input[type="file"] {
-  display: none;
-}
+// input[type="file"] {
+//   display: none;
+// }
 
 // 消えたフォームの枠を表示する
 .form_border{
@@ -676,7 +676,7 @@ input[type="file"] {
   color: #c0c0c0 !important;
 }
 
-// フォームのプレイスホルダー色を薄いグレーにする
+// フォームのプレイスホルダー文字色を薄いグレーにする
 .form_border::placeholder{
   color: #c0c0c0 !important;
 }
