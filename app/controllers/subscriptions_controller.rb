@@ -59,7 +59,6 @@ class SubscriptionsController < ApplicationController
       if @subscription.update(subscription_params)
         format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @subscription }
-
       else
         format.html { render :edit }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }

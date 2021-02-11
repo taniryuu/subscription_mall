@@ -33,7 +33,7 @@
                 <%= link_to "チケットを使う",use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_user.present? %>
                 <%= link_to "サブスクを始める",user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
-              <% else %>
+             <% elsif !(signed_in?) %>
                 <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>
               </div>

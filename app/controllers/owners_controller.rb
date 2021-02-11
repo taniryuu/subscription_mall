@@ -47,12 +47,14 @@ class OwnersController < ApplicationController
   end
 
   def show
-    if @subscriptions == 0
-      @subscription = Subscription.find(params[:id])
+    if @subscriptions_count == 0
+      # @subscription_count = Subscription.find(params[:id]) 変更前
+      @subscriptions_count = Subscription.find_by(owner_id: params[:id]) # 変更後
     else
       # @shop = Shop.find(params[:shop_id])
-      @subscriptions = Subscription.where.not(name: nil).size
+      @subscriptions_count = Subscription.where.not(name: nil).size
     end
+    @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)  
   end
 
   def owner_account

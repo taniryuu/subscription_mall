@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'ticket_logs' => "ticket_logs#index", as: :ticket_logs#チケット使用履歴
 
   root 'static_pages#top'#トップページ
   get 'top_owner' => "static_pages#top_owner"#経営者様トップページ

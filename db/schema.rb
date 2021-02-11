@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210122235346) do
+ActiveRecord::Schema.define(version: 20210210231043) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -219,6 +219,22 @@ ActiveRecord::Schema.define(version: 20210122235346) do
     t.index ["user_id"], name: "index_suports_on_user_id"
   end
 
+  create_table "ticket_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "use_ticket_day_log"
+    t.bigint "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "owner_name"
+    t.string "owner_email"
+    t.string "owner_phone_number"
+    t.string "owner_store_information"
+    t.string "subscription_name"
+    t.string "subscription_fee"
+    t.date "issue_ticket_day"
+    t.bigint "user_id"
+    t.index ["ticket_id"], name: "index_ticket_logs_on_ticket_id"
+  end
+
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "owner_name"
     t.string "owner_email"
@@ -256,6 +272,7 @@ ActiveRecord::Schema.define(version: 20210122235346) do
     t.date "issue_ticket_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_price"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -278,5 +295,6 @@ ActiveRecord::Schema.define(version: 20210122235346) do
   add_foreign_key "subscriptions", "owners"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
+  add_foreign_key "ticket_logs", "tickets"
   add_foreign_key "tickets", "users"
 end
