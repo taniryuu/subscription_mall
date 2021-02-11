@@ -1,32 +1,5 @@
 <h1>オススメ店舗</h1>
 
-<div class="container mt-5">
-  <section class="dark-grey-text">
-    <div class="row align-items-center">
-      <div class="col-lg-5 col-xl-3">
-        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-          <img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/02/19/11/40/coffee-shop-1209863__480.jpg" alt="Sample image">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-7 col-xl-8">
-
-        <h4 class="font-weight-bold mb-3"><strong>Sample Cafe</strong></h4>
-
-        <p class="dark-grey-text">sample sample sample</p>
-
-        <%= link_to "サブスクしてみる", show_sample_subscriptions_path, class: 'btn btn-outline-primary btn-rounded text-primary' %>
-
-      </div>
-    </div>
-    <hr class="my-3">
-  </section>
-</div>
-
-
 
 <% @subscriptions.each do |subscription| %>
 <div class="container mt-5">
@@ -34,17 +7,17 @@
     <div class="row align-items-center">
       <div class="col-lg-5 col-xl-3">
         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-          <%= image_tag subscription.image_subscription_url ,width: '100%', height: "135" %>
+          <% if subscription.image_subscription.present? %>
+            <%= image_tag subscription.image_subscription_url, width: '100%', height: "300" %>
+          <% else %>
+            <p>なし</p>
+          <% end %>
         </div>
       </div>
       <div class="col-lg-7 col-xl-8">
-
         <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
-
         <p class="dark-grey-text"><%= subscription.title %></p>
-
         <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id, shop_id: subscription.shop_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
-
       </div>
     </div>
     <hr class="my-3">

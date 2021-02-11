@@ -52,7 +52,7 @@ class CategoriesController < ApplicationController
   end
 
   def recommend
-    @subscriptions = Subscription.where(monthly_fee: "19800").order(created_at: :desc).limit(15)
+    @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
   end
 
   def washoku

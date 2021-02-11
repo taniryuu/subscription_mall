@@ -10,22 +10,22 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control' %>
+    <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control' %>
+    <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :address %>
-    <%= form.text_field :address, placeholder: "例)", class: 'form-control' %>
+    <%= form.text_field :address, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :detail %>
-    <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control' %>
+    <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
   
   <div class="field">
@@ -133,7 +133,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :price %> <span class="must">必須</span><br/>
+    <%= form.label :加入プラン %> <span class="must">必須</span><br/>
     <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
   </div>
 
