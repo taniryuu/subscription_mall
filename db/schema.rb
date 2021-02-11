@@ -106,6 +106,13 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.index ["owner_id"], name: "index_interviews_on_owner_id"
   end
 
+  create_table "media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "media_name"
+    t.string "media_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "megurumereviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "content"
@@ -203,6 +210,7 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "insta_blog"
+    t.boolean "recommend", default: false
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'#トップページ
   get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
   get 'top_user' => "static_pages#top_user"#利用者様トップページ
+  get 'megurume_line' => "static_pages#megurume_line"#LINE誘導
   get 'discussion' => "static_pages#discussion"#相談窓口
   get 'specified_commercial_transaction_law' => "static_pages#specified_commercial_transaction_law"#特定商取引法
   get 'how_to_use' => "subscriptions#how_to_use", as: :how_to_use#ご利用方法について
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
 
   get '/ticket_success', to: 'tickets#ticket_success', as: :ticket_success
   patch 'users/:user_id/tickets/:id/ticket_update_after_second_time', to: 'tickets#ticket_update_after_second_time', as: :ticket_update_after_second_time
+  patch 'users/:user_id/tickets/:id/edit_user_ticket', to: 'tickets#edit_user_ticket', as: :edit_user_ticket
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -85,6 +87,7 @@ Rails.application.routes.draw do
   post 'contacts/confirm' => "contacts#confirm"#お問い合わせ確認画面
   post 'contacts/thanks' => "contacts#thanks"#お問い合わせ完了通知仮面
 
+  resources :medias#メディア
   resources :interviews#経営者様インタビュー
   resources :cupons#クーポン
   resources :products#QRコード
@@ -92,14 +95,16 @@ Rails.application.routes.draw do
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
         get :search, on: :collection #オーナーの名前であいまい検索 追加分
-        get 'owner_edit', on: :member#
-        patch 'owner_edit_update', on: :member#
+        get 'owner_edit', on: :member##個人情報編集
+        patch 'owner_edit_update', on: :member#個人情報編集
         post "thanks", on: :member#会員登録完了通知画面
         get 'owner_account', on: :member#アカウントページ
         get 'user_email', on: :member#経営者から利用者へメール作成
         post 'to_user_email', on: :member
         patch 'update_deleted_owners', on: :member#アカウントページ論理削除
         resources :subscriptions do
+          get 'edit_recommend', on: :member#おすすめ追加よう
+          patch 'update_recommend', on: :member#おすすめ店舗に加えるたり外すよう
           resources :images
         end
   end

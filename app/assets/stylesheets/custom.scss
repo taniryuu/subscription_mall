@@ -57,7 +57,8 @@ input[type="button"] {
 body {
   margin: 0!important;
 }
-    /* リセットCSSここまで */
+
+  /* リセットCSSここまで */
 
 section {
   overflow: auto;
@@ -446,7 +447,7 @@ $email_color: #9F0303;
 }
 
 .insta-image .caption {
-  font-size:		120%;
+  font-size:		100%;
   white-space: pre;
   text-align: 	center;
   margin: 30px auto;

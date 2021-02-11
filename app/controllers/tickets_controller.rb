@@ -40,6 +40,18 @@ class TicketsController < ApplicationController
     end
   end
 
+  def edit_user_ticket
+    @ticket = Ticket.find(params[:id])
+    if @ticket.update_attributes(edit_user_ticket)
+      flash[:success] = "チケットを発券しました"
+      redirect_to user_account_user_path(current_user)
+    else
+      flash[:danger] = "チケットが発見できませんでした"
+      redirect_to root_path
+    end
+    current_user.update(issue_ticket_day: Date.today)
+  end
+
   # ２回目以降チケット発券
   def ticket_update_after_second_time
     @ticket = Ticket.find(params[:id])
@@ -60,6 +72,10 @@ class TicketsController < ApplicationController
 
     def ticket_params
       params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :owner_payee, :subscription_name, :subscription_fee, :issue_ticket_day, :user_id)
+    end
+
+    def edit_user_ticket
+      params.require(:ticket).permit(:issue_ticket_day, :user_id)
     end
 
     def use_ticket_params
