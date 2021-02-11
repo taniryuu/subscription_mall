@@ -49,6 +49,9 @@
                 <% end %>
               <% else %>
                 <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを始める",user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
+             <% elsif !(signed_in?) %>
+                <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>
               </div>
             </div>
