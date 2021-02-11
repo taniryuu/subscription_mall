@@ -149,6 +149,9 @@ class SubscriptionsController < ApplicationController
         },
         quantity: 1,
       }],
+      discounts: [{
+        coupon: 'ASo5l7Pn'
+      }],
       mode: 'subscription',
       success_url: success_url,
       cancel_url: cancel_url,
@@ -276,3 +279,4 @@ class SubscriptionsController < ApplicationController
       params.require(:map).permit(:address, :distance, :time)
     end
 end
+

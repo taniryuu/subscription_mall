@@ -42,6 +42,9 @@ class StaticPagesController < ApplicationController
   def specified_commercial_transaction_law
   end
 
+  def paypaytest
+  end
+
   private
 
 end

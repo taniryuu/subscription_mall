@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'#トップページ
+  get 'paypaytest' => "static_pages#paypaytest"#paypaytest
   get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
   get 'top_user' => "static_pages#top_user"#利用者様トップページ
   get 'discussion' => "static_pages#discussion"#相談窓口
