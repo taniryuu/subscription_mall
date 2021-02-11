@@ -375,44 +375,47 @@
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "3000円", root_path %></span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <span><%= link_to image_tag("plan1.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+          <div class="comment-text">お試しはこちら</div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;<%= link_to "9000円", root_path %></span>
-            <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+          <span><%= link_to image_tag("plan2.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">気になる方はこちら</div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;<%= link_to "11000円", root_path %></span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <span><%= link_to image_tag("plan3.png", :size => '200x100'), root_path %></span>
+          <div class="comment-text">スタンダードはこちら</div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "18000円", root_path %></span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <span><%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+          <div class="comment-text">ちょっぴりグルメな方はこちら</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+          <div class="comment-text">グルメな方はこちら</div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "25000円", root_path %></span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">慣れてきた方はこちら</div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "50000円", root_path %></span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
-        </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "10000円", root_path %></span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
+          <div class="comment-text">上級者はこちら</div>
         </div>
       </div>
     </div>
@@ -497,16 +500,9 @@
     </div>
     <hr class="border-solid-down" />
 
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div>
-                <%= link_to image_tag("toraiaru.jpg", :size =>'600x250'), "/", class:"gurumelogo" %>
-          </div>
-        </div>
-      </div>
+    <div class="center">
+      <%= link_to image_tag("toraiaru.jpg", :size =>'600x250'), "/", class:"gurumelogo" %>
     </div>
-    <hr class="border-solid-down" />
     
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
@@ -623,13 +619,18 @@
             <%= link_to "お客様一覧", owners_path, class: "btn btn-link" %>
             <table class="mb-12">
               <tbody>
-                <% @owners.each do |owner| %>
+                <% @owner_subscriptions.each do |owner| %>
                 <hr class="tool-bar">
                   <div class="row">
-                    <div class="col-sm-12">
-                      <%= owner.name %>
-                    </div><br>
                     <div class="col-sm-4">
+                      <%= owner.name %>
+                    </div>
+                    <div class="col-sm-8">
+                      <% if owner.image_subscription.present? %>
+                        <%= image_tag owner.image_subscription_url ,width: '100%', height: "200" %>
+                      <% else %>
+                        <p>登録されてません</p>
+                      <% end %>
                     </div>
                   </div>
                 <% end %>

@@ -57,7 +57,11 @@ input[type="button"] {
 body {
   margin: 0!important;
 }
-    /* リセットCSSここまで */
+
+.plan-css {
+  border-radius: 20px 30px 40px 50px;
+}
+  /* リセットCSSここまで */
 
 section {
   overflow: auto;

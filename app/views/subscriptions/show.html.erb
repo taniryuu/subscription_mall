@@ -239,12 +239,12 @@
                   <% if @subscription.owner.address.present? %>
                     　　　住所：<%= @subscription.owner.address %>
                   <% else %>
-                    <p></p>
+                    <p>登録させていません。LINE@からお問い合わせください。</p>
                   <% end %><br>
                   <% if @subscription.owner.phone_number.present? %>
                     　　　テイクアウトTEL：<%= @subscription.owner.phone_number %>
                   <% else %>
-                    <p></p>
+                    <p>登録させていません。LINE@からお問い合わせください。</p>
                   <% end %>
               <% end %>
             </div>
