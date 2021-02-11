@@ -1,18 +1,40 @@
 # frozen_string_literal: true
 
 class Owners::RegistrationsController < Devise::RegistrationsController
+  before_action :create, only: [:complete]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
+  #def new
+  #  super
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @owner= Owner.new(sign_up_params)
+    render :new and return if params[:back]
+  end
+
+  def confirm
+    @owner = Owner.new(sign_up_params)
+    if @owner.valid?
+      render :confirm
+    else
+     render :new
+    end
+  end
+
+  # 新規追加
+  def complete
+    @owner.save
+    OwnerMailer.with(owner: @owner).welcome_email.deliver_now
+  end
+
+  # アカウント登録後
+  def after_sign_up_path_for(resource)
+    owners_sign_up_complete_path(resource)
+  end
 
   # GET /resource/edit
   # def edit
@@ -26,6 +48,7 @@ class Owners::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
+    UserMailer.cancel_email(@owner).deliver
     resource.soft_delete
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message :notice, :destroyed
@@ -63,4 +86,10 @@ class Owners::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+    def sign_up_params
+      params.require(:owner).permit(:name, :email, :phone_number, :store_information, :payee, :password, :password_confirmation)
+    end
 end

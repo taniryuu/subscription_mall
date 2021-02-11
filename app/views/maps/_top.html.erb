@@ -1,0 +1,101 @@
+<div class="google-map">
+  <%= form_with(scope: :map, url: root_path, method: :get, local: true) do |f| %>
+    <%= f.label "エリア" %>
+    <%= f.text_field :address, value: address_value(params[:map]), class: "form-control", required: true %>
+    <%= f.submit '検索' %>
+  <% end %>
+  <div id="map"></div>
+</div>
+
+<%# CSS %>
+
+<style>
+  #map{
+    height: 200px;
+  }
+</style>
+
+<%# JS %>
+
+<script>
+
+  let map;
+  let geocode;
+  let marker = []; // マーカーを複数表示させたいので、配列化
+  let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+  let markerSub = gon.subscriptions;
+
+  // 渋谷駅
+  let center = {
+    lat: <%= params[:map].present? ? @latlng["location"]["lat"] : 35.659384 %>,
+    lng: <%= params[:map].present? ? @latlng["location"]["lng"] : 139.701244 %>
+  };
+
+  const display = document.getElementById('map')
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: center,
+      zoom: 18,
+    });
+
+    // 繰り返し処理でマーカーと吹き出しを複数表示させる
+    for (var i = 0; i < markerSub.length; i++) {
+      let id = markerSub[i]['id']
+
+      markerLatLng = new google.maps.LatLng({
+        lat: markerSub[i]['latitude'],
+        lng: markerSub[i]['longitude']
+      });
+
+      // 各地点のマーカーを作成
+      marker[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map
+      });
+
+      // 各地点の吹き出しを作成
+      infoWindow[i] = new google.maps.InfoWindow({
+        // 吹き出しの内容
+        content: `<div id=map${id}>
+                    <a href=/owners/${markerSub[i]["owner_id"]}/subscriptions/${id}>
+                      ${markerSub[i]["name"]}
+                    </a>
+                  </div>`
+      });
+      // マーカーにクリックイベントを追加
+      markerEvent(i);
+    }
+  }
+
+  // マーカーをクリックしたら吹き出しを表示
+  function markerEvent(i) {
+    marker[i].addListener('click', function () {
+      infoWindow[i].open(map, marker[i]);
+    });
+  }
+
+  function codeAddress(){
+    // 入力を取得
+    let inputAddress = document.getElementById('map').value;
+
+    // geocodingしたあとmapを移動
+    geocoder.geocode( { 'map': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        // map.setCenterで地図が移動
+        map.setCenter(results[0].geometry.location);
+
+        // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>

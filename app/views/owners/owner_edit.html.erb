@@ -1,0 +1,36 @@
+<% provide(:title, "Edit") %>
+<% provide(:class_text, 'owner--edit') %>
+<% provide(:button_text, '更新') %>
+
+<h1><%= current_owner.name %>様情報の編集</h1>
+
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= form_with(model: @owner, url: owner_edit_update_owner_path(@owner), local: true) do |f| %>
+
+      <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :name, :required => true, class: "form-control" %>
+
+      <%= f.label :kana, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :kana, class: "form-control" %>
+
+      <%= f.label :email, class: "label-#{yield(:class_text)}" %>
+      <%= f.email_field :email, :required => true, class: "form-control" %>
+
+      <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :phone_number, class: "form-control" %>
+
+      <%= f.label :address, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :address, class: "form-control" %>
+
+      <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+      <%= f.password_field :password, :required => true, class: "form-control" %>
+
+      <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+      <%= f.password_field :password_confirmation, :required => true, class: "form-control" %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+    <% end %>
+  </div>
+</div>

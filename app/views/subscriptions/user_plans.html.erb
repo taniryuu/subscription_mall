@@ -39,7 +39,7 @@
             />
             </div>
 
-            <h2 class="font-weight-bold my-4">￥12,000/月</h2>
+            <h2 class="font-weight-bold my-4">￥9,000/月</h2>
             <p>サンプルコメント</p>
             <button type="button" id="user-checkout-button2" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
           </div>
@@ -58,7 +58,7 @@
             />
             </div>
 
-            <h2 class="font-weight-bold my-4">￥18,000/月</h2>
+            <h2 class="font-weight-bold my-4">￥11,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
             <button type="button" id="user-checkout-button3" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
           </div>
@@ -77,7 +77,7 @@
             />
             </div>
 
-            <h2 class="font-weight-bold my-4">￥25,000/月</h2>
+            <h2 class="font-weight-bold my-4">￥18,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
             <button type="button" id="user-checkout-button4" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
           </div>
@@ -96,7 +96,7 @@
             />
             </div>
 
-            <h2 class="font-weight-bold my-4">￥50,000/月</h2>
+            <h2 class="font-weight-bold my-4">￥25,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
             <button type="button" id="user-checkout-button5" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
           </div>
@@ -115,9 +115,28 @@
             />
             </div>
 
-            <h2 class="font-weight-bold my-4">￥100,000/月</h2>
+            <h2 class="font-weight-bold my-4">￥50,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
             <button type="button" id="user-checkout-button6" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12 mb-4">
+        <div class="card">
+          <div class="card-body subscription-bg">
+            <h5 class="mb-4">サンプルプラン7</h5>
+            <div class="d-flex justify-content-center">
+              <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
+              width="120"
+              height="120"
+            />
+            </div>
+
+            <h2 class="font-weight-bold my-4">￥100,000/月</h2>
+            <p class="grey-text">サンプルコメント</p>
+            <button type="button" id="user-checkout-button7" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
           </div>
         </div>
       </div>
@@ -130,7 +149,7 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
   var checkoutButton = document.getElementById('user-checkout-button');
 
   checkoutButton.addEventListener('click', function() {
@@ -141,8 +160,8 @@
   });
 </script>
 
-<script>
-  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+ <script>
+  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
   var checkoutButton = document.getElementById('user-checkout-button2');
 
   checkoutButton.addEventListener('click', function() {
@@ -154,7 +173,7 @@
 </script>
 
 <script>
-  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
   var checkoutButton = document.getElementById('user-checkout-button3');
 
   checkoutButton.addEventListener('click', function() {
@@ -166,37 +185,54 @@
 </script>
 
 <script>
-  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
   var checkoutButton = document.getElementById('user-checkout-button4');
 
   checkoutButton.addEventListener('click', function() {
     stripe.redirectToCheckout({
-      sessionId: '<%= @plan3.id %>'
+      sessionId: '<%= @plan4.id %>'
     }).then(function (result) {
     });
   });
 </script>
 
 <script>
-  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
   var checkoutButton = document.getElementById('user-checkout-button5');
 
   checkoutButton.addEventListener('click', function() {
     stripe.redirectToCheckout({
-      sessionId: '<%= @plan3.id %>'
+      sessionId: '<%= @plan5.id %>'
     }).then(function (result) {
     });
   });
 </script>
 
 <script>
-  var stripe = Stripe('pk_test_51HI2E1LKoWxnLyg7OJ1ZS1lqEwJBInfzh1jNpz8Kr6FHN7AQS2bI9WE9FGeF0SoftlZJM0CI6xYF6eRLm86LgLrp00h2NQLnuG');
+  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
   var checkoutButton = document.getElementById('user-checkout-button6');
 
   checkoutButton.addEventListener('click', function() {
     stripe.redirectToCheckout({
-      sessionId: '<%= @plan3.id %>'
+      sessionId: '<%= @plan6.id %>'
     }).then(function (result) {
     });
   });
+<<<<<<< HEAD
 </script>
+
+=======
+</script> 
+
+<script>
+  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
+  var checkoutButton = document.getElementById('user-checkout-button7');
+
+  checkoutButton.addEventListener('click', function() {
+    stripe.redirectToCheckout({
+      sessionId: '<%= @plan7.id %>'
+    }).then(function (result) {
+    });
+  });
+</script> 
+>>>>>>> 2005d45a717f89a4aac616c9419ea1dd73787754

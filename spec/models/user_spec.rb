@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  it "ファクトリーボットが有効である事" do
+    expect(FactoryBot.build(:user)).to be_valid
+  end
+
   it "名前、メール、パスワードがある場合、有効である" do
     # userのそれぞれのカラムに対して値を入れてオブジェクト化する
     user = User.new(
@@ -13,11 +17,23 @@ RSpec.describe User, type: :model do
      expect(user).to be_valid
   end
 
-  it "名前がない場合、無効である"
-  it "メールアドレスがない場合、無効である"
-  it "重複したメールアドレスの場合、無効である"
-  it "パスワードがない場合、無効である"
+  it "名前が無ければ無効" do
+    user = FactoryBot.build(:user, name: nil)
+    user.valid?
+    expect(user.errors[:name]).to include(I18n.t('errors.messages.blank'))
+  end
 
-end
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "メールアドレスが無ければ無効" do
+    user = FactoryBot.build(:user, email: nil)
+    user.valid?
+    expect(user.errors[:email]).to include(I18n.t('errors.messages.blank'))
+  end
+
+  it "重複した’メールアドレスなら無効" do
+    FactoryBot.create(:user, email: "sample@email.com")
+    user = FactoryBot.build(:user, email: "sample@email.com")
+    user.valid?
+    expect(user.errors[:email]).to include(I18n.t('errors.messages.taken'))
+  end
+
 end

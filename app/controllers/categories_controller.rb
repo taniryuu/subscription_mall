@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.where.not(name: nil)
+    @categories_name = Category.where.not(name: nil)
   end
 
   def create
@@ -51,7 +52,7 @@ class CategoriesController < ApplicationController
   end
 
   def recommend
-    @subscriptions = Subscription.where(monthly_fee: "19800").order(created_at: :desc).limit(15)
+    @subscriptions = Subscription.order(created_at: :desc).limit(15)
   end
 
   def washoku
@@ -128,6 +129,38 @@ class CategoriesController < ApplicationController
 
   def restaurant
     @subscriptions = Subscription.order("RAND()").where(category_genre: "レストラン")
+  end
+
+  def okonomiyaki
+    @subscriptions = Subscription.order("RAND()").where(category_genre: "お好み焼き")
+  end
+
+  def nabe
+    @subscriptions = Subscription.order("RAND()").where(category_name: "鍋")
+  end
+
+  def sweets
+    @subscriptions = Subscription.order("RAND()").where(category_name: "スイーツ")
+  end
+
+  def karaage
+    @subscriptions = Subscription.order("RAND()").where(category_genre: "唐揚げ")
+  end
+
+  def gyouza
+    @subscriptions = Subscription.order("RAND()").where(category_genre: "餃子")
+  end
+
+  def don
+    @subscriptions = Subscription.order("RAND()").where(category_name: "丼モノ")
+  end
+
+  def udon
+    @subscriptions = Subscription.order("RAND()").where(category_genre: "うどん")
+  end
+
+  def soba
+    @subscriptions = Subscription.order("RAND()").where(category_genre: "そば")
   end
 
   def other

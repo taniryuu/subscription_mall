@@ -1,8 +1,63 @@
 /* universal */
 
-body {
-  padding-top: 60px;
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'Hiragino Sans','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+input[type="submit"],
+input[type="button"] {
+	-webkit-box-sizing: content-box;
+	-webkit-appearance: button;
+}
+body {
+  margin: 0!important;
+}
+    /* リセットCSSここまで */
 
 section {
   overflow: auto;
@@ -19,6 +74,7 @@ textarea {
 .center h1 {
   margin-bottom: 10px;
 }
+
 //詳細、編集リンクボタン
 .btn-gradient-3d-simple {
   display: inline-block;
@@ -78,37 +134,6 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-}
-
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-//  トップ画面背景画像
-
-.fluid-box{
-  width: 100vw;
-  position: relative;
-  height: 80vh;
-  background: url(gurumelogo.jpg) no-repeat center center;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color:#fff;
-  padding: 20px;
-}
-
 /* topページのヘッダーからスクロールさせる */
 .scroll-container {
   scroll-behavior: smooth;
@@ -131,14 +156,330 @@ p {
   background-color: rgb(245, 135, 135);
 }
 
-.top-bg{
-  background-image: url("https://img.freepik.com/free-vector/colorful-restaurant-mural-background_23-2148682356.jpg?size=626&ext=jpg");
-  background-color:rgba(255,255,255,0.8);
-  background-blend-mode:lighten;
-}
-
 .subscription-bg {
   background: linear-gradient(to bottom,#ecf58f,#fdfdfd);
+}
+
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+/*Ignore me, I'm just page styling*/
+html {font-family: 'Roboto', sans-serif;font-size:16px;line-height:1em;height:100%;}
+body {
+  background: #ffffff;
+  background: -moz-linear-gradient(-45deg, #ffffff 0%, #ffffff 50%, #F2F2F2 50%, #F2F2F2 50%, #F2F2F2 100%);
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffffff), color-stop(50%,#ffffff), color-stop(50%,#F2F2F2), color-stop(50%,#F2F2F2), color-stop(100%,#F2F2F2));
+  background: -webkit-linear-gradient(-45deg, #ffffff 0%,#ffffff 50%,#F2F2F2 50%,#F2F2F2 50%,#F2F2F2 100%);
+  background: -o-linear-gradient(-45deg, #ffffff 0%,#ffffff 50%,#F2F2F2 50%,#F2F2F2 50%,#F2F2F2 100%);
+  background: -ms-linear-gradient(-45deg, #ffffff 0%,#ffffff 50%,#F2F2F2 50%,#F2F2F2 50%,#F2F2F2 100%);
+  background: linear-gradient(135deg, #ffffff 0%,#ffffff 50%,#F2F2F2 50%,#F2F2F2 50%,#F2F2F2 100%);
+}
+
+h1 {font-size:1.5em;margin-bottom:55px;}
+
+#social-platforms {
+  position:relative;
+  top:100px;
+  top:25vh;
+  font-size:1rem;
+  text-align:rigth;
+  height:250px;
+  overflow:hidden;
+}
+
+/*Pen code from this point on*/
+.btn {
+  clear:both;
+  white-space:nowrap;
+  font-size:.8em;
+  display:inline-block;
+  border-radius:5px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.35);
+  margin:2px;
+  -webkit-transition:all .5s;
+  -moz-transition:all .5s;
+  transition:all .5s;
+  overflow:hidden
+}
+.discussion {
+  margin:10px;
+}
+
+.btn:hover {
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.45);
+}
+
+.btn:focus {
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.btn > span,.btn-icon > i {
+  float:left;
+  padding:13px;
+  -webkit-transition:all .5s;
+  -moz-transition:all .5s;
+  transition:all .5s;
+  line-height:1em
+}
+
+.btn > span {
+  padding:14px 18px 16px;
+  white-space:nowrap;
+  color:#FFF;
+  background:#b8b8b8
+}
+
+.btn:focus > span {
+  background:#9a9a9a
+}
+
+.btn-icon > i {
+  border-radius:5px 0 0 5px;
+  position:relative;
+  width:13px;
+  text-align:center;
+  font-size:1.25em;
+  color:#fff;
+  background:#212121
+}
+
+.btn-icon > i:after {
+  content:"";
+  border:8px solid;
+  border-color:transparent transparent transparent #222;
+  position:absolute;
+  top:13px;
+  right:-15px
+}
+
+.btn-icon:hover > i,.btn-icon:focus > i {
+  color:#FFF
+}
+
+.btn-icon > span {
+  border-radius:0 5px 5px 0
+}
+
+/*Facebook*/
+.btn-facebook:hover > i,.btn-facebook:focus > i {
+  color:#3b5998
+}
+
+.btn-facebook > span {
+  background:#3b5998
+}
+
+/*Twitter*/
+.btn-twitter:hover > i,.btn-twitter:focus > i {
+  color:#55acee
+}
+
+.btn-twitter > span {
+  background:#55acee
+}
+
+/*Google*/
+.btn-googleplus:hover > i,.btn-googleplus:focus > i {
+  color:#dd4b39
+}
+
+.btn-googleplus > span {
+  background:#dd4b39
+}
+.btn-googleplus2 > span {
+  background:#09ca19
+}
+
+/*Inatagram*/
+.insta_btn:hover > i,.btn-pinterest:focus > i {
+  color:#eb0db3
+}
+
+.insta_btn > span {
+  background:#eb0db3
+}
+
+/*Pinterest*/
+.btn-pinterest:hover > i,.btn-pinterest:focus > i {
+  color:#12c96d
+}
+
+.btn-pinterest > span {
+  background:#12c96d
+}
+
+/*LinkedIn*/
+.btn-linkedin:hover > i,.btn-linkedin:focus > i {
+  color:#007bb6
+}
+
+.btn-linkedin > span {
+  background:#007bb6
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+.me {
+  width: 400px;
+  margin: 90px auto;
+}
+.me p,
+.me h1 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+}
+.me p {
+  font-weight: 200;
+}
+.me span {
+  font-weight: bold;
+}
+body {
+  background: #25343F;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+}
+$googleplus_color: #dd4b39;
+$facebook_color: #3b5998;
+$twitter_color: #55acee;
+$email_color: #9F0303;
+
+
+.sns_btn {
+  display: inline-block;
+  color: #fff;
+  height: 3em;
+  width: 3em;
+  position: relative;
+  // text-align: center;
+  // clear:both;
+  // white-space:nowrap;
+  font-size: 1.5em;
+  border-radius: 0.3125em;
+  box-shadow: 0 0.1875em 0.3125em 0 rgba(0, 0, 0, 0.35);
+  margin:0.2em;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  transition: all .2s;
+  overflow: hidden;
+  i {
+    position: absolute;
+    // top: 50%;
+    // transform: translateY(-50%);
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: auto;
+  }
+  &:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0.3125em 0.9375em 0 rgba(0, 0, 0, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.9);
+    box-shadow: 0 0.125em 0.1875em 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+.btn_facebook {
+  background: $facebook_color;
+  &:hover {
+    color: $facebook_color;
+    background: #fff;
+  }
+}
+
+.btn_twitter {
+  background: $twitter_color;
+  &:hover {
+    color: $twitter_color;
+    background: #fff;
+  }
+}
+.btn_email {
+  background: $email_color;
+  &:hover {
+    color: $email_color;
+    background: #fff;
+  }
+}
+
+//インスタ画像
+.insta-list {
+  width: 930px;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+}
+
+.insta-list li {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+
+.insta-list li + li{
+  margin: 0 0 10px 10px;
+}
+.insta-list li:nth-child(4){
+  margin: 0;
+}
+.insta-list li img{
+  width: 100%;
+  height: auto;
+}
+
+.insta-image {
+  overflow:		hidden;
+  position:		relative;
+}
+
+.insta-image .caption {
+  font-size:		120%;
+  white-space: pre;
+  text-align: 	center;
+  margin: 30px auto;
+	color:			rgb(255, 255, 255);
+}
+
+.insta-image .mask {
+	width:			100%;
+	height:			100%;
+	position:		absolute;
+	top:			0;
+	left:			0;
+	opacity:		0;	/* マスクを表示しない */
+	background-color:	rgba(0,0,0,0.4);
+	-webkit-transition:	all 1s ease;
+	transition:		all 1s ease;
+}
+.insta-image:hover .mask {
+	opacity:		1;	/* マスクを表示する */
+	padding-left:		10px;	/* ホバーで下にずらす */
+}
+
+.insta-title {
+  font-family: cursive;
+  text-align: 	center;
+  font-size:		250%;
+  background: linear-gradient(to bottom,#b331f0,#f8e644);
+  margin: 20px auto;
+  width:			40%;
+  color: #111;
+  border-radius: 0.3125em;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 //レビューの星
@@ -176,3 +517,172 @@ p {
   font-size: 16px;
 }
 
+.star-rating2 {
+  position: relative;
+  top: 10px;
+  left: 150px;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating2-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating2-back {
+  color: #ccc;
+}
+
+//top-page-review
+.slick-next {
+  right: 10px !important;
+  z-index: 100;
+}
+
+.slick-prev {
+  left: 10px !important;
+  z-index: 100;
+}
+
+.box14{
+  padding: 0.2em 0.5em;
+  margin: 2em 0;
+  background: #ffeaea;
+  box-shadow: 0px 0px 0px 10px #ffeaea;
+  border: dashed 2px white;
+  position: absolute;
+  width:			500px;
+  height:			250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.box14 p {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2em;
+  word-break: keep-all;
+}
+
+.star-rating-top {
+  position: relative;
+  top: 3px;
+  left: 0px;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating-top-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-top-back {
+  color: #ccc;
+}
+
+// ブランドカラーの文字色
+.brand-color {
+color: #faab05;
+}
+
+// オリジナルの余白
+.mt-6 {
+margin-top: 5rem;
+}
+
+.mt-7 {
+  margin-top: 8rem;
+}
+
+.mt-8 {
+  margin-top: 10rem;
+}
+
+.mb-6 {
+  margin-bottom: 5rem;
+}
+
+.mb-7 {
+  margin-bottom: 8rem;
+}
+
+.mb-8 {
+  margin-bottom: 10rem;
+}
+
+// サブスクnewsページの ボタン
+.btn-gradient-radius {
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  transition: .4s;
+}
+
+.btn-gradient-radius:hover {
+  background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+}
+
+.btn-danger-radius {
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-image: linear-gradient(45deg, #DC3545 0%, #DC3545 100%);
+  transition: .4s;
+}
+
+.btn-danger-radius:hover {
+  background-image: linear-gradient(45deg, #DC3545 0%, #DC3545 100%);
+}
+
+.btn-brand {
+  color: #fff;
+  background-color: #faab05;
+  border-color: #faab05;
+}
+
+.qrcode_button{
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  cursor: pointer;
+}
+
+// input[type="file"] {
+//   display: none;
+// }
+
+// 消えたフォームの枠を表示する
+.form_border{
+  border: solid 1px #c0c0c0 !important;
+}
+
+// フォームのプレイスホルダー色を薄いグレーにする
+.form-control::placeholder{
+  color: #c0c0c0 !important;
+}
+
+// フォームのプレイスホルダー文字色を薄いグレーにする
+.form_border::placeholder{
+  color: #c0c0c0 !important;
+}
+
+// instablogの表示
+.instablog {
+  width: 30rem;
+  margin: 0 auto;
+}

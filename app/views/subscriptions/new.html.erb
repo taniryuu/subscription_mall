@@ -9,14 +9,13 @@
   <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
-    <%= form.label :monthly_fee %> <span class="must">必須</span>(サブスクショップ立ち上げの基本料金です)<br/>
-    <%= form.select :monthly_fee, Subscription.monthly_fees.keys, { include_blank: "利用料金を選択してください"}, class: 'form-control' %>
-  </div>
-
-
-  <div class="field">
     <%= form.label :name %> <span class="must">必須</span><br/>
     <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -35,23 +34,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :メインの店舗写真 %> <span class="must">必須</span><br/>
-    <%= form.file_field :image_subscription, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真1 %><br/>
-    <%= form.file_field :image_subscription2, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真2 %><br/>
-    <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真3 %><br/>
-    <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
+    <%= form.label :qr_image %><br/>
+    <%= form.file_field :qr_image %>
   </div>
 
   <div class="field">
@@ -66,7 +50,7 @@
 
   <div class="field">
     <%= form.label :category_genre %><br/>
-    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => true , id: :subscription_subscription_detail, class:"form-control" %>
+    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
   <div class="field">
@@ -79,5 +63,6 @@
     <%= form.submit %>
   </div>
 <% end %>
+<%= link_to 'トップ', root_path %> |
 
-<%= link_to 'Back', owner_subscriptions_path %>
+<%= link_to '一覧へ', owner_subscriptions_path %>

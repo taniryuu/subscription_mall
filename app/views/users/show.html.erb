@@ -24,12 +24,16 @@
             <tr>
               <th height="40" class=col-md-2>LINE_ID</th><td class=col-md-4><%= @user.line_id %></td>
             </tr>
+            <tr>
+              <th height="40" class=col-md-2>チケット利用日</th><td class=col-md-4><%= @ticket.use_ticket_day if @ticket.present? %></td>
+            </tr>
           </table>
           <div class="user-show-btn">
             <%= link_to users_path, class: "btn btn--blue btn-md btn--shadow" do %>
             <i class="fas fa-reply"> 戻る</i>
             <% end %>
             <%= link_to "編集", edit_user_path(@user), class: "btn btn--blue btn-md btn--shadow" %>
+            <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn btn--blue btn-md btn--shadow" %>
           </div>
         </div>
       </div>

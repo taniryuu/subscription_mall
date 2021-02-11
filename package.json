@@ -2,6 +2,10 @@
   "name": "app",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "serve": "^11.3.2"
+=======
+    "@paypayopa/paypayopa-sdk-node": "^1.0.0"
+>>>>>>> paypay_dev
   }
 }

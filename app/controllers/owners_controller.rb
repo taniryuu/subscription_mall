@@ -1,8 +1,22 @@
 class OwnersController < ApplicationController
-  before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy, :owner_edit, :owner_edit_update]
 
   def index
-    @owners = Owner.all
+    @owners = Owner.paginate(page: params[:page], per_page: 20)
+  end
+
+  def owner_edit
+    
+  end
+
+  def owner_edit_update
+    if
+      @owner.update(owner_params)
+      flash[:success] = "#{current_owner.name}様の情報を更新しました。"
+      redirect_to owner_account_owner_url(current_owner)
+    else
+      render :owner_edit
+    end
   end
 
   def deleted_owners#論理削除した経営者
@@ -33,17 +47,19 @@ class OwnersController < ApplicationController
   end
 
   def show
-    if @subscriptions == 0
-      @subscription = Subscription.find(params[:id])
+    if @subscriptions_count == 0
+      # @subscription_count = Subscription.find(params[:id]) 変更前
+      @subscriptions_count = Subscription.find_by(owner_id: params[:id]) # 変更後
     else
       # @shop = Shop.find(params[:shop_id])
-      @subscriptions = Subscription.where.not(name: nil).size
+      @subscriptions_count = Subscription.where.not(name: nil).size
     end
+    @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)  
   end
 
   def owner_account
     @owner = Owner.find(params[:id])
-    @subscription = Subscription.find_by(params[:id])
+    # @subscription = Subscription.find_by(params[:id])
     @subscriptions = Subscription.where.not(name: nil).size
   end
 
@@ -73,6 +89,15 @@ class OwnersController < ApplicationController
     redirect_to owners_url
   end
 
+  # オーナーの名前をあいまい検索機能
+  def search
+    if params[:name].present?
+      @owners = Owner.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @owners = Owner.none
+    end
+  end
+
   private
 
     def set_owner
@@ -80,7 +105,7 @@ class OwnersController < ApplicationController
     end
 
     def owner_params
-      params.require(:owner).permit(:name, :kana, :email, :phone_number, :store_information, :password, :password_confirmation)
+      params.require(:owner).permit(:name, :kana, :email, :phone_number, :address, :password, :password_confirmation)
     end
 
     def user_params
