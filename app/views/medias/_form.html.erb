@@ -1,0 +1,14 @@
+      <%= form_with(model: @media, url: media_path(@media), local: true) do |form| %>
+
+        <div class="review-coment-new">
+          <%= form.label :メディア名, class: "label-signup" %>
+          <%= form.text_area :media_name, :required => true, size: "30x6", :required => true, class: "form-control"%>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :メディア画像, class: "label-signup" %>
+          <%= form.file_field :media_image, :required => true %>
+        </div>
+        <%= form.submit "メディア投稿する", class:  "btn btn-primary" %>
+      <% end %>
+
