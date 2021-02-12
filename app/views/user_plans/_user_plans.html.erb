@@ -17,7 +17,11 @@
             </div>
             <h2 class="font-weight-bold my-4">￥3000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YzH9IwP9g"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% if !@plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YzH9IwP9g"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -35,7 +39,11 @@
             </div>
             <h2 class="font-weight-bold my-4">￥9,000/月</h2>
             <p>サンプルコメント</p>
-            <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YwvinaRuP"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% if !@plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YwvinaRuP"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -53,7 +61,11 @@
             </div>
             <h2 class="font-weight-bold my-4">￥11,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8Yr6bIlJtF"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% if !@plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8Yr6bIlJtF"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -71,7 +83,11 @@
             </div>
             <h2 class="font-weight-bold my-4">￥18,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YALxpC3hm"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YALxpC3hm"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -89,7 +105,11 @@
             </div>
             <h2 class="font-weight-bold my-4">￥25,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YN927jkOM"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% if !@plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YN927jkOM"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -107,7 +127,11 @@
             </div>
             <h2 class="font-weight-bold my-4">￥50,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8Yeil5iK0J"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% if !@plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8Yeil5iK0J"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -125,7 +149,11 @@
             </div>
             <h2 class="font-weight-bold my-4">￥100,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YN3xy9DmF"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% if !@plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YN3xy9DmF"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>

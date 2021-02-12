@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:show, :edit, :update, :destroy, :user_plans, :confirm]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :user_plans]
-  before_action :payment_check, only: :show
+  before_action :set_subscription, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :payment_check, only: %i(show select_plans payment_edit payment_update payment_delete)
   # before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /subscriptions
@@ -136,30 +136,9 @@ class SubscriptionsController < ApplicationController
 
   # end
 
-
-  def user_plans
-  end
-
   def confirm
     current_user.update!(session_id: params[:session].to_i)
     @price = current_user.session_id
-
-    # @plan = Stripe::Checkout::Session.create(
-    #   payment_method_types: ['card'],
-    #   customer_email: current_user.email,
-    #   line_items: [{
-    #     price_data: {
-    #       currency: 'jpy',
-    #       product: 'prod_Itdb3ZOVEaX3iU',
-    #       unit_amount: @price,
-    #       recurring: {interval: "month"}
-    #     },
-    #     quantity: 1,
-    #   }],
-    #   mode: 'subscription',
-    #   success_url: success_url,
-    #   cancel_url: cancel_url,
-    # )
 
     @plan = Stripe::Checkout::Session.create(
       success_url: success_url,
@@ -176,26 +155,26 @@ class SubscriptionsController < ApplicationController
     current_user.update!(session_id: @plan.id, subscription_id: @subscription.id)
   end
 
-
-  def cancel
-    current_user.update!(session_id: "", subscription_id: "")
-  end
-
-  def success
-    UserPlan.create!(
-      customer_id: current_user.session_id,
-      user_id: current_user.id,
-      subscription_id: current_user.subscription_id
-    )
-    current_user.update!(session_id: "", subscription_id: "")
+  def payment_check
+    @payment = current_user.user_plans.find_by(subscription_id: params[:id])
+    if @payment.present?
+      @str = Stripe::Checkout::Session.retrieve(@payment.customer_id)
+      @aa = Stripe::Subscription.retrieve(@str.subscription)
+    end
   end
 
   def show_sample
   end
 
-  def payment_check
-    payment = current_user.user_plans.find_by(subscription_id: params[:id])
-    @str = Stripe::Checkout::Session.retrieve(payment.customer_id) if payment.present?
+  def payment_edit
+  end
+  
+  def payment_update
+    
+  end
+
+  def payment_delete
+    
   end
 
   private

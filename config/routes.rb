@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   get 'site' => "subscriptions#site", as: :site#サイトについて
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions#経営者のプラン内容
-  get '/cancel', to: 'subscriptions#cancel'
-  get '/success', to: 'subscriptions#success'
+  get '/cancel', to: 'user_plans#cancel'
+  get '/success', to: 'user_plans#success'
 
   get 'categories/shop_list', to: 'categories#shop_list', as: :shop_list_categories
   get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories#おすすめショップ
@@ -88,19 +88,26 @@ Rails.application.routes.draw do
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
-        get :search, on: :collection #オーナーの名前であいまい検索 追加分
-        get 'owner_edit', on: :member#
-        patch 'owner_edit_update', on: :member#
-        post "thanks", on: :member#会員登録完了通知画面
-        get 'owner_account', on: :member#アカウントページ
-        get 'user_email', on: :member#経営者から利用者へメール作成
-        post 'to_user_email', on: :member
-        patch 'update_deleted_owners', on: :member#アカウントページ論理削除
-        resources :subscriptions do
-          resources :images
-          get "confirm", on: :member
-          get 'user_plans', on: :member#利用者のプラン内容
-        end
+    get :search, on: :collection #オーナーの名前であいまい検索 追加分
+    member do
+      get 'owner_edit' #
+      patch 'owner_edit_update' #
+      post "thanks" #会員登録完了通知画面
+      get 'owner_account' #アカウントページ
+      get 'user_email' #経営者から利用者へメール作成
+      post 'to_user_email' 
+      patch 'update_deleted_owners' #アカウントページ論理削除
+    end
+    resources :subscriptions do
+      resources :images
+      member do
+        get "confirm", to: "user_plans#confirm"
+        get 'new', to: "user_plans#new" #利用者のプラン内容
+        get "edit", to: "user_plans#edit"
+        patch "update", to: "user_plans#update", as: 'plans_update'
+        delete "destroy", to: "user_plans#destroy", as: 'plans_destroy'
+      end
+    end
   end
   resources :maps
   resources :categories, only: :index do

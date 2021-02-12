@@ -14,14 +14,18 @@
             </div>
             <h2 class="font-weight-bold my-4">￥<%= @plan.amount_subtotal %>/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @payment.amount_subtotal == @plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </section>
 </div>
-<%= @plan %>
+
 <script src="https://js.stripe.com/v3/"></script>
 <script>
   var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
