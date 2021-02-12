@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @ticket = Ticket.find_by(user_id: @user.id)
   end
 
   def user_account

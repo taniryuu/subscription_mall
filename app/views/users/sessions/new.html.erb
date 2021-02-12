@@ -2,7 +2,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="box">
+<div class="box-owner">
   <div class="box-inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -58,7 +58,7 @@
     <% end %>
 
     <div class="box-newusr">
-    <p><span>--------------</span> 巡グルメの会員ですか？ <span>----------------</span></p>
+      <p><span>--------------</span> 巡グルメの会員ですか？ <span>----------------</span></p>
 
       <%= link_to "巡グルメ会員登録", new_user_registration_path %>
     </div>
