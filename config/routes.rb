@@ -109,8 +109,8 @@ Rails.application.routes.draw do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
         get "confirm", to: "user_plans#confirm"
-        get 'new', to: "user_plans#new" #利用者のプラン内容
-        get "edit", to: "user_plans#edit"
+        get 'new', to: "user_plans#new", as: 'plans_new' #利用者のプラン内容
+        get "edit", to: "user_plans#edit", as: 'plans_edit'
         patch "update", to: "user_plans#update", as: 'plans_update'
         delete "destroy", to: "user_plans#destroy", as: 'plans_destroy'
       end

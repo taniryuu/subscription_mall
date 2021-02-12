@@ -1,7 +1,7 @@
 class UserPlansController < ApplicationController
-  before_action :set_subscription, only: %i(new edit update confirm)
-  before_action :set_owner, only: %i(new select_plans new edit destroy)
-  before_action :payment_check, only: %i(new edit confirm update)
+  before_action :set_subscription, only: %i(new edit update confirm destroy)
+  before_action :set_owner, only: %i(new select_plans new edit)
+  before_action :payment_check, only: %i(new edit confirm update destroy)
 
   # stripe決済成功時
   def success
@@ -18,7 +18,7 @@ class UserPlansController < ApplicationController
     current_user.update!(session_id: "", subscription_id: "")
   end
 
-  # サブスク新規登録
+  # サブスクプラン新規登録
   def new
   end
 
@@ -59,7 +59,9 @@ class UserPlansController < ApplicationController
   end
 
   def destroy
-
+    Stripe::Subscription.delete(@payment.subscription)
+    UserPlan.delete(@pay)
+    redirect_to owner_subscription_url(@subscription, owner_id: @subscription.owner_id)
   end
 
   private
@@ -73,10 +75,10 @@ class UserPlansController < ApplicationController
     end
 
     def payment_check
-      payment = current_user.user_plans.find_by(subscription_id: params[:id])
-      if payment.present?
-        @payment = Stripe::Checkout::Session.retrieve(payment.customer_id)
-        @aa = Stripe::Subscription.retrieve(@payment.subscription)
+      @pay = current_user.user_plans.find_by(subscription_id: params[:id])
+      if @pay.present?
+        @payment = Stripe::Checkout::Session.retrieve(@pay.customer_id)
+        @sub = Stripe::Subscription.retrieve(@payment.subscription)
       end
     end
 end

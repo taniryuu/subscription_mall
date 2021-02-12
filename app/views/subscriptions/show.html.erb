@@ -31,10 +31,10 @@
                   <% end %>
               <% if @payment.present? %>
                 <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
-                <%= link_to "サブスクを解除する", plans_destroy_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを解除する", plans_destroy_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <%= link_to "プランを変更する", edit_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める", owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを始める", plans_new_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
               <% elsif current_admin.present? %>
