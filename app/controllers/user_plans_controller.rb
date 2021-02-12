@@ -1,7 +1,7 @@
 class UserPlansController < ApplicationController
-  before_action :set_subscription, only: %i(new edit update confirm destroy)
-  before_action :set_owner, only: %i(new select_plans new edit)
-  before_action :payment_check, only: %i(new edit confirm update destroy)
+  before_action :set_subscription, only: %i(new edit update confirm update_confirm destroy)
+  before_action :set_owner, only: %i(new edit)
+  before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
 
   # stripe決済成功時
   def success
@@ -44,18 +44,20 @@ class UserPlansController < ApplicationController
 
   # サブスクプラン更新確認画面
   def update_confirm
-    current_user.update!(session_id: params[:session].to_i)
+    current_user.update!(session_id: params[:session])
     @price = current_user.session_id
-    @plan = Stripe::Subscription.update()
-    current_user.update!(session_id: @plan.id, subscription_id: @subscription.id)
   end
 
   def edit
-    
   end
 
   def update
-    
+    @sub.plan = params[:value]
+    if @sub.save
+      redirect_to owner_subscription_url(@subscription, owner_id: @subscription.owner_id)
+    else
+      redirect_to root_url
+    end
   end
 
   def destroy

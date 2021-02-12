@@ -12,12 +12,12 @@
               height="120"
             />
             </div>
-            <h2 class="font-weight-bold my-4">￥<%= @plan.amount_subtotal %>/月</h2>
+            <h2 class="font-weight-bold my-4">￥<%=  %>/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <% if @payment.amount_subtotal == @plan.amount_subtotal %>
+            <% if params[:session] == @sub.items.data.first.plan.id %>
               <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
             <% else %>
-              <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+              <%= link_to "変更する", plans_update_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, value: params[:session]), method: :patch, data: { confirm: "【確認】プランを変更してしてよろしいでしょうか？" }, class: "btn btn-outline-success btn-rounded waves-effect" %>
             <% end %>
           </div>
         </div>
@@ -25,16 +25,4 @@
     </div>
   </section>
 </div>
-
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-  var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
-  var checkoutButton = document.getElementById('user-checkout-button');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan.id %>'
-    }).then(function (result) {
-    });
-  });
-</script>
+<%= @sub.plan %>
