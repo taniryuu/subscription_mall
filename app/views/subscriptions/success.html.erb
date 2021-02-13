@@ -1,2 +1,37 @@
 <h1>お支払いが成功しました</h1>
-<meta http-equiv="refresh" content=" 4; url=/">
+<!--meta http-equiv="refresh" content=" 4; url=/"-->
+<form id = "manage-billing-form">
+  <button type="button" class="btn btn-outline-success btn-rounded waves-effect">請求の管理</button>
+</form>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  let sessionId;
+  let customerId;
+  const manageBillingForm = document.querySelector('#manage-billing-form');
+  manageBillingForm.addEventListener('click', function(e) {
+    e.preventDefault();
+    alert('こんにちは');
+    alert('<%= @plan3.id %>');
+    alert('<%= @plan3_customer.id %>');
+    fetch('/customer_portal/user/1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+	sessionId: '<%= @plan3.id %>',
+        customerId: '<%= @plan3_customer.id %>'
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        window.location.href = data.url;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  })
+</script>
+    //alert('<%= @plan3.id %>');
+    //alert('<%= @plan3_customer %>');

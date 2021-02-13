@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions#経営者のプラン内容
   get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans#利用者のプラン内容
-  get '/cancel', to: 'subscriptions#cancel'
-  get '/success', to: 'subscriptions#success'
+  get '/cancel', to: 'subscriptions#cancel', as: :cancel
+  get '/success/user/:id', to: 'subscriptions#success', as: :success
+  post '/customer_portal/user/:id', to: 'subscriptions#customer_portal', as: :customer_portal
+  post '/webhook', to: 'subscriptions#webhook', as: :webhook
 
   get 'categories/shop_list', to: 'categories#shop_list', as: :shop_list_categories
   get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories#おすすめショップ
