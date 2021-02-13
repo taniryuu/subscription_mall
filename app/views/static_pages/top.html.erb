@@ -16,19 +16,44 @@
   <div class="f-container">
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;サブスクで</span>
-          <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+        <div class="center">コンセプト</div>
       </div>
     </div>
+  </div>
+  <div class="center">
+    <%= link_to image_tag("megurume.jpg", :size =>'300x300'), "/", class:"gurumelogo" %>
+  </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;毎日好きなランチを</span>
+        <div class="comment-text">スマホで簡単注文・テイクアウト・並ばず受け取れる<br>店内での飲食も出来新しいお店に出会えて定期的でお財布にも安心</div>
+      </div>
+    </div>
+  <hr class="border-solid-down" />
+
+  <div class="f-container">
+    <div class="f-item">
+      <div class="box26">
+        <div class="center">巡グルメの特徴</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-container">
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "定額制", plan_description_path, class: "user-service" %></span>
         <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
-        <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;3000円から始める</span>
+        <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;好きなお店に行ける</span>
+          <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+      </div>
+    </div>
+    <div class="f-item">
+      <div class="box26">
+        <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;チケット決済</span>
         <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
       </div>
     </div>
@@ -313,9 +338,8 @@
       <a href="top_owner.html" class="btn btn-c btn--pink2 btn--cubic2">経営者様はこちら</a>
       <a href="/users/sign_up" class="btn btn-c btn--pink btn--cubic">利用者様会員登録</a>
     </div>
-    <h1>↓ここの画像利用者用に変える</h1>
     <div>
-      <%= image_tag 'nagare.jpeg.png', Style: "height: 350px"%><i class="fas fa-chevron-circle-right"></i>
+
     </div>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
@@ -331,21 +355,167 @@
         </div>
       <% end %>
     </div>
-
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
         全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
       <% end %>
     </div></br></br>
 
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div>
+                プラン
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <span><%= link_to image_tag("plan1.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+            <div class="comment-text">お試しはこちら</div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <span><%= link_to image_tag("plan2.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">気になる方はこちら</div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <span><%= link_to image_tag("plan3.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">スタンダードはこちら</div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <span><%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+            <div class="comment-text">ちょっぴりグルメな方はこちら</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+            <div class="comment-text">グルメな方はこちら</div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">慣れてきた方はこちら</div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
+            <div class="comment-text">上級者はこちら</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <%# google map %>
     <%= render "maps/top" %>
 
-    <div class="recommend-shop">
-      <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-        おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-      <% end %>
+    <hr class="border-solid-down" />
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            <div class="category-list">
+              <% @subscriptions.each do |subscription| %>
+              <div>
+                <hr class="tool-bar">
+                  <div class="row align-items-center">
+                    <div class="col-lg-5 col-xl-3">
+                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                        <% if subscription.image_subscription.present? %>
+                          <%= image_tag subscription.image_subscription_url, width: '300', height: "200" %>
+                        <% else %>
+                          <p></p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-10">
+                      <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
+                      <p class="dark-grey-text"><%= subscription.title %></p>
+                      <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+                    </div>
+                  </div>
+              </div>
+              <% end%>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to how_to_use_path, class: "btn-gradient-radius-blue" do%>
+                使い方３ステップ<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <span class="box-title">&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;携帯でお店検索</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;店内orテイクアウト</span>
+            <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;食事</span>
+          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="center">
+      <%= link_to image_tag("toraiaru.jpg", :size =>'600x250'), "/", class:"gurumelogo" %>
+    </div>
+    
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -383,7 +553,14 @@
            <% end %>
       </ul>
     </div>
-
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center"><%= link_to "お客さまの声",  megurumereviews_path, class: "user-service" %></div>
+        </div>
+      </div>
+    </div>
+    
     <div id="slider" class="box14">
       <% @megurumereviews.each do |review| %>
           <p>お客様満足度 /
@@ -410,33 +587,106 @@
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-
-    <hr class="style1">
-    <div class="user-plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="interview"><%= link_to "利用者様レビュー",  megurumereviews_path, class: "user-service" %></div>
-      <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-        <hr class="tool-bar">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="grid-item-image"><%= image_tag interview.image_interview_url %></div>
-              <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-              <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-              <%= link_to "#{interview.content}", interview_path(interview) %>
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="left">
+            <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
+            <table class="mb-12">
+              <tbody>
+                <% if current_admin.present? %>
+                  <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
+                <% end %>
+                <% @medias.each do |media| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <%= media.media_name %>
+                    </div><br>
+                    <div class="col-sm-4">
+                      <% if media.media_image.present? %>
+                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
+                      <% else %>
+                      
+                      <% end %>
+                    </div>
+                  <% if current_admin.present? %>
+                    <div class="col-sm-2">
+                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
+                    </div>
+                    <div class="col-sm-2">
+                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
+                    </div>
+                  <% end %>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
           </div>
         </div>
-      <% end %>
-    <hr class="style2">
-    <div class="service"><%= link_to "ご利用方法について", how_to_use_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="inquiry"><%= link_to "サポート", suports_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="news"><%= link_to "サブスクnews", blogs_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="questions"><%= link_to "よくある質問", questions_path, class: "user-service" %></div>
-    <hr class="style2">
-    <div class="questions"><%= link_to "特定商取引法に基づく表記", specified_commercial_transaction_law_path, class: "user-service" %></div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="right">
+            <%= link_to "お客様一覧", owners_path, class: "btn btn-link" %>
+            <table class="mb-12">
+              <tbody>
+                <% @owner_subscriptions.each do |owner| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <%= owner.name %>
+                    </div>
+                    <div class="col-sm-8">
+                      <% if owner.image_subscription.present? %>
+                        <%= image_tag owner.image_subscription_url ,width: '100%', height: "200" %>
+                      <% else %>
+                        <p>登録されてません</p>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <%= link_to image_tag("icon_sns_fb.png", :size =>'100x100'), "https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616" %>
+          <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
+          <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
+          <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
+          <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="fa fa-envelope fa-lg"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center"><div class="questions"><%= link_to "Q&A", questions_path, class: "user-service" %></div></div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center"><div class="news"><%= link_to "サブスクNews", blogs_path, class: "user-service" %></div></div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">空欄</div>
+        </div>
+      </div>
+    </div>
   <% end %>
 </main>
