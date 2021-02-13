@@ -127,7 +127,7 @@
             </div>
             <h2 class="font-weight-bold my-4">￥50,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <% if @plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
               <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
             <% else %>
               <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8Yeil5iK0J"), class: "btn btn-outline-success btn-rounded waves-effect" %>
