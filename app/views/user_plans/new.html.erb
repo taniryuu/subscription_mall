@@ -1,11 +1,7 @@
-
 <div class="container my-5">
-
   <section class="text-center dark-grey-text">
-
     <h1 class="font-weight-bold pb-2 mb-4">巡グルメ プラン</h1>
     <h5 class="text-muted w-responsive mx-auto mb-5">好きなプランを選択して下さい。</h5>
-
     <div class="row">
 
       <div class="col-lg-4 col-md-12 mb-4">
@@ -19,10 +15,13 @@
               height="120"
             />
             </div>
-
             <h2 class="font-weight-bold my-4">￥3000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YzH9IwP9g"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -38,10 +37,13 @@
               height="120"
             />
             </div>
-
             <h2 class="font-weight-bold my-4">￥9,000/月</h2>
             <p>サンプルコメント</p>
-            <button type="button" id="user-checkout-button2" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YwvinaRuP"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -57,10 +59,13 @@
               height="120"
             />
             </div>
-
             <h2 class="font-weight-bold my-4">￥11,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <button type="button" id="user-checkout-button3" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8Yr6bIlJtF"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -76,10 +81,13 @@
               height="120"
             />
             </div>
-
             <h2 class="font-weight-bold my-4">￥18,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <button type="button" id="user-checkout-button4" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YALxpC3hm"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -95,10 +103,13 @@
               height="120"
             />
             </div>
-
             <h2 class="font-weight-bold my-4">￥25,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <button type="button" id="user-checkout-button5" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YN927jkOM"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -114,10 +125,13 @@
               height="120"
             />
             </div>
-
             <h2 class="font-weight-bold my-4">￥50,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <button type="button" id="user-checkout-button6" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @plan.nil? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8Yeil5iK0J"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -133,101 +147,16 @@
               height="120"
             />
             </div>
-
             <h2 class="font-weight-bold my-4">￥100,000/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <button type="button" id="user-checkout-button7" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
+            <% if @plan.present? && payment.amount_subtotal == plan.amount_subtotal %>
+              <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+            <% else %>
+              <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YN3xy9DmF"), class: "btn btn-outline-success btn-rounded waves-effect" %>
+            <% end %>
           </div>
         </div>
       </div>
-
     </div>
-
   </section>
-
 </div>
-
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
-  var checkoutButton = document.getElementById('user-checkout-button');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan1.id %>'
-    }).then(function (result) {
-    });
-  });
-</script>
-
- <script>
-  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
-  var checkoutButton = document.getElementById('user-checkout-button2');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan2.id %>'
-    }).then(function (result) {
-    });
-  });
-</script>
-
-<script>
-  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
-  var checkoutButton = document.getElementById('user-checkout-button3');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan3.id %>'
-    }).then(function (result) {
-    });
-  });
-</script>
-
-<script>
-  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
-  var checkoutButton = document.getElementById('user-checkout-button4');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan4.id %>'
-    }).then(function (result) {
-    });
-  });
-</script>
-
-<script>
-  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
-  var checkoutButton = document.getElementById('user-checkout-button5');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan5.id %>'
-    }).then(function (result) {
-    });
-  });
-</script>
-
-<script>
-  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
-  var checkoutButton = document.getElementById('user-checkout-button6');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan6.id %>'
-    }).then(function (result) {
-    });
-  });
-</script> 
-
-<script>
-  var stripe = Stripe('pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA');
-  var checkoutButton = document.getElementById('user-checkout-button7');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan7.id %>'
-    }).then(function (result) {
-    });
-  });
-</script> 

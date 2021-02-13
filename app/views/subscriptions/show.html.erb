@@ -29,16 +29,12 @@
                   <% else %>
                     <p></p>
                   <% end %>
-              <% if current_user.present? && current_user.session_id == "true" %>
+              <% if @payment.present? %>
                 <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
-                <%= link_to "利用プラン変更", user_plans_path(current_user), class: "btn-gradient-3d-simple" %>
-                <%= form_with(model: Ticket, url: "#", local: true, method: :patch) do |f| %>
-                    <%= f.hidden_field :issue_ticket_day, :value => nil %>
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
-                    <%= f.submit "サブスク解除", class: "btn btn-outline-success btn-rounded waves-effect" %>
-                <% end %>
+                <%= link_to "サブスクを解除する", plans_destroy_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                <%= link_to "プランを変更する", edit_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める", user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを始める", plans_new_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
               <% elsif current_admin.present? %>
