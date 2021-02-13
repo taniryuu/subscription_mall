@@ -1,12 +1,11 @@
 <% provide(:title, "サブスクページ編集") %>
 
-<h1>サブスクページ編集</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">サブスクページ編集</h1>
 
 <%= form_with(model: @subscription, url: owner_subscription_path, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
-  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
     <%= form.label :name %>
@@ -143,5 +142,7 @@
   </div>
 <% end %>
 
-<%= link_to '詳細', owner_subscription_path(@subscription, owner_id: @owner.id, shop_id: @subscription.shop_id) %> |
-<%= link_to '一覧へ', owner_subscriptions_path %>
+<div class="mt-5 mb-8">
+  <%= link_to '詳細', owner_subscription_path(@subscription, owner_id: @owner.id, shop_id: @subscription.shop_id), class: "btn btn-brand" %>
+  <%= link_to '一覧へ', owner_subscriptions_path, class: "btn btn-brand" %>
+</div>
