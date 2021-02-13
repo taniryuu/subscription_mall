@@ -1,5 +1,6 @@
 <% provide(:title, @user.name) %>
 <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">  
+<<<<<<< HEAD
 
     <h1 class="brand-color display-4 mt-6 mb-6">お客様詳細ページ</h1>
     
@@ -35,5 +36,43 @@
         <% if current_user.present? %>
           <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn btn--blue btn-md btn--shadow" %>
         <% end %>
+=======
+<div class="show-body">
+  <div class="container">
+    <h1 class="show-title">お客様詳細ページ</h1>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <table border="2" style="border-collapse: collapse; border-color: black">
+            <tr>
+              <th height="40" class=col-md-2>名前</th><td class=col-md-4><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>カナ</th><td class=col-md-4><%= @user.kana %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>住所</th><td class=col-md-4><%= @user.address %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>TEL</th><td class=col-md-4><%= @user.phone_number %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>メールアドレス</th><td class=col-md-4><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>LINE_ID</th><td class=col-md-4><%= @user.line_id %></td>
+            </tr>
+            <tr>
+              <th height="40" class=col-md-2>チケット利用日</th><td class=col-md-4><%= @ticket.use_ticket_day if @ticket.present? %></td>
+            </tr>
+          </table>
+          <div class="user-show-btn">
+            <%= link_to users_path, class: "btn btn--blue btn-md btn--shadow" do %>
+            <i class="fas fa-reply"> 戻る</i>
+            <% end %>
+            <%= link_to "編集", edit_user_path(@user), class: "btn btn--blue btn-md btn--shadow" %>
+            <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn btn--blue btn-md btn--shadow" %>
+          </div>
+        </div>
+>>>>>>> 26630e464680f39b7b26ee905c89e5738f771549
       </div>
     </div>
