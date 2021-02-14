@@ -5,6 +5,8 @@ class SubscriptionsController < ApplicationController
   # before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
   require 'json'
+  require 'stripe'
+  require 'dotenv'
 
   # GET /subscriptions
   # GET /subscriptions.json
@@ -299,7 +301,8 @@ class SubscriptionsController < ApplicationController
 
     session = Stripe::BillingPortal::Session.create({
       customer: checkout_session['customer'],
-      return_url: return_url
+      return_url: return_url,
+      #subscription: 'sub_IwYf0J33610aFR'
     })
     
     redirect_to session.url
