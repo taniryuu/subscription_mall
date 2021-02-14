@@ -40,9 +40,6 @@
 
         <div class="col-md-4">
           <div class="card">
-            <% if subscription.image_subscription_url.present? %>
-              <%= image_tag subscription.image_subscription_url ,class: "card-img-top" %>
-            <% end %>
             <div class="card-body">
               <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
               <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription) %></h5>
