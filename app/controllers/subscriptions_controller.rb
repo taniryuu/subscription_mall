@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :user_plans, only: [:success, :customer_portal]
+  before_action :user_plans, only: [:success]
   # before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
   require 'json'
@@ -196,7 +196,7 @@ class SubscriptionsController < ApplicationController
           unit_amount: 11000,
           recurring: {interval: "month"}
         },
-        quantity: 1,
+	quantity: 1,
       }],
       mode: 'subscription',
       success_url: success_url(@user.id),
@@ -276,7 +276,6 @@ class SubscriptionsController < ApplicationController
     )
 
     @user.update(session_id: "true")
-
   end
 
   def cancel
@@ -292,9 +291,10 @@ class SubscriptionsController < ApplicationController
   end
 
   def customer_portal
-    checkout_session_id = @plan3.id
-    checkout_session = Stripe::Checkout::Session.retrieve(checkout_session_id)
-
+    
+    #checkout_session_id = @plan3.id
+    checkout_sessionId = params[:sessionId]
+    checkout_session = Stripe::Checkout::Session.retrieve(checkout_sessionId)
     return_url = ENV['DOMAIN']
 
     session = Stripe::BillingPortal::Session.create({
@@ -302,7 +302,7 @@ class SubscriptionsController < ApplicationController
       return_url: return_url
     })
     
-    redirect_to "#{session.url}"
+    redirect_to session.url
 
   end
 
