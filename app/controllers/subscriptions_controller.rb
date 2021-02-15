@@ -1,12 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :user_plans, only: [:success]
   # before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
-  require 'json'
-  require 'stripe'
-  require 'dotenv'
 
   # GET /subscriptions
   # GET /subscriptions.json
@@ -82,12 +77,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def success
-  end
-
-  def cancel
-  end
-
   #経営者よう決済
   # def setup
   #   # @subscription = @owner.subscriptions.find_by(params[:id])
@@ -156,14 +145,14 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: ENV['PRODUCT1'],
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 3000,
           recurring: {interval: "month"}
         },
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: success_url(@user.id),
+      success_url: success_url,
       cancel_url: cancel_url,
     )
 
@@ -173,41 +162,33 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: ENV['PRODUCT2'],
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 9000,
           recurring: {interval: "month"}
         },
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: success_url(@user.id),
+      success_url: success_url,
       cancel_url: cancel_url,
     )
 
-    @plan3_customer = Stripe::Customer.create({
-	    email: @user.email})       
-
     @plan3 = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
-      customer: @plan3_customer,
-      #customer_email: @user.email,
+      customer_email: @user.email,
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: ENV['PRODUCT3'],
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 11000,
           recurring: {interval: "month"}
         },
 	quantity: 1,
       }],
       mode: 'subscription',
-      success_url: success_url(@user.id),
+      success_url: success_url,
       cancel_url: cancel_url,
     )
-
-    #session_plan3 = Stripe::Checkout::Session.retrieve(@plan3.id)
-
-    #@plan3_customer = session_plan3.customer
 
     @plan4 = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -215,14 +196,14 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: ENV['PRODUCT4'],
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 18000,
           recurring: {interval: "month"}
         },
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: success_url(@user.id),
+      success_url: success_url,
       cancel_url: cancel_url,
     )
 
@@ -232,14 +213,14 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: ENV['PRODUCT5'],
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 25000,
           recurring: {interval: "month"}
         },
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: success_url(@user.id),
+      success_url: success_url,
       cancel_url: cancel_url,
     )
 
@@ -249,14 +230,14 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: ENV['PRODUCT6'],
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 50000,
           recurring: {interval: "month"}
         },
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: success_url(@user.id),
+      success_url: success_url,
       cancel_url: cancel_url,
     )
 
@@ -266,14 +247,14 @@ class SubscriptionsController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: ENV['PRODUCT7'],
+          product: 'prod_Itdb3ZOVEaX3iU',
           unit_amount: 100000,
           recurring: {interval: "month"}
         },
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: success_url(@user.id),
+      success_url: success_url,
       cancel_url: cancel_url,
     )
 
@@ -291,57 +272,6 @@ class SubscriptionsController < ApplicationController
 
   def company_profile
   end
-
-  def customer_portal
-    
-    #checkout_session_id = @plan3.id
-    checkout_sessionId = params[:sessionId]
-    checkout_session = Stripe::Checkout::Session.retrieve(checkout_sessionId)
-    return_url = ENV['DOMAIN']
-
-    session = Stripe::BillingPortal::Session.create({
-      customer: checkout_session['customer'],
-      return_url: return_url,
-      #subscription: 'sub_IwYf0J33610aFR'
-    })
-    
-    redirect_to session.url
-
-  end
-
-  def webhook
-    payload = request.body.read
-    event = nil
-
-    begin
-      event = Stripe::Event.construct_from(
-        JSON.parse(payload, symbolize_names: true)
-      )
-    rescue JSON::ParserError => e
-      # Invalid payload
-      status 400
-      return
-    end
-
-    # Handle the event
-    case event.type
-    when 'payment_intent.succeeded'
-      payment_intent = event.data.object # contains a Stripe::PaymentIntent
-      # Then define and call a method to handle the successful payment intent.
-      # handle_payment_intent_succeeded(payment_intent)
-    when 'payment_method.attached'
-      payment_method = event.data.object # contains a Stripe::PaymentMethod
-      # Then define and call a method to handle the successful attachment of a PaymentMethod.
-      # handle_payment_method_attached(payment_method)
-    # ... handle other event types
-    when 'checkout.session.completed'
-      checkout_session = event.data.ojbect
-    else
-      puts "Unhandled event type: #{event.type}"
-    end
-
-    status 200
-  end          
 
   private
     # Use callbacks to share common setup or constraints between actions.
