@@ -1,0 +1,7 @@
+<% provide(:title, "メディア作成") %>
+<h1 class="brand-color display-4 mt-6 mb-6">メディア　編集</h1>
+<div class="mb-8">
+  <%= render 'form', blog: @media %>
+
+  <%= link_to 'メディアへ', media_path, class: "btn btn-gradient-radius mt-5" %>
+</div>
