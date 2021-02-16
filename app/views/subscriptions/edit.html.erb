@@ -9,27 +9,27 @@
   <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name %> <span class="must">必須</span>
     <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title %> <span class="must">必須</span>
     <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :address %> <span class="must">必須</span>
     <%= form.text_field :address, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :detail %>
+    <%= form.label :detail %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
   
   <div class="field">
-    <%= form.label :qr_image %><br/>
+    <%= form.label :qr_image %> <span class="must">必須</span><br/>
     <%= form.file_field :qr_image %>
   </div>
 
@@ -123,13 +123,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :category_name %>
+    <%= form.label :category_name %> <span class="must">必須</span>
     <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_genre %><br/>
-    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
   <div class="field">

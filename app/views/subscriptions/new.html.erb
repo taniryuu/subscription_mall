@@ -14,7 +14,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :address %> <span class="must">必須</span>
     <%= form.text_field :address, placeholder: "例)", class: 'form-control' %>
   </div>
 
@@ -34,7 +34,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :qr_image %><br/>
+    <%= form.label :qr_image %> <span class="must">必須</span><br/>
     <%= form.file_field :qr_image %>
   </div>
 
@@ -46,11 +46,6 @@
   <div class="field">
     <%= form.label :category_name %> <span class="must">必須</span><br/>
     <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_genre %><br/>
-    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
   </div>
 
   <div class="field">

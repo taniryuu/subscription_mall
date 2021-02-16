@@ -13,48 +13,37 @@
   <p>ようこそ！ゲストさん</p>
 <% end %>
 
-  <div class="f-container">
-    <div class="f-item">
-      <div class="box26">
-        <div class="center">コンセプト</div>
-      </div>
-    </div>
+  <div class="center">
+    <h1 class="concept">C O N C E P T</h1>
+    <h6 class="concept1">コンセプト</h6>
+    <%= image_tag "megurume.jpg", :size =>'300x300', class:"center" %>
   </div>
   <div class="center">
-    <%= link_to image_tag("megurume.jpg", :size =>'300x300'), "/", class:"gurumelogo" %>
+      <div class="comment-text">スマホで簡単注文・テイクアウト・並ばず受け取れる<br>店内での飲食も出来新しいお店に出会えて定期的でお財布にも安心</div>
   </div>
-    <div class="f-item">
-      <div class="box26">
-        <div class="comment-text">スマホで簡単注文・テイクアウト・並ばず受け取れる<br>店内での飲食も出来新しいお店に出会えて定期的でお財布にも安心</div>
-      </div>
-    </div>
   <hr class="border-solid-down" />
 
-  <div class="f-container">
-    <div class="f-item">
-      <div class="box26">
-        <div class="center">巡グルメの特徴</div>
-      </div>
-    </div>
+  <div class="center">
+    <h1 class="concept">巡グルメの特徴</h1>
   </div>
 
   <div class="f-container">
     <div class="f-item">
       <div class="box26">
         <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "定額制", plan_description_path, class: "user-service" %></span>
-        <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        <div class="comment-text"><%= image_tag "image1_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
         <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;好きなお店に行ける</span>
-          <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+          <div class="comment-text"><%= image_tag "image2_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
         <span class="box-title">&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;チケット決済</span>
-        <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+        <div class="comment-text"><%= image_tag "image3_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
       </div>
     </div>
   </div>
@@ -227,19 +216,19 @@
       <div class="f-item">
         <div class="box26">
           <span class="box-title">&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;携帯でお店検索</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <div class="comment-text"><%= link_to image_tag("image4_JPG.jpg", :size => '400x200'), root_path, class: "plan-css" %></div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
           <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;店内orテイクアウト</span>
-            <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+            <div class="comment-text"><%= link_to image_tag("image5_JPG.jpg", :size => '400x200'), root_path, class: "plan-css" %></div>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
           <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;食事</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <div class="comment-text"><%= link_to image_tag("image6_JPG.jpg", :size => '400x200'), root_path, class: "plan-css" %></div>
         </div>
       </div>
     </div>
@@ -467,7 +456,7 @@
       <div class="f-item">
         <div class="box26">
           <div class="center">
-            <span><%= link_to image_tag("plan1.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+            <span><%= link_to image_tag("plan1.png", :size => '200x100'), confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: "price_1IHqKZJVVDWHDt8YzH9IwP9g"), class: "plan-css" %></span>
             <div class="comment-text">お試しはこちら</div>
           </div>
         </div>
@@ -1156,9 +1145,9 @@
     <div class="category-list">
       <% @categories.each do |category| %><%# カテゴリーを全てeach %>
         <div class="category-item">
-          <%= image_tag category.image_category, class: "image-menu" %>
+          <%= link_to image_tag(category.image_category, :size => '280x200'), like_lunch_category_path(category), class: "image-menu" %>
           <div class="category-shop-btn">
-            <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
+            <%= link_to "#{category.name}", like_lunch_category_path(category) %>
           </div>
         </div>
       <% end %>
@@ -1169,47 +1158,43 @@
       <% end %>
     </div></br></br>
 
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div>
-                プラン
-          </div>
-        </div>
-      </div>
+    <div class="center">
+      <h1 class="concept">プラン</h1>
     </div>
-    <hr class="border-solid-down" />
 
     <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <span><%= link_to image_tag("plan1.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-            <div class="comment-text">お試しはこちら</div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan1.png", :size => '200x100'), root_path %>
+                <div>お試しはこちら</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <span><%= link_to image_tag("plan2.png", :size => '200x100'), root_path %></span>
-            <div class="comment-text">気になる方はこちら</div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="center">
+              <span><%= link_to image_tag("plan2.png", :size => '200x100'), root_path %></span>
+              <div class="comment-text">気になる方はこちら</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <span><%= link_to image_tag("plan3.png", :size => '200x100'), root_path %></span>
-            <div class="comment-text">スタンダードはこちら</div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="center">
+              <span><%= link_to image_tag("plan3.png", :size => '200x100'), root_path %></span>
+              <div class="comment-text">スタンダードはこちら</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <span><%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-            <div class="comment-text">ちょっぴりグルメな方はこちら</div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="center">
+              <span><%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+              <div class="comment-text">ちょっぴりグルメな方はこちら</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1284,37 +1269,27 @@
     </div>
     <hr class="border-solid-down" />
 
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <div class="recommend-shop">
-              <%= link_to how_to_use_path, class: "btn-gradient-radius-blue" do%>
-                使い方３ステップ<i class="fas fa-chevron-circle-right"></i>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="center">
+      <h1 class="concept">使い方３ステップ</h1>
     </div>
     
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;携帯でお店検索</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,携帯でお店検索</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;店内orテイクアウト</span>
-            <div class="comment-text">月額定額料金を支払うことで、特定の店で食事ができるサービスです。複数ある加盟店で広く利用でき、割安で食事が楽しめるというメリットがあります。</div>
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,店内orテイクアウト</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <span class="box-title">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;食事</span>
-          <div class="comment-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</div>
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,食事</span>
         </div>
       </div>
     </div>
@@ -1328,59 +1303,42 @@
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
     <div> <%# instagramデータ取得 %>
-      <ul class="insta-list">
-         <% count = '6' %>
-         <% id = '17841442005934576' %>
-         <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
-         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
-         <% hash_a = JSON.parse(res) %>
-         <% hash_b = hash_a['media']['data'] %>
-         <% insta = [] %>
-           <% hash_b.each do |h| %>
-              <% if h.include?(:thumbnail_url) %>
-                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
-              <% else %>
-                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+      <div class="row">
+        <div class="col-ms-12">
+          <ul class="insta-list">
+            <% count = '6' %>
+            <% id = '17841442005934576' %>
+            <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
+            <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+            <% hash_a = JSON.parse(res) %>
+            <% hash_b = hash_a['media']['data'] %>
+            <% insta = [] %>
+              <% hash_b.each do |h| %>
+                  <% if h.include?(:thumbnail_url) %>
+                    <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+                  <% else %>
+                    <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+                  <% end %>
+                    <% insta << data %>
               <% end %>
-                <% insta << data %>
-           <% end %>
 
-           <% insta.each do |v| %>
-             <li class='insta-image'>
-               <%= link_to "#{v['link']}" do %>
-                 <% if v['img'].include?("video") %>
-                   <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
-                 <% else %>
-                   <%= (image_tag "#{v['img']}" ) %>
-                 <% end %>
-                  <div class="mask">
-		               <div class="caption"><%= "#{v['caption']}" %></div>
-	                </div>
-               <% end %>
-             </li>
-           <% end %>
-      </ul>
-    </div>
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center"><%= link_to "お客さまの声",  megurumereviews_path, class: "user-service" %></div>
+              <% insta.each do |v| %>
+                <li class='insta-image'>
+                  <%= link_to "#{v['link']}" do %>
+                    <% if v['img'].include?("video") %>
+                      <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                    <% else %>
+                      <%= (image_tag "#{v['img']}" ) %>
+                    <% end %>
+                      <div class="mask">
+                      <div class="caption"><%= "#{v['caption']}" %></div>
+                      </div>
+                  <% end %>
+                </li>
+              <% end %>
+          </ul>
         </div>
       </div>
-    </div>
-    
-    <div id="slider" class="box14">
-      <% @megurumereviews.each do |review| %>
-          <p>お客様満足度 /
-          <span class="star-rating-top mb-2">
-          <span class="star-rating-top-front" style="width: <%= review.score.to_f*100/5 %>%">★★★★★</span>
-          <span class="star-rating-top-back">★★★★★</span>
-          </span>
-          </br></br>
-          <span>投稿日&nbsp;<%= l(review.created_at, format: :date) %></span></br></br>
-          <%= review.content %>
-          </p>
-      <% end %>
     </div>
 
     <script>
@@ -1437,7 +1395,7 @@
         <div class="box26">
           <div class="right">
             <%= link_to "お客様一覧", owners_path, class: "btn btn-link" %>
-            <table class="mb-12">
+            <table class="ms-12">
               <tbody>
                 <% @owner_subscriptions.each do |owner| %>
                 <hr class="tool-bar">
@@ -1462,39 +1420,39 @@
     </div>
     <hr class="border-solid-down" />
 
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <%= link_to image_tag("icon_sns_fb.png", :size =>'100x100'), "https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616" %>
-          <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
-          <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
-          <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
-          <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+    <div class="f-container1">
+      <div>
+          <div class="center">
+            <h1 class="concept2">巡グルメSNS</h1>
+            <h6 class="concept">新商品情報やプレゼントキャンペーンなどをお届けします！</h6>
+          </div>
+        <div class="row">
+          <div class="col-ms-12">
+            <div class="snsimage">
+              <a href="https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616" target="_blank"><img src="https://www.haagen-dazs.co.jp/common/img/parts/icon_sns_fb.png"alt="facebook"> </a>
+              <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
+              <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
+              <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <hr class="border-solid-down" />
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="fa fa-envelope fa-lg"><%= link_to "お問い合わせ", contacts_path, class: "user-service" %></div>
+    <hr class="border-solid-down1" />
+      <table class="table table-bordered">
+        <div class="row">
+          <div class="col-ms-8 col-md-offset-2">
+              <tbody>
+                <tr class="center">
+                  <td><%= link_to "CONTACT", contacts_path, class: "fa fa-envelope fa-lg user-service" %></td>
+                  <td><%= link_to "Q&A", questions_path, class: "user-service" %></td>
+                  <td><%= link_to "NEWS", blogs_path, class: "user-service" %></td>
+                  <td><%= link_to "　　", blogs_path, class: "user-service" %></td>
+                </tr>
+            </tbody>
+          </div>
         </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="center"><div class="questions"><%= link_to "Q&A", questions_path, class: "user-service" %></div></div>
-        </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="center"><div class="news"><%= link_to "サブスクNews", blogs_path, class: "user-service" %></div></div>
-        </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">空欄</div>
-        </div>
-      </div>
-    </div>
+      </table>
   <% end %>
 </main>

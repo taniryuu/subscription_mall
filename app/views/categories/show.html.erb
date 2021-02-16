@@ -1,0 +1,29 @@
+<% provide(:title, "サブスクページ作成") %>
+
+<h1><%= @category.name %></h1>
+
+<hr class="my-3">
+
+<% @subscriptions.each do |subscription| %>
+<div class="container mt-5">
+  <section class="dark-grey-text">
+    <div class="row align-items-center">
+      <div class="col-lg-5 col-xl-3">
+        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+          <% if subscription.image_subscription.present? %>
+            <%= image_tag subscription.image_subscription_url, width: '100%', height: "300" %>
+          <% else %>
+            <p>なし</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-7 col-xl-8">
+        <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
+        <p class="dark-grey-text"><%= subscription.title %></p>
+        <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id, shop_id: subscription.shop_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+      </div>
+    </div>
+    <hr class="my-3">
+  </section>
+</div>
+<% end%>
