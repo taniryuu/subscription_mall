@@ -32,4 +32,7 @@
     <div class="account-btn">
       <%= link_to "チケット使用履歴", user_tickets_path(current_admin), class: "btn-gradient-3d-simple" %>
     </div></br>
+    <% if current_admin.present? %>
+      <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn-gradient-3d-simple" %>
+    <% end %>
 </div>

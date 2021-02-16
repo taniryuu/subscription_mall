@@ -3,7 +3,7 @@
 <div>
   <h1 class="brand-color display-4 mt-6 mb-6">チケット使用履歴</h1>
 
-  <div class="col-md-10 offset-md-1">
+  <div class="col">
     <% if @ticket_logs != [] %>
       <table class="table mb-8">
         <thead class="thead-light">
@@ -13,7 +13,6 @@
             <th>店舗オーナーEmail</th>
             <th>店舗オーナーTEL</th>
             <th>店舗情報</th>
-            <th>サブスク料金</th>
             <th>サブスク名</th>
             <th>利用ユーザー</th>
             <th>利用日</th>
@@ -29,7 +28,6 @@
             <td><%= ticket_log.owner_email %></td>
             <td><%= ticket_log.owner_phone_number %></td>
             <td><%= ticket_log.owner_store_information %></td>
-            <td><%= ticket_log.subscription_fee %></td>
             <td><%= ticket_log.subscription_name %></td>
             <td><%= User.find(ticket_log.user_id).name if ticket_log.user_id.present? %></td>
             <td><%= ticket_log.use_ticket_day_log %></td>
@@ -37,6 +35,8 @@
           <% end %>
         </tbody>
       </table>
+    <% else%>
+      <p class="mb-8">現在、チケット使用履歴はありません。
     <% end %>
   </div>
 </div>
