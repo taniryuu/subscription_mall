@@ -34,6 +34,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :メインお店紹介写真 %> <span class="must">必須</span><br/>
+    <%= form.file_field :image_subscription, id: "file-input" %>
+  </div>
+
+  <div class="field">
     <%= form.label :qr_image %> <span class="must">必須</span><br/>
     <%= form.file_field :qr_image %>
   </div>
@@ -44,8 +49,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :category_name %> <span class="must">必須</span><br/>
-    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
+    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
+    <%= select_tag "subscription[category_id]", options_from_collection_for_select(@categories, :id, :name),  { include_blank: "カテゴリを選んでください", class: 'form-control'} %>
   </div>
 
   <div class="field">

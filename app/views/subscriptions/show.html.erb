@@ -15,8 +15,7 @@
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
-                <span class="badge badge-success"><%= @subscription.category_name %></span>
-                <span class="badge badge-success"><%= @subscription.category_genre %></span>
+                <span class="badge badge-success"><%= @subscription.category.name %></span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.owner.address.present? %>

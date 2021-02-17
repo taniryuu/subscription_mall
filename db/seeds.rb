@@ -112,7 +112,7 @@ puts "Question Created"
 
 Subscription.create!(
   owner_id: 1,
-  # category_id: 1,
+  category_id: 1,
   name: "サンプル飲食店1",
   title: "サンプルタイトル1",
   shop_introduction: "焼きたて",
@@ -130,7 +130,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id: 1,
+  category_id: 1,
   name: "サンプル飲食店2",
   title: "サンプルタイトル2",
   shop_introduction: "焼きたて2",
@@ -148,7 +148,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id: 1,
+  category_id: 1,
   name: "サンプル飲食店3",
   title: "サンプルタイトル3",
   shop_introduction: "焼きたて3",

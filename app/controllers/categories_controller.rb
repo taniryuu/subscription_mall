@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:like_lunch, :show, :edit, :update, :destroy]
   # before_action :set_subscription, only: [:show]
   def index
-    @categories = Category.where.not(name: nil)
+    @categories = Category.all
     @categories_name = Category.where.not(name: nil)
   end
 
@@ -49,7 +49,7 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
-    @subscriptions = Subscription.all 
+    @subscriptions = @category.subscriptions
     # if @category.name == Subscription.category_name
   end
 

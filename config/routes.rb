@@ -118,36 +118,8 @@ Rails.application.routes.draw do
     end
   end
   resources :maps
-  resources :categories, only: %i(index show) do
+  resources :categories, only: %i(index) do
       get 'like_lunch', on: :member
-      get 'washoku', on: :collection
-      get 'teishoku', on: :collection
-      get 'ramen', on: :collection
-      get 'cafe', on: :collection
-      get 'pan', on: :collection
-      get 'izakaya', on: :collection
-      get 'itarian', on: :collection
-      get 'chuuka', on: :collection
-      get 'french', on: :collection
-      get 'hawaian', on: :collection
-      get 'tonanajia', on: :collection
-      get 'bar', on: :collection
-      get 'cake', on: :collection
-      get 'yakiniku', on: :collection
-      get 'yoshoku', on: :collection
-      get 'curry', on: :collection
-      get 'humburger', on: :collection
-      get 'kankokuryori', on: :collection
-      get 'restaurant', on: :collection
-      get 'okonomiyaki', on: :collection
-      get 'nabe', on: :collection
-      get 'sweets', on: :collection
-      get 'karaage', on: :collection
-      get 'gyouza', on: :collection
-      get 'don', on: :collection
-      get 'udon', on: :collection
-      get 'soba', on: :collection
-      get 'other', on: :collection
   end
   get 'users/deleted_users'##論理削除された利用者
   resources :users do

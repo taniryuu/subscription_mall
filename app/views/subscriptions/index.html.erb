@@ -9,15 +9,9 @@
         <div class="col-sm-2">
           お店の名前
         </div>
-
         <div class="col-sm-2">
           商品タイトル
         </div>
-
-        <div class="col-sm-2">
-          ジャンル
-        </div>
-
         <div class="col-sm-2">
           カテゴリ
         </div>
@@ -35,11 +29,11 @@
           <%= subscription.title %>
         </div>
         <div class="col-sm-2">
-          <%= subscription.category_genre %>
-        </div>
-
-        <div class="col-sm-2">
-          <%= subscription.category_name %>
+        <% if subscription.category.name.present? %>
+          <%= subscription.category.name %>
+        <% else %>
+        <p></p>
+        <% end %>
         </div>
         <% if current_admin.present? || current_owner.present? %>
           <div class="col-sm-1 tool--item">

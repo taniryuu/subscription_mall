@@ -211,8 +211,7 @@ ActiveRecord::Schema.define(version: 20210213080214) do
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_subscriptions_on_category_id"
+    t.integer "category_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -312,7 +311,6 @@ ActiveRecord::Schema.define(version: 20210213080214) do
   add_foreign_key "megurumereviews", "users"
   add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"
-  add_foreign_key "subscriptions", "categories"
   add_foreign_key "subscriptions", "owners"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
