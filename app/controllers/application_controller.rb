@@ -43,8 +43,10 @@ class ApplicationController < ActionController::Base
   def payment_check
     @pay = current_user.customer_id
     if @pay.present?
+      # 現在の支払い情報
       @payment = Stripe::Checkout::Session.retrieve(@pay)
-      @sub_now = Stripe::Subscription.retrieve(@payment.subscription)
+      # サブスクプラン更新用
+      @sub = Stripe::Subscription.retrieve(@payment.subscription)
     end
   end
 

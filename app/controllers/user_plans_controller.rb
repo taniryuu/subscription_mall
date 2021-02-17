@@ -33,9 +33,9 @@ class UserPlansController < ApplicationController
   end
 
   def update
-    @sub_now.plan = current_user.session_id
+    @sub.plan = current_user.session_id
     current_user.update!(session_id: "")
-    if @sub_now.save
+    if @sub.save
       flash[:success] = "正常に更新されました"
       redirect_to current_user
     end
