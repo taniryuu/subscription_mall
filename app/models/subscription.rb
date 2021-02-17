@@ -1,17 +1,17 @@
 class Subscription < ApplicationRecord
   belongs_to :owner
-  # belongs_to :shop
+  belongs_to :category
   has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :instablogs, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
+  validates :category_id, presence: true
 
   geocoded_by :address
   after_validation :geocode
-
   enum price: { "3,000"=> 1, "12,000"=> 2, "18,000"=> 3, "25,000"=> 4, "50,000"=> 5, "100,000"=> 6}, _prefix: true
-  enum category_name: { "和食"=> 1, "洋食"=> 2, "中華"=> 3, "イタリアン"=> 4, "フレンチ"=> 5, "ハワイアン"=> 6, "東南アジア料理"=> 7, "鍋"=> 8, "丼モノ"=> 9, "韓国料理"=> 10, "スイーツ"=> 11, "その他"=> 12}, _prefix: true
-  enum category_genre: { "カフェ"=> 1, "らーめん"=> 2, "パン屋"=> 3, "カレー"=> 4, "居酒屋"=> 5, "バー"=> 6, "ケーキ"=> 7, "焼肉"=> 8, "定食屋"=> 9, "ハンバーガー"=> 10, "レストラン"=> 11, "お好み焼き"=> 12, "唐揚げ"=> 13, "餃子"=> 14, "うどん"=> 15, "そば"=> 16}, _prefix: true
+  # enum category_name: { "和食"=> 1, "定食屋"=> 2, "らーめん"=> 3, "カフェ"=> 4, "パン屋"=> 5, "居酒屋"=> 6, "イタリアン"=> 7, "中華"=> 8, "フレンチ"=> 9, "ハワイアン"=> 10, "東南アジア料理"=> 11, "バー"=> 12, "ケーキ"=> 13, "焼肉"=> 14, "洋食"=> 15, "カレー"=> 16, "ハンバーガー"=> 17, "韓国料理"=> 18, "レストラン"=> 19, "お好み焼き"=> 20, "鍋"=> 21, "スイーツ"=> 22, "唐揚げ"=> 23, "餃子"=> 24, "丼モノ"=> 25, "うどん"=> 26, "そば"=> 27, "その他"=> 28}, _prefix: true
+  # enum category_genre: { "カフェ"=> 1, "らーめん"=> 2, "パン屋"=> 3, "カレー"=> 4, "居酒屋"=> 5, "バー"=> 6, "ケーキ"=> 7, "焼肉"=> 8, "定食屋"=> 9, "ハンバーガー"=> 10, "レストラン"=> 11, "お好み焼き"=> 12, "唐揚げ"=> 13, "餃子"=> 14, "うどん"=> 15, "そば"=> 16}, _prefix: true
   # attachment :image_subscription
   mount_uploader :image_subscription, SubscriptionUploader
   mount_uploader :image_subscription2, SubscriptionUploader
@@ -33,7 +33,6 @@ class Subscription < ApplicationRecord
   mount_uploader :qr_image, SubscriptionUploader
 
 
-  validates :category_name, presence: true
 
   def avg_score
     unless self.reviews.empty?
