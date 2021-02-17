@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>カテゴリからお店を探そう！</h1>
+
+<div class="recommend-shop">
+  <%= link_to shop_list_categories_path, class: "btn-gradient-radius-orange" do%>
+  全てのお店のリストはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+  <% end %>
+</div>
+
 <div class="category_box" role="tablist">
   <span id="tabList01" aria-controls="tab01" aria-selected="true" role="tab" class="category_button" >
     和食
@@ -255,12 +262,6 @@
   </div>
 </section>
 
-<h6 class="font-weight-bold pt-2"><%= link_to "全店のリスト", shop_list_categories_path %></h6>
-<div class="recommend-shop">
-  <%= link_to shop_list_categories_path, class: "btn-gradient-radius-orange" do%>
-  全てのお店のリストはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-  <% end %>
-</div>
 <script>
 var tab = $('[role="tab"]'),
     tabpanel = $('[role="tabpanel"]');

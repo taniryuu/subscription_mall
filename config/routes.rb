@@ -104,7 +104,7 @@ Rails.application.routes.draw do
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do
-      resources :images
+      # resources :images
       member do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
@@ -118,39 +118,19 @@ Rails.application.routes.draw do
     end
   end
   resources :maps
-  resources :categories, only: :index do
+  resources :categories, only: %i(index) do
       get 'like_lunch', on: :member
-      get 'washoku', on: :collection
-      get 'teishoku', on: :collection
-      get 'ramen', on: :collection
-      get 'cafe', on: :collection
-      get 'pan', on: :collection
-      get 'izakaya', on: :collection
-      get 'itarian', on: :collection
-      get 'chuuka', on: :collection
-      get 'french', on: :collection
-      get 'hawaian', on: :collection
-      get 'tonanajia', on: :collection
-      get 'bar', on: :collection
-      get 'cake', on: :collection
-      get 'yakiniku', on: :collection
-      get 'yoshoku', on: :collection
-      get 'curry', on: :collection
-      get 'humburger', on: :collection
-      get 'kankokuryori', on: :collection
-      get 'restaurant', on: :collection
-      get 'okonomiyaki', on: :collection
-      get 'nabe', on: :collection
-      get 'sweets', on: :collection
-      get 'karaage', on: :collection
-      get 'gyouza', on: :collection
-      get 'don', on: :collection
-      get 'udon', on: :collection
-      get 'soba', on: :collection
-      get 'other', on: :collection
   end
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
+    resources :user_plans do
+      get "confirm", to: "user_plans#confirm"
+      get "update_confirm", to: "user_plans#update_confirm"
+      get 'new', to: "user_plans#new", as: 'plans_new' #利用者のプラン内容
+      get "edit", to: "user_plans#edit", as: 'plans_edit'
+      patch "update", to: "user_plans#update", as: 'plans_update'
+      delete "destroy", to: "user_plans#destroy", as: 'plans_destroy'
+    end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
     get 'user_edit', on: :member#
     patch 'user_edit_update', on: :member#
@@ -160,7 +140,6 @@ Rails.application.routes.draw do
       get 'user_account', on: :member#アカウントページ
       patch 'update_deleted_users', on: :member#アカウントページ論理削除
   end
-  resources :shops, only: :new
   resources :questions#よくある質問
   post 'questions/:id/edit', to: 'questions#edit', as: :edit_questions #よくある質問編集
   resources :megurumereviews
