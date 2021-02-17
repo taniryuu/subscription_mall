@@ -171,12 +171,4 @@ class SubscriptionsController < ApplicationController
     def map_params
       params.require(:map).permit(:address, :distance, :time)
     end
-
-    def payment_check
-      @payment = current_user.user_plans.find_by(subscription_id: params[:id]) if user_signed_in?
-      if @payment.present?
-        @str = Stripe::Checkout::Session.retrieve(@payment.customer_id)
-        @aa = Stripe::Subscription.retrieve(@str.subscription)
-      end
-    end
 end
