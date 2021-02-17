@@ -108,12 +108,6 @@ Rails.application.routes.draw do
       member do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
-        get "confirm", to: "user_plans#confirm"
-        get "update_confirm", to: "user_plans#update_confirm"
-        get 'plans_new', to: "user_plans#new", as: 'plans_new' #利用者のプラン内容
-        get "plans_edit", to: "user_plans#edit", as: 'plans_edit'
-        patch "plans_update", to: "user_plans#update", as: 'plans_update'
-        delete "plans_destroy", to: "user_plans#destroy", as: 'plans_destroy'
       end
     end
   end
@@ -165,6 +159,11 @@ Rails.application.routes.draw do
   post 'questions/:id/edit', to: 'questions#edit', as: :edit_questions #よくある質問編集
   resources :megurumereviews
   resources :instablogs
-
+  resource :user_plan, except: %i(create show) do
+    collection do
+      get "confirm", to: "user_plans#confirm"
+      get "update_confirm", to: "user_plans#update_confirm"
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

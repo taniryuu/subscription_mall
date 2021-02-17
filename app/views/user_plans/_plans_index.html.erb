@@ -11,13 +11,13 @@
         />
         </div>
         <h2 class="font-weight-bold my-4"><%= "￥#{plan.amount.to_s(:delimited)}/月" %></h2>
-        <p class="grey-text"><%= plan.nickname %></p>
+        <p class="grey-text"><%= plan.metadata.detail %></p>
         <% if @pay.present? && plan.amount == @payment.amount_total %>
           <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
         <% elsif current_user.customer_id.present? %>
-          <%= link_to "詳細", update_confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
+          <%= link_to "詳細", update_confirm_user_plan_path(session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
         <% else %>
-          <%= link_to "詳細", confirm_owner_subscription_path(@subscription, owner_id: @subscription.owner_id, session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
+          <%= link_to "詳細", confirm_user_plan_path(session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
         <% end %>
       </div>
     </div>

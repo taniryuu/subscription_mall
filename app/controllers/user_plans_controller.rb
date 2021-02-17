@@ -1,10 +1,8 @@
 class UserPlansController < ApplicationController
-  before_action :authenticate_user!
-  
-  before_action :set_subscription, only: %i(new edit update confirm update_confirm destroy)
-  before_action :set_owner, only: %i(new edit)
   before_action :set_plan, only: %i(confirm update_confirm)
   before_action :set_plans, only: %i(new edit confirm update_confirm)
+
+  before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
   # stripe決済成功時
@@ -39,30 +37,24 @@ class UserPlansController < ApplicationController
     current_user.update!(session_id: "")
     if @sub_now.save
       flash[:success] = "正常に更新されました"
-      redirect_to owner_subscription_url(@subscription, owner_id: @subscription.owner_id)
+      redirect_to current_user
     end
   end
 
   def destroy
-    redirect_to owner_subscription_url(@subscription, owner_id: @subscription.owner_id)
+    redirect_to root_url
   end
 
   private
 
-    def set_subscription
-      @subscription = Subscription.find(params[:id])
-    end
-
-    def set_owner
-      @owner = Owner.find(params[:owner_id])
-    end
-
     # stripe APIからプランを取得
     def set_plan
+      # 変更予定のサブスクプラン
       @confirm_plan = Stripe::Plan.retrieve(
         params[:session]
       )
       
+      # サブスク登録
       @plan = Stripe::Checkout::Session.create(
         success_url: success_url,
         cancel_url: cancel_url,
