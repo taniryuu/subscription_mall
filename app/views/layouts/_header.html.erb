@@ -14,7 +14,7 @@
               <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "利用者様管理", users_path %></li>
-              <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
+              <li><%= link_to "ショップ開設", subscription_private_store_select_owner_path(current_owner) %></li>
               <li><%= link_to "マイアカウント", owner_account_owner_path(current_owner) %></li>
               <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
             </ul>

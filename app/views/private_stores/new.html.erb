@@ -1,0 +1,68 @@
+<% provide(:title, "個人店サブスクページ作成") %>
+
+<h1>個人店サブスクショップ開設</h1>
+
+<%= form_with(model: @private_store, url: owner_private_stores_path(@private_store, owner_id: @owner.id), local: true) do |form| %>
+  <%= render 'shared/error_messages' , object: @private_store %>
+
+  <%= form.hidden_field :owner_id, :value => @owner.id %>
+  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
+
+  <div class="field">
+    <%= form.label :name %> <span class="must">必須</span><br/>
+    <%= form.text_field :name, id: :private_store_name, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shop_introduction %> <span class="must">必須</span><br/>
+    <%= form.text_field :shop_introduction, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %> <span class="must">必須</span><br/>
+    <%= form.text_field :title, id: :private_store_title, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail %> <span class="must">必須</span><br/>
+    <%= form.text_area :detail, id: :private_store_detail, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :qr_image %><br/>
+    <%= form.file_field :qr_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :private_store_detail %> <span class="must">必須</span><br/>
+    <%= form.text_area :private_store_detail, id: :private_store_private_store_detail, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_name %> <span class="must">必須</span><br/>
+    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :private_store_private_store_detail, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_genre %><br/>
+    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :private_store_private_store_detail, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %> <span class="must">必須</span><br/>
+    <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to 'トップ', root_path %> |
+
+<%= link_to '一覧へ', owner_private_stores_path %>

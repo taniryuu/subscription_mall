@@ -94,6 +94,7 @@ Rails.application.routes.draw do
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
     get :search, on: :collection #オーナーの名前であいまい検索 追加分
+    get :subscription_private_store_select, on: :member #加盟店か個人店かの選択
     member do
       get 'owner_edit' #個人情報編集
       patch 'owner_edit_update' #個人情報編集
@@ -104,6 +105,19 @@ Rails.application.routes.draw do
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do
+      resources :images
+      member do
+        get 'edit_recommend' #おすすめ追加よう
+        patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
+        get "confirm", to: "user_plans#confirm"
+        get "update_confirm", to: "user_plans#update_confirm"
+        get 'plans_new', to: "user_plans#new", as: 'plans_new' #利用者のプラン内容
+        get "plans_edit", to: "user_plans#edit", as: 'plans_edit'
+        patch "plans_update", to: "user_plans#update", as: 'plans_update'
+        delete "plans_destroy", to: "user_plans#destroy", as: 'plans_destroy'
+      end
+    end
+    resources :private_stores do
       resources :images
       member do
         get 'edit_recommend' #おすすめ追加よう
