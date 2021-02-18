@@ -3,7 +3,6 @@ class SubscriptionsController < ApplicationController
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :set_category, only: [:show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
-  # before_action :set_shop, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /subscriptions
   # GET /subscriptions.json
