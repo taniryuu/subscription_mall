@@ -8,27 +8,27 @@
   <%= form.hidden_field :owner_id, :value => @owner.id %>
 
   <div class="field">
-    <%= form.label :name %> <span class="must">必須</span><br/>
+    <%= form.label :お店の名前 %> <span class="must">必須</span><br/>
     <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :address %> <span class="must">必須</span>
+    <%= form.label :お店の住所 %> <span class="must">必須</span>
     <%= form.text_field :address, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :shop_introduction %> <span class="must">必須</span><br/>
+    <%= form.label :お店紹介 %> <span class="must">必須</span><br/>
     <%= form.text_field :shop_introduction, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :title %> <span class="must">必須</span><br/>
+    <%= form.label :タイトル %> <span class="must">必須</span><br/>
     <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :detail %> <span class="must">必須</span><br/>
+    <%= form.label :商品紹介 %> <span class="must">必須</span><br/>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
@@ -38,12 +38,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :qr_image %> <span class="must">必須</span><br/>
+    <%= form.label :"LINE@QRコード画像" %> <span class="must">必須</span><br/>
     <%= form.file_field :qr_image %>
   </div>
 
   <div class="field">
-    <%= form.label :subscription_detail %> <span class="must">必須</span><br/>
+    <%= form.label :店舗情報 %> <span class="must">必須</span><br/>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
