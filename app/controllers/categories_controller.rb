@@ -53,6 +53,8 @@ class CategoriesController < ApplicationController
 
   def recommend
     @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
+    @private_stores = PrivateStore.where(recommend: true).order(created_at: :desc).limit(15)
+
   end
 
   def washoku
