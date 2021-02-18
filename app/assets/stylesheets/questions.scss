@@ -5,6 +5,14 @@
 /* パソコン（width:960px以上) タブレット（width:600px~959px） */
 @media screen and (min-width:600px) {
 
+.Q_and_A
+{
+  width: 250px;
+  color: #faab05;
+  position: relative;
+  left: 92px;
+}
+
 .question_large_box
 {
   width: 1111px;
@@ -150,6 +158,15 @@
 
 /* スマホ（width:599px以下） */
 @media screen and (max-width: 599px) {
+
+.Q_and_A
+{
+  width: 250px;
+  color: #faab05;
+  position: relative;
+  left: 92px;
+}
+
 
 .question_large_box
 {

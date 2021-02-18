@@ -15,26 +15,35 @@
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
-                <span class="badge badge-success"><%= @subscription.category_name %></span>
-                <span class="badge badge-success"><%= @subscription.category_genre %></span>
+                <span class="badge badge-success"><%= @subscription.category.name %></span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.owner.address.present? %>
                     住所：<%= @subscription.owner.address %>
                   <% else %>
                     <p></p>
-                  <% end %>
+                  <% end %> | 
                   <% if @subscription.owner.phone_number.present? %>
-                    TEL：<%= @subscription.owner.phone_number %>
+                    テイクアウトTEL：<%= @subscription.owner.phone_number %>
                   <% else %>
                     <p></p>
                   <% end %>
-              <% if current_user.present? && current_user.session_id == "true" %>
-                <%= link_to "チケットを使う",use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+              <% if @payment.present? %>
+                <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                <%= link_to "プランを変更する", edit_user_plan_path, class: "btn-gradient-3d-simple" %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める",user_plans_path(current_user.id), class: "btn-gradient-3d-simple" %>
-             <% elsif !(signed_in?) %>
-                <%= link_to "ログインしてサブスクを開始",new_user_session_path, class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを始める", new_user_plan_path, class: "btn-gradient-3d-simple" %>
+              <% elsif current_owner.present? %>
+                <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
+              <% elsif current_admin.present? %>
+                <% if @subscription.recommend == true %>
+                  <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
+                <% elsif @subscription.recommend == false %>
+                  <%= link_to "おすすめ店舗に加える", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
+                <% end %>
+              <% else %>
+                <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple" %>
               <% end %>
               </div>
             </div>
@@ -221,7 +230,29 @@
                 <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
               <% elsif current_user.present? %>
                 <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
-                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %>
+                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %><br>
+                  <% if @subscription.owner.address.present? %>
+                    　　　住所：<%= @subscription.owner.address %>
+                  <% else %>
+                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @subscription.owner.phone_number.present? %>
+                    　　　テイクアウトTEL：<%= @subscription.owner.phone_number %>
+                  <% else %>
+                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                  <% end %>
+              <% else %>
+                <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
+                  <br><% if @subscription.owner.address.present? %>
+                    　　　住所：<%= @subscription.owner.address %>
+                  <% else %>
+                    <p>住所：登録させていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @subscription.owner.phone_number.present? %>
+                    　　　テイクアウトTEL：<%= @subscription.owner.phone_number %>
+                  <% else %>
+                    <p>テイクアウトTEL：登録させていません。LINE@からお問い合わせください。</p>
+                  <% end %>
               <% end %>
             </div>
           </div>

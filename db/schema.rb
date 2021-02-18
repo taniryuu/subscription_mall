@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210210231043) do
+ActiveRecord::Schema.define(version: 20210213080214) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "name"
     t.bigint "user_id"
     t.bigint "owner_id"
-    t.string "genre"
+    t.integer "subscription_id"
     t.string "image_category"
     t.string "search"
     t.datetime "created_at", null: false
@@ -104,6 +104,13 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_interviews_on_owner_id"
+  end
+
+  create_table "media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "media_name"
+    t.string "media_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "megurumereviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -172,14 +179,28 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
-    t.integer "category_name"
-    t.integer "shop_id"
     t.string "script"
     t.string "image_subscription2"
     t.string "image_subscription3"
     t.string "image_subscription4"
+<<<<<<< HEAD
     t.integer "category_genre"
     t.integer "monthly_fee"
+=======
+    t.string "image_subscription5"
+    t.string "sub_image"
+    t.string "sub_image2"
+    t.string "sub_image3"
+    t.string "sub_image4"
+    t.string "sub_image5"
+    t.string "sub_image6"
+    t.string "sub_image7"
+    t.string "sub_image8"
+    t.string "sub_image9"
+    t.string "sub_image10"
+    t.string "sub_image11"
+    t.string "sub_image12"
+>>>>>>> fd9a3de769d9efe356e3c479ad1aa5a720b2d43d
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
@@ -190,6 +211,8 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "insta_blog"
+    t.boolean "recommend", default: true
+    t.integer "category_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -255,6 +278,8 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.text "message"
     t.string "subject"
     t.string "session_id"
+    t.integer "subscription_id"
+    t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.datetime "created_at", null: false

@@ -12,8 +12,8 @@ class OwnersController < ApplicationController
   def owner_edit_update
     if
       @owner.update(owner_params)
-      flash[:success] = "#{current_owner.name}様の情報を更新しました。"
-      redirect_to owner_account_owner_url(current_owner)
+      flash[:success] = "#{@owner.name}様の情報を更新しました。"
+      redirect_to owner_account_owner_url(@owner)
     else
       render :owner_edit
     end

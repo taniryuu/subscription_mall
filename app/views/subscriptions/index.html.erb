@@ -1,23 +1,17 @@
 <% provide(:title, "サブスクページ一覧") %>
 <p id="notice"><%= notice %></p>
 
-<h1>サブスクページ一覧</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">サブスクページ一覧</h1>
 
-<table>
+<table class="table mt-7">
   <thead>
       <div class="row">
         <div class="col-sm-2">
           お店の名前
         </div>
-
         <div class="col-sm-2">
           商品タイトル
         </div>
-
-        <div class="col-sm-2">
-          ジャンル
-        </div>
-
         <div class="col-sm-2">
           カテゴリ
         </div>
@@ -35,11 +29,11 @@
           <%= subscription.title %>
         </div>
         <div class="col-sm-2">
-          <%= subscription.category_genre %>
-        </div>
-
-        <div class="col-sm-2">
-          <%= subscription.category_name %>
+        <% if subscription.category.name.present? %>
+          <%= subscription.category.name %>
+        <% else %>
+        <p></p>
+        <% end %>
         </div>
         <% if current_admin.present? || current_owner.present? %>
           <div class="col-sm-1 tool--item">
@@ -64,4 +58,6 @@
 
 <br>
 
-<%= link_to 'New Subscription', new_owner_subscription_path %>
+<% if current_owner.present? %>
+  <%= link_to 'サブスクショップ開設', new_owner_subscription_path, class: "btn btn-lg btn-brand mb-8" %>
+<% end %>

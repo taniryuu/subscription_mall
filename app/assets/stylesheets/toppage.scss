@@ -8,6 +8,7 @@
     background: transparent;
   }
 
+
       /* ナビゲーションバー配置 */
   .navbar {
     position: absolute;
@@ -413,11 +414,74 @@
     justify-content: space-around;
     background-color: #f7f7f7;
   }
+        /* コンセプト,SNS */
+  .f-container1{
+    width: 100vw;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display:flex;
+    justify-content: space-around;
+  }
+  .border-solid-down1 {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-top: 0px;
+    height: 25px;
+    border: 0;
+  }
+  .concept {
+    font-weight: bold;
+  }
+  .concept1 {
+    font-weight: 200;
+  }
+  .concept2 {
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(124, 44, 6) !important;
+  }
+  .plan-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  .plan-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    width: 202px;
+    height: 140px;
+    top: 86%;
+    // position: relative;
+    overflow: hidden;
+    margin-bottom: 3em;
+  }
+  .plan-shop-btn {
+    width: 100%;
+    top: 86%;
+    left: 0%;
+  }
+  .snsimage {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      font-size: 100%;
+  }
   .box26 {
     position: relative;
     margin: 30px;
     padding: 0.5em 1em;
-    border: solid 3px #fdcfdf;
+    // border: solid 3px #fdcfdf;
     border-radius: 30px;
   }
   .box26 .box-title {

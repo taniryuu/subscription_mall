@@ -1,9 +1,13 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:like_lunch, :edit, :update, :destroy]
-
+  before_action :set_category, only: [:like_lunch, :show, :edit, :update, :destroy]
+  # before_action :set_subscription, only: [:show]
   def index
-    @categories = Category.where.not(name: nil)
+    @categories = Category.all
     @categories_name = Category.where.not(name: nil)
+  end
+
+  def show
+    @subscriptions = Subscription.all if @category.name == Subscription.category_name
   end
 
   def create
@@ -45,6 +49,8 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
+    @subscriptions = @category.subscriptions
+    # if @category.name == Subscription.category_name
   end
 
   def shop_list
@@ -52,7 +58,7 @@ class CategoriesController < ApplicationController
   end
 
   def recommend
-    @subscriptions = Subscription.order(created_at: :desc).limit(15)
+    @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
   end
 
   def washoku
@@ -172,6 +178,10 @@ class CategoriesController < ApplicationController
     def set_category
       @category = Category.find(params[:id])
     end
+    def set_subscription
+      @subscription = Subscription.find(params[:id])
+    end
+    
 
     # Only allow a list of trusted parameters through.
     def category_params

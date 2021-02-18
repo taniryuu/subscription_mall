@@ -15,6 +15,7 @@ ja:
       product: QRコード
       cupon: クーポン
       image: 写真
+      media: メディア
       interview: 経営者インタビュー
       question: よくある質問
     attributes:
@@ -86,11 +87,15 @@ ja:
           sub_image11: サブのお店紹介写真11
           sub_image12: サブのお店紹介写真12
           qr_image: LINE@QRコード画像
-          monthly_fee: 月額利用料金
           price: 金額
-          category_genre: ジャンル
-          category_name: カテゴリ
           address: お店の住所
+          category_id: カテゴリ
+          created_at: 作成日
+          updated_at: 更新日
+        media:
+          id: ID
+          media_name: メディア名
+          media_image: メディア画像
           created_at: 作成日
           updated_at: 更新日
         blog:
