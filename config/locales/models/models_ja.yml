@@ -88,9 +88,8 @@ ja:
           sub_image12: サブのお店紹介写真12
           qr_image: LINE@QRコード画像
           price: 金額
-          category_genre: ジャンル
-          category_name: カテゴリ
           address: お店の住所
+          category_id: カテゴリ
           created_at: 作成日
           updated_at: 更新日
         media:
