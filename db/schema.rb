@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210210231043) do
+ActiveRecord::Schema.define(version: 20210213080214) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "name"
     t.bigint "user_id"
     t.bigint "owner_id"
-    t.string "genre"
+    t.integer "subscription_id"
     t.string "image_category"
     t.string "search"
     t.datetime "created_at", null: false
@@ -179,8 +179,6 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
-    t.integer "category_name"
-    t.integer "shop_id"
     t.string "script"
     t.string "image_subscription2"
     t.string "image_subscription3"
@@ -198,8 +196,6 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
-    t.integer "category_genre"
-    t.integer "monthly_fee"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
@@ -211,6 +207,7 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
+    t.integer "category_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -259,15 +256,6 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
-  create_table "user_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "customer_id", null: false
-    t.integer "subscription_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_plans_on_user_id"
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -286,6 +274,7 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "subject"
     t.string "session_id"
     t.integer "subscription_id"
+    t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.datetime "created_at", null: false
@@ -315,5 +304,4 @@ ActiveRecord::Schema.define(version: 20210210231043) do
   add_foreign_key "suports", "users"
   add_foreign_key "ticket_logs", "tickets"
   add_foreign_key "tickets", "users"
-  add_foreign_key "user_plans", "users"
 end
