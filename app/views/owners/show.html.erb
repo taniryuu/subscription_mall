@@ -29,20 +29,6 @@
         <tr>
           <th height="40" class=col-sm-2>LINE_ID</th><td class=col-sm-4><%= @owner.line_id %></td>
         </tr>
-        <% if @subscriptions != []%>
-          <% @subscriptions.each do |subscription| %>
-            <tr>
-              <th height="40" class=col-sm-2>サブスク名</th><td class=col-sm-4><%= check_not_set(subscription.name) %></td>
-            </tr>
-            <tr>
-              <th height="40" class=col-sm-2>サブスク加入プラン</th><td class=col-sm-4><%= check_not_set(subscription.price) %></td>
-            </tr>
-          <% end %>
-        <% else %>
-          <tr>
-            <th height="40" class=col-sm-2>サブスク</th><td class=col-sm-4>現在、サブスクの設定はありません。</td>
-          </tr>
-        <% end %>
       </table>
     </div>
   </div>
@@ -54,13 +40,10 @@
 
         <div class="col-md-4">
           <div class="card">
-            <% if subscription.image_subscription_url.present? %>
-              <%= image_tag subscription.image_subscription_url ,class: "card-img-top" %>
-            <% end %>
             <div class="card-body">
               <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
               <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription) %></h5>
-              <p class="card-text">サブスク加入プラン：<%= check_not_set(subscription.price) %></p>
+              <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
             </div>
           </div>
         </div>
@@ -87,6 +70,3 @@
   </div>
 
 </div>
-
-
-
