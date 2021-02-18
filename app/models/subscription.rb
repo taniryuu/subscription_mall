@@ -1,17 +1,23 @@
 class Subscription < ApplicationRecord
   belongs_to :owner
   belongs_to :category, optional: true#belongs_toの外部キーのnilを許可
+  # has_many :categories, through: :category_subscriptions
+  # has_many :category_subscriptions
+
   has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :instablogs, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :title, presence: true, length: { maximum: 100 }
-  validates :detail, presence: true, length: { maximum: 100 }
-  validates :shop_introduction, presence: true, length: { maximum: 1000 }
-  validates :subscription_detail, presence: true, length: { maximum: 1000 }
+  validates :address, presence: true, length: { maximum: 1000 }
+  # validates :title, presence: true, length: { maximum: 100 }
+  # validates :detail, presence: true, length: { maximum: 100 }
+  # validates :shop_introduction, presence: true, length: { maximum: 1000 }
+  # validates :subscription_detail, presence: true, length: { maximum: 1000 }
+  # validates :image_subscription, presence: true
   validates :category_id, presence: true
+  validates :price, presence: true
 
   geocoded_by :address
   after_validation :geocode

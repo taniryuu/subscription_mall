@@ -19,7 +19,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def edit_recommend
-    
   end
 
   def update_recommend
@@ -70,6 +69,7 @@ class SubscriptionsController < ApplicationController
                                       subscription_detail: params[:subscription][:subscription_detail],
                                       image_subscription: params[:subscription][:image_subscription],
                                       category_id: params[:subscription][:category_id],
+                                      price: params[:subscription][:price],
                                       owner_id: params[:subscription][:owner_id]
                                     )
     respond_to do |format|
@@ -113,6 +113,7 @@ class SubscriptionsController < ApplicationController
                                               sub_image11: params[:subscription][:sub_image11],
                                               sub_image12: params[:subscription][:sub_image12],
                                               category_id: params[:subscription][:category_id],
+                                              price: params[:subscription][:price],
                                               owner_id: params[:subscription][:owner_id]
                                             )
         format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
@@ -153,10 +154,6 @@ class SubscriptionsController < ApplicationController
     def set_category
       @category = Category.find(params[:id])
     end
-
-    # def set_shop
-    #   @shop = Shop.find(params[:shop_id])
-    # end
 
     # Only allow a list of trusted parameters through.
     def subscription_params
