@@ -37,9 +37,6 @@ class StaticPagesController < ApplicationController
   def specified_commercial_transaction_law
   end
 
-<<<<<<< HEAD
-  def paypaytest
-=======
   def map_object
     if params[:map].present? && params[:map][:address].present?
       results = Geocoder.search(params[:map][:address])
@@ -52,7 +49,6 @@ class StaticPagesController < ApplicationController
     else
       gon.subscriptions = Subscription.where(longitude: 139.5..139.9).where(latitude: 35.4..35.8)
     end
->>>>>>> 2005d45a717f89a4aac616c9419ea1dd73787754
   end
 
   private
