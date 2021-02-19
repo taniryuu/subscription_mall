@@ -68,6 +68,7 @@ class PrivateStoresController < ApplicationController
         format.json { render json: @private_store.errors, status: :unprocessable_entity }
       end
     end
+    debugger
   end
 
   # PATCH/PUT /private_stores/1

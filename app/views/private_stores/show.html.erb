@@ -228,9 +228,9 @@
               <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
               <% if current_owner.present? %>
-                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
               <% elsif current_user.present? %>
-                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                 <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store), class: "btn btn-outline-warning btn-rounded" %><br>
                   <% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
@@ -243,7 +243,7 @@
                     <p>登録させていません。LINE@からお問い合わせください。</p>
                   <% end %>
               <% else %>
-                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                   <br><% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
                   <% else %>

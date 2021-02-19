@@ -3,7 +3,7 @@ class PrivateStore < ApplicationRecord
   # belongs_to :shop
   has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :instablogs, dependent: :destroy
+  has_many :private_store_instablogs, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   geocoded_by :address
