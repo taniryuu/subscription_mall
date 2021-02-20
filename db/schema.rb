@@ -297,7 +297,6 @@ ActiveRecord::Schema.define(version: 20210218075622) do
   add_foreign_key "categories", "owners"
   add_foreign_key "categories", "users"
   add_foreign_key "category_subscriptions", "categories"
-  add_foreign_key "category_subscriptions", "subscriptions"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
   add_foreign_key "images", "blogs"

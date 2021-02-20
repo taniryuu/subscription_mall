@@ -146,7 +146,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  category_id: 3,
+  category_id:  [ 3, 8],
   name: "サンプル飲食店3",
   title: "サンプルタイトル3",
   shop_introduction: "焼きたて3",

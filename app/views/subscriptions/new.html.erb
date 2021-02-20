@@ -47,9 +47,20 @@
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :category_id %> <span class="must">必須</span><br/>
     <%= select_tag "subscription[category_id]", options_from_collection_for_select(@categories, :id, :name),  { include_blank: "カテゴリを選んでください", class: 'form-control'} %>
+  </div> 
+<%
+=end%>
+
+  <div class="field">
+    <%= form.label :category_id %> <span class="must">必須</span><br/>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name)  do |t| %>
+      <% t.label   { t.check_box + t.text } %>
+    <% end %>
   </div>
 
   <div class="field">

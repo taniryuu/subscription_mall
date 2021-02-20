@@ -8,6 +8,11 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions.json
   def index
     @subscriptions = @owner.subscriptions
+    @subscription = Subscription.find_by(params[:category_id])
+  end
+
+  def like_lunch
+    @subscription = Subscription.find(params[:subscription_id])
   end
 
   def list
@@ -68,7 +73,7 @@ class SubscriptionsController < ApplicationController
                                       qr_image: params[:subscription][:qr_image],
                                       subscription_detail: params[:subscription][:subscription_detail],
                                       image_subscription: params[:subscription][:image_subscription],
-                                      category_id: params[:subscription][:category_id],
+                                      category_id: params[:subscription][{ :category_ids=> [] }],
                                       price: params[:subscription][:price],
                                       owner_id: params[:subscription][:owner_id]
                                     )
@@ -112,7 +117,7 @@ class SubscriptionsController < ApplicationController
                                               sub_image10: params[:subscription][:sub_image10],
                                               sub_image11: params[:subscription][:sub_image11],
                                               sub_image12: params[:subscription][:sub_image12],
-                                              category_id: params[:subscription][:category_id],
+                                              category_id: params[:subscription][{ :category_ids=> [] }],
                                               price: params[:subscription][:price],
                                               owner_id: params[:subscription][:owner_id]
                                             )

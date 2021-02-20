@@ -104,7 +104,7 @@ Rails.application.routes.draw do
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do
-      # resources :images
+      get 'like_lunch', on: :member
       member do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう

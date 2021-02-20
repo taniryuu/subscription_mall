@@ -3,7 +3,6 @@ class CategoriesController < ApplicationController
   # before_action :set_subscription, only: [:show]
   def index
     @categories = Category.all
-    @categories_name = Category.where.not(name: nil)
   end
 
   def show
@@ -50,7 +49,7 @@ class CategoriesController < ApplicationController
 
   def like_lunch
     @subscriptions = @category.subscriptions
-    # if @category.name == Subscription.category_name
+    # @category = Category.find(params[:id])
   end
 
   def shop_list
