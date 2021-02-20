@@ -38,4 +38,26 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     root_path
   end
+
+  # current_userのサブスクプラン支払い詳細
+  def payment_check
+    if current_user.present?
+      @pay = current_user.customer_id
+    end
+    if @pay.present?
+      # 現在の支払い情報
+      @payment = Stripe::Checkout::Session.retrieve(@pay)
+      # サブスクプラン更新用
+      @sub = Stripe::Subscription.retrieve(@payment.subscription)
+    end
+  end
+
+  # ログイン中のユーザーが何かしらのプランに加入していた場合支払いを停止する
+  def payment_planning_delete
+    if current_user.customer_id.present?
+      @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
+      Stripe::Subscription.delete(@payment.subscription)
+      current_user.update!(customer_id: "")
+    end
+  end
 end

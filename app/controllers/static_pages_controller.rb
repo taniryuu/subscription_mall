@@ -8,6 +8,7 @@ class StaticPagesController < ApplicationController
     @medias = Medium.all.limit(5)
     @interviews = Interview.where.not(shop_name: nil)
     @owner_subscriptions = Subscription.includes(:owner).order("RANDOM()").limit(5)
+    @subscription = Subscription.find_by(params[:id])
     @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
     @megurumereviews = Megurumereview.all
     @owners = Owner.all.limit(5)

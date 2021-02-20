@@ -123,12 +123,12 @@ end
 
 Subscription.create!(
   owner_id: 1,
+  category_id: 1,
   name: "サンプル飲食店1",
   title: "サンプルタイトル1",
   shop_introduction: "焼きたて",
   detail: "食べ放題",
   subscription_detail: "東京都",
-  category_name: "和食",
   price: "3,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
@@ -140,12 +140,12 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
+  category_id: 2,
   name: "サンプル飲食店2",
   title: "サンプルタイトル2",
   shop_introduction: "焼きたて2",
   detail: "食べ放題2",
   subscription_detail: "神奈川",
-  category_name: "和食",
   price: "12,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
@@ -157,12 +157,12 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
+  category_id: 3,
   name: "サンプル飲食店3",
   title: "サンプルタイトル3",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
-  category_name: "和食",
   price: "25,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
@@ -175,15 +175,15 @@ Subscription.create!(
 puts "Subscription Created"
 
 Category.create!(name: "和食",
-                image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
+                  image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
                 )
 
 Category.create!(name: "定食",
-                image_category: "https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4="
+                  image_category: "https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4="
                 )
 
 Category.create!(name: "らーめん",
-                image_category: "https://cdn.pixabay.com/photo/2018/03/15/10/33/bars-ramen-in-saigon-3227779__480.jpg"
+                  image_category: "https://cdn.pixabay.com/photo/2018/03/15/10/33/bars-ramen-in-saigon-3227779__480.jpg"
                 )
 Category.create!(name: "カフェ",
                 image_category: "https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g="

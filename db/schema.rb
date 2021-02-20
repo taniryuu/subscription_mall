@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210210231043) do
+ActiveRecord::Schema.define(version: 20210218075622) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -43,13 +43,22 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "name"
     t.bigint "user_id"
     t.bigint "owner_id"
-    t.string "genre"
+    t.integer "subscription_id"
     t.string "image_category"
     t.string "search"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_categories_on_owner_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "category_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "category_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_subscriptions_on_category_id"
+    t.index ["subscription_id"], name: "index_category_subscriptions_on_subscription_id"
   end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -179,8 +188,6 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
-    t.integer "category_name"
-    t.integer "shop_id"
     t.string "script"
     t.string "image_subscription2"
     t.string "image_subscription3"
@@ -198,8 +205,6 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
-    t.integer "category_genre"
-    t.integer "monthly_fee"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
@@ -210,7 +215,8 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "insta_blog"
-    t.boolean "recommend", default: false
+    t.boolean "recommend", default: true
+    t.integer "category_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -276,6 +282,8 @@ ActiveRecord::Schema.define(version: 20210210231043) do
     t.text "message"
     t.string "subject"
     t.string "session_id"
+    t.integer "subscription_id"
+    t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.datetime "created_at", null: false
@@ -288,6 +296,8 @@ ActiveRecord::Schema.define(version: 20210210231043) do
   add_foreign_key "blogs", "admins"
   add_foreign_key "categories", "owners"
   add_foreign_key "categories", "users"
+  add_foreign_key "category_subscriptions", "categories"
+  add_foreign_key "category_subscriptions", "subscriptions"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
   add_foreign_key "images", "blogs"

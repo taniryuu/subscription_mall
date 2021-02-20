@@ -1,40 +1,39 @@
 <% provide(:title, "サブスクページ編集") %>
 
-<h1>サブスクページ編集</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">サブスクページ編集</h1>
 
-<%= form_with(model: @subscription, url: owner_subscription_path, local: true) do |form| %>
+<%= form_with(model: @subscription, url: owner_subscription_path(@subscription, owner_id: @owner.id), local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
-  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :お店の名前 %> <span class="must">必須</span>
     <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :商品タイトル %> <span class="must">必須</span>
     <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :お店の住所 %> <span class="must">必須</span>
     <%= form.text_field :address, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :detail %>
+    <%= form.label :商品紹介 %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
   
   <div class="field">
-    <%= form.label :qr_image %><br/>
+    <%= form.label :"LINE@QRコード画像" %> <span class="must">必須</span><br/>
     <%= form.file_field :qr_image %>
   </div>
 
   <div class="field">
-    <%= form.label :image_subscription %> <span class="must">必須</span><br/>
+    <%= form.label :メインのお店紹介写真 %> <span class="must">必須</span><br/>
     <%= form.file_field :image_subscription, id: "file-input" %>
   </div>
   <div class="field">
@@ -58,7 +57,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :subscription_detail %>
+    <%= form.label :店舗情報 %>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
@@ -123,13 +122,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :category_name %>
-    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_genre %><br/>
-    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
+    <%= form.label :category_id %> <span class="must">必須</span><br/>
+    <%= select_tag "subscription[category_id]", options_from_collection_for_select(@categories, :id, :name),  { include_blank: "カテゴリを選んでください", class: 'form-control'} %>
   </div>
 
   <div class="field">
@@ -143,5 +137,7 @@
   </div>
 <% end %>
 
-<%= link_to '詳細', owner_subscription_path(@subscription, owner_id: @owner.id, shop_id: @subscription.shop_id) %> |
-<%= link_to '一覧へ', owner_subscriptions_path %>
+<div class="mt-5 mb-8">
+  <%= link_to '詳細', owner_subscription_path(@subscription, owner_id: @owner.id), class: "btn btn-brand" %>
+  <%= link_to '一覧へ', owner_subscriptions_path, class: "btn btn-brand" %>
+</div>

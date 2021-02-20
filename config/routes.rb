@@ -15,9 +15,8 @@ Rails.application.routes.draw do
   get 'company_profile' => "subscriptions#company_profile", as: :company_profile#会社概要
 
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions#経営者のプラン内容
-  get 'subscriptions/user_plans/user/:id', to: 'subscriptions#user_plans', as: :user_plans#利用者のプラン内容
-  get '/cancel', to: 'subscriptions#cancel'
-  get '/success', to: 'subscriptions#success'
+  get '/cancel', to: 'user_plans#cancel'
+  get '/success', to: 'user_plans#success'
 
   get 'categories/shop_list', to: 'categories#shop_list', as: :shop_list_categories
   get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories#おすすめショップ
@@ -94,54 +93,38 @@ Rails.application.routes.draw do
 
   get 'owners/deleted_owners'#論理削除された経営者
   resources :owners do
-        get :search, on: :collection #オーナーの名前であいまい検索 追加分
-        get 'owner_edit', on: :member##個人情報編集
-        patch 'owner_edit_update', on: :member#個人情報編集
-        post "thanks", on: :member#会員登録完了通知画面
-        get 'owner_account', on: :member#アカウントページ
-        get 'user_email', on: :member#経営者から利用者へメール作成
-        post 'to_user_email', on: :member
-        patch 'update_deleted_owners', on: :member#アカウントページ論理削除
-        resources :subscriptions do
-          get 'edit_recommend', on: :member#おすすめ追加よう
-          patch 'update_recommend', on: :member#おすすめ店舗に加えるたり外すよう
-          resources :images
-        end
+    get :search, on: :collection #オーナーの名前であいまい検索 追加分
+    member do
+      get 'owner_edit' #個人情報編集
+      patch 'owner_edit_update' #個人情報編集
+      post "thanks" #会員登録完了通知画面
+      get 'owner_account' #アカウントページ
+      get 'user_email' #経営者から利用者へメール作成
+      post 'to_user_email' 
+      patch 'update_deleted_owners' #アカウントページ論理削除
+    end
+    resources :subscriptions do
+      # resources :images
+      member do
+        get 'edit_recommend' #おすすめ追加よう
+        patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
+      end
+    end
   end
   resources :maps
-  resources :categories, only: :index do
+  resources :categories, only: %i(index) do
       get 'like_lunch', on: :member
-      get 'washoku', on: :collection
-      get 'teishoku', on: :collection
-      get 'ramen', on: :collection
-      get 'cafe', on: :collection
-      get 'pan', on: :collection
-      get 'izakaya', on: :collection
-      get 'itarian', on: :collection
-      get 'chuuka', on: :collection
-      get 'french', on: :collection
-      get 'hawaian', on: :collection
-      get 'tonanajia', on: :collection
-      get 'bar', on: :collection
-      get 'cake', on: :collection
-      get 'yakiniku', on: :collection
-      get 'yoshoku', on: :collection
-      get 'curry', on: :collection
-      get 'humburger', on: :collection
-      get 'kankokuryori', on: :collection
-      get 'restaurant', on: :collection
-      get 'okonomiyaki', on: :collection
-      get 'nabe', on: :collection
-      get 'sweets', on: :collection
-      get 'karaage', on: :collection
-      get 'gyouza', on: :collection
-      get 'don', on: :collection
-      get 'udon', on: :collection
-      get 'soba', on: :collection
-      get 'other', on: :collection
   end
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
+    resources :user_plans do
+      get "confirm", to: "user_plans#confirm"
+      get "update_confirm", to: "user_plans#update_confirm"
+      get 'new', to: "user_plans#new", as: 'plans_new' #利用者のプラン内容
+      get "edit", to: "user_plans#edit", as: 'plans_edit'
+      patch "update", to: "user_plans#update", as: 'plans_update'
+      delete "destroy", to: "user_plans#destroy", as: 'plans_destroy'
+    end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
     get 'user_edit', on: :member#
     patch 'user_edit_update', on: :member#
@@ -151,11 +134,15 @@ Rails.application.routes.draw do
       get 'user_account', on: :member#アカウントページ
       patch 'update_deleted_users', on: :member#アカウントページ論理削除
   end
-  resources :shops, only: :new
   resources :questions#よくある質問
   post 'questions/:id/edit', to: 'questions#edit', as: :edit_questions #よくある質問編集
   resources :megurumereviews
   resources :instablogs
-
+  resource :user_plan, except: %i(create show) do
+    collection do
+      get "confirm", to: "user_plans#confirm"
+      get "update_confirm", to: "user_plans#update_confirm"
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
