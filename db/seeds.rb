@@ -112,14 +112,13 @@ Question.create!(detail: "巡グルメを解約したいです手順を教えて
 
 puts "Question Created"
 
-2.times do |n|
-  Subscription.create!(
-    owner_id: 1,
-    name: "サンプル飲食店#{n}",
-    title: "サンプルタイトル#{n}",
-    category_name: "和食"
-  )
-end
+# 2.times do |n|
+#   Subscription.create!(
+#     owner_id: 1,
+#     name: "サンプル飲食店#{n}",
+#     title: "サンプルタイトル#{n}",
+#   )
+# end
 
 Subscription.create!(
   owner_id: 1,

@@ -7,7 +7,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @subscriptions = Subscription.all if @category.name == Subscription.category_name
   end
 
   def create
@@ -50,7 +49,6 @@ class CategoriesController < ApplicationController
 
   def like_lunch
     @subscriptions = @category.subscriptions
-    # if @category.name == Subscription.category_name
   end
 
   def shop_list
@@ -59,118 +57,6 @@ class CategoriesController < ApplicationController
 
   def recommend
     @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
-  end
-
-  def washoku
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "和食")
-  end
-
-  def teishoku
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "定食屋")
-  end
-
-  def ramen
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "らーめん")
-  end
-
-  def cafe
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "カフェ")
-  end
-
-  def pan
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "パン屋")
-  end
-
-  def izakaya
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "居酒屋")
-  end
-
-  def itarian
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "イタリアン")
-  end
-
-  def chuuka
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "中華")
-  end
-
-  def french
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "フレンチ")
-  end
-
-  def hawaian
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "ハワイアン")
-  end
-
-  def tonanajia
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "東南アジア料理")
-  end
-
-  def bar
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "BAR")
-  end
-
-  def cake
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "ケーキ")
-  end
-
-  def yakiniku
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "焼肉")
-  end
-
-  def yoshoku
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "洋食")
-  end
-
-  def curry
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "カレー")
-  end
-
-  def humburger
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "バーガー")
-  end
-
-  def kankokuryori
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "韓国料理")
-  end
-
-  def restaurant
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "レストラン")
-  end
-
-  def okonomiyaki
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "お好み焼き")
-  end
-
-  def nabe
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "鍋")
-  end
-
-  def sweets
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "スイーツ")
-  end
-
-  def karaage
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "唐揚げ")
-  end
-
-  def gyouza
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "餃子")
-  end
-
-  def don
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "丼モノ")
-  end
-
-  def udon
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "うどん")
-  end
-
-  def soba
-    @subscriptions = Subscription.order("RANDOM()").where(category_genre: "そば")
-  end
-
-  def other
-    @subscriptions = Subscription.order("RANDOM()").where(category_name: "その他")
   end
 
   private
