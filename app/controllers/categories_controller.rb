@@ -49,6 +49,7 @@ class CategoriesController < ApplicationController
 
   def shop_list
     @subscriptions = Subscription.all
+    @private_stores = PrivateStore.all
   end
 
   def recommend
@@ -58,115 +59,143 @@ class CategoriesController < ApplicationController
   end
 
   def washoku
-    @subscriptions = Subscription.order("RAND()").where(category_name: "和食")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 1)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 1)
   end
 
   def teishoku
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "定食屋")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 9)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 9)
   end
 
   def ramen
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "らーめん")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 2)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 2)
   end
 
   def cafe
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "カフェ")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 1)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 1)
   end
 
   def pan
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "パン屋")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 3)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 3)
   end
 
   def izakaya
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "居酒屋")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 5)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 5)
   end
 
   def itarian
-    @subscriptions = Subscription.order("RAND()").where(category_name: "イタリアン")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 4)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 4)
   end
 
   def chuuka
-    @subscriptions = Subscription.order("RAND()").where(category_name: "中華")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 3)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 3)
   end
 
   def french
-    @subscriptions = Subscription.order("RAND()").where(category_name: "フレンチ")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 5)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 5)
   end
 
   def hawaian
-    @subscriptions = Subscription.order("RAND()").where(category_name: "ハワイアン")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 6)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 6)
   end
 
   def tonanajia
-    @subscriptions = Subscription.order("RAND()").where(category_name: "東南アジア料理")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 7)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 7)
   end
 
   def bar
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "BAR")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 6)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 6)
   end
 
   def cake
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "ケーキ")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 7)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 7)
   end
 
   def yakiniku
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "焼肉")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 8)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 8)
   end
 
   def yoshoku
-    @subscriptions = Subscription.order("RAND()").where(category_name: "洋食")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 2)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 2)
   end
 
   def curry
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "カレー")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 4)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 4)
   end
 
   def humburger
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "バーガー")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 10)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 10)
   end
 
   def kankokuryori
-    @subscriptions = Subscription.order("RAND()").where(category_name: "韓国料理")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 10)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 10)
   end
 
   def restaurant
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "レストラン")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 11)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 11)
   end
 
   def okonomiyaki
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "お好み焼き")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 12)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 12)
   end
 
   def nabe
-    @subscriptions = Subscription.order("RAND()").where(category_name: "鍋")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 8)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 8)
   end
 
   def sweets
-    @subscriptions = Subscription.order("RAND()").where(category_name: "スイーツ")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 11)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 11)
   end
 
   def karaage
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "唐揚げ")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 13)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 13)
   end
 
   def gyouza
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "餃子")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 14)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 14)
   end
 
   def don
-    @subscriptions = Subscription.order("RAND()").where(category_name: "丼モノ")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 9)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 9)
   end
 
   def udon
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "うどん")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 15)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 15)
   end
 
   def soba
-    @subscriptions = Subscription.order("RAND()").where(category_genre: "そば")
+    @subscriptions = Subscription.order("RAND()").where(category_genre: 16)
+    @private_stores = PrivateStore.order("RAND()").where(category_genre: 16)
   end
 
   def other
-    @subscriptions = Subscription.order("RAND()").where(category_name: "その他")
+    @subscriptions = Subscription.order("RAND()").where(category_name: 12)
+    @private_stores = PrivateStore.order("RAND()").where(category_name: 12)
   end
 
   private
