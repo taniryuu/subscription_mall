@@ -164,17 +164,14 @@ Subscription.create!(
 puts "Subscription Created"
 
 Category.create!(name: "和食",
-                  subscription_id: 1,
                   image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"
                 )
 
 Category.create!(name: "定食",
-                  subscription_id: 2,
                   image_category: "https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4="
                 )
 
 Category.create!(name: "らーめん",
-                  subscription_id: 3,
                   image_category: "https://cdn.pixabay.com/photo/2018/03/15/10/33/bars-ramen-in-saigon-3227779__480.jpg"
                 )
 Category.create!(name: "カフェ",

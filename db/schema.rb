@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210213080214) do
+ActiveRecord::Schema.define(version: 20210218075622) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20210213080214) do
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_categories_on_owner_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "category_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "category_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_subscriptions_on_category_id"
+    t.index ["subscription_id"], name: "index_category_subscriptions_on_subscription_id"
   end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -287,6 +296,8 @@ ActiveRecord::Schema.define(version: 20210213080214) do
   add_foreign_key "blogs", "admins"
   add_foreign_key "categories", "owners"
   add_foreign_key "categories", "users"
+  add_foreign_key "category_subscriptions", "categories"
+  add_foreign_key "category_subscriptions", "subscriptions"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
   add_foreign_key "images", "blogs"
