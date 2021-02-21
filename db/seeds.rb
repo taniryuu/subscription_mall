@@ -110,10 +110,36 @@ Question.create!(detail: "巡グルメを解約したいです手順を教えて
 
 puts "Question Created"
 
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 1,
+                              subscription_id: 1,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 2,
+                              subscription_id: 1,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 3,
+                              subscription_id: 2,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                            category_id: 4,
+                            subscription_id: 2,
+                          )
+CategorySubscription.create!(owner_id: 1,
+                            category_id: 5,
+                            subscription_id: 3,
+                          )
+CategorySubscription.create!(owner_id: 1,
+                          category_id: 6,
+                          subscription_id: 3,
+                        )
+puts "CategorySubscription Created"
+
 Subscription.create!(
   owner_id: 1,
-  category_id: 1,
-  name: "サンプル飲食店1",
+  # category_id: 1,
+  name: "炭焼牛タン　弁慶　淵野辺店",
   title: "サンプルタイトル1",
   shop_introduction: "焼きたて",
   detail: "食べ放題",
@@ -124,13 +150,13 @@ Subscription.create!(
   image_subscription3: "udon.jpeg",
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
-  address: "東京都渋谷区富ヶ谷1丁目",
+  address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
 )
 
 Subscription.create!(
   owner_id: 1,
-  category_id: 2,
-  name: "サンプル飲食店2",
+  # category_id: 2,
+  name: "炭焼牛タン　弁慶　古淵店",
   title: "サンプルタイトル2",
   shop_introduction: "焼きたて2",
   detail: "食べ放題2",
@@ -141,13 +167,13 @@ Subscription.create!(
   image_subscription3: "udon.jpeg",
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
-  address: "東京都渋谷区富ヶ谷2丁目",
+  address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
 )
 
 Subscription.create!(
   owner_id: 1,
-  category_id:  [ 3, 8],
-  name: "サンプル飲食店3",
+  # category_id:  3,
+  name: "個室居酒屋　たすき　相模原店",
   title: "サンプルタイトル3",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
@@ -158,8 +184,94 @@ Subscription.create!(
   image_subscription3: "udon.jpeg",
   image_subscription4: "soba.jpeg",
   image_subscription5: "soba.jpeg",
-  address: "東京都渋谷区富ヶ谷3丁目",
+  address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
 )
+
+Subscription.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "個室居酒屋　たすき　天王町駅前店",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "25,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
+)
+
+Subscription.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "25,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
+)
+
+Subscription.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 矢部店",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "25,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
+)
+
+Subscription.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "木村屋本店　 町田駅前店",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "25,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "東京都町田市原町田6-13-15",
+)
+
+Subscription.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "北海道BEER&BBQ 小田急町田",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "25,000",
+  image_subscription: "karaage.jpeg",
+  image_subscription2: "gyouza.jpeg",
+  image_subscription3: "udon.jpeg",
+  image_subscription4: "soba.jpeg",
+  image_subscription5: "soba.jpeg",
+  address: "東京都町田市森野１－３９－１　グランドゥールビル　5F",
+)
+
 
 puts "Subscription Created"
 

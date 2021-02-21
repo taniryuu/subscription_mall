@@ -9,13 +9,19 @@
       <div class="col-12">
         <div class="view zoom z-depth-1 rounded mb-4">
               <% if @subscription.image_subscription.present? %>
-                <%= image_tag @subscription.image_subscription_url ,width: '100%' %>
+                <%= image_tag @sub.image_subscription_url ,width: '100%' %>
               <% else %>
                 <p></p>
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
-                <span class="badge badge-success"><%= @subscription.category.name %></span>
+                <% @subscription.category_subscriptions.each do |category_subscription| %>
+                  <span class="badge badge-success">
+                  <%= category_subscription.category.name %>
+                <% else %>
+                  <p></p>
+                  </span>
+                <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.owner.address.present? %>

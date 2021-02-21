@@ -41,20 +41,16 @@ ActiveRecord::Schema.define(version: 20210218075622) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.bigint "user_id"
-    t.bigint "owner_id"
-    t.integer "subscription_id"
     t.string "image_category"
     t.string "search"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_categories_on_owner_id"
-    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "category_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "category_id"
-    t.bigint "subscription_id"
+    t.integer "category_id"
+    t.integer "subscription_id"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_subscriptions_on_category_id"
@@ -216,7 +212,7 @@ ActiveRecord::Schema.define(version: 20210218075622) do
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
-    t.integer "category_id"
+    t.integer "category_subscriptions_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
   end
 
@@ -294,9 +290,6 @@ ActiveRecord::Schema.define(version: 20210218075622) do
   end
 
   add_foreign_key "blogs", "admins"
-  add_foreign_key "categories", "owners"
-  add_foreign_key "categories", "users"
-  add_foreign_key "category_subscriptions", "categories"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
   add_foreign_key "images", "blogs"

@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
+  before_action :set_subscription, only: [:index, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend]
   before_action :set_category, only: [:show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
 
@@ -8,10 +8,19 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions.json
   def index
     @subscriptions = @owner.subscriptions
-    @subscription = Subscription.find_by(params[:category_id])
+  end
+
+  def show
+    gon.subscriptions = @subscription
+    @reviews = Review.all
+    @ticket = Ticket.includes(:user)
   end
 
   def like_lunch
+    @subscription = Subscription.find(params[:subscription_id])
+  end
+
+  def owner_subscriptions
     @subscription = Subscription.find(params[:subscription_id])
   end
 
@@ -40,11 +49,6 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
-  def show
-    gon.subscriptions = @subscription
-    @reviews = Review.all
-    @ticket = Ticket.includes(:user)
-  end
 
   def plan_description
   end
@@ -73,7 +77,7 @@ class SubscriptionsController < ApplicationController
                                       qr_image: params[:subscription][:qr_image],
                                       subscription_detail: params[:subscription][:subscription_detail],
                                       image_subscription: params[:subscription][:image_subscription],
-                                      category_id: params[:subscription][{ :category_ids=> [] }],
+                                      category_ids: params[:subscription][{ :category_ids=> [] }],
                                       price: params[:subscription][:price],
                                       owner_id: params[:subscription][:owner_id]
                                     )
@@ -149,7 +153,7 @@ class SubscriptionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
-      @subscription = Subscription.find(params[:id])
+      @subscription = Subscription.find_by(params[:id])
     end
 
     def set_owner
@@ -162,10 +166,41 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:name, :title, :address, :shop_introduction, :detail, :qr_image, :image_subscription, :image_subscription2, :image_subscription3, :image_subscription4, :image_subscription5, :sub_image, :sub_image2, :sub_image3, :sub_image4, :sub_image5, :sub_image6, :sub_image7, :sub_image8, :sub_image9, :sub_image10, :sub_image11, :sub_image12, :image_subscription_id, :subscription_detail, :price, :owner_id, :category_id)
+      params.require(:subscription).permit(:name,
+                                            :title, 
+                                            :address, 
+                                            :shop_introduction, 
+                                            :detail, :qr_image, 
+                                            :image_subscription, 
+                                            :image_subscription2, 
+                                            :image_subscription3, 
+                                            :image_subscription4, 
+                                            :image_subscription5, 
+                                            :sub_image, 
+                                            :sub_image2, 
+                                            :sub_image3, 
+                                            :sub_image4, 
+                                            :sub_image5, 
+                                            :sub_image6, 
+                                            :sub_image7, 
+                                            :sub_image8, 
+                                            :sub_image9, 
+                                            :sub_image10, 
+                                            :sub_image11, 
+                                            :sub_image12, 
+                                            :image_subscription_id, 
+                                            :subscription_detail, 
+                                            :price, 
+                                            :owner_id, 
+                                            :category_id
+                                          )
     end
 
     def recommend_params
+      params.require(:subscription).permit(:recommend, :owner_id)
+    end
+
+    def favorite_params
       params.require(:subscription).permit(:recommend, :owner_id)
     end
 
