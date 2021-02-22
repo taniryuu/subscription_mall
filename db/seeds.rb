@@ -198,9 +198,6 @@ Category.create!(name: "ハワイアン",
 Category.create!(name: "東南アジア",
                 image_category: "https://media.gettyimages.com/photos/nasi-goreng-famous-indonesian-food-picture-id1187617921?k=6&m=1187617921&s=612x612&w=0&h=7eNOTVc4tmUj-IWizG2qTLB01mEus84XqlLL9H0ybtk="
                 )
-Category.create!(name: "バー",
-                image_category: "https://media.gettyimages.com/photos/bar-picture-id183760198?k=6&m=183760198&s=612x612&w=0&h=w2Yn7MIx2H_VWiV8A4RUrqB_FJsYwgs9hSE4W8WCB4o="
-                )
 Category.create!(name: "ケーキ",
                 image_category: "https://cdn.pixabay.com/photo/2018/05/01/18/21/eclair-3366430__480.jpg"
                 )
@@ -219,9 +216,6 @@ Category.create!(name: "ハンバーガー",
 Category.create!(name: "韓国料理",
                 image_category: "https://media.gettyimages.com/photos/closeup-of-food-served-in-containers-on-table-picture-id946283686?k=6&m=946283686&s=612x612&w=0&h=mOwQbGo_7NxPAtPigtqOmZ5boZqWXkajmKzebPt_Qak="
                 )
-Category.create!(name: "レストラン",
-                image_category: "https://media.gettyimages.com/photos/cafebar-in-moscow-picture-id1158221681?k=6&m=1158221681&s=612x612&w=0&h=JykZfmjm8VJtSMBVstQP3UP4Vp0Of7t-VokP63NSnXo="
-                )
 Category.create!(name: "お好み焼き",
                 image_category: "istockphoto-95396899-170667a.jpg"
                 )
@@ -234,17 +228,8 @@ Category.create!(name: "スイーツ",
 Category.create!(name: "唐揚げ",
                 image_category: "karaage.jpeg"
                 )
-Category.create!(name: "餃子",
-                image_category: "gyouza.jpeg"
-                )
 Category.create!(name: "丼モノ",
                 image_category: "don.jpeg"
-                )
-Category.create!(name: "うどん",
-                image_category: "udon.jpeg"
-                )
-Category.create!(name: "そば",
-                image_category: "soba.jpeg"
                 )
 Category.create!(name: "その他",
                 image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
