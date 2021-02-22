@@ -7,16 +7,15 @@ class CategoriesController < ApplicationController
 
   def like_lunch
     @subscriptions = Category.find(params[:id])
-    @subscription = Category.find(params[:id])
+    @subscription = Subscription.find_by(params[:id])
+    @owner = Owner.find(params[:id])
   end
 
   def show
-    @subscriptions = Subscription.all if @category.name == Subscription.category_name
   end
 
   def create
     @category = Category.new(category_params)
-
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }

@@ -208,12 +208,15 @@ ActiveRecord::Schema.define(version: 20210218075622) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.bigint "owner_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
+    t.boolean "favorite", default: false
     t.integer "category_subscriptions_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "suports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -303,6 +306,7 @@ ActiveRecord::Schema.define(version: 20210218075622) do
   add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"
   add_foreign_key "subscriptions", "owners"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
   add_foreign_key "ticket_logs", "tickets"

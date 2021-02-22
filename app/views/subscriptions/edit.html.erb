@@ -131,8 +131,8 @@
 =end%>
 
   <div class="field">
-    <%= form.label :category_id %> <span class="must">必須</span><br/>
-    <%= form.collection_check_boxes(:categories, Category.all, :id, :name)  do |t| %>
+    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
       <% t.label   { t.check_box + t.text } %>
     <% end %>
   </div>

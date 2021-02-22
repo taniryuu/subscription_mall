@@ -1,13 +1,21 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:index, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
+  before_action :set_subscription, only: [:index, :update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend]
-  before_action :set_category, only: [:show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
+  before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
+  before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
 
   # GET /subscriptions
   # GET /subscriptions.json
   def index
     @subscriptions = @owner.subscriptions
+    # @sub = @subscription.categories
+    # @category = @subscription.categories
+  end
+
+  def owner_subscriptions
+    @subscriptions = @owner.subscriptions
+    @subscription = Subscription.find(params[:id])
   end
 
   def show
@@ -20,10 +28,6 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find(params[:subscription_id])
   end
 
-  def owner_subscriptions
-    @subscription = Subscription.find(params[:subscription_id])
-  end
-
   def list
     @subscriptions = Subscription.includes(:owner)
   end
@@ -32,10 +36,10 @@ class SubscriptionsController < ApplicationController
     @subscriptions = Subscription.includes(:owner)
   end
 
-  def edit_recommend
+  def edit_recommend#おすすめ追加
   end
 
-  def update_recommend
+  def update_recommend#おすすめ追加
     if @subscription.update(recommend_params)
       if @subscription.recommend == true
         @subscription.recommend = true
@@ -45,6 +49,26 @@ class SubscriptionsController < ApplicationController
       end
     redirect_to recommend_categories_url
     end
+  end
+
+  def favorite
+    @subscriptions = Subscription.where(favorite: true, user_id: @user.id)
+  end
+
+  def edit_favorite
+  end
+
+  def update_favorite
+    if @subscription.favorite == false
+      if @subscription.update(favorite: true)
+        flash[:success] = "お気に入り店舗に加えました。"
+      end
+    elsif @subscription.favorite == true
+      if @subscription.update(favorite: false)
+        flash[:success] = "お気に入り店舗に加えました。"
+      end
+    end
+    redirect_to user_account_user_url(current_user)
   end
 
   # GET /subscriptions/1
@@ -69,21 +93,10 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions.json
   def create
     @categories = Category.all
-    @subscription = Subscription.new(name: params[:subscription][:name],
-                                      address: params[:subscription][:address],
-                                      shop_introduction: params[:subscription][:shop_introduction],
-                                      title: params[:subscription][:title],
-                                      detail: params[:subscription][:detail],
-                                      qr_image: params[:subscription][:qr_image],
-                                      subscription_detail: params[:subscription][:subscription_detail],
-                                      image_subscription: params[:subscription][:image_subscription],
-                                      category_ids: params[:subscription][{ :category_ids=> [] }],
-                                      price: params[:subscription][:price],
-                                      owner_id: params[:subscription][:owner_id]
-                                    )
+    @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to owner_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
+        format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -97,34 +110,7 @@ class SubscriptionsController < ApplicationController
   def update
     @categories = Category.all
     respond_to do |format|
-      if @subscription = Subscription.update(name: params[:subscription][:name],
-                                              address: params[:subscription][:address],
-                                              shop_introduction: params[:subscription][:shop_introduction],
-                                              title: params[:subscription][:title],
-                                              detail: params[:subscription][:detail],
-                                              qr_image: params[:subscription][:qr_image],
-                                              image_subscription: params[:subscription][:image_subscription],
-                                              image_subscription2: params[:subscription][:image_subscription2],
-                                              image_subscription3: params[:subscription][:image_subscription3],
-                                              image_subscription4: params[:subscription][:image_subscription4],
-                                              image_subscription5: params[:subscription][:image_subscription5],
-                                              subscription_detail: params[:subscription][:subscription_detail],
-                                              sub_image: params[:subscription][:sub_image],
-                                              sub_image2: params[:subscription][:sub_image2],
-                                              sub_image3: params[:subscription][:sub_image3],
-                                              sub_image4: params[:subscription][:sub_image4],
-                                              sub_image5: params[:subscription][:sub_image5],
-                                              sub_image6: params[:subscription][:sub_image6],
-                                              sub_image7: params[:subscription][:sub_image7],
-                                              sub_image8: params[:subscription][:sub_image8],
-                                              sub_image9: params[:subscription][:sub_image9],
-                                              sub_image10: params[:subscription][:sub_image10],
-                                              sub_image11: params[:subscription][:sub_image11],
-                                              sub_image12: params[:subscription][:sub_image12],
-                                              category_id: params[:subscription][{ :category_ids=> [] }],
-                                              price: params[:subscription][:price],
-                                              owner_id: params[:subscription][:owner_id]
-                                            )
+      if @subscription.update(subscription_params)
         format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @subscription }
       else
@@ -139,7 +125,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     respond_to do |format|
-      format.html { redirect_to owner_subscriptions_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
+      format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
       format.json { head :no_content }
     end
   end
@@ -153,11 +139,15 @@ class SubscriptionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
-      @subscription = Subscription.find_by(params[:id])
+      @subscription = Subscription.find(params[:id])
     end
 
     def set_owner
       @owner = Owner.find(params[:owner_id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     def set_category
@@ -190,9 +180,9 @@ class SubscriptionsController < ApplicationController
                                             :sub_image12, 
                                             :image_subscription_id, 
                                             :subscription_detail, 
-                                            :price, 
-                                            :owner_id, 
-                                            :category_id
+                                            :price,
+                                            :owner_id,
+                                            { :category_ids=> [] }
                                           )
     end
 
@@ -201,7 +191,7 @@ class SubscriptionsController < ApplicationController
     end
 
     def favorite_params
-      params.require(:subscription).permit(:recommend, :owner_id)
+      params.require(:subscription).permit(:favorite, :user_id)
     end
 
     def map_params

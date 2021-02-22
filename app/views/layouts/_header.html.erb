@@ -35,6 +35,7 @@
             <ul class="navbar-nav">
               <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
+              <li><%= link_to "お気に入り店舗", user_favorite_subscriptions_path(current_user) %></a></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
             </ul>

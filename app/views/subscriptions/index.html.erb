@@ -31,8 +31,6 @@
         <div class="col-sm-2">
           <% @subscription.category_subscriptions.each do |category_subscription| %>
             <%= category_subscription.category.name %>
-          <% else %>
-            <p></p>
           <% end %>
         </div>
         <% if current_admin.present? || current_owner.present? %>

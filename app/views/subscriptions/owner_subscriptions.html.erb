@@ -12,43 +12,33 @@
         <div class="col-sm-2">
           商品タイトル
         </div>
-        <div class="col-sm-2">
-          カテゴリ
-        </div>
   </thead>
 
   <tbody>
-    <% @subscription.category_subscriptions.each do |category_subscription| %>
+    <% @subscriptions.each do |subscription| %>
     <hr class="tool-bar">
       <div class="row">
         <div class="col-sm-2">
-          <%= category_subscription.subscription.name %>
+          <%= subscription.name %>
         </div>
 
         <div class="col-sm-2">
-          <%= category_subscription.subscription.title %>
-        </div>
-        <div class="col-sm-2">
-        <% if category_subscription.subscription.categories.present? %>
-          <%= category_subscription.subscription.categories.name %>
-        <% else %>
-        <p></p>
-        <% end %>
+          <%= subscription.title %>
         </div>
         <% if current_admin.present? || current_owner.present? %>
-          <div class="col-sm-1 tool--item">
-            <%= link_to "instagram投稿", new_instablog_path(subscription_id: category_subscription), class: "btn-gradient-3d-simple" %>
+          <div class="col-sm-2 tool--item">
+            <%= link_to "instagram投稿", new_instablog_path(subscription_id: subscription), class: "btn-gradient-3d-simple" %>
           </div>
         <% end %>
-        <div class="col-sm-1 tool--item">
-          <%= link_to "詳細", owner_subscription_path(category_subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
+        <div class="col-sm-2 tool--item">
+          <%= link_to "詳細", owner_subscription_path(subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
         </div>
         <% if current_admin.present? || current_owner.present? %>
-          <div class="col-sm-1 tool--item">
-            <%= link_to "編集", edit_owner_subscription_path(category_subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
+          <div class="col-sm-2 tool--item">
+            <%= link_to "編集", edit_owner_subscription_path(subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
           </div>
-          <div class="col-sm-1 btn--del">
-            <%= link_to "削除", owner_subscription_path(category_subscription, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+          <div class="col-sm-2 btn--del">
+            <%= link_to "削除", owner_subscription_path(subscription, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
           </div>
         <% end %>
       </div>
