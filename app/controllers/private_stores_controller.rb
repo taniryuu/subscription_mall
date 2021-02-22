@@ -61,6 +61,12 @@ class PrivateStoresController < ApplicationController
     @private_store = PrivateStore.new(private_store_params)
     respond_to do |format|
       if @private_store.save
+	if params[:private_store][:qr_image]
+          File.binwrite("public/private_store_images/#{@private_store.id}.PNG", params[:private_store][:qr_image].read)
+          @private_store.update(qr_image: "#{@private_store.id}.PNG" )
+        else
+          flash[:danger] = "QRコードを指定できませんでした。"
+        end
         format.html { redirect_to owner_private_stores_url(@private_store, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @private_store }
       else
@@ -75,6 +81,12 @@ class PrivateStoresController < ApplicationController
   def update
     respond_to do |format|
       if @private_store.update(private_store_params)
+	if params[:private_store][:qr_image]
+          File.binwrite("public/private_store_images/#{@private_store.id}.PNG", params[:private_store][:qr_image].read)
+          @private_store.update(qr_image: "#{@private_store.id}.PNG" )
+        else
+          flash[:danger] = "QRコードを指定できませんでした。"
+        end
         format.html { redirect_to owner_private_store_url(@private_store, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @private_store }
       else

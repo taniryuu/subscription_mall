@@ -1,54 +1,54 @@
 <div class="container my-5">
   <section>
     <style>
-    	.rgba-black-gradient {
+      .rgba-black-gradient {
       	background: linear-gradient(to top, rgba(226, 230, 224) 55%,rgba(0,0,0,0) 90%);
-    	}
+      }
     </style>
     <div class="row">
       <div class="col-12">
         <div class="view zoom z-depth-1 rounded mb-4">
-              <% if @subscription.image_subscription.present? %>
-                <%= image_tag @subscription.image_subscription_url ,width: '100%', height: "300" %>
-              <% else %>
-                <p></p>
-              <% end %>
-            <div class="mask rgba-black-gradient d-md-flex align-items-end">
-              <div class="text-bottom white-text p-4">
-                <span class="badge badge-success"><%= @subscription.category_name %></span>
-                <span class="badge badge-success"><%= @subscription.category_genre %></span>
-                <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
-                <p class="font-weight-normal mb-2">
-                  <% if @subscription.owner.address.present? %>
-                    住所：<%= @subscription.owner.address %>
-                  <% else %>
-                    <p></p>
-                  <% end %> | 
-                  <% if @subscription.owner.phone_number.present? %>
-                    テイクアウトTEL：<%= @subscription.owner.phone_number %>
-                  <% else %>
-                    <p></p>
-                  <% end %>
-              <% if @payment.present? %>
-                <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
-                <%= link_to "サブスクを解除する", plans_destroy_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
-                <%= link_to "プランを変更する", plans_edit_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
-              <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める", plans_new_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
-              <% elsif current_owner.present? %>
-                <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
-              <% elsif current_admin.present? %>
-                <% if @subscription.recommend == true %>
-                  <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
-                <% elsif @subscription.recommend == false %>
-                  <%= link_to "おすすめ店舗に加える", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
-                <% end %>
-              <% else %>
-                <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple" %>
-              <% end %>
-              </div>
-            </div>
-          </a>
+           <% if @subscription.image_subscription.present? %>
+             <%= image_tag @subscription.image_subscription ,width: '100%', height: "300" %>
+           <% else %>
+             <p></p>
+           <% end %>
+           <div class="mask rgba-black-gradient d-md-flex align-items-end">
+             <div class="text-bottom white-text p-4">
+               <span class="badge badge-success"><%= @subscription.category_name %></span>
+               <span class="badge badge-success"><%= @subscription.category_genre %></span>
+               <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
+               <p class="font-weight-normal mb-2">
+                 <% if @subscription.owner.address.present? %>
+                   住所：<%= @subscription.owner.address %>
+                 <% else %>
+                   <p></p>
+                 <% end %> | 
+                 <% if @subscription.owner.phone_number.present? %>
+                   テイクアウトTEL：<%= @subscription.owner.phone_number %>
+                 <% else %>
+                   <p></p>
+                 <% end %>
+                 <% if @payment.present? %>
+                   <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                   <%= link_to "サブスクを解除する", plans_destroy_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                   <%= link_to "プランを変更する", plans_edit_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                 <% elsif current_user.present? %>
+                   <%= link_to "サブスクを始める", plans_new_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                 <% elsif current_owner.present? %>
+                   <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
+                 <% elsif current_admin.present? %>
+                   <% if @subscription.recommend == true %>
+                     <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
+                   <% elsif @subscription.recommend == false %>
+                     <%= link_to "おすすめ店舗に加える", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
+                   <% end %>
+                 <% else %>
+                   <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple" %>
+	         <% end %>
+	       </p>         
+             </div>
+           </div>
         </div>
       </div>
     </div>
@@ -65,28 +65,28 @@
           <div class="carousel-inner text-center text-md-left" role="listbox">
             <div class="carousel-item active">
               <% if @subscription.image_subscription2.present? %>
-                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription2, class: "img-fluid" %>
               <% else %>
               <p></p>
               <% end %>
             </div>
             <div class="carousel-item">
               <% if @subscription.image_subscription3.present? %>
-                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription3, class: "img-fluid" %>
               <% else %>
               <p></p>
               <% end %>
             </div>
             <div class="carousel-item">
               <% if @subscription.image_subscription4.present? %>
-                  <%= image_tag @subscription.image_subscription4_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription4, class: "img-fluid" %>
               <% else %>
               <p></p>
               <% end %>
             </div>
             <div class="carousel-item">
               <% if @subscription.image_subscription5.present? %>
-                  <%= image_tag @subscription.image_subscription5_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.image_subscription5, class: "img-fluid" %>
               <% else %>
               <p></p>
               <% end %>
@@ -108,84 +108,84 @@
              <div class="row">
               <figure class="col-md-4">
                 <% if @subscription.sub_image.present? %>
-                    <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image2.present? %>
-                    <%= image_tag @subscription.sub_image2_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image2, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image3.present? %>
-                    <%= image_tag @subscription.sub_image3_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image3, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image4.present? %>
-                    <%= image_tag @subscription.sub_image4_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image4, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image5.present? %>
-                    <%= image_tag @subscription.sub_image5_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image5, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image6.present? %>
-                    <%= image_tag @subscription.sub_image6_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image6, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image7.present? %>
-                    <%= image_tag @subscription.sub_image7_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image7, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image8.present? %>
-                    <%= image_tag @subscription.sub_image8_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image8, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image9.present? %>
-                    <%= image_tag @subscription.sub_image9_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image9, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image10.present? %>
-                    <%= image_tag @subscription.sub_image10_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image10, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image11.present? %>
-                    <%= image_tag @subscription.sub_image11_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image11, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image12.present? %>
-                    <%= image_tag @subscription.sub_image12_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image12, class: "img-fluid" %>
                 <% else %>
                 <p></p>
                 <% end %>

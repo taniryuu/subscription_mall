@@ -135,7 +135,7 @@ Subscription.create!(
   detail: "食べ放題2",
   subscription_detail: "神奈川",
   category_name: "和食",
-  price: "12,000",
+  price: "9,000",
   image_subscription: "karaage.jpeg",
   image_subscription2: "gyouza.jpeg",
   image_subscription3: "udon.jpeg",
