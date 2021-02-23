@@ -23,13 +23,12 @@ class User < ApplicationRecord
   validates_format_of :email, presence: true, with: Devise.email_regexp, if: :will_save_change_to_email?
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create # 6..128
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
-  
   validate :user_password_regex, on: :create
   
-  # バリデーションメソッド
+  # パスワードバリデーションメソッド
   def user_password_regex
     if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i # バリデーションの条件
-      errors.add(:password, "は6以上で、半角英字と半角数字を組み合わせてください。") # エラーメッセージ
+      errors.add(:password, "は6文字以上で、半角英字と半角数字を組み合わせてください。") # エラーメッセージ
     end
   end
 
