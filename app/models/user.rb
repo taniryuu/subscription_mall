@@ -29,7 +29,7 @@ class User < ApplicationRecord
   # バリデーションメソッド
   def user_password_regex
     if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i # バリデーションの条件
-      errors.add(:password, "は6から128文字の長さで、半角英字と半角数字を両方使用してください。") # エラーメッセージ
+      errors.add(:password, "は6以上で、半角英字と半角数字を組み合わせてください。") # エラーメッセージ
     end
   end
 
