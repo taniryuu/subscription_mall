@@ -119,44 +119,44 @@ CategorySubscription.create!(owner_id: 1,
                               subscription_id: 1,
                             )
 CategorySubscription.create!(owner_id: 1,
-                              category_id: 3,
+                              category_id: 1,
                               subscription_id: 2,
                             )
 CategorySubscription.create!(owner_id: 1,
-                            category_id: 4,
+                            category_id: 2,
                             subscription_id: 2,
                           )
 CategorySubscription.create!(owner_id: 1,
-                            category_id: 5,
+                            category_id: 3,
                             subscription_id: 3,
                           )
 CategorySubscription.create!(owner_id: 1,
-                          category_id: 6,
+                          category_id: 4,
                           subscription_id: 3,
                         )
 
 CategorySubscription.create!(owner_id: 1,
-                              category_id: 7,
+                              category_id: 3,
                               subscription_id: 4,
                             )
 CategorySubscription.create!(owner_id: 1,
-                              category_id: 8,
+                              category_id: 4,
                               subscription_id: 4,
                             )
 CategorySubscription.create!(owner_id: 1,
-                              category_id: 9,
+                              category_id: 5,
                               subscription_id: 5,
                             )
 CategorySubscription.create!(owner_id: 1,
-                            category_id: 10,
+                            category_id: 6,
                             subscription_id: 5,
                           )
 CategorySubscription.create!(owner_id: 1,
-                            category_id: 11,
+                            category_id: 5,
                             subscription_id: 6,
                           )
 CategorySubscription.create!(owner_id: 1,
-                          category_id: 12,
+                          category_id: 6,
                           subscription_id: 6,
                         )
 CategorySubscription.create!(owner_id: 1,

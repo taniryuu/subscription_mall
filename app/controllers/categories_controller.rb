@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
-    @subscriptions = Category.find(params[:id])
+    @categories = Category.find(params[:id])
     @subscription = Subscription.find_by(params[:id])
     @owner = Owner.find(params[:id])
   end

@@ -43,11 +43,6 @@
                 <% end %>
               <% elsif current_user.present? %>
                 <%= link_to "サブスクを始める", new_user_plan_path, class: "btn-gradient-3d-simple" %>
-                <% if @subscription.favorite == true %>
-                  <%= link_to "お気に入りから削除する", user_update_favorite_path(current_user.id), method: :patch, class: "btn-gradient-3d-simple" %>
-                <% elsif @subscription.favorite == false %>
-                  <%= link_to "お気に入りに追加", user_update_favorite_path(current_user.id), method: :patch, class: "btn-gradient-3d-simple" %>
-                <% end %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_subscriptions_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
                 <%= link_to "サブスク編集", edit_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>

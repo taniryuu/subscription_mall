@@ -127,9 +127,9 @@ Rails.application.routes.draw do
       delete "destroy", to: "user_plans#destroy", as: 'plans_destroy'
     end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
-    get 'subscriptions/:id/edit_favorite', to: "subscriptions#edit_favorite", as: :edit_favorite#お気に入り店舗に加えるたり外すよう
-    patch 'subscriptions/:id/update_recommend', to: "subscriptions#update_favorite", as: :update_favorite #お気に入り店舗に加えるたり外すよう
-    get 'subscriptions/favorite', to: 'subscriptions#favorite', as: :favorite_subscriptions#おすすめショップ
+    # get 'subscriptions/:id/edit_favorite', to: "subscriptions#edit_favorite", as: :edit_favorite#お気に入り店舗に加えるたり外すよう
+    # patch 'subscriptions/:id/update_recommend', to: "subscriptions#update_favorite", as: :update_favorite #お気に入り店舗に加えるたり外すよう
+    # get 'subscriptions/favorite', to: 'subscriptions#favorite', as: :favorite_subscriptions#おすすめショップ
     get 'user_edit', on: :member#
     patch 'user_edit_update', on: :member#
     resources :tickets#サブスクチケット

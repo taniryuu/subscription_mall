@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:index, :update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend]
-  before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
+  # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
 
@@ -51,25 +51,25 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def favorite
-    @subscriptions = Subscription.where(favorite: true, user_id: @user.id)
-  end
+  # def favorite
+  #   @subscriptions = @user.subscriptions.where(favorite: true, user_id: current_user.id)
+  # end
 
-  def edit_favorite
-  end
+  # def edit_favorite
+  # end
 
-  def update_favorite
-    if @subscription.favorite == false
-      if @subscription.update(favorite: true)
-        flash[:success] = "お気に入り店舗に加えました。"
-      end
-    elsif @subscription.favorite == true
-      if @subscription.update(favorite: false)
-        flash[:success] = "お気に入り店舗に加えました。"
-      end
-    end
-    redirect_to user_account_user_url(current_user)
-  end
+  # def update_favorite
+  #   if @subscription.favorite == false
+  #     if @subscription.update(favorite: true, user_id: current_user.id)
+  #       flash[:success] = "お気に入り店舗に加えました。"
+  #     end
+  #   elsif @subscription.favorite == true
+  #     if @subscription.update(favorite: false, user_id: nil)
+  #       flash[:success] = "お気に入り店舗に加えました。"
+  #     end
+  #   end
+  #   redirect_to user_account_user_url(current_user)
+  # end
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json

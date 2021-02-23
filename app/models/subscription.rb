@@ -1,6 +1,6 @@
 class Subscription < ApplicationRecord
   belongs_to :owner
-  belongs_to :user, optional: true#belongs_toの外部キーのnilを許可
+  # belongs_to :user, optional: true#belongs_toの外部キーのnilを許可
   # belongs_to :category, optional: true#belongs_toの外部キーのnilを許可
   has_many :category_subscriptions, dependent: :destroy
   has_many :categories, through: :category_subscriptions

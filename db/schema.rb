@@ -213,7 +213,6 @@ ActiveRecord::Schema.define(version: 20210218075622) do
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
-    t.boolean "favorite", default: false
     t.integer "category_subscriptions_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
