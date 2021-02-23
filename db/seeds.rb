@@ -34,8 +34,8 @@ puts "User Created"
   password = "password"
   Owner.create!(name: name,
                 email: email,
-                password: password,
-                password_confirmation: password,
+                password: password1,
+                password_confirmation: password1,
                 address: "東京都港区1-#{n}-1"
                )
 end
