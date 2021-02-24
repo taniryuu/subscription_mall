@@ -12,8 +12,9 @@ class UsersController < ApplicationController
 
   def user_edit_update
     if @user.update_attributes(user_params)
+      @user.update!(sms_auth: false) if @user.phone_number_changed?
       flash[:success] = "#{@user.name}様の情報を更新しました。"
-      redirect_to user_account_user_url(current_user)
+      redirect_to @user
     else
       render :user_edit
     end
@@ -79,7 +80,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   private
 
     def set_user
@@ -89,6 +89,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :kana, :email, :phone_number, :address, :password, :password_confirmation)
     end
-
-
 end

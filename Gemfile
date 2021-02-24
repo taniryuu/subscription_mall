@@ -59,6 +59,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'phony_rails' # 電話番号
+gem 'twilio-ruby'
 
 group :development, :test do
   gem 'sqlite3'
