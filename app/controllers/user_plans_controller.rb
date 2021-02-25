@@ -5,6 +5,8 @@ class UserPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
+  before_action :sms_auth_false?, only: %i(new confirm destroy)
+
   # stripe決済成功時
   def success
     current_user.update!(customer_id: current_user.session_id, session_id: "", user_price: current_user.session_price, session_price: "")

@@ -1,0 +1,6 @@
+<%= form_with(url: sms_auth_users_path, local: true) do |f| %>
+  <%= f.label "確認コード" %>
+  <%= f.text_field :secure_code %>
+
+  <%= f.submit "確認" %>
+<% end %>
