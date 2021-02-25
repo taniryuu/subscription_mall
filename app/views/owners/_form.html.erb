@@ -14,9 +14,6 @@
   <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %> <span>(ハイフンなし)連絡がつきやすい番号でお願いします。</span><span class="must">必須</span><br/>
   <%= f.telephone_field :phone_number, class: "form-control" %>
 
-  <%= f.label :store_information %> <span class="must">必須</span><br/>
-  <%= f.text_field :store_information, class: 'form-control' %>
-
   <%= f.label :payee %> <span class="must">必須</span><br/>
   <%= f.text_field :payee, class: 'form-control' %>
 

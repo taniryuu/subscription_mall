@@ -9,8 +9,6 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions.json
   def index
     @subscriptions = @owner.subscriptions
-    # @sub = @subscription.categories
-    # @category = @subscription.categories
   end
 
   def owner_subscriptions

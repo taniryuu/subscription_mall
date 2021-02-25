@@ -57,7 +57,7 @@ class CategoriesController < ApplicationController
   end
 
   def recommend
-    @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
+    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).limit(15)
   end
 
   private
