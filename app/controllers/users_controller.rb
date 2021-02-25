@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       @user.update!(sms_auth: false) if @user.phone_number_changed?
       flash[:success] = "#{@user.name}様の情報を更新しました。"
-      redirect_to @user
+      redirect_to users_url(@user)
     else
       render :user_edit
     end
@@ -48,9 +48,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
-      flash[:success] = "#{@user.name}様の情報を更新しました。"
-      redirect_to users_url
+    if current_user.update_attributes(user_params)
+      flash[:success] = "#{current_user.name}様の情報を更新しました。"
+      redirect_to user_account_user_url(current_user)
     else
       render :edit
     end

@@ -21,10 +21,10 @@
           <th>メールアドレス</th><td><%= @user.email %></td>
         </tr>
         <tr>
-          <th>LINE_ID</th><td><%= @user.line_id %></td>
+          <th>加入プラン</th><td><%= @user.user_price %></td>
         </tr>
         <tr>
-          <th>チケット利用日</th><td><%= @ticket.use_ticket_day if @ticket.present? %></td>
+          <th>最新チケット利用日</th><td><%= @ticket.use_ticket_day if @ticket.present? %></td>
         </tr>
       </table>
       <div class="user-show-btn mt-5 mb-7">
