@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210219170400) do
+ActiveRecord::Schema.define(version: 20210226194701) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -159,6 +159,15 @@ ActiveRecord::Schema.define(version: 20210219170400) do
     t.datetime "updated_at", null: false
     t.text "insta_content"
     t.index ["private_store_id"], name: "index_private_store_instablogs_on_private_store_id"
+  end
+
+  create_table "private_store_user_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "customer_id", null: false
+    t.integer "private_store_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_private_store_user_plans_on_user_id"
   end
 
   create_table "private_stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -345,6 +354,7 @@ ActiveRecord::Schema.define(version: 20210219170400) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_price"
+    t.integer "private_store_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -364,6 +374,7 @@ ActiveRecord::Schema.define(version: 20210219170400) do
   add_foreign_key "interviews", "owners"
   add_foreign_key "megurumereviews", "users"
   add_foreign_key "private_store_instablogs", "private_stores"
+  add_foreign_key "private_store_user_plans", "users"
   add_foreign_key "private_stores", "owners"
   add_foreign_key "reviews", "private_stores"
   add_foreign_key "reviews", "subscriptions"

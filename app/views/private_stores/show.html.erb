@@ -231,7 +231,7 @@
                 <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
               <% elsif current_user.present? %>
                 <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
-                <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store), class: "btn btn-outline-warning btn-rounded" %><br>
+                <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store.id), class: "btn btn-outline-warning btn-rounded" %><br>
                   <% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
                   <% else %>

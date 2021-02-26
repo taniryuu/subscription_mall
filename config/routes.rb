@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'ticket_logs' => "ticket_logs#index", as: :ticket_logs#チケット使用履歴
 
   root 'static_pages#top'#トップページ
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   get 'subscriptions/setup', to: 'subscriptions#setup', as: :setup_subscriptions#経営者のプラン内容
   get '/cancel', to: 'user_plans#cancel'
   get '/success', to: 'user_plans#success'
+  get '/private_store_cancel', to: 'private_store_user_plans#cancel'
+  get '/private_store_success', to: 'private_store_user_plans#success'
 
   get 'categories/shop_list', to: 'categories#shop_list', as: :shop_list_categories
   get 'categories/recommend', to: 'categories#recommend', as: :recommend_categories#おすすめショップ
@@ -26,7 +29,9 @@ Rails.application.routes.draw do
 
   get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
 
+
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
+  get '/private_stores/:private_store_id/private_store_reviews', to: 'reviews#private_store_reviews', as: :private_store_reviews #個人店舗レビューページ
 
   get '/ticket_success', to: 'tickets#ticket_success', as: :ticket_success
   patch 'users/:user_id/tickets/:id/ticket_update_after_second_time', to: 'tickets#ticket_update_after_second_time', as: :ticket_update_after_second_time
@@ -122,12 +127,12 @@ Rails.application.routes.draw do
       member do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
-        get "confirm", to: "user_plans#confirm"
-        get "update_confirm", to: "user_plans#update_confirm"
-        get 'plans_new', to: "user_plans#new", as: 'plans_new' #利用者のプラン内容
-        get "plans_edit", to: "user_plans#edit", as: 'plans_edit'
-        patch "plans_update", to: "user_plans#update", as: 'plans_update'
-        delete "plans_destroy", to: "user_plans#destroy", as: 'plans_destroy'
+	get "confirm", to: "private_store_user_plans#confirm"
+	get "update_confirm", to: "private_store_user_plans#update_confirm"
+	get 'plans_new', to: "private_store_user_plans#new", as: 'plans_new' #利用者のプラン内容
+	get "plans_edit", to: "private_store_user_plans#edit", as: 'plans_edit'
+        patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
+	delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
       end
     end
   end

@@ -63,8 +63,12 @@ class ReviewsController < ApplicationController
 
   def subscription_reviews
     @subscription = Subscription.find_by(params[:subscription_id])
-
   end
+
+  def private_store_reviews
+    @private_store = PrivateStore.find_by(params[:private_store_id])
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

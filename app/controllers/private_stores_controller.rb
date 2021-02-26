@@ -241,10 +241,10 @@ class PrivateStoresController < ApplicationController
     end
 
     def payment_check
-      @payment = current_user.user_plans.find_by(private_store_id: params[:id]) if user_signed_in?
+      @payment = current_user.private_store_user_plans.find_by(private_store_id: params[:id]) if user_signed_in?
       if @payment.present?
         @str = Stripe::Checkout::Session.retrieve(@payment.customer_id)
-        @aa = Stripe::PrivateStore.retrieve(@str.private_store)
+        @aa = Stripe::Subscription.retrieve(@str.subscription)
       end
     end
 end
