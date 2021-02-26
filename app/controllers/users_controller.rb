@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:create, :show, :edit, :update, :destroy, :user_edit, :user_edit_update]
   before_action :payment_planning_delete, only: :destroy
+  
 
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
