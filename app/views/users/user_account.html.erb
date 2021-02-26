@@ -21,7 +21,7 @@
           </tr>
           <tr>
             <th class="col-md-4", height="50">使用プラン</th>
-            <td class="show-account"><%= @user.customer_id %></td>
+            <td class="show-account"><%= @user.user_price %></td>
           </tr>
           <tr>
             <th class="col-md-4", height="50">登録日</th>
@@ -39,6 +39,6 @@
       <%= link_to "解約について", edit_user_registration_path(@user), class: "btn-gradient-3d-simple" %>
     </div></br>
     <div class="account-btn">
-      <%= link_to "編集", user_edit_user_path(current_user), class: "btn-gradient-3d-simple" %>
+      <%= link_to "編集", user_edit_user_path(@user), class: "btn-gradient-3d-simple" %>
     </div></br>
 </div>

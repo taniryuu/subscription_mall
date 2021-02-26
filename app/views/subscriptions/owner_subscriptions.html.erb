@@ -1,0 +1,53 @@
+<% provide(:title, "サブスクページ一覧") %>
+<p id="notice"><%= notice %></p>
+
+<h1 class="brand-color display-4 mt-6 mb-6">サブスクページ一覧</h1>
+
+<table class="table mt-7">
+  <thead>
+      <div class="row">
+        <div class="col-sm-2">
+          お店の名前
+        </div>
+        <div class="col-sm-2">
+          商品タイトル
+        </div>
+  </thead>
+
+  <tbody>
+    <% @subscriptions.each do |subscription| %>
+    <hr class="tool-bar">
+      <div class="row">
+        <div class="col-sm-2">
+          <%= subscription.name %>
+        </div>
+
+        <div class="col-sm-2">
+          <%= subscription.title %>
+        </div>
+        <% if current_admin.present? || current_owner.present? %>
+          <div class="col-sm-2 tool--item">
+            <%= link_to "instagram投稿", new_instablog_path(subscription_id: subscription), class: "btn-gradient-3d-simple" %>
+          </div>
+        <% end %>
+        <div class="col-sm-2 tool--item">
+          <%= link_to "詳細", owner_subscription_path(subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
+        </div>
+        <% if current_admin.present? || current_owner.present? %>
+          <div class="col-sm-2 tool--item">
+            <%= link_to "編集", edit_owner_subscription_path(subscription, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
+          </div>
+          <div class="col-sm-2 btn--del">
+            <%= link_to "削除", owner_subscription_path(subscription, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_owner.present? %>
+  <%= link_to 'サブスクショップ開設', new_owner_subscription_path, class: "btn btn-lg btn-brand mb-8" %>
+<% end %>

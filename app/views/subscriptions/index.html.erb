@@ -29,11 +29,9 @@
           <%= subscription.title %>
         </div>
         <div class="col-sm-2">
-        <% if subscription.category.name.present? %>
-          <%= subscription.category.name %>
-        <% else %>
-        <p></p>
-        <% end %>
+          <% @subscription.category_subscriptions.each do |category_subscription| %>
+            <%= category_subscription.category.name %>
+          <% end %>
         </div>
         <% if current_admin.present? || current_owner.present? %>
           <div class="col-sm-1 tool--item">
