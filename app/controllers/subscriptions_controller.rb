@@ -94,17 +94,13 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
-<<<<<<< HEAD
         if params[:subscription][:qr_image]
 	  File.binwrite("public/subscription_images/#{@subscription.id}0.PNG", params[:subscription][:qr_image].read)
 	  @subscription.update(qr_image: "#{@subscription.id}0.PNG" )
 	else
 	  flash[:danger] = "QRコードを指定できませんでした。"
 	end
-	format.html { redirect_to owner_subscriptions_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
-=======
-        format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
->>>>>>> upstream/develop
+	format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }

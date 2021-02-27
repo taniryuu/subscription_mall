@@ -1,11 +1,8 @@
 class Owner < ApplicationRecord
   # has_many :shops, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-<<<<<<< HEAD
   has_many :private_stores, dependent: :destroy
-=======
   has_many :category_subscriptions, dependent: :destroy
->>>>>>> upstream/develop
   # has_many :interviews, dependent: :destroy
 
   acts_as_paranoid # 追加
