@@ -41,7 +41,9 @@ class ApplicationController < ActionController::Base
 
   # current_userのサブスクプラン支払い詳細
   def payment_check
-    @pay = current_user.customer_id
+    if current_user.present?
+      @pay = current_user.customer_id
+    end
     if @pay.present?
       # 現在の支払い情報
       @payment = Stripe::Checkout::Session.retrieve(@pay)
@@ -50,12 +52,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # ユーザー削除時orプラン解除時
   # ログイン中のユーザーが何かしらのプランに加入していた場合支払いを停止する
   def payment_planning_delete
     if current_user.customer_id.present?
       @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
       Stripe::Subscription.delete(@payment.subscription)
-      current_user.update!(customer_id: "")
+      current_user.update!(customer_id: "", user_price: "")
+    end
+  end
+
+  # 未認証ならトップページにリダイレクトされる。
+  def sms_auth_false?
+    unless current_user.sms_auth?
+      redirect_to sms_auth_users_url
     end
   end
 end

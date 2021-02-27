@@ -1,5 +1,9 @@
 class Category < ApplicationRecord
-  has_many :subscriptions
+  # has_many :subscriptions
+
+  has_many :category_subscriptions
+  has_many :subscriptions, through: :category_subscriptions
+  
   # mount_uploader :image_category, CategoryUploader
 
   def self.search(search) #ここでのself.はCategory.を意味する
