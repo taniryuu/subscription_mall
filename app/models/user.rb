@@ -4,8 +4,9 @@ class User < ApplicationRecord
   has_one :ticket, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :megurumereviews, dependent: :destroy
-  has_many :user_plans, dependent: :destroy
-  has_many :private_store_user_plans, dependent: :destroy
+  # has_many :user_plans, dependent: :destroy
+  # has_many :private_store_user_plans, dependent: :destroy
+  # has_many :subscriptions, dependent: :destroy
   acts_as_paranoid # 追加
   devise :database_authenticatable,
          :registerable,

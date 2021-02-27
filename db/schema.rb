@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210226194701) do
+ActiveRecord::Schema.define(version: 20210218075622) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -41,15 +41,20 @@ ActiveRecord::Schema.define(version: 20210226194701) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.bigint "user_id"
-    t.bigint "owner_id"
-    t.string "genre"
     t.string "image_category"
     t.string "search"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_categories_on_owner_id"
-    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "category_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "category_id"
+    t.integer "subscription_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_subscriptions_on_category_id"
+    t.index ["subscription_id"], name: "index_category_subscriptions_on_subscription_id"
   end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -212,7 +217,7 @@ ActiveRecord::Schema.define(version: 20210226194701) do
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "detail"
+    t.text "detail"
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -242,8 +247,6 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
-    t.integer "category_name"
-    t.integer "shop_id"
     t.string "script"
     t.string "image_subscription2"
     t.string "image_subscription3"
@@ -261,8 +264,6 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
-    t.integer "category_genre"
-    t.integer "monthly_fee"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
@@ -270,11 +271,14 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.bigint "owner_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
+    t.integer "category_subscriptions_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "suports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -322,15 +326,6 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
-  create_table "user_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "customer_id", null: false
-    t.integer "subscription_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_plans_on_user_id"
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -349,19 +344,20 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.string "subject"
     t.string "session_id"
     t.integer "subscription_id"
+    t.boolean "sms_auth", default: false, null: false
+    t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_price"
     t.integer "private_store_id"
+    t.integer "session_price"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "blogs", "admins"
-  add_foreign_key "categories", "owners"
-  add_foreign_key "categories", "users"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
   add_foreign_key "images", "blogs"
@@ -380,9 +376,9 @@ ActiveRecord::Schema.define(version: 20210226194701) do
   add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"
   add_foreign_key "subscriptions", "owners"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
   add_foreign_key "ticket_logs", "tickets"
   add_foreign_key "tickets", "users"
-  add_foreign_key "user_plans", "users"
 end

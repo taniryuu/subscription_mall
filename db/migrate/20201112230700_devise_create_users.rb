@@ -26,6 +26,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :subject
       t.string :session_id
       t.integer :subscription_id
+      t.boolean :sms_auth, null: false, default: false
+      t.string :customer_id, null: false, default: ""
       t.date :use_ticket_day
       t.date :issue_ticket_day
       
