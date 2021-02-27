@@ -128,203 +128,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-  #経営者よう決済
-  # def setup
-  #   # @subscription = @owner.subscriptions.find_by(params[:id])
-  #   @owner = Owner.find(params[:id])
-
-  #   @plan1 = Stripe::Checkout::Session.create(
-  #     payment_method_types: ['card'],
-  #     customer_email: @owner.email,
-  #     line_items: [{
-  #       price_data: {
-  #         currency: 'jpy',
-  #         product: 'prod_IQEjlDvOeRJkqv',
-  #         unit_amount: 1980,
-  #         recurring: {interval: "month"}
-  #       },
-  #       quantity: 1,
-  #     }],
-  #     mode: 'subscription',
-  #     success_url: success_url,
-  #     cancel_url: cancel_url,
-  #   )
-
-  #   @plan2 = Stripe::Checkout::Session.create(
-  #     payment_method_types: ['card'],
-  #     customer_email: @owner.email,
-  #     line_items: [{
-  #       price_data: {
-  #         currency: 'jpy',
-  #         product: 'prod_IQEjlDvOeRJkqv',
-  #         unit_amount: 4980,
-  #         recurring: {interval: "month"}
-  #       },
-  #       quantity: 1,
-  #     }],
-  #     mode: 'subscription',
-  #     success_url: success_url,
-  #     cancel_url: cancel_url,
-  #   )
-
-  #   @plan3 = Stripe::Checkout::Session.create(
-  #     payment_method_types: ['card'],
-  #     customer_email: @owner.email,
-  #     line_items: [{
-  #       price_data: {
-  #         currency: 'jpy',
-  #         product: 'prod_IQEjlDvOeRJkqv',
-  #         unit_amount: 19800,
-  #         recurring: {interval: "month"}
-  #       },
-  #       quantity: 1,
-  #     }],
-  #     mode: 'subscription',
-  #     success_url: success_url,
-  #     cancel_url: cancel_url,
-  #   )
-
-  # end
-
-
-  def user_plans
-    @user = User.find(params[:id])
-
-    @plan1 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 3000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan2 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 9000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      discounts: [{
-        coupon: 'ASo5l7Pn'
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan3 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 11000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan4 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 18000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan5 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 25000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan6 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 50000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @plan7 = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_Itdb3ZOVEaX3iU',
-          unit_amount: 100000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-
-    @user.update(session_id: "true")
-
-  end
-
-  def cancel
-  end
-
-  def success
-  end
-
-=======
->>>>>>> fd9a3de769d9efe356e3c479ad1aa5a720b2d43d
   def show_sample
   end
 
@@ -352,29 +155,29 @@ class SubscriptionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def subscription_params
       params.require(:subscription).permit(:name,
-                                            :title, 
-                                            :address, 
-                                            :shop_introduction, 
-                                            :detail, :qr_image, 
-                                            :image_subscription, 
-                                            :image_subscription2, 
-                                            :image_subscription3, 
-                                            :image_subscription4, 
-                                            :image_subscription5, 
-                                            :sub_image, 
-                                            :sub_image2, 
-                                            :sub_image3, 
-                                            :sub_image4, 
-                                            :sub_image5, 
-                                            :sub_image6, 
-                                            :sub_image7, 
-                                            :sub_image8, 
-                                            :sub_image9, 
-                                            :sub_image10, 
-                                            :sub_image11, 
-                                            :sub_image12, 
-                                            :image_subscription_id, 
-                                            :subscription_detail, 
+                                            :title,
+                                            :address,
+                                            :shop_introduction,
+                                            :detail, :qr_image,
+                                            :image_subscription,
+                                            :image_subscription2,
+                                            :image_subscription3,
+                                            :image_subscription4,
+                                            :image_subscription5,
+                                            :sub_image,
+                                            :sub_image2,
+                                            :sub_image3,
+                                            :sub_image4,
+                                            :sub_image5,
+                                            :sub_image6,
+                                            :sub_image7,
+                                            :sub_image8,
+                                            :sub_image9,
+                                            :sub_image10,
+                                            :sub_image11,
+                                            :sub_image12,
+                                            :image_subscription_id,
+                                            :subscription_detail,
                                             :price,
                                             :owner_id,
                                             { :category_ids=> [] }

@@ -188,10 +188,6 @@ ActiveRecord::Schema.define(version: 20210218075622) do
     t.string "image_subscription2"
     t.string "image_subscription3"
     t.string "image_subscription4"
-<<<<<<< HEAD
-    t.integer "category_genre"
-    t.integer "monthly_fee"
-=======
     t.string "image_subscription5"
     t.string "sub_image"
     t.string "sub_image2"
@@ -205,7 +201,6 @@ ActiveRecord::Schema.define(version: 20210218075622) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
->>>>>>> fd9a3de769d9efe356e3c479ad1aa5a720b2d43d
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
