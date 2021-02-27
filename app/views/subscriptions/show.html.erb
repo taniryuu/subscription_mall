@@ -29,7 +29,7 @@
                  <% else %>
                    <p></p>
                  <% end %>
-                 <% if @payment.present? %>
+		 <% if @payment.present? %>
                    <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
                    <%= link_to "サブスクを解除する", plans_destroy_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                    <%= link_to "プランを変更する", plans_edit_owner_subscription_path(@subscription, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
