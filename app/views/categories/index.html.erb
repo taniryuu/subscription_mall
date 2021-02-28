@@ -8,6 +8,22 @@
   <% end %>
 </div>
 
+<%= form_with(model: @category, method: :get, local: true) do |f| %>
+  <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
+  <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+<% end %>
+<div class="category-list">
+  <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+    <div class="category-item">
+      <%= link_to image_tag(category.image_category, :size => '280x200'), like_lunch_category_path(category), class: "image-menu" %>
+      <div class="category-shop-btn">
+        <%= link_to "#{category.name}", like_lunch_category_path(category) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%
+=begin%>
 <div class="category_box" role="tablist">
   <span id="tabList01" aria-controls="tab01" aria-selected="true" role="tab" class="category_button" >
     和食
@@ -27,7 +43,7 @@
 </div>
 
 <!-- 和食 -->
-<section id="tab01" aria-hidden="false" aria-labelledby="tabList01" role="tabpanel">
+ <section id="tab01" aria-hidden="false" aria-labelledby="tabList01" role="tabpanel">
   <div class="container pt-5 my-5 z-depth-1">
     <section class="p-md-3 mx-md-5 text-lg-left">
       <h2 class="text-center font-weight-bold mb-4 pb-1"></h2>
@@ -69,7 +85,9 @@
             <%= link_to "#{@categories[20].name}", like_lunch_category_path(@categories[20].id) %>
           </div>
 	</div>
-	<div class="category-item">
+	<%
+=begin%>
+ <div class="category-item">
           <%= image_tag @categories[22].image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{@categories[22].name}", like_lunch_category_path(@categories[22].id) %>
@@ -231,8 +249,12 @@
             <%= link_to "#{@categories[21].name}", like_lunch_category_path(@categories[21].id) %>
           </div>
 	</div>
-	<div class="category-item">
-          <%= image_tag @categories[27].image_category, class: "image-menu" %>
+	<div class="category-item"> 
+<%
+=end%>
+          <%
+=begin%>
+ <%= image_tag @categories[27].image_category, class: "image-menu" %>
           <div class="category-shop-btn">
             <%= link_to "#{@categories[27].name}", like_lunch_category_path(@categories[27].id) %>
           </div>
@@ -260,7 +282,7 @@
       </div>
     </section>
   </div>
-</section>
+</section> 
 
 <script>
 var tab = $('[role="tab"]'),
@@ -283,4 +305,6 @@ var tab = $('[role="tab"]'),
     _self.attr('aria-selected', true);
   });
 </script>
-
+ 
+<%
+=end%>
