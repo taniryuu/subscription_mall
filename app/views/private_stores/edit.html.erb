@@ -2,40 +2,41 @@
 
 <h1 class="brand-color display-4 mt-6 mb-6">サブスクページ編集</h1>
 
-<%= form_with(model: @private_store, url: owner_private_store_path, multipart: true, local: true) do |form| %>
+<%= form_with(model: @private_store, url: owner_private_store_path(@private_store, owner_id: @owner.id), multipart: true, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @private_store %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :お店の名前 %> <span class="must">必須</span>
     <%= form.text_field :name, id: :private_store_name, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :商品タイトル %> <span class="must">必須</span>
     <%= form.text_field :title, id: :private_store_title, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :お店の住所 %> <span class="must">必須</span>
     <%= form.text_field :address, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :detail %>
+    <%= form.label :商品紹介 %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :private_store_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
   
   <div class="field">
-    <%= form.label :qr_image, for: "file-input", type:"file" %><br/>
+    <%= form.label :"LINE@QRコード画像", for: "file-input", type:"file" %><span class="must">必須</span><br/>
     <%= form.file_field :qr_image, id: "file-input" %>
   </div>
 
   <div class="field">
-    <%= form.label :image_private_store, for: "file-input", type:"file" %> <span class="must">必須</span><br/>
+    <%= form.label :メインのお店紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
     <%= form.file_field :image_private_store, id: "file-input" %>
   </div>
+
   <div class="field">
     <%= form.label :お店紹介写真1, for: "file-input", type:"file" %><br/>
     <%= form.file_field :image_private_store2, id: "file-input" %>
@@ -57,7 +58,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :private_store_detail %>
+    <%= form.label :店舗情報 %>
     <%= form.text_area :private_store_detail, id: :private_store_private_store_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
@@ -103,7 +104,7 @@
 
   <div class="field">
     <%= form.label :サブのお店紹介写真9, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image9, id: "file-input" %>
+    <%= form.file_field :sub_image9, id: "file-input"%>
   </div>
 
   <div class="field">
@@ -118,22 +119,28 @@
 
   <div class="field">
     <%= form.label :サブのお店紹介写真12, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image12, id: "file-input" %>
+    <%= form.file_field :sub_image12, id: "file-input"%>
   </div>
 
-  <div class="field">
-    <%= form.label :category_name %>
-    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :private_store_private_store_detail, class:"form-control" %>
-  </div>
+  <%
+=begin%>
+ <div class="field">
+    <%= form.label :category_id %> <span class="must">必須</span><br/>
+    <%= select_tag "private_store[category_id]", options_from_collection_for_select(@categories, :id, :name),  { include_blank: "カテゴリを選んでください", class: 'form-control'} %>
+  </div> 
+<%
+=end%>
 
   <div class="field">
-    <%= form.label :category_genre %><br/>
-    <%= form.select :category_genre, Subscription.category_genres.keys, :include_blank => "ジャンルを選択してください", id: :private_store_private_store_detail, class:"form-control" %>
+    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
+      <% t.label   { t.check_box + t.text } %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :加入プラン %> <span class="must">必須</span><br/>
-    <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
+    <%= form.select :price, PrivateStore.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
   </div>
 
 
@@ -143,6 +150,6 @@
 <% end %>
 
 <div class="mt-5 mb-8">
-  <%= link_to '詳細', owner_private_store_path(@private_store, owner_id: @owner.id, shop_id: @private_store.shop_id), class: "btn btn-brand" %>
+  <%= link_to '詳細', owner_private_store_path(@private_store, owner_id: @owner.id), class: "btn btn-brand" %>
   <%= link_to '一覧へ', owner_private_stores_path, class: "btn btn-brand" %>
 </div>

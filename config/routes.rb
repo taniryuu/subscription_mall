@@ -128,6 +128,7 @@ Rails.application.routes.draw do
 	get "plans_edit", to: "private_store_user_plans#edit", as: 'plans_edit'
         patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
 	delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
+	get '/owner_private_stores', to: "private_stores#owner_private_stores", as: :owner_private_stores
       end
     end
   end

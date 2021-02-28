@@ -12,9 +12,6 @@
         <div class="col-sm-2">
           商品タイトル
         </div>
-        <div class="col-sm-2">
-          カテゴリ
-        </div>
   </thead>
 
   <tbody>
@@ -28,24 +25,19 @@
         <div class="col-sm-2">
           <%= private_store.title %>
         </div>
-        <div class="col-sm-2">
-          <% @private_store.category_private_stores.each do |category_private_store| %>
-            <%= category_private_store.category.name %>
-          <% end %>
-        </div>
         <% if current_admin.present? || current_owner.present? %>
-          <div class="col-sm-1 tool--item">
+          <div class="col-sm-2 tool--item">
             <%= link_to "instagram投稿", new_instablog_path(private_store_id: private_store), class: "btn-gradient-3d-simple" %>
           </div>
         <% end %>
-        <div class="col-sm-1 tool--item">
+        <div class="col-sm-2 tool--item">
           <%= link_to "詳細", owner_private_store_path(private_store, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
         </div>
         <% if current_admin.present? || current_owner.present? %>
-          <div class="col-sm-1 tool--item">
+          <div class="col-sm-2 tool--item">
             <%= link_to "編集", edit_owner_private_store_path(private_store, owner_id: @owner.id), class: "btn-gradient-3d-simple" %>
           </div>
-          <div class="col-sm-1 btn--del">
+          <div class="col-sm-2 btn--del">
             <%= link_to "削除", owner_private_store_path(private_store, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
           </div>
         <% end %>

@@ -177,6 +177,75 @@ CategorySubscription.create!(owner_id: 1,
                       )
 puts "CategorySubscription Created"
 
+
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 1,
+                              private_store_id: 1,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 2,
+                              private_store_id: 1,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 1,
+                              private_store_id: 2,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 2,
+                            private_store_id: 2,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 3,
+                            private_store_id: 3,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 4,
+                          private_store_id: 3,
+                        )
+
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 3,
+                              private_store_id: 4,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 4,
+                              private_store_id: 4,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 5,
+                              private_store_id: 5,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 6,
+                            private_store_id: 5,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 5,
+                            private_store_id: 6,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 6,
+                          private_store_id: 6,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 13,
+                          private_store_id: 7,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 14,
+                          private_store_id: 7,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 15,
+                          private_store_id: 8,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                        category_id: 16,
+                        private_store_id: 8,
+                      )
+puts "CategoryPrivateStore Created"
+
+
 Subscription.create!(
   owner_id: 1,
   # category_id: 1,

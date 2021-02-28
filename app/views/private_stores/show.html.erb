@@ -1,26 +1,31 @@
 <div class="container my-5">
   <section>
     <style>
-    	.rgba-black-gradient {
+      .rgba-black-gradient {
       	background: linear-gradient(to top, rgba(226, 230, 224) 55%,rgba(0,0,0,0) 90%);
-    	}
+      }
     </style>
     <div class="row">
       <div class="col-12">
         <div class="view zoom z-depth-1 rounded mb-4">
               <% if @private_store.image_private_store.present? %>
-                <%= image_tag @private_store.image_private_store ,width: '100%', height: "300" %>
+                <%= image_tag @private_store.image_private_store_url ,width: 'auto' %>
               <% else %>
                 <p></p>
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
-                <span class="badge badge-success"><%= @private_store.category_name %></span>
-                <span class="badge badge-success"><%= @private_store.category_genre %></span>
+                <% @private_store.category_private_stores.each do |category_private_store| %>
+                  <span class="badge badge-success">
+                  <%= category_private_store.category.name %>
+                <% else %>
+                  <p></p>
+                  </span>
+                <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>
                 <p class="font-weight-normal mb-2">
-                  <% if @private_store.owner.address.present? %>
-                    住所：<%= @private_store.owner.address %>
+                  <% if @private_store.address.present? %>
+                    住所：<%= @private_store.address %>
                   <% else %>
                     <p></p>
                   <% end %> | 
@@ -30,12 +35,20 @@
                     <p></p>
                   <% end %>
               <% if @payment.present? %>
-                <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
-                <%= link_to "サブスクを解除する", plans_destroy_owner_private_store_path(@private_store, owner_id: @private_store.owner_id), method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
-                <%= link_to "プランを変更する", plans_edit_owner_private_store_path(@private_store, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                <% if @private_store.price.to_i < current_user.user_price %>
+                  <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                <% elsif @private_store.price.to_i == current_user.user_price %>
+                  <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                <% else %>
+                  <%= link_to "プランを変更する", edit_user_plan_path, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める", plans_new_owner_private_store_path(@private_store, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクを始める", new_user_plan_path, class: "btn-gradient-3d-simple" %>
               <% elsif current_owner.present? %>
+                <%= link_to "サブスク一覧へ", owner_private_stores_owner_private_store_path(current_owner), class: "btn-gradient-3d-simple" %>
                 <%= link_to "サブスク編集", edit_owner_private_store_path(current_owner), class: "btn-gradient-3d-simple" %>
               <% elsif current_admin.present? %>
                 <% if @private_store.recommend == true %>
@@ -58,7 +71,7 @@
 
 <div class="container my-5 py-5 z-depth-1">
   <section class="text-center">
-    <h3 class="font-weight-bold mb-5"><%= @private_store.name %> 店舗紹介（仮）</h3>
+    <h3 class="font-weight-bold mb-5"><%= @private_store.name %> 店舗紹介</h3>
     <div class="row">
       <div class="col-lg-6">
         <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
@@ -219,7 +232,7 @@
             <strong>加入プラン: </strong><%= @private_store.price %></p>
 
           <%# google map %>
-          <%= render "maps/private_store_subsc" %>
+          <%= render "maps/subsc" %>
 
           <div class="mt-5">
 
@@ -228,10 +241,10 @@
               <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
               <% if current_owner.present? %>
-                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
               <% elsif current_user.present? %>
-                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
-                <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store.id), class: "btn btn-outline-warning btn-rounded" %><br>
+                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store), class: "btn btn-outline-warning btn-rounded" %><br>
                   <% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
                   <% else %>
@@ -243,7 +256,7 @@
                     <p>登録させていません。LINE@からお問い合わせください。</p>
                   <% end %>
               <% else %>
-                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                   <br><% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
                   <% else %>
