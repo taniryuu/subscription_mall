@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210226194701) do
+ActiveRecord::Schema.define(version: 20210228072155) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.string "search"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "category_private_stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "category_id"
+    t.integer "private_store_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_private_stores_on_category_id"
+    t.index ["private_store_id"], name: "index_category_private_stores_on_private_store_id"
   end
 
   create_table "category_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -182,7 +192,6 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.string "image_private_store"
     t.integer "price"
     t.text "private_store_detail"
-    t.integer "category_name"
     t.integer "shop_id"
     t.string "script"
     t.string "image_private_store2"
@@ -209,11 +218,14 @@ ActiveRecord::Schema.define(version: 20210226194701) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.bigint "owner_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
+    t.integer "category_private_stores_id"
     t.index ["owner_id"], name: "index_private_stores_on_owner_id"
+    t.index ["user_id"], name: "index_private_stores_on_user_id"
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -372,6 +384,7 @@ ActiveRecord::Schema.define(version: 20210226194701) do
   add_foreign_key "private_store_instablogs", "private_stores"
   add_foreign_key "private_store_user_plans", "users"
   add_foreign_key "private_stores", "owners"
+  add_foreign_key "private_stores", "users"
   add_foreign_key "reviews", "private_stores"
   add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"

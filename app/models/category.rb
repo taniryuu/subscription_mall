@@ -3,7 +3,8 @@ class Category < ApplicationRecord
 
   has_many :category_subscriptions
   has_many :subscriptions, through: :category_subscriptions
-  
+  has_many :category_private_stores
+  has_many :private_stores, through: :category_private_stores
   # mount_uploader :image_category, CategoryUploader
 
   def self.search(search) #ここでのself.はCategory.を意味する

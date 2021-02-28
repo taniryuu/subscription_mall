@@ -7,7 +7,7 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.string :image_private_store
       t.integer :price
       t.text :private_store_detail
-      t.integer :category_name
+      #t.integer :category_name
       t.integer :shop_id, foreign_key: true
       t.string :script
       t.string :image_private_store2
@@ -36,6 +36,7 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.float :longitude
 
       t.references :owner, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
