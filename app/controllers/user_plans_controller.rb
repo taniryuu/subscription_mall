@@ -56,7 +56,7 @@ class UserPlansController < ApplicationController
       @confirm_plan = Stripe::Plan.retrieve(
         params[:session]
       )
-      
+
       # サブスク登録
       @plan = Stripe::Checkout::Session.create(
         success_url: success_url,
