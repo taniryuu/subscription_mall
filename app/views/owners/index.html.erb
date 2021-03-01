@@ -38,7 +38,7 @@
       <% @owners.each do |owner| %>
         <tr>
           <td><%= owner.id %></td>
-          <td><%= link_to owner.name ,owner_path(owner) %></td>
+          <td><%= link_to owner.name, owner_edit_admin_path(owner_id: owner.id) %></td>
           <td><%= owner.email %></td>
           <td><%= owner.phone_number %></td>
           <% if current_admin.present? %>

@@ -6,7 +6,13 @@ class User < ApplicationRecord
   has_many :megurumereviews, dependent: :destroy
   # has_many :user_plans, dependent: :destroy
   # has_many :subscriptions, dependent: :destroy
-  acts_as_paranoid # 追加
+  
+  # 論理削除
+  acts_as_paranoid without_default_scope: true
+  after_destroy      :update_document_in_search_engine
+  after_restore      :update_document_in_search_engine
+  after_real_destroy :remove_document_from_search_engine
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,

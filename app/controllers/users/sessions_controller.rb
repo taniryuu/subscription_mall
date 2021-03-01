@@ -9,9 +9,11 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    login_user = User.find_by(email: params[:user][:email])
+    login_user.update!(deleted_at: nil) if login_user.present? && login_user.deleted_at.present?
+    super
+  end
 
   # DELETE /resource/sign_out
   # def destroy
