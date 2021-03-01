@@ -26,10 +26,33 @@
         <tr>
           <th height="40" class=col-sm-2>TEL</th><td class=col-sm-4><%= @owner.phone_number %></td>
         </tr>
+        <tr>
+          <th height="40" class=col-sm-2>LINE_ID</th><td class=col-sm-4><%= @owner.line_id %></td>
+        </tr>
       </table>
     </div>
   </div>
 
+  <%# ここからカードでサブスク回す %>
+  <div class="row ">
+    <% if @subscriptions != []%>
+      <% @subscriptions.each do |subscription| %>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
+              <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription) %></h5>
+              <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    <% else %>
+      <h5>現在、サブスクの設定はありません。</h5>        
+    <% end %>
+  </div>
   <%# ここまでカードでサブスク回す %>
 
 
@@ -47,6 +70,3 @@
   </div>
 
 </div>
-
-
-
