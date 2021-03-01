@@ -25,7 +25,7 @@ class Owner < ApplicationRecord
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
   validate :owner_password_regex, on: :create
-  validate :owner_phone_number_regex
+  #validate :owner_phone_number_regex
   
   # パスワードバリデーションメソッド
   def owner_password_regex
