@@ -3,7 +3,7 @@
 
 <h1 class="new-title index-title-post">新規会員登録</h1>
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
+  <div class="col-sm-6 col-sm-offset-3 mx-auto">
     <%= form_for(resource, as: resource_name, url: users_sign_up_confirm_path(resource)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -24,6 +24,11 @@
         <% end %><br/>
         <%= f.password_field :password, :required => true,autocomplete: "new-password", class: 'form-control' %>
       </div>
+
+      <% if resource.errors.include?(:password) %>
+        <p style="color: red;">＊<%= resource.errors.full_messages_for(:password).first %></p>
+        <br/>
+      <% end %>
 
       <div class="field">
         <%= f.label :password_confirmation %><span class="must">必須</span><br/>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210228072155) do
+ActiveRecord::Schema.define(version: 20210228082259) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -351,7 +351,6 @@ ActiveRecord::Schema.define(version: 20210228072155) do
     t.string "phone_number"
     t.string "uid"
     t.string "provider"
-    t.datetime "deleted_at"
     t.text "message"
     t.string "subject"
     t.string "session_id"
@@ -365,6 +364,8 @@ ActiveRecord::Schema.define(version: 20210228072155) do
     t.integer "user_price"
     t.integer "session_price"
     t.integer "private_store_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
