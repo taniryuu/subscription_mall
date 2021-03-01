@@ -39,9 +39,9 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.name ,user_path(user) %></td>
+          <td><%= link_to user.name, user_edit_admin_path(user_id: user.id) %></td>
           <td><%= user.kana %></td>
-          <td><%= link_to user.email ,user_email_owner_path(user) %></td>
+          <td><%= user.email %></td>
           <td><%= user.phone_number %></td>
           <% if current_admin.present? %>
             <td>
