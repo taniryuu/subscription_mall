@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
+  before_action :sub_current_owner, only: %i(owner_subscriptions edit)
 
   # GET /subscriptions
   # GET /subscriptions.json
@@ -155,29 +156,29 @@ class SubscriptionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def subscription_params
       params.require(:subscription).permit(:name,
-                                            :title, 
-                                            :address, 
-                                            :shop_introduction, 
-                                            :detail, :qr_image, 
-                                            :image_subscription, 
-                                            :image_subscription2, 
-                                            :image_subscription3, 
-                                            :image_subscription4, 
-                                            :image_subscription5, 
-                                            :sub_image, 
-                                            :sub_image2, 
-                                            :sub_image3, 
-                                            :sub_image4, 
-                                            :sub_image5, 
-                                            :sub_image6, 
-                                            :sub_image7, 
-                                            :sub_image8, 
-                                            :sub_image9, 
-                                            :sub_image10, 
-                                            :sub_image11, 
-                                            :sub_image12, 
-                                            :image_subscription_id, 
-                                            :subscription_detail, 
+                                            :title,
+                                            :address,
+                                            :shop_introduction,
+                                            :detail, :qr_image,
+                                            :image_subscription,
+                                            :image_subscription2,
+                                            :image_subscription3,
+                                            :image_subscription4,
+                                            :image_subscription5,
+                                            :sub_image,
+                                            :sub_image2,
+                                            :sub_image3,
+                                            :sub_image4,
+                                            :sub_image5,
+                                            :sub_image6,
+                                            :sub_image7,
+                                            :sub_image8,
+                                            :sub_image9,
+                                            :sub_image10,
+                                            :sub_image11,
+                                            :sub_image12,
+                                            :image_subscription_id,
+                                            :subscription_detail,
                                             :price,
                                             :owner_id,
                                             { :category_ids=> [] }
@@ -195,4 +196,14 @@ class SubscriptionsController < ApplicationController
     def map_params
       params.require(:map).permit(:address, :distance, :time)
     end
+
+    # 現在ログインしている経営者を許可します。
+    def sub_current_owner
+      @owner = Owner.find(params[:owner_id]) if @owner.blank?
+      unless current_owner?(@owner)
+        flash[:danger] = "他の経営者様のページへ移動できません。"
+        redirect_to owner_subscriptions_owner_subscription_url(current_owner)
+      end  
+    end
 end
+

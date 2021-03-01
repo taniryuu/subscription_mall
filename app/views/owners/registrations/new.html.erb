@@ -22,11 +22,18 @@
         <%= f.telephone_field :phone_number, :required => true, class: 'form-control' %>
       </div>
 
+      <% if resource.errors.include?(:phone_number) %>
+        <p style="color: red;">＊<%= resource.errors.full_messages_for(:phone_number).first %></p>
+        <br/>
+      <% end %>
+
       <div class="field">
         <%= f.label :payee %> <span class="must">必須</span><br/>
         <%= f.text_field :payee, :required => true, class: 'form-control' %>
       </div>
-
+      <p>※振り込みは翌月の月末に振り込み。振り込み手数料は御社でご負担となります。</p>
+      <br/>
+      <br/>
       <div class="field">
         <%= f.label :password %><span class="must">必須</span>
         <% if @minimum_password_length %>
@@ -34,6 +41,11 @@
         <% end %><br/>
         <%= f.password_field :password, :required => true,autocomplete: "new-password", class: 'form-control' %>
       </div>
+
+      <% if resource.errors.include?(:password) %>
+        <p style="color: red;">＊<%= resource.errors.full_messages_for(:password).first %></p>
+        <br/>
+      <% end %>
 
       <div class="field">
         <%= f.label :password_confirmation %><span class="must">必須</span><br/>

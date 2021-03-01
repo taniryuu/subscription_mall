@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210228071610) do
+ActiveRecord::Schema.define(version: 20210228082259) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -280,7 +280,6 @@ ActiveRecord::Schema.define(version: 20210228071610) do
     t.string "subject"
     t.string "session_id"
     t.integer "subscription_id"
-    t.boolean "sms_auth", default: false, null: false
     t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"

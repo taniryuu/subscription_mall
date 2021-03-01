@@ -25,6 +25,11 @@
         <%= f.password_field :password, :required => true,autocomplete: "new-password", class: 'form-control' %>
       </div>
 
+      <% if resource.errors.include?(:password) %>
+        <p style="color: red;">＊<%= resource.errors.full_messages_for(:password).first %></p>
+        <br/>
+      <% end %>
+
       <div class="field">
         <%= f.label :password_confirmation %><span class="must">必須</span><br/>
         <%= f.password_field :password_confirmation, :required => true,autocomplete: "new-password", class: 'form-control' %>

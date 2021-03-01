@@ -14,7 +14,7 @@ class UserPlansController < ApplicationController
 
   # stripe決済失敗時
   def cancel
-    current_user.update!(session_id: "")
+    current_user.update!(session_id: "", session_price: "")
   end
 
   # サブスクプラン新規登録
@@ -56,7 +56,7 @@ class UserPlansController < ApplicationController
       @confirm_plan = Stripe::Plan.retrieve(
         params[:session]
       )
-      
+
       # サブスク登録
       @plan = Stripe::Checkout::Session.create(
         success_url: success_url,
