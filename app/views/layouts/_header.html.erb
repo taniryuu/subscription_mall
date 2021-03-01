@@ -55,10 +55,10 @@
             <ul class="navbar-nav">
               <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
-              <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
               <li><%= link_to "経営者様管理", owners_path %></li>
               <li><%= link_to "利用者様管理", users_path %></li>
               <li><%= link_to "マイアカウント", admin_account_admin_path(current_admin) %></li>
+              <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
             </ul>
           </div>
         </nav>

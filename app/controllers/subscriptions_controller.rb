@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
+  before_action :sub_current_owner, only: %i(owner_subscriptions edit)
 
   # GET /subscriptions
   # GET /subscriptions.json
@@ -194,6 +195,15 @@ class SubscriptionsController < ApplicationController
 
     def map_params
       params.require(:map).permit(:address, :distance, :time)
+    end
+
+    # 現在ログインしている経営者を許可します。
+    def sub_current_owner
+      @owner = Owner.find(params[:owner_id]) if @owner.blank?
+      unless current_owner?(@owner)
+        flash[:danger] = "他の経営者様のページへ移動できません。"
+        redirect_to owner_subscriptions_owner_subscription_url(current_owner)
+      end  
     end
 end
 

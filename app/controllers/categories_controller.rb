@@ -1,17 +1,20 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:like_lunch, :show, :edit, :update, :destroy]
+  before_action :set_category, only: [:like_lunch]
   # before_action :set_subscription, only: [:show]
+
   def index
-    @categories = Category.all
+    @categories = if params[:search]
+      Category.search(params[:search]).order("RAND()")
+    else
+      Category.order("RAND()").all
+    end
+    @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
   end
 
   def like_lunch
     @categories = Category.find(params[:id])
     @subscription = Subscription.find_by(params[:id])
     @owner = Owner.find(params[:id])
-  end
-
-  def show
   end
 
   def create

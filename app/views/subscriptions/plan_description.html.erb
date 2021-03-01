@@ -1,28 +1,86 @@
 <% provide(:title, "プラン説明") %>
-<%= image_tag 'plan-explanation.png', Style: "height: 350px"%>
-<div>
-  <h1><%= link_to "3000円", suports_path, class: "btn btn-lg btn-default" %></h1>
-</div>
+    <div class="center">
+      <h1 class="concept">プラン</h1>
+    </div>
 
-<div>
-  <h1><%= link_to "12000円", suports_path, class: "btn btn-lg btn-default" %></h1>
-</div>
+    <div class="f-container">
+        <div class="f-item">
+          <div class="box26">
+            <div>
+              <div class="plan-item">
+                <div class="center">
+                  <%= link_to image_tag("plan1.png", :size => '200x100'), root_path %>
+                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", root_path %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan2.png", :size => '200x100'), root_path %>
+                <div><%= link_to "気になる方はこちら", root_path %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan3.png", :size => '200x100'), root_path %>
+                <div><%= link_to "スタンダードはこちら", root_path %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %>
+                <div><%= link_to "ちょっぴりグルメな方はこちら", root_path %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div>
-  <h1><%= link_to "18000円", suports_path, class: "btn btn-lg btn-default" %></h1>
-</div>
-<div>
-  <h1><%= link_to "25000円", suports_path, class: "btn btn-lg btn-default" %></h1>
-</div>
-
-<div>
-  <h1><%= link_to "50000円", contacts_path, class: "btn btn-lg btn-default" %></h1>
-</div>
-
-<div>
-  <h1><%= link_to "100000円", contacts_path, class: "btn btn-lg btn-default" %></h1>
-</div>
-
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+              <div><%= link_to "グルメな方はこちら", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "慣れてきた方はこちら", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "上級者はこちら", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
