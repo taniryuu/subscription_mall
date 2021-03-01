@@ -17,7 +17,7 @@
             <% if @payment.present? && @payment.amount_subtotal == @plan.amount_subtotal %>
               <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
             <% elsif current_user.customer_id.present? %>
-              <%= 
+              <%=
                 link_to "変更する", user_plan_path(value: @confirm_plan.id),
                 method: :patch, data: { confirm: "【確認】プランを変更してしてよろしいでしょうか？" }, class: "btn btn-outline-success btn-rounded waves-effect"
               %>
