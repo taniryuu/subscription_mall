@@ -36,10 +36,10 @@
                   <% end %>
               <% if @payment.present? %>
                 <% if @private_store.price.to_i < current_user.user_price %>
-                  <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "チケットを使う", use_ticket_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
                   <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% elsif @private_store.price.to_i == current_user.user_price %>
-                  <%= link_to "チケットを使う", use_ticket_path(@owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "チケットを使う", use_ticket_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
                   <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% else %>
                   <%= link_to "プランを変更する", edit_user_plan_path, class: "btn-gradient-3d-simple" %>
@@ -49,7 +49,7 @@
                 <%= link_to "サブスクを始める", new_user_plan_path, class: "btn-gradient-3d-simple" %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_private_stores_owner_private_store_path(current_owner), class: "btn-gradient-3d-simple" %>
-                <%= link_to "サブスク編集", edit_owner_private_store_path(current_owner), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスク編集", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_admin.present? %>
                 <% if @private_store.recommend == true %>
                   <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_private_store_path(current_admin), class: "btn-gradient-3d-simple" %>
@@ -232,7 +232,7 @@
             <strong>加入プラン: </strong><%= @private_store.price %></p>
 
           <%# google map %>
-          <%= render "maps/subsc" %>
+          <%= render "maps/private_store_subsc" %>
 
           <div class="mt-5">
 

@@ -4,6 +4,7 @@ class PrivateStoresController < ApplicationController
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
+  before_action :sub_current_owner, only: %i(owner_private_stores edit)
 
   # GET /private_stores
   # GET /private_stores.json
@@ -237,7 +238,7 @@ class PrivateStoresController < ApplicationController
   def destroy
     @private_store.destroy
     respond_to do |format|
-      format.html { redirect_to owner_private_stores_owner_private_store_url(@private_store, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
+      format.html { redirect_to owner_private_stores_owner_private_store_url(@private_store, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
       format.json { head :no_content }
     end
   end
@@ -269,29 +270,29 @@ class PrivateStoresController < ApplicationController
     # Only allow a list of trusted parameters through.
     def private_store_params
       params.require(:private_store).permit(:name,
-                                            :title, 
-                                            :address, 
-                                            :shop_introduction, 
-                                            :detail, :qr_image, 
-                                            :image_private_store, 
-                                            :image_private_store2, 
-                                            :image_private_store3, 
-                                            :image_private_store4, 
-                                            :image_private_store5, 
-                                            :sub_image, 
-                                            :sub_image2, 
-                                            :sub_image3, 
-                                            :sub_image4, 
-                                            :sub_image5, 
-                                            :sub_image6, 
-                                            :sub_image7, 
-                                            :sub_image8, 
-                                            :sub_image9, 
-                                            :sub_image10, 
-                                            :sub_image11, 
-                                            :sub_image12, 
-                                            :image_private_store_id, 
-                                            :private_store_detail, 
+                                            :title,
+                                            :address,
+                                            :shop_introduction,
+                                            :detail, :qr_image,
+                                            :image_private_store,
+                                            :image_private_store2,
+                                            :image_private_store3,
+                                            :image_private_store4,
+                                            :image_private_store5,
+                                            :sub_image,
+                                            :sub_image2,
+                                            :sub_image3,
+                                            :sub_image4,
+                                            :sub_image5,
+                                            :sub_image6,
+                                            :sub_image7,
+                                            :sub_image8,
+                                            :sub_image9,
+                                            :sub_image10,
+                                            :sub_image11,
+                                            :sub_image12,
+                                            :image_private_store_id,
+                                            :private_store_detail,
                                             :price,
                                             :owner_id,
                                             { :category_ids=> [] }
@@ -309,4 +310,14 @@ class PrivateStoresController < ApplicationController
     def map_params
       params.require(:map).permit(:address, :distance, :time)
     end
+
+    # 現在ログインしている経営者を許可します。
+    def sub_current_owner
+      @owner = Owner.find(params[:owner_id]) if @owner.blank?
+      unless current_owner?(@owner)
+        flash[:danger] = "他の経営者様のページへ移動できません。"
+        redirect_to owner_private_stores_owner_private_store_url(current_owner)
+      end  
+    end
 end
+
