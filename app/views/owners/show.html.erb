@@ -61,9 +61,8 @@
     <i class="fas fa-reply"> 戻る</i>
     <% end %>
     <% if current_admin.present? || current_owner.present? %>
-      <%= link_to "経営者様情報の更新", edit_owner_path, class: "btn btn--blue btn-sm btn--shadow" %>
+      <%= link_to "経営者様情報の更新", owner_edit_admin_path(owner_id: @owner.id), class: "btn btn--blue btn-sm btn--shadow" %>
     <% end %>
-    <%= link_to "サブスク情報一覧", owner_subscriptions_owner_subscription_path(@owner), class: "btn btn--blue btn-sm btn--shadow" %>
     <% if current_owner.present? %>
       <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn btn--blue btn-md btn--shadow" %>
     <% end %>

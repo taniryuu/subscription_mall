@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:create, :show, :edit, :update, :destroy, :user_edit, :user_edit_update]
   before_action :payment_planning_delete, only: :destroy
-  # before_action :login_current_admin, only: %i(index)
-  # before_action :login_current_user, only: %i(user_account)
-  # before_action :login_current_owner, only: %i()
+  before_action :login_current_admin, only: %i(index)
+  before_action :login_current_user, only: %i(user_account edit)
+  before_action :login_current_owner, only: %i()
 
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
@@ -57,10 +57,8 @@ class UsersController < ApplicationController
   end
 
   def ticket
-
     @owner = Owner.find(params[:id])
-    @subscription = Subscription.find_by(params[:owner_id])
-
+    @subscription = Subscription.find(params[:id])
   end
 
   # ユーザーの名前をあいまい検索機能

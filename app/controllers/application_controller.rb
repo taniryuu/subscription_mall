@@ -90,6 +90,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def only_current_admin
+    unless current_admin.present?
+      flash[:danger] = "管理者のみ確認可能なページです。"
+      redirect_to(root_url)
+    end
+  end
+
   # 現在ログインしている経営者を許可します。
   def login_current_owner
     @owner = Owner.find(params[:id]) if @owner.blank?

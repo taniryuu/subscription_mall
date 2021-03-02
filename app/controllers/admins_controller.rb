@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   before_action :set_user, only: %i(user_edit user_update)
   before_action :set_owner, only: %i(owner_edit owner_update)
+  before_action :login_current_admin, only: %i(user_edit owner_edit)
 
   require 'rqrcode'
 

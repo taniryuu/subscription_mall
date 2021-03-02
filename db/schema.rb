@@ -276,6 +276,7 @@ ActiveRecord::Schema.define(version: 20210228082259) do
     t.string "phone_number"
     t.string "uid"
     t.string "provider"
+    t.datetime "deleted_at"
     t.text "message"
     t.string "subject"
     t.string "session_id"
@@ -288,7 +289,6 @@ ActiveRecord::Schema.define(version: 20210228082259) do
     t.datetime "updated_at", null: false
     t.integer "user_price"
     t.integer "session_price"
-    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
