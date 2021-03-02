@@ -31,7 +31,9 @@
         <%= link_to users_path, class: "btn btn--blue btn-md btn--shadow" do %>
         <i class="fas fa-reply"> 戻る</i>
         <% end %>
-        <%= link_to "編集", edit_user_path(@user), class: "btn btn--blue btn-md btn--shadow" %>
+        <% if current_admin.present? %>
+          <%= link_to "編集", edit_user_path(@user), class: "btn btn--blue btn-md btn--shadow" %>
+        <% end %>
         <% if current_user.present? %>
           <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn btn--blue btn-md btn--shadow" %>
         <% end %>

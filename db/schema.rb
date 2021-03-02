@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(version: 20210228082259) do
     t.string "phone_number"
     t.string "uid"
     t.string "provider"
+    t.datetime "deleted_at"
     t.text "message"
     t.string "subject"
     t.string "session_id"

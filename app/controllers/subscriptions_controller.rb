@@ -238,7 +238,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     respond_to do |format|
-      format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
+      format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
       format.json { head :no_content }
     end
   end

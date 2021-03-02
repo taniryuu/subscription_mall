@@ -1,7 +1,8 @@
 class OwnersController < ApplicationController
   before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy, :owner_edit, :owner_edit_update]
   before_action :set_subscription, only: [:owner_account]
-  # before_action :login_current_owner, only: %i(owner_account)
+  before_action :login_current_owner, only: %i(edit owner_account)
+  before_action :only_current_admin, only: %i(index)
 
   def index
     @owners = Owner.paginate(page: params[:page], per_page: 20)
@@ -55,7 +56,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    if current_owner.update!(owner_params)
+    if current_owner.update(owner_params)
       sign_in(current_owner, bypass: true)
       flash[:success] = "#{current_owner.name}様の情報を更新しました。"
       redirect_to owner_account_owner_url(current_owner.id)

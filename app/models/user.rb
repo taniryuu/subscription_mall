@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates_format_of :email, presence: true, with: Devise.email_regexp, if: :will_save_change_to_email?
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create # 6..128
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
-  validate :user_password_regex, on: :create
+  # validate :user_password_regex, on: :create
   
   # パスワードバリデーションメソッド
   def user_password_regex

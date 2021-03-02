@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   before_action :set_user, only: %i(user_edit user_update)
   before_action :set_owner, only: %i(owner_edit owner_update)
+  before_action :login_current_admin, only: %i(user_edit owner_edit)
 
   require 'rqrcode'
 
@@ -41,7 +42,7 @@ class AdminsController < ApplicationController
   end
 
   def owner_update
-    if @owner.update!(owner_params)
+    if @owner.update(owner_params)
       flash[:success] = "#{@owner.name}様の情報を更新しました。"
       redirect_to owners_url
     else
