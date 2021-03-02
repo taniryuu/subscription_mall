@@ -10,17 +10,7 @@ Admin.create!(name: "中野ゆうさん",
               email: "megurumee@gmail.com",
               password: "password",
               password_confirmation: "password")
-<<<<<<< HEAD
-
 puts "Admin Created"
-Admin.create!(name: "中野ゆうさん",
-  email: "megurumee@gmail.com",
-  password: "password",
-  password_confirmation: "password")
-  puts "Admin Created"
-=======
-puts "Admin Created"
->>>>>>> 4a9e8f73c6be4b600e620470f362ad6eecd8c9d2
 
 30.times do |n|
 name  = Faker::Name.name
@@ -116,15 +106,6 @@ answer: "ログイン後、マイカウント下の「解約について」ボ�
 
 puts "Question Created"
 
-<<<<<<< HEAD
-# 2.times do |n|
-#   Subscription.create!(
-#     owner_id: 1,
-#     name: "サンプル飲食店#{n}",
-#     title: "サンプルタイトル#{n}",
-#   )
-# end
-=======
 CategorySubscription.create!(owner_id: 1,
                               category_id: 1,
                               subscription_id: 1,
@@ -191,7 +172,6 @@ CategorySubscription.create!(owner_id: 1,
                         subscription_id: 8,
                       )
 puts "CategorySubscription Created"
->>>>>>> 4a9e8f73c6be4b600e620470f362ad6eecd8c9d2
 
 Subscription.create!(
   owner_id: 1,
