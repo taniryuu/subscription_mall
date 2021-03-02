@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     @interviews = Interview.where.not(shop_name: nil)
     @owner_subscriptions = Subscription.includes(:owner).order("RANDOM()").limit(5)
     @subscription = Subscription.find_by(params[:id])
-    @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
+    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).limit(5)
     @megurumereviews = Megurumereview.all
     @owners = Owner.all.limit(5)
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う

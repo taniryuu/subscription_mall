@@ -12,11 +12,14 @@
 <% else %>
   <p>ようこそ！ゲストさん</p>
 <% end %>
+  <div class="owner-btn">
+    <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+  </div>
 
   <div class="center">
     <h1 class="concept">C O N C E P T</h1>
     <h6 class="concept1">コンセプト</h6>
-    <%= image_tag "megurume.jpg", :size =>'300x300', class:"center" %>
+    <%= image_tag "megurume.jpg", :size =>'400', class:"center" %>
   </div>
   <div class="center">
       <div class="comment-text">スマホで簡単注文・テイクアウト・並ばず受け取れる<br>店内での飲食も出来新しいお店に出会えて定期的でお財布にも安心</div>
@@ -31,19 +34,23 @@
     <div class="f-item">
       <div class="box26">
         <div class="comment-text"><%= image_tag "image1_JPG.jpg", :size => '350', class: "plan-css" %></div>
-        <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;定額制</span>
+        <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;定額制</span><br>
+        <span>事前決済により決まった金額でお食事ができるため、余計な出費にもならずお財布にも優しいです。</span>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
           <div class="comment-text"><%= image_tag "image2_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;好きなお店に行ける</span>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;好きなお店に行ける</span><br>
+        <span>金額によりお好きな加盟店でお食事することができ、お気に入りのお店も見つかります。</span>
       </div>
     </div>
     <div class="f-item">
       <div class="box26">
         <div class="comment-text"><%= image_tag "image3_JPG.jpg", :size => '350', class: "plan-css" %></div>
-        <span>&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;チケット決済</span>
+        <span>&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;時間短縮</span><br>
+        <span>ランチタイムなど時間がない時でも食事できるメニューも先に決まっているので悩まず、
+              携帯画面見せるだけですぐに会計完了。レジに並ぶ時間の短縮も出来ます。</span>
       </div>
     </div>
   </div>
@@ -185,14 +192,14 @@
                     <div class="col-lg-5 col-xl-3">
                       <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                         <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300', height: "200" %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
                         <% else %>
                           <p></p>
                         <% end %>
                       </div>
                     </div>
-                    <div class="col-lg-7 col-xl-10">
-                      <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
                       <p class="dark-grey-text"><%= subscription.title %></p>
                       <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
                     </div>
@@ -210,33 +217,34 @@
     <div class="center">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
-    
+
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
-          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,携帯でお店検索</span>
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,店内orテイクアウト</span>
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,食事</span>
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
         </div>
       </div>
     </div>
     <hr class="border-solid-down" />
 
     <div class="center">
-      <%= link_to image_tag("toraiaru.jpg", :size =>'600x250'), "/", class:"gurumelogo" %>
+      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
+      <span>１週間３食１０００円。</span>
     </div>
-    
+
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -307,7 +315,7 @@
                       <% if media.media_image.present? %>
                         <div><%= image_tag media.media_image, :size => '200x100' %></div>
                       <% else %>
-                      
+
                       <% end %>
                     </div>
                   <% if current_admin.present? %>
@@ -334,15 +342,8 @@
                 <% @owner_subscriptions.each do |owner| %>
                 <hr class="tool-bar">
                   <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                       <%= owner.name %>
-                    </div>
-                    <div class="col-sm-8">
-                      <% if owner.image_subscription.present? %>
-                        <%= image_tag owner.image_subscription_url ,width: '100%', height: "200" %>
-                      <% else %>
-                        <p>登録されてません</p>
-                      <% end %>
                     </div>
                   </div>
                 <% end %>
@@ -353,12 +354,11 @@
       </div>
     </div>
     <hr class="border-solid-down" />
-
     <div class="f-container1">
       <div>
           <div class="center">
             <h1 class="concept2">巡グルメSNS</h1>
-            <h6 class="concept">新商品情報やプレゼントキャンペーンなどをお届けします！</h6>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
           </div>
         <div class="row">
           <div class="col-ms-12">
@@ -521,14 +521,14 @@
                     <div class="col-lg-5 col-xl-3">
                       <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                         <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300', height: "200" %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
                         <% else %>
                           <p></p>
                         <% end %>
                       </div>
                     </div>
-                    <div class="col-lg-7 col-xl-10">
-                      <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
                       <p class="dark-grey-text"><%= subscription.title %></p>
                       <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
                     </div>
@@ -546,33 +546,34 @@
     <div class="center">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
-    
+
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
-          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,携帯でお店検索</span>
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,店内orテイクアウト</span>
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,食事</span>
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
         </div>
       </div>
     </div>
     <hr class="border-solid-down" />
 
     <div class="center">
-      <%= link_to image_tag("toraiaru.jpg", :size =>'600x250'), "/", class:"gurumelogo" %>
+      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
+      <span>１週間３食１０００円。</span>
     </div>
-    
+
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -643,7 +644,7 @@
                       <% if media.media_image.present? %>
                         <div><%= image_tag media.media_image, :size => '200x100' %></div>
                       <% else %>
-                      
+
                       <% end %>
                     </div>
                   <% if current_admin.present? %>
@@ -690,11 +691,12 @@
     </div>
     <hr class="border-solid-down" />
 
+
     <div class="f-container1">
       <div>
           <div class="center">
             <h1 class="concept2">巡グルメSNS</h1>
-            <h6 class="concept">新商品情報やプレゼントキャンペーンなどをお届けします！</h6>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
           </div>
         <div class="row">
           <div class="col-ms-12">
@@ -860,14 +862,14 @@
                     <div class="col-lg-5 col-xl-3">
                       <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                         <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300', height: "200" %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
                         <% else %>
                           <p></p>
                         <% end %>
                       </div>
                     </div>
-                    <div class="col-lg-7 col-xl-10">
-                      <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
                       <p class="dark-grey-text"><%= subscription.title %></p>
                       <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
                     </div>
@@ -885,32 +887,44 @@
     <div class="center">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
-    
+
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
-          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,携帯でお店検索</span>
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,店内orテイクアウト</span>
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
-          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '400x200', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,食事</span>
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
         </div>
       </div>
     </div>
     <hr class="border-solid-down" />
 
     <div class="center">
-      <%= link_to image_tag("toraiaru.jpg", :size =>'600x250'), "/", class:"gurumelogo" %>
+      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
+      <span>１週間３食１０００円。</span>
     </div>
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
@@ -982,7 +996,7 @@
                       <% if media.media_image.present? %>
                         <div><%= image_tag media.media_image, :size => '200x100' %></div>
                       <% else %>
-                      
+
                       <% end %>
                     </div>
                   <% if current_admin.present? %>
@@ -1033,7 +1047,7 @@
       <div>
           <div class="center">
             <h1 class="concept2">巡グルメSNS</h1>
-            <h6 class="concept">新商品情報やプレゼントキャンペーンなどをお届けします！</h6>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
           </div>
         <div class="row">
           <div class="col-ms-12">
@@ -1195,14 +1209,14 @@
                     <div class="col-lg-5 col-xl-3">
                       <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                         <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300', height: "200" %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
                         <% else %>
                           <p></p>
                         <% end %>
                       </div>
                     </div>
-                    <div class="col-lg-7 col-xl-10">
-                      <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
                       <p class="dark-grey-text"><%= subscription.title %></p>
                       <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
                     </div>
@@ -1220,33 +1234,34 @@
     <div class="center">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
-    
+
     <div class="f-container">
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,携帯でお店検索</span>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
             <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,店内orテイクアウト</span>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,食事</span>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
         </div>
       </div>
     </div>
     <hr class="border-solid-down" />
 
     <div class="center">
-      <%= link_to image_tag("toraiaru.jpg", :size =>'600x250'), "/", class:"gurumelogo" %>
+      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
+      <span>１週間３食１０００円。</span>
     </div>
-    
+
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -1317,7 +1332,7 @@
                       <% if media.media_image.present? %>
                         <div><%= image_tag media.media_image, :size => '200x100' %></div>
                       <% else %>
-                      
+
                       <% end %>
                     </div>
                   <% if current_admin.present? %>
@@ -1368,7 +1383,7 @@
       <div>
           <div class="center">
             <h1 class="concept2">巡グルメSNS</h1>
-            <h6 class="concept">新商品情報やプレゼントキャンペーンなどをお届けします！</h6>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
           </div>
         <div class="row">
           <div class="col-ms-12">

@@ -24,7 +24,7 @@
       width: 100%;
       max-width: 100%;
       height: auto;
-      max-height: 75vh;
+      max-height: 30vh;
       object-fit: cover;
     }
   }
@@ -436,6 +436,7 @@
   }
   .concept {
     font-weight: bold;
+    font-size: 40px;
   }
   .concept1 {
     font-weight: 200;
@@ -444,6 +445,9 @@
     font-weight: bold;
     font-size: 40px;
     color: rgb(124, 44, 6) !important;
+  }
+  .concept3 {
+    font-weight: bold;
   }
   .plan-list {
     display: flex;

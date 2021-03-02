@@ -32,6 +32,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.float :longitude
 
       t.references :owner, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

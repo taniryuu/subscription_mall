@@ -1,17 +1,24 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:like_lunch, :show, :edit, :update, :destroy]
+  before_action :set_category, only: [:like_lunch]
   # before_action :set_subscription, only: [:show]
+
   def index
-    @categories = Category.all
-    @categories_name = Category.where.not(name: nil)
+    @categories = if params[:search]
+      Category.search(params[:search]).order("RANDOM()")
+    else
+      Category.order("RANDOM()").all
+    end
+    @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
   end
 
-  def show
+  def like_lunch
+    @categories = Category.find(params[:id])
+    @subscription = Subscription.find_by(params[:id])
+    @owner = Owner.find(params[:id])
   end
 
   def create
     @category = Category.new(category_params)
-
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
@@ -56,7 +63,7 @@ class CategoriesController < ApplicationController
   end
 
   def recommend
-    @subscriptions = Subscription.where(recommend: true).order(created_at: :desc).limit(15)
+    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).limit(15)
   end
 
   private

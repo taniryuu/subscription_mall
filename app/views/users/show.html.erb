@@ -21,17 +21,19 @@
           <th>メールアドレス</th><td><%= @user.email %></td>
         </tr>
         <tr>
-          <th>LINE_ID</th><td><%= @user.line_id %></td>
+          <th>加入プラン</th><td><%= @user.user_price %></td>
         </tr>
         <tr>
-          <th>チケット利用日</th><td><%= @ticket.use_ticket_day if @ticket.present? %></td>
+          <th>最新チケット利用日</th><td><%= @ticket.use_ticket_day if @ticket.present? %></td>
         </tr>
       </table>
       <div class="user-show-btn mt-5 mb-7">
         <%= link_to users_path, class: "btn btn--blue btn-md btn--shadow" do %>
         <i class="fas fa-reply"> 戻る</i>
         <% end %>
-        <%= link_to "編集", edit_user_path(@user), class: "btn btn--blue btn-md btn--shadow" %>
+        <% if current_admin.present? %>
+          <%= link_to "編集", edit_user_path(@user), class: "btn btn--blue btn-md btn--shadow" %>
+        <% end %>
         <% if current_user.present? %>
           <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn btn--blue btn-md btn--shadow" %>
         <% end %>

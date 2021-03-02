@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'ticket_logs' => "ticket_logs#index", as: :ticket_logs#チケット使用履歴
 
   root 'static_pages#top'#トップページ
+  get 'paypaytest' => "static_pages#paypaytest"#paypaytest
   get 'top_owner' => "static_pages#top_owner"#経営者様トップページ
   get 'top_user' => "static_pages#top_user"#利用者様トップページ
   get 'megurume_line' => "static_pages#megurume_line"#LINE誘導
@@ -70,8 +71,14 @@ Rails.application.routes.draw do
     post 'owners/sign_up/complete', to: 'owners/registrations#complete'
   end
 
-  resources :admins do
-      get 'admin_account', on: :member#アカウントページ
+  resource :admin, except: %i(new create destroy) do
+    get 'account', on: :collection #アカウントページ
+    member do
+      get 'owner_edit' #個人情報編集
+      patch 'owner_update' #個人情報編集
+      get 'user_edit' #
+      patch 'user_update' #
+    end
   end
   resources :blogs#管理者が書くサブスクnews
   get 'reviews/list' => "reviews#list"#利用者ではない人用の表示ページ
@@ -95,8 +102,6 @@ Rails.application.routes.draw do
   resources :owners do
     get :search, on: :collection #オーナーの名前であいまい検索 追加分
     member do
-      get 'owner_edit' #個人情報編集
-      patch 'owner_edit_update' #個人情報編集
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
       get 'user_email' #経営者から利用者へメール作成
@@ -104,10 +109,11 @@ Rails.application.routes.draw do
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do
-      # resources :images
+      get 'like_lunch', on: :member
       member do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
+        get '/owner_subscriptions', to: "subscriptions#owner_subscriptions", as: :owner_subscriptions
       end
     end
   end
@@ -117,17 +123,15 @@ Rails.application.routes.draw do
   end
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
-    resources :user_plans do
-      get "confirm", to: "user_plans#confirm"
-      get "update_confirm", to: "user_plans#update_confirm"
-      get 'new', to: "user_plans#new", as: 'plans_new' #利用者のプラン内容
-      get "edit", to: "user_plans#edit", as: 'plans_edit'
-      patch "update", to: "user_plans#update", as: 'plans_update'
-      delete "destroy", to: "user_plans#destroy", as: 'plans_destroy'
+    collection do
+      get :search # ユーザーの名前であいまい検索 追加分
+      get "sms_auth", to: "sms#new"
+      post "sms_auth", to: "sms#confirm"
     end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
-    get 'user_edit', on: :member#
-    patch 'user_edit_update', on: :member#
+    # get 'subscriptions/:id/edit_favorite', to: "subscriptions#edit_favorite", as: :edit_favorite#お気に入り店舗に加えるたり外すよう
+    # patch 'subscriptions/:id/update_recommend', to: "subscriptions#update_favorite", as: :update_favorite #お気に入り店舗に加えるたり外すよう
+    # get 'subscriptions/favorite', to: 'subscriptions#favorite', as: :favorite_subscriptions#おすすめショップ
     resources :tickets#サブスクチケット
     resources :reviews#利用者レビュー
       get "thanks", on: :member#会員完了通知仮面

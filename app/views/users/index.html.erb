@@ -39,10 +39,14 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.name ,user_path(user) %></td>
-          <td><%= user.kana %></td>
-          <td><%= link_to user.email ,user_email_owner_path(user) %></td>
-          <td><%= user.phone_number %></td>
+          <% if current_admin.present? %>
+            <td><%= link_to user.name, user_edit_admin_path(user_id: user.id) %></td>
+          <% elsif current_owner.present? %>
+            <td><%= link_to user.name, user_path(user) %></td>
+          <% end %>
+            <td><%= user.kana %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone_number %></td>
           <% if current_admin.present? %>
             <td>
                 <%= link_to "削除", user, method: :delete,
@@ -50,7 +54,7 @@
                     class: "btn btn-danger" %>
             </td>
             <td>
-                <%= link_to "編集", edit_user_path(user), class: "btn btn-brand" %>
+                <%= link_to "詳細", user_path(user), class: "btn btn-brand" %>
             </td>
           <% end %>
         </tr>
