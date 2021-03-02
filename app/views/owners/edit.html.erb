@@ -3,8 +3,8 @@
 <h1>経営者様情報の更新</h1>
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
-    <%= form_with(model: @owner, local: true) do |f| %>
-      <%= render "devise/shared/error_messages", resource: @owner %>
+    <%= form_with(model: current_owner, local: true) do |f| %>
+      <%= render "owners/shared/error_messages", resource: current_owner %>
 
       <div class="field mb-3">
         <%= f.label :name, class: "form-label" %> <span class="must">必須</span><br/>

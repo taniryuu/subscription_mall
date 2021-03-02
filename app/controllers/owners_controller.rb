@@ -55,7 +55,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    if current_owner.update!(owner_params)
+    if current_owner.update(owner_params)
       sign_in(current_owner, bypass: true)
       flash[:success] = "#{current_owner.name}様の情報を更新しました。"
       redirect_to owner_account_owner_url(current_owner.id)
