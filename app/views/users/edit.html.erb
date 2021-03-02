@@ -3,8 +3,8 @@
 <h1>ユーザー情報の更新</h1>
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3 mx-auto">
-    <%= form_with(model: @user, local: true) do |f| %>
-      <%= render "devise/shared/error_messages", resource: @user %>
+    <%= form_with(model: current_user, local: true) do |f| %>
+      <%= render "users/shared/error_messages", resource: current_user %>
       
       <div class="field mb-3">
         <%= f.label :name, class: "form-label" %>
