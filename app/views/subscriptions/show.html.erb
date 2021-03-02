@@ -18,8 +18,6 @@
                 <% @subscription.category_subscriptions.each do |category_subscription| %>
                   <span class="badge badge-success">
                   <%= category_subscription.category.name %>
-                <% else %>
-                  <p></p>
                   </span>
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
