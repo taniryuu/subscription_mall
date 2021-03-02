@@ -280,6 +280,7 @@ ActiveRecord::Schema.define(version: 20210228082259) do
     t.string "subject"
     t.string "session_id"
     t.integer "subscription_id"
+    t.boolean "sms_auth", default: false, null: false
     t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"

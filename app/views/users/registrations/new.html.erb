@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3 mx-auto">
     <%= form_for(resource, as: resource_name, url: users_sign_up_confirm_path(resource)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
       <div class="field">
         <%= f.label :name %> <span class="must">必須</span><br/>
