@@ -9,9 +9,11 @@ class Owners::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    login_owner = Owner.find_by(email: params[:owner][:email])
+    login_owner.update!(deleted_at: nil) if login_owner.present? && login_owner.deleted_at.present?
+    super
+  end
 
   # DELETE /resource/sign_out
   # def destroy

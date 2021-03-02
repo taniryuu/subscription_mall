@@ -2,8 +2,7 @@
 
 <div>
   <h1 class="brand-color display-4 mt-6 mb-6">チケット使用履歴</h1>
-
-  <div class="col">
+  <div class="col-md-10 offset-md-1">
     <% if @ticket_logs != [] %>
       <table class="table mb-8">
         <thead class="thead-light">
@@ -22,7 +21,6 @@
         <tbody>
           <% @ticket_logs.each do |ticket_log| %>
           <tr>
-
             <td><%= ticket_log.ticket_id %></td>
             <td><%= ticket_log.owner_name %></td>
             <td><%= ticket_log.owner_email %></td>

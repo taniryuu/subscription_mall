@@ -1,21 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:create, :show, :edit, :update, :destroy, :user_edit, :user_edit_update]
+  before_action :payment_planning_delete, only: :destroy
+  before_action :login_current_admin, only: %i(index)
+  before_action :login_current_user, only: %i(user_account edit)
+  before_action :login_current_owner, only: %i()
 
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
     @search = params[:search]
-  end
-
-  def user_edit
-  end
-
-  def user_edit_update
-    if @user.update_attributes(user_params)
-      flash[:success] = "#{@user.name}様の情報を更新しました。"
-      redirect_to user_account_user_url(current_user)
-    else
-      render :user_edit
-    end
   end
 
   def deleted_users
@@ -46,9 +38,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
-      flash[:success] = "#{@user.name}様の情報を更新しました。"
-      redirect_to users_url
+    if current_user.update_attributes(user_params)
+      current_user.update(sms_auth: false) if current_user.phone_number_changed?
+      flash[:success] = "#{current_user.name}様の情報を更新しました。"
+      sign_in(current_user, bypass: true)
+      redirect_to user_account_user_url(current_user)
     else
       render :edit
     end
@@ -63,10 +57,8 @@ class UsersController < ApplicationController
   end
 
   def ticket
-
     @owner = Owner.find(params[:id])
-    @subscription = Subscription.find_by(params[:owner_id])
-
+    @subscription = Subscription.find(params[:id])
   end
 
   # ユーザーの名前をあいまい検索機能
@@ -77,7 +69,6 @@ class UsersController < ApplicationController
       @users = User.none
     end
   end
-
 
   private
 
@@ -90,4 +81,11 @@ class UsersController < ApplicationController
     end
 
 
+      # ログイン状態を返します。
+    def limitation_login_user
+      if @current_user.present?
+        flash[:notice] = "すでにログイン状態です。"
+        redirect_to root_url
+      end
+    end
 end

@@ -1,83 +1,59 @@
-<% if current_user.issue_ticket_day.present? %>
-
+<% if current_user.issue_ticket_day.present? %> <%#これまでにチケットが発券した事があるかどうか%>
 <div class="container my-5">
-
   <section class="text-center dark-grey-text">
-
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
-
     <p class="text-muted w-responsive mx-auto mb-5">サンプルコメント</p>
-
     <div class="row">
-
       <div class="col-lg-4 col-md-12 mb-4">
       </div>
-
       <div class="col-lg-4 col-md-6 mb-4">
-
         <div class="card pricing-card">
-
           <div class="price header white-text indigo rounded-top">
             <h2 class="number"></h2>
             <div class="version">
               <h5 class="mb-0"><i class="fa fa-file-text-o fa-3x"></i></h5>
             </div>
           </div>
-
           <div class="card-body striped mb-1">
-
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-            <% if current_user.issue_ticket_day == Date.today %>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
+            <% if Date.today.wday == 6 || 0 && current_user.user_price < 18000 %> <%#プランが18000以下かつ土日の場合%>
+               <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
+            <% elsif current_user.issue_ticket_day == Date.today %> <%#当日にチケットが発券済みであるかどうか%>
                 <%= "本日のチケットは発券済みです" %>
-            <% else %>
+            <% else %> <%#当日にチケットが発券済みでなければ発券できる%>
                 <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
-
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
                     <%= f.hidden_field :owner_email, :value => @owner.email %>
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <%= f.hidden_field :owner_payee, :value => @owner.payee %>
                     <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                    <%= f.hidden_field :subscription_fee, :value => @subscription.monthly_fee %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
-
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
              <% end %>
           </div>
         </div>
       </div>
-
       <div class="col-lg-4 col-md-6 mb-4">
       </div>
-
     </div>
   </section>
 </div>
-
-<% else %>
-
+<% else %> <%#初めてチケットを発券する%>
 <div class="container my-5">
-
   <section class="text-center dark-grey-text">
-
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
-
     <p class="text-muted w-responsive mx-auto mb-5">サンプルコメント</p>
-
     <div class="row">
-
       <div class="col-lg-4 col-md-12 mb-4">
       </div>
-
       <div class="col-lg-4 col-md-6 mb-4">
-
         <div class="card pricing-card">
-
           <div class="price header white-text indigo rounded-top">
             <h2 class="number"></h2>
             <div class="version">
@@ -86,35 +62,32 @@
           </div>
 
           <div class="card-body striped mb-1">
-
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-
+             <% if Date.today.wday == 6 || 0 && current_user.user_price < 18000 %> <%#初めてのチケット発券でプランが18000以下かつ土日の場合%>
+               <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
+             <% else %>
                 <%= form_with(model: Ticket, url: user_tickets_path(current_user), local: true, method: :post) do |f| %>
-
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
                     <%= f.hidden_field :owner_email, :value => @owner.email %>
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <%= f.hidden_field :owner_payee, :value => @owner.payee %>
                     <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                    <%= f.hidden_field :subscription_fee, :value => @subscription.monthly_fee %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
-
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
+              <% end %>
           </div>
         </div>
       </div>
-
       <div class="col-lg-4 col-md-6 mb-4">
       </div>
-
     </div>
   </section>
 </div>
-
 <% end %>
+
