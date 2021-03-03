@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
     @user = User.find(params[:id]) if @user.blank?
     unless current_user?(@user)
       flash[:danger] = "ログインしている利用者様のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: 'ログインしている利用者様のみ確認可能なページです。'
     end
   end
 
@@ -86,14 +86,14 @@ class ApplicationController < ActionController::Base
   def login_current_admin
     unless current_admin.present? or current_owner.present?
       flash[:danger] = "管理者のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: '管理者のみ確認可能なページです。'
     end
   end
 
   def only_current_admin
     unless current_admin.present?
       flash[:danger] = "管理者のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: '管理者のみ確認可能なページです。'
     end
   end
 
@@ -102,7 +102,7 @@ class ApplicationController < ActionController::Base
     @owner = Owner.find(params[:id]) if @owner.blank?
     unless current_owner?(@owner)
       flash[:danger] = "ログインしている経営者様のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: 'ログインしている経営者様のみ確認可能なページです。'
     end  
   end
     private

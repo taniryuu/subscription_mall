@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
 
   def show
     gon.subscriptions = @subscription
-    @reviews = Review.all
+    @reviews = @subscription.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
   end
 
@@ -110,7 +110,7 @@ class SubscriptionsController < ApplicationController
     @categories = Category.all
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
+        format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }
@@ -202,7 +202,7 @@ class SubscriptionsController < ApplicationController
       @owner = Owner.find(params[:owner_id]) if @owner.blank?
       unless current_owner?(@owner)
         flash[:danger] = "他の経営者様のページへ移動できません。"
-        redirect_to owner_subscriptions_owner_subscription_url(current_owner)
+        redirect_to owner_subscriptions_owner_subscription_url(current_owner), notice: '権限がありません！'
       end  
     end
 end

@@ -26,7 +26,7 @@ module ApplicationHelper
   def set_subscription
     unless @sub = @owner.subscriptions.find_by(id: params[:id])
       flash[:danger] = "権限がありません。"
-      redirect_to owner_subscriptions_owner_subscription_url @owner
+      redirect_to owner_subscriptions_owner_subscription_url @owner, notice: '権限がありません！'
     end
   end
 end

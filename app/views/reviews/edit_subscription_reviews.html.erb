@@ -1,10 +1,10 @@
 <% provide(:title, "#{@subscription.name}のレビュー") %>
 
 <p id="notice"><%= notice %></p>
-<h1><%= @subscription.name %>のレビュー</h1>
+<h1><%= @subscription.name %>のレビュー編集</h1>
 
 <div class="rating-box">
-  <%= form_with(model: Review, url: user_reviews_path(current_user), local: true, method: :post) do |f| %>
+  <%= form_with(model: @review, url: user_review_path(@user), local: true) do |f| %>
    <div class="main-rating">
     <div class="form-outline mb-4">
       <%= f.label :メールアドレス, class: "label-signup" %>

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
 
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
+  get '/subscriptions/:subscription_id/edit_subscription_reviews/:id', to: 'reviews#edit_subscription_reviews', as: :edit_subscription_reviews #サブスクレビューページ
 
   get '/ticket_success', to: 'tickets#ticket_success', as: :ticket_success
   patch 'users/:user_id/tickets/:id/ticket_update_after_second_time', to: 'tickets#ticket_update_after_second_time', as: :ticket_update_after_second_time
