@@ -21,7 +21,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :phone_number
       t.string :uid
       t.string :provider
-      t.datetime :deleted_at
       t.text :message
       t.string :subject
       t.string :session_id

@@ -14,7 +14,7 @@ class UserPlansController < ApplicationController
 
   # stripe決済失敗時
   def cancel
-    current_user.update!(session_id: "")
+    current_user.update!(session_id: "", session_price: "")
   end
 
   # サブスクプラン新規登録

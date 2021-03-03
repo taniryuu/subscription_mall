@@ -290,6 +290,10 @@ ActiveRecord::Schema.define(version: 20210303125713) do
     t.datetime "updated_at", null: false
     t.integer "user_price"
     t.integer "session_price"
+<<<<<<< HEAD
+=======
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
+>>>>>>> 0bf29674b2e45755e42f824c622eca715c485c92
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
