@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210228082259) do
+ActiveRecord::Schema.define(version: 20210218075622) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -41,15 +41,10 @@ ActiveRecord::Schema.define(version: 20210228082259) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.bigint "user_id"
-    t.bigint "owner_id"
-    t.integer "subscription_id"
     t.string "image_category"
     t.string "search"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_categories_on_owner_id"
-    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "category_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -161,7 +156,7 @@ ActiveRecord::Schema.define(version: 20210228082259) do
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "detail"
+    t.text "detail"
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -213,12 +208,14 @@ ActiveRecord::Schema.define(version: 20210228082259) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.bigint "owner_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
-    t.integer "category_id"
+    t.integer "category_subscriptions_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "suports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -284,20 +281,19 @@ ActiveRecord::Schema.define(version: 20210228082259) do
     t.string "subject"
     t.string "session_id"
     t.integer "subscription_id"
+    t.boolean "sms_auth", default: false, null: false
     t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_price"
-    t.string "session_price"
+    t.integer "session_price"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "blogs", "admins"
-  add_foreign_key "categories", "owners"
-  add_foreign_key "categories", "users"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
   add_foreign_key "images", "blogs"
@@ -311,6 +307,7 @@ ActiveRecord::Schema.define(version: 20210228082259) do
   add_foreign_key "reviews", "subscriptions"
   add_foreign_key "reviews", "users"
   add_foreign_key "subscriptions", "owners"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
   add_foreign_key "ticket_logs", "tickets"

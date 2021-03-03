@@ -59,6 +59,7 @@ class ApplicationController < ActionController::Base
       @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
       Stripe::Subscription.delete(@payment.subscription)
       current_user.update!(customer_id: "", user_price: "")
+      current_user.Ticket.destroy_all
     end
   end
 
