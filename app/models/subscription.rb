@@ -17,9 +17,9 @@ class Subscription < ApplicationRecord
   validates :detail, presence: true, length: { maximum: 100 }
   validates :shop_introduction, presence: true, length: { maximum: 1000 }
   validates :subscription_detail, presence: true, length: { maximum: 1000 }
-  validates :image_subscription, presence: true
+  validates :image_subscription, presence: true, allow_blank: true
   # validates :qr_image, presence: true
-  validates :category_ids, presence: true
+  validates :category_ids, presence: true, allow_blank: true
   validates :price, presence: true
 
   geocoded_by :address
