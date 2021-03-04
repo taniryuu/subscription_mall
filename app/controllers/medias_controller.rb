@@ -1,5 +1,6 @@
 class MediasController < ApplicationController
   before_action :set_media, only: [:edit, :update, :destroy]
+  before_action :medias_lock, only: %i(new edit)
 
   def index
     @medias = Medium.all
@@ -52,5 +53,11 @@ class MediasController < ApplicationController
 
     def media_params
       params.require(:medium).permit(:media_name, :media_image)
+    end
+
+    def medias_lock
+      unless current_admin.present?
+        redirect_to root_url, notice: '権限がありません'
+      end
     end
 end

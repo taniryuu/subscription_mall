@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       current_user.update(sms_auth: false) if current_user.phone_number_changed?
       flash[:success] = "#{current_user.name}様の情報を更新しました。"
       sign_in(current_user, bypass: true)
-      redirect_to user_account_user_url(current_user)
+      redirect_to user_account_user_url(current_user), notice: "更新しました。"
     else
       render :edit
     end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     Devise.sign_out_all_scopes ? sign_out : sign_out(@user)
     yield @user if block_given?
     flash[:danger] = "#{@user.name}様のデータを削除しました"
-    redirect_to users_url
+    redirect_to users_url, notice: "削除しました。"
   end
 
   def ticket
