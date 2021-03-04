@@ -469,6 +469,20 @@
     overflow: hidden;
     margin-bottom: 3em;
   }
+  .trial_plan-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    width: 450px;
+    height: 140px;
+    top: 86%;
+    // position: relative;
+    overflow: hidden;
+    margin-bottom: 3em;
+  }
   .plan-shop-btn {
     width: 100%;
     top: 86%;
