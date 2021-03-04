@@ -108,12 +108,12 @@ class ApplicationController < ActionController::Base
     private
 
     def rescue400(e)
-      render "errors/not_found", status: 404
+      render "errors/not_found", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 404
     end
 
     #引数eを指定。errorオブジェクトが入る
     def rescue500(e)
-      render "errors/server_error", status: 500
+      render "errors/server_error", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 500
     end
     
 
