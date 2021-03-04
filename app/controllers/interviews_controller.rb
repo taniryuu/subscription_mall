@@ -1,11 +1,13 @@
 class InterviewsController < ApplicationController
   before_action :set_interview, only: [:show, :edit, :update, :destroy]
   # before_action :set_owner, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :interviews_lock, only: %i(new edit)
 
   # GET /interviews
   # GET /interviews.json
   def index
     @interviews = Interview.all
+    @interviews_count = Interview.all.count
   end
 
   def interviews_index
@@ -79,5 +81,11 @@ class InterviewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def interview_params
       params.require(:interview).permit(:owner_name, :shop_name, :content, :image_interview, :youtube_url, :music, :owner_id)
+    end
+
+    def interviews_lock
+      if current_user.present?
+        redirect_to root_url, notice: '権限がありません'
+      end
     end
 end

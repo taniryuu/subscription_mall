@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :questions_lock, only: %i(new edit)
 
   # GET /questions
   # GET /questions.json
@@ -70,5 +71,11 @@ class QuestionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def question_params
       params.require(:question).permit(:detail, :answer)
+    end
+
+    def questions_lock
+      unless current_admin.present?
+        redirect_to root_url, notice: '権限がありません'
+      end
     end
 end

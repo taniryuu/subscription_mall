@@ -63,11 +63,6 @@
     <% end %>
   </div>
 
-    <%
-=begin%>
- <%= form.check_box :category_ids, { multiple: true}, category[:id] %> 
-<%
-=end%>
   <div class="field">
     <%= form.label :price %> <span class="must">必須</span><br/>
     <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>

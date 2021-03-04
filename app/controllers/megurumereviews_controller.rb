@@ -1,7 +1,8 @@
 class MegurumereviewsController < ApplicationController
+  # before_action :login_current_owner, only: %i()
 
   def index
-    @megurumereviews = Megurumereview.all
+    @megurumereviews = Megurumereview.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -11,9 +12,9 @@ class MegurumereviewsController < ApplicationController
   def create
     @megurumereview = Megurumereview.new(megurumereview_params)
       if @megurumereview.save!
-        redirect_to user_account_user_path(current_user)
+        redirect_to megurumereviews_url(current_user)
       else
-        redirect_to root_path
+        render :new
       end
   end
 

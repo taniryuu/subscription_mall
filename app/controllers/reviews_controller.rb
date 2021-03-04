@@ -1,11 +1,12 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :set_review, only: [:show, :edit, :update, :destroy, :edit_subscription_reviews]
+  before_action :set_user, only: [:index, :new, :create, :show, :edit, :update, :destroy, :edit_subscription_reviews]
+  before_action :reviews_lock, only: %i(new edit subscription_reviews edit_subscription_reviews)
 
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.includes(:user)
+    @reviews = Review.includes(:user).limit(5)
   end
 
   def list
@@ -26,15 +27,19 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-      if @review.save!
-        redirect_to user_account_user_path(current_user)
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to categories_url, notice: 'レビューを投稿しました！' }
+        format.json { render :show, status: :ok, location: @subscription }
       else
-        redirect_to root_path
+        render :new
       end
+    end
   end
 
   # GET /reviews/1/edit
   def edit
+    @subscription = Subscription.find(params[:subscription_id])
   end
 
   # PATCH/PUT /reviews/1
@@ -42,7 +47,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to user_reviews_url, notice: 'レビューの更新完了です！' }
+        format.html { redirect_to categories_url, notice: 'レビューの更新完了です！' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -56,14 +61,17 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to user_reviews_url, notice: 'レビューの削除完了です！' }
+      format.html { redirect_to categories_url, notice: 'レビューの削除完了です！' }
       format.json { head :no_content }
     end
   end
 
   def subscription_reviews
-    @subscription = Subscription.find_by(params[:subscription_id])
+    @subscription = Subscription.find(params[:subscription_id])
+  end
 
+  def edit_subscription_reviews
+    @subscription = Subscription.find(params[:subscription_id])
   end
 
   private
@@ -78,6 +86,12 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:email, :content, :score, :subscription_id, :user_id)
+      params.require(:review).permit(:name, :email, :content, :score, :subscription_id, :user_id)
+    end
+
+    def reviews_lock
+      if current_owner.present?
+        redirect_to root_url, notice: '権限がありません！'
+      end
     end
 end

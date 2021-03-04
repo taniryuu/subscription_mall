@@ -1,3 +1,5 @@
+<% provide(:title, "サブスクページ") %>
+<p id="notice"><%= notice %></p>
 <div class="container my-5">
   <section>
     <style>
@@ -18,6 +20,7 @@
                 <% @subscription.category_subscriptions.each do |category_subscription| %>
                   <span class="badge badge-success">
                   <%= category_subscription.category.name %>
+                  </span>
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
                 <p class="font-weight-normal mb-2">
@@ -45,9 +48,10 @@
               <% elsif current_user.present? %>
                 <%= link_to "サブスクを始める", new_user_plan_path, class: "btn-gradient-3d-simple" %>
               <% elsif current_owner.present? %>
-                <%= link_to "サブスク一覧へ", owner_subscriptions_owner_subscription_path(current_owner), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスク一覧へ", owner_subscriptions_path(current_owner), class: "btn-gradient-3d-simple" %>
                 <%= link_to "サブスク編集", edit_owner_subscription_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_admin.present? %>
+                <%= link_to "サブスク編集", edit_owner_subscription_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
                 <% if @subscription.recommend == true %>
                   <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple" %>
                 <% elsif @subscription.recommend == false %>
@@ -234,7 +238,7 @@
                 <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
               <% elsif current_user.present? %>
                 <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
-                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription), class: "btn btn-outline-warning btn-rounded" %><br>
+                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn btn-outline-warning btn-rounded" %><br>
                   <% if @subscription.owner.address.present? %>
                     　　　住所：<%= @subscription.owner.address %>
                   <% else %>
@@ -294,21 +298,34 @@
      <table class="table" style="table-layout:fixed;width:100%;">
        <thead class="thead-light">
          <tr>
+           <% if current_admin.present? %>
+            <th>投稿者</th>
+           <% end %>
            <th>コメント</th>
            <th>評価</th>
            <th>投稿日</th>
+           <% if current_user.present? %>
+            <th>投稿編集</th>
+           <% end %>
          </tr>
        </thead>
 
        <tbody>
         <% @reviews.each do |review| %>
          <tr>
+           <% if current_admin.present? %>
+            <td><%= review.user.name %></td>
+           <% end %>
            <td style="word-wrap:break-word;"><%= review.content %></td>
            <td><%= review.score %></td>
            <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
+           <% if current_user.present? && current_user.id == review.user_id %>
+            <th><%= link_to "編集", edit_subscription_reviews_path(@subscription, review, user_id: current_user.id), class: "btn btn-outline-warning btn-rounded" %></th>
+           <% end %>
          </tr>
         <% end %>
        </tbody>
      </table>
   </section>
+        <%= will_paginate(@reviews, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>

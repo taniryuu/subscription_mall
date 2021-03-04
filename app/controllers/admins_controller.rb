@@ -71,4 +71,10 @@ class AdminsController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :kana, :email, :phone_number, :address, :password, :password_confirmation)
     end
+
+    def admin_lock
+      unless current_admin.present?
+        redirect_to root_url, notice: '権限がありません'
+      end
+    end
 end
