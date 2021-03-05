@@ -4,7 +4,10 @@
 <h1 class="brand-color display-4 mt-6 mb-6">サブスクページ一覧</h1>
 
 <table class="table mt-7">
-  <thead>
+  <% if @private_stores_count < 1 %>
+    <h1>まだショップ開設してません</h1>
+  <% else %>
+    <thead>
       <div class="row">
         <div class="col-sm-2">
           お店の名前
@@ -12,10 +15,8 @@
         <div class="col-sm-2">
           商品タイトル
         </div>
-        <div class="col-sm-2">
-          カテゴリ
-        </div>
-  </thead>
+    </thead>
+  <% end %>
 
   <tbody>
     <% @private_stores.each do |private_store| %>
@@ -27,11 +28,6 @@
 
         <div class="col-sm-2">
           <%= private_store.title %>
-        </div>
-        <div class="col-sm-2">
-          <% @private_store.category_private_stores.each do |category_private_store| %>
-            <%= category_private_store.category.name %>
-          <% end %>
         </div>
         <% if current_admin.present? || current_owner.present? %>
           <div class="col-sm-1 tool--item">

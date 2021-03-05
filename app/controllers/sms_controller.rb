@@ -15,7 +15,7 @@ class SmsController < ApplicationController
       client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
       result = client.messages.create(
         from: ENV["TWILIO_PHONE_NUMBER"],
-        to: '+81-090-8125-1228',
+        to: send_phone_number,
         body: "認証番号：#{session[:secure_code]} この番号を巡グルメの画面で入力してください。"
       )
     rescue Twilio::REST::RestError => e

@@ -1,25 +1,26 @@
 class PrivateStoresController < ApplicationController
-  before_action :set_private_store, only: [:index, :update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
+  before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
-  before_action :sub_current_owner, only: %i(owner_private_stores edit)
+  before_action :sub_current_owner, only: %i(edit index)
+  # before_action :set_owner_private_store, only: %i()
 
   # GET /private_stores
   # GET /private_stores.json
   def index
     @private_stores = @owner.private_stores
+    @private_stores_count = @owner.private_stores.count
   end
 
   def owner_private_stores
     @private_stores = @owner.private_stores
-    @private_store = PrivateStore.find(params[:id])
   end
 
   def show
     gon.private_stores = @private_store
-    @reviews = Review.all
+    @reviews = @private_store.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
   end
 
@@ -101,7 +102,7 @@ class PrivateStoresController < ApplicationController
 	else
 	  flash[:danger] = "QRコードを指定できませんでした。"
 	end
-	format.html { redirect_to owner_private_stores_owner_private_store_url(@private_store, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
+        format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @private_store }
       else
         format.html { render :new }
@@ -224,7 +225,7 @@ class PrivateStoresController < ApplicationController
         else
           flash[:danger] = "sub_image12を指定できませんでした。"
         end
-	format.html { redirect_to owner_private_store_url(@private_store, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
+        format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @private_store }
       else
         format.html { render :edit }
@@ -238,7 +239,7 @@ class PrivateStoresController < ApplicationController
   def destroy
     @private_store.destroy
     respond_to do |format|
-      format.html { redirect_to owner_private_stores_owner_private_store_url(@private_store, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
+      format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
       format.json { head :no_content }
     end
   end
@@ -314,10 +315,17 @@ class PrivateStoresController < ApplicationController
     # 現在ログインしている経営者を許可します。
     def sub_current_owner
       @owner = Owner.find(params[:owner_id]) if @owner.blank?
-      unless current_owner?(@owner)
-        flash[:danger] = "他の経営者様のページへ移動できません。"
-        redirect_to owner_private_stores_owner_private_store_url(current_owner)
+      unless current_owner?(@owner) or current_admin.present?
+        redirect_to owner_private_stores_url(current_owner), notice: '他の経営者様のページへ移動できません。'
       end  
     end
-end
+
+    def set_owner_private_store
+      @owner = Owner.find(params[:owner_id])
+      unless @owner.private_stores.find_by(id: params[:id])
+        flash[:danger] = "権限がありません。"
+        redirect_to owner_private_stores_url @owner, notice: '権限がありません！'
+      end
+    end
+  end
 
