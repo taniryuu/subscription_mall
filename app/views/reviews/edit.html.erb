@@ -1,62 +1,40 @@
-<% provide(:title, "編集レビュー") %>
+<% provide(:title, "#{@subscription.name}のレビュー") %>
 
 <p id="notice"><%= notice %></p>
+<h1><%= @subscription.name %>のレビュー編集</h1>
 
-<h1>利用者様レビュー編集</h1>
+<div class="rating-box">
+  <%= form_with(model: Review, url: user_reviews_path(current_user), local: true, method: :post) do |f| %>
+   <div class="main-rating">
+    <div class="form-outline mb-4">
+      <%= f.label :メールアドレス, class: "label-signup" %>
+      <%= f.email_field :email, :required => true, value: current_user.email, class: "form-control" %>
+      <%= f.hidden_field :name, :value => current_user.name %>
+    </div>
 
-      <%= form_with(model: @review, url: user_review_path, local: true) do |form| %>
-        <% if @review.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+    <div class="form-outline mb-4">
+      <div class="ratings">
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+      </div>
+    <div class="rating-value-display"><span id="rating-value-display">0</span>/5</div>
+   </div>
 
-            <ul>
-            <% @review.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
+      <%= f.hidden_field :subscription_id, value: @subscription.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :score, id: "rating-value" %>
 
-        <%= form.hidden_field :user_id, :value => @user.id %>
+    <div class="form-outline mb-4">
+      <%= f.label :コメント, class: "label-signup" %>
+      <%= f.text_area :content, :required => true, class: "form-control" %>
+    </div>
+      <%= f.submit "投稿する", class: "btn btn-primary btn-block mb-4" %>
+  </div>
+ <% end %>
+</div>
+<%= javascript_include_tag "reviews.js" %>
 
-        <span class="rating" id="rating">
-          <%= form.hidden_field :score, :required => true, id: :review_star %>
-        </span>
-            <div id="rating">
-              <i class="fa fa-star active"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-            </div>
 
-        <div class="review-coment-new">
-          <%= form.label :content, class: "label-signup" %>
-          <%= form.text_area :content, :required => true, size: "30x6", :required => true, class: "form-control"%>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :name, class: "label-signup" %>
-          <%= form.text_field :name, :required => true, class: "form-control"%>
-        </div>
-        <div class="form-group">
-          <%= form.label :email, class: "label-signup" %>
-          <%= form.email_field :email, :required => true, class: "form-control" %>
-        </div>
-        <%= form.submit "投稿する", class:  "btn btn-primary" %>
-      <% end %>
-
-<!-- 星評価javascript -->
-<script>
-$('#star').raty({
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  scoreName: 'review[rate]',
-  half: true,
-});
-</script>
-
-<%= link_to '詳細', user_review_path %> |
-<%= link_to '利用者様レビュー一覧へ', user_reviews_path %>

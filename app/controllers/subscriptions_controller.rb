@@ -1,25 +1,26 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:index, :update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
+  before_action :set_subscription, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
-  before_action :sub_current_owner, only: %i(owner_subscriptions edit)
+  before_action :sub_current_owner, only: %i(edit index)
+  # before_action :set_owner_subscription, only: %i()
 
   # GET /subscriptions
   # GET /subscriptions.json
   def index
     @subscriptions = @owner.subscriptions
+    @subscriptions_count = @owner.subscriptions.count
   end
 
   def owner_subscriptions
     @subscriptions = @owner.subscriptions
-    @subscription = Subscription.find(params[:id])
   end
 
   def show
     gon.subscriptions = @subscription
-    @reviews = Review.all
+    @reviews = @subscription.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
   end
 
@@ -95,7 +96,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
+        format.html { redirect_to owner_subscriptions_url(owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -110,7 +111,7 @@ class SubscriptionsController < ApplicationController
     @categories = Category.all
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to owner_subscription_url(@subscription, owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
+        format.html { redirect_to owner_subscriptions_url(owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }
@@ -124,7 +125,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     respond_to do |format|
-      format.html { redirect_to owner_subscriptions_owner_subscription_url(@subscription, id: @owner.id, owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
+      format.html { redirect_to owner_subscriptions_url(owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
       format.json { head :no_content }
     end
   end
@@ -200,10 +201,17 @@ class SubscriptionsController < ApplicationController
     # 現在ログインしている経営者を許可します。
     def sub_current_owner
       @owner = Owner.find(params[:owner_id]) if @owner.blank?
-      unless current_owner?(@owner)
-        flash[:danger] = "他の経営者様のページへ移動できません。"
-        redirect_to owner_subscriptions_owner_subscription_url(current_owner)
+      unless current_owner?(@owner) or current_admin.present?
+        redirect_to owner_subscriptions_url(current_owner), notice: '他の経営者様のページへ移動できません。'
       end  
     end
-end
+
+    def set_owner_subscription
+      @owner = Owner.find(params[:owner_id])
+      unless @owner.subscriptions.find_by(id: params[:id])
+        flash[:danger] = "権限がありません。"
+        redirect_to owner_subscriptions_url @owner, notice: '権限がありません！'
+      end
+    end
+  end
 
