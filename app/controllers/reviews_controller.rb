@@ -70,9 +70,14 @@ class ReviewsController < ApplicationController
     @subscription = Subscription.find(params[:subscription_id])
   end
 
+  def private_store_reviews
+    @private_store = PrivateStore.find(params[:private_store_id])
+  end
+
   def edit_subscription_reviews
     @subscription = Subscription.find(params[:subscription_id])
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

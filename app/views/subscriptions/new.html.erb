@@ -2,7 +2,7 @@
 
 <h1>サブスクショップ開設</h1>
 
-<%= form_with(model: @subscription, url: owner_subscriptions_path(@subscription, owner_id: @owner.id), local: true) do |form| %>
+<%= form_with(model: @subscription, url: owner_subscriptions_path(@subscription, owner_id: @owner.id), multipart: true, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
@@ -38,8 +38,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :"LINE@QRコード画像" %> <span class="must">必須</span><br/>
-    <%= form.file_field :qr_image %>
+    <%= form.label :"LINE@QRコード画像",for: "file-input", type:"file" %> <span class="must">必須</span><br/>
+    <%= form.file_field :qr_image, id: "file-input" %>
   </div>
 
   <div class="field">
