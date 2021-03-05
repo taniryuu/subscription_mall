@@ -142,7 +142,7 @@
                <% end %>
              <% end %>
 
-             <% if current_user.user_price >= 1000 && current_user.user_price < 18000 %> <%#初めてのチケット発券でプランが1000円以上18000円未満の場合%>
+             <% if current_user.user_price > 1000 && current_user.user_price < 18000 %> <%#初めてのチケット発券でプランが1000円以上18000円未満の場合%>
                <% if Date.today.wday === 6 || Date.today.wday === 0 %> <%#初めてのチケット発券でプランが1000円以上18000円未満かつ土日の場合%>
                 <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
                <% else %>
