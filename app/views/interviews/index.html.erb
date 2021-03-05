@@ -6,6 +6,9 @@
 
 <table class="mb-8">
   <tbody>
+    <% if @interviews_count < 1 %>
+      <h1>まだ投稿されていません</h1>
+    <% end %>
     <% @interviews.each do |interview| %>
     <hr class="tool-bar">
       <div class="row">

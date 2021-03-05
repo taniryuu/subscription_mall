@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:like_lunch]
   # before_action :set_subscription, only: [:show]
+  before_action :categories_lock, only: %i(new edit)
+
 
   def index
     @categories = if params[:search]
@@ -12,8 +14,10 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
+    #@subscriptions = @category.subscriptions
     @categories = Category.find(params[:id])
     @subscription = Subscription.find_by(params[:id])
+    @private_store = PrivateStore.find_by(params[:id])
     @owner = Owner.find(params[:id])
   end
 
@@ -54,15 +58,16 @@ class CategoriesController < ApplicationController
     @categories = Category.where.not(name: nil)
   end
 
-
   def shop_list
     @subscriptions = Subscription.all
+    @private_stores = PrivateStore.all
   end
 
   def recommend
-    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).limit(15)
+    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)  
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
@@ -76,5 +81,11 @@ class CategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def category_params
       params.require(:category).permit(:name, :image_category, :user_id, :owner_id)
+    end
+
+    def categories_lock
+      unless current_admin.present?
+        redirect_to root_url, notice: '権限がありません'
+      end
     end
 end

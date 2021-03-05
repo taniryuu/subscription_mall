@@ -1,8 +1,8 @@
 <header>
-<% if signed_in? %> <%# ログインしているかどうか %>
- <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-    <div class="container-fluid">
-      <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+  <% if signed_in? %> <%# ログインしているかどうか %>
+    <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
+      <div class="container-fluid">
+        <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
         <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
           <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false"    aria-label="Toggle navigation">
@@ -11,20 +11,24 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
+<%
+=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "利用者様管理", users_path %></li>
-              <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
+              <li><%= link_to "ショップ開設", subscription_private_store_select_owner_path(current_owner) %></li>
               <li><%= link_to "マイアカウント", owner_account_owner_path(current_owner) %></li>
               <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
             </ul>
           </div>
         </nav>
-    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
-    </div>
- <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-    <div class="container-fluid">
-      <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+      </div>
+    <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
+      <div class="container-fluid">
+        <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
         <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
           <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false"    aria-label="Toggle navigation">
@@ -33,18 +37,22 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
+<%
+=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
             </ul>
           </div>
         </nav>
-    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
-    </div>
- <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-    <div class="container-fluid">
-      <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+      </div>
+    <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
+      <div class="container-fluid">
+        <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
         <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
           <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false"    aria-label="Toggle navigation">
@@ -53,23 +61,27 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
+<%
+=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "経営者様管理", owners_path %></li>
               <li><%= link_to "利用者様管理", users_path %></li>
-              <li><%= link_to "マイアカウント", admin_account_admin_path(current_admin) %></li>
+              <li><%= link_to "マイアカウント", account_admin_path(current_admin) %></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
             </ul>
           </div>
         </nav>
-    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
-    </div>
-  <% end %>
+        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+      </div>
+    <% end %>
 
 
-<% else %> <%# ログインしてない %>
-  <div class="container-fluid">
-    <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+  <% else %> <%# ログインしてない %>
+    <div class="container-fluid">
+      <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
       <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
         <%= link_to image_tag("gurumelogo.jpeg", :size =>'260x100'), "/", class:"gurumelogo" %>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false"    aria-label="Toggle navigation">
@@ -78,31 +90,35 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
           <ul class="navbar-nav">
-            <li><%= link_to "プラン", plan_description_path %></li>
+            <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></li> 
+<%
+=end%>
             <li><%= link_to "おすすめ店舗", recommend_categories_path %></li>
             <li class="login"><%= link_to "ログイン", new_user_session_path %></li>
             <li class="new-user"><%= link_to "会員登録", new_user_registration_path %></li>
           </ul>
         </div>
       </nav>
-    <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
-  </div>
-<% end %>
+      <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+    </div>
+  <% end %>
   <p class="text-sub-center lead grey-text mx-auto mb-5">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
 </header>
- <script type="text/javascript">
-            if(!window._pt_sp_2){
-                window._pt_lt = new Date().getTime();
-                window._pt_sp_2 = [];
-                _pt_sp_2.push("setAccount,11882d9b");
-                var _protocol =(("https:" == document.location.protocol) ? " https://" : " http://");
-                (function() {
-                    var atag = document.createElement("script");
-                    atag.type = "text/javascript";
-                    atag.async = true;
-                    atag.src = _protocol + "js.ptengine.jp/11882d9b.js";
-                    var s = document.getElementsByTagName("script")[0];
-                    s.parentNode.insertBefore(atag, s);
-                })();
-            }
-	</script>
+<script type="text/javascript">
+  if(!window._pt_sp_2){
+    window._pt_lt = new Date().getTime();
+    window._pt_sp_2 = [];
+    _pt_sp_2.push("setAccount,11882d9b");
+    var _protocol =(("https:" == document.location.protocol) ? " https://" : " http://");
+    (function() {
+      var atag = document.createElement("script");
+      atag.type = "text/javascript";
+      atag.async = true;
+      atag.src = _protocol + "js.ptengine.jp/11882d9b.js";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(atag, s);
+    })();
+  }
+</script>

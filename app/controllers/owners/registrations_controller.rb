@@ -27,8 +27,14 @@ class Owners::RegistrationsController < Devise::RegistrationsController
 
   # 新規追加
   def complete
-    @owner.save
-    OwnerMailer.with(owner: @owner).welcome_email.deliver_now
+    if Owner.find_by(email: params[:owner][:email]).blank?
+      @owner.save
+      sign_in @owner
+      OwnerMailer.with(owner: @owner).welcome_email.deliver_now
+    else
+      flash[:worning] = "メールアドレスが既に登録されています"
+      redirect_to new_owner_session_url
+    end
   end
 
   # アカウント登録後

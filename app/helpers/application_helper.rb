@@ -22,4 +22,5 @@ module ApplicationHelper
   def current_owner?(owner)
     owner == current_owner
   end
+
 end

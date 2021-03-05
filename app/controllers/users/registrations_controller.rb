@@ -28,8 +28,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # 新規追加
   def complete
-    @user.save
-    UserMailer.with(user: @user).welcome_email.deliver_now
+    if User.find_by(email: params[:user][:email]).blank?
+      @user.save
+      flash[:success] = "登録に成功しました"
+      sign_in @user
+      UserMailer.with(user: @user).welcome_email.deliver_now
+    else
+      flash[:worning] = "メールアドレスが既に登録されています"
+      redirect_to new_user_session_url
+    end
   end
 
   # アカウント登録後
@@ -97,6 +104,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def sign_up_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :phone_number, :password, :password_confirmation)
     end
 end

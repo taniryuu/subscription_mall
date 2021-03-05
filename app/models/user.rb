@@ -5,8 +5,15 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :megurumereviews, dependent: :destroy
   # has_many :user_plans, dependent: :destroy
+  # has_many :private_store_user_plans, dependent: :destroy
   # has_many :subscriptions, dependent: :destroy
-  acts_as_paranoid # 追加
+  
+  # 論理削除
+  acts_as_paranoid without_default_scope: true
+  after_destroy      :update_document_in_search_engine
+  after_restore      :update_document_in_search_engine
+  after_real_destroy :remove_document_from_search_engine
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -20,7 +27,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, scope: :deleted_at
   validates :name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, length: { maximum: 100 }, uniqueness: true
-  # validates :kana, presence: true
+  validates :kana, presence: true, allow_blank: true, length: { maximum: 50 }
   validates_format_of :email, presence: true, with: Devise.email_regexp, if: :will_save_change_to_email?
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create # 6..128
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update

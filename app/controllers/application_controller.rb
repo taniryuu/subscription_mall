@@ -17,24 +17,24 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       if current_admin.present?
-        admin_account_admin_path(resource)
+        account_admin_url
       else
         flash[:danger] = "ログインしてください"
-        root_path(resource)
+        root_url
       end
     when User
       if current_user.present?
-        user_account_user_path(resource)
+        user_account_user_url(resource)
       else
         flash[:danger] = "ログインしてください"
-        root_path(resource)
+        root_url
       end
     when Owner
       if current_owner.present?
-        owner_account_owner_path(resource)
+        owner_account_owner_url(resource)
       else
         flash[:danger] = "ログインしてください"
-        root_path(resource)
+        root_url
       end
     end
   end
@@ -63,6 +63,7 @@ class ApplicationController < ActionController::Base
       @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
       Stripe::Subscription.delete(@payment.subscription)
       current_user.update!(customer_id: "", user_price: "")
+      current_user.Ticket.destroy_all
     end
   end
 
@@ -78,7 +79,7 @@ class ApplicationController < ActionController::Base
     @user = User.find(params[:id]) if @user.blank?
     unless current_user?(@user)
       flash[:danger] = "ログインしている利用者様のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: 'ログインしている利用者様のみ確認可能なページです。'
     end
   end
 
@@ -86,7 +87,14 @@ class ApplicationController < ActionController::Base
   def login_current_admin
     unless current_admin.present? or current_owner.present?
       flash[:danger] = "管理者のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: '管理者のみ確認可能なページです。'
+    end
+  end
+
+  def only_current_admin
+    unless current_admin.present?
+      flash[:danger] = "管理者のみ確認可能なページです。"
+      redirect_to root_url, notice: '管理者のみ確認可能なページです。'
     end
   end
 
@@ -95,18 +103,18 @@ class ApplicationController < ActionController::Base
     @owner = Owner.find(params[:id]) if @owner.blank?
     unless current_owner?(@owner)
       flash[:danger] = "ログインしている経営者様のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: 'ログインしている経営者様のみ確認可能なページです。'
     end  
   end
     private
 
     def rescue400(e)
-      render "errors/not_found", status: 404
+      render "errors/not_found", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 404
     end
 
     #引数eを指定。errorオブジェクトが入る
     def rescue500(e)
-      render "errors/server_error", status: 500
+      render "errors/server_error", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 500
     end
     
 
