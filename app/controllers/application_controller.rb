@@ -106,6 +106,18 @@ class ApplicationController < ActionController::Base
       redirect_to root_url, notice: 'ログインしている経営者様のみ確認可能なページです。'
     end  
   end
+
+  # 現在ログインしている利用者または現在ログインしている管理者を許可します
+  def authenticate_user_or_admin!
+    if admin_signed_in?
+      authenticate_admin!
+    elsif user_signed_in?
+      authenticate_user!
+    else
+      redirect_to root_url
+    end
+  end
+
     private
 
     def rescue400(e)
