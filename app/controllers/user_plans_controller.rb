@@ -67,6 +67,7 @@ class UserPlansController < ApplicationController
           price: params[:session],
           quantity: 1},
         ],
+	mode: 'subscription',
       )
     end
 
