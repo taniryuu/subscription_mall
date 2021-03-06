@@ -5,7 +5,7 @@ class UserPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
-  before_action :sms_auth_false?, only: %i(new confirm destroy)
+  # before_action :sms_auth_false?, only: %i(new confirm destroy)
 
   # stripe決済成功時
   def success
@@ -67,6 +67,7 @@ class UserPlansController < ApplicationController
           price: params[:session],
           quantity: 1},
         ],
+        mode: 'subscription',
       )
     end
 

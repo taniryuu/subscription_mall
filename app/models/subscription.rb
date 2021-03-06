@@ -6,9 +6,11 @@ class Subscription < ApplicationRecord
   has_many :categories, through: :category_subscriptions
   accepts_nested_attributes_for :categories, allow_destroy: true
 
-  has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :instablogs, dependent: :destroy
+  
+  has_many :subscription_images, dependent: :destroy
+  has_many :images, through: :subscription_images
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 50 }

@@ -20,6 +20,7 @@ class SubscriptionsController < ApplicationController
 
   def show
     gon.subscriptions = @subscription
+    @sub_images = @subscription.images
     @reviews = @subscription.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
   end
@@ -47,7 +48,7 @@ class SubscriptionsController < ApplicationController
       elsif @subscription.recommend == false
         @subscription.recommend = false
       end
-    redirect_to recommend_categories_url
+      redirect_to recommend_categories_url
     end
   end
 
@@ -87,6 +88,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1/edit
   def edit
     @categories = Category.all
+    @subscription.images.build
   end
 
   # POST /subscriptions
@@ -108,6 +110,7 @@ class SubscriptionsController < ApplicationController
   # PATCH/PUT /subscriptions/1
   # PATCH/PUT /subscriptions/1.json
   def update
+    @images = Image.where.not(id: nil)
     @categories = Category.all
     respond_to do |format|
       if @subscription.update(subscription_params)
@@ -136,82 +139,83 @@ class SubscriptionsController < ApplicationController
   def company_profile
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subscription
-      @subscription = Subscription.find(params[:id])
-    end
-
-    def set_owner
-      @owner = Owner.find(params[:owner_id])
-    end
-
-    def set_user
-      @user = User.find(params[:user_id])
-    end
-
-    def set_category
-      @category = Category.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def subscription_params
-      params.require(:subscription).permit(:name,
-                                            :title,
-                                            :address,
-                                            :shop_introduction,
-                                            :detail, :qr_image,
-                                            :image_subscription,
-                                            :image_subscription2,
-                                            :image_subscription3,
-                                            :image_subscription4,
-                                            :image_subscription5,
-                                            :sub_image,
-                                            :sub_image2,
-                                            :sub_image3,
-                                            :sub_image4,
-                                            :sub_image5,
-                                            :sub_image6,
-                                            :sub_image7,
-                                            :sub_image8,
-                                            :sub_image9,
-                                            :sub_image10,
-                                            :sub_image11,
-                                            :sub_image12,
-                                            :image_subscription_id,
-                                            :subscription_detail,
-                                            :price,
-                                            :owner_id,
-                                            { :category_ids=> [] }
-                                          )
-    end
-
-    def recommend_params
-      params.require(:subscription).permit(:recommend, :owner_id)
-    end
-
-    def favorite_params
-      params.require(:subscription).permit(:favorite, :user_id)
-    end
-
-    def map_params
-      params.require(:map).permit(:address, :distance, :time)
-    end
-
-    # 現在ログインしている経営者を許可します。
-    def sub_current_owner
-      @owner = Owner.find(params[:owner_id]) if @owner.blank?
-      unless current_owner?(@owner) or current_admin.present?
-        redirect_to owner_subscriptions_url(current_owner), notice: '他の経営者様のページへ移動できません。'
-      end  
-    end
-
-    def set_owner_subscription
-      @owner = Owner.find(params[:owner_id])
-      unless @owner.subscriptions.find_by(id: params[:id])
-        flash[:danger] = "権限がありません。"
-        redirect_to owner_subscriptions_url @owner, notice: '権限がありません！'
+    private
+      # Use callbacks to share common setup or constraints between actions.
+      def set_subscription
+        @subscription = Subscription.find(params[:id])
       end
-    end
-  end
+
+      def set_owner
+        @owner = Owner.find(params[:owner_id])
+      end
+
+      def set_user
+        @user = User.find(params[:user_id])
+      end
+
+      def set_category
+        @category = Category.find(params[:id])
+      end
+
+      # Only allow a list of trusted parameters through.
+      def subscription_params
+        params.require(:subscription).permit(:name,
+                                              :title,
+                                              :address,
+                                              :shop_introduction,
+                                              :detail, :qr_image,
+                                              :image_subscription,
+                                              :image_subscription2,
+                                              :image_subscription3,
+                                              :image_subscription4,
+                                              :image_subscription5,
+                                              :sub_image,
+                                              :sub_image2,
+                                              :sub_image3,
+                                              :sub_image4,
+                                              :sub_image5,
+                                              :sub_image6,
+                                              :sub_image7,
+                                              :sub_image8,
+                                              :sub_image9,
+                                              :sub_image10,
+                                              :sub_image11,
+                                              :sub_image12,
+                                              :image_subscription_id,
+                                              :subscription_detail,
+                                              :price,
+                                              :owner_id,
+                                              { :category_ids=> [] },
+                                              { :image_ids=> [] }
+                                            )
+      end
+
+      def recommend_params
+        params.require(:subscription).permit(:recommend, :owner_id)
+      end
+
+      def favorite_params
+        params.require(:subscription).permit(:favorite, :user_id)
+      end
+
+      def map_params
+        params.require(:map).permit(:address, :distance, :time)
+      end
+
+      # 現在ログインしている経営者を許可します。
+      def sub_current_owner
+        @owner = Owner.find(params[:owner_id]) if @owner.blank?
+        unless current_owner?(@owner) or current_admin.present?
+          redirect_to owner_subscriptions_url(current_owner), notice: '他の経営者様のページへ移動できません。'
+        end  
+      end
+
+      def set_owner_subscription
+        @owner = Owner.find(params[:owner_id])
+        unless @owner.subscriptions.find_by(id: params[:id])
+          flash[:danger] = "権限がありません。"
+          redirect_to owner_subscriptions_url @owner, notice: '権限がありません！'
+        end
+      end
+end
 
