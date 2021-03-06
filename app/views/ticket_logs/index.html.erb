@@ -3,7 +3,7 @@
 <div>
   <h1 class="brand-color display-4 mt-6 mb-6">チケット使用履歴</h1>
   <div class="col-md-10 offset-md-1">
-    <% if @ticket_logs != [] %>
+    <% if @ticket_logs.present? %>
       <table class="table mb-8">
         <thead class="thead-light">
           <tr>
