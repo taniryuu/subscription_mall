@@ -14,11 +14,28 @@ class UserPlansController < ApplicationController
 
   # stripe決済失敗時
   def cancel
-    current_user.update!(session_id: "", session_price: "")
+    current_user.update!(session_id: "")
   end
 
   # サブスクプラン新規登録
   def new
+    @trial_plan = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_J3NbUHqtOpmfgT',
+          unit_amount: 1000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+    current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
   end
 
   # サブスク新規登録確認画面
@@ -67,7 +84,7 @@ class UserPlansController < ApplicationController
           price: params[:session],
           quantity: 1},
         ],
-	mode: 'subscription',
+        mode: 'subscription',
       )
     end
 
