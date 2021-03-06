@@ -62,10 +62,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
 
-  def fake_email(uid,provider) # line ログイン用メソッドです
-     return "#{auth.uid}-#{auth.provider}@example.com"
-  end
-
   # 元々omniauth_callback_controller.rbにあるメッソド def callback_from(provider) # facebook, twitter ログイン用メソッドです
   def callback_from(provider) # facebook, twitter ログイン用メソッドです
       provider = provider.to_s

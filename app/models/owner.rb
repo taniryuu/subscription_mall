@@ -29,7 +29,7 @@ class Owner < ApplicationRecord
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
   # validate :owner_password_regex, on: :create
   # validate :owner_phone_number_regex
-  
+
   # パスワードバリデーションメソッド
   def owner_password_regex
     if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i
@@ -40,9 +40,9 @@ class Owner < ApplicationRecord
   def owner_phone_number_regex
     if phone_number !~ /\A[0-9]+\z/
       errors.add(:phone_number, "はハイフン無しで、半角数字のみを入力して下さい。") # エラーメッセージ
-    end    
+    end
   end
-  
+
 
   # @see https://github.com/heartcombo/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_for_database_authentication(warden_conditions)
@@ -56,7 +56,7 @@ class Owner < ApplicationRecord
       owner = Owner.create(
         uid:      auth.uid,
         provider: auth.provider,
-        email:    Owner.dummy_email(auth),
+        email:    auth.info.email,
         name:  auth.info.name,
         password: Devise.friendly_token[0, 20]
       )
@@ -102,12 +102,5 @@ class Owner < ApplicationRecord
   def inactive_message
     !deleted_at ? super : :deleted_account
   end
-
-
-  private
-
-    def self.dummy_email(auth)  # facebook, twitter ログイン用メソッドです
-      "#{auth.uid}-#{auth.provider}@example.com"
-    end
 
 end

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :megurumereviews, dependent: :destroy
   # has_many :user_plans, dependent: :destroy
   # has_many :subscriptions, dependent: :destroy
-  
+
   # 論理削除
   acts_as_paranoid without_default_scope: true
   after_destroy      :update_document_in_search_engine
@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create # 6..128
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
   validate :user_password_regex, on: :create
-  
+
   # パスワードバリデーションメソッド
   def user_password_regex
     if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i # バリデーションの条件
@@ -51,7 +51,7 @@ class User < ApplicationRecord
       user = User.create(
         uid:      auth.uid,
         provider: auth.provider,
-        email:    User.dummy_email(auth),
+        email:    auth.info.email,
         name:  auth.info.name,
         password: Devise.friendly_token[0, 20]
       )
@@ -110,12 +110,6 @@ class User < ApplicationRecord
   def self.search(search)
     return User.all unless search
     User.where(['name LIKE ?', "%#{search}%"])
-  end  
-
-  private
-
-    def self.dummy_email(auth)  # facebook, twitter ログイン用メソッドです
-      "#{auth.uid}-#{auth.provider}@example.com"
-    end
+  end
 
 end
