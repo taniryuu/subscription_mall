@@ -36,7 +36,9 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter_owner
   end
 
-  def line_owner; basic_action end
+  def line_owner
+    basic_action :line_owner
+  end
 
   private
 
