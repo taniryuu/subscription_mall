@@ -22,8 +22,6 @@ on_failure do |env|
   #we need to setup env
   if env['omniauth.params'].present?
     env["devise.mapping"] = Devise.mappings[:user]
-  else 
-    env["devise.mapping"] = Devise.mappings[:owner]
   end
   Devise::OmniauthCallbacksController.action(:failure).call(env)
 end
