@@ -71,8 +71,8 @@
   </section>
 </div>
 <% @sub_images.each do |image| %>
-  <span class="badge badge-success">
-  <%= image_tag image.image_subscription_url %>
+  <span>
+  <%= image_tag image.subscription_image.thumb.url %>
   </span>
 <% end %>
 

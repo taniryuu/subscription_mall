@@ -82,18 +82,13 @@ ActiveRecord::Schema.define(version: 20210306095519) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "subscription_id", null: false
-    t.string "image_subscription", null: false
+    t.string "subscription_image", null: false
     t.text "comment"
     t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "private_store_id"
-    t.index ["blog_id"], name: "index_images_on_blog_id"
-    t.index ["interview_id"], name: "index_images_on_interview_id"
-    t.index ["owner_id"], name: "index_images_on_owner_id"
     t.index ["private_store_id"], name: "index_images_on_private_store_id"
-    t.index ["subscription_id"], name: "index_images_on_subscription_id"
-    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "instablogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -380,15 +375,7 @@ ActiveRecord::Schema.define(version: 20210306095519) do
   add_foreign_key "blogs", "admins"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
-<<<<<<< HEAD
-=======
-  add_foreign_key "images", "blogs"
-  add_foreign_key "images", "interviews"
-  add_foreign_key "images", "owners"
   add_foreign_key "images", "private_stores"
-  add_foreign_key "images", "subscriptions"
-  add_foreign_key "images", "users"
->>>>>>> 7152a3f440653d62586dd3c3e0d31fd5ded7ebb9
   add_foreign_key "instablogs", "subscriptions"
   add_foreign_key "interviews", "owners"
   add_foreign_key "megurumereviews", "users"
