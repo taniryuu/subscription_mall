@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "subscription_id", null: false
-    t.string "image_subscription", null: false
+    t.string "subscription_image", null: false
     t.text "comment"
     t.datetime "time"
     t.datetime "created_at", null: false
@@ -316,6 +316,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "owner_phone_number"
     t.string "owner_store_information"
     t.string "subscription_name"
+    t.string "private_store_name"
     t.string "subscription_fee"
     t.date "issue_ticket_day"
     t.bigint "user_id"
@@ -329,6 +330,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "owner_store_information"
     t.string "owner_payee"
     t.string "subscription_name"
+    t.string "private_store_name"
     t.string "subscription_fee"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
@@ -364,9 +366,9 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.datetime "updated_at", null: false
     t.integer "user_price"
     t.integer "session_price"
+    t.integer "private_store_id"
     t.datetime "deleted_at"
     t.string "info"
-    t.integer "private_store_id"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
