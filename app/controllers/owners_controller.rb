@@ -59,7 +59,7 @@ class OwnersController < ApplicationController
     if current_owner.update(owner_params)
       sign_in(current_owner, bypass: true)
       flash[:success] = "#{current_owner.name}様の情報を更新しました。"
-      redirect_to owner_account_owner_url(current_owner.id)
+      redirect_to owner_account_owner_url(current_owner.id), notice: "更新しました。"
     else
       render :edit
     end
@@ -70,7 +70,7 @@ class OwnersController < ApplicationController
     Devise.sign_out_all_scopes ? sign_out : sign_out(@owner)
     yield @owner if block_given?
     flash[:danger] = "#{@owner.name}様のデータを削除しました"
-    redirect_to owners_url
+    redirect_to owners_url, notice: "削除しました。"
   end
 
   # オーナーの名前をあいまい検索機能
@@ -80,6 +80,9 @@ class OwnersController < ApplicationController
     else
       @owners = Owner.none
     end
+  end
+
+  def participating_private_select
   end
 
   private
@@ -92,7 +95,7 @@ class OwnersController < ApplicationController
     end
 
     def owner_params
-      params.require(:owner).permit(:name, :kana, :email, :phone_number, :address, :password, :password_confirmation)
+      params.require(:owner).permit(:name, :kana, :email, :phone_number, :address)
     end
 
     def user_params

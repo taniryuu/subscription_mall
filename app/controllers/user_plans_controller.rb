@@ -5,7 +5,7 @@ class UserPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
-  before_action :sms_auth_false?, only: %i(new confirm destroy)
+  # before_action :sms_auth_false?, only: %i(new confirm destroy)
 
   # stripe決済成功時
   def success
@@ -18,7 +18,25 @@ class UserPlansController < ApplicationController
   end
 
   # サブスクプラン新規登録
+  # トライアルプラン
   def new
+    @trial_plan = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_J3NbUHqtOpmfgT',
+          unit_amount: 1000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+    current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
   end
 
   # サブスク新規登録確認画面

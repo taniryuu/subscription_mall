@@ -7,6 +7,7 @@ class CreateTickets < ActiveRecord::Migration[5.1]
       t.string :owner_store_information
       t.string :owner_payee
       t.string :subscription_name
+      t.string :private_store_name
       t.string :subscription_fee
       t.date :use_ticket_day
       t.date :issue_ticket_day

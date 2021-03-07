@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
     @user = User.find(params[:id]) if @user.blank?
     unless current_user?(@user)
       flash[:danger] = "ログインしている利用者様のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: 'ログインしている利用者様のみ確認可能なページです。'
     end
   end
 
@@ -87,14 +87,14 @@ class ApplicationController < ActionController::Base
   def login_current_admin
     unless current_admin.present? or current_owner.present?
       flash[:danger] = "管理者のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: '管理者のみ確認可能なページです。'
     end
   end
 
   def only_current_admin
     unless current_admin.present?
       flash[:danger] = "管理者のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: '管理者のみ確認可能なページです。'
     end
   end
 
@@ -103,18 +103,41 @@ class ApplicationController < ActionController::Base
     @owner = Owner.find(params[:id]) if @owner.blank?
     unless current_owner?(@owner)
       flash[:danger] = "ログインしている経営者様のみ確認可能なページです。"
-      redirect_to(root_url)
+      redirect_to root_url, notice: 'ログインしている経営者様のみ確認可能なページです。'
     end  
   end
+
+  # 現在ログインしている利用者または現在ログインしている管理者を許可します
+  def authenticate_user_or_admin!
+    if admin_signed_in?
+      authenticate_admin!
+    elsif user_signed_in?
+      authenticate_user!
+    else
+      redirect_to root_url, notice: 'ログインしている利用者様のみ確認可能なページです。'
+    end
+  end
+
+  # 現在ログインしている経営者または現在ログインしている管理者を許可します
+  def authenticate_owner_or_admin!
+    if admin_signed_in?
+      authenticate_admin!
+    elsif owner_signed_in?
+      authenticate_owner!
+    else
+      redirect_to root_url, notice: 'ログインしている経営者様のみ確認可能なページです。'
+    end
+  end
+
     private
 
     def rescue400(e)
-      render "errors/not_found", status: 404
+      render "errors/not_found", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 404
     end
 
     #引数eを指定。errorオブジェクトが入る
     def rescue500(e)
-      render "errors/server_error", status: 500
+      render "errors/server_error", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 500
     end
     
 

@@ -89,88 +89,6 @@
       <% end %>
     </div></br></br>
 
-    <div class="center">
-      <h1 class="concept">プラン</h1>
-    </div>
-
-    <div class="f-container">
-        <div class="f-item">
-          <div class="box26">
-            <div>
-              <div class="plan-item">
-                <div class="center">
-                  <%= link_to image_tag("plan1.png", :size => '200x100'), root_path %>
-                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", root_path %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="f-item">
-          <div class="box26">
-            <div class="plan-item">
-              <div class="center">
-                <%= link_to image_tag("plan2.png", :size => '200x100'), root_path %>
-                <div><%= link_to "気になる方はこちら", root_path %></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="f-item">
-          <div class="box26">
-            <div class="plan-item">
-              <div class="center">
-                <%= link_to image_tag("plan3.png", :size => '200x100'), root_path %>
-                <div><%= link_to "スタンダードはこちら", root_path %></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="f-item">
-          <div class="box26">
-            <div class="plan-item">
-              <div class="center">
-                <%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %>
-                <div><%= link_to "ちょっぴりグルメな方はこちら", root_path %></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="plan-item">
-            <div class="center">
-              <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-              <div><%= link_to "グルメな方はこちら", root_path %></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="plan-item">
-            <div class="center">
-              <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
-              <div><%= link_to "慣れてきた方はこちら", root_path %></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="f-item">
-        <div class="box26">
-          <div class="plan-item">
-            <div class="center">
-              <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
-              <div><%= link_to "上級者はこちら", root_path %></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <%# google map %>
     <%= render "maps/top" %>
@@ -239,11 +157,6 @@
       </div>
     </div>
     <hr class="border-solid-down" />
-
-    <div class="center">
-      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
-      <span>１週間３食１０００円。</span>
-    </div>
 
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
@@ -419,7 +332,7 @@
     </div></br></br>
 
     <div class="center">
-      <h1 class="concept">プラン</h1>
+      <h1 class="concept">加盟店プラン</h1>
     </div>
 
     <div class="f-container">
@@ -428,8 +341,8 @@
             <div>
               <div class="plan-item">
                 <div class="center">
-                  <%= link_to image_tag("plan1.png", :size => '200x100'), root_path %>
-                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", root_path %></div>
+                  <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '200x100'), new_user_plan_path %>
+                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", new_user_plan_path %></div>
                 </div>
               </div>
             </div>
@@ -439,8 +352,8 @@
           <div class="box26">
             <div class="plan-item">
               <div class="center">
-                <%= link_to image_tag("plan2.png", :size => '200x100'), root_path %>
-                <div><%= link_to "気になる方はこちら", root_path %></div>
+                <%= link_to image_tag("plan2.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "気になる方はこちら", new_user_plan_path %></div>
               </div>
             </div>
           </div>
@@ -449,8 +362,8 @@
           <div class="box26">
             <div class="plan-item">
               <div class="center">
-                <%= link_to image_tag("plan3.png", :size => '200x100'), root_path %>
-                <div><%= link_to "スタンダードはこちら", root_path %></div>
+                <%= link_to image_tag("plan3.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "スタンダードはこちら", new_user_plan_path %></div>
               </div>
             </div>
           </div>
@@ -459,8 +372,8 @@
           <div class="box26">
             <div class="plan-item">
               <div class="center">
-                <%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %>
-                <div><%= link_to "ちょっぴりグルメな方はこちら", root_path %></div>
+                <%= link_to image_tag("plan4.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %>
+                <div><%= link_to "ちょっぴりグルメな方はこちら", new_user_plan_path %></div>
               </div>
             </div>
           </div>
@@ -473,8 +386,8 @@
         <div class="box26">
           <div class="plan-item">
             <div class="center">
-              <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-              <div><%= link_to "グルメな方はこちら", root_path %></div>
+              <span><%= link_to image_tag("plan5.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %></span>
+              <div><%= link_to "グルメな方はこちら", new_user_plan_path %></div>
             </div>
           </div>
         </div>
@@ -483,8 +396,8 @@
         <div class="box26">
           <div class="plan-item">
             <div class="center">
-              <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
-              <div><%= link_to "慣れてきた方はこちら", root_path %></div>
+              <span><%= link_to image_tag("plan6.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "慣れてきた方はこちら", new_user_plan_path %></div>
             </div>
           </div>
         </div>
@@ -493,8 +406,22 @@
         <div class="box26">
           <div class="plan-item">
             <div class="center">
-              <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
-              <div><%= link_to "上級者はこちら", root_path %></div>
+              <span><%= link_to image_tag("plan7.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "上級者はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+       <h1 class="concept">＼トライアルプランでお試し／</h1>
+        <div class="box26">
+          <div class="trial_plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("toraiaru.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "トライアルプラン", root_path %></div>
             </div>
           </div>
         </div>
@@ -569,11 +496,6 @@
     </div>
     <hr class="border-solid-down" />
 
-    <div class="center">
-      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
-      <span>１週間３食１０００円。</span>
-    </div>
-
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -642,7 +564,7 @@
                     </div><br>
                     <div class="col-sm-4">
                       <% if media.media_image.present? %>
-                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
+                        <div><%= image_tag media.media_image, :size => '200' %></div>
                       <% else %>
 
                       <% end %>
@@ -676,9 +598,9 @@
                     </div>
                     <div class="col-sm-8">
                       <% if owner.image_subscription.present? %>
-                        <%= image_tag owner.image_subscription_url ,width: '100%', height: "200" %>
+                        <%= image_tag owner.image_subscription_url ,width: '200' %>
                       <% else %>
-                        <p>登録されてません</p>
+                        <p></p>
                       <% end %>
                     </div>
                   </div>
@@ -760,7 +682,7 @@
     </div></br></br>
 
     <div class="center">
-      <h1 class="concept">プラン</h1>
+      <h1 class="concept">加盟店プラン</h1>
     </div>
 
     <div class="f-container">
@@ -769,8 +691,8 @@
             <div>
               <div class="plan-item">
                 <div class="center">
-                  <%= link_to image_tag("plan1.png", :size => '200x100'), root_path %>
-                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", root_path %></div>
+                  <%= link_to image_tag("plan1.png", :size => '200x100'), new_user_plan_path %>
+                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", new_user_plan_path %></div>
                 </div>
               </div>
             </div>
@@ -780,8 +702,8 @@
           <div class="box26">
             <div class="plan-item">
               <div class="center">
-                <%= link_to image_tag("plan2.png", :size => '200x100'), root_path %>
-                <div><%= link_to "気になる方はこちら", root_path %></div>
+                <%= link_to image_tag("plan2.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "気になる方はこちら", new_user_plan_path %></div>
               </div>
             </div>
           </div>
@@ -790,8 +712,8 @@
           <div class="box26">
             <div class="plan-item">
               <div class="center">
-                <%= link_to image_tag("plan3.png", :size => '200x100'), root_path %>
-                <div><%= link_to "スタンダードはこちら", root_path %></div>
+                <%= link_to image_tag("plan3.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "スタンダードはこちら", new_user_plan_path %></div>
               </div>
             </div>
           </div>
@@ -800,8 +722,8 @@
           <div class="box26">
             <div class="plan-item">
               <div class="center">
-                <%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %>
-                <div><%= link_to "ちょっぴりグルメな方はこちら", root_path %></div>
+                <%= link_to image_tag("plan4.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %>
+                <div><%= link_to "ちょっぴりグルメな方はこちら", new_user_plan_path %></div>
               </div>
             </div>
           </div>
@@ -814,8 +736,8 @@
         <div class="box26">
           <div class="plan-item">
             <div class="center">
-              <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
-              <div><%= link_to "グルメな方はこちら", root_path %></div>
+              <span><%= link_to image_tag("plan5.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %></span>
+              <div><%= link_to "グルメな方はこちら", new_user_plan_path %></div>
             </div>
           </div>
         </div>
@@ -824,8 +746,8 @@
         <div class="box26">
           <div class="plan-item">
             <div class="center">
-              <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
-              <div><%= link_to "慣れてきた方はこちら", root_path %></div>
+              <span><%= link_to image_tag("plan6.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "慣れてきた方はこちら", new_user_plan_path %></div>
             </div>
           </div>
         </div>
@@ -834,8 +756,22 @@
         <div class="box26">
           <div class="plan-item">
             <div class="center">
-              <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
-              <div><%= link_to "上級者はこちら", root_path %></div>
+              <span><%= link_to image_tag("plan7.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "上級者はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+       <h1 class="concept">＼トライアルプランでお試し／</h1>
+        <div class="box26">
+          <div class="trial_plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("toraiaru.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "トライアルプラン", root_path %></div>
             </div>
           </div>
         </div>
@@ -910,10 +846,6 @@
     </div>
     <hr class="border-solid-down" />
 
-    <div class="center">
-      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
-      <span>１週間３食１０００円。</span>
-    </div>
     <script>
       $(function() {
         $('#slider').slick({
@@ -925,7 +857,7 @@
     </script>
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    
+
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram
     </div>
@@ -1116,8 +1048,8 @@
             <div>
               <div class="plan-item">
                 <div class="center">
-                  <%= link_to image_tag("plan1.png", :size => '200x100'), root_path %>
-                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", root_path %></div>
+                  <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '200x100'), new_user_plan_path %>
+                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", new_user_plan_path %></div>
                 </div>
               </div>
             </div>
@@ -1195,7 +1127,7 @@
         <div class="box26">
           <div class="trial_plan-item">
             <div class="center">
-              <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
+              <span><%= link_to image_tag("toraiaru.png", :size => '200x100'), root_path %></span>
               <div><%= link_to "トライアルプラン", root_path %></div>
             </div>
           </div>
@@ -1270,11 +1202,6 @@
       </div>
     </div>
     <hr class="border-solid-down" />
-
-    <div class="center">
-      <%= link_to image_tag("toraiaru.png", :size =>'350'), "/", class:"gurumelogo" %><br>
-      <span>１週間３食１０００円。</span>
-    </div>
 
     <div class="insta-title">
       <i class="fa fa-instagram"></i> 巡グルメ Instagram

@@ -10,7 +10,7 @@ provider :twitter_owner, ENV['TWITTER_OWNER_API_KEY'], ENV['TWITTER_OWNER_API_SE
 
 provider :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
 require 'omniauth/strategies/line_owner'
-provider :twitter_owner, ENV['LINE_OWNER_KEY'], ENV['LINE_OWNER_SECRET']
+provider :line_owner, ENV['LINE_OWNER_KEY'], ENV['LINE_OWNER_SECRET']
 
 
 # 以下のコードの必要性を調べる。

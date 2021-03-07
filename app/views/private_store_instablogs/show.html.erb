@@ -1,0 +1,16 @@
+<% provide(:title, "インスタグラム ブログ") %>
+<h1>インスタグラム ブログ</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="instablog">
+      <% @private_store_instablogs.each do |instablog| %>
+        <%= instablog.insta_content.html_safe %>
+        <% if current_owner.present? && current_owner.id == @private_store.owner_id %>
+        <%= link_to "削除する", private_store_instablog_path(instablog), method: :delete, class: "btn btn-danger", data: { confirm: "投稿を削除してよろしいですか？" } %>
+        <% end %>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>

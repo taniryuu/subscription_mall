@@ -11,10 +11,14 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
+<%
+=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "利用者様管理", users_path %></li>
-              <li><%= link_to "ショップ開設", new_owner_subscription_path(current_owner) %></li>
+              <li><%= link_to "ショップ開設", subscription_private_store_select_owner_path(current_owner) %></li>
               <li><%= link_to "マイアカウント", owner_account_owner_path(current_owner) %></li>
               <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
             </ul>
@@ -33,7 +37,11 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
+<%
+=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
@@ -53,7 +61,11 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li><%= link_to "プラン", plan_description_path %></a></li></a></li>
+              <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
+<%
+=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "経営者様管理", owners_path %></li>
               <li><%= link_to "利用者様管理", users_path %></li>
@@ -78,7 +90,11 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
           <ul class="navbar-nav">
-            <li><%= link_to "プラン", plan_description_path %></li>
+            <%
+=begin%>
+ <li><%= link_to "プラン", plan_description_path %></li> 
+<%
+=end%>
             <li><%= link_to "おすすめ店舗", recommend_categories_path %></li>
             <li class="login"><%= link_to "ログイン", new_user_session_path %></li>
             <li class="new-user"><%= link_to "会員登録", new_user_registration_path %></li>

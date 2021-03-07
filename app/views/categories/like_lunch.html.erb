@@ -18,14 +18,40 @@
         </div>
       </div>
       <div class="col-lg-7 col-xl-8">
+	<span class="badge badge-success">加盟店</span>
         <h4 class="font-weight-bold mb-3"><strong><%= category_subscription.subscription.name %></strong></h4>
         <p class="dark-grey-text"><%= category_subscription.subscription.title %></p>
-        <%= link_to "サブスクしてみる", owner_subscription_path(category_subscription.subscription.id, owner_id: @subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+        <%= link_to "サブスクしてみる", owner_subscription_path(category_subscription.subscription.id, owner_id: category_subscription.subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
       </div>
     </div>
     <hr class="my-3">
   </section>
 </div>
 <% end%>
+<% @categories.category_private_stores.each do |category_private_store| %>
+<div class="container mt-5">
+  <section class="dark-grey-text">
+    <div class="row align-items-center">
+      <div class="col-lg-5 col-xl-3">
+        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+          <% if category_private_store.private_store.image_private_store.present? %>
+            <%= image_tag category_private_store.image_private_store_url, width: '100%' %>
+          <% else %>
+            <p>なし</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-7 col-xl-8">
+	<span class="badge badge-primary">個人店舗</span>
+        <h4 class="font-weight-bold mb-3"><strong><%= category_private_store.private_store.name %></strong></h4>
+        <p class="dark-grey-text"><%= category_private_store.private_store.title %></p>
+        <%= link_to "サブスクしてみる", owner_private_store_path(category_private_store.private_store.id, owner_id: category_private_store.private_store.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+      </div>
+    </div>
+    <hr class="my-3">
+  </section>
+</div>
+<% end%>
+
 <br>
 <%= link_to 'カテゴリー一覧へ', categories_path %>

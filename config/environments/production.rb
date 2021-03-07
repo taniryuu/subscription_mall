@@ -50,8 +50,8 @@ Rails.application.configure do
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'gmail.com',
-    user_name:            'SEND_MAIL', # ここに自分のGmailアドレスをいれる
-    password:             'SEND_MAIL_PASSWORD', # ここに自分のGmailアドレスのパスワードをいれる
+    user_name:            ENV['SEND_MAIL'], # ここに自分のGmailアドレスをいれる
+    password:             ENV['SEND_MAIL_PASSWORD'], # ここに自分のGmailアドレスのパスワードをいれる
     authentication:       'login',
     enable_starttls_auto: true
   }

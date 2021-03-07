@@ -1,4 +1,6 @@
+<% provide(:title, "#{@subscription.name}のレビュー") %>
 
+<p id="notice"><%= notice %></p>
 <h1><%= @subscription.name %>のレビュー</h1>
 
 <div class="rating-box">
@@ -7,6 +9,7 @@
     <div class="form-outline mb-4">
       <%= f.label :メールアドレス, class: "label-signup" %>
       <%= f.email_field :email, :required => true, value: current_user.email, class: "form-control" %>
+      <%= f.hidden_field :name, :value => current_user.name %>
     </div>
 
     <div class="form-outline mb-4">
