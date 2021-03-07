@@ -16,9 +16,9 @@ class CategoriesController < ApplicationController
   def like_lunch
     #@subscriptions = @category.subscriptions
     @categories = Category.find(params[:id])
-    @subscription = Subscription.find_by(params[:id])
-    @private_store = PrivateStore.find_by(params[:id])
-    @owner = Owner.find(params[:id])
+    #@subscription = Subscription.find_by(params[:id])
+    #@private_store = PrivateStore.find_by(params[:id])
+    #@owner = Owner.find(params[:id])
   end
 
   def create
