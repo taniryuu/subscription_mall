@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20210306142407) do
-=======
-ActiveRecord::Schema.define(version: 20210303125713) do
->>>>>>> 7152a3f440653d62586dd3c3e0d31fd5ded7ebb9
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -93,6 +89,7 @@ ActiveRecord::Schema.define(version: 20210303125713) do
     t.datetime "updated_at", null: false
     t.bigint "private_store_id"
 <<<<<<< HEAD
+<<<<<<< HEAD
     t.index ["private_store_id"], name: "index_images_on_private_store_id"
 =======
     t.index ["blog_id"], name: "index_images_on_blog_id"
@@ -102,6 +99,9 @@ ActiveRecord::Schema.define(version: 20210303125713) do
     t.index ["subscription_id"], name: "index_images_on_subscription_id"
     t.index ["user_id"], name: "index_images_on_user_id"
 >>>>>>> 7152a3f440653d62586dd3c3e0d31fd5ded7ebb9
+=======
+    t.index ["private_store_id"], name: "index_images_on_private_store_id"
+>>>>>>> 9c5a2ea0c4c4d3f147321e67699e42704393fbec
   end
 
   create_table "instablogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -381,10 +381,7 @@ ActiveRecord::Schema.define(version: 20210303125713) do
     t.integer "session_price"
     t.integer "private_store_id"
     t.datetime "deleted_at"
-<<<<<<< HEAD
     t.string "info"
-=======
->>>>>>> 7152a3f440653d62586dd3c3e0d31fd5ded7ebb9
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -57,8 +57,9 @@ class UsersController < ApplicationController
   end
 
   def ticket
-    @owner = Owner.find(params[:id])
+    #@owner = Owner.find(params[:id])
     @subscription = Subscription.find(params[:id])
+    @owner = Owner.find(@subscription.owner_id)
   end
 
   # ユーザーの名前をあいまい検索機能
