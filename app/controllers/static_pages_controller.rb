@@ -55,7 +55,7 @@ class StaticPagesController < ApplicationController
       right = @latlng["location"]["lat"] - 0.2
       gon.subscriptions = Subscription.where(longitude: bottom..top).where(latitude: right..left)
     else
-      gon.subscriptions = Subscription.where(longitude: 139.5..139.9).where(latitude: 35.4..35.8)
+      gon.subscriptions = Subscription.all#where(longitude: 139.5..139.9).where(latitude: 35.4..35.8)
     end
   end
 

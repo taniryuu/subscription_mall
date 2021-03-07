@@ -32,13 +32,17 @@
     <%= form.file_field :qr_image, id: "file-input" %>
   </div>
 
+ <%
+=begin%>
  <div class="field">
     <%= form.label :お店紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
       <%= form.fields_for :images do |image| %>
         <%= image.file_field :subscription_image, multiple: true, name: "images[subscription_image][]" %>
         <%= image.hidden_field :subscription_id, :value => @subscription.id %>
       <% end %>
-  </div> 
+  </div>  
+<%
+=end%>
 
 
   <div class="field">

@@ -70,11 +70,15 @@
     </div>
   </section>
 </div>
-<% @sub_images.each do |image| %>
+<%
+=begin%>
+ <% @sub_images.each do |image| %>
   <span>
   <%= image_tag image.subscription_image.thumb.url %>
   </span>
-<% end %>
+<% end %> 
+<%
+=end%>
 
 <div class="container my-5 py-5 z-depth-1">
   <section class="text-center">
@@ -89,7 +93,11 @@
             </div>
             <div class="carousel-item">
                   <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
-                  <img src="<%= "subscription/image_subscription3/#{@subscription.image_subscription3}"%>">
+                  <%
+=begin%>
+ <img src="<%= "subscription/image_subscription3/#{@subscription.image_subscription3}"%>"> 
+<%
+=end%>
                 <p>b</p>
             </div>
             <div class="carousel-item">
@@ -98,7 +106,11 @@
             </div>
             <div class="carousel-item">
                   <%= image_tag @subscription.image_subscription5_url %>
-                  <img src="<%= "subscription/image_subscription5/#{@subscription.image_subscription5}"%>">
+                  <%
+=begin%>
+ <img src="<%= "subscription/image_subscription5/#{@subscription.image_subscription5}"%>"> 
+<%
+=end%>
                 <p>d</p>
             </div>
           </div>
