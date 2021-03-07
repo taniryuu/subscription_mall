@@ -356,7 +356,7 @@ puts "Subscription Created"
 PrivateStore.create!(
   owner_id: 1,
   # category_id: 1,
-  name: "炭焼牛タン　弁慶　淵野辺店",
+  name: "炭焼牛タン　弁慶　淵野辺店p",
   title: "サンプルタイトル1",
   shop_introduction: "焼きたて",
   detail: "食べ放題",
@@ -371,9 +371,9 @@ PrivateStore.create!(
 )
 
 PrivateStore.create!(
-  owner_id: 2,
+  owner_id: 10,
   # category_id: 2,
-  name: "炭焼牛タン　弁慶　古淵店",
+  name: "炭焼牛タン　弁慶　古淵店p",
   title: "サンプルタイトル2",
   shop_introduction: "焼きたて2",
   detail: "食べ放題2",
@@ -390,7 +390,7 @@ PrivateStore.create!(
 PrivateStore.create!(
   owner_id: 1,
   # category_id:  3,
-  name: "個室居酒屋　たすき　相模原店",
+  name: "個室居酒屋　たすき　相模原店p",
   title: "サンプルタイトル3",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
@@ -407,7 +407,7 @@ PrivateStore.create!(
 PrivateStore.create!(
   owner_id: 1,
   # category_id:  3,
-  name: "個室居酒屋　たすき　天王町駅前店",
+  name: "個室居酒屋　たすき　天王町駅前店p",
   title: "サンプルタイトル4",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
@@ -424,7 +424,7 @@ PrivateStore.create!(
 PrivateStore.create!(
   owner_id: 1,
   # category_id:  3,
-  name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
+  name: "拉麺一匠 DEAD OR ALIVE 淵野辺店p",
   title: "サンプルタイトル5",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
@@ -441,7 +441,7 @@ PrivateStore.create!(
 PrivateStore.create!(
   owner_id: 1,
   # category_id:  3,
-  name: "拉麺一匠 DEAD OR ALIVE 矢部店",
+  name: "拉麺一匠 DEAD OR ALIVE 矢部店p",
   title: "サンプルタイトル6",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
@@ -458,7 +458,7 @@ PrivateStore.create!(
 PrivateStore.create!(
   owner_id: 1,
   # category_id:  3,
-  name: "木村屋本店　 町田駅前店",
+  name: "木村屋本店　 町田駅前店p",
   title: "サンプルタイトル7",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
@@ -475,7 +475,7 @@ PrivateStore.create!(
 PrivateStore.create!(
   owner_id: 1,
   # category_id:  3,
-  name: "北海道BEER&BBQ 小田急町田",
+  name: "北海道BEER&BBQ 小田急町田p",
   title: "サンプルタイトル8",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class PrivateStoreUsersController < ApplicationController
   before_action :set_user, only: [:create, :show, :edit, :update, :destroy, :user_edit, :user_edit_update]
   before_action :payment_planning_delete, only: :destroy
   before_action :login_current_admin, only: %i(index)
@@ -58,8 +58,8 @@ class UsersController < ApplicationController
 
   def ticket
     #@owner = Owner.find(params[:id])
-    @subscription = Subscription.find(params[:id])
-    @owner = Owner.find(@subscription.owner_id)
+    @private_store = PrivateStore.find(params[:id])
+    @owner = Owner.find(@private_store.owner_id)
   end
 
   # ユーザーの名前をあいまい検索機能
