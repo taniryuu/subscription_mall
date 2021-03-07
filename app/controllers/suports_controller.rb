@@ -1,5 +1,6 @@
 class SuportsController < ApplicationController
   before_action :set_suport, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_owner_or_admin!
 
   # GET /suports
   # GET /suports.json
