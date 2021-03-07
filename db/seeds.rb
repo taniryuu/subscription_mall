@@ -27,12 +27,12 @@ puts "User Created"
 30.times do |n|
 name  = Faker::Name.name
 email = "sample#{n+1}@email.com"
-password = "password"
+password = "password1"
 Owner.create!(name: name,
     email: email,
     password: password,
     password_confirmation: password,
-    address: "東京都港区1-#{n}-1"
+    #address: "東京都港区1-#{n}-1"
    )
 end
 
@@ -173,6 +173,77 @@ CategorySubscription.create!(owner_id: 1,
                       )
 puts "CategorySubscription Created"
 
+
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 1,
+                              private_store_id: 1,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 2,
+                              private_store_id: 1,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 1,
+                              private_store_id: 2,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 2,
+                            private_store_id: 2,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 3,
+                            private_store_id: 3,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 4,
+                          private_store_id: 3,
+                        )
+
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 3,
+                              private_store_id: 4,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 4,
+                              private_store_id: 4,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                              category_id: 5,
+                              private_store_id: 5,
+                            )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 6,
+                            private_store_id: 5,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                            category_id: 5,
+                            private_store_id: 6,
+                          )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 6,
+                          private_store_id: 6,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 13,
+                          private_store_id: 7,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 14,
+                          private_store_id: 7,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                          category_id: 15,
+                          private_store_id: 8,
+                        )
+CategoryPrivateStore.create!(owner_id: 1,
+                        category_id: 16,
+                        private_store_id: 8,
+                      )
+puts "CategoryPrivateStore Created"
+
+
+
+
 Subscription.create!(
   owner_id: 1,
   # category_id: 1,
@@ -279,6 +350,147 @@ Subscription.create!(
 
 
 puts "Subscription Created"
+
+
+
+PrivateStore.create!(
+  owner_id: 1,
+  # category_id: 1,
+  name: "炭焼牛タン　弁慶　淵野辺店p",
+  title: "サンプルタイトル1",
+  shop_introduction: "焼きたて",
+  detail: "食べ放題",
+  private_store_detail: "東京都",
+  price: "3000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
+)
+
+PrivateStore.create!(
+  owner_id: 10,
+  # category_id: 2,
+  name: "炭焼牛タン　弁慶　古淵店p",
+  title: "サンプルタイトル2",
+  shop_introduction: "焼きたて2",
+  detail: "食べ放題2",
+  private_store_detail: "神奈川",
+  price: "9000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
+)
+
+PrivateStore.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "個室居酒屋　たすき　相模原店p",
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  private_store_detail: "大阪",
+  price: "11000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
+)
+
+PrivateStore.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "個室居酒屋　たすき　天王町駅前店p",
+  title: "サンプルタイトル4",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  private_store_detail: "大阪",
+  price: "18000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
+)
+
+PrivateStore.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 淵野辺店p",
+  title: "サンプルタイトル5",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  private_store_detail: "大阪",
+  price: "25000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
+)
+
+PrivateStore.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 矢部店p",
+  title: "サンプルタイトル6",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  private_store_detail: "大阪",
+  price: "50000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
+)
+
+PrivateStore.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "木村屋本店　 町田駅前店p",
+  title: "サンプルタイトル7",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  private_store_detail: "大阪",
+  price: "100000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "東京都町田市原町田6-13-15",
+)
+
+PrivateStore.create!(
+  owner_id: 1,
+  # category_id:  3,
+  name: "北海道BEER&BBQ 小田急町田p",
+  title: "サンプルタイトル8",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  private_store_detail: "大阪",
+  price: "11000",
+  image_private_store: "karaage.jpeg",
+  image_private_store2: "gyouza.jpeg",
+  image_private_store3: "udon.jpeg",
+  image_private_store4: "soba.jpeg",
+  image_private_store5: "soba.jpeg",
+  address: "東京都町田市森野１－３９－１　グランドゥールビル　5F",
+)
+
+puts "PrivateStore Created"
+
 
 Category.create!(name: "和食",
                   image_category: "https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg"

@@ -3,9 +3,9 @@
 <div class="container my-5">
   <section>
     <style>
-    	.rgba-black-gradient {
+      .rgba-black-gradient {
       	background: linear-gradient(to top, rgba(226, 230, 224) 55%,rgba(0,0,0,0) 90%);
-    	}
+      }
     </style>
     <div class="row">
       <div class="col-12">
@@ -28,14 +28,16 @@
                     住所：<%= @subscription.address %>
                   <% else %>
                     <p></p>
-                  <% end %> | 
+                  <% end %> |
                   <% if @subscription.owner.phone_number.present? %>
                     テイクアウトTEL：<%= @subscription.owner.phone_number %>
                   <% else %>
                     <p></p>
                   <% end %>
               <% if @payment.present? %>
-                <% if @subscription.price.to_i < current_user.user_price %>
+                <% if current_user.user_price  === 1000%>
+                  <%= link_to "チケットを使う", use_ticket_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                <% elsif @subscription.price.to_i < current_user.user_price %>
                   <%= link_to "チケットを使う", use_ticket_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
                   <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% elsif @subscription.price.to_i == current_user.user_price %>
@@ -116,84 +118,84 @@
              <div class="row">
               <figure class="col-md-4">
                 <% if @subscription.sub_image.present? %>
-                    <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image2.present? %>
-                    <%= image_tag @subscription.sub_image2_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image2, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image3.present? %>
-                    <%= image_tag @subscription.sub_image3_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image3, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image4.present? %>
-                    <%= image_tag @subscription.sub_image4_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image4, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image5.present? %>
-                    <%= image_tag @subscription.sub_image5_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image5, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image6.present? %>
-                    <%= image_tag @subscription.sub_image6_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image6, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image7.present? %>
-                    <%= image_tag @subscription.sub_image7_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image7, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image8.present? %>
-                    <%= image_tag @subscription.sub_image8_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image8, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image9.present? %>
-                    <%= image_tag @subscription.sub_image9_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image9, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image10.present? %>
-                    <%= image_tag @subscription.sub_image10_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image10, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image11.present? %>
-                    <%= image_tag @subscription.sub_image11_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image11, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
               </figure>
               <figure class="col-md-4">
                 <% if @subscription.sub_image12.present? %>
-                    <%= image_tag @subscription.sub_image12_url, class: "img-fluid" %>
+                    <%= image_tag @subscription.sub_image12, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
