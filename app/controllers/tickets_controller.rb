@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_action :trial_period, only: :show
 
   def index
     @tickets = Ticket.all # 案１みんなのチケットを表示
@@ -12,7 +13,7 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
   end
-  
+
   # 1回目のチケット発券
   def create
     @ticket = Ticket.new(ticket_params)
@@ -84,5 +85,15 @@ class TicketsController < ApplicationController
 
     def update_ticket_params
       params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :owner_payee, :subscription_name, :subscription_fee, :issue_ticket_day, :user_id)
+    end
+
+    #トライアルチケット削除
+    def trial_period
+      @ticket = Ticket.find_by(params[:user_id])
+      if current_user.user_price === 1000 && current_user.trial_count === 3
+        current_user.Ticket.destroy_all
+      elsif current_user.user_price === 1000 && @ticket.created_at.since(7.days)
+        current_user.Ticket.destroy_all
+      end
     end
 end

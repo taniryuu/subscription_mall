@@ -18,6 +18,7 @@ class UserPlansController < ApplicationController
   end
 
   # サブスクプラン新規登録
+  # トライアルプラン
   def new
     @trial_plan = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
