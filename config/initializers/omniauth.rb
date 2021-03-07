@@ -14,17 +14,15 @@ provider :line_owner, ENV['LINE_OWNER_KEY'], ENV['LINE_OWNER_SECRET']
 
 
 # 以下のコードの必要性を調べる。
-configure do |config|
-  config.path_prefix = '/devise/auth'
-end
-
-on_failure do |env|
-  #we need to setup env
-  if env['omniauth.params'].present?
-    env["devise.mapping"] = Devise.mappings[:user]
-  else
-    env["devise.mapping"] = Devise.mappings[:owner]
+  configure do |config|
+    config.path_prefix = '/devise/auth'
   end
-  Devise::OmniauthCallbacksController.action(:failure).call(env)
-end
+
+  on_failure do |env|
+    #we need to setup env
+    if env['omniauth.params'].present?
+      env["devise.mapping"] = Devise.mappings[:user]
+    end
+    Devise::OmniauthCallbacksController.action(:failure).call(env)
+  end
 end

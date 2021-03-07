@@ -92,6 +92,49 @@ ja:
           category_ids: カテゴリ
           created_at: 作成日
           updated_at: 更新日
+          latitude: 経度
+          longitude: 緯度
+          owner_id: 経営者紐付け
+        private_store:
+          id: ID
+          name: お店の名前
+          title: 商品タイトル
+          detail: 商品紹介
+          shop_introduction: お店紹介
+          private_store_detail: 店舗情報
+          image_private_store: メインのお店紹介写真
+          image_private_store2: お店紹介写真2
+          image_private_store3: お店紹介写真3
+          image_private_store4: お店紹介写真4
+          image_private_store5: お店紹介写真5
+          sub_image: サブのお店紹介写真
+          sub_image2: サブのお店紹介写真2
+          sub_image3: サブのお店紹介写真3
+          sub_image4: サブのお店紹介写真4
+          sub_image5: サブのお店紹介写真5
+          sub_image6: サブのお店紹介写真6
+          sub_image7: サブのお店紹介写真7
+          sub_image8: サブのお店紹介写真8
+          sub_image9: サブのお店紹介写真9
+          sub_image10: サブのお店紹介写真10
+          sub_image11: サブのお店紹介写真11
+          sub_image12: サブのお店紹介写真12
+          qr_image: LINE@QRコード画像
+          price: 金額
+          category_genre: ジャンル
+          category_name: カテゴリ
+          address: お店の住所
+          created_at: 作成日
+          updated_at: 更新日
+          shop_id: お店のID
+          script: スクリプト
+          blog: ブログ
+          latitude: 経度
+          longitude: 緯度
+          owner_id: 経営者紐付け
+          insta_blog: インスタグラム
+          recommend: おすすめ店舗
+
         media:
           id: ID
           media_name: メディア名
