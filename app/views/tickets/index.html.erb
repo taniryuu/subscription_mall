@@ -20,7 +20,11 @@
           <tr>
             <td><%= ticket.owner_name %></td>
             <td><%= ticket.owner_payee %></td>
-            <td><%= ticket.subscription_name %></td>
+	    <% if ticket.subscription_name.present? %>
+	      <td><%= ticket.subscription_name %></td>
+	    <% elsif ticket.private_store_name.present? %>
+	      <td><%= ticket.private_store_name %></td>
+	    <% end %>
             <td><%= ticket.user.name %></td>
             <td><%= ticket.use_ticket_day %></td>
           </tr>

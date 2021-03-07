@@ -43,7 +43,13 @@
         <div class="card pricing-card">
 
           <div class="price header white-text indigo rounded-top">
-            <h3 class="number"><%= @ticket.subscription_name %></h3>
+	    <h3 class="number">
+	      <% if @ticket.subscription_name.present? %>
+	        <%= @ticket.subscription_name %>
+	      <% elsif @ticket.private_store_name.present? %>
+		<%= @ticket.private_store_name %>
+	      <% end %>
+	    </h3>
             <div class="version">
               <h5 class="mb-0"><i class="fa fa-ticket fa-3x"></i></h5>
             </div>

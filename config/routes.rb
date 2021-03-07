@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'subscriptions/shop_case', to: 'subscriptions#shop_case', as: :shop_case#ショップ事例
 
   get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
-
+  get 'private_store/:id/ticket', to: 'private_store_users#ticket', as: :private_store_use_ticket #private_store用チケット発行ページ
 
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
   get '/private_stores/:private_store_id/private_store_reviews', to: 'reviews#private_store_reviews', as: :private_store_reviews #個人店舗レビューページ
