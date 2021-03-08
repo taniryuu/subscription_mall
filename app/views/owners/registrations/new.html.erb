@@ -18,7 +18,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :phone_number %> <span>(ハイフンなし)連絡がつきやすい番号でお願いします。</span><span class="must">必須</span><br/>
+        <%= f.label :phone_number %> <span>＊(ハイフンなし)連絡がつきやすい番号でお願いします。</span><span class="must">必須</span><br/>
         <%= f.telephone_field :phone_number, :required => true, class: 'form-control' %>
       </div>
 
@@ -39,7 +39,7 @@
         <% if @minimum_password_length %>
         <em>(最小<%= @minimum_password_length %>文字)</em>
         <% end %><br/>
-        <%= f.password_field :password, :required => true,autocomplete: "new-password", class: 'form-control' %>
+        <%= f.password_field :password, placeholder: "6文字以上、半角数字と半角英字を使用", :required => true,autocomplete: "new-password", class: 'form-control' %>
       </div>
 
       <% if resource.errors.include?(:password) %>

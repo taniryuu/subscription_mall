@@ -18,7 +18,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :phone_number, class: "form-label" %><span class="must">必須</span>
+        <%= f.label :phone_number, class: "form-label" %><span class="must">必須</span><span>＊ハイフンなし</span>
         <%= f.text_field :phone_number, class: "form-control" %>
       </div>
 
@@ -27,7 +27,7 @@
         <% if @minimum_password_length %>
         <em>(最小<%= @minimum_password_length %>文字)</em>
         <% end %><br/>
-        <%= f.password_field :password, :required => true,autocomplete: "new-password", class: 'form-control' %>
+        <%= f.password_field :password, :required => true, placeholder: "6文字以上、半角英字と半角数字を使用", autocomplete: "new-password", class: 'form-control' %>
       </div>
 
       <% if resource.errors.include?(:password) %>
