@@ -128,12 +128,12 @@ Rails.application.routes.draw do
       member do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
-	get "confirm", to: "private_store_user_plans#confirm"
-	get "update_confirm", to: "private_store_user_plans#update_confirm"
-	get 'plans_new', to: "private_store_user_plans#new", as: 'plans_new' #利用者のプラン内容
-	get "plans_edit", to: "private_store_user_plans#edit", as: 'plans_edit'
-        patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
-	delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
+	#get "confirm", to: "private_store_user_plans#confirm"
+	#get "update_confirm", to: "private_store_user_plans#update_confirm"
+	#get 'plans_new', to: "private_store_user_plans#new", as: 'plans_new' #利用者のプラン内容
+	#get "plans_edit", to: "private_store_user_plans#edit", as: 'plans_edit'
+        #patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
+	#delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
 	get '/owner_private_stores', to: "private_stores#owner_private_stores", as: :owner_private_stores
       end
     end
@@ -169,6 +169,12 @@ Rails.application.routes.draw do
       get "confirm", to: "user_plans#confirm"
       get "update_confirm", to: "user_plans#update_confirm"
     end
+  end
+  resource :private_store_user_plan, except: %i(create show) do
+    #collection do
+      #get "confirm", to: "private_store_user_plans#confirm"
+      #get "update_confirm", to: "private_store_user_plans#update_confirm"
+    #end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

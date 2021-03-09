@@ -3,7 +3,7 @@ class PrivateStoresController < ApplicationController
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
-  before_action :payment_check, only: %i(show)
+  before_action :payment_check, only: %i()
   before_action :sub_current_owner, only: %i(edit index)
   # before_action :set_owner_private_store, only: %i()
 
