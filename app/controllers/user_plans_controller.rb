@@ -72,11 +72,13 @@ class UserPlansController < ApplicationController
 
   def update
     @sub.plan = current_user.session_id
-    current_user.update!(session_id: "", user_price: current_user.session_price, session_price: "")
+    current_user.update!(session_id: "", user_price: current_user.session_price, session_price: "", issue_ticket_day: nil)
     if @sub.save
       flash[:success] = "正常に更新されました"
       redirect_to current_user
     end
+    @ticket = Ticket.find_by(params[:current_user])
+    @ticket.destroy if @ticket.present?
   end
 
   def destroy

@@ -60,12 +60,12 @@ class ApplicationController < ActionController::Base
   # ログイン中のユーザーが何かしらのプランに加入していた場合支払いを停止する
   def payment_planning_delete
     @ticket = Ticket.find_by(params[:current_user])
+    @ticket.destroy if @ticket.present?
+    current_user.update(issue_ticket_day: nil)
     if current_user.customer_id.present?
       @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
       Stripe::Subscription.delete(@payment.subscription)
       current_user.update!(customer_id: "", user_price: "")
-      @ticket.destroy
-      current_user.update(issue_ticket_day: nil)
     end
   end
 
