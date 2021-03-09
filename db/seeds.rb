@@ -307,6 +307,7 @@ Subscription.create!(
   price: "25000",
   image_subscription: "karaage.jpeg",
   address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
+  recommend: false,
 )
 
 Subscription.create!(
@@ -320,6 +321,7 @@ Subscription.create!(
   price: "50000",
   image_subscription: "karaage.jpeg",
   address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
+  recommend: false,
 )
 
 Subscription.create!(
@@ -363,10 +365,6 @@ PrivateStore.create!(
   private_store_detail: "東京都",
   price: "3000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
 )
 
@@ -380,10 +378,6 @@ PrivateStore.create!(
   private_store_detail: "神奈川",
   price: "9000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
 )
 
@@ -397,10 +391,6 @@ PrivateStore.create!(
   private_store_detail: "大阪",
   price: "11000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
 )
 
@@ -414,10 +404,6 @@ PrivateStore.create!(
   private_store_detail: "大阪",
   price: "18000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
 )
 
@@ -431,10 +417,6 @@ PrivateStore.create!(
   private_store_detail: "大阪",
   price: "25000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
 )
 
@@ -448,10 +430,6 @@ PrivateStore.create!(
   private_store_detail: "大阪",
   price: "50000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
 )
 
@@ -465,10 +443,6 @@ PrivateStore.create!(
   private_store_detail: "大阪",
   price: "100000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "東京都町田市原町田6-13-15",
 )
 
@@ -482,10 +456,6 @@ PrivateStore.create!(
   private_store_detail: "大阪",
   price: "11000",
   image_private_store: "karaage.jpeg",
-  image_private_store2: "gyouza.jpeg",
-  image_private_store3: "udon.jpeg",
-  image_private_store4: "soba.jpeg",
-  image_private_store5: "soba.jpeg",
   address: "東京都町田市森野１－３９－１　グランドゥールビル　5F",
 )
 
