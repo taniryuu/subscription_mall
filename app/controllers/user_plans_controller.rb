@@ -50,15 +50,35 @@ class UserPlansController < ApplicationController
   end
 
   def edit
+    @trial_plan = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_J3NbUHqtOpmfgT',
+          unit_amount: 1000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+    current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+
   end
 
   def update
     @sub.plan = current_user.session_id
-    current_user.update!(session_id: "", user_price: current_user.session_price, session_price: "")
+    current_user.update!(session_id: "", user_price: current_user.session_price, session_price: "", issue_ticket_day: nil)
     if @sub.save
       flash[:success] = "正常に更新されました"
       redirect_to current_user
     end
+    @ticket = Ticket.find_by(params[:current_user])
+    @ticket.destroy if @ticket.present?
   end
 
   def destroy

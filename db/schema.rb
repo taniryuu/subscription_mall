@@ -81,14 +81,24 @@ ActiveRecord::Schema.define(version: 20210306095519) do
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "subscription_id", null: false
-    t.string "subscription_image", null: false
+    t.string "image_subscription_id"
+    t.string "image_interview_id"
     t.text "comment"
     t.datetime "time"
+    t.bigint "user_id"
+    t.bigint "owner_id"
+    t.bigint "subscription_id"
+    t.bigint "interview_id"
+    t.bigint "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "private_store_id"
+    t.index ["blog_id"], name: "index_images_on_blog_id"
+    t.index ["interview_id"], name: "index_images_on_interview_id"
+    t.index ["owner_id"], name: "index_images_on_owner_id"
     t.index ["private_store_id"], name: "index_images_on_private_store_id"
+    t.index ["subscription_id"], name: "index_images_on_subscription_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "instablogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -315,7 +325,6 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "owner_phone_number"
     t.string "owner_store_information"
     t.string "subscription_name"
-    t.string "private_store_name"
     t.string "subscription_fee"
     t.date "issue_ticket_day"
     t.bigint "user_id"
@@ -329,7 +338,6 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "owner_store_information"
     t.string "owner_payee"
     t.string "subscription_name"
-    t.string "private_store_name"
     t.string "subscription_fee"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
@@ -365,8 +373,8 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.datetime "updated_at", null: false
     t.integer "user_price"
     t.integer "session_price"
-    t.integer "private_store_id"
     t.datetime "deleted_at"
+    t.integer "private_store_id"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -375,7 +383,12 @@ ActiveRecord::Schema.define(version: 20210306095519) do
   add_foreign_key "blogs", "admins"
   add_foreign_key "contacts", "owners"
   add_foreign_key "contacts", "users"
+  add_foreign_key "images", "blogs"
+  add_foreign_key "images", "interviews"
+  add_foreign_key "images", "owners"
   add_foreign_key "images", "private_stores"
+  add_foreign_key "images", "subscriptions"
+  add_foreign_key "images", "users"
   add_foreign_key "instablogs", "subscriptions"
   add_foreign_key "interviews", "owners"
   add_foreign_key "megurumereviews", "users"
