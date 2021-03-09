@@ -82,6 +82,9 @@ class OwnersController < ApplicationController
     end
   end
 
+  def participating_private_select
+  end
+
   private
 
     def set_owner
