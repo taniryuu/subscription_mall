@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find_by(user_id: params[:id])
+    @ticket = Ticket.find(params[:id])
   end
 
   def new
@@ -90,10 +90,12 @@ class TicketsController < ApplicationController
     #トライアルチケット削除
     def trial_period
       @ticket = Ticket.find_by(params[:current_user])
-      if current_user.user_price === 1000 && current_user.trial_count === 3
+      if current_user.user_price === 1000 && current_user.ticket.trial_count === 3
         @ticket.destroy
+        current_user.update(issue_ticket_day: nil)
       elsif current_user.user_price === 1000 && @ticket.created_at.since(7.days)
         @ticket.destroy
+        current_user.update(issue_ticket_day: nil)
       end
     end
 end

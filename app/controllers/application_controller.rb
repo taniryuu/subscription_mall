@@ -65,6 +65,7 @@ class ApplicationController < ActionController::Base
       Stripe::Subscription.delete(@payment.subscription)
       current_user.update!(customer_id: "", user_price: "")
       @ticket.destroy
+      current_user.update(issue_ticket_day: nil)
     end
   end
 

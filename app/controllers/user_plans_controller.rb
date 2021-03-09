@@ -50,6 +50,24 @@ class UserPlansController < ApplicationController
   end
 
   def edit
+    @trial_plan = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+        price_data: {
+          currency: 'jpy',
+          product: 'prod_J3NbUHqtOpmfgT',
+          unit_amount: 1000,
+          recurring: {interval: "month"}
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: success_url,
+      cancel_url: cancel_url,
+    )
+    current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+
   end
 
   def update
