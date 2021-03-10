@@ -5,7 +5,7 @@ class SuportMailer < ApplicationMailer
   #
   #   en.suport_mailer.suport_mail.subject
   #
-  default from: 'megurume@subscription.com'# 送信元アドレス
+  default from: 'megurumee@gmail.com'# 送信元アドレス
 
   def suport_email(suport)
     @suport = suport

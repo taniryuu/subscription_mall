@@ -24,7 +24,7 @@
       width: 100%;
       max-width: 100%;
       height: auto;
-      max-height: 30vh;
+      max-height: 50vh;
       object-fit: cover;
     }
   }
@@ -449,45 +449,6 @@
   .concept3 {
     font-weight: bold;
   }
-  .plan-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
-  }
-  .plan-item {
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    box-sizing: border-box;
-    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
-    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
-    width: 202px;
-    height: 140px;
-    top: 86%;
-    // position: relative;
-    overflow: hidden;
-    margin-bottom: 3em;
-  }
-  .trial_plan-item {
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    box-sizing: border-box;
-    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
-    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
-    width: 450px;
-    height: 140px;
-    top: 86%;
-    // position: relative;
-    overflow: hidden;
-    margin-bottom: 3em;
-  }
-  .plan-shop-btn {
-    width: 100%;
-    top: 86%;
-    left: 0%;
-  }
   .snsimage {
       margin: 0;
       padding: 0;
@@ -540,6 +501,14 @@
     line-height: 2.5;
     color: #393e46;
   }
+  .comment-text1 {
+    margin-top: 22px;
+    font-size: 20px;
+    font-family: Hiragino Sans;
+    letter-spacing: 0.05em;
+    line-height: 2.5;
+    color: #393e46;
+  }
   .border-solid-down {
     width: 100vw;
     position: relative;
@@ -580,12 +549,14 @@
       flex-direction: column;
     }
   }
+  //カテゴリ一覧
   .category-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
   }
+  //カテゴリ写真
   .category-item {
     display: flex;
     flex-direction: column;
@@ -599,6 +570,7 @@
     overflow: hidden;
     margin-bottom: 3em;
   }
+  //カテゴリ名前
   .category-shop-btn {
     width: 100%;
     position: absolute;
@@ -615,8 +587,66 @@
     text-decoration: none;
     text-align: center;
   }
+  //カテゴリ名前背景の色
   .category-shop-btn a:hover {
     background: #ffaa64;
+  }
+  //加盟店プラン一覧
+  .plan-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  //加盟店プランの写真と名前css
+  .plan-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    width: 280px;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3em;
+  }
+  //加盟店プラン名前
+  .plan-shop-btn {
+    width: 100%;
+    position: absolute;
+    top: 82%;
+    left: 0%;
+    height: .40em;
+  }
+  .plan-shop-btn a {
+    display: block;
+    font-size: 15px;
+    padding: .10em;
+    background: hsl(0, 0%, 95%);
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+  }
+  //加盟店プラン一
+  .plan-shop-btn a:hover {
+    background:  hsl(0, 3%, 6%);
+  }
+  .trial_plan-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    width: 450px;
+    height: 140px;
+    top: 86%;
+    // position: relative;
+    overflow: hidden;
+    margin-bottom: 3em;
   }
   .image-menu {
     position: absolute;
