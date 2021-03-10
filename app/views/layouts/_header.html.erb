@@ -11,11 +11,6 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <%
-=begin%>
- <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
-<%
-=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "利用者様管理", users_path %></li>
               <li><%= link_to "ショップ開設", subscription_private_store_select_owner_path(current_owner) %></li>
@@ -24,7 +19,7 @@
             </ul>
           </div>
         </nav>
-        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
       </div>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
       <div class="container-fluid">
@@ -37,18 +32,13 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <%
-=begin%>
- <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
-<%
-=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "Myアカウント", user_account_user_path(current_user) %></li>
             </ul>
           </div>
         </nav>
-        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
       </div>
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
       <div class="container-fluid">
@@ -61,11 +51,6 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <%
-=begin%>
- <li><%= link_to "プラン", plan_description_path %></a></li></a></li> 
-<%
-=end%>
               <li><%= link_to "おすすめ店舗", recommend_categories_path %></a></li>
               <li><%= link_to "経営者様管理", owners_path %></li>
               <li><%= link_to "利用者様管理", users_path %></li>
@@ -74,7 +59,7 @@
             </ul>
           </div>
         </nav>
-        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+        <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
       </div>
     <% end %>
 
@@ -90,18 +75,16 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
           <ul class="navbar-nav">
-            <%
-=begin%>
- <li><%= link_to "プラン", plan_description_path %></li> 
-<%
-=end%>
+            <li><a href="/categories/recommend">おすすめ店舗</a></li></br>
+            <li class="login"><a href="/users/sign_in">ログイン</a></li></br>
+            <li class="new-user"><a href="/users/sign_up">会員登録</a></li>
             <li><%= link_to "おすすめ店舗", recommend_categories_path %></li>
             <li class="login"><%= link_to "ログイン", new_user_session_path %></li>
             <li class="new-user"><%= link_to "会員登録", new_user_registration_path %></li>
           </ul>
         </div>
       </nav>
-      <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+      <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
     </div>
   <% end %>
   <p class="text-sub-center lead grey-text mx-auto mb-5">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>

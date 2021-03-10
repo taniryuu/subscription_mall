@@ -20,6 +20,10 @@ class ImageUploader < CarrierWave::Uploader::Base
       %w(jpg jpeg gif png)
     end
 
+    def size_range
+      1..10.megabytes
+    end
+
    # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
     def filename
       super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
