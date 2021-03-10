@@ -157,6 +157,16 @@
     left: 180px;
     top: 550px;
   }
+  p.text1 {
+    margin-bottom: 100px;
+    margin-top: -100px;
+    margin-right: 100px;
+  }
+
+  .text2 {
+    margin-bottom: 100px;
+    margin-top: -90px;
+  }
 
       /* レスポンシブWebデザインのブレークポイント */
   @media screen and (max-width: 1100px) {
