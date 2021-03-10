@@ -30,9 +30,9 @@
       </table>
     </div>
   </div>
-  <% if @user.issue_ticket_day.present? %>
+  <% if @user.issue_ticket_day.present? && @user.ticket.present? %>
   <div class="account-btn">
-    <%= link_to "チケット確認", user_ticket_path(current_user), class: "btn-gradient-3d-simple" %>
+    <%= link_to "チケット確認", user_ticket_path(user_id: current_user.id, id: current_user.ticket.id), class: "btn-gradient-3d-simple" %>
   </div></br>
   <% end %>
   <div class="account-btn">
