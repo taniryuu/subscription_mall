@@ -24,7 +24,7 @@
       width: 100%;
       max-width: 100%;
       height: auto;
-      max-height: 50vh;
+      max-height: 100vh;
       object-fit: cover;
     }
   }
@@ -41,15 +41,15 @@
     left: 100px;
     top: 420px;
   }
-  .text-sub-center-top {
+  .text-sub-center {
     font-size: 25px;
     color: #fff;
     font-family: Hiragino Sans;
-    text-shadow:2px 2px 3px #000;
+    text-shadow:2px 2px 3px rgb(229, 226, 226);
     letter-spacing: 0.05em;
-    position: absolute;
-    left: 180px;
-    top: 500px;
+    // position: absolute;
+    left: -50px;
+    top: 50px;
   }
 
       /* ナビゲーションバー各項目 */
