@@ -501,6 +501,14 @@
     line-height: 2.5;
     color: #393e46;
   }
+  .comment-text1 {
+    margin-top: 22px;
+    font-size: 20px;
+    font-family: Hiragino Sans;
+    letter-spacing: 0.05em;
+    line-height: 2.5;
+    color: #393e46;
+  }
   .border-solid-down {
     width: 100vw;
     position: relative;
@@ -616,7 +624,7 @@
     display: block;
     font-size: 15px;
     padding: .10em;
-    background: #55d676;
+    background: hsl(0, 0%, 95%);
     border-radius: 4px;
     color: #fff;
     text-decoration: none;
@@ -624,7 +632,7 @@
   }
   //加盟店プラン一
   .plan-shop-btn a:hover {
-    background: #0dda62;
+    background:  hsl(0, 3%, 6%);
   }
   .trial_plan-item {
     display: flex;
