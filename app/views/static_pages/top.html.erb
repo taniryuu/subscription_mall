@@ -444,19 +444,19 @@
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
             <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
         </div>
       </div>
     </div>
@@ -766,19 +766,19 @@
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
             <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
         </div>
       </div>
     </div>
@@ -949,10 +949,6 @@
     </table>
   <% end %>
   <% else %> <%# ログインしてない %>
-    <div class="owner-btn">
-      <a href="top_owner.html" class="btn btn-c btn--pink2 btn--cubic2">経営者様はこちら</a>
-      <a href="/users/sign_up" class="btn btn-c btn--pink btn--cubic">利用者様会員登録</a>
-    </div>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
         <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
@@ -1091,19 +1087,19 @@
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
             <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
         </div>
       </div>
       <div class="f-item">
         <div class="box26">
           <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
-          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
+          <span class="comment-text1">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
         </div>
       </div>
     </div>
