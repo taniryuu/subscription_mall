@@ -259,10 +259,6 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.integer "price"
     t.text "subscription_detail"
     t.string "script"
-    t.string "image_subscription2"
-    t.string "image_subscription3"
-    t.string "image_subscription4"
-    t.string "image_subscription5"
     t.string "sub_image"
     t.string "sub_image2"
     t.string "sub_image3"
@@ -350,6 +346,8 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "kana"
     t.string "line_id"
     t.string "address"
+    t.float "latitude", limit: 24
+    t.float "longitude", limit: 24
     t.string "phone_number"
     t.string "uid"
     t.string "provider"

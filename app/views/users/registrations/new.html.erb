@@ -19,7 +19,7 @@
 
       <div class="field">
         <%= f.label :phone_number, class: "form-label" %><span class="must">必須</span><span>＊ハイフンなし</span>
-        <%= f.text_field :phone_number, class: "form-control" %>
+        <%= f.text_field :phone_number, :required => true, class: "form-control" %>
       </div>
 
       <div class="field">
