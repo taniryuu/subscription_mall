@@ -346,6 +346,8 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "kana"
     t.string "line_id"
     t.string "address"
+    t.float "latitude", limit: 24
+    t.float "longitude", limit: 24
     t.string "phone_number"
     t.string "uid"
     t.string "provider"

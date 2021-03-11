@@ -13,31 +13,34 @@ Admin.create!(name: "中野ゆうさん",
 puts "Admin Created"
 
 30.times do |n|
-name  = Faker::Name.name
-email = "sample-#{n+1}@email.com"
-phone_number = "00000000000"
-password = "password1"
-User.create!(name: name,
+  name  = Faker::Name.name
+  email = "sample-#{n+1}@email.com"
+  password = "password1"
+  phone_number = Faker::Number.number(digits: 11)
+  User.create!(
+    name: name,
     email: email,
-    phone_number:  phone_number,
+    phone_number: phone_number,
+    sms_auth: true,
     password: password,
-    password_confirmation: password)
+    password_confirmation: password,
+  )
 end
 
 puts "User Created"
 
 30.times do |n|
-name  = Faker::Name.name
-email = "sample#{n+1}@email.com"
-phone_number = "00000000000"
-password = "password1"
-Owner.create!(name: name,
+  name  = Faker::Name.name
+  email = "sample#{n+1}@email.com"
+  password = "password1"
+  phone_number = Faker::Number.number(digits: 11)
+  Owner.create!(name: name,
     email: email,
     phone_number: phone_number,
     password: password,
     password_confirmation: password,
     #address: "東京都港区1-#{n}-1"
-   )
+  )
 end
 
 puts "Owner Created"
