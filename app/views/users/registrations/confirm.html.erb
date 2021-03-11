@@ -6,6 +6,7 @@
 
     <p><%= f.label :name %><%= f.text_field :name, value: resource.name, readonly: true %></p>
     <p><%= f.label :email %><%= f.email_field :email, value: resource.email, readonly: true %></p>
+    <p><%= f.label :phone_number %><%= f.telephone_field :phone_number, value: resource.phone_number, readonly: true %></p>
     <p><%= f.label :password %><%= f.password_field :password, value: resource.password, readonly: true %></p>
 
     <%= f.submit "修正する", name: :back %>
