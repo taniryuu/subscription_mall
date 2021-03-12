@@ -92,15 +92,22 @@ class TicketsController < ApplicationController
 
     #トライアルチケット削除
     def trial_period
-      @ticket = Ticket.find_by(params[:current_user])
-        if @ticket.present?
-          if current_user.user_price === 1000 && current_user.ticket.trial_count === 3
-            @ticket.destroy
-            current_user.update(issue_ticket_day: nil)
-          elsif current_user.user_price === 1000 && @ticket.created_at.since(7.days)
-            @ticket.destroy
-            current_user.update(issue_ticket_day: nil)
-          end
+      @ticket = Ticket.find(params[:id])
+        if @ticket.present? && current_user.user_price === 1000
+              if @ticket.trial_count.nil? || @ticket.trial_count <= 2
+
+              elsif @ticket.trial_count === 3
+                @ticket.destroy
+                current_user.update(issue_ticket_day: nil)
+                flash[:success] = "トライアルチケットは期限切れになりましました"
+                user_account_user_path(current_user)
+              elsif  @ticket.created_at.since(7.days)
+                @ticket.destroy
+                current_user.update(issue_ticket_day: nil)
+                flash[:success] = "トライアルチケットは期限切れになりましました"
+                user_account_user_path(current_user)
+
+              end
         end
     end
 end
