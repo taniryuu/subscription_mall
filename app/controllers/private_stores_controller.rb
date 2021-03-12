@@ -96,7 +96,6 @@ class PrivateStoresController < ApplicationController
   def create
     @categories = Category.all
     @private_store = PrivateStore.new(private_store_params)
-    debugger
     respond_to do |format|
       if @private_store.save
         if params[:private_store][:qr_image]

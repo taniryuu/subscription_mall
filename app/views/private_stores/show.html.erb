@@ -42,7 +42,7 @@
                   <%= link_to "チケットを使う", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
                   <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% else %>
-                  <%= link_to "プランを変更する", edit_user_plan_path, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "プランを変更する", edit_private_store_user_plan_path, class: "btn-gradient-3d-simple" %>
                   <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% end %>
               <% elsif current_user.present? %>

@@ -46,7 +46,6 @@ class ApplicationController < ActionController::Base
   # current_userのサブスクプラン支払い詳細
   def payment_check
     if current_user.present?
-      debugger
       @pay = current_user.customer_id
     end
     if @pay.present?

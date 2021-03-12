@@ -171,10 +171,10 @@ Rails.application.routes.draw do
     end
   end
   resource :private_store_user_plan, except: %i(create show) do
-    #collection do
-      #get "confirm", to: "private_store_user_plans#confirm"
-      #get "update_confirm", to: "private_store_user_plans#update_confirm"
-    #end
+    collection do
+      get "confirm", to: "private_store_user_plans#confirm"
+      get "update_confirm", to: "private_store_user_plans#update_confirm"
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

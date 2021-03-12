@@ -60,12 +60,12 @@ class PrivateStoreUserPlansController < ApplicationController
 
   # サブスク新規登録確認画面
   def confirm
-    current_user.update!(session_id: @plan.id, session_price: @plan.amount_subtotal)
+    current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
   end
 
   # サブスクプラン更新確認画面
   def update_confirm
-    current_user.update!(session_id: params[:session], session_price: @plan.amount_subtotal)
+    current_user.update!(session_id: params[:session], session_price: @private_store_plan.amount_subtotal)
   end
 
   def edit
@@ -109,15 +109,16 @@ class PrivateStoreUserPlansController < ApplicationController
 
     # stripe APIからプランを取得
     def set_plan
+      debugger
       # 変更予定のサブスクプラン
       @confirm_plan = Stripe::Plan.retrieve(
         params[:session]
       )
 
       # サブスク登録
-      @plan = Stripe::Checkout::Session.create(
-        success_url: success_url,
-        cancel_url: cancel_url,
+      @private_store_plan = Stripe::Checkout::Session.create(
+	success_url: private_store_success_url,
+	cancel_url: private_store_cancel_url,
         payment_method_types: ['card'],
         customer_email: current_user.email,
         line_items: [{
