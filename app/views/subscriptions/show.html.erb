@@ -83,16 +83,36 @@
                 <p>a</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.sub_image2_url, class: "img-fluid" %>
                 <p>b</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.sub_image3_url, class: "img-fluid" %>
                 <p>c</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url %>
+                  <%= image_tag @subscription.sub_image4_url %>
                 <p>d</p>
+            </div>
+            <div class="carousel-item active">
+                  <%= image_tag @subscription.sub_image5_url, class: "img-fluid" %>
+                <p>e</p>
+            </div>
+            <div class="carousel-item">
+                  <%= image_tag @subscription.sub_image6_url, class: "img-fluid" %>
+                <p>f</p>
+            </div>
+            <div class="carousel-item">
+                  <%= image_tag @subscription.sub_image7_url, class: "img-fluid" %>
+                <p>g</p>
+            </div>
+            <div class="carousel-item">
+                  <%= image_tag @subscription.sub_image8_url %>
+                <p>h</p>
+            </div>
+            <div class="carousel-item">
+                  <%= image_tag @subscription.sub_image9_url %>
+                <p>i</p>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carousel-thumb1" role="button" data-slide="prev">
@@ -172,33 +192,11 @@
                 <p>a</p>
                 <% end %>
               </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image10.present? %>
-                    <%= image_tag @subscription.sub_image10, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image11.present? %>
-                    <%= image_tag @subscription.sub_image11, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image12.present? %>
-                    <%= image_tag @subscription.sub_image12, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
             </div>
           </div>
         </div>
        </div>
       </div>
-
       <div class="col-lg-5 text-center text-md-left">
 
         <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4"><%= @subscription.name %></h2>
