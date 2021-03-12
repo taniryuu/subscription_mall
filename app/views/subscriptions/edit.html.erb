@@ -13,7 +13,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :商品タイトル %> <span class="must">必須</span>
+    <%= form.label :サブスク料理名 %> <span class="must">必須</span>
     <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
@@ -23,7 +23,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :商品紹介 %> <span class="must">必須</span>
+    <%= form.label :商品説明 %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
   
@@ -32,42 +32,9 @@
     <%= form.file_field :qr_image, id: "file-input" %>
   </div>
 
- <%
-=begin%>
- <div class="field">
-    <%= form.label :お店紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
-      <%= form.fields_for :images do |image| %>
-        <%= image.file_field :subscription_image, multiple: true, name: "images[subscription_image][]" %>
-        <%= image.hidden_field :subscription_id, :value => @subscription.id %>
-      <% end %>
-  </div>  
-<%
-=end%>
-
-
   <div class="field">
-    <%= form.label :メインのお店紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
+    <%= form.label :お店トップ紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
     <%= form.file_field :image_subscription, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真カルーセル1, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :image_subscription2, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真カルーセル2 %><br/>
-    <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真カルーセル3 %><br/>
-    <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真カルーセル4 %><br/>
-    <%= form.file_field :image_subscription5, id: :subscription_image_subscription %>
   </div>
 
   <div class="field">
@@ -118,21 +85,6 @@
   <div class="field">
     <%= form.label :サブのお店紹介写真9, for: "file-input", type:"file" %><br/>
     <%= form.file_field :sub_image9, id: "file-input"%>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真10, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image10, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真11, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image11, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真12, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image12, id: "file-input"%>
   </div>
 
   <div class="field">

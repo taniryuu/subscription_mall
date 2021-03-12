@@ -17,39 +17,42 @@
     z-index: 1;
   }
 
-      /* 動画 */
+    /* 動画 */
   .container-fluid {
     padding: 0;
     video {
       width: 100%;
       max-width: 100%;
+      // position:relative;
       height: auto;
-      max-height: 30vh;
+      max-height: 150vh;
       object-fit: cover;
     }
   }
 
-      /* ヘッダー中央コメント */
-  .text-center-top {
-    font-size: 45px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow:2px 2px 3px #000;
-    font-family: Hiragino Sans;
-    letter-spacing: 0.06em;
-    position: absolute;
-    left: 100px;
-    top: 420px;
+  /* 動画 */
+  @media screen and (max-width: 1011px) {  
+    .container-fluid {
+      padding: 0;
+      video {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 500vh;
+        object-fit: cover;
+      }
+    }
   }
-  .text-sub-center-top {
+    /* ヘッダー中央コメント */
+  .text-sub-center {
     font-size: 25px;
     color: #fff;
     font-family: Hiragino Sans;
-    text-shadow:2px 2px 3px #000;
+    // text-shadow:2px 2px 3px rgb(229, 226, 226);
     letter-spacing: 0.05em;
     position: absolute;
-    left: 180px;
-    top: 500px;
+    left: -50px;
+    top: 50px;
   }
 
       /* ナビゲーションバー各項目 */
@@ -74,6 +77,14 @@
     font-size: 20px;
     text-shadow:2px 2px 3px #000;
   }
+  .logout {
+    margin-right: 17px;
+    margin-left: 17px;
+    padding-top: 5px;
+    font-size: 20px;
+    text-shadow:2px 2px 3px #000;
+  }
+  
   .new-user {
     margin-right: 17px;
     margin-left: 17px;
@@ -97,8 +108,12 @@
     background: transparent;
     text-decoration: none;
   }
+
+  .owner-btn  {
+    color: rgb(231, 228, 228);
+  }
     /* 利用者様はこちらボタン */
-  .owner-btn a.btn--pink {
+  a.btn--pink {
     color: rgb(10, 3, 3);
     background-color: rgb(255, 240, 31);
   }
@@ -114,7 +129,7 @@
     border-bottom: 2px solid  rgb(255, 240, 31);
   }
     /* 経営者様はこちらボタン */
-    .owner-btn a.btn--pink2 {
+    a.btn--pink2 {
       color: rgb(10, 3, 3);
       background-color:  rgb(27, 228, 87);
     }
@@ -149,6 +164,17 @@
     position: absolute;
     left: 180px;
     top: 550px;
+  }
+  p.text1 {
+    margin-bottom: 120px;
+    margin-top: -100px;
+    margin-right: 100px;
+    font-size: 20px;
+  }
+
+  .text2 {
+    margin-bottom: 100px;
+    margin-top: -90px;
   }
 
       /* レスポンシブWebデザインのブレークポイント */
@@ -449,45 +475,6 @@
   .concept3 {
     font-weight: bold;
   }
-  .plan-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
-  }
-  .plan-item {
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    box-sizing: border-box;
-    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
-    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
-    width: 202px;
-    height: 140px;
-    top: 86%;
-    // position: relative;
-    overflow: hidden;
-    margin-bottom: 3em;
-  }
-  .trial_plan-item {
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    box-sizing: border-box;
-    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
-    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
-    width: 450px;
-    height: 140px;
-    top: 86%;
-    // position: relative;
-    overflow: hidden;
-    margin-bottom: 3em;
-  }
-  .plan-shop-btn {
-    width: 100%;
-    top: 86%;
-    left: 0%;
-  }
   .snsimage {
       margin: 0;
       padding: 0;
@@ -540,6 +527,14 @@
     line-height: 2.5;
     color: #393e46;
   }
+  .comment-text1 {
+    margin-top: 22px;
+    font-size: 20px;
+    font-family: Hiragino Sans;
+    letter-spacing: 0.05em;
+    line-height: 2.5;
+    color: #393e46;
+  }
   .border-solid-down {
     width: 100vw;
     position: relative;
@@ -580,12 +575,14 @@
       flex-direction: column;
     }
   }
+  //カテゴリ一覧
   .category-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
   }
+  //カテゴリ写真
   .category-item {
     display: flex;
     flex-direction: column;
@@ -599,6 +596,7 @@
     overflow: hidden;
     margin-bottom: 3em;
   }
+  //カテゴリ名前
   .category-shop-btn {
     width: 100%;
     position: absolute;
@@ -615,8 +613,66 @@
     text-decoration: none;
     text-align: center;
   }
+  //カテゴリ名前背景の色
   .category-shop-btn a:hover {
     background: #ffaa64;
+  }
+  //加盟店プラン一覧
+  .plan-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  //加盟店プランの写真と名前css
+  .plan-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    width: 280px;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3em;
+  }
+  //加盟店プラン名前
+  .plan-shop-btn {
+    width: 100%;
+    position: absolute;
+    top: 82%;
+    left: 0%;
+    height: .40em;
+  }
+  .plan-shop-btn a {
+    display: block;
+    font-size: 15px;
+    padding: .10em;
+    background: hsl(0, 0%, 95%);
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+  }
+  //加盟店プラン一
+  .plan-shop-btn a:hover {
+    background:  hsl(0, 3%, 6%);
+  }
+  .trial_plan-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 10px 0 rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    width: 450px;
+    height: 140px;
+    top: 86%;
+    // position: relative;
+    overflow: hidden;
+    margin-bottom: 3em;
   }
   .image-menu {
     position: absolute;

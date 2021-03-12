@@ -1,7 +1,7 @@
 <% provide(:title, "会員登録") %>
 <p id="notice"><%= notice %></p>
 
-<h1 class="new-title index-title-post">新規会員登録</h1>
+<h1 class="new-title index-title-post">利用者新規会員登録</h1>
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3 mx-auto">
     <%= form_for(resource, as: resource_name, url: users_sign_up_confirm_path(resource)) do |f| %>
@@ -18,8 +18,8 @@
       </div>
 
       <div class="field">
-        <%= f.label :phone_number, class: "form-label" %><span class="must">必須</span>
-        <%= f.text_field :phone_number, class: "form-control" %>
+        <%= f.label :phone_number, class: "form-label" %><span class="must">必須</span><span>＊ハイフンなし</span>
+        <%= f.text_field :phone_number, :required => true, class: "form-control" %>
       </div>
 
       <div class="field">
@@ -27,7 +27,7 @@
         <% if @minimum_password_length %>
         <em>(最小<%= @minimum_password_length %>文字)</em>
         <% end %><br/>
-        <%= f.password_field :password, :required => true,autocomplete: "new-password", class: 'form-control' %>
+        <%= f.password_field :password, :required => true, placeholder: "6文字以上、半角英字と半角数字を使用", autocomplete: "new-password", class: 'form-control' %>
       </div>
 
       <% if resource.errors.include?(:password) %>
@@ -44,6 +44,25 @@
         <%= f.submit "登録", class: "btn btn-primary btn-block btn-login" %>
       </div>
     <% end %>
+    <h2>SNSアカウントでログイン</h2>
 
+    <div class="box-facebook"></br>
+        <%= link_to('/devise/auth/facebook') do %>
+        <i class="fa fa-facebook-official"></i> Facebookでログイン
+        <% end %>
+    </div>
+
+    <div class="box-line"></br>
+        <%= link_to('/devise/auth/line') do %>
+        <i class="fa fa-mobile"></i> LINEでログイン
+        <% end %>
+    </div>
+
+    <div class="box-twitter"></br>
+        <%= link_to('/devise/auth/twitter') do %>
+        <i class="fa fa-twitter"></i> Twitterでログイン
+        <% end %>
+    </div>
+    <a href="/owners/sign_up" class="btn btn-c btn--pink2">経営者様会員登録はこちら</a>
   </div>
 </div>

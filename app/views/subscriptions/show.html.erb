@@ -70,15 +70,6 @@
     </div>
   </section>
 </div>
-<%
-=begin%>
- <% @sub_images.each do |image| %>
-  <span>
-  <%= image_tag image.subscription_image.thumb.url %>
-  </span>
-<% end %> 
-<%
-=end%>
 
 <div class="container my-5 py-5 z-depth-1">
   <section class="text-center">
@@ -88,29 +79,19 @@
         <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
           <div class="carousel-inner text-center text-md-left" role="listbox">
             <div class="carousel-item active">
-                  <%= image_tag @subscription.image_subscription2_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
                 <p>a</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.image_subscription3_url, class: "img-fluid" %>
-                  <%
-=begin%>
- <img src="<%= "subscription/image_subscription3/#{@subscription.image_subscription3}"%>"> 
-<%
-=end%>
+                  <%= image_tag @subscription.sub_image2_url, class: "img-fluid" %>
                 <p>b</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.image_subscription4_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.sub_image3_url, class: "img-fluid" %>
                 <p>c</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.image_subscription5_url %>
-                  <%
-=begin%>
- <img src="<%= "subscription/image_subscription5/#{@subscription.image_subscription5}"%>"> 
-<%
-=end%>
+                  <%= image_tag @subscription.sub_image4_url, class: "img-fluid" %>
                 <p>d</p>
             </div>
           </div>
@@ -187,27 +168,6 @@
               <figure class="col-md-4">
                 <% if @subscription.sub_image9.present? %>
                     <%= image_tag @subscription.sub_image9, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image10.present? %>
-                    <%= image_tag @subscription.sub_image10, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image11.present? %>
-                    <%= image_tag @subscription.sub_image11, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image12.present? %>
-                    <%= image_tag @subscription.sub_image12, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>

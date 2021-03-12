@@ -31,10 +31,6 @@ class Subscription < ApplicationRecord
   enum price: { "3000"=> 1, "9000"=> 2, "11000"=> 3, "18000"=> 4, "25000"=> 5, "50000"=> 6, "100000"=> 7}, _prefix: true
   # attachment :image_subscription
   mount_uploader :image_subscription, SubscriptionUploader
-  mount_uploader :image_subscription2, SubscriptionUploader
-  mount_uploader :image_subscription3, SubscriptionUploader
-  mount_uploader :image_subscription4, SubscriptionUploader
-  mount_uploader :image_subscription5, SubscriptionUploader
   mount_uploader :sub_image, SubscriptionUploader
   mount_uploader :sub_image2, SubscriptionUploader
   mount_uploader :sub_image3, SubscriptionUploader

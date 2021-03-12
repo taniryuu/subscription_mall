@@ -18,6 +18,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :kana
       t.string :line_id
       t.string :address
+      t.float :latitude
+      t.float :longitude
       t.string :phone_number
       t.string :uid
       t.string :provider
