@@ -1,43 +1,150 @@
 <% provide(:title, "サブスクページ編集") %>
 
-<h1>サブスクページ編集</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">サブスクページ編集</h1>
 
-<%= form_with(model: @subscription, url: owner_subscription_path, local: true) do |form| %>
+<%= form_with(model: @subscription, url: owner_subscription_path(@subscription, owner_id: @owner.id), multipart: true, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
-  <!--%= form.hidden_field :shop_id, :value => @shop.id %-->
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control' %>
+    <%= form.label :お店の名前 %> <span class="must">必須</span>
+    <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control' %>
+    <%= form.label :商品タイトル %> <span class="must">必須</span>
+    <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.label :detail %>
-    <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control' %>
+    <%= form.label :お店の住所 %> <span class="must">必須</span>
+    <%= form.text_field :address, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= form.fields_for :images do |f_img|%>
-      <%= f_img.label :サブスク写真 %>
-      <%= f_img.file_field :image_subscription_id, multiple: true %>
-    <% end %>
+    <%= form.label :商品紹介 %> <span class="must">必須</span>
+    <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :"LINE@QRコード画像", for: "file-input", type:"file" %><span class="must">必須</span><br/>
+    <%= form.file_field :qr_image, id: "file-input" %>
+  </div>
+
+ <%
+=begin%>
+ <div class="field">
+    <%= form.label :お店紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
+      <%= form.fields_for :images do |image| %>
+        <%= image.file_field :subscription_image, multiple: true, name: "images[subscription_image][]" %>
+        <%= image.hidden_field :subscription_id, :value => @subscription.id %>
+      <% end %>
+  </div>  
+<%
+=end%>
+
+
+  <div class="field">
+    <%= form.label :メインのお店紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
+    <%= form.file_field :image_subscription, id: "file-input" %>
   </div>
 
   <div class="field">
-    <%= form.label :subscription_detail %>
+    <%= form.label :お店紹介写真カルーセル1, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :image_subscription2, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お店紹介写真カルーセル2 %><br/>
+    <%= form.file_field :image_subscription3, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お店紹介写真カルーセル3 %><br/>
+    <%= form.file_field :image_subscription4, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お店紹介写真カルーセル4 %><br/>
+    <%= form.file_field :image_subscription5, id: :subscription_image_subscription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :店舗情報 %>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :category_name %>
-    <%= form.select :category_name, Subscription.category_names.keys, :include_blank => "カテゴリを選択してください", id: :subscription_subscription_detail, class:"form-control" %>
+    <%= form.label :サブのお店紹介写真, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真2, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image2, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真3, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image3, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真4, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image4, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真5, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image5, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真6, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image6, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真7, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image7, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真8, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image8, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真9, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image9, id: "file-input"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真10, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image10, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真11, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image11, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真12, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image12, id: "file-input"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
+      <% t.label   { t.check_box + t.text } %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :加入プラン %> <span class="must">必須</span><br/>
+    <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
   </div>
 
 
@@ -46,5 +153,7 @@
   </div>
 <% end %>
 
-<%= link_to 'Show', owner_subscription_path(@subscription, owner_id: @owner.id, shop_id: @subscription.shop_id) %> |
-<%= link_to 'Back', owner_subscriptions_path %>
+<div class="mt-5 mb-8">
+  <%= link_to '詳細', owner_subscription_path(@subscription, owner_id: @owner.id), class: "btn btn-brand" %>
+  <%= link_to '一覧へ', owner_subscriptions_path, class: "btn btn-brand" %>
+</div>

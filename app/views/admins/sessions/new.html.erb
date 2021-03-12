@@ -1,6 +1,6 @@
 <% provide(:title, "管理ユーザーログイン") %>
 
-<div class="box">
+<div class="box-owner">
   <div class="box-inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <h1>管理ユーザー ログイン</h1>
@@ -30,45 +30,31 @@
           <div class="box-newusr"></br>
             <%= link_to "会員ユーザー はこちらからログイン", new_user_session_path %>
           </div>
-    <h2><span>------------</span>SNSアカウントでログイン<span>------------</span></h2>
-    <div class="box-facebook"></br>
-        <%= link_to user_facebook_omniauth_authorize_path do %>
-        <i class="fa fa-facebook-official"></i> Facebookでログイン
-        <% end %>
-    </div>
+    <h2>SNSアカウントでログイン</h2>
 
-    <div class="box-line"></br>
-        <%= link_to user_line_omniauth_authorize_path do %>
-        <i class="fa fa-mobile"></i> LINEでログイン
-        <% end %>
-    </div>
+        <div class="box-facebook"></br>
+            <%= link_to('/devise/auth/facebook') do %>
+            <i class="fa fa-facebook-official"></i> Facebookでログイン
+            <% end %>
+        </div>
 
-    <div class="box-google"></br>
-        <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-        <i class="fa fa-google"></i> Googleでログイン
-        <% end %>
-    </div>
+        <div class="box-line"></br>
+            <%= link_to('/devise/auth/line') do %>
+            <i class="fa fa-mobile"></i> LINEでログイン
+            <% end %>
+        </div>
 
-    <div class="box-twitter"></br>
-        <%= link_to user_twitter_omniauth_authorize_path do %>
-        <i class="fa fa-twitter"></i> Twitterでログイン
-        <% end %>
-    </div>
-
-    <div class="box-instagram"></br>
-        <%= link_to user_instagram_omniauth_authorize_path do %>
-        <i class="fa fa-instagram"></i> Instagramでログイン
-        <% end %>
-    </div>
-
+        <div class="box-twitter"></br>
+            <%= link_to('/devise/auth/twitter') do %>
+            <i class="fa fa-twitter"></i> Twitterでログイン
+            <% end %>
+        </div>
       </div>
     <% end %>
 
     <div class="box-newusr">
-    <p><span>------------</span> Subscription_mallの会員ですか？ <span>------------</span></p>
-
+    <p><span>------------</span> Subscription_mallの会員ですか？ <span>------------</span></p><br>
       <%= link_to "Subscription_mall会員登録", new_user_registration_path %>
     </div>
   </div>
 </div>
-

@@ -1,50 +1,31 @@
-<footer class="page-footer font-small blue pt-4"  style="background-color:#f5c1d2;">
-
+<hr class="style4">
+<footer class="page-footer font-small blue pt-4"  style="background-color:#99FFFF;">
   <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
-
+  <div class="container-fluid text-under text-md-left">
     <!-- Grid row -->
     <div class="row">
-
       <!-- Grid column -->
       <div class="col-md-6 mt-md-0 mt-3">
-
         <!-- Content -->
-      <a href="/"><%= image_tag 'gurumelogo.jpeg', Style: "height: 100px" %></a>
-        <p>巡グルメで始めるサブスクランチ</p>
-
+        <a href="/"><%#= image_tag 'gurumelogo.jpeg', Style: "height: 100px" %></a>
       </div>
       <!-- Grid column -->
-
       <hr class="clearfix w-100 d-md-none pb-3">
-
       <!-- Grid column -->
       <div class="col-md-3 mb-md-0 mb-3">
-
         <!-- Links -->
-        <h5 class="text-uppercase">管理者サイト</h5>
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Twitterへ</a>
-          </li>
-          <li>
-            <a href="#!">Facebookへ</a>
-          </li>
-          <li>
-            <a href="#!">YouTubeへ</a>
-          </li>
-          <li>
-            <a href="#!">Instagramへ</a>
-          </li>
-        </ul>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'> 
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
       </div>
       <div class="col-md-3 mb-md-0 mb-3">
         <ul class="list-unstyled">
+        <% if current_owner.present? %>
           <li>
-            <a href="#!">カスタマイズ</a>
+            <a href="/owners/:owner_id/subscriptions">カスタマイズ</a>
           </li>
+        <% end %>
           <li>
-            <a href="#!">ショップ事例</a>
+            <a href="/categories/recommend">ショップ事例</a>
           </li>
           <li>
             <a href="/interviews">経営者様インタビュー</a>
@@ -64,11 +45,28 @@
           <li>
             <a href="/kiyaku">利用規約</a>
           </li>
+          <li>
+            <a href="/specified_commercial_transaction_law">特定商取引法に基づく表記</a>
+          </li>
+          <li>
+            <a href="/company_profile">会社概要</a>
+          </li>
         </ul>
+        <div class="right">
+          <a class="sns_btn btn_facebook" href="https://facebook.com/" rel="author">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+          <a class="sns_btn btn_twitter" href="https://twitter.com/" rel="author">
+            <i class="fa fa-twitter-square"></i>
+          </a>
+          <a class="sns_btn btn_email" href="https://mail.google.com/" rel="author">
+            <i class="fa fa-envelope"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="footer-copyright text-center py-3">© 2021 Copyright:巡グルメ公式サイト
+  <div class="footer-copyright text-under py-3">© 2021 Copyright:巡グルメ公式サイト
   </div>
 </footer>
-<!-- Footer -->
+<!-- Footer --> 

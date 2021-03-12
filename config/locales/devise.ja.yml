@@ -54,7 +54,7 @@ ja:
 #      unlocked: 'Your account was successfully unlocked. You are now signed in.'
     mailer:
       confirmation_instructions:
-        subject: 'アカウントの登録方法'
+        subject: 'アカウントの登録を受け付けました。'
 #        subject: 'Confirmation instructions'
       reset_password_instructions:
         subject: 'パスワードの再設定'

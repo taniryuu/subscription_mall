@@ -1,5 +1,5 @@
 <% provide(:title, "Top") %>
-
+<hr class="border-solid" />
 <p id="notice"><%= notice %></p>
 <% if signed_in? %> <%# ログインしているかどうか %>
   <% if current_user.present? %>
@@ -12,345 +12,1347 @@
 <% else %>
   <p>ようこそ！ゲストさん</p>
 <% end %>
+  <div class="owner-btn">
+    <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+  </div>
 
-<div class="top-bg">
- <div class="container my-5 p-5 z-depth-1">
-  <section class="dark-grey-text">
-    <h1 class="text-center font-weight-bold mb-4 pb-2">巡グルメで始めるサブスクランチ</h1>
-    <p class="text-center lead grey-text mx-auto mb-5">好きなランチを好きな場所で毎日食べ歩こう!</p>
+  <div class="center">
+    <h1 class="concept">C O N C E P T</h1>
+    <h6 class="concept1">コンセプト</h6>
+    <%= image_tag "megurume.jpg", :size =>'400', class:"center" %>
+  </div>
+  <div class="center">
+      <div class="comment-text">スマホで簡単注文・テイクアウト・並ばず受け取れる<br>店内での飲食も出来新しいお店に出会えて定期的でお財布にも安心</div>
+  </div>
+  <hr class="border-solid-down" />
 
-    <div class="row">
+  <div class="center">
+    <h1 class="concept">巡グルメの特徴</h1>
+  </div>
 
-      <div class="col-lg-8 text-center text-lg-left">
-        <%= video_tag("/videos/production ID_3977086 (3).mp4", autoplay: :true, loop: :true, muted: :true, width: "650vw", height: "500vh", class: 'video-content') %>
-      </div>
-
-       <div class="col-lg-4">
-
-        <div class="row mb-3">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">サブスクで</h5>
-            <p class="grey-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">毎日好きなランチを</h5>
-            <p class="grey-text">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-1">
-            <i class="fa fa-check-circle fa-2x"></i>
-          </div>
-          <div class="col-xl-10 col-md-11 col-10">
-            <h5 class="font-weight-bold mb-3">3000円から始める</h5>
-            <p class="grey-text mb-0">サンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメントサンプルコメント サンプルコメント サンプルコメント サンプルコメント サンプルコメント</p>
-          </div>
-        </div>
-
+  <div class="f-container">
+    <div class="f-item">
+      <div class="box26">
+        <div class="comment-text"><%= image_tag "image1_JPG.jpg", :size => '350', class: "plan-css" %></div>
+        <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;定額制</span><br>
+        <span>事前決済により決まった金額でお食事ができるため、余計な出費にもならずお財布にも優しいです。</span>
       </div>
     </div>
-  </section>
- </div>
-</div>
+    <div class="f-item">
+      <div class="box26">
+          <div class="comment-text"><%= image_tag "image2_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;好きなお店に行ける</span><br>
+        <span>金額によりお好きな加盟店でお食事することができ、お気に入りのお店も見つかります。</span>
+      </div>
+    </div>
+    <div class="f-item">
+      <div class="box26">
+        <div class="comment-text"><%= image_tag "image3_JPG.jpg", :size => '350', class: "plan-css" %></div>
+        <span>&nbsp;<i class="far fa-credit-card fa-lg"></i>&nbsp;時間短縮</span><br>
+        <span>ランチタイムなど時間がない時でも食事できるメニューも先に決まっているので悩まず、
+              携帯画面見せるだけですぐに会計完了。レジに並ぶ時間の短縮も出来ます。</span>
+      </div>
+    </div>
+  </div>
+  <hr class="border-solid-down" />
+
 
 <main class="scroll-container">
   <% if signed_in? %> <%# ログインしているかどうか %>
     <% if current_owner.present? %> <%# オーナーでログインしているかどうか %>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+    </div>
+    <div class="recommend-shop">
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/Rtmhky1">
+      <i class="fa fa-mobile">
+      </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
+    </div>
+
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <% if category.image_category.present? && category.name.present? %>
-              <div class="col-lg-4 col-sm-6 mb-5">
-                <div class="row d-flex align-items-center">
-                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                  </div>
-                  <div class="col-7">
-                    <h6 class="font-weight-bold pt-2">
-                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            <% else %>
-              <h1>見つかりません</h1>
-            <% end %>
-          <% end %>
+    <div class="category-list">
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+          <%= link_to image_tag(category.image_category, :size => '280x200'), like_lunch_category_path(category), class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category) %>
+          </div>
         </div>
-      <h1 id="category"><%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="plan">プラン</h1></br>
-      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
+      <% end %>
+    </div>
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div></br></br>
+
+
+    <%# google map %>
+    <%= render "maps/top" %>
+
+    <hr class="border-solid-down" />
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            <div class="category-list">
+              <% @subscriptions.each do |subscription| %>
+              <div>
+                <hr class="tool-bar">
+                  <div class="row align-items-center">
+                    <div class="col-lg-5 col-xl-3">
+                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                        <% if subscription.image_subscription.present? %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
+                        <% else %>
+                          <p></p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
+                      <p class="dark-grey-text"><%= subscription.title %></p>
+                      <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+                    </div>
+                  </div>
+              </div>
+              <% end%>
+            </div>
             </div>
           </div>
-        <% end %>
-      <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-      <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-         <hr class="tool-bar">
-          <div class="row">
-            <div class="col-md-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-md-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="center">
+      <h1 class="concept">使い方３ステップ</h1>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+        <% count = '6' %>
+        <% id = '17841442005934576' %>
+        <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
+        <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+        <% hash_a = JSON.parse(res) %>
+        <% hash_b = hash_a['media']['data'] %>
+        <% insta = [] %>
+          <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+          <% end %>
+
+          <% insta.each do |v| %>
+            <li class='insta-image'>
+              <%= link_to "#{v['link']}" do %>
+                <% if v['img'].include?("video") %>
+                  <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                <% else %>
+                  <%= (image_tag "#{v['img']}" ) %>
+                <% end %>
+                  <div class="mask">
+                  <div class="caption"><%= "#{v['caption']}" %></div>
+                  </div>
+              <% end %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="left">
+            <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
+            <table class="mb-12">
+              <tbody>
+                <% if current_admin.present? %>
+                  <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
+                <% end %>
+                <% @medias.each do |media| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <%= media.media_name %>
+                    </div><br>
+                    <div class="col-sm-4">
+                      <% if media.media_image.present? %>
+                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
+                      <% else %>
+
+                      <% end %>
+                    </div>
+                  <% if current_admin.present? %>
+                    <div class="col-sm-2">
+                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
+                    </div>
+                    <div class="col-sm-2">
+                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
+                    </div>
+                  <% end %>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="right">
+            <%= link_to "お客様一覧", owners_path, class: "btn btn-link" %>
+            <table class="ms-12">
+              <tbody>
+                <% @owner_subscriptions.each do |owner| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <%= owner.name %>
+                    </div>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+    <div class="f-container1">
+      <div>
+          <div class="center">
+            <h1 class="concept2">巡グルメSNS</h1>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
+          </div>
+        <div class="row">
+          <div class="col-ms-12">
+            <div class="snsimage">
+              <a href="https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616" target="_blank"><img src="https://www.haagen-dazs.co.jp/common/img/parts/icon_sns_fb.png"alt="facebook"> </a>
+              <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
+              <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
+              <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
             </div>
           </div>
-        <% end %>
-      <h1><%= link_to "よくある質問", questions_path %></h1>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
-            </div>
-          </div>
-        <% end %>
-    <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
-      <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down1" />
+    <table class="table table-bordered">
+      <div class="row">
+        <div class="col-ms-8 col-md-offset-2">
+            <tbody>
+              <tr class="center">
+                <td><%= link_to "CONTACT", contacts_path, class: "fa fa-envelope fa-lg user-service" %></td>
+                <td><%= link_to "Q&A", questions_path, class: "user-service" %></td>
+                <td><%= link_to "NEWS", blogs_path, class: "user-service" %></td>
+                <td><%= link_to "　　", blogs_path, class: "user-service" %></td>
+              </tr>
+          </tbody>
+        </div>
+      </div>
+    </table>
+  <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+    </div>
+    <div class="recommend-shop">
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/Rtmhky1">
+      <i class="fa fa-mobile">
+      </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
+    </div>
+
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <% if category.image_category.present? && category.name.present? %>
-              <div class="col-lg-4 col-sm-6 mb-5">
-                <div class="row d-flex align-items-center">
-                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                  </div>
-                  <div class="col-7">
-                    <h6 class="font-weight-bold pt-2">
-                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                    </h6>
-                  </div>
+    <div class="category-list">
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+          <%= link_to image_tag(category.image_category, :size => '280x200'), like_lunch_category_path(category), class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div></br></br>
+
+    <div class="center">
+      <h1 class="concept">加盟店プラン</h1>
+    </div>
+
+    <div class="f-container">
+        <div class="f-item">
+          <div class="box26">
+            <div>
+              <div class="plan-item">
+                <div class="center">
+                  <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '200x100'), new_user_plan_path %>
+                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", new_user_plan_path %></div>
                 </div>
               </div>
-            <% elsif category.image_category.nil? && category.name.nil? %>
-              <h1>見つかりません</h1>
-            <% end %>
-          <% end %>
+            </div>
+          </div>
         </div>
-      <h1 id="plan"><%= link_to "プラン", user_plans_path(current_user.id), class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan2.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "気になる方はこちら", new_user_plan_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-      <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-      <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-         <hr class="tool-bar">
-          <div class="row">
-            <div class="col-md-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-md-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan3.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "スタンダードはこちら", new_user_plan_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-        <h1><%= link_to "よくある質問", questions_path %></h1>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan4.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %>
+                <div><%= link_to "ちょっぴりグルメな方はこちら", new_user_plan_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-    <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan5.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %></span>
+              <div><%= link_to "グルメな方はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan6.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "慣れてきた方はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan7.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "上級者はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+       <h1 class="concept">＼トライアルプランでお試し／</h1>
+        <div class="box26">
+          <div class="trial_plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("toraiaru.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "トライアルプラン", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# google map %>
+    <%= render "maps/top" %>
+
+    <hr class="border-solid-down" />
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            <div class="category-list">
+              <% @subscriptions.each do |subscription| %>
+              <div>
+                <hr class="tool-bar">
+                  <div class="row align-items-center">
+                    <div class="col-lg-5 col-xl-3">
+                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                        <% if subscription.image_subscription.present? %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
+                        <% else %>
+                          <p></p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
+                      <p class="dark-grey-text"><%= subscription.title %></p>
+                      <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+                    </div>
+                  </div>
+              </div>
+              <% end%>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="center">
+      <h1 class="concept">使い方３ステップ</h1>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+        <% count = '6' %>
+        <% id = '17841442005934576' %>
+        <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
+        <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+        <% hash_a = JSON.parse(res) %>
+        <% hash_b = hash_a['media']['data'] %>
+        <% insta = [] %>
+          <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+          <% end %>
+
+          <% insta.each do |v| %>
+            <li class='insta-image'>
+              <%= link_to "#{v['link']}" do %>
+                <% if v['img'].include?("video") %>
+                  <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                <% else %>
+                  <%= (image_tag "#{v['img']}" ) %>
+                <% end %>
+                  <div class="mask">
+                  <div class="caption"><%= "#{v['caption']}" %></div>
+                  </div>
+              <% end %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="left">
+            <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
+            <table class="mb-12">
+              <tbody>
+                <% if current_admin.present? %>
+                  <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
+                <% end %>
+                <% @medias.each do |media| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <%= media.media_name %>
+                    </div><br>
+                    <div class="col-sm-4">
+                      <% if media.media_image.present? %>
+                        <div><%= image_tag media.media_image, :size => '200' %></div>
+                      <% else %>
+
+                      <% end %>
+                    </div>
+                  <% if current_admin.present? %>
+                    <div class="col-sm-2">
+                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
+                    </div>
+                    <div class="col-sm-2">
+                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
+                    </div>
+                  <% end %>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="right">
+            <%= link_to "お客様一覧", owners_path, class: "btn btn-link" %>
+            <table class="ms-12">
+              <tbody>
+                <% @owner_subscriptions.each do |owner| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <%= owner.name %>
+                    </div>
+                    <div class="col-sm-8">
+                      <% if owner.image_subscription.present? %>
+                        <%= image_tag owner.image_subscription_url ,width: '200' %>
+                      <% else %>
+                        <p></p>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+
+    <div class="f-container1">
+      <div>
+          <div class="center">
+            <h1 class="concept2">巡グルメSNS</h1>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
+          </div>
+        <div class="row">
+          <div class="col-ms-12">
+            <div class="snsimage">
+              <a href="https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616" target="_blank"><img src="https://www.haagen-dazs.co.jp/common/img/parts/icon_sns_fb.png"alt="facebook"> </a>
+              <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
+              <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
+              <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down1" />
+    <table class="table table-bordered">
+      <div class="row">
+        <div class="col-ms-8 col-md-offset-2">
+            <tbody>
+              <tr class="center">
+                <td><%= link_to "CONTACT", contacts_path, class: "fa fa-envelope fa-lg user-service" %></td>
+                <td><%= link_to "Q&A", questions_path, class: "user-service" %></td>
+                <td><%= link_to "NEWS", blogs_path, class: "user-service" %></td>
+                <td><%= link_to "　　", blogs_path, class: "user-service" %></td>
+              </tr>
+          </tbody>
+        </div>
+      </div>
+    </table>
+  <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink btn--cubic">経営者様はこちら</a>
+    </div>
+    <div class="recommend-shop">
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/Rtmhky1">
+      <i class="fa fa-mobile">
+      </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
+      <a class="btn btn-icon btn-googleplus2" href="https://lin.ee/PrKWtcm">
+      <i class="fa fa-mobile">
+      </i><span>経営者様用のLINEのお問い合わせはこちら</span></a>
+    </div>
+
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <% if category.image_category.present? && category.name.present? %>
-              <div class="col-lg-4 col-sm-6 mb-5">
-                <div class="row d-flex align-items-center">
-                  <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                      <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                  </div>
-                  <div class="col-7">
-                    <h6 class="font-weight-bold pt-2">
-                        <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                    </h6>
-                  </div>
+    <div class="category-list">
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+          <%= link_to image_tag(category.image_category, :size => '280x200'), like_lunch_category_path(category), class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div></br></br>
+
+    <div class="center">
+      <h1 class="concept">加盟店プラン</h1>
+    </div>
+
+    <div class="f-container">
+        <div class="f-item">
+          <div class="box26">
+            <div>
+              <div class="plan-item">
+                <div class="center">
+                  <%= link_to image_tag("plan1.png", :size => '200x100'), new_user_plan_path %>
+                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", new_user_plan_path %></div>
                 </div>
               </div>
-            <% else %>
-              <h1>見つかりません</h1>
-            <% end %>
-          <% end %>
+            </div>
+          </div>
         </div>
-      <h1 id="plan">プラン</h1></br>
-      <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-      <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan2.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "気になる方はこちら", new_user_plan_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-      <h1 id="service">サービス</h1></br>
-      <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-      <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-         <hr class="tool-bar">
-          <div class="row">
-            <div class="col-md-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-md-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan3.png", :size => '200x100'), new_user_plan_path %>
+                <div><%= link_to "スタンダードはこちら", new_user_plan_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-      <h1><%= link_to "よくある質問", questions_path %></h1>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan4.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %>
+                <div><%= link_to "ちょっぴりグルメな方はこちら", new_user_plan_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-    <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan5.png", :size => '200x100'), new_user_plan_path, class: "plan-css" %></span>
+              <div><%= link_to "グルメな方はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan6.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "慣れてきた方はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan7.png", :size => '200x100'), new_user_plan_path %></span>
+              <div><%= link_to "上級者はこちら", new_user_plan_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+       <h1 class="concept">＼トライアルプランでお試し／</h1>
+        <div class="box26">
+          <div class="trial_plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("toraiaru.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "トライアルプラン", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# google map %>
+    <%= render "maps/top" %>
+
+    <hr class="border-solid-down" />
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            <div class="category-list">
+              <% @subscriptions.each do |subscription| %>
+              <div>
+                <hr class="tool-bar">
+                  <div class="row align-items-center">
+                    <div class="col-lg-5 col-xl-3">
+                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                        <% if subscription.image_subscription.present? %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
+                        <% else %>
+                          <p></p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
+                      <p class="dark-grey-text"><%= subscription.title %></p>
+                      <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+                    </div>
+                  </div>
+              </div>
+              <% end%>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="center">
+      <h1 class="concept">使い方３ステップ</h1>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+        <% count = '6' %>
+        <% id = '17841442005934576' %>
+        <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
+        <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+        <% hash_a = JSON.parse(res) %>
+        <% hash_b = hash_a['media']['data'] %>
+        <% insta = [] %>
+          <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+          <% end %>
+
+          <% insta.each do |v| %>
+            <li class='insta-image'>
+              <%= link_to "#{v['link']}" do %>
+                <% if v['img'].include?("video") %>
+                  <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                <% else %>
+                  <%= (image_tag "#{v['img']}" ) %>
+                <% end %>
+                  <div class="mask">
+                  <div class="caption"><%= "#{v['caption']}" %></div>
+                  </div>
+              <% end %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="left">
+            <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
+            <table class="mb-12">
+              <tbody>
+                <% if current_admin.present? %>
+                  <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
+                <% end %>
+                <% @medias.each do |media| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <%= media.media_name %>
+                    </div><br>
+                    <div class="col-sm-4">
+                      <% if media.media_image.present? %>
+                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
+                      <% else %>
+
+                      <% end %>
+                    </div>
+                  <% if current_admin.present? %>
+                    <div class="col-sm-2">
+                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
+                    </div>
+                    <div class="col-sm-2">
+                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
+                    </div>
+                  <% end %>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="right">
+            <%= link_to "お客様一覧", owners_path, class: "btn btn-link" %>
+            <table class="ms-12">
+              <tbody>
+                <% @owner_subscriptions.each do |owner| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <%= owner.name %>
+                    </div>
+                    <div class="col-sm-8">
+                      <% if owner.image_subscription.present? %>
+                        <%= image_tag owner.image_subscription_url ,width: '100%', height: "200" %>
+                      <% else %>
+                        <p>登録されてません</p>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container1">
+      <div>
+          <div class="center">
+            <h1 class="concept2">巡グルメSNS</h1>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
+          </div>
+        <div class="row">
+          <div class="col-ms-12">
+            <div class="snsimage">
+              <a href="https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616" target="_blank"><img src="https://www.haagen-dazs.co.jp/common/img/parts/icon_sns_fb.png"alt="facebook"> </a>
+              <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
+              <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
+              <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down1" />
+    <table class="table table-bordered">
+      <div class="row">
+        <div class="col-ms-8 col-md-offset-2">
+            <tbody>
+              <tr class="center">
+                <td><%= link_to "CONTACT", contacts_path, class: "fa fa-envelope fa-lg user-service" %></td>
+                <td><%= link_to "Q&A", questions_path, class: "user-service" %></td>
+                <td><%= link_to "NEWS", blogs_path, class: "user-service" %></td>
+                <td><%= link_to "　　", blogs_path, class: "user-service" %></td>
+              </tr>
+          </tbody>
+        </div>
+      </div>
+    </table>
+  <% end %>
   <% else %> <%# ログインしてない %>
-    <h1><%= link_to "経営者様はこちら", top_owner_path, class: "btn btn-lg btn-info" %></h1>
-    <h1 id="category"><p class="text-center lead mb-5 pb-2 text-muted">気になる<%= link_to "カテゴリ", categories_path, class: "btn btn-lg btn-link" %>を選択して下さい。</p></h1>
-          <%= form_with(model: @map, local: true) do |f| %>
-            <%= f.label :エリア %>
-            <%= f.text_field :address, placeholder: "対象エリア検索", class: "form-control" %>
-            <%= f.submit '検索' %>
-          <% end %>
+    <div class="owner-btn">
+      <a href="top_owner.html" class="btn btn-c btn--pink2 btn--cubic2">経営者様はこちら</a>
+      <a href="/users/sign_up" class="btn btn-c btn--pink btn--cubic">利用者様会員登録</a>
+    </div>
+    <div>
+
+    </div>
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
         <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-      <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
+        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
       <% end %>
-        <div id="map"></div>
-        <style>
-        #map{
-          height: 200px;
-        }
-        </style>
+    <div class="category-list">
+      <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+        <div class="category-item">
+          <%= link_to image_tag(category.image_category, :size => '280x200'), like_lunch_category_path(category), class: "image-menu" %>
+          <div class="category-shop-btn">
+            <%= link_to "#{category.name}", like_lunch_category_path(category) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="category">
+      <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
+        全てのカテゴリーはこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+      <% end %>
+    </div></br></br>
 
-        <script>
-          let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
+    <div class="center">
+      <h1 class="concept">加盟店プラン</h1>
+    </div>
 
-          function initMap(){
-            mapInstance = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-            });
-          }
-        </script>        
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
-        <div class="row">
-          <% @categories.each do |category| %><%# カテゴリーを全てeach %>
-            <div class="col-lg-4 col-sm-6 mb-5">
-              <div class="row d-flex align-items-center">
-                <div class="col-5 avatar w-100 white d-flex justify-content-center align-items-center">
-                    <%= image_tag category.image_category, class: "img-fluid rounded-circle z-depth-1", Style: "height: 100px" %>
-                </div>
-                <div class="col-7">
-                  <h6 class="font-weight-bold pt-2">
-                      <%= link_to "#{category.name}", like_lunch_category_path(category.id) %>
-                  </h6>
+    <div class="f-container">
+        <div class="f-item">
+          <div class="box26">
+            <div>
+              <div class="plan-item">
+                <div class="center">
+                  <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '200x100'), new_user_plan_path %>
+                  <div class="plan-shop-btn"><%= link_to "お試しはこちら", new_user_plan_path %></div>
                 </div>
               </div>
             </div>
-          <% end %>
+          </div>
         </div>
-    <h1 id="plan"><%= link_to "利用者様プランの説明", plan_description_path, class: "btn btn-lg btn-default" %></h1></br>
-    <h1 id="recommend"><%= link_to "おすすめ店舗", recommend_categories_path, class: "btn btn-lg btn-default" %></h1></br>
-        <h1 id="interview"><%= link_to "オーナーインタビュー", interviews_path, class: "btn btn-lg btn-default" %></h1></br>
-        <% @interviews.each do |interview| %><%# オーナーインタビューを全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="grid-item-image"><%= image_tag interview.image_interview.thumb.url %></div>
-                <%= link_to "#{interview.owner_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.shop_name}", interview_path(interview) %></br>
-                <%= link_to "#{interview.content}", interview_path(interview) %>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan2.png", :size => '200x100'), root_path %>
+                <div><%= link_to "気になる方はこちら", root_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-    <h1 id="service"><%= link_to "ご利用方法について", how_to_use_path, class: "btn btn-lg btn-default" %></h1></br>
-    <h1 id="inquiry"><%= link_to "お問い合わせ", contacts_path, class: "btn btn-lg btn-default" %></h1>
-    <h1 id="inquiry"><%= link_to "サポート", suports_path, class: "btn btn-lg btn-default" %></h1>
-    <h1><%= link_to "サブスクnews", blogs_path %></h1>
-        <% @blogs.each do |blog| %><%# サブスクnewsを全てeach %>
-        <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-              <%= link_to "#{blog.title}", blog_path(blog) %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-              <%= link_to "#{blog.body}", blog_path(blog) %>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan3.png", :size => '200x100'), root_path %>
+                <div><%= link_to "スタンダードはこちら", root_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
-    <h1><%= link_to "よくある質問", questions_path %></h1>
-        <% @questions.each do |question| %><%# よくある質問を全てeach %>
-          <hr class="tool-bar">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <%= link_to "#{question.detail}", questions_path %>
-            </div><br>
-            <div class="col-sm-offset-8 col-sm-6">
-                <%= link_to "#{question.answer}", questions_path %>
+        </div>
+        <div class="f-item">
+          <div class="box26">
+            <div class="plan-item">
+              <div class="center">
+                <%= link_to image_tag("plan4.png", :size => '200x100'), root_path, class: "plan-css" %>
+                <div><%= link_to "ちょっぴりグルメな方はこちら", root_path %></div>
+              </div>
             </div>
           </div>
-        <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan5.png", :size => '200x100'), root_path, class: "plan-css" %></span>
+              <div><%= link_to "グルメな方はこちら", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan6.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "慣れてきた方はこちら", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("plan7.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "上級者はこちら", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+       <h1 class="concept">＼トライアルプランでお試し／</h1>
+        <div class="box26">
+          <div class="trial_plan-item">
+            <div class="center">
+              <span><%= link_to image_tag("toraiaru.png", :size => '200x100'), root_path %></span>
+              <div><%= link_to "トライアルプラン", root_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# google map %>
+    <%= render "maps/top" %>
+
+    <hr class="border-solid-down" />
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="center">
+            <div class="recommend-shop">
+              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+              <% end %>
+            <div class="category-list">
+              <% @subscriptions.each do |subscription| %>
+              <div>
+                <hr class="tool-bar">
+                  <div class="row align-items-center">
+                    <div class="col-lg-5 col-xl-3">
+                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                        <% if subscription.image_subscription.present? %>
+                          <%= image_tag subscription.image_subscription_url, width: '300' %>
+                        <% else %>
+                          <p></p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-12">
+                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
+                      <p class="dark-grey-text"><%= subscription.title %></p>
+                      <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+                    </div>
+                  </div>
+              </div>
+              <% end%>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="center">
+      <h1 class="concept">使い方３ステップ</h1>
+    </div>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image4_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-mobile fa-lg"></i>&nbsp;1,加盟店から好きなメニューを選んでチェックしておきましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+            <div class="comment-text"><%= image_tag "image5_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-store fa-lg"></i>&nbsp;2,テイクアウトかお店で食べるかスケジュールに合わせて選びましょう。</span>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="comment-text"><%= image_tag "image6_JPG.jpg", :size => '350', class: "plan-css" %></div>
+          <span>&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;3,お気に入りのお店を見つけて常連になる事で食事も楽しくなります。</span>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="insta-title">
+      <i class="fa fa-instagram"></i> 巡グルメ Instagram
+    </div>
+    <div> <%# instagramデータ取得 %>
+      <ul class="insta-list">
+        <% count = '6' %>
+        <% id = '17841442005934576' %>
+        <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
+        <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
+        <% hash_a = JSON.parse(res) %>
+        <% hash_b = hash_a['media']['data'] %>
+        <% insta = [] %>
+          <% hash_b.each do |h| %>
+              <% if h.include?(:thumbnail_url) %>
+                <% data = ['img' => h['thumbnail_url'], 'caption' => h['caption'], 'link' => h['permalink']] %>
+              <% else %>
+                <% data = {'img' => h['media_url'], 'caption' => h['caption'], 'link' => h['permalink'] } %>
+              <% end %>
+                <% insta << data %>
+          <% end %>
+
+          <% insta.each do |v| %>
+            <li class='insta-image'>
+              <%= link_to "#{v['link']}" do %>
+                <% if v['img'].include?("video") %>
+                  <%= (video_tag "#{v['img']}", autoplay: :true, loop: :true, muted: :true ) %>
+                <% else %>
+                  <%= (image_tag "#{v['img']}" ) %>
+                <% end %>
+                  <div class="mask">
+                  <div class="caption"><%= "#{v['caption']}" %></div>
+                  </div>
+              <% end %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <div class="f-container">
+      <div class="f-item">
+        <div class="box26">
+          <div class="left">
+            <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
+            <table class="mb-12">
+              <tbody>
+                <% if current_admin.present? %>
+                  <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
+                <% end %>
+                <% @medias.each do |media| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <%= media.media_name %>
+                    </div><br>
+                    <div class="col-sm-4">
+                      <% if media.media_image.present? %>
+                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
+                      <% else %>
+
+                      <% end %>
+                    </div>
+                  <% if current_admin.present? %>
+                    <div class="col-sm-2">
+                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
+                    </div>
+                    <div class="col-sm-2">
+                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
+                    </div>
+                  <% end %>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="f-item">
+        <div class="box26">
+          <div class="right">
+            <%= link_to "お客様一覧", owners_path, class: "btn btn-link" %>
+            <table class="ms-12">
+              <tbody>
+                <% @owner_subscriptions.each do |owner| %>
+                <hr class="tool-bar">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <%= owner.name %>
+                    </div>
+                    <div class="col-sm-8">
+                      <% if owner.image_subscription.present? %>
+                        <%= image_tag owner.image_subscription_url ,width: '100%', height: "200" %>
+                      <% else %>
+                        <p>登録されてません</p>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down" />
+
+    <div class="f-container1">
+      <div>
+          <div class="center">
+            <h1 class="concept2">巡グルメSNS</h1>
+            <h6 class="concept3">新情報やプレゼントキャンペーンなどをお届けします！</h6>
+          </div>
+        <div class="row">
+          <div class="col-ms-12">
+            <div class="snsimage">
+              <a href="https://www.facebook.com/%E5%B7%A1%E3%82%AF%E3%82%99%E3%83%AB%E3%83%A1-105021404885616" target="_blank"><img src="https://www.haagen-dazs.co.jp/common/img/parts/icon_sns_fb.png"alt="facebook"> </a>
+              <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
+              <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
+              <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="border-solid-down1" />
+    <table class="table table-bordered">
+      <div class="row">
+        <div class="col-ms-8 col-md-offset-2">
+            <tbody>
+              <tr class="center">
+                <td><%= link_to "CONTACT", contacts_path, class: "fa fa-envelope fa-lg user-service" %></td>
+                <td><%= link_to "Q&A", questions_path, class: "user-service" %></td>
+                <td><%= link_to "NEWS", blogs_path, class: "user-service" %></td>
+                <td><%= link_to "　　", blogs_path, class: "user-service" %></td>
+              </tr>
+          </tbody>
+        </div>
+      </div>
+    </table>
   <% end %>
 </main>

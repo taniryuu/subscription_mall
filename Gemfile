@@ -14,6 +14,7 @@ gem 'momentjs-rails'
 gem 'faker'#サンプル追加
 gem 'will_paginate' #ページネート
 gem 'bootstrap-will_paginate'#ページネート
+gem 'will_paginate-bootstrap4'#ページネート
 gem 'owlcarousel-rails'#カルーセル
 gem 'devise'
 gem 'paranoia', '~> 2.3', '>= 2.3.1'#論理削除
@@ -22,6 +23,7 @@ gem 'carrierwave', '~> 2.0'#複数画像投稿のgem
 gem 'cloudinary'
 gem 'rmagick'#画像をリサイズしたりする
 gem 'rails-i18n'
+gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -32,6 +34,8 @@ gem 'omniauth-line'
 gem 'omniauth-oauth2', '>= 1.6'
 gem 'stripe'
 gem 'geocoder'#googlemap用
+gem 'gon'#googlemapお店一覧用
+gem 'rqrcode' #QRコード用
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -45,7 +49,7 @@ gem 'mini_racer'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -55,6 +59,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'phony_rails' # 電話番号
+gem 'twilio-ruby'
 
 group :development, :test do
   gem 'sqlite3'
@@ -66,6 +72,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'webdrivers'
+  gem 'launchy', '~> 2.4.3'
   gem 'selenium-webdriver'
   gem "rspec_junit_formatter"
 end

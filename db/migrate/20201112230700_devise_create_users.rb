@@ -14,6 +14,22 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       ## Rememberable
       t.datetime :remember_created_at
 
+      t.string :name
+      t.string :kana
+      t.string :line_id
+      t.string :address
+      t.string :phone_number
+      t.string :uid
+      t.string :provider
+      t.text :message
+      t.string :subject
+      t.string :session_id
+      t.integer :subscription_id
+      t.boolean :sms_auth, null: false, default: false
+      t.string :customer_id, null: false, default: ""
+      t.date :use_ticket_day
+      t.date :issue_ticket_day
+      
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at

@@ -1,0 +1,44 @@
+<% provide(:title, 'チケット使用履歴') %>
+
+<div>
+  <h1 class="brand-color display-4 mt-6 mb-6">チケット使用履歴</h1>
+  <div class="col-md-10 offset-md-1">
+    <% if @ticket_logs.present? %>
+      <table class="table mb-8">
+        <thead class="thead-light">
+          <tr>
+            <th>チケットID</th>
+	    <th>店舗オーナー名</th>
+            <th>店舗オーナーEmail</th>
+            <th>店舗オーナーTEL</th>
+            <th>店舗情報</th>
+            <th>サブスク名</th>
+            <th>利用ユーザー</th>
+            <th>利用日</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @ticket_logs.each do |ticket_log| %>
+          <tr>
+	    <td><%= ticket_log.ticket_id %></td>
+            <td><%= ticket_log.owner_name %></td>
+            <td><%= ticket_log.owner_email %></td>
+            <td><%= ticket_log.owner_phone_number %></td>
+            <td><%= ticket_log.owner_store_information %></td>
+	    <% if ticket_log.subscription_name.present? %>
+	      <td><%= ticket_log.subscription_name %></td>
+	    <% elsif ticket_log.private_store_name.present? %>
+	      <td><%= ticket_log.private_store_name %></td>
+	    <% end %>
+            <td><%= User.find(ticket_log.user_id).name if ticket_log.user_id.present? %></td>
+            <td><%= ticket_log.use_ticket_day_log %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else%>
+      <p class="mb-8">現在、チケット使用履歴はありません。
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="container my-5">
+
+  <section class="text-center dark-grey-text">
+
+    <h3 class="font-weight-bold pb-2 mb-4">現在利用できるチケット</h3>
+
+    <p class="text-muted w-responsive mx-auto mb-5"></p>
+
+    <div class="row">
+    <% if @ticket.use_ticket_day == Date.today %>
+    <div class="col-lg-4 col-md-12 mb-4">
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+
+        <div class="card pricing-card">
+
+          <div class="price header white-text indigo rounded-top">
+            <h3 class="number"><%= @ticket.subscription_name %></h3>
+            <div class="version">
+              <h5 class="mb-0"><i class="fa fa-ticket fa-3x"></i></h5>
+            </div>
+          </div>
+
+          <div class="card-body striped mb-1">
+
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> ユーザーのサブスク情報など（仮）</p>
+
+                <h3 class="number"><%= "本日のチケットは使用しました" %></h3>
+          </div>
+        </div>
+      </div>
+
+    <% elsif @ticket.issue_ticket_day == Date.today %>
+      <div class="col-lg-4 col-md-12 mb-4">
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+
+        <div class="card pricing-card">
+
+          <div class="price header white-text indigo rounded-top">
+	    <h3 class="number">
+	      <% if @ticket.subscription_name.present? %>
+	        <%= @ticket.subscription_name %>
+	      <% elsif @ticket.private_store_name.present? %>
+		<%= @ticket.private_store_name %>
+	      <% end %>
+	    </h3>
+            <div class="version">
+              <h5 class="mb-0"><i class="fa fa-ticket fa-3x"></i></h5>
+            </div>
+          </div>
+
+          <div class="card-body striped mb-1">
+
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> ユーザーのサブスク情報など（仮）</p>
+
+                <%= form_with(model: @ticket, url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
+
+
+                    <%= f.hidden_field :use_ticket_day, :value => Date.today %>
+
+                    <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
+                <% end %>
+          </div>
+        </div>
+      </div>
+      <% else @ticket.issue_ticket_day != Date.today %>
+      <h1>本日のチケットは発券されていません</h1>
+    <% end %>
+    </div>
+  </section>
+</div>

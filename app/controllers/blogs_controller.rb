@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   # GET /blogs
@@ -27,7 +28,15 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
       if @blog.save
-        flash[:success] = "作成できました"
+
+      	if params[:blog][:image_photo]
+	  File.binwrite("public/blog_images/#{@blog.id}.PNG", params[:blog][:image_photo].read)
+	  @blog.update(image_photo: "#{@blog.id}.PNG" )
+	else
+	  flash[:danger] = "写真を指定できませんでした。"
+	end
+
+	flash[:success] = "作成できました"
         redirect_to @blog
       else
         flash[:danger] = "作成に失敗しました"
@@ -39,7 +48,15 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1.json
   def update
       if @blog.update(blog_params)
-        flash[:success] = "更新できました"
+        
+	if params[:blog][:image_photo]
+	  File.binwrite("public/blog_images/#{@blog.id}.PNG", params[:blog][:image_photo].read)
+          @blog.update(image_photo: "#{@blog.id}.PNG")
+	else
+          flash[:danger] = "写真を指定できませんでした。"
+	end
+
+	flash[:success] = "更新できました"
         redirect_to @blog
       else
         flash[:danger] = "更新に失敗しました"

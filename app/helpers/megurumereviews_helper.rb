@@ -1,0 +1,2 @@
+module MegurumereviewsHelper
+end

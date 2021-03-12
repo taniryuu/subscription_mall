@@ -1,24 +1,44 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :reviews
-  acts_as_paranoid # 追加
+  has_one :ticket, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :megurumereviews, dependent: :destroy
+  # has_many :user_plans, dependent: :destroy
+  # has_many :private_store_user_plans, dependent: :destroy
+  # has_many :subscriptions, dependent: :destroy
+
+  # 論理削除
+  acts_as_paranoid without_default_scope: true
+  after_destroy      :update_document_in_search_engine
+  after_restore      :update_document_in_search_engine
+  after_real_destroy :remove_document_from_search_engine
+
   devise :database_authenticatable,
          :registerable,
-         :recoverable, 
-         :rememberable, 
-        #  :validatable, 
-         :omniauthable, 
-         omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
+         :recoverable,
+         :rememberable
+        #  :validatable,
+        #  :omniauthable,
+        # omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
 
   scope :without_soft_deleted, -> { where(deleted_at: nil) }
   # validatable相当の検証を追加
   validates_uniqueness_of :email, scope: :deleted_at
-  validates :name, presence: true
-  # validates :kana, presence: true
+  validates :name, presence: true, length: { minimum: 2 }
+  validates :email, presence: true, length: { maximum: 100 }, uniqueness: true
+  validates :kana, presence: true, allow_blank: true, length: { maximum: 50 }
   validates_format_of :email, presence: true, with: Devise.email_regexp, if: :will_save_change_to_email?
-  validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create
+  validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create # 6..128
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
+  validate :user_password_regex, on: :create
+
+  # パスワードバリデーションメソッド
+  def user_password_regex
+    if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i # バリデーションの条件
+      errors.add(:password, "は6文字以上で、半角英字と半角数字を組み合わせてください。") # エラーメッセージ
+    end
+  end
 
   # @see https://github.com/heartcombo/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address
   def self.find_for_database_authentication(warden_conditions)
@@ -32,7 +52,7 @@ class User < ApplicationRecord
       user = User.create(
         uid:      auth.uid,
         provider: auth.provider,
-        email:    User.dummy_email(auth),
+        email:    auth.info.email,
         name:  auth.info.name,
         password: Devise.friendly_token[0, 20]
       )
@@ -69,25 +89,28 @@ class User < ApplicationRecord
   end
 
   # 物理削除の代わりにユーザーの`deleted_at`をタイムスタンプで更新
-  def soft_delete  
-    update_attribute(:deleted_at, Time.current)  
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
   end
 
-  # ユーザーのアカウントが有効であることを確認 
-  def active_for_authentication?  
-    super && !deleted_at  
-  end  
+  # ユーザーのアカウントが有効であることを確認
+  def active_for_authentication?
+    super && !deleted_at
+  end
 
-  # 削除したユーザーにカスタムメッセージを追加します  
-  def inactive_message   
-    !deleted_at ? super : :deleted_account  
-  end 
+  # 削除したユーザーにカスタムメッセージを追加します
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
 
+  def subscribed?
+    session_id?
+  end
 
-  private
-
-    def self.dummy_email(auth)  # facebook, twitter ログイン用メソッドです
-      "#{auth.uid}-#{auth.provider}@example.com"
-    end
+  # ユーザーの名前であいまい検索
+  def self.search(search)
+    return User.all unless search
+    User.where(['name LIKE ?', "%#{search}%"])
+  end
 
 end

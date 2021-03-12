@@ -1,0 +1,35 @@
+<% provide(:title, "レビュー一覧") %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="review-title">
+  <h3>レビュー</h3>
+</div>
+  <% if signed_in? %>
+    <% if current_user.present? %>
+        <div class="review-new"><%= link_to "新規投稿", new_megurumereview_path(current_user), class: "btn btn-success" %></div>
+    <% end %>
+  <% end %>
+
+  <% @megurumereviews.each do |review| %>
+    <div class="review">
+      <div class="review-cs">お客様満足度</div>
+              <div class="star-rating2 mb-2">
+                <div class="star-rating2-front" style="width: <%= review.score.to_f*100/5 %>%">★★★★★</div>
+                <div class="star-rating2-back">★★★★★</div>
+              </div>
+      <div class="review-comment"><%= review.content %></div>
+      <div class="review-date">投稿日&nbsp;<%= l(review.created_at, format: :date) %></div>
+      <% if signed_in? %>
+        <% if current_admin.present? %>
+          <div class="review-edit-btn">
+            <%#= link_to "編集", edit_megurumereview_path(current_admin), class: "btn btn-primary" %>
+          </div>
+          <div class="review-delete-btn">
+            <%= link_to "削除", megurumereview_path(current_admin), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      <% end %>
+    <%= will_paginate(@pusers, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+    </div>
+  <% end %>

@@ -1,3 +1,261 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* パソコン（width:960px以上) タブレット（width:600px~959px） */
+@media screen and (min-width:600px) {
+
+.Q_and_A
+{
+  width: 250px;
+  color: #faab05;
+  position: relative;
+  left: 92px;
+}
+
+.question_large_box
+{
+  width: 1111px;
+  height: auto;
+  background: #f8f8f8;
+  padding: 0em 0em;
+  margin: 0em 0em;
+  margin-top : 0px;
+  border: 1px solid;
+  border-color: #E8E8E8;
+}
+
+.Q_figure
+{
+  display: inline-block;
+  vertical-align: top;
+  height: auto;
+  padding: 0.18em 0.27em;
+  margin: 0em 0em;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  font-weight: bold;
+  color: #FFF;/*文字色*/
+  background: black;//#FF72D0;
+  border-radius: 5px;/*角の丸み*/
+}
+
+
+.question_detail_box
+{
+  display: inline-block;
+  width :911px;
+  margin-top: 2em;
+  margin-left: 33px;
+  margin-bottom: 2em;
+  height: auto;
+  background: #f8f8f8;
+  /*border: 1px solid; border-color: #00FF00;*/
+}
+
+.question_detail_strings_black
+{
+  color: #000000;//#FF72D0;
+  line-height: 1.5;
+}
+
+.question_open_box
+{
+  display: inline-block;
+  vertical-align: top;
+  width :70px;
+  margin-bottom: 2em;
+  height: auto;
+  position: relative;
+  top: 30px;
+  left: 28px;
+  background: #f8f8f8;
+  /*border: 1px solid; border-color: #0000FF;*/
+}
+
+.open_figure
+{
+  height: auto;
+  padding: 0.3em 0.3em;
+  margin: 0em 0em;
+  font-weight: bold;
+  color: #FFF;/*文字色*/
+  background: #32CD32;
+  border-radius: 3px;/*角の丸み*/
+}
+
+.answer_large_box
+{
+  width: 1111px;
+  height: auto;
+  background: #f8f8f8;
+  padding: 0em 0em;
+  margin-bottom: 1em;
+  border: 1px solid;
+  border-color: #E8E8E8;
+}
+
+.A_figure
+{
+  height: auto;
+  padding: 0em 0.3em;
+  margin: 0em 0em;
+  position: relative;
+  top: 26px;
+  left: 20px;
+  font-weight: bold;
+  color: #FFF;/*文字色*/
+  background: red;//#00CCFF;
+  border-radius: 5px;/*角の丸み*/
+}
+
+.question_answer_box
+{
+  width :911px;
+  margin-bottom: 2em;
+  height: auto;
+  background: #f8f8f8;
+  position: relative;
+  top: 0px;
+  left: 70px;
+  /*border: 1px solid; border-color: #0000FF;*/
+}
+
+.question_answer_strings_red
+{
+  color: red;//#00CCFF;
+  line-height: 1.5;
+}
+
+}
+
+/* スマホ（width:599px以下） */
+@media screen and (max-width: 599px) {
+
+.Q_and_A
+{
+  width: 250px;
+  color: #faab05;
+  position: relative;
+  left: 92px;
+}
+
+
+.question_large_box
+{
+  width: 500px;
+  height: auto;
+  background: #f8f8f8;
+  padding: 0em 0em;
+  margin: 0em 0em;
+  margin-top : 0px;
+  border: 1px solid;
+  border-color: #E8E8E8;
+}
+
+.Q_figure
+{
+  display: inline-block;
+  vertical-align: top;
+  height: auto;
+  padding: 0.18em 0.27em;
+  margin: 0em 0em;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  font-weight: bold;
+  color: #FFF;/*文字色*/
+  background: black;//#FF72D0;
+  border-radius: 5px;/*角の丸み*/
+}
+
+.question_detail_box
+{
+  display: inline-block;
+  width :300px;
+  margin-top: 2em;
+  margin-left: 33px;
+  margin-bottom: 2em;
+  height: auto;
+  background: #f8f8f8;
+  /*border: 1px solid; border-color: #00FF00;*/
+}
+
+.question_detail_strings_black
+{
+  color: #000000;//#FF72D0;
+  line-height: 1.5;
+}
+
+
+.question_open_box
+{
+  display: inline-block;
+  vertical-align: top;
+  width :70px;
+  margin-bottom: 2em;
+  height: auto;
+  position: relative;
+  top: 30px;
+  left: 28px;
+  background: #f8f8f8;
+  /*border: 1px solid; border-color: #0000FF;*/
+}
+
+.open_figure
+{
+  height: auto;
+  padding: 0.3em 0.3em;
+  margin: 0em 0em;
+  font-weight: bold;
+  color: #FFF;/*文字色*/
+  background: #32CD32;
+  border-radius: 3px;/*角の丸み*/
+}
+
+.answer_large_box
+{
+  width: 500px;
+  height: auto;
+  background: #f8f8f8;
+  padding: 0em 0em;
+  margin-bottom: 1em;
+  border: 1px solid;
+  border-color: #E8E8E8;
+}
+
+.A_figure
+{
+  height: auto;
+  padding: 0em 0.3em;
+  margin: 0em 0em;
+  position: relative;
+  top: 26px;
+  left: 20px;
+  font-weight: bold;
+  color: #FFF;/*文字色*/
+  background: red;//#00CCFF;
+  border-radius: 5px;/*角の丸み*/
+}
+
+.question_answer_box
+{
+  width :300px;
+  margin-bottom: 2em;
+  height: auto;
+  background: #f8f8f8;
+  position: relative;
+  top: 0px;
+  left: 70px;
+  /*border: 1px solid; border-color: #0000FF;*/
+}
+
+.question_answer_strings_red
+{
+  color: red;//#00CCFF;
+  line-height: 1.5;
+}
+
+}
+

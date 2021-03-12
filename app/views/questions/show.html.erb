@@ -1,26 +1,22 @@
 <% provide(:title, "よくある質問詳細") %>
 <p id="notice"><%= notice %></p>
 
-  <div class="container">
-    <h1 class="show-title">よくある質問詳細</h1>
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-4">
-          <table border="2" style="border-collapse: collapse; border-color: black">
-            <tr>
-              <th height="40" class=col-md-2>内容</th><td class=col-md-4><%= @question.detail %></td>
-            </tr>
-            <tr>
-              <th height="40" class=col-md-2>回答</th><td class=col-md-4><%= @question.answer %></td>
-            </tr>
-          </table>
-          <div class="user-show-btn">
-            <%= link_to questions_path, class: "btn btn--blue btn-md btn--shadow" do %>
-            <i class="fas fa-reply"> 戻る</i>
-            <% end %>
-            <%= link_to "編集", edit_question_path(@question), class: "btn btn--blue btn-md btn--shadow" %>
-          </div>
-        </div>
-      </div>
+<h1 class="show-title">よくある質問詳細</h1>
+<div class="container">
+  <div class="row" >
+    <div class="border col-md-3">内容：</div>
+    <div class ="border col-md-9"> <%= @question.detail %></div>
   </div>
-<%= link_to '編集', edit_question_path(@question) %> |
+  <div class="row">
+    <div class="border col-md-3">回答：</div>
+    <div class ="border col-md-9"><%= @question.answer %></div>
+  </div>
+</div>
+<div class="user-show-btn">
+  <%= link_to questions_path, class: "btn btn--blue btn-md btn--shadow" do %>
+    <i class="fas fa-reply"> 戻る</i>
+  <% end %>
+  <%= link_to "編集", edit_questions_path(@question), class: "btn btn--blue btn-md btn--shadow" %>
+</div>
+<%= link_to '編集', edit_questions_path(@question) %> |
 <%= link_to 'よくある質問一覧', questions_path %>
