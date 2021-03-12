@@ -25,6 +25,7 @@ class SuportsController < ApplicationController
     # メール送信
     @suport = Suport.new(params[:suport].permit(:name, :email, :message))
     SuportMailer.suport_email(@suport).deliver
+    SuportMailer.get_suport_email(@suport).deliver
 
     # 完了画面を表示
     render :action => 'thanks'
