@@ -26,7 +26,7 @@ class ContactsController < ApplicationController
     # メール送信
     @contact = Contact.new(params[:contact].permit(:name, :email, :message))    
     ContactMailer.contact_email(@contact).deliver
-
+    ContactMailer.get_contact_email(@contact).deliver
     # 完了画面を表示
     render :action => 'thanks'
   end
