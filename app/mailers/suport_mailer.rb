@@ -14,6 +14,6 @@ class SuportMailer < ApplicationMailer
 
   def get_suport_email(suport)
     @suport = suport
-    mail(:to => 'p.aaattt25@gmail.com', :subject => 'サポートのお問い合わが入りました。ご確認をお願いいたします。')
+    mail(:to => 'megurumee@gmail.com', :subject => 'サポートのお問い合わが入りました。ご確認をお願いいたします。')
   end
 end
