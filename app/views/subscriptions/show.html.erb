@@ -76,128 +76,178 @@
     <h3 class="font-weight-bold mb-5"><%= @subscription.name %> 店舗紹介</h3>
     <div class="row">
       <div class="col-lg-6">
-        <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4" data-ride="carousel">
-          <div class="carousel-inner text-center text-md-left" role="listbox">
+
+        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+          <div class="carousel-inner">
             <div class="carousel-item active">
-                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
-                <p>a</p>
+              <%= image_tag @subscription.sub_image.to_s, class: "img-fluid" %>
             </div>
-            <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
-                <p>b</p>
-            </div>
-            <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
-                <p>c</p>
-            </div>
-            <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url %>
-                <p>d</p>
-            </div>
+
+            <% if @subscription.sub_image2.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image2.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image3.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image3.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image4.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image4.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image5.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image5.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image6.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image6.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image7.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image7.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image8.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image8.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image9.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image9.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image10.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image10.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image11.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image11.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
+            <% if @subscription.sub_image12.to_s.present? %>
+              <div class="carousel-item">
+                <%= image_tag @subscription.sub_image12.to_s, class: "img-fluid" %>
+              </div>
+            <% end %>
+
           </div>
-          <a class="carousel-control-prev" href="#carousel-thumb1" role="button" data-slide="prev">
+          <a class="carousel-control-prev prev-slide" href="#carousel-thumb1" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
           </a>
-          <a class="carousel-control-next" href="#carousel-thumb1" role="button" data-slide="next">
+          <a class="carousel-control-next next-slide" href="#carousel-thumb1" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
           </a>
         </div>
+
         <div class="row mb-4">
           <div class="col-md-12">
             <div id="mdb-lightbox-ui"></div>
             <div class="mdb-lightbox no-margin">
-             <div class="row">
-              <figure class="col-md-4">
-                <% if @subscription.sub_image.present? %>
-                    <%= image_tag @subscription.sub_image, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
+              <div class="row">
+                <figure class="col-md-4">
+                  <%= image_tag @subscription.sub_image.to_s, data: {target: "#carousel", slide_to: "0"}, class: "img-fluid shadow-sm active" %>
+                </figure>
+
+                <% if @subscription.sub_image2.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image2.to_s, data: {target: "#carousel", slide_to: "1"}, class: "img-fluid shadow-sm" %>
+                  </figure>
                 <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image2.present? %>
-                    <%= image_tag @subscription.sub_image2, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
+
+                <% if @subscription.sub_image3.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image3.to_s, data: {target: "#carousel", slide_to: "2"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image4.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image4.to_s, data: {target: "#carousel", slide_to: "3"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image5.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image5.to_s, data: {target: "#carousel", slide_to: "4"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image6.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image6.to_s, data: {target: "#carousel", slide_to: "5"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image7.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image7.to_s, data: {target: "#carousel", slide_to: "6"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image8.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image8.to_s, data: {target: "#carousel", slide_to: "7"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image9.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image9.to_s, data: {target: "#carousel", slide_to: "8"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image10.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image10.to_s, data: {target: "#carousel", slide_to: "9"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image11.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image11.to_s, data: {target: "#carousel", slide_to: "10"}, class: "img-fluid shadow-sm" %>
+                  </figure>
+                <% end %>                
+
+                <% if @subscription.sub_image12.to_s.present? %>
+                  <figure class="col-md-4">
+                    <%= image_tag @subscription.sub_image12.to_s, data: {target: "#carousel", slide_to: "11"}, class: "img-fluid shadow-sm" %>
+                  </figure>
                 <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image3.present? %>
-                    <%= image_tag @subscription.sub_image3, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image4.present? %>
-                    <%= image_tag @subscription.sub_image4, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image5.present? %>
-                    <%= image_tag @subscription.sub_image5, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image6.present? %>
-                    <%= image_tag @subscription.sub_image6, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image7.present? %>
-                    <%= image_tag @subscription.sub_image7, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image8.present? %>
-                    <%= image_tag @subscription.sub_image8, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image9.present? %>
-                    <%= image_tag @subscription.sub_image9, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image10.present? %>
-                    <%= image_tag @subscription.sub_image10, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image11.present? %>
-                    <%= image_tag @subscription.sub_image11, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image12.present? %>
-                    <%= image_tag @subscription.sub_image12, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
+              </div>
             </div>
           </div>
         </div>
-       </div>
       </div>
+
+      <script>
+        $(".prev-slide").on('click',function(){
+          $("#carousel").carousel('prev');
+        });
+        $(".next-slide").on('click',function(){
+          $("#carousel").carousel('next');
+        });
+      </script>
 
       <div class="col-lg-5 text-center text-md-left">
 
