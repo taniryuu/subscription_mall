@@ -56,5 +56,24 @@
         <%= f.submit "登録", class: "btn btn-primary btn-block btn-login" %>
       </div>
     <% end %>
+    <h2><span>---------</span>SNSアカウントでログイン<span>---------</span></h2>
+    <div class="box-facebook"></br>
+        <%= link_to('/devise/auth/facebook_owner') do %>
+            <i class="fa fa-facebook-official"></i> Facebookでログイン
+        <% end %>
+    </div>
+
+    <div class="box-line"></br>
+        <%= link_to('/devise/auth/line_owner') do %>
+            <i class="fa fa-mobile"></i> LINEでログイン
+        <% end %>
+    </div>
+
+    <div class="box-twitter"></br>
+        <%= link_to('/devise/auth/twitter_owner') do %>
+            <i class="fa fa-twitter"></i> Twitterでログイン
+        <% end %>
+    </div>
+    <%= link_to "利用者様会員登録はこちら", new_user_registration_path, class:"btn btn-c btn--pink btn--cubic" %>
  </div>
 </div>

@@ -8,6 +8,11 @@ class User < ApplicationRecord
   # has_many :private_store_user_plans, dependent: :destroy
   # has_many :subscriptions, dependent: :destroy
 
+  # Google map,
+  # ログイン後のdefoult座標
+  geocoded_by :address
+  after_validation :geocode
+
   # 論理削除
   acts_as_paranoid without_default_scope: true
   after_destroy      :update_document_in_search_engine

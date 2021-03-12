@@ -46,9 +46,8 @@ class StaticPagesController < ApplicationController
   end
 
   def map_object
-    if params[:map].present? && params[:map][:address].present?
-      results = Geocoder.search(params[:map][:address])
-      @latlng = results.first.geometry
+    if params[:address].present?
+      @latlng = Geocoder.search(params[:address]).first.geometry
       top = @latlng["location"]["lng"] + 0.2
       bottom = @latlng["location"]["lng"] - 0.2
       left = @latlng["location"]["lat"] + 0.2

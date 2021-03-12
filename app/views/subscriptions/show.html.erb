@@ -83,15 +83,15 @@
                 <p>a</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.sub_image2_url, class: "img-fluid" %>
                 <p>b</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url, class: "img-fluid" %>
+                  <%= image_tag @subscription.sub_image3_url, class: "img-fluid" %>
                 <p>c</p>
             </div>
             <div class="carousel-item">
-                  <%= image_tag @subscription.sub_image_url %>
+                  <%= image_tag @subscription.sub_image4_url, class: "img-fluid" %>
                 <p>d</p>
             </div>
           </div>
@@ -168,27 +168,6 @@
               <figure class="col-md-4">
                 <% if @subscription.sub_image9.present? %>
                     <%= image_tag @subscription.sub_image9, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image10.present? %>
-                    <%= image_tag @subscription.sub_image10, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image11.present? %>
-                    <%= image_tag @subscription.sub_image11, class: "img-fluid" %>
-                <% else %>
-                <p>a</p>
-                <% end %>
-              </figure>
-              <figure class="col-md-4">
-                <% if @subscription.sub_image12.present? %>
-                    <%= image_tag @subscription.sub_image12, class: "img-fluid" %>
                 <% else %>
                 <p>a</p>
                 <% end %>
