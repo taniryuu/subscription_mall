@@ -17,22 +17,23 @@
           <div class="column-left">
             <%= f.label :password %>
           </div>
-          <div class="column-right">
-            <%= link_to "パスワードを忘れた場合", new_user_password_path %>
-          </div>
         </div>
         <%= f.password_field :password, :required => true, autocomplete: "current-password" %>
+      <div class="column-right">
+        <%= link_to "パスワードを忘れた場合", new_user_password_path %>
+      </div>
       </div>
       <div class="box-login">
         <%= f.submit "ログイン" %>
+        <div class="box-newusr">
+          <p><span>--------------</span> 巡グルメの会員ですか？ <span>----------------</span></p><br>
+          <%= link_to "巡グルメ会員登録", new_user_registration_path %>
+        </div>
         <div class="legal-text"></br>
           <div class="box-newusr"></br>
             <%= link_to "経営者様はこちらからログイン", new_owner_session_path %>
           </div>
         </div>
-          <div class="box-newusr"></br>
-            <%= link_to "管理者はこちらからログイン", new_admin_session_path %>
-          </div>
 
         <h2>SNSアカウントでログイン</h2>
 
@@ -53,13 +54,10 @@
             <i class="fa fa-twitter"></i> Twitterでログイン
             <% end %>
         </div>
-
       </div>
+        <div class="box-newusr"></br>
+          <%= link_to "管理者はこちらからログイン", new_admin_session_path %>
+        </div>
     <% end %>
-
-    <div class="box-newusr">
-      <p><span>--------------</span> 巡グルメの会員ですか？ <span>----------------</span></p><br>
-      <%= link_to "巡グルメ会員登録", new_user_registration_path %>
-    </div>
   </div>
 </div>
