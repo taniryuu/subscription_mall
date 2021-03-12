@@ -1,8 +1,7 @@
-<% @plans.each.with_index(1) do |plan, i| %>
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card">
     <div class="card-body subscription-bg">
-      <h5 class="mb-4">個人店舗プラン<%= "プラン#{i}" %></h5>
+      <h5 class="mb-4">個人店舗プラン</h5>
       <div class="d-flex justify-content-center">
         <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
@@ -10,19 +9,16 @@
         height="120"
       />
       </div>
-      <h2 class="font-weight-bold my-4"><%= "￥#{plan.amount.to_s(:delimited)}/月" %></h2>
+      <h2 class="font-weight-bold my-4"><%= "￥999/月" %></h2>
       <p class="grey-text"><!--%= @private_store_plan.metadata.detail %--></p>
-      <% if @pay.present? && plan.amount == @payment.amount_total %>
+      <% if @pay.present? && @private_store_plan.amount == @payment.amount_total %>
         <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
-      <% elsif current_user.customer_id.present? %>
-        <%= link_to "詳細1", update_confirm_private_store_user_plan_path(session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
       <% else %>
-        <%= link_to "詳細2", confirm_private_store_user_plan_path(session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
+        <button type="button" id="private-store-plan" class="btn btn-outline-success btn-rounded waves-effect">詳細</button>
       <% end %>
     </div>
   </div>
 </div>
-<% end %>
 
 
 <!--div class="col-lg-4 col-md-6 mb-4">
@@ -44,3 +40,18 @@
   </div>
 </div-->
 
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
+
+  var checkoutButton0 = document.getElementById('private-store-plan');
+
+  checkoutButton0.addEventListener('click', function() {
+    stripe.redirectToCheckout({
+      sessionId: '<%= @private_store_plan.id %>'
+    }).then(function (result) {
+    });
+  });
+
+  
+</script>
