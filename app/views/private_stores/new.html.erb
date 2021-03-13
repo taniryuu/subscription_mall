@@ -68,9 +68,14 @@
  <%= form.check_box :category_ids, { multiple: true}, category[:id] %> 
 <%
 =end%>
+  <!--div class="field"-->
+    <!--%= form.label :price %> <span class="must">必須</span><br/-->
+    <!--%= form.select :price, PrivateStore.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %-->
+  <!--/div-->
+
   <div class="field">
     <%= form.label :price %> <span class="must">必須</span><br/>
-    <%= form.select :price, PrivateStore.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
+    <%= form.number_field :price, id: :private_store_price, class: 'form-control' %>
   </div>
 
 
