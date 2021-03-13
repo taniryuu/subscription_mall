@@ -37,7 +37,7 @@ class TicketsController < ApplicationController
 		       owner_email: @ticket.owner_email, owner_phone_number: @ticket.owner_phone_number, owner_store_information: @ticket.owner_store_information,
 		       subscription_name: @ticket.subscription_name, private_store_name: @ticket.private_store_name, subscription_fee: @ticket.subscription_fee,
 		       issue_ticket_day: @ticket.issue_ticket_day,user_id: @ticket.user_id)
-      TicketMailer.ticket_email(@ticket).deliver_now
+      #TicketMailer.ticket_email(@ticket).deliver_now
       redirect_to ticket_success_path
     else
       redirect_to root_path

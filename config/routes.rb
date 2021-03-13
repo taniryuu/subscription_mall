@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
   get 'private_store/:id/ticket', to: 'private_store_users#ticket', as: :private_store_use_ticket #private_store用チケット発行ページ
+  get 'private_store/:id/new_ticket', to: 'private_store_user_plans#new', as: :private_store_new_ticket #private_store用サブスクを始める
+
 
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
   get '/private_stores/:private_store_id/private_store_reviews', to: 'reviews#private_store_reviews', as: :private_store_reviews #個人店舗レビューページ
@@ -170,11 +172,12 @@ Rails.application.routes.draw do
       get "update_confirm", to: "user_plans#update_confirm"
     end
   end
-  resource :private_store_user_plan, except: %i(create show) do
+  resource :private_store_user_plan, except: %i(create show new) do
     collection do
       get "confirm", to: "private_store_user_plans#confirm"
       get "update_confirm", to: "private_store_user_plans#update_confirm"
     end
   end
+  get  "/private_store_user_plan/:id", to: "private_store_user_plans#new"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
