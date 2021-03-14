@@ -20,7 +20,7 @@ class TicketsController < ApplicationController
 
    if @ticket.save
        flash[:success] = "チケットを発券しました"
-      redirect_to user_account_user_path(current_user)
+      redirect_to user_account_user_path(current_user), notice: 'チケットを発券しました。Myアカウントからチケット確認ボタンを押してチケットを使ってみましょう！'
    else
        flash[:danger] = "チケットが発券できませんせした"
        redirect_to root_path
