@@ -6,9 +6,9 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = if params[:search]
-      Category.search(params[:search]).order("RAND()")
+      Category.search(params[:search]).order("RANDOM()")
     else
-      Category.order("RAND()").all
+      Category.order("RANDOM()").all
     end
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
   end
@@ -55,6 +55,10 @@ class CategoriesController < ApplicationController
 
   def search
     @categories = Category.where.not(name: nil)
+  end
+
+  def like_lunch
+    @subscriptions = @category.subscriptions
   end
 
   def shop_list
