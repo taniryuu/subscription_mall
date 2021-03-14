@@ -36,7 +36,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter
   end
 
-  def line; basic_action end
+  def line
+    basic_action :line
+  end
 
 
   private
