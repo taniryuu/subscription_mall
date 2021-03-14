@@ -1,6 +1,7 @@
 <% if current_user.issue_ticket_day.present? %> <%#これまでにチケットが発券した事があるかどうか%>
 <div class="container my-5">
   <section class="text-center dark-grey-text">
+    <span class="badge badge-primary">個人店舗</span>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @private_store.name %></h3>
     <p class="text-muted w-responsive mx-auto mb-5">サンプルコメント</p>
     <div class="row">
@@ -75,6 +76,7 @@
 <% else %> <%#初めてチケットを発券する%>
 <div class="container my-5">
   <section class="text-center dark-grey-text">
+    <span class="badge badge-primary">個人店舗</span>   		
     <h3 class="font-weight-bold pb-2 mb-4"><%= @private_store.name %></h3>
     <p class="text-muted w-responsive mx-auto mb-5">サンプルコメント</p>
     <div class="row">

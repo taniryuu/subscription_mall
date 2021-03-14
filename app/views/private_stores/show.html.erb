@@ -1,4 +1,4 @@
-<% provide(:title, "サブスクページ") %>
+<% provide(:title, "個人店舗サブスクページ") %>
 <p id="notice"><%= notice %></p>
 <div class="container my-5">
   <section>
@@ -19,9 +19,11 @@
               <div class="text-bottom white-text p-4">
                 <% @private_store.category_private_stores.each do |category_private_store| %>
                   <span class="badge badge-success">
-                  <%= category_private_store.category.name %>
+                    <%= category_private_store.category.name %>
                   </span>
-                <% end %>
+	        <% end %>
+                <br>
+                <span class="badge badge-primary">個人店舗</span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @private_store.address.present? %>
