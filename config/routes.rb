@@ -46,16 +46,6 @@ Rails.application.routes.draw do
     passwords:     'admins/passwords',
     registrations: 'admins/registrations'
   }
-  devise_for :owners, path: 'owners', controllers: {
-    sessions:      'owners/sessions',
-    passwords:     'owners/passwords',
-    registrations: 'owners/registrations'
-  }
-  devise_scope :owner do
-    get "/devise/auth/facebook_owner/callback" => "owners/omniauth_callbacks#facebook_owner"
-    get "/devise/auth/twitter_owner/callback" => "owners/omniauth_callbacks#twitter_owner"
-    get "/devise/auth/line_owner/callback" => "owners/omniauth_callbacks#line_owner"
-  end
 
   devise_for :users, path: 'users', controllers: {
    # omniauth_callbacks:  'users/omniauth_callbacks',
@@ -71,6 +61,17 @@ Rails.application.routes.draw do
     get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
     get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
     get 'users/sign_up', to: 'users#new'
+  end
+
+  devise_for :owners, path: 'owners', controllers: {
+    sessions:      'owners/sessions',
+    passwords:     'owners/passwords',
+    registrations: 'owners/registrations'
+  }
+  devise_scope :owner do
+    get "/devise/auth/facebook_owner/callback" => "owners/omniauth_callbacks#facebook_owner"
+    get "/devise/auth/twitter_owner/callback" => "owners/omniauth_callbacks#twitter_owner"
+    get "/devise/auth/line_owner/callback" => "owners/omniauth_callbacks#line_owner"
   end
 
   devise_scope :owner do
