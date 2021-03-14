@@ -18,7 +18,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :phone_number %> <span>(ハイフンなし)連絡がつきやすい番号でお願いします。</span><span class="must">必須</span><br/>
+        <%= f.label :phone_number %> <span>＊(ハイフンなし)連絡がつきやすい番号でお願いします。</span><span class="must">必須</span><br/>
         <%= f.telephone_field :phone_number, :required => true, class: 'form-control' %>
       </div>
 
@@ -29,7 +29,7 @@
 
       <div class="field">
         <%= f.label :payee %> <span class="must">必須</span><br/>
-        <%= f.text_field :payee, :required => true, class: 'form-control' %>
+        <%= f.text_field :payee, class: 'form-control' %>
       </div>
       <p>※振り込みは翌月の月末に振り込み。振り込み手数料は御社でご負担となります。</p>
       <br/>
@@ -39,7 +39,7 @@
         <% if @minimum_password_length %>
         <em>(最小<%= @minimum_password_length %>文字)</em>
         <% end %><br/>
-        <%= f.password_field :password, :required => true,autocomplete: "new-password", class: 'form-control' %>
+        <%= f.password_field :password, placeholder: "6文字以上、半角数字と半角英字を使用", :required => true,autocomplete: "new-password", class: 'form-control' %>
       </div>
 
       <% if resource.errors.include?(:password) %>
@@ -56,5 +56,24 @@
         <%= f.submit "登録", class: "btn btn-primary btn-block btn-login" %>
       </div>
     <% end %>
+    <h2><span>---------</span>SNSアカウントでログイン<span>---------</span></h2>
+    <div class="box-facebook"></br>
+        <%= link_to('/devise/auth/facebook_owner') do %>
+            <i class="fa fa-facebook-official"></i> Facebookでログイン
+        <% end %>
+    </div>
+
+    <div class="box-line"></br>
+        <%= link_to('/devise/auth/line_owner') do %>
+            <i class="fa fa-mobile"></i> LINEでログイン
+        <% end %>
+    </div>
+
+    <div class="box-twitter"></br>
+        <%= link_to('/devise/auth/twitter_owner') do %>
+            <i class="fa fa-twitter"></i> Twitterでログイン
+        <% end %>
+    </div>
+    <%= link_to "利用者様会員登録はこちら", new_user_registration_path, class:"btn btn-c btn--pink btn--cubic" %>
  </div>
 </div>

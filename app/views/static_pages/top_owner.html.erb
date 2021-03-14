@@ -296,10 +296,14 @@
         <% end %>
     <% end %>
   <% else %> <%# ログインしてない %>
-    <div class="owner-btn">
+    <%
+=begin%>
+ <div class="owner-btn">
       <a href="/" class="btn btn-c btn--pink btn--cubic">利用者様はこちら</a>
       <a href="/owners/sign_up" class="btn btn-c btn--pink2 btn--cubic2">経営者様会員登録</a>
-    </div>
+    </div> 
+<%
+=end%>
     <div class="recommend-shop">
       <a href="/discussion" class="btn-gradient-radius-blue">
       まずは相談しましょう&nbsp;<i class="fas fa-chevron-circle-right"></i>

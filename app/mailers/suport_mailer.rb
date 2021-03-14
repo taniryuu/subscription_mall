@@ -5,10 +5,15 @@ class SuportMailer < ApplicationMailer
   #
   #   en.suport_mailer.suport_mail.subject
   #
-  default from: 'megurume@subscription.com'# 送信元アドレス
+  default from: 'megurumee@gmail.com'# 送信元アドレス
 
   def suport_email(suport)
     @suport = suport
     mail(:to => suport.email, :subject => 'サポートのお問い合わせを承りました')
+  end
+
+  def get_suport_email(suport)
+    @suport = suport
+    mail(:to => 'megurumee@gmail.com', :subject => 'サポートのお問い合わが入りました。ご確認をお願いいたします。')
   end
 end

@@ -8,6 +8,11 @@ class User < ApplicationRecord
   # has_many :private_store_user_plans, dependent: :destroy
   # has_many :subscriptions, dependent: :destroy
 
+  # Google map,
+  # ログイン後のdefoult座標
+  geocoded_by :address
+  after_validation :geocode
+
   # 論理削除
   acts_as_paranoid without_default_scope: true
   after_destroy      :update_document_in_search_engine
@@ -32,6 +37,8 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create # 6..128
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
   validate :user_password_regex, on: :create
+  VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
+  #validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
 
   # パスワードバリデーションメソッド
   def user_password_regex

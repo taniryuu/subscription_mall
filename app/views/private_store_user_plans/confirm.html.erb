@@ -12,9 +12,9 @@
               height="120"
             />
             </div>
-            <h2 class="font-weight-bold my-4">￥<%= @plan.amount_subtotal %>/月</h2>
+            <h2 class="font-weight-bold my-4">￥<%= @private_store_plan.amount_subtotal %>/月</h2>
             <p class="grey-text">サンプルコメント</p>
-            <% if @private_store_payment.present? && @private_store_payment.amount_subtotal == @plan.amount_subtotal %>
+            <% if @payment.present? && @payment.amount_subtotal == @private_store_plan.amount_subtotal %>
               <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
             <% else %>
               <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
@@ -33,7 +33,7 @@
 
   checkoutButton.addEventListener('click', function() {
     stripe.redirectToCheckout({
-      sessionId: '<%= @plan.id %>'
+      sessionId: '<%= @private_store_plan.id %>'
     }).then(function (result) {
     });
   });

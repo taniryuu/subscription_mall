@@ -23,17 +23,17 @@
   </div>
 
   <div class="field">
-    <%= form.label :タイトル %> <span class="must">必須</span><br/>
+    <%= form.label :サブスク料理名 %> <span class="must">必須</span><br/>
     <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :商品紹介 %> <span class="must">必須</span><br/>
+    <%= form.label :商品説明 %> <span class="must">必須</span><br/>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :メインお店紹介写真 %> <span class="must">必須</span><br/>
+    <%= form.label :お店トップ紹介写真 %> <span class="must">必須</span><br/>
     <%= form.file_field :image_subscription, id: "file-input" %>
   </div>
 
@@ -45,6 +45,51 @@
   <div class="field">
     <%= form.label :店舗情報 %> <span class="must">必須</span><br/>
     <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真2, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image2, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真3, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image3, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真4, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image4, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真5, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image5, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真6, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image6, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真7, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image7, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真8, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image8, id: "file-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :サブのお店紹介写真9, for: "file-input", type:"file" %><br/>
+    <%= form.file_field :sub_image9, id: "file-input"%>
   </div>
 
   <div class="field">

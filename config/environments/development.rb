@@ -37,8 +37,8 @@ Rails.application.configure do
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'gmail.com',
-    user_name:            ENV['SEND_MAIL'], # ここに自分のGmailアドレスをいれる
-    password:             ENV['SEND_MAIL_PASSWORD'], # ここに自分のGmailアドレスのパスワードをいれる
+    user_name:            ENV['SEND_MAIL'], # 'SEND_MAIL'ここに自分のGmailアドレスをいれる
+    password:             ENV['SEND_MAIL_PASSWORD'], # 'SEND_MAIL_PASSWORD'ここに自分のGmailアドレスのパスワードをいれる
     authentication:       'plain',
     enable_starttls_auto: true
   }
@@ -66,4 +66,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.web_console.whitelisted_ips = '61.68.4.38'
+  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
 end

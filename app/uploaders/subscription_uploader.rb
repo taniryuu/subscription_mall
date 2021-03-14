@@ -9,26 +9,28 @@ class SubscriptionUploader < CarrierWave::Uploader::Base
     process :convert => 'jpg'
   
     # サムネイルを生成する設定
-    version :thumb do
-      process :resize_to_limit => [1200, 1200]
-    end
+    # version :thumb do
+    #   process :resize_to_limit => [1200, 1200]
+    # end
   
     # jpg,jpeg,gif,pngしか受け付けない
     def extension_white_list
       %w(jpg jpeg gif png)
     end
+
+    def size_range
+      1..10.megabytes
+    end
   
    # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
     def filename
-      super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
+      "#{secure_token(10)}.#{file.extension}" if original_filename.present?
     end
-  
-   # ファイル名は日本語が入ってくると嫌なので、下記のようにしてみてもいい。
-   # 日付(20131001.jpgみたいなファイル名)で保存する
-    def filename
-      time = Time.now
-      name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
-      name.downcase
+
+    protected
+    def secure_token(length=16)
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.hex(length/2))
     end
   
   # Include RMagick or MiniMagick support:
@@ -46,9 +48,9 @@ class SubscriptionUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url
-    "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  end
+  # def default_url
+  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  # end
 
   # Process files as they are uploaded:
   # process scale: [200, 300]

@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find_by(user_id: params[:id])
+    @ticket = Ticket.find(params[:id])
   end
 
   def new
@@ -20,7 +20,7 @@ class TicketsController < ApplicationController
 
    if @ticket.save
        flash[:success] = "チケットを発券しました"
-      redirect_to user_account_user_path(current_user)
+      redirect_to user_account_user_path(current_user), notice: 'チケットを発券しました。Myアカウントからチケット確認ボタンを押してチケットを使ってみましょう！'
    else
        flash[:danger] = "チケットが発券できませんせした"
        redirect_to root_path
@@ -33,9 +33,9 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find_by(user_id: params[:user_id])
     # @ticket_log = TicketLog.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)
     if @ticket.update_attributes(use_ticket_params)
-      TicketLog.create(use_ticket_day_log: @ticket.use_ticket_day, ticket_id: @ticket.id, owner_name: @ticket.owner_name, 
-		       owner_email: @ticket.owner_email, owner_phone_number: @ticket.owner_phone_number, owner_store_information: @ticket.owner_store_information, 
-		       subscription_name: @ticket.subscription_name, private_store_name: @ticket.private_store_name, subscription_fee: @ticket.subscription_fee, 
+      TicketLog.create(use_ticket_day_log: @ticket.use_ticket_day, ticket_id: @ticket.id, owner_name: @ticket.owner_name,
+		       owner_email: @ticket.owner_email, owner_phone_number: @ticket.owner_phone_number, owner_store_information: @ticket.owner_store_information,
+		       subscription_name: @ticket.subscription_name, private_store_name: @ticket.private_store_name, subscription_fee: @ticket.subscription_fee,
 		       issue_ticket_day: @ticket.issue_ticket_day,user_id: @ticket.user_id)
       TicketMailer.ticket_email(@ticket).deliver_now
       redirect_to ticket_success_path
@@ -92,11 +92,22 @@ class TicketsController < ApplicationController
 
     #トライアルチケット削除
     def trial_period
-      @ticket = Ticket.find_by(params[:current_user])
-      if current_user.user_price === 1000 && current_user.trial_count === 3
-        @ticket.destroy
-      elsif current_user.user_price === 1000 && @ticket.created_at.since(7.days)
-        @ticket.destroy
-      end
+      @ticket = Ticket.find(params[:id])
+        if @ticket.present? && current_user.user_price === 1000
+              if @ticket.trial_count.nil? || @ticket.trial_count <= 2
+
+              elsif @ticket.trial_count === 3
+                @ticket.destroy
+                current_user.update(issue_ticket_day: nil)
+                flash[:success] = "トライアルチケットは期限切れになりましました"
+                user_account_user_path(current_user)
+              elsif  @ticket.created_at.since(7.days)
+                @ticket.destroy
+                current_user.update(issue_ticket_day: nil)
+                flash[:success] = "トライアルチケットは期限切れになりましました"
+                user_account_user_path(current_user)
+
+              end
+        end
     end
 end
