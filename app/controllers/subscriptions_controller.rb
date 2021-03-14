@@ -119,7 +119,7 @@ class SubscriptionsController < ApplicationController
     @images = Image.where.not(id: nil)
     @categories = Category.all
     respond_to do |format|
-      if @subscription.update!(subscription_params)
+      if @subscription.update(subscription_params)
         format.html { redirect_to owner_subscriptions_url(owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @subscription }
       else

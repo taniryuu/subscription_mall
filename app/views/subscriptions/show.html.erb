@@ -36,19 +36,19 @@
                   <% end %>
               <% if @payment.present? %>
                 <% if current_user.user_price  === 1000%>
-                  <%= link_to "チケットを使う", use_ticket_path(@subscription), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple" %>
                 <% elsif @subscription.price.to_i < current_user.user_price %>
-                  <%= link_to "チケットを使う", use_ticket_path(@subscription), class: "btn-gradient-3d-simple" %>
-                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% elsif @subscription.price.to_i == current_user.user_price %>
-                  <%= link_to "チケットを使う", use_ticket_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
-                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "チケットを発券する", use_ticket_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% else %>
                   <%= link_to "プランを変更する", edit_user_plan_path, class: "btn-gradient-3d-simple" %>
-                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める", new_user_plan_path, class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスク決済を始める", new_user_plan_path, class: "btn-gradient-3d-simple" %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_subscriptions_path(current_owner), class: "btn-gradient-3d-simple" %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_subscription_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple" %>
