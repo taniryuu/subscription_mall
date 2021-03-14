@@ -19,7 +19,7 @@
             <h3 class="number">
 	      <% if @ticket.subscription_name.present? %>
                 <span class="badge badge-success">加盟店</span>
-                <%= @ticket.subscription_name %>お店の名前を大きめにする
+                <%= @ticket.subscription_name %>
               <% elsif @ticket.private_store_name.present? %>
 		<span class="badge badge-primary">個人店舗</span>      
 		<%= @ticket.private_store_name %>
