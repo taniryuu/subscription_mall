@@ -13,7 +13,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :商品タイトル %> <span class="must">必須</span>
+    <%= form.label :サブスク料理名 %> <span class="must">必須</span>
     <%= form.text_field :title, id: :private_store_title, placeholder: "例)", class: 'form-control form_border' %>
   </div>
 
@@ -23,7 +23,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :商品紹介 %> <span class="must">必須</span>
+    <%= form.label :商品説明 %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :private_store_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
   
@@ -33,28 +33,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :メインのお店紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
+    <%= form.label :お店トップ紹介写真, for: "file-input", type:"file"%> <span class="must">必須</span><br/>
     <%= form.file_field :image_private_store, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真1, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :image_private_store2, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真2, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :image_private_store3, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真3, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :image_private_store4, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介写真4, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :image_private_store5, id: "file-input" %>
   </div>
 
   <div class="field">
@@ -108,30 +88,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :サブのお店紹介写真10, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image10, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真11, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image11, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真12, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image12, id: "file-input"%>
-  </div>
-
-  <%
-=begin%>
- <div class="field">
-    <%= form.label :category_id %> <span class="must">必須</span><br/>
-    <%= select_tag "private_store[category_id]", options_from_collection_for_select(@categories, :id, :name),  { include_blank: "カテゴリを選んでください", class: 'form-control'} %>
-  </div> 
-<%
-=end%>
-
-  <div class="field">
     <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
     <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
       <% t.label   { t.check_box + t.text } %>
@@ -142,7 +98,6 @@
     <%= form.label :price %> <span class="must">必須</span><br/>
     <%= form.number_field :price, id: :private_store_price, class: 'form-control' %>
   </div>
-
 
   <div class="actions">
     <%= form.submit %>
