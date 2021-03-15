@@ -10,6 +10,6 @@ class OwnerMailer < ApplicationMailer
   def notice_owner_joining_email # 管理者へユーザー入会通知メール
     @owner = params[:owner]
     @url  = 'https://www.megurumee.com/admins/sign_in'
-    mail(to: 'p.aaattt25@gmail.com', subject: 'アカウントの登録を受け付けました。')
+    mail(to: 'megurumee@gmail.com', subject: 'アカウントの登録を受け付けました。')
   end
 end
