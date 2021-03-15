@@ -36,7 +36,9 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter_owner
   end
 
-  def line_owner; basic_action end
+  def line_owner
+    basic_action :line_owner
+  end
 
   private
 
@@ -71,7 +73,7 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @owner, event: :authentication
     else
       session["devise.#{provider}_data"] = request.env['omniauth.auth'].except("extra")
-      redirect_to new_user_registration_url
+      redirect_to new_owner_registration_url
     end
   end
 end

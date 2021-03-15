@@ -17,11 +17,11 @@
           <div class="column-left">
             <%= f.label :password %>
           </div>
-          <div class="column-right">
-            <%= link_to "パスワードを忘れた場合", new_owner_password_path %>
-          </div>
         </div>
         <%= f.password_field :password, :required => true, autocomplete: "current-password" %>
+        <div class="column-right">
+          <%= link_to "パスワードを忘れた場合", new_owner_password_path %>
+        </div>
       </div>
       <div class="box-login">
         <%= f.submit "ログイン" %>
@@ -36,20 +36,11 @@
         <%= link_to "会員者様はこちらからログイン", new_user_session_path %>
       </div>
     </div>
-      <div class="box-newusr"></br>
-        <%= link_to "管理者はこちらからログイン", new_admin_session_path %>
-      </div>
 
     <h2><span>---------</span>SNSアカウントでログイン<span>---------</span></h2>
     <div class="box-facebook"></br>
         <%= link_to('/devise/auth/facebook_owner') do %>
             <i class="fa fa-facebook-official"></i> Facebookでログイン
-        <% end %>
-    </div>
-
-    <div class="box-line"></br>
-        <%= link_to('/devise/auth/line_owner') do %>
-            <i class="fa fa-mobile"></i> LINEでログイン
         <% end %>
     </div>
 

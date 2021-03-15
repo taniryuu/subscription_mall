@@ -9,9 +9,9 @@
         height="120"
       />
       </div>
-      <h2 class="font-weight-bold my-4"><%= "￥999/月" %></h2>
-      <p class="grey-text"><!--%= @private_store_plan.metadata.detail %--></p>
-      <% if @pay.present? && @private_store_plan.amount == @payment.amount_total %>
+      <h2 class="font-weight-bold my-4"><%= "￥#{@private_store_plan.amount_subtotal.to_s(:delimited)}/月" %></h2>
+      <p class="grey-text"><%= @private_store_plan.metadata.detail %></p>
+      <% if @pay.present? && @private_store_plan.amount_subtotal == @payment.amount_total %>
         <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
       <% else %>
         <button type="button" id="private-store-plan" class="btn btn-outline-success btn-rounded waves-effect">詳細</button>
