@@ -21,6 +21,8 @@ provider :line_owner, ENV['LINE_OWNER_KEY'], ENV['LINE_OWNER_SECRET']
     #we need to setup env
     if env['omniauth.params'].present?
       env["devise.mapping"] = Devise.mappings[:user]
+    else
+      env["devise.mapping"] = Devise.mappings[:owner]
     end
     Devise::OmniauthCallbacksController.action(:failure).call(env)
   end
