@@ -33,6 +33,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:success] = "登録に成功しました"
       sign_in @user
       UserMailer.with(user: @user).welcome_email.deliver_now
+      UserMailer.with(user: @user).notice_user_joining_email.deliver_now
     else
       flash[:worning] = "メールアドレスが既に登録されています"
       redirect_to new_user_session_url

@@ -31,6 +31,7 @@ class Owners::RegistrationsController < Devise::RegistrationsController
       @owner.save
       sign_in @owner
       OwnerMailer.with(owner: @owner).welcome_email.deliver_now
+      OwnerMailer.with(owner: @owner).notice_owner_joining_email.deliver_now
     else
       flash[:worning] = "メールアドレスが既に登録されています"
       redirect_to new_owner_session_url
