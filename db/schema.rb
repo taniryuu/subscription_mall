@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
   end
 
   create_table "private_stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ordinal"
     t.string "name"
     t.string "title"
     t.text "detail"

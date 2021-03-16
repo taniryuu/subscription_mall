@@ -19,6 +19,7 @@ class PrivateStore < ApplicationRecord
   # validates :image_subscription, presence: true
   # validates :category_ids, presence: true
   validates :price, presence: true
+  validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
 
   geocoded_by :address
   after_validation :geocode

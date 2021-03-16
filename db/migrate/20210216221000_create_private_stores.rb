@@ -1,6 +1,7 @@
 class CreatePrivateStores < ActiveRecord::Migration[5.1]
   def change
     create_table :private_stores do |t|
+      t.integer :ordinal
       t.string :name
       t.string :title
       t.text :detail

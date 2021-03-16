@@ -273,7 +273,8 @@ class PrivateStoresController < ApplicationController
 
       # Only allow a list of trusted parameters through.
       def private_store_params
-        params.require(:private_store).permit(:name,
+        params.require(:private_store).permit(:ordinal,
+		                              :name,
                                               :title,
                                               :address,
                                               :shop_introduction,

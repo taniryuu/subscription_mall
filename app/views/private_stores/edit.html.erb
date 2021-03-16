@@ -8,6 +8,11 @@
   <%= form.hidden_field :owner_id, :value => @owner.id %>
 
   <div class="field">
+    <%= form.label :順序数 %> <span class="must">必須</span><br/>
+    <%= form.number_field :ordinal, id: :private_store_ordinal, class: 'form-control' %>
+  </div>
+
+  <div class="field">
     <%= form.label :お店の名前 %> <span class="must">必須</span>
     <%= form.text_field :name, id: :private_store_name, placeholder: "例)", class: 'form-control form_border' %>
   </div>
