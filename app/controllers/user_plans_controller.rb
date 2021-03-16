@@ -56,7 +56,7 @@ class UserPlansController < ApplicationController
       line_items: [{
         price_data: {
           currency: 'jpy',
-          product: 'prod_J40qfUcRXSInGo', #'prod_J3NbUHqtOpmfgT',
+          product: 'prod_J3NbUHqtOpmfgT',
           unit_amount: 1000,
           recurring: {interval: "month"}
         },
