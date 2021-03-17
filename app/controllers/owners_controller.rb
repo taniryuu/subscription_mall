@@ -91,7 +91,7 @@ class OwnersController < ApplicationController
       @owner = Owner.find(params[:id])
     end
     def set_subscription
-      @subscription = Subscription.find(params[:id])
+      @subscription = Subscription.find_by(params[:id])
     end
 
     def owner_params
