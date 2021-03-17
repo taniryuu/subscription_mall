@@ -79,7 +79,28 @@ class PrivateStoreUserPlansController < ApplicationController
       )
       current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
     
+    elsif params[:id].to_i == 5 #ここに@private_store.idを入力
+
+      @private_store_plan = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          price_data: {
+            currency: 'jpy',
+            product: 'prod_J770FajeiIXv6O',#ここを変更
+            unit_amount: 100003,#ここを変更
+            recurring: {interval: "month"}
+          },
+          quantity: 1,
+        }],
+        mode: 'subscription',
+        success_url: private_store_success_url,
+        cancel_url: private_store_cancel_url,
+      )
+      current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
+
     end
+  end
 
     #@trial_plan = Stripe::Checkout::Session.create(
     #  payment_method_types: ['card'],
@@ -98,7 +119,6 @@ class PrivateStoreUserPlansController < ApplicationController
     #  cancel_url: cancel_url,
     #)
     #current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
-  end
 
   # サブスク新規登録確認画面
   def confirm

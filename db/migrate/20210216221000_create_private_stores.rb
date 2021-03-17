@@ -10,10 +10,6 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       #t.integer :category_name
       t.integer :shop_id, foreign_key: true
       t.string :script
-      t.string :image_private_store2
-      t.string :image_private_store3
-      t.string :image_private_store4
-      t.string :image_private_store5
       t.string :sub_image
       t.string :sub_image2
       t.string :sub_image3
