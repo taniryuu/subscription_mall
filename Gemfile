@@ -31,7 +31,7 @@ gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-instagram'
 gem 'dotenv-rails'
 gem 'omniauth-line'
-gem 'omniauth-oauth2', '>= 1.3.1'
+gem 'omniauth-oauth2', '>= 1.6'
 gem 'stripe'
 gem 'geocoder'#googlemap用
 gem 'gon'#googlemapお店一覧用

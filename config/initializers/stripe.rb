@@ -9,7 +9,7 @@ end
 #本番環境にはstripeの本番環境用APIキーを使用する
 if Rails.env.production?
   Rails.configuration.stripe = {
-    :publishable_key => ENV['STRIPE_PUBLISHABLE_PRODUCTON_KEY'],
+    :publishable_key => ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY'],
     :secret_key      => ENV['STRIPE_SECRET_PRODUCTION_KEY']
   }
 end
