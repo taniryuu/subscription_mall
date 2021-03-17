@@ -8,7 +8,7 @@
         <thead class="thead-light">
           <tr>
             <th>チケットID</th>
-	    <th>店舗オーナー名</th>
+            <th>店舗オーナー名</th>
             <th>店舗オーナーEmail</th>
             <th>店舗オーナーTEL</th>
             <th>店舗情報</th>
@@ -20,20 +20,20 @@
 
         <tbody>
           <% @ticket_logs.each do |ticket_log| %>
-          <tr>
-	    <td><%= ticket_log.ticket_id %></td>
-            <td><%= ticket_log.owner_name %></td>
-            <td><%= ticket_log.owner_email %></td>
-            <td><%= ticket_log.owner_phone_number %></td>
-            <td><%= ticket_log.owner_store_information %></td>
-	    <% if ticket_log.subscription_name.present? %>
-	      <td><%= ticket_log.subscription_name %></td>
-	    <% elsif ticket_log.private_store_name.present? %>
-	      <td><%= ticket_log.private_store_name %></td>
-	    <% end %>
-            <td><%= User.find(ticket_log.user_id).name if ticket_log.user_id.present? %></td>
-            <td><%= ticket_log.use_ticket_day_log %></td>
-          </tr>
+            <tr>
+              <td><%= ticket_log.ticket_id %></td>
+              <td><%= ticket_log.owner_name %></td>
+              <td><%= ticket_log.owner_email %></td>
+              <td><%= ticket_log.owner_phone_number %></td>
+              <td><%= ticket_log.owner_store_information %></td>
+              <% if ticket_log.subscription_name.present? %>
+                <td><%= ticket_log.subscription_name %></td>
+              <% elsif ticket_log.private_store_name.present? %>
+                <td><%= ticket_log.private_store_name %></td>
+              <% end %>
+              <td><%= User.find(ticket_log.user_id).name if ticket_log.user_id.present? %></td>
+              <td><%= ticket_log.use_ticket_day_log %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>

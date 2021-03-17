@@ -61,11 +61,15 @@ class ApplicationController < ActionController::Base
   def payment_planning_delete
     @ticket = Ticket.find_by(params[:current_user])
     @ticket.destroy if @ticket.present?
-    current_user.update(issue_ticket_day: nil)
-    if current_user.customer_id.present?
-      @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
-      Stripe::Subscription.delete(@payment.subscription)
-      current_user.update!(customer_id: "", user_price: "")
+    if current_user.present?
+      current_user.update(issue_ticket_day: nil)
+    end
+    if current_user.present?
+      if current_user.customer_id.present?
+        @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
+        Stripe::Subscription.delete(@payment.subscription)
+        current_user.update!(customer_id: "", user_price: "")
+      end
     end
   end
 
