@@ -28,10 +28,6 @@ class PrivateStore < ApplicationRecord
   #enum price: { "3000"=> 1, "9000"=> 2, "11000"=> 3, "18000"=> 4, "25000"=> 5, "50000"=> 6, "100000"=> 7}, _prefix: true
   # attachment :image_subscription
   mount_uploader :image_private_store, PrivateStoreUploader
-  mount_uploader :image_private_store2, PrivateStoreUploader
-  mount_uploader :image_private_store3, PrivateStoreUploader
-  mount_uploader :image_private_store4, PrivateStoreUploader
-  mount_uploader :image_private_store5, PrivateStoreUploader
   mount_uploader :sub_image, PrivateStoreUploader
   mount_uploader :sub_image2, PrivateStoreUploader
   mount_uploader :sub_image3, PrivateStoreUploader
