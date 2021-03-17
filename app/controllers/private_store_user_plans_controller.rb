@@ -22,13 +22,13 @@ class PrivateStoreUserPlansController < ApplicationController
   def new
     @private_store = PrivateStore.find(params[:id])
 	
-    product_key = ENV['PRODUCT_KEY']
-    unit_amount_key = ENV['UNIT_AMOUNT_KEY']
+    #product_key = ENV['PRODUCT_KEY']
+    #unit_amount_key = ENV['UNIT_AMOUNT_KEY']
 
-    product_array = product_key.split
-    unit_amount_array = unit_amount_key.split
+    #product_array = product_key.split
+    #unit_amount_array = unit_amount_key.split
 
-    product_array.length.times do |i|
+    PrivateStore.count.times do |i|
 
       if @private_store.ordinal == i + 1
         @private_store_plan = Stripe::Checkout::Session.create(
@@ -37,8 +37,8 @@ class PrivateStoreUserPlansController < ApplicationController
           line_items: [{
             price_data: {
               currency: 'jpy',
-              product: product_array[i],
-              unit_amount: unit_amount_array[i],
+	      product: @private_store.product_id,
+	      unit_amount: @private_store.price,
               recurring: {interval: "month"}
             },
             quantity: 1,

@@ -95,9 +95,13 @@ class PrivateStoresController < ApplicationController
   # POST /private_stores.json
   def create
     @categories = Category.all
+    $max_ordinal = 0  unless PrivateStore.exists?
+
     @private_store = PrivateStore.new(private_store_params)
     respond_to do |format|
       if @private_store.save
+	$max_ordinal += 1
+        @private_store.update(ordinal: $max_ordinal)
         if params[:private_store][:qr_image]
 	  File.binwrite("public/private_store_images/#{@private_store.id}0.PNG", params[:private_store][:qr_image].read)
 	  @private_store.update(qr_image: "#{@private_store.id}0.PNG" )
@@ -273,8 +277,7 @@ class PrivateStoresController < ApplicationController
 
       # Only allow a list of trusted parameters through.
       def private_store_params
-        params.require(:private_store).permit(:ordinal,
-		                              :name,
+        params.require(:private_store).permit(:name,
                                               :title,
                                               :address,
                                               :shop_introduction,
@@ -296,6 +299,7 @@ class PrivateStoresController < ApplicationController
                                               :private_store_detail,
                                               :price,
                                               :owner_id,
+					      :product_id,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
                                               { :category_ids=> [] }
                                             )
