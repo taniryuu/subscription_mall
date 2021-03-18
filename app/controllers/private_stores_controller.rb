@@ -242,6 +242,13 @@ class PrivateStoresController < ApplicationController
   # DELETE /private_stores/1
   # DELETE /private_stores/1.json
   def destroy
+
+    targets = PrivateStore.where(ordinal: (@private_store.ordinal + 1)..Float::INFINITY)
+
+    targets.each do |target|
+      target.update(ordinal: target.ordinal - 1)
+    end
+
     @private_store.destroy
     respond_to do |format|
       format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
