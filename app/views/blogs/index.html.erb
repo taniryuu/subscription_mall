@@ -6,38 +6,42 @@
 
 <table class="mb-8">
   <tbody>
+  <% if @blogs_count > 1 %>
     <% if current_admin.present? %>
       <%= link_to '新規作成', new_blog_path, class: "btn-gradient-radius" %>
     <% end %>
     <% @blogs.each do |blog| %>
-    <hr class="tool-bar">
-      <div class="row">
-        <div class="col-sm-2">
-          <%= blog.title.truncate(20) %>
-        </div><br>
-        <div class="col-sm-4">
-        <% if blog.image_photo.present? %>
-          <div class="grid-item-image"><%= image_tag blog.image_photo,:size => '300x260' %></div>
-        <% else %>
-        
+      <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-2">
+            <%= blog.title.truncate(20) %>
+          </div><br>
+          <div class="col-sm-4">
+          <% if blog.image_photo.present? %>
+            <div class="grid-item-image"><%= image_tag blog.image_photo,:size => '300x260' %></div>
+          <% else %>
+          
+          <% end %>
+          </div>
+
+          <div class="col-sm-2">
+            <%= blog.body.truncate(20) %>
+          </div>
+          <div class="col-sm-2">
+            <%= link_to "詳細", blog_path(blog), class: "btn btn-brand" %>
+          </div>
+        <% if current_admin.present? %>
+          <div class="col-sm-2">
+            <%= link_to "編集", edit_blog_path(blog), class: "btn btn-brand" %>
+          </div>
+          <div class="col-sm-2">
+            <%= link_to "削除", blog_path(blog), method: :delete, class: "btn btn-danger", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
+          </div>
         <% end %>
         </div>
-
-        <div class="col-sm-2">
-          <%= blog.body.truncate(20) %>
-        </div>
-        <div class="col-sm-2">
-          <%= link_to "詳細", blog_path(blog), class: "btn btn-brand" %>
-        </div>
-      <% if current_admin.present? %>
-        <div class="col-sm-2">
-          <%= link_to "編集", edit_blog_path(blog), class: "btn btn-brand" %>
-        </div>
-        <div class="col-sm-2">
-          <%= link_to "削除", blog_path(blog), method: :delete, class: "btn btn-danger", data: { confirm: "サブスクnewsを削除してよろしいですか？" } %>
-        </div>
-      <% end %>
-      </div>
     <% end %>
+  <% else %>
+    <h1>まだNEWSはありません</h1>
+  <% end %>
   </tbody>
 </table>

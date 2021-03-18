@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :login_current_owner, only: %i()
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 20)
+    @users = User.with_deleted.where(deleted_at: nil).paginate(page: params[:page], per_page: 20)
     @search = params[:search]
   end
 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def update_deleted_users
-    @user = User.with_deleted.find(params[:id]).restore
+    @user.with_deleted.find(params[:id]).restore
     redirect_to users_url
   end
 
