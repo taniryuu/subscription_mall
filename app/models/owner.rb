@@ -32,7 +32,7 @@ class Owner < ApplicationRecord
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
   # validate :owner_password_regex, on: :create
   # validate :owner_phone_number_regex
-  
+
   # パスワードバリデーションメソッド
   def owner_password_regex
     if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i
@@ -56,13 +56,18 @@ class Owner < ApplicationRecord
   def self.find_for_oauth(auth) # facebook, twitter ログイン用メソッドです
     owner = Owner.where(uid: auth.uid, provider: auth.provider).first
     unless owner
-      owner = Owner.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    auth.info.email,
-        name:  auth.info.name,
-        password: Devise.friendly_token[0, 20]
-      )
+      begin
+        owner = Owner.create(
+          uid:      auth.uid,
+          provider: auth.provider,
+          email:    auth.info.email,
+          name:  auth.info.name,
+          password: Devise.friendly_token[0, 20]
+        )
+      owner.save(:validate => false)
+      rescue StandardError => error
+        owner
+      end
     end
     owner
   end
@@ -87,7 +92,7 @@ class Owner < ApplicationRecord
 
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
-    self.save!
+    self.save(:validate => false)
     owner
   end
 
