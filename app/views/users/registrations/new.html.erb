@@ -1,7 +1,7 @@
 <% provide(:title, "会員登録") %>
 <p id="notice"><%= notice %></p>
 
-<h1 class="new-title index-title-post">利用者新規会員登録</h1>
+<h1 class="new-title index-title-post">利用者様　新規会員登録</h1>
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3 mx-auto">
     <%= form_for(resource, as: resource_name, url: users_sign_up_confirm_path(resource)) do |f| %>
@@ -44,6 +44,12 @@
         <%= f.submit "登録", class: "btn btn-primary btn-block btn-login" %>
       </div>
     <% end %>
+    <h4 class="doui">
+      新規登録をすると<a href="/kiyaku">利用規約</a>、
+      <a href="/privacy_policy">プライバシーポリシー</a>
+      に同意したとみなします。
+    </h4>
+
     <h2>SNSアカウントでログイン</h2>
 
     <div class="box-facebook"></br>
