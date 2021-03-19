@@ -181,4 +181,10 @@ Rails.application.routes.draw do
   end
   #get  "/private_store_user_plan/:id", to: "private_store_user_plans#new"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #
+
+  get 'admins/owner_private_store_select' #経営者様管理か個人店舗管理かの選択
+
+  get 'admins/private_stores_index'
+
 end
