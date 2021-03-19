@@ -88,7 +88,7 @@ class Owner < ApplicationRecord
 
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
-    self.save!
+    self.save(:validate => false)
     owner
   end
 
