@@ -63,6 +63,7 @@ class Owner < ApplicationRecord
         name:  auth.info.name,
         password: Devise.friendly_token[0, 20]
       )
+      owner.save(:validate => false)
     end
     owner
   end
