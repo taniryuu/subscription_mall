@@ -66,6 +66,7 @@ class User < ApplicationRecord
         name:  auth.info.name,
         password: Devise.friendly_token[0, 20]
       )
+      user.save(:validate => false)
     end
     user
   end
@@ -94,7 +95,7 @@ class User < ApplicationRecord
 
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
-    self.save!
+    self.save(:validate => false)
     user
   end
 
