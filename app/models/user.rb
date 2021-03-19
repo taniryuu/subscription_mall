@@ -43,7 +43,7 @@ class User < ApplicationRecord
   
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
 
-  パスワードバリデーションメソッド
+  #パスワードバリデーションメソッド
   def user_password_regex
     if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i # バリデーションの条件
       errors.add(:password, "は6文字以上で、半角英字と半角数字を組み合わせてください。") # エラーメッセージ

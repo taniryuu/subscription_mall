@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
   end
 
   create_table "private_stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ordinal"
     t.string "name"
     t.string "title"
     t.text "detail"
@@ -204,6 +205,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
+    t.string "product_id"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false

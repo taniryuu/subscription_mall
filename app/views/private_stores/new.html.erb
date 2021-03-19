@@ -104,6 +104,12 @@
     <%= form.number_field :price, id: :private_store_price, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :商品_ID %> <span class="must">必須</span>
+    <%= form.text_field :product_id, class: 'form-control' %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

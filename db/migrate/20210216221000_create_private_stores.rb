@@ -1,6 +1,7 @@
 class CreatePrivateStores < ActiveRecord::Migration[5.1]
   def change
     create_table :private_stores do |t|
+      t.integer :ordinal
       t.string :name
       t.string :title
       t.text :detail
@@ -30,6 +31,7 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.text :address
       t.float :latitude
       t.float :longitude
+      t.string :product_id
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true

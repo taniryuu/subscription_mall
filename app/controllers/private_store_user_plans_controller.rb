@@ -20,86 +20,38 @@ class PrivateStoreUserPlansController < ApplicationController
   # サブスクプラン新規登録
   # トライアルプラン
   def new
-    if params[:id].to_i == 1 #ここに@private_store.idを入力
-      @private_store_plan = Stripe::Checkout::Session.create(
-        payment_method_types: ['card'],
-        customer_email: current_user.email,
-        line_items: [{
-          price_data: {
-            currency: 'jpy',
-            product: 'prod_J5Eee7fq0DSEBI', #ここを変更
-            unit_amount: 99999,#ここを変更
-            recurring: {interval: "month"}
-          },
-          quantity: 1,
-        }],
-        mode: 'subscription',
-        success_url: private_store_success_url,
-        cancel_url: private_store_cancel_url,
-      )
-      current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
+    @private_store = PrivateStore.find(params[:id])
+	
+    #product_key = ENV['PRODUCT_KEY']
+    #unit_amount_key = ENV['UNIT_AMOUNT_KEY']
 
-    elsif params[:id].to_i == 2 #ここに@private_store.idを入力
-      
-      @private_store_plan = Stripe::Checkout::Session.create(
-        payment_method_types: ['card'],
-        customer_email: current_user.email,
-        line_items: [{
-          price_data: {
-            currency: 'jpy',
-            product: 'prod_J6gDd149uczSEf', #ここを変更
-            unit_amount: 100001,#ここを変更
-            recurring: {interval: "month"}
-          },
-          quantity: 1,
-        }],
-        mode: 'subscription',
-        success_url: private_store_success_url,
-        cancel_url: private_store_cancel_url,
-      )
-      current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
-    
-    elsif params[:id].to_i == 3 #ここに@private_store.idを入力
+    #product_array = product_key.split
+    #unit_amount_array = unit_amount_key.split
 
-      @private_store_plan = Stripe::Checkout::Session.create(
-        payment_method_types: ['card'],
-        customer_email: current_user.email,
-        line_items: [{
-          price_data: {
-            currency: 'jpy',
-            product: 'prod_J6lHOsRVfN3lSj',#ここを変更
-            unit_amount: 100002,#ここを変更
-            recurring: {interval: "month"}
-          },
-          quantity: 1,
-        }],
-        mode: 'subscription',
-        success_url: private_store_success_url,
-        cancel_url: private_store_cancel_url,
-      )
-      current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
-    
-    elsif params[:id].to_i == 5 #ここに@private_store.idを入力
+    PrivateStore.count.times do |i|
 
-      @private_store_plan = Stripe::Checkout::Session.create(
-        payment_method_types: ['card'],
-        customer_email: current_user.email,
-        line_items: [{
-          price_data: {
-            currency: 'jpy',
-            product: 'prod_J770FajeiIXv6O',#ここを変更
-            unit_amount: 100003,#ここを変更
-            recurring: {interval: "month"}
-          },
-          quantity: 1,
-        }],
-        mode: 'subscription',
-        success_url: private_store_success_url,
-        cancel_url: private_store_cancel_url,
-      )
-      current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
+      if @private_store.ordinal == i + 1
+        @private_store_plan = Stripe::Checkout::Session.create(
+          payment_method_types: ['card'],
+         customer_email: current_user.email,
+          line_items: [{
+            price_data: {
+              currency: 'jpy',
+	      product: @private_store.product_id,
+	      unit_amount: @private_store.price,
+              recurring: {interval: "month"}
+            },
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          success_url: private_store_success_url,
+          cancel_url: private_store_cancel_url,
+        )
+        current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
 
-    end
+     end
+   end
+
   end
 
     #@trial_plan = Stripe::Checkout::Session.create(
