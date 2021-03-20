@@ -20,23 +20,44 @@ class UserPlansController < ApplicationController
   # サブスクプラン新規登録
   # トライアルプラン
   def new
-    @trial_plan = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: current_user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_J3NbUHqtOpmfgT',
-          unit_amount: 1000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-    current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+    if Rails.env.development? || Rails.env.test?
+        @trial_plan = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          price_data: {
+            currency: 'jpy',
+            product: 'prod_J3NbUHqtOpmfgT',
+            unit_amount: 1000,
+            recurring: {interval: "month"}
+          },
+          quantity: 1,
+        }],
+        mode: 'subscription',
+        success_url: success_url,
+        cancel_url: cancel_url,
+      )
+      current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+    end
+    if Rails.env.production?
+      @trial_plan = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          price_data: {
+            currency: 'jpy',
+            product: 'prod_J6l7KYYYqRtJTH',
+            unit_amount: 1000,
+            recurring: {interval: "month"}
+          },
+          quantity: 1,
+        }],
+        mode: 'subscription',
+        success_url: success_url,
+        cancel_url: cancel_url,
+      )
+      current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+    end
   end
 
   # サブスク新規登録確認画面
@@ -50,24 +71,44 @@ class UserPlansController < ApplicationController
   end
 
   def edit
-    @trial_plan = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: current_user.email,
-      line_items: [{
-        price_data: {
-          currency: 'jpy',
-          product: 'prod_J3NbUHqtOpmfgT',
-          unit_amount: 1000,
-          recurring: {interval: "month"}
-        },
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: success_url,
-      cancel_url: cancel_url,
-    )
-    current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
-
+    if Rails.env.development? || Rails.env.test?
+        @trial_plan = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          price_data: {
+            currency: 'jpy',
+            product: 'prod_J3NbUHqtOpmfgT',
+            unit_amount: 1000,
+            recurring: {interval: "month"}
+          },
+          quantity: 1,
+        }],
+        mode: 'subscription',
+        success_url: success_url,
+        cancel_url: cancel_url,
+      )
+      current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+    end
+    if Rails.env.production?
+      @trial_plan = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          price_data: {
+            currency: 'jpy',
+            product: 'prod_J6l7KYYYqRtJTH',
+            unit_amount: 1000,
+            recurring: {interval: "month"}
+          },
+          quantity: 1,
+        }],
+        mode: 'subscription',
+        success_url: success_url,
+        cancel_url: cancel_url,
+      )
+      current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+    end
   end
 
   def update

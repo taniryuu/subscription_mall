@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
-    #@subscriptions = @category.subscriptions
+    @subscriptions = @category.subscriptions
     #@subscription = Subscription.find_by(params[:id])
     #@private_store = PrivateStore.find_by(params[:id])
     #@owner = Owner.find(params[:id])
@@ -62,8 +62,8 @@ class CategoriesController < ApplicationController
   end
 
   def shop_list
-    @subscriptions = Subscription.all
-    @private_stores = PrivateStore.all
+    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)  
   end
 
   def recommend
@@ -76,6 +76,7 @@ class CategoriesController < ApplicationController
     def set_category
       @category = Category.find(params[:id])
     end
+
     def set_subscription
       @subscription = Subscription.find(params[:id])
     end
