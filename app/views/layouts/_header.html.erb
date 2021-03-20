@@ -54,7 +54,7 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li class="login"><%= link_to "経営者様管理", owners_path %></li>
+              <li class="login"><%= link_to "経営者様管理", admins_owner_private_store_select_path %></li>
               <li class="login"><%= link_to "利用者様管理", users_path %></li>
               <li class="login"><%= link_to "マイアカウント", account_admin_path(current_admin) %></li>
               <li class="logout"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>

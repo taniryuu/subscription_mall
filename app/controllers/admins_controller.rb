@@ -50,6 +50,10 @@ class AdminsController < ApplicationController
     end
   end
 
+  def private_stores_index
+    @private_stores = PrivateStore.paginate(page: params[:page], per_page: 20)
+  end
+
   private
 
     def set_user
