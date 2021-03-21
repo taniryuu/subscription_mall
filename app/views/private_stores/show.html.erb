@@ -17,13 +17,11 @@
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
-                <% @private_store.category_private_stores.each do |category_private_store| %>
                   <span class="badge badge-success">
-                  <%= category_private_store.category.name %>
+                    <%= @private_store.category.name %>
                   </span>
-                <% end %>
                 <br>
-                <span class="badge badge-success">加盟店</span>
+                <span class="badge badge-primary">個人店舗</span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @private_store.address.present? %>
@@ -39,21 +37,21 @@
               <% if @payment.present? %>
                 <% if @private_store.price.to_i < current_user.user_price %>
                   <%= "プラン変更は出来ません。" %>
-                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% elsif @private_store.price.to_i == current_user.user_price %>
-                  <%= link_to "チケットを使う", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
-                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% else %>
                   <%= "プラン変更は出来ません。" %>
-                  <%= link_to "サブスクを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
+                  <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple" %>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスクを始める", private_store_new_ticket_path(@private_store), class: "btn-gradient-3d-simple", method: :get %>
+                <%= link_to "サブスク決済を始める", private_store_new_ticket_path(@private_store), class: "btn-gradient-3d-simple", method: :get %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_private_stores_path(current_owner), class: "btn-gradient-3d-simple" %>
-                <%= link_to "サブスク編集", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクカスタマイズ", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
               <% elsif current_admin.present? %>
-                <%= link_to "サブスク編集", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
+                <%= link_to "サブスクカスタマイズ", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple" %>
                 <% if @private_store.recommend == true %>
                   <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_private_store_path(current_admin), class: "btn-gradient-3d-simple" %>
                 <% elsif @private_store.recommend == false %>
@@ -61,7 +59,7 @@
                 <% end %>
               <% else %>
                 <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple" %>
-              <% end %> 
+              <% end %>
               </div>
             </div>
           </a>
@@ -161,43 +159,43 @@
                   <figure class="col-md-4">
                     <%= image_tag @private_store.sub_image3.to_s, data: {target: "#carousel", slide_to: "2"}, class: "img-fluid shadow-sm" %>
                   </figure>
-                <% end %>                
+                <% end %>
 
                 <% if @private_store.sub_image4.to_s.present? %>
                   <figure class="col-md-4">
                     <%= image_tag @private_store.sub_image4.to_s, data: {target: "#carousel", slide_to: "3"}, class: "img-fluid shadow-sm" %>
                   </figure>
-                <% end %>                
+                <% end %>
 
                 <% if @private_store.sub_image5.to_s.present? %>
                   <figure class="col-md-4">
                     <%= image_tag @private_store.sub_image5.to_s, data: {target: "#carousel", slide_to: "4"}, class: "img-fluid shadow-sm" %>
                   </figure>
-                <% end %>                
+                <% end %>
 
                 <% if @private_store.sub_image6.to_s.present? %>
                   <figure class="col-md-4">
                     <%= image_tag @private_store.sub_image6.to_s, data: {target: "#carousel", slide_to: "5"}, class: "img-fluid shadow-sm" %>
                   </figure>
-                <% end %>                
+                <% end %>
 
                 <% if @private_store.sub_image7.to_s.present? %>
                   <figure class="col-md-4">
                     <%= image_tag @private_store.sub_image7.to_s, data: {target: "#carousel", slide_to: "6"}, class: "img-fluid shadow-sm" %>
                   </figure>
-                <% end %>                
+                <% end %>
 
                 <% if @private_store.sub_image8.to_s.present? %>
                   <figure class="col-md-4">
                     <%= image_tag @private_store.sub_image8.to_s, data: {target: "#carousel", slide_to: "7"}, class: "img-fluid shadow-sm" %>
                   </figure>
-                <% end %>                
+                <% end %>
 
                 <% if @private_store.sub_image9.to_s.present? %>
                   <figure class="col-md-4">
                     <%= image_tag @private_store.sub_image9.to_s, data: {target: "#carousel", slide_to: "8"}, class: "img-fluid shadow-sm" %>
                   </figure>
-                <% end %>                
+                <% end %>
               </div>
             </div>
           </div>

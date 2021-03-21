@@ -26,7 +26,7 @@
     <%= form.label :商品説明 %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :private_store_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
-  
+
   <div class="field">
     <%= form.label :"LINE@QRコード画像", for: "file-input", type:"file" %><span class="must">必須</span><br/>
     <%= form.file_field :qr_image, id: "file-input" %>
@@ -89,9 +89,7 @@
 
   <div class="field">
     <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
-    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
-      <% t.label   { t.check_box + t.text } %>
-    <% end %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリを選択してください", class: 'form-control') %>
   </div>
 
   <div class="field">
@@ -113,3 +111,15 @@
   <%= link_to '詳細', owner_private_store_path(@private_store, owner_id: @owner.id), class: "btn btn-brand" %>
   <%= link_to '一覧へ', owner_private_stores_path, class: "btn btn-brand" %>
 </div>
+
+  <%
+=begin%>
+ <div class="field">
+    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
+      <% t.label   { t.check_box + t.text } %>
+    <% end %>
+  </div>
+<%
+=end%>
+

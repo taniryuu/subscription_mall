@@ -30,8 +30,8 @@ class Owner < ApplicationRecord
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
-  # validate :owner_password_regex, on: :create
-  # validate :owner_phone_number_regex
+  validate :owner_password_regex, on: :create
+  validate :owner_phone_number_regex
 
   # パスワードバリデーションメソッド
   def owner_password_regex
@@ -64,7 +64,7 @@ class Owner < ApplicationRecord
           name:  auth.info.name,
           password: Devise.friendly_token[0, 20]
         )
-      owner.save(:validate => false)
+        owner.save(:validate => false)
       rescue StandardError => error
         owner
       end
@@ -83,11 +83,11 @@ class Owner < ApplicationRecord
       credentials = omniauth['credentials']
       info = omniauth['info']
 
-    self.access_token = credentials['refresh_token']
-    self.access_secret = credentials['secret']
-    self.credentials = credentials.to_json
-    self.name = info['name']
-    self.set_values_by_raw_info(omniauth['extra']['raw_info'])
+      self.access_token = credentials['refresh_token']
+      self.access_secret = credentials['secret']
+      self.credentials = credentials.to_json
+      self.name = info['name']
+      self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
 
   def set_values_by_raw_info(raw_info)

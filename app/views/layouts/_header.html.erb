@@ -20,7 +20,8 @@
         </nav>
         <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
         <div class="text-sub-center-top owner-btn">
-          <p class="text1">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
+          <p class="text1">美味しい物が食べたいけど、時間とお金がない！</p>
+          <p class="text2">食事する事で時間と出費が節約出来ます。</p>
         </div>
       </div>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
@@ -40,7 +41,8 @@
         </nav>
         <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
         <div class="text-sub-center-top owner-btn">
-          <p class="text1">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
+          <p class="text1">美味しい物が食べたいけど、時間とお金がない！</p>
+          <p class="text2">食事する事で時間と出費が節約出来ます。</p>
         </div>
       </div>
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
@@ -54,7 +56,7 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li class="login"><%= link_to "経営者様管理", owners_path %></li>
+              <li class="login"><%= link_to "経営者様管理", admins_owner_private_store_select_path %></li>
               <li class="login"><%= link_to "利用者様管理", users_path %></li>
               <li class="login"><%= link_to "マイアカウント", account_admin_path(current_admin) %></li>
               <li class="logout"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
@@ -63,7 +65,8 @@
         </nav>
         <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
         <div class="text-sub-center-top owner-btn">
-          <p class="text1">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
+          <p class="text1">美味しい物が食べたいけど、時間とお金がない！</p>
+          <p class="text2">食事する事で時間と出費が節約出来ます。</p>
         </div>
       </div>
     <% end %>
@@ -86,7 +89,8 @@
       </nav>
       <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
         <div class="text-sub-center-top owner-btn">
-          <p class="text1">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
+          <p class="text1">美味しい物が食べたいけど、時間とお金がない！</p>
+          <p class="text2">食事する事で時間と出費が節約出来ます。</p>
         </div>
     </div>
   <% end %>

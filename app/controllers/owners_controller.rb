@@ -1,6 +1,10 @@
 class OwnersController < ApplicationController
   before_action :set_owner, only: [:update_deleted_owners, :to_user_email, :new, :create, :show, :edit, :update, :destroy, :owner_edit, :owner_edit_update]
+<<<<<<< HEAD
   before_action :set_subscription, only: [:owner_account]
+=======
+  # before_action :set_subscription, only: [:owner_account]
+>>>>>>> d9ffa26ec357bb82ca747da4ac595acfe7fa7710
   before_action :login_current_owner, only: %i(edit owner_account)
   before_action :only_current_admin, only: %i(index)
 
@@ -48,7 +52,7 @@ class OwnersController < ApplicationController
 
   def owner_account
     @owner = Owner.find(params[:id])
-    # @subscription = Subscription.find_by(params[:id])
+    @subscriptions_count = @owner.subscriptions.count
     @subscriptions = Subscription.where.not(name: nil).size
   end
 
@@ -91,7 +95,7 @@ class OwnersController < ApplicationController
       @owner = Owner.find(params[:id])
     end
     def set_subscription
-      @subscription = Subscription.find_by(params[:id])
+      @subscription = Subscription.find(params[:id])
     end
 
     def owner_params

@@ -1,10 +1,10 @@
 class Subscription < ApplicationRecord
   belongs_to :owner
   # belongs_to :user, optional: true#belongs_toの外部キーのnilを許可
-  # belongs_to :category, optional: true#belongs_toの外部キーのnilを許可
-  has_many :category_subscriptions, dependent: :destroy
-  has_many :categories, through: :category_subscriptions
-  accepts_nested_attributes_for :categories, allow_destroy: true
+  belongs_to :category, optional: true#belongs_toの外部キーのnilを許可
+  # has_many :category_subscriptions, dependent: :destroy
+  # has_many :categories, through: :category_subscriptions
+  # accepts_nested_attributes_for :categories, allow_destroy: true
 
   has_many :reviews, dependent: :destroy
   has_many :instablogs, dependent: :destroy
@@ -20,7 +20,7 @@ class Subscription < ApplicationRecord
   validates :subscription_detail, presence: true, length: { maximum: 1000 }
   validates :image_subscription, presence: true, allow_blank: true
   validates :qr_image, presence: true, allow_blank: true
-  validates :category_ids, presence: true, allow_blank: true
+  validates :category_id, presence: true, allow_blank: true
   validates :price, presence: true
 
   geocoded_by :address

@@ -94,9 +94,7 @@
 
   <div class="field">
     <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
-    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
-      <% t.label   { t.check_box + t.text } %>
-    <% end %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリを選択してください", class: 'form-control') %>
   </div>
 
   <div class="field">
@@ -117,3 +115,14 @@
 <%= link_to 'トップ', root_path %> |
 
 <%= link_to '一覧へ', owner_private_stores_path %>
+
+ <%
+=begin%>
+ <div class="field">
+    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
+      <% t.label   { t.check_box + t.text } %>
+    <% end %>
+  </div>
+<%
+=end%>

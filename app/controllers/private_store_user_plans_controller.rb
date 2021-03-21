@@ -21,7 +21,7 @@ class PrivateStoreUserPlansController < ApplicationController
   # トライアルプラン
   def new
     @private_store = PrivateStore.find(params[:id])
-	
+
     #product_key = ENV['PRODUCT_KEY']
     #unit_amount_key = ENV['UNIT_AMOUNT_KEY']
 
@@ -37,9 +37,9 @@ class PrivateStoreUserPlansController < ApplicationController
           line_items: [{
             price_data: {
               currency: 'jpy',
-	      product: @private_store.product_id,
-	      unit_amount: @private_store.price,
-              recurring: {interval: "month"}
+               product: @private_store.product_id,
+           unit_amount: @private_store.price,
+             recurring: {interval: "month"}
             },
             quantity: 1,
           }],
