@@ -57,6 +57,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @profile.set_values(@omniauth)
         sign_in(:user, @profile)
         # redirect_to edit_user_path(@profile.user.id) and return
+        UserMailer.with(user: @user).welcome_email.deliver_now
+        UserMailer.with(user: @user).notice_user_joining_email.deliver_now
       end
     end
     flash[:notice] = "ログインしました"
@@ -73,6 +75,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if @user.persisted?
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
         sign_in_and_redirect @user, event: :authentication
+        UserMailer.with(user: @user).welcome_email.deliver_now
         UserMailer.with(user: @user).notice_user_joining_email.deliver_now
       else
         session["devise.#{provider}_data"] = request.env['omniauth.auth'].except("extra")
