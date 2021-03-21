@@ -53,10 +53,11 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @profile = Owner.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
         email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
         @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
-        @profile.save(:validate => false)
         @profile.set_values(@omniauth)
         sign_in(:owner, @profile)
         # redirect_to edit_owner_path(@profile.user.id) and return
+        OwnerMailer.with(owner: @owner).welcome_email.deliver_now
+        OwnerMailer.with(owner: @owner).notice_owner_joining_email.deliver_now
       end
     end
     flash[:notice] = "ログインしました"
@@ -72,6 +73,8 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @owner.persisted?
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @owner, event: :authentication
+      OwnerMailer.with(owner: @owner).welcome_email.deliver_now
+      OwnerMailer.with(owner: @owner).notice_owner_joining_email.deliver_now
     else
       session["devise.#{provider}_data"] = request.env['omniauth.auth'].except("extra")
       redirect_to new_owner_registration_url

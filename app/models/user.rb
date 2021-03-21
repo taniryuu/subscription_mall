@@ -59,14 +59,18 @@ class User < ApplicationRecord
   def self.find_for_oauth(auth) # facebook, twitter ログイン用メソッドです
     user = User.where(uid: auth.uid, provider: auth.provider).first
     unless user
-      user = User.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    auth.info.email,
-        name:  auth.info.name,
-        password: Devise.friendly_token[0, 20]
-      )
-      user.save(:validate => false)
+      begin
+        user = User.create(
+          uid:      auth.uid,
+          provider: auth.provider,
+          email:    auth.info.email,
+          name:  auth.info.name,
+          password: Devise.friendly_token[0, 20]
+        )
+        user.save(:validate => false)
+      rescue StandardError => error
+        user
+      end
     end
     user
   end
@@ -86,16 +90,16 @@ class User < ApplicationRecord
       credentials = omniauth['credentials']
       info = omniauth['info']
 
-      access_token = credentials['refresh_token']
-      access_secret = credentials['secret']
-      credentials = credentials.to_json
-      name = info['name']
-      # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
+      self.access_token = credentials['refresh_token']
+      self.access_secret = credentials['secret']
+      self.redentials = credentials.to_json
+      self.name = info['name']
+      self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
 
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
-    self.save(:validate => false)
+    self.save!
     user
   end
 
