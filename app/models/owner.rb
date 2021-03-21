@@ -56,14 +56,18 @@ class Owner < ApplicationRecord
   def self.find_for_oauth(auth) # facebook, twitter ログイン用メソッドです
     owner = Owner.where(uid: auth.uid, provider: auth.provider).first
     unless owner
-      owner = Owner.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    auth.info.email,
-        name:  auth.info.name,
-        password: Devise.friendly_token[0, 20]
-      )
-      owner.save(:validate => false)
+      begin
+        owner = Owner.create(
+          uid:      auth.uid,
+          provider: auth.provider,
+          email:    auth.info.email,
+          name:  auth.info.name,
+          password: Devise.friendly_token[0, 20]
+        )
+        owner.save(:validate => false)
+      rescue StandardError => error
+        owner
+      end
     end
     owner
   end
