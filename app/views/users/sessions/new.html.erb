@@ -6,7 +6,7 @@
   <div class="box-inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-      <h1>会員ユーザー様</h1>
+      <h1>利用者様</h1>
       <h1>ログイン</h1>
       <div class="box-email">
         <%= f.label :email, "メールアドレス" %><br />
@@ -55,9 +55,6 @@
             <% end %>
         </div>
       </div>
-        <div class="box-newusr"></br>
-          <%= link_to "管理者はこちらからログイン", new_admin_session_path %>
-        </div>
     <% end %>
   </div>
 </div>

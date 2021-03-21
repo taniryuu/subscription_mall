@@ -57,6 +57,10 @@ class CategoriesController < ApplicationController
     @categories = Category.where.not(name: nil)
   end
 
+  def like_lunch
+    @subscriptions = @category.subscriptions
+  end
+
   def shop_list
     @subscriptions = Subscription.all
     @private_stores = PrivateStore.all

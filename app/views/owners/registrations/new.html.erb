@@ -56,16 +56,15 @@
         <%= f.submit "登録", class: "btn btn-primary btn-block btn-login" %>
       </div>
     <% end %>
+    <h4 class="doui">
+      新規登録をすると<a href="/kiyaku">利用規約</a>、
+      <a href="/privacy_policy">プライバシーポリシー</a>
+      に同意したとみなします。
+    </h4>
     <h2><span>---------</span>SNSアカウントでログイン<span>---------</span></h2>
     <div class="box-facebook"></br>
         <%= link_to('/devise/auth/facebook_owner') do %>
             <i class="fa fa-facebook-official"></i> Facebookでログイン
-        <% end %>
-    </div>
-
-    <div class="box-line"></br>
-        <%= link_to('/devise/auth/line_owner') do %>
-            <i class="fa fa-mobile"></i> LINEでログイン
         <% end %>
     </div>
 

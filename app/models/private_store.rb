@@ -19,19 +19,17 @@ class PrivateStore < ApplicationRecord
   # validates :image_subscription, presence: true
   # validates :category_ids, presence: true
   validates :price, presence: true
+  #validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
+  validates :product_id, presence: true
 
   geocoded_by :address
   after_validation :geocode
 
    #enum category_name: { "和食"=> 1, "洋食"=> 2, "中華"=> 3, "イタリアン"=> 4, "フレンチ"=> 5, "ハワイアン"=> 6, "東南アジア料理"=> 7, "鍋"=> 8, "丼モノ"=> 9, "韓国料理"=> 10, "スイーツ"=> 11, "その他"=> 12}, _prefix: true
   #enum category_genre: { "カフェ"=> 1, "らーめん"=> 2, "パン屋"=> 3, "カレー"=> 4, "居酒屋"=> 5, "バー"=> 6, "ケーキ"=> 7, "焼肉"=> 8, "定食屋"=> 9, "ハンバーガー"=> 10, "レストラン"=> 11, "お好み焼き"=> 12, "唐揚げ"=> 13, "餃子"=> 14, "うどん"=> 15, "そば"=> 16}, _prefix: true
-  enum price: { "3000"=> 1, "9000"=> 2, "11000"=> 3, "18000"=> 4, "25000"=> 5, "50000"=> 6, "100000"=> 7}, _prefix: true
+  #enum price: { "3000"=> 1, "9000"=> 2, "11000"=> 3, "18000"=> 4, "25000"=> 5, "50000"=> 6, "100000"=> 7}, _prefix: true
   # attachment :image_subscription
   mount_uploader :image_private_store, PrivateStoreUploader
-  mount_uploader :image_private_store2, PrivateStoreUploader
-  mount_uploader :image_private_store3, PrivateStoreUploader
-  mount_uploader :image_private_store4, PrivateStoreUploader
-  mount_uploader :image_private_store5, PrivateStoreUploader
   mount_uploader :sub_image, PrivateStoreUploader
   mount_uploader :sub_image2, PrivateStoreUploader
   mount_uploader :sub_image3, PrivateStoreUploader

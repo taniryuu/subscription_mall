@@ -61,6 +61,7 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
 
+
   def callback_from(provider) # facebook, twitter ログイン用メソッドです
     provider = provider.to_s
 
