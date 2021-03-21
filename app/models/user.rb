@@ -86,16 +86,16 @@ class User < ApplicationRecord
       credentials = omniauth['credentials']
       info = omniauth['info']
 
-      access_token = credentials['refresh_token']
-      access_secret = credentials['secret']
-      credentials = credentials.to_json
-      name = info['name']
-      # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
+      self.access_token = credentials['refresh_token']
+      self.access_secret = credentials['secret']
+      self.redentials = credentials.to_json
+      self.name = info['name']
+      self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
 
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
-    self.save(:validate => false)
+    self.save!
     user
   end
 
