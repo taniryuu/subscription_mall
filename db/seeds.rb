@@ -113,79 +113,79 @@ answer: "ログイン後、マイカウント下の「解約について」ボ�
 
 puts "Question Created"
 
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 1,
-                              subscription_id: 1,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 2,
-                              subscription_id: 1,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 1,
-                              subscription_id: 2,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 2,
-                            subscription_id: 2,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 3,
-                            subscription_id: 3,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 4,
-                          subscription_id: 3,
-                        )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 1,
+#                               subscription_id: 1,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 2,
+#                               subscription_id: 1,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 1,
+#                               subscription_id: 2,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 2,
+#                             subscription_id: 2,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 3,
+#                             subscription_id: 3,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 4,
+#                           subscription_id: 3,
+#                         )
 
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 3,
-                              subscription_id: 4,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 4,
-                              subscription_id: 4,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 5,
-                              subscription_id: 5,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 6,
-                            subscription_id: 5,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 5,
-                            subscription_id: 6,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 6,
-                          subscription_id: 6,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 13,
-                          subscription_id: 7,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 14,
-                          subscription_id: 7,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 15,
-                          subscription_id: 8,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                        category_id: 16,
-                        subscription_id: 8,
-                      )
-puts "CategorySubscription Created"
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 3,
+#                               subscription_id: 4,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 4,
+#                               subscription_id: 4,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 5,
+#                               subscription_id: 5,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 6,
+#                             subscription_id: 5,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 5,
+#                             subscription_id: 6,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 6,
+#                           subscription_id: 6,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 13,
+#                           subscription_id: 7,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 14,
+#                           subscription_id: 7,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 15,
+#                           subscription_id: 8,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                         category_id: 16,
+#                         subscription_id: 8,
+#                       )
+# puts "CategorySubscription Created"
 
 
 
 
 Subscription.create!(
   owner_id: 1,
-  # category_id: 1,
+  category_id: 7,
   name: "炭焼牛タン　弁慶　淵野辺店",
   title: "サンプルタイトル1",
   shop_introduction: "焼きたて",
@@ -198,7 +198,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 2,
-  # category_id: 2,
+  category_id: 7,
   name: "炭焼牛タン　弁慶　古淵店",
   title: "サンプルタイトル2",
   shop_introduction: "焼きたて2",
@@ -211,7 +211,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  7,
   name: "個室居酒屋　たすき　相模原店",
   title: "サンプルタイトル3",
   shop_introduction: "焼きたて3",
@@ -224,7 +224,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  7,
   name: "個室居酒屋　たすき　天王町駅前店",
   title: "サンプルタイトル4",
   shop_introduction: "焼きたて3",
@@ -237,7 +237,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
   title: "サンプルタイトル5",
   shop_introduction: "焼きたて3",
@@ -251,7 +251,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 矢部店",
   title: "サンプルタイトル6",
   shop_introduction: "焼きたて3",
@@ -265,7 +265,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  7,
   name: "木村屋本店　 町田駅前店",
   title: "サンプルタイトル7",
   shop_introduction: "焼きたて3",
@@ -278,7 +278,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  13,
   name: "北海道BEER&BBQ 小田急町田",
   title: "サンプルタイトル8",
   shop_introduction: "焼きたて3",
@@ -360,3 +360,4 @@ Category.create!(name: "その他",
     image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
     )
 puts "Category Created"
+

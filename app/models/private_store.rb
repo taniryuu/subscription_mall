@@ -1,9 +1,10 @@
 class PrivateStore < ApplicationRecord
   belongs_to :owner
   # belongs_to :shop
-  has_many :category_private_stores, dependent: :destroy
-  has_many :categories, through: :category_private_stores
-  accepts_nested_attributes_for :categories, allow_destroy: true
+  belongs_to :category, optional: true#belongs_toの外部キーのnilを許可
+  #has_many :category_private_stores, dependent: :destroy
+  #has_many :categories, through: :category_private_stores
+  #accepts_nested_attributes_for :categories, allow_destroy: true
 
   has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
@@ -17,8 +18,10 @@ class PrivateStore < ApplicationRecord
   # validates :shop_introduction, presence: true, length: { maximum: 1000 }
   # validates :subscription_detail, presence: true, length: { maximum: 1000 }
   # validates :image_subscription, presence: true
-  # validates :category_ids, presence: true
+  validates :category_id, presence: true, allow_blank: true
   validates :price, presence: true
+  #validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
+  validates :product_id, presence: true
 
   geocoded_by :address
   after_validation :geocode

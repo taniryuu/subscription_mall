@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
   end
 
   create_table "private_stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ordinal"
     t.string "name"
     t.string "title"
     t.text "detail"
@@ -197,13 +198,14 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
-    t.integer "category_genre"
+    t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
+    t.string "product_id"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -211,6 +213,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "insta_blog"
     t.boolean "recommend", default: true
     t.integer "category_private_stores_id"
+    t.index ["category_id"], name: "index_private_stores_on_category_id"
     t.index ["owner_id"], name: "index_private_stores_on_owner_id"
     t.index ["user_id"], name: "index_private_stores_on_user_id"
   end
@@ -268,6 +271,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
+    t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
@@ -281,6 +285,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "insta_blog"
     t.boolean "recommend", default: true
     t.integer "category_subscriptions_id"
+    t.index ["category_id"], name: "index_subscriptions_on_category_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end

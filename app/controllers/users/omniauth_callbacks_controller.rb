@@ -36,13 +36,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter
   end
 
-  def line
-    basic_action :line
-  end
+  def line; basic_action end
 
 
   private
 
+<<<<<<< HEAD
   def basic_action # line ログイン用メソッドです
     @omniauth = request.env['omniauth.auth']
     if @omniauth.present?
@@ -59,15 +58,31 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # redirect_to edit_user_path(@profile.user.id) and return
         UserMailer.with(user: @user).welcome_email.deliver_now
         UserMailer.with(user: @user).notice_user_joining_email.deliver_now
+=======
+    def basic_action # line ログイン用メソッドです
+      @omniauth = request.env['omniauth.auth']
+      if @omniauth.present?
+        @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+        if @profile
+          @profile.set_values(@omniauth)
+          sign_in(:user, @profile)
+        else
+          @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
+          email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+          @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+          @profile.set_values(@omniauth)
+          sign_in(:user, @profile)
+          # redirect_to edit_user_path(@profile.user.id) and return
+        end
+>>>>>>> 7d9f3b2e2d8d870ce963c8ab89e5cfafdc2f3b5d
       end
+      flash[:notice] = "ログインしました"
+      redirect_to user_path(@profile)
     end
-    flash[:notice] = "ログインしました"
-    redirect_to user_path(@profile)
-  end
 
 
-  # 元々omniauth_callback_controller.rbにあるメッソド def callback_from(provider) # facebook, twitter ログイン用メソッドです
-  def callback_from(provider) # facebook, twitter ログイン用メソッドです
+    # 元々omniauth_callback_controller.rbにあるメッソド def callback_from(provider) # facebook, twitter ログイン用メソッドです
+    def callback_from(provider) # facebook, twitter ログイン用メソッドです
       provider = provider.to_s
 
       @user = User.find_for_oauth(request.env['omniauth.auth'])

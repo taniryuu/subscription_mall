@@ -1,5 +1,7 @@
 <%= render "plan_detail" %>
-<script src="https://js.stripe.com/v3/"></script>
+<%
+=begin%>
+ <script src="https://js.stripe.com/v3/"></script>
 <script>
   var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
   var checkoutButton = document.getElementById('user-checkout-button');
@@ -10,4 +12,36 @@
     }).then(function (result) {
     });
   });
-</script>
+</script> 
+<%
+=end%>
+
+<% if Rails.env.development? || Rails.env.test? %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
+    var checkoutButton = document.getElementById('user-checkout-button');
+
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @plan.id %>'
+      }).then(function (result) {
+      });
+    });
+  </script>
+<% end %>
+
+<% if Rails.env.production? %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
+    var checkoutButton = document.getElementById('user-checkout-button');
+
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @plan.id %>'
+      }).then(function (result) {
+      });
+    });
+  </script>
+<% end %>

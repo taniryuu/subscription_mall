@@ -11,7 +11,7 @@
         />
         </div>
         <h2 class="font-weight-bold my-4"><%= "￥#{plan.amount.to_s(:delimited)}/月" %></h2>
-        <p class="grey-text"><%= plan.metadata.detail %></p>
+        <p class="grey-text"><%= plan.metadata.detail %></p> 
         <% if @pay.present? && plan.amount == @payment.amount_total %>
           <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
         <% elsif current_user.customer_id.present? %>
@@ -43,9 +43,25 @@
   </div>
 </div>
 
+<% if Rails.env.development? || Rails.env.test? %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
+    var checkoutButton = document.getElementById('trial-plan');
+
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @trial_plan.id %>'
+      }).then(function (result) {
+      });
+    });
+  </script>
+<% end %>
+
+<% if Rails.env.production? %>
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-  var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
+  var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
   var checkoutButton = document.getElementById('trial-plan');
 
   checkoutButton.addEventListener('click', function() {
@@ -55,3 +71,4 @@
     });
   });
 </script>
+<% end %>

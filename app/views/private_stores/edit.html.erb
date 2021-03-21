@@ -89,14 +89,17 @@
 
   <div class="field">
     <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
-    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
-      <% t.label   { t.check_box + t.text } %>
-    <% end %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリを選択してください", class: 'form-control') %>
   </div>
 
   <div class="field">
     <%= form.label :price %> <span class="must">必須</span><br/>
     <%= form.number_field :price, id: :private_store_price, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :商品_ID %> <span class="must">必須</span>
+    <%= form.text_field :product_id, class: 'form-control' %>
   </div>
 
   <div class="actions">
@@ -108,3 +111,15 @@
   <%= link_to '詳細', owner_private_store_path(@private_store, owner_id: @owner.id), class: "btn btn-brand" %>
   <%= link_to '一覧へ', owner_private_stores_path, class: "btn btn-brand" %>
 </div>
+
+  <%
+=begin%>
+ <div class="field">
+    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
+      <% t.label   { t.check_box + t.text } %>
+    <% end %>
+  </div>
+<%
+=end%>
+
