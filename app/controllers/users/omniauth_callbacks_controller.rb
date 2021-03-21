@@ -56,7 +56,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in(:user, @profile)
         # redirect_to edit_user_path(@profile.user.id) and return
         UserMailer.with(user: @user).welcome_email.deliver_now
-        UserMailer.with(user: @user).notice_user_joining_email.deliver_now
+        UserMailer.with(user: @user).notice_user_joining_email.deliver_now # adminへ通知メール
       end
       flash[:notice] = "ログインしました"
       redirect_to user_path(@profile)
