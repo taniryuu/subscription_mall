@@ -303,10 +303,11 @@ class PrivateStoresController < ApplicationController
                                               :sub_image12,
                                               :private_store_detail,
                                               :price,
+					      :category_id,
                                               :owner_id,
 					      :product_id,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
-                                              { :category_ids=> [] }
+                                              #{ :category_ids=> [] }
                                             )
       end
 

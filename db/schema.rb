@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
-    t.integer "category_genre"
+    t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.string "insta_blog"
     t.boolean "recommend", default: true
     t.integer "category_private_stores_id"
+    t.index ["category_id"], name: "index_private_stores_on_category_id"
     t.index ["owner_id"], name: "index_private_stores_on_owner_id"
     t.index ["user_id"], name: "index_private_stores_on_user_id"
   end
