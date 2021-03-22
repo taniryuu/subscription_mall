@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210306095519) do
+ActiveRecord::Schema.define(version: 20210306142407) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "provider"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "info"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
@@ -176,6 +177,7 @@ ActiveRecord::Schema.define(version: 20210306095519) do
   end
 
   create_table "private_stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ordinal"
     t.string "name"
     t.string "title"
     t.text "detail"
@@ -184,10 +186,6 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.text "private_store_detail"
     t.integer "shop_id"
     t.string "script"
-    t.string "image_private_store2"
-    t.string "image_private_store3"
-    t.string "image_private_store4"
-    t.string "image_private_store5"
     t.string "sub_image"
     t.string "sub_image2"
     t.string "sub_image3"
@@ -200,13 +198,14 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
-    t.integer "category_genre"
+    t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
+    t.string "product_id"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -214,6 +213,7 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "insta_blog"
     t.boolean "recommend", default: true
     t.integer "category_private_stores_id"
+    t.index ["category_id"], name: "index_private_stores_on_category_id"
     t.index ["owner_id"], name: "index_private_stores_on_owner_id"
     t.index ["user_id"], name: "index_private_stores_on_user_id"
   end
@@ -271,6 +271,7 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
+    t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
     t.string "qr_image"
@@ -284,6 +285,7 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.string "insta_blog"
     t.boolean "recommend", default: true
     t.integer "category_subscriptions_id"
+    t.index ["category_id"], name: "index_subscriptions_on_category_id"
     t.index ["owner_id"], name: "index_subscriptions_on_owner_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
@@ -365,6 +367,7 @@ ActiveRecord::Schema.define(version: 20210306095519) do
     t.integer "session_price"
     t.integer "private_store_id"
     t.datetime "deleted_at"
+    t.string "info"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

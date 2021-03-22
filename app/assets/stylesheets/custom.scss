@@ -75,6 +75,13 @@ textarea {
 .center h1 {
   margin-bottom: 10px;
 }
+.doui {
+  margin-bottom: 20px;
+}
+
+.red {
+  color: red;
+}
 
 //詳細、編集リンクボタン
 .btn-gradient-3d-simple {
@@ -160,6 +167,16 @@ p {
 .subscription-bg {
   background: linear-gradient(to bottom,#ecf58f,#fdfdfd);
 }
+//カテゴリ検索ボックス
+.search {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+//ログインページ
+.sudeni-login {
+  margin-bottom: 30px;
+}
+
 
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);

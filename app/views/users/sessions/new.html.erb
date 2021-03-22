@@ -6,7 +6,7 @@
   <div class="box-inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-      <h1>会員ユーザー様</h1>
+      <h1>利用者様</h1>
       <h1>ログイン</h1>
       <div class="box-email">
         <%= f.label :email, "メールアドレス" %><br />
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <h2>SNSアカウントでログイン</h2>
+    <h2><span>---------</span>SNSアカウントでログイン<span>---------</span></h2>
 
         <div class="box-facebook"></br>
             <%= link_to('/devise/auth/facebook') do %>

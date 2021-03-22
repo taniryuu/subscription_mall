@@ -1,0 +1,44 @@
+<% provide(:title, 'All Owners') %>
+
+<p id="notice"><%= notice %></p>
+<div>
+  <h1 class="brand-color display-4 mt-6 mb-6">個人店舗一覧</h1>
+
+  <div class="col-md-10 offset-md-1">
+
+    <table class="table table-condensed table-hover my-5" id="table-users">
+      <thead>
+        <tr>
+	　<th>ID</th>
+	  <th>ordinal</th> 
+          <th>個人店舗名</th>
+	  <th>金額</th>
+	  <th>商品ID</th>
+	  <th>オーナ―ID</th>
+	  <th>オーナーE-mail</th>
+	  <th>オーナー名</th>
+        </tr>
+      </thead>
+
+      <% @private_stores.each do |private_store| %>
+        <tr>
+          <td><%= private_store.id %></td>
+          <td><%= private_store.ordinal %></td>
+          <td><%= private_store.name %></td>
+	  <td><%= private_store.price %></td>
+	  <td><%= private_store.product_id %></td>
+	  <td><%= private_store.owner.id %></td>
+	  <td><%= private_store.owner.email %></td>
+	  <td><%= private_store.owner.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="private-store-show-btn">
+    <%= link_to admins_owner_private_store_select_path, class: "btn btn--blue btn-md btn--shadow" do %>
+      <i class="fas fa-reply"> 戻る</i>
+    <% end %>
+  </div>
+  <%= will_paginate(@private_stores, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+

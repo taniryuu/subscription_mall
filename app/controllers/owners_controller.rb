@@ -1,11 +1,11 @@
 class OwnersController < ApplicationController
-  before_action :set_owner, only: [:to_user_email, :new, :create, :show, :edit, :update, :destroy, :owner_edit, :owner_edit_update]
-  before_action :set_subscription, only: [:owner_account]
+  before_action :set_owner, only: [:update_deleted_owners, :to_user_email, :new, :create, :show, :edit, :update, :destroy, :owner_edit, :owner_edit_update]
+  # before_action :set_subscription, only: [:owner_account]
   before_action :login_current_owner, only: %i(edit owner_account)
   before_action :only_current_admin, only: %i(index)
 
   def index
-    @owners = Owner.paginate(page: params[:page], per_page: 20)
+    @owners = Owner.with_deleted.where(deleted_at: nil).paginate(page: params[:page], per_page: 20)
   end
 
   def deleted_owners#論理削除した経営者
@@ -13,7 +13,7 @@ class OwnersController < ApplicationController
   end
 
   def update_deleted_owners#論理削除用のアクション
-    @owner = Owner.with_deleted.find(params[:id]).restore
+    @owner = Owner.with_deleted.restore
     redirect_to owners_url
   end
 
@@ -48,7 +48,7 @@ class OwnersController < ApplicationController
 
   def owner_account
     @owner = Owner.find(params[:id])
-    # @subscription = Subscription.find_by(params[:id])
+    @subscriptions_count = @owner.subscriptions.count
     @subscriptions = Subscription.where.not(name: nil).size
   end
 
@@ -91,7 +91,7 @@ class OwnersController < ApplicationController
       @owner = Owner.find(params[:id])
     end
     def set_subscription
-      @subscription = Subscription.find_by(params[:id])
+      @subscription = Subscription.find(params[:id])
     end
 
     def owner_params

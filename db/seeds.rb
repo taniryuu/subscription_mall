@@ -113,147 +113,79 @@ answer: "ログイン後、マイカウント下の「解約について」ボ�
 
 puts "Question Created"
 
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 1,
-                              subscription_id: 1,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 2,
-                              subscription_id: 1,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 1,
-                              subscription_id: 2,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 2,
-                            subscription_id: 2,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 3,
-                            subscription_id: 3,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 4,
-                          subscription_id: 3,
-                        )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 1,
+#                               subscription_id: 1,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 2,
+#                               subscription_id: 1,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 1,
+#                               subscription_id: 2,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 2,
+#                             subscription_id: 2,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 3,
+#                             subscription_id: 3,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 4,
+#                           subscription_id: 3,
+#                         )
 
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 3,
-                              subscription_id: 4,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 4,
-                              subscription_id: 4,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                              category_id: 5,
-                              subscription_id: 5,
-                            )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 6,
-                            subscription_id: 5,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                            category_id: 5,
-                            subscription_id: 6,
-                          )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 6,
-                          subscription_id: 6,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 13,
-                          subscription_id: 7,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 14,
-                          subscription_id: 7,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                          category_id: 15,
-                          subscription_id: 8,
-                        )
-CategorySubscription.create!(owner_id: 1,
-                        category_id: 16,
-                        subscription_id: 8,
-                      )
-puts "CategorySubscription Created"
-
-
-CategoryPrivateStore.create!(owner_id: 1,
-                              category_id: 1,
-                              private_store_id: 1,
-                            )
-CategoryPrivateStore.create!(owner_id: 1,
-                              category_id: 2,
-                              private_store_id: 1,
-                            )
-CategoryPrivateStore.create!(owner_id: 1,
-                              category_id: 1,
-                              private_store_id: 2,
-                            )
-CategoryPrivateStore.create!(owner_id: 1,
-                            category_id: 2,
-                            private_store_id: 2,
-                          )
-CategoryPrivateStore.create!(owner_id: 1,
-                            category_id: 3,
-                            private_store_id: 3,
-                          )
-CategoryPrivateStore.create!(owner_id: 1,
-                          category_id: 4,
-                          private_store_id: 3,
-                        )
-
-CategoryPrivateStore.create!(owner_id: 1,
-                              category_id: 3,
-                              private_store_id: 4,
-                            )
-CategoryPrivateStore.create!(owner_id: 1,
-                              category_id: 4,
-                              private_store_id: 4,
-                            )
-CategoryPrivateStore.create!(owner_id: 1,
-                              category_id: 5,
-                              private_store_id: 5,
-                            )
-CategoryPrivateStore.create!(owner_id: 1,
-                            category_id: 6,
-                            private_store_id: 5,
-                          )
-CategoryPrivateStore.create!(owner_id: 1,
-                            category_id: 5,
-                            private_store_id: 6,
-                          )
-CategoryPrivateStore.create!(owner_id: 1,
-                          category_id: 6,
-                          private_store_id: 6,
-                        )
-CategoryPrivateStore.create!(owner_id: 1,
-                          category_id: 13,
-                          private_store_id: 7,
-                        )
-CategoryPrivateStore.create!(owner_id: 1,
-                          category_id: 14,
-                          private_store_id: 7,
-                        )
-CategoryPrivateStore.create!(owner_id: 1,
-                          category_id: 15,
-                          private_store_id: 8,
-                        )
-CategoryPrivateStore.create!(owner_id: 1,
-                        category_id: 16,
-                        private_store_id: 8,
-                      )
-puts "CategoryPrivateStore Created"
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 3,
+#                               subscription_id: 4,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 4,
+#                               subscription_id: 4,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                               category_id: 5,
+#                               subscription_id: 5,
+#                             )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 6,
+#                             subscription_id: 5,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                             category_id: 5,
+#                             subscription_id: 6,
+#                           )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 6,
+#                           subscription_id: 6,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 13,
+#                           subscription_id: 7,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 14,
+#                           subscription_id: 7,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                           category_id: 15,
+#                           subscription_id: 8,
+#                         )
+# CategorySubscription.create!(owner_id: 1,
+#                         category_id: 16,
+#                         subscription_id: 8,
+#                       )
+# puts "CategorySubscription Created"
 
 
 
 
 Subscription.create!(
   owner_id: 1,
-  # category_id: 1,
+  category_id: 7,
   name: "炭焼牛タン　弁慶　淵野辺店",
   title: "サンプルタイトル1",
   shop_introduction: "焼きたて",
@@ -266,7 +198,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 2,
-  # category_id: 2,
+  category_id: 7,
   name: "炭焼牛タン　弁慶　古淵店",
   title: "サンプルタイトル2",
   shop_introduction: "焼きたて2",
@@ -279,7 +211,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  7,
   name: "個室居酒屋　たすき　相模原店",
   title: "サンプルタイトル3",
   shop_introduction: "焼きたて3",
@@ -292,7 +224,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  7,
   name: "個室居酒屋　たすき　天王町駅前店",
   title: "サンプルタイトル4",
   shop_introduction: "焼きたて3",
@@ -305,7 +237,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
   title: "サンプルタイトル5",
   shop_introduction: "焼きたて3",
@@ -319,7 +251,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 矢部店",
   title: "サンプルタイトル6",
   shop_introduction: "焼きたて3",
@@ -333,7 +265,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  7,
   name: "木村屋本店　 町田駅前店",
   title: "サンプルタイトル7",
   shop_introduction: "焼きたて3",
@@ -346,7 +278,7 @@ Subscription.create!(
 
 Subscription.create!(
   owner_id: 1,
-  # category_id:  3,
+  category_id:  13,
   name: "北海道BEER&BBQ 小田急町田",
   title: "サンプルタイトル8",
   shop_introduction: "焼きたて3",
@@ -359,114 +291,6 @@ Subscription.create!(
 
 
 puts "Subscription Created"
-
-
-
-PrivateStore.create!(
-  owner_id: 1,
-  # category_id: 1,
-  name: "炭焼牛タン　弁慶　淵野辺店p",
-  title: "サンプルタイトル1",
-  shop_introduction: "焼きたて",
-  detail: "食べ放題",
-  private_store_detail: "東京都",
-  price: "3000",
-  image_private_store: "karaage.jpeg",
-  address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
-)
-
-PrivateStore.create!(
-  owner_id: 10,
-  # category_id: 2,
-  name: "炭焼牛タン　弁慶　古淵店p",
-  title: "サンプルタイトル2",
-  shop_introduction: "焼きたて2",
-  detail: "食べ放題2",
-  private_store_detail: "神奈川",
-  price: "9000",
-  image_private_store: "karaage.jpeg",
-  address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
-)
-
-PrivateStore.create!(
-  owner_id: 1,
-  # category_id:  3,
-  name: "個室居酒屋　たすき　相模原店p",
-  title: "サンプルタイトル3",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  private_store_detail: "大阪",
-  price: "11000",
-  image_private_store: "karaage.jpeg",
-  address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
-)
-
-PrivateStore.create!(
-  owner_id: 1,
-  # category_id:  3,
-  name: "個室居酒屋　たすき　天王町駅前店p",
-  title: "サンプルタイトル4",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  private_store_detail: "大阪",
-  price: "18000",
-  image_private_store: "karaage.jpeg",
-  address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
-)
-
-PrivateStore.create!(
-  owner_id: 1,
-  # category_id:  3,
-  name: "拉麺一匠 DEAD OR ALIVE 淵野辺店p",
-  title: "サンプルタイトル5",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  private_store_detail: "大阪",
-  price: "25000",
-  image_private_store: "karaage.jpeg",
-  address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
-)
-
-PrivateStore.create!(
-  owner_id: 1,
-  # category_id:  3,
-  name: "拉麺一匠 DEAD OR ALIVE 矢部店p",
-  title: "サンプルタイトル6",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  private_store_detail: "大阪",
-  price: "50000",
-  image_private_store: "karaage.jpeg",
-  address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
-)
-
-PrivateStore.create!(
-  owner_id: 1,
-  # category_id:  3,
-  name: "木村屋本店　 町田駅前店p",
-  title: "サンプルタイトル7",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  private_store_detail: "大阪",
-  price: "100000",
-  image_private_store: "karaage.jpeg",
-  address: "東京都町田市原町田6-13-15",
-)
-
-PrivateStore.create!(
-  owner_id: 1,
-  # category_id:  3,
-  name: "北海道BEER&BBQ 小田急町田p",
-  title: "サンプルタイトル8",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  private_store_detail: "大阪",
-  price: "11000",
-  image_private_store: "karaage.jpeg",
-  address: "東京都町田市森野１－３９－１　グランドゥールビル　5F",
-)
-
-puts "PrivateStore Created"
 
 
 Category.create!(name: "和食",
@@ -536,3 +360,4 @@ Category.create!(name: "その他",
     image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
     )
 puts "Category Created"
+

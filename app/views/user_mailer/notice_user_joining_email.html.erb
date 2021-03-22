@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>巡グルメへ新規利用者登録がありました。</h1>
+    <p>
+      管理者ログインページは下記のURLをクリックして下さい。
+    </p>
+    <p>
+    <%= @url %>
+    </p>
+    <p>
+      新規登録ユーザー名: <%= @user.name %>
+    </p>
+    <p>
+      新規登録メールアドレス: <%= @user.email %>
+    </p>
+  </body>
+</html>

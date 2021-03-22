@@ -95,9 +95,11 @@ class PrivateStoresController < ApplicationController
   # POST /private_stores.json
   def create
     @categories = Category.all
+
     @private_store = PrivateStore.new(private_store_params)
     respond_to do |format|
       if @private_store.save
+	@private_store.update(ordinal: PrivateStore.count)
         if params[:private_store][:qr_image]
 	  File.binwrite("public/private_store_images/#{@private_store.id}0.PNG", params[:private_store][:qr_image].read)
 	  @private_store.update(qr_image: "#{@private_store.id}0.PNG" )
@@ -240,6 +242,13 @@ class PrivateStoresController < ApplicationController
   # DELETE /private_stores/1
   # DELETE /private_stores/1.json
   def destroy
+
+    targets = PrivateStore.where(ordinal: (@private_store.ordinal + 1)..Float::INFINITY)
+
+    targets.each do |target|
+      target.update(ordinal: target.ordinal - 1)
+    end
+
     @private_store.destroy
     respond_to do |format|
       format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
@@ -280,10 +289,6 @@ class PrivateStoresController < ApplicationController
                                               :detail, 
                                               :qr_image,
                                               :image_private_store,
-                                              :image_private_store2,
-                                              :image_private_store3,
-                                              :image_private_store4,
-                                              :image_private_store5,
                                               :sub_image,
                                               :sub_image2,
                                               :sub_image3,
@@ -298,9 +303,11 @@ class PrivateStoresController < ApplicationController
                                               :sub_image12,
                                               :private_store_detail,
                                               :price,
+					      :category_id,
                                               :owner_id,
+					      :product_id,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
-                                              { :category_ids=> [] }
+                                              #{ :category_ids=> [] }
                                             )
       end
 

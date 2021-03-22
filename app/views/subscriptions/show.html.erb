@@ -17,11 +17,11 @@
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
-                <% @subscription.category_subscriptions.each do |category_subscription| %>
                   <span class="badge badge-success">
-                  <%= category_subscription.category.name %>
+                  <%= @subscription.category.name %>
                   </span>
-                <% end %>
+                <br>
+                <span class="badge badge-success">加盟店</span>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.address.present? %>
@@ -131,24 +131,6 @@
               </div>
             <% end %>
 
-            <% if @subscription.sub_image10.to_s.present? %>
-              <div class="carousel-item">
-                <%= image_tag @subscription.sub_image10.to_s, class: "img-fluid" %>
-              </div>
-            <% end %>
-
-            <% if @subscription.sub_image11.to_s.present? %>
-              <div class="carousel-item">
-                <%= image_tag @subscription.sub_image11.to_s, class: "img-fluid" %>
-              </div>
-            <% end %>
-
-            <% if @subscription.sub_image12.to_s.present? %>
-              <div class="carousel-item">
-                <%= image_tag @subscription.sub_image12.to_s, class: "img-fluid" %>
-              </div>
-            <% end %>
-
           </div>
           <a class="carousel-control-prev prev-slide" href="#carousel-thumb1" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -217,28 +199,13 @@
                   </figure>
                 <% end %>                
 
-                <% if @subscription.sub_image10.to_s.present? %>
-                  <figure class="col-md-4">
-                    <%= image_tag @subscription.sub_image10.to_s, data: {target: "#carousel", slide_to: "9"}, class: "img-fluid shadow-sm" %>
-                  </figure>
-                <% end %>                
-
-                <% if @subscription.sub_image11.to_s.present? %>
-                  <figure class="col-md-4">
-                    <%= image_tag @subscription.sub_image11.to_s, data: {target: "#carousel", slide_to: "10"}, class: "img-fluid shadow-sm" %>
-                  </figure>
-                <% end %>                
-
-                <% if @subscription.sub_image12.to_s.present? %>
-                  <figure class="col-md-4">
-                    <%= image_tag @subscription.sub_image12.to_s, data: {target: "#carousel", slide_to: "11"}, class: "img-fluid shadow-sm" %>
-                  </figure>
-                <% end %>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
 
       <script>
         $(".prev-slide").on('click',function(){

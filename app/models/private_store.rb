@@ -1,24 +1,29 @@
 class PrivateStore < ApplicationRecord
   belongs_to :owner
   # belongs_to :shop
-  has_many :category_private_stores, dependent: :destroy
-  has_many :categories, through: :category_private_stores
-  accepts_nested_attributes_for :categories, allow_destroy: true
+  belongs_to :category, optional: true#belongs_toの外部キーのnilを許可
+  #has_many :category_private_stores, dependent: :destroy
+  #has_many :categories, through: :category_private_stores
+  #accepts_nested_attributes_for :categories, allow_destroy: true
 
-  has_many :images, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :private_store_instablogs, dependent: :destroy
+  
+  has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :address, presence: true, length: { maximum: 1000 }
-  # validates :title, presence: true, length: { maximum: 100 }
-  # validates :detail, presence: true, length: { maximum: 100 }
-  # validates :shop_introduction, presence: true, length: { maximum: 1000 }
-  # validates :subscription_detail, presence: true, length: { maximum: 1000 }
-  # validates :image_subscription, presence: true
-  # validates :category_ids, presence: true
+  validates :title, presence: true, length: { maximum: 100 }
+  validates :detail, presence: true, length: { maximum: 100 }
+  validates :shop_introduction, presence: true, length: { maximum: 1000 }
+  validates :private_store_detail, presence: true, length: { maximum: 1000 }
+  validates :image_private_store, presence: true, allow_blank: true
+  validates :qr_image, presence: true, allow_blank: true
+  validates :category_id, presence: true, allow_blank: true
   validates :price, presence: true
+  #validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
+  validates :product_id, presence: true
 
   geocoded_by :address
   after_validation :geocode
@@ -28,10 +33,6 @@ class PrivateStore < ApplicationRecord
   #enum price: { "3000"=> 1, "9000"=> 2, "11000"=> 3, "18000"=> 4, "25000"=> 5, "50000"=> 6, "100000"=> 7}, _prefix: true
   # attachment :image_subscription
   mount_uploader :image_private_store, PrivateStoreUploader
-  mount_uploader :image_private_store2, PrivateStoreUploader
-  mount_uploader :image_private_store3, PrivateStoreUploader
-  mount_uploader :image_private_store4, PrivateStoreUploader
-  mount_uploader :image_private_store5, PrivateStoreUploader
   mount_uploader :sub_image, PrivateStoreUploader
   mount_uploader :sub_image2, PrivateStoreUploader
   mount_uploader :sub_image3, PrivateStoreUploader
