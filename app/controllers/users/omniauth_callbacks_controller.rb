@@ -50,11 +50,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           sign_in(:user, @profile)
         else
           @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
-          # email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
-          @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: "sample-100@email.com", name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+          email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+          @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
           @profile.set_values(@omniauth)
           sign_in(:user, @profile)
-          # redirect_to edit_user_path(@profile.user.id) and return
+          redirect_to user_account_path(@profile.user.id) and return
           UserMailer.with(user: @user).welcome_email.deliver_now
           UserMailer.with(user: @user).notice_user_joining_email.deliver_now # adminへ通知メール
         end
