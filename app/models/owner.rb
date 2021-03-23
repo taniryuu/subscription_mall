@@ -32,7 +32,7 @@ class Owner < ApplicationRecord
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
   validate :owner_password_regex, on: :create
   validate :owner_phone_number_regex
-  
+
   # パスワードバリデーションメソッド
   def owner_password_regex
     if password !~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,128}+\z/i

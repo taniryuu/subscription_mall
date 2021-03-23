@@ -286,7 +286,7 @@ class PrivateStoresController < ApplicationController
                                               :title,
                                               :address,
                                               :shop_introduction,
-                                              :detail, 
+                                              :detail,
                                               :qr_image,
                                               :image_private_store,
                                               :sub_image,
@@ -328,7 +328,7 @@ class PrivateStoresController < ApplicationController
         @owner = Owner.find(params[:owner_id]) if @owner.blank?
         unless current_owner?(@owner) or current_admin.present?
           redirect_to owner_private_stores_url(current_owner), notice: '他の経営者様のページへ移動できません。'
-        end  
+        end
       end
       # 現在ログインしている経営者を許可します。
       def set_owner_private_store

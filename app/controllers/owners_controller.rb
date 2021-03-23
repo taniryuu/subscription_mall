@@ -43,7 +43,7 @@ class OwnersController < ApplicationController
       # @shop = Shop.find(params[:shop_id])
       @subscriptions_count = Subscription.where.not(name: nil).size
     end
-    @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)  
+    @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)
   end
 
   def owner_account
