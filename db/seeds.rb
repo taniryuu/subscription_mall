@@ -21,7 +21,7 @@ puts "Admin Created"
     name: name,
     email: email,
     phone_number: phone_number,
-    sms_auth: true,
+    sms_auth: false,
     password: password,
     password_confirmation: password,
   )
