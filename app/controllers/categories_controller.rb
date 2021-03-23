@@ -61,14 +61,14 @@ class CategoriesController < ApplicationController
 
   def shop_list
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)  
+    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
   end
 
   def recommend
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)  
+    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
@@ -78,7 +78,7 @@ class CategoriesController < ApplicationController
     def set_subscription
       @subscription = Subscription.find(params[:id])
     end
-    
+
 
     # Only allow a list of trusted parameters through.
     def category_params

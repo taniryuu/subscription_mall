@@ -101,7 +101,7 @@ class TicketsController < ApplicationController
                 current_user.update(issue_ticket_day: nil)
                 flash[:success] = "トライアルチケットは期限切れになりましました"
                 user_account_user_path(current_user)
-              elsif  @ticket.created_at.since(7.days)
+              elsif  Date.today > @ticket.created_at.since(7.days)
                 @ticket.destroy
                 current_user.update(issue_ticket_day: nil)
                 flash[:success] = "トライアルチケットは期限切れになりましました"

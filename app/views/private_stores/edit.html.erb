@@ -26,7 +26,7 @@
     <%= form.label :商品説明 %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :private_store_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
-  
+
   <div class="field">
     <%= form.label :"LINE@QRコード画像", for: "file-input", type:"file" %><span class="must">必須</span><br/>
     <%= form.file_field :qr_image, id: "file-input" %>
