@@ -37,9 +37,9 @@ class PrivateStoreUserPlansController < ApplicationController
           line_items: [{
             price_data: {
               currency: 'jpy',
-	      product: @private_store.product_id,
-	      unit_amount: @private_store.price,
-              recurring: {interval: "month"}
+               product: @private_store.product_id,
+           unit_amount: @private_store.price,
+             recurring: {interval: "month"}
             },
             quantity: 1,
           }],

@@ -130,6 +130,7 @@ ja:
           owner_id: 経営者紐付け
           insta_blog: インスタグラム
           recommend: おすすめ店舗
+          product_id: 商品ID
 
         media:
           id: ID

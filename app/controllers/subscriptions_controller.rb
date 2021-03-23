@@ -177,9 +177,10 @@ class SubscriptionsController < ApplicationController
                                               :sub_image9,
                                               :subscription_detail,
                                               :price,
+                                              :category_id,
                                               :owner_id,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
-                                              { :category_ids=> [] }
+                                              # { :category_ids=> [] }
                                             )
       end
 

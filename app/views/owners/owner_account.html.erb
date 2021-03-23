@@ -30,13 +30,20 @@
         </table>
       </div>
     </div>
-    <% if current_owner.present? %>
+    <% if @subscriptions_count > 1 %>
       <div class="account-btn">
        | <%= link_to "#{current_owner.name}さんのサブスクショップ", owner_subscriptions_path(@owner, @subscription), class: "btn-gradient-3d-simple" %>
       </div></br>
       <div class="account-btn">
        | <%= link_to "#{current_owner.name}さんの個人店サブスクショップ", owner_private_stores_path(@owner), class: "btn-gradient-3d-simple" %>
       </div></br>
+      <div class="account-btn">
+        <%= link_to "解約について", edit_owner_registration_path(@owner), class: "btn-gradient-3d-simple" %>
+      </div></br>
+      <div class="account-btn">
+        <%= link_to "編集", edit_owner_path(@owner), class: "btn-gradient-3d-simple" %>
+      </div></br>
+    <% else %>
       <div class="account-btn">
         <%= link_to "解約について", edit_owner_registration_path(@owner), class: "btn-gradient-3d-simple" %>
       </div></br>

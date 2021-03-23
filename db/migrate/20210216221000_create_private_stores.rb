@@ -23,7 +23,7 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.string :sub_image10
       t.string :sub_image11
       t.string :sub_image12
-      t.integer :category_genre
+      t.integer :category_id, index: true, foreign_key: true
       #t.integer :monthly_fee
       t.text :blog
       t.text :shop_introduction
