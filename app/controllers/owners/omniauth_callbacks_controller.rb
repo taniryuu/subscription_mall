@@ -36,9 +36,7 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter_owner
   end
 
-  def line_owner
-    basic_action :line_owner
-  end
+  def line_owner; basic_action end
 
   private
 
@@ -51,11 +49,11 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in(:owner, @profile)
       else
         @profile = Owner.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
-        # email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
-        @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: "sample100@email.com", name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+        email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+        @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
         @profile.set_values(@omniauth)
         sign_in(:owner, @profile)
-        # redirect_to edit_owner_path(@profile.user.id) and return
+        redirect_to owner_account_path(@profile.owner.id) and return
         OwnerMailer.with(owner: @owner).welcome_email.deliver_now
         OwnerMailer.with(owner: @owner).notice_owner_joining_email.deliver_now
       end
