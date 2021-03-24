@@ -7,6 +7,9 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="account-btn">
+          <%= link_to "ショップ開設", subscription_private_store_select_owner_path(current_owner), class: "btn btn-lg btn-brand" %>
+        </div></br>
+        <div class="account-btn">
           <%= link_to "マイアカウント編集", edit_owner_path(@owner), class: "btn-gradient-3d-simple" %>
         </div></br>
         <div class="account-btn">
@@ -37,7 +40,7 @@
       </div>
     </div>
       <%# ここからカードでサブスク回す %>
-    <% if @subscriptions_count > 1 %>
+    <% if (@private_stores_count < 1) && (@subscriptions_count > 1) %>
       <h5 class="account-btn">現在、個人店サブスクの設定はありません。</h5>
       <div class="row ">
         <% @subscriptions.each do |subscription| %>
@@ -53,12 +56,13 @@
               </div>
             </div>
         <% end %></br>
-    <% elsif @private_stores_count > 1 %>
+    <% elsif @subscriptions_count < 1 && @private_stores_count > 1 %>
       <h5>現在、加盟店サブスクの設定はありません。</h5>
         <% @private_stores.each do |private_store| %>
             <div class="col-sm-4">
               <div class="card">
                 <div class="card-body">
+                <span class="badge badge-primary">個人店舗</span>
                   <h5 class="card-title">お店の名前：<%= check_not_set(private_store.name) %></h5>
                   <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
                   <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
@@ -67,7 +71,10 @@
               </div>
             </div>
         <% end %></br>
-    <% elsif @private_stores_count > 1 && @private_stores_count > 1 %>
+    <% elsif @subscriptions_count < 1 && @private_stores_count < 1 %>
+      <h5>現在、加盟店サブスクの設定はありません。</h5>
+      <h5>現在、個人店サブスクの設定はありません。</h5>
+    <% else %>
         <% @subscriptions.each do |subscription| %>
             <div class="col-sm-4">
               <div class="card">
@@ -94,9 +101,6 @@
               </div>
             </div>
         <% end %></br>
-    <% elsif @private_stores_count == O && @private_stores_count == O %>
-      <h5>現在、加盟店サブスクの設定はありません。</h5>
-      <h5>現在、個人店サブスクの設定はありません。</h5>
       </div>
     <% end %>
 </div>

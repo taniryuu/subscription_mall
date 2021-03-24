@@ -40,7 +40,6 @@ class OwnersController < ApplicationController
       # @subscription_count = Subscription.find(params[:id]) 変更前
       @subscriptions_count = Subscription.find_by(owner_id: params[:id]) # 変更後
     else
-      # @shop = Shop.find(params[:shop_id])
       @subscriptions_count = Subscription.where.not(name: nil).size
     end
     @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)
