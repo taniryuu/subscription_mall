@@ -11,7 +11,6 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li class="login"><%= link_to "利用者様管理", users_path %></li>
               <li class="login"><%= link_to "ショップ開設", subscription_private_store_select_owner_path(current_owner) %></li>
               <li class="new-user"><%= link_to "マイアカウント", owner_account_owner_path(current_owner) %></li>
               <li class="logout"><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
