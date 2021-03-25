@@ -40,16 +40,17 @@ class OwnersController < ApplicationController
       # @subscription_count = Subscription.find(params[:id]) 変更前
       @subscriptions_count = Subscription.find_by(owner_id: params[:id]) # 変更後
     else
-      # @shop = Shop.find(params[:shop_id])
       @subscriptions_count = Subscription.where.not(name: nil).size
     end
-    @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)  
+    @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)
   end
 
   def owner_account
     @owner = Owner.find(params[:id])
     @subscriptions_count = @owner.subscriptions.count
-    @subscriptions = Subscription.where.not(name: nil).size
+    @subscriptions = @owner.subscriptions.where(owner_id: @owner.id)
+    @private_stores_count = @owner.private_stores.count
+    @private_stores = @owner.private_stores.where(owner_id: @owner.id)  
   end
 
   def edit

@@ -21,7 +21,7 @@ class PrivateStoreUserPlansController < ApplicationController
   # トライアルプラン
   def new
     @private_store = PrivateStore.find(params[:id])
-	
+
     #product_key = ENV['PRODUCT_KEY']
     #unit_amount_key = ENV['UNIT_AMOUNT_KEY']
 

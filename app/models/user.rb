@@ -37,11 +37,11 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true, length: { in: Devise.password_length }, on: :create # 6..128
   validates :password, confirmation: true, length: { in: Devise.password_length }, allow_blank: true, on: :update
   validate :user_password_regex, on: :create
-  VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
-  
+  # VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
 
-  
-  validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
+
+
+  # validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
 
   #パスワードバリデーションメソッド
   def user_password_regex
