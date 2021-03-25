@@ -36,9 +36,7 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter_owner
   end
 
-  def line_owner
-    basic_action :line_owner
-  end
+  def line_owner; basic_action end
 
   private
 
@@ -55,7 +53,7 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
         @profile.set_values(@omniauth)
         sign_in(:owner, @profile)
-        # redirect_to edit_owner_path(@profile.user.id) and return
+        redirect_to owner_account_path(@profile.owner.id) and return
         OwnerMailer.with(owner: @owner).welcome_email.deliver_now
         OwnerMailer.with(owner: @owner).notice_owner_joining_email.deliver_now
       end
@@ -63,6 +61,7 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     flash[:notice] = "ログインしました"
     redirect_to owner_path(@profile)
   end
+
 
 
   def callback_from(provider) # facebook, twitter ログイン用メソッドです

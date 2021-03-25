@@ -20,7 +20,7 @@
       <div class="col-lg-7 col-xl-8">
         <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
         <p class="dark-grey-text"><%= subscription.title %></p>
-        <%= link_to "サブスクしてみる", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id, shop_id: subscription.shop_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+        <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id, shop_id: subscription.shop_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
       </div>
     </div>
     <hr class="my-3">
