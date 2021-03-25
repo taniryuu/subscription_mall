@@ -74,11 +74,11 @@ class ApplicationController < ActionController::Base
   end
 
   # 未認証ならトップページにリダイレクトされる。
-  def sms_auth_false?
-    unless current_user.sms_auth?
-      redirect_to sms_auth_users_url
-    end
-  end
+  # def sms_auth_false?
+  #   unless current_user.sms_auth?
+  #     redirect_to sms_auth_users_url
+  #   end
+  # end
 
     # 現在ログインしているユーザーを許可します。
   def login_current_user
