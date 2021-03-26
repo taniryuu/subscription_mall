@@ -50,7 +50,7 @@ class PrivateStoreUserPlansController < ApplicationController
         current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
 
      end
-   end
+    end
 
   end
 

@@ -149,8 +149,8 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :search # ユーザーの名前であいまい検索 追加分
-      get "sms_auth", to: "sms#new"
-      post "sms_auth", to: "sms#confirm"
+      # get "sms_auth", to: "sms#new"
+      # post "sms_auth", to: "sms#confirm"
     end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
     # get 'subscriptions/:id/edit_favorite', to: "subscriptions#edit_favorite", as: :edit_favorite#お気に入り店舗に加えるたり外すよう
