@@ -60,17 +60,15 @@ class User < ApplicationRecord
     user = User.where(uid: auth.uid, provider: auth.provider).first
     unless user
       begin
-        user = User.create(
+        user = User.new(
           uid:      auth.uid,
           provider: auth.provider,
           email:    auth.info.email,
           name:  auth.info.name,
           password: Devise.friendly_token[0, 20]
         )
-        user.save(:validate => false)
+        user.save!(:validate => false)
       rescue StandardError => error
-        puts notice
-        puts error
         user
       end
     end
