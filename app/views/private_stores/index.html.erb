@@ -17,7 +17,7 @@
         </div>
         <div class="col-sm-2">
           商品タイトル
-	</div>
+        </div>
       </div>
     </thead>
   <% end %>
@@ -28,7 +28,7 @@
       <div class="row">
         <div class="col-sm-1">
           <%= private_store.ordinal %>
-	</div>
+        </div>
 
         <div class="col-sm-2">
           <%= private_store.name %>
@@ -39,7 +39,7 @@
         </div>
         <% if current_admin.present? || current_owner.present? %>
           <div class="col-sm-1 tool--item">
-            <%= link_to "instagram投稿", new_instablog_path(private_store_id: private_store), class: "btn-gradient-3d-simple" %>
+            <%= link_to "instagram投稿", new_private_store_instablog_path(private_store_id: private_store), class: "btn-gradient-3d-simple" %>
           </div>
         <% end %>
         <div class="col-sm-1 tool--item">

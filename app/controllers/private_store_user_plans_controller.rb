@@ -27,30 +27,54 @@ class PrivateStoreUserPlansController < ApplicationController
 
     #product_array = product_key.split
     #unit_amount_array = unit_amount_key.split
-
-    PrivateStore.count.times do |i|
-
-      if @private_store.ordinal == i + 1
-        @private_store_plan = Stripe::Checkout::Session.create(
-          payment_method_types: ['card'],
-         customer_email: current_user.email,
-          line_items: [{
-            price_data: {
-              currency: 'jpy',
-               product: @private_store.product_id,
-           unit_amount: @private_store.price,
-             recurring: {interval: "month"}
-            },
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          success_url: private_store_success_url,
-          cancel_url: private_store_cancel_url,
-        )
-        current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
-
-     end
+    if Rails.env.development? || Rails.env.test?
+      PrivateStore.count.times do |i|
+        if @private_store.ordinal == i + 1
+          @private_store_plan = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+          customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: @private_store.product_id,
+            unit_amount: @private_store.price,
+              recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: private_store_success_url,
+            cancel_url: private_store_cancel_url,
+          )
+          current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
+        end
+      end
     end
+    if Rails.env.production?
+      PrivateStore.count.times do |i|
+        if @private_store.ordinal == i + 1
+          @private_store_plan = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+          customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: @private_store.product_id,
+            unit_amount: @private_store.price,
+              recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: private_store_success_url,
+            cancel_url: private_store_cancel_url,
+          )
+          current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
+        end
+      end
+    end
+
+
 
   end
 

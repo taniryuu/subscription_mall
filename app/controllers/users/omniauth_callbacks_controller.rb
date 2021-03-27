@@ -59,7 +59,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           UserMailer.with(user: @user).notice_user_joining_email.deliver_now # adminへ通知メール
         end
         flash[:notice] = "ログインしました"
-        redirect_to user_path(@profile)
+        redirect_to root_url
       end
     end
 
