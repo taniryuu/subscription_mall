@@ -1167,13 +1167,33 @@
     </div>
 
 
-    <div class="autoplay">
+    <div class="autoplay-test">
         <div class="b">1</div>
         <div class="b">2</div>
         <div class="b">3</div>
         <div class="b">4</div>
         <div class="b">5</div>
     </div>
+
+
+    <div class="autoplay" style="background-color: #99cc00">
+      <% @subscriptions.each do |subscription| %>
+
+        <div class="b" style="background-color: #ff1493">
+          <% if subscription.image_subscription.present? %>
+            <%= image_tag subscription.image_subscription_url %>
+          <% end %>
+        </div>
+
+
+
+      <% end%>
+    </div>
+
+
+
+
+
 
 
 
@@ -1259,6 +1279,14 @@
           slidesToScroll: 1,
           autoplay: true,
           autoplaySpeed: 2000,  //ここまでテストスライダー２記述
+          responsive: [{
+                        breakpoint: 992,
+                              settings: {
+                                  slidesToShow: 1,
+                                  slidesToScroll: 1,
+                        }
+                    }
+                    ]
         });
 
       });
