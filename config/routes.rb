@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   resource :admin, except: %i(new create destroy) do
     get 'account', on: :collection #アカウントページ
     member do
+      get 'private_owner_edit'
+      patch 'private_owner_update' #
       get 'owner_edit' #個人情報編集
       patch 'owner_update' #個人情報編集
       get 'user_edit' #
