@@ -1167,6 +1167,16 @@
     </div>
 
 
+    <div class="autoplay">
+        <div class="b">1</div>
+        <div class="b">2</div>
+        <div class="b">3</div>
+        <div class="b">4</div>
+        <div class="b">5</div>
+    </div>
+
+
+
     <div class="center">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
@@ -1239,9 +1249,17 @@
           autoplaySpeed: 4000, //再生スピード
           });
 
-        $('.a').slick({
+        $('.a').slick({   //ここからテストスライダー記述
               dots: true,
-          });
+          });             //ここまでテストスライダー記述
+
+
+        $('.autoplay').slick({  //ここからテストスライダー２記述
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,  //ここまでテストスライダー２記述
+        });
 
       });
     </script>
