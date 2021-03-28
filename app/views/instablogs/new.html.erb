@@ -17,3 +17,19 @@
 
 <% end %>
 
+<h1>インスタグラム ブログ</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="instablog">
+      <% @instablogs.each do |instablog| %>
+        <%= instablog.insta_content.html_safe %>
+        <% if current_owner.present? && current_owner.id == @subscription.owner_id %>
+        <%= link_to "削除する", instablog_path(instablog), method: :delete, class: "btn btn-danger", data: { confirm: "投稿を削除してよろしいですか？" } %>
+        <% end %>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
+

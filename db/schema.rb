@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210306142407) do
+ActiveRecord::Schema.define(version: 20210328072325) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -374,6 +374,7 @@ ActiveRecord::Schema.define(version: 20210306142407) do
     t.integer "private_store_id"
     t.datetime "deleted_at"
     t.string "info"
+    t.boolean "used_trial", default: false, null: false
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

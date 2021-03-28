@@ -72,6 +72,7 @@ class User < ApplicationRecord
           UserMailer.with(user: @user).notice_user_joining_email.deliver_now
         end
       rescue StandardError => error
+        error.full_message
         user
       end
     else
