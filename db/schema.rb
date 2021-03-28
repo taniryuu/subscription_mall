@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
+    t.string "admin_private_check"
     t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"

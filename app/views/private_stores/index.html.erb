@@ -9,6 +9,9 @@
   <% else %>
     <thead>
       <div class="row">
+        <div class="col-sm-2">
+          個人店舗の状況
+        </div>
         <div class="col-sm-1">
           ordinal
         </div>
@@ -26,14 +29,17 @@
     <% @private_stores.each do |private_store| %>
     <hr class="tool-bar">
       <div class="row">
+        <div class="col-sm-2">
+          <span class="badge badge-info">
+            <%= private_store.admin_private_check %>
+          </span>
+        </div>
         <div class="col-sm-1">
           <%= private_store.ordinal %>
         </div>
-
         <div class="col-sm-2">
           <%= private_store.name %>
         </div>
-
         <div class="col-sm-2">
           <%= private_store.title %>
         </div>

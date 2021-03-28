@@ -186,6 +186,7 @@ class PrivateStoresController < ApplicationController
                                               :sub_image10,
                                               :sub_image11,
                                               :sub_image12,
+                                              :admin_private_check,
                                               :private_store_detail,
                                               :price,
                                               :category_id,
