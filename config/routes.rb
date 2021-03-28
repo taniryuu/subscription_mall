@@ -115,7 +115,7 @@ Rails.application.routes.draw do
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
       get 'user_email' #経営者から利用者へメール作成
-      post 'to_user_email' 
+      post 'to_user_email'
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do

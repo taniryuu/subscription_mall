@@ -69,6 +69,7 @@ class User < ApplicationRecord
         )
         user.save(:validate => false)
       rescue StandardError => error
+        error.full_message
         user
       end
     end
