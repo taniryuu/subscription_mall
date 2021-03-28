@@ -76,7 +76,7 @@
         <span class="badge badge-primary">個人店舗</span>
           <h4 class="font-weight-bold mb-3"><strong><%= private_store.name %></strong></h4>
           <p class="dark-grey-text"><%= private_store.title %></p>
-          <%= link_to "サブスクしてみる", owner_private_store_path(private_store.id, owner_id: private_store.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+          <%= link_to "詳細", owner_private_store_path(private_store.id, owner_id: private_store.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
         </div>
       </div>
       <hr class="my-3">
