@@ -1176,12 +1176,19 @@
     </div>
 
 
-    <div class="autoplay" style="background-color: #99cc00">
+    <div class="autoplay">
       <% @subscriptions.each do |subscription| %>
 
-        <div class="b" style="background-color: #ff1493">
+        <div class="recommended-box">
           <% if subscription.image_subscription.present? %>
             <%= image_tag subscription.image_subscription_url %>
+            <div class="recommended-inner-box">
+              <div class="">
+                <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+              </div>
+            </div>
           <% end %>
         </div>
 
@@ -1280,15 +1287,20 @@
           autoplay: true,
           autoplaySpeed: 2000,  //ここまでテストスライダー２記述
           responsive: [{
-                        breakpoint: 992,
+                        breakpoint: 720,
+                              settings: {
+                                  slidesToShow: 2,
+                                  slidesToScroll: 1,
+                        }
+                    },{
+                        breakpoint: 480,
                               settings: {
                                   slidesToShow: 1,
                                   slidesToScroll: 1,
+                              }
                         }
-                    }
                     ]
         });
-
       });
     </script>
 
