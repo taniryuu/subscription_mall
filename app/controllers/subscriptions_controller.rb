@@ -23,6 +23,7 @@ class SubscriptionsController < ApplicationController
     @sub_images = @subscription.images
     @reviews = @subscription.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
+
   end
 
   def like_lunch
@@ -179,6 +180,7 @@ class SubscriptionsController < ApplicationController
                                               :price,
                                               :category_id,
                                               :owner_id,
+					      :trial,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
                                               # { :category_ids=> [] }
                                             )

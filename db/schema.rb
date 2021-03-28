@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.string "product_id"
+    t.boolean "trial", default: false
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -278,6 +279,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
+    t.boolean "trial", default: false
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -305,6 +307,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
 
   create_table "ticket_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date "use_ticket_day_log"
+    t.integer "price"
+    t.string "trial"
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -331,6 +335,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "subscription_fee"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
+    t.boolean "trial"
+    t.integer "price"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
