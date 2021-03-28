@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   resource :admin, except: %i(new create destroy) do
     get 'account', on: :collection #アカウントページ
     member do
+      get 'private_owner_edit'
+      patch 'private_owner_update' #
       get 'owner_edit' #個人情報編集
       patch 'owner_update' #個人情報編集
       get 'user_edit' #
@@ -115,7 +117,7 @@ Rails.application.routes.draw do
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
       get 'user_email' #経営者から利用者へメール作成
-      post 'to_user_email' 
+      post 'to_user_email'
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do

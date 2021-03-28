@@ -1,0 +1,22 @@
+<% provide(:title, "Edit") %>
+
+<h1><%= @owner.name %>様の商品情報の編集</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 mx-auto">
+    <%= form_with(model: @private_store, url: private_owner_update_admin_path(owner_id: @owner.id), local: true) do |f| %>
+      
+      <%= f.hidden_field :id, :value => @private_store.id %>
+      
+      <div class="field mb-3">
+        <%= f.label :product_id, class: "form-label" %>
+        <%= f.text_field :product_id, required: true, class: "form-control" %>
+      </div>
+      
+
+      <div class="field mb-3">
+        <%= f.submit "更新", class: "btn btn-primary btn-block" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
