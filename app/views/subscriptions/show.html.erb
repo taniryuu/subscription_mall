@@ -21,7 +21,11 @@
                   <%= @subscription.category.name %>
                   </span>
                 <br>
-                <span class="badge badge-success">加盟店</span>
+		<% if @subscription.trial %>
+		  <span class="badge badge-warning">トライアル</span>
+                <% else %>
+		  <span class="badge badge-success">加盟店</span>
+		<% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.address.present? %>
@@ -35,7 +39,7 @@
                     <p></p>
                   <% end %><br>
               <% if @payment.present? %>
-                <% if current_user.user_price  === 1000 %>
+                <% if @subscription.trial %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
                 <% elsif @subscription.price.to_i < current_user.user_price %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>

@@ -27,6 +27,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.text :address
       t.float :latitude
       t.float :longitude
+      t.boolean :trial, default: false
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true
