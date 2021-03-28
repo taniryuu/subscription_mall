@@ -108,6 +108,10 @@
     <%= form.text_field :product_id, placeholder: "管理者入力項目なので空欄のままでお願いします", class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :trial %>
+    <%= form.select :trial, [['非参加', false],['参加', true]], { selected: false }, class: 'form-control' %>
+  </div>
 
   <div class="actions">
     <%= form.submit "個人店舗登録の申請" %>

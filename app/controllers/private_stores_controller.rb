@@ -192,6 +192,7 @@ class PrivateStoresController < ApplicationController
                                               :category_id,
                                               :owner_id,
                                               :product_id,
+					      :trial,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
                                               #{ :category_ids=> [] }
                                             )

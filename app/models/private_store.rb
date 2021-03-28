@@ -22,6 +22,7 @@ class PrivateStore < ApplicationRecord
   validates :qr_image, presence: true, allow_blank: true
   validates :category_id, presence: true
   validates :price, presence: true
+  #validates :trial, presence: true
   #validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
   validates :product_id, presence: true, allow_blank: true
 
