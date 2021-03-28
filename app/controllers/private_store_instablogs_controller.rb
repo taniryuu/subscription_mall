@@ -5,6 +5,7 @@ class PrivateStoreInstablogsController < ApplicationController
 
   def show
     @private_store = PrivateStore.find(params[:id])
+    @private_store_instablogs_count = @private_store.private_store_instablogs.count
     @private_store_instablogs = @private_store.private_store_instablogs.where(params[:private_store_id]).order(created_at: :desc)
   end
 

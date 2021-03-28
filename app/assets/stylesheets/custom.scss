@@ -86,7 +86,21 @@ textarea {
 //詳細、編集リンクボタン
 .btn-gradient-3d-simple {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 1em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #5e7fca;
+}
+
+//詳細、編集リンクボタン
+.btn-gradient-3d-simple1 {
+  width: 180px;
+  height: 50px;
+  display: inline-block;
+  padding: 1em 1em;
   text-decoration: none;
   border-radius: 4px;
   color: #ffffff;
@@ -113,6 +127,11 @@ textarea {
 }
 .subject-right {
   text-align: right;
+}
+
+.account-btn {
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 /* typography */

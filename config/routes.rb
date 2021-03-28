@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   resource :admin, except: %i(new create destroy) do
     get 'account', on: :collection #アカウントページ
     member do
+      get 'private_owner_edit'
+      patch 'private_owner_update' #
       get 'owner_edit' #個人情報編集
       patch 'owner_update' #個人情報編集
       get 'user_edit' #
@@ -149,8 +151,8 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :search # ユーザーの名前であいまい検索 追加分
-      get "sms_auth", to: "sms#new"
-      post "sms_auth", to: "sms#confirm"
+      # get "sms_auth", to: "sms#new"
+      # post "sms_auth", to: "sms#confirm"
     end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
     # get 'subscriptions/:id/edit_favorite', to: "subscriptions#edit_favorite", as: :edit_favorite#お気に入り店舗に加えるたり外すよう

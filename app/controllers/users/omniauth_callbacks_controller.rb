@@ -54,13 +54,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
           @profile.set_values(@omniauth)
           sign_in(:user, @profile)
-          # redirect_to edit_user_path(@profile.user.id) and return
+          redirect_to user_account_path(@profile.user.id) and return
+          UserMailer.with(user: @user).welcome_email.deliver_now
+          UserMailer.with(user: @user).notice_user_joining_email.deliver_now # adminへ通知メール
         end
+        flash[:notice] = "ログインしました"
+        redirect_to root_url
       end
-      flash[:notice] = "ログインしました"
-      redirect_to user_path(@profile)
     end
-
 
     # 元々omniauth_callback_controller.rbにあるメッソド def callback_from(provider) # facebook, twitter ログイン用メソッドです
     def callback_from(provider) # facebook, twitter ログイン用メソッドです
@@ -72,8 +73,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
         sign_in_and_redirect @user, event: :authentication
       else
+        flash[:notice] = "既に別のSNSで登録されています"
         session["devise.#{provider}_data"] = request.env['omniauth.auth'].except("extra")
-        redirect_to new_user_registration_url
+        redirect_to new_user_session_url
       end
     end
 end

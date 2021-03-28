@@ -11,7 +11,6 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="bs-navi">
             <ul class="navbar-nav">
-              <li class="login"><%= link_to "利用者様管理", users_path %></li>
               <li class="login"><%= link_to "ショップ開設", subscription_private_store_select_owner_path(current_owner) %></li>
               <li class="new-user"><%= link_to "マイアカウント", owner_account_owner_path(current_owner) %></li>
               <li class="logout"><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
@@ -95,19 +94,3 @@
     </div>
   <% end %>
 </header>
-<script type="text/javascript">
-  if(!window._pt_sp_2){
-    window._pt_lt = new Date().getTime();
-    window._pt_sp_2 = [];
-    _pt_sp_2.push("setAccount,11882d9b");
-    var _protocol =(("https:" == document.location.protocol) ? " https://" : " http://");
-    (function() {
-      var atag = document.createElement("script");
-      atag.type = "text/javascript";
-      atag.async = true;
-      atag.src = _protocol + "js.ptengine.jp/11882d9b.js";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(atag, s);
-    })();
-  }
-</script>
