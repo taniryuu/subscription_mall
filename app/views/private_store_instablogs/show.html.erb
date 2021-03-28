@@ -4,6 +4,9 @@
 <div class="container">
   <div class="row">
     <div class="instablog">
+    <% if @private_store_instablogs_count < 1 %>
+      <h1>登録されていません</h1>
+    <% else %>
       <% @private_store_instablogs.each do |instablog| %>
         <%= instablog.insta_content.html_safe %>
         <% if current_owner.present? && current_owner.id == @private_store.owner_id %>
@@ -11,6 +14,7 @@
         <% end %>
         <hr>
       <% end %>
+    <% end %>
     </div>
   </div>
 </div>

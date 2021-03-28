@@ -58,23 +58,25 @@ class User < ApplicationRecord
 
   def self.find_for_oauth(auth) # facebook, twitter ログイン用メソッドです
     user = User.where(uid: auth.uid, provider: auth.provider).first
-    unless user
+    if user.blank?
       begin
-        user = User.create(
+        user = User.new(
           uid:      auth.uid,
           provider: auth.provider,
           email:    auth.info.email,
           name:  auth.info.name,
           password: Devise.friendly_token[0, 20]
         )
-        user.save(:validate => false)
+        if user.save!(:validate => false)
+          UserMailer.with(user: @user).welcome_email.deliver_now
+          UserMailer.with(user: @user).notice_user_joining_email.deliver_now
+        end
       rescue StandardError => error
-        puts notice
-        puts error
         user
       end
+    else
+      user
     end
-    user
   end
 
   # has_many :social_profiles, dependent: :destroy
