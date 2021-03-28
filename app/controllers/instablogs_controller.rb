@@ -11,6 +11,7 @@ class InstablogsController < ApplicationController
   def new
     @instablog = Instablog.new
     @subscription = Subscription.find(params[:subscription_id])
+    @instablogs = @subscription.instablogs.where(params[:subscription_id]).order(created_at: :desc)
   end
 
   def create
