@@ -6,6 +6,7 @@
   <%= render 'shared/error_messages' , object: @private_store %>
 
   <%= form.hidden_field :owner_id, :value => @owner.id %>
+  <%= form.hidden_field :admin_private_check, :value => "個人店舗の申請中" %>
 
   <div class="field">
     <%= form.label :お店の名前 %> <span class="must">必須</span><br/>
@@ -98,18 +99,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :price %> <span class="must">必須</span><br/>
+    <%= form.label :price %> <span class="must">必須</span> <span>※（あとから変更はできませんのでご注意ください。個人店舗の場合ショップデータ反映まで1日かかります。）</span><br/>
     <%= form.number_field :price, id: :private_store_price, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :商品_ID %>
-    <%= form.text_field :product_id, class: 'form-control' %>
+    <%= form.text_field :product_id, placeholder: "管理者入力項目なので空欄のままでお願いします", class: 'form-control' %>
   </div>
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "個人店舗登録の申請" %>
   </div>
 <% end %>
 <%= link_to 'トップ', root_path %> |

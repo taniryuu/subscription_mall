@@ -245,7 +245,7 @@
               <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
               <% if current_owner.present? %>
-                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ", private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                 <% if @private_store.qr_image.present? %>
                   <%= image_tag @private_store.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                   <p>LINE@招待コード</p>
@@ -253,7 +253,7 @@
                   <p>お問い合わせ※QRコードが登録されていません</p>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                 <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn btn-outline-warning btn-rounded" %><br>
                   <% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
@@ -272,7 +272,7 @@
                     <p>お問い合わせ※QRコードが登録されていません</p>
                   <% end %>
               <% else %>
-                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                   <br><% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
                   <% else %>

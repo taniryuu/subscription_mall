@@ -23,7 +23,7 @@ class PrivateStore < ApplicationRecord
   validates :category_id, presence: true
   validates :price, presence: true
   #validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
-  validates :product_id, presence: true
+  validates :product_id, presence: true, allow_blank: true
 
   geocoded_by :address
   after_validation :geocode

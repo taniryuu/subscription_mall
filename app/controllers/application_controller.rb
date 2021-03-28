@@ -2,8 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include ApplicationHelper
   #本番環境ででErrorが発生したらrescue500,rescue404で処理を行う
-  # rescue_from StandardError, with: :rescue500
-  # rescue_from ActiveRecord::RecordNotFound, with: :rescue404
+  if Rails.env.production?
+    rescue_from StandardError, with: :rescue500
+    rescue_from ActiveRecord::RecordNotFound, with: :rescue404
+  end
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
@@ -138,13 +140,11 @@ class ApplicationController < ActionController::Base
     private
 
     def rescue400(e)
-      render "errors/not_found", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 404
+        render "errors/not_found", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 404
     end
 
     #引数eを指定。errorオブジェクトが入る
     def rescue500(e)
-      render "errors/server_error", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 500
+        render "errors/server_error", notice: '表示できないページです。サイトに戻り巡グルメをお楽しみください。', status: 500
     end
-
-
 end
