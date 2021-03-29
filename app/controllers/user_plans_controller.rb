@@ -38,7 +38,7 @@ class UserPlansController < ApplicationController
         success_url: success_url,
         cancel_url: cancel_url,
       )
-      current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+      current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal, used_trial: true)
     end
     if Rails.env.production?
       @trial_plan = Stripe::Checkout::Session.create(
