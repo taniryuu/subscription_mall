@@ -1160,21 +1160,6 @@
     </div>
     <hr class="border-solid-down" />
 
-    <div class="a">
-        <div class="b">1</div>
-        <div class="b">2</div>
-        <div class="b">3</div>
-    </div>
-
-
-    <div class="autoplay-test">
-        <div class="b">1</div>
-        <div class="b">2</div>
-        <div class="b">3</div>
-        <div class="b">4</div>
-        <div class="b">5</div>
-    </div>
-
 
     <div class="autoplay">
       <% @subscriptions.each do |subscription| %>
@@ -1276,25 +1261,21 @@
           autoplaySpeed: 4000, //再生スピード
           });
 
-        $('.a').slick({   //ここからテストスライダー記述
-              dots: true,
-          });             //ここまでテストスライダー記述
-
-
-        $('.autoplay').slick({  //ここからテストスライダー２記述
-          slidesToShow: 3,
+        var slidesToshow_val = 3;
+        $('.autoplay').slick({  //ここからオススメ画像スライダー
+          slidesToShow: slidesToshow_val,
           slidesToScroll: 1,
-          centerMode: true,
+          centerMode: true, //要素を中央寄せにする
           autoplay: true,
-          autoplaySpeed: 2000,  //ここまでテストスライダー２記述
+          autoplaySpeed: 2000,
           responsive: [{
-                        breakpoint: 960,
+                        breakpoint: 960,  //画面幅960pxで以下のセッティング
                               settings: {
                                   slidesToShow: 2,
                                   slidesToScroll: 1,
                         }
                     },{
-                        breakpoint: 720,
+                        breakpoint: 720,   //画面幅720pxで以下のセッティング
                               settings: {
                                   slidesToShow: 1,
                                   slidesToScroll: 1,
@@ -1302,7 +1283,7 @@
                         }
                     ]
         });
-      });
+      });                     //ここまでオススメ画像スライダー
     </script>
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
