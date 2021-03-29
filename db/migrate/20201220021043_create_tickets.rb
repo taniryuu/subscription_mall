@@ -13,6 +13,8 @@ class CreateTickets < ActiveRecord::Migration[5.1]
       t.date :issue_ticket_day
       t.boolean :trial
       t.integer :price
+      t.string :trial_check
+      t.string :trial_last_check
 
       t.references :user, foreign_key: true
 

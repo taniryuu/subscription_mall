@@ -20,6 +20,8 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.string :sub_image10
       t.string :sub_image11
       t.string :sub_image12
+      t.string :trial_check
+      t.string :trial_last_check
       t.integer :category_id, index: true, foreign_key: true
       t.text :blog
       t.text :shop_introduction
@@ -27,7 +29,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.text :address
       t.float :latitude
       t.float :longitude
-      t.boolean :trial, default: false
+      t.string :trial, default: "不参加"
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true

@@ -15,10 +15,12 @@ class CategoriesController < ApplicationController
 
   def like_lunch
     @subscriptions = @category.subscriptions
-    #@subscription = Subscription.find_by(params[:id])
-    @private_stores = @category.private_stores
-    #@private_store = PrivateStore.find_by(params[:id])
-    #@owner = Owner.find(params[:id])
+    @private_stores = @category.private_stores.where(admin_private_check: "個人店舗データ反映済み")
+  end
+
+  def trial_shop
+    @subscriptions = Subscription.where(trial: "参加")
+    @private_stores = PrivateStore.where(trial: "参加")
   end
 
   def create
@@ -61,12 +63,12 @@ class CategoriesController < ApplicationController
 
   def shop_list
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @private_stores = PrivateStore.where(recommend: true).where(admin_private_check: "個人店舗データ反映済み").order(created_at: :asc).paginate(page: params[:page], per_page: 10)
   end
 
   def recommend
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @private_stores = PrivateStore.where(recommend: true).where(admin_private_check: "個人店舗データ反映済み").order(created_at: :asc).paginate(page: params[:page], per_page: 10)
   end
 
   private

@@ -42,12 +42,15 @@
       <%# ここからカードでサブスク回す %>
     <div class="row ">
       <% if (@private_stores_count < 1) && (@subscriptions_count > 1) %>
-        <h5 class="account-btn">現在、個人店サブスクの設定はありません。</h5>
+        <h5 class="account-btn">現在、個人店サブスクの設定はありません。</h5><br>
         <% @subscriptions.each do |subscription| %>
             <div class="col-sm-4">
               <div class="card">
                 <div class="card-body">
                   <span class="badge badge-success">加盟店</span>
+                  <% if subscription.trial == "参加" %>
+                    <span class="badge badge-warning">トライアル</span>
+                  <% end %>
                   <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
                   <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription, owner_id: @owner.id) %></h5>
                   <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
@@ -83,6 +86,9 @@
                 <div class="card">
                   <div class="card-body">
                   <span class="badge badge-success">加盟店</span>
+                  <% if subscription.trial == "参加" %>
+                    <span class="badge badge-warning">トライアル</span>
+                  <% end %>
                     <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
                     <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription, owner_id: @owner.id) %></h5>
                     <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
