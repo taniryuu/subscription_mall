@@ -180,7 +180,7 @@ class SubscriptionsController < ApplicationController
                                               :price,
                                               :category_id,
                                               :owner_id,
-					      :trial,
+                                              :trial,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
                                               # { :category_ids=> [] }
                                             )

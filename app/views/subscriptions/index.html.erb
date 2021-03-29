@@ -1,7 +1,7 @@
 <% provide(:title, "サブスクページ一覧") %>
 <p id="notice"><%= notice %></p>
 
-<h1 class="brand-color display-4 mt-6 mb-6">サブスクページ一覧</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">加盟サブスクページ一覧</h1>
 
 <table class="table mt-7">
   <% if @subscriptions_count < 1 %>
@@ -9,6 +9,9 @@
   <% else %>
     <thead>
       <div class="row">
+        <div class="col-sm-2">
+          トライアル状態
+        </div>
         <div class="col-sm-2">
           お店の名前
         </div>
@@ -23,9 +26,11 @@
     <hr class="tool-bar">
       <div class="row">
         <div class="col-sm-2">
+          <%= subscription.trial %>
+        </div>
+        <div class="col-sm-2">
           <%= subscription.name %>
         </div>
-
         <div class="col-sm-2">
           <%= subscription.title %>
         </div>
