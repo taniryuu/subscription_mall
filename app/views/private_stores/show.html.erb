@@ -22,6 +22,11 @@
                   </span>
                 <br>
                 <span class="badge badge-primary">個人店舗</span>
+                <% if @private_store.trial == "参加" %>
+                  <span class="badge badge-warning">トライアルでも利用可能</span>
+                <% elsif @private_store.trial == "非参加" %>
+                  <span class="badge badge-warning">トライアルチケットでは利用できません。個人店プランをお買い求めください。</span>
+                <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>
                 <p class="font-weight-normal mb-2">
                   <% if @private_store.address.present? %>
@@ -36,13 +41,16 @@
                   <% end %>
               <% if @payment.present? %>
                 <% if @private_store.price.to_i < current_user.user_price %>
-                  <%= "プラン変更は出来ません。" %>
+                  <%= "個人店の場合プラン変更は出来ません。" %>
                   <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% elsif @private_store.price.to_i == current_user.user_price %>
                   <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
                   <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
+                <% elsif @private_store.trial == "参加" && current_user.user_price == 1000 %>
+                  <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
+                  <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% else %>
-                  <%= "プラン変更は出来ません。" %>
+                  <%= "個人店の場合プラン変更は出来ません。" %>
                   <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% elsif current_user.present? %>
@@ -245,7 +253,7 @@
               <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
               <% if current_owner.present? %>
-                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ", private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                 <% if @private_store.qr_image.present? %>
                   <%= image_tag @private_store.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                   <p>LINE@招待コード</p>
@@ -253,7 +261,7 @@
                   <p>お問い合わせ※QRコードが登録されていません</p>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                 <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn btn-outline-warning btn-rounded" %><br>
                   <% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
@@ -272,7 +280,7 @@
                     <p>お問い合わせ※QRコードが登録されていません</p>
                   <% end %>
               <% else %>
-                <%= link_to "ブログ",instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                   <br><% if @private_store.owner.address.present? %>
                     　　　住所：<%= @private_store.owner.address %>
                   <% else %>

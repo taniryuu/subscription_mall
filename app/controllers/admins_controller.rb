@@ -92,7 +92,7 @@ class AdminsController < ApplicationController
     end
 
     def private_owner_params
-      params.require(:private_store).permit(:id, :product_id)
+      params.require(:private_store).permit(:id, :product_id, :admin_private_check)
     end
 
     def admin_lock

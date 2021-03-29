@@ -40,14 +40,17 @@
       </div>
     </div>
       <%# ここからカードでサブスク回す %>
-    <% if (@private_stores_count < 1) && (@subscriptions_count > 1) %>
-      <h5 class="account-btn">現在、個人店サブスクの設定はありません。</h5>
-      <div class="row ">
+    <div class="row ">
+      <% if (@private_stores_count < 1) && (@subscriptions_count > 1) %>
+        <h5 class="account-btn">現在、個人店サブスクの設定はありません。</h5><br>
         <% @subscriptions.each do |subscription| %>
             <div class="col-sm-4">
               <div class="card">
                 <div class="card-body">
                   <span class="badge badge-success">加盟店</span>
+                  <% if subscription.trial == "参加" %>
+                    <span class="badge badge-warning">トライアル</span>
+                  <% end %>
                   <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
                   <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription, owner_id: @owner.id) %></h5>
                   <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
@@ -56,51 +59,60 @@
               </div>
             </div>
         <% end %></br>
-    <% elsif @subscriptions_count < 1 && @private_stores_count > 1 %>
-      <h5>現在、加盟店サブスクの設定はありません。</h5>
-        <% @private_stores.each do |private_store| %>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                <span class="badge badge-primary">個人店舗</span>
-                  <h5 class="card-title">お店の名前：<%= check_not_set(private_store.name) %></h5>
-                  <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
-                  <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
-                  <p class="card-title"><%= link_to "編集", edit_owner_private_store_path(private_store, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %></p>
+      <% elsif @subscriptions_count < 1 && @private_stores_count > 1 %>
+        <h5>現在、加盟店サブスクの設定はありません。</h5>
+          <% @private_stores.each do |private_store| %>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                  <span class="badge badge-primary">個人店舗</span>
+                  <span class="badge badge-info">
+                    <%= private_store.admin_private_check %>
+                  </span>
+                    <h5 class="card-title">お店の名前：<%= check_not_set(private_store.name) %></h5>
+                    <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
+                    <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
+                    <p class="card-title"><%= link_to "編集", edit_owner_private_store_path(private_store, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-        <% end %></br>
-    <% elsif @subscriptions_count < 1 && @private_stores_count < 1 %>
-      <h5>現在、加盟店サブスクの設定はありません。</h5>
-      <h5>現在、個人店サブスクの設定はありません。</h5>
-    <% else %>
-        <% @subscriptions.each do |subscription| %>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                <span class="badge badge-success">加盟店</span>
-                  <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
-                  <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription, owner_id: @owner.id) %></h5>
-                  <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
-                  <p class="card-title"><%= link_to "編集", edit_owner_subscription_path(subscription, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %></p>
+          <% end %></br>
+      <% elsif @subscriptions_count < 1 && @private_stores_count < 1 %>
+        <h5>現在、加盟店サブスクの設定はありません。</h5>
+        <h5>現在、個人店サブスクの設定はありません。</h5>
+      <% else %>
+          <% @subscriptions.each do |subscription| %>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                  <span class="badge badge-success">加盟店</span>
+                  <% if subscription.trial == "参加" %>
+                    <span class="badge badge-warning">トライアル</span>
+                  <% end %>
+                    <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
+                    <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription, owner_id: @owner.id) %></h5>
+                    <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
+                    <p class="card-title"><%= link_to "編集", edit_owner_subscription_path(subscription, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-        <% end %></br>
-        <% @private_stores.each do |private_store| %>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                <span class="badge badge-primary">個人店舗</span>
-                  <h5 class="card-title">お店の名前：<%= check_not_set(private_store.name) %></h5>
-                  <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
-                  <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
-                  <p class="card-title"><%= link_to "編集", edit_owner_private_store_path(private_store, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %></p>
+          <% end %></br>
+          <% @private_stores.each do |private_store| %>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                  <span class="badge badge-primary">個人店舗</span>
+                  <span class="badge badge-info">
+                    <%= private_store.admin_private_check %>
+                  </span>
+                    <h5 class="card-title">お店の名前：<%= check_not_set(private_store.name) %></h5>
+                    <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
+                    <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
+                    <p class="card-title"><%= link_to "編集", edit_owner_private_store_path(private_store, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-        <% end %></br>
-      </div>
-    <% end %>
+          <% end %></br>
+      <% end %>
+    </div>
 </div>

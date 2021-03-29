@@ -9,9 +9,15 @@ class PrivateStoresController < ApplicationController
 
   # GET /private_stores
   # GET /private_stores.json
+  ##各経営者のサブスク一覧
   def index
     @private_stores = @owner.private_stores
     @private_stores_count = @owner.private_stores.count
+  end
+
+  def private_all_shop
+    @private_stores = PrivateStore.where(admin_private_check: "個人店舗データ反映済み")
+    @private_stores_count = PrivateStore.where(admin_private_check: "個人店舗データ反映済み").count
   end
 
   def owner_private_stores
@@ -52,25 +58,6 @@ class PrivateStoresController < ApplicationController
     end
   end
 
-  # def favorite
-  #   @private_stores = @user.private_stores.where(favorite: true, user_id: current_user.id)
-  # end
-
-  # def edit_favorite
-  # end
-
-  # def update_favorite
-  #   if @private_store.favorite == false
-  #     if @private_store.update(favorite: true, user_id: current_user.id)
-  #       flash[:success] = "お気に入り店舗に加えました。"
-  #     end
-  #   elsif @private_store.favorite == true
-  #     if @private_store.update(favorite: false, user_id: nil)
-  #       flash[:success] = "お気に入り店舗に加えました。"
-  #     end
-  #   end
-  #   redirect_to user_account_user_url(current_user)
-  # end
 
   # GET /private_stores/1
   # GET /private_stores/1.json
@@ -186,6 +173,7 @@ class PrivateStoresController < ApplicationController
                                               :sub_image10,
                                               :sub_image11,
                                               :sub_image12,
+                                              :admin_private_check,
                                               :private_store_detail,
                                               :price,
                                               :category_id,

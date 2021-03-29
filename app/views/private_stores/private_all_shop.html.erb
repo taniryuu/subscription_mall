@@ -1,38 +1,9 @@
 <% provide(:title, "カテゴリー") %>
 
-<h1><%= @category.name %></h1>
+<h1>個人店舗のお店一覧</h1>
 
 <hr class="my-3">
 
-<% @subscriptions.each do |subscription| %>
-  <div class="container mt-5">
-    <section class="dark-grey-text">
-      <div class="row align-items-center">
-        <div class="col-lg-5 col-xl-3">
-          <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-            <% if subscription.image_subscription.present? %>
-              <%= image_tag subscription.image_subscription_url, width: '100%' %>
-            <% else %>
-              <p></p>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-lg-7 col-xl-8">
-        <span class="badge badge-success">加盟店</span>
-          <% if subscription.trial == "参加" %>
-            <span class="badge badge-warning">トライアルでも利用可能</span>
-          <% elsif subscription.trial == "非参加" %>
-            <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
-          <% end %>
-          <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
-          <p class="dark-grey-text"><%= subscription.title %></p>
-          <%= link_to "詳細", owner_subscription_path(subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
-        </div>
-      </div>
-      <hr class="my-3">
-    </section>
-  </div>
-<% end%>
 
 <% @private_stores.each do |private_store| %>
   <div class="container mt-5">

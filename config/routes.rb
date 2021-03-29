@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     post 'users/sign_up/complete', to: 'users/registrations#complete'
     get "/devise/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
     get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
-    get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
+    get "/users/auth/line/callback" => "users/omniauth_callbacks#line"
     get 'users/sign_up', to: 'users#new'
   end
 
@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   devise_scope :owner do
     get "/devise/auth/facebook_owner/callback" => "owners/omniauth_callbacks#facebook_owner"
     get "/devise/auth/twitter_owner/callback" => "owners/omniauth_callbacks#twitter_owner"
-    get "/devise/auth/line_owner/callback" => "owners/omniauth_callbacks#line_owner"
+    get "/owners/auth/line/callback" => "owners/omniauth_callbacks#line_owner"
   end
 
   devise_scope :owner do
@@ -84,7 +84,8 @@ Rails.application.routes.draw do
     get 'account', on: :collection #アカウントページ
     member do
       get 'private_owner_edit'
-      patch 'private_owner_update' #
+      patch 'private_owner_update'
+      # patch 'private_stores/:private_stores_id/private_owner_update', to: 'admins#private_owner_update', as: :private_owner_update
       get 'owner_edit' #個人情報編集
       patch 'owner_update' #個人情報編集
       get 'user_edit' #
@@ -117,7 +118,7 @@ Rails.application.routes.draw do
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
       get 'user_email' #経営者から利用者へメール作成
-      post 'to_user_email' 
+      post 'to_user_email'
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do
@@ -133,13 +134,13 @@ Rails.application.routes.draw do
       member do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
-	#get "confirm", to: "private_store_user_plans#confirm"
-	#get "update_confirm", to: "private_store_user_plans#update_confirm"
-	#get 'plans_new', to: "private_store_user_plans#new", as: 'plans_new' #利用者のプラン内容
-	#get "plans_edit", to: "private_store_user_plans#edit", as: 'plans_edit'
-        #patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
-	#delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
-	get '/owner_private_stores', to: "private_stores#owner_private_stores", as: :owner_private_stores
+        #get "confirm", to: "private_store_user_plans#confirm"
+        #get "update_confirm", to: "private_store_user_plans#update_confirm"
+        #get 'plans_new', to: "private_store_user_plans#new", as: 'plans_new' #利用者のプラン内容
+        #get "plans_edit", to: "private_store_user_plans#edit", as: 'plans_edit'
+              #patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
+        #delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
+        get '/owner_private_stores', to: "private_stores#owner_private_stores", as: :owner_private_stores
       end
     end
   end
@@ -147,6 +148,8 @@ Rails.application.routes.draw do
   resources :categories, only: %i(index) do
       get 'like_lunch', on: :member
   end
+  get 'categories/trial_shop', to: 'categories#trial_shop', as: :trial_shop#トライアルのお店一覧
+  get 'private_stores/private_all_shop', to: 'private_stores#private_all_shop', as: :private_all_shop#個人店舗のお店一覧
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
     collection do
