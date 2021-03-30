@@ -92,10 +92,14 @@
     <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリを選択してください", class: 'form-control') %>
   </div>
 
-
   <div class="field">
     <%= form.label :加入プラン %> <span class="must">必須</span><br/>
     <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trial %>
+    <%= form.select :trial, [['非参加'],['参加']], { selected: '非参加' }, class: 'form-control' %>
   </div>
 
 
