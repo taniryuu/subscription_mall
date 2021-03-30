@@ -86,7 +86,7 @@ class PrivateStoresController < ApplicationController
     respond_to do |format|
       if @private_store.save
         @private_store.update(ordinal: PrivateStore.count)
-	PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
+	#PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
         format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
         format.json { render :show, status: :created, location: @private_store }
       else
