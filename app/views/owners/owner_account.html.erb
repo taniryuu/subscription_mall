@@ -49,7 +49,7 @@
                 <div class="card-body">
                   <span class="badge badge-success">加盟店</span>
                   <% if subscription.trial == "参加" %>
-                    <span class="badge badge-warning">トライアル</span>
+                    <span class="badge badge-warning">トライアル参加済み</span>
                   <% end %>
                   <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
                   <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription, owner_id: @owner.id) %></h5>
@@ -66,6 +66,21 @@
                 <div class="card">
                   <div class="card-body">
                   <span class="badge badge-primary">個人店舗</span>
+                  <% if private_store.admin_private_check == "個人店舗データ反映済み" %>
+                    <% if private_store.trial == "参加" %>
+                      <span class="badge badge-warning">トライアル参加済み</span>
+                    <% end %>
+                    <span class="badge badge-info">
+                      <%= private_store.admin_private_check %>
+                    </span>
+                  <% elsif private_store.admin_private_check == "個人店舗の申請中" %>
+                    <% if private_store.trial == "参加" %>
+                      <span class="badge badge-warning">トライアル参加申請中</span>
+                    <% end %>
+                    <span class="badge badge-info">
+                      <%= private_store.admin_private_check %>
+                    </span>
+                  <% end %>
                   <span class="badge badge-info">
                     <%= private_store.admin_private_check %>
                   </span>
@@ -87,7 +102,7 @@
                   <div class="card-body">
                   <span class="badge badge-success">加盟店</span>
                   <% if subscription.trial == "参加" %>
-                    <span class="badge badge-warning">トライアル</span>
+                    <span class="badge badge-warning">トライアル参加済み</span>
                   <% end %>
                     <h5 class="card-title">お店の名前：<%= check_not_set(subscription.name) %></h5>
                     <h5 class="card-title"><%= link_to "サブスクのタイトル：#{subscription.title}", owner_subscription_path(subscription, owner_id: @owner.id) %></h5>
@@ -102,9 +117,21 @@
                 <div class="card">
                   <div class="card-body">
                   <span class="badge badge-primary">個人店舗</span>
-                  <span class="badge badge-info">
-                    <%= private_store.admin_private_check %>
-                  </span>
+                  <% if private_store.admin_private_check == "個人店舗データ反映済み" %>
+                    <% if private_store.trial == "参加" %>
+                      <span class="badge badge-warning">トライアル参加済み</span>
+                    <% end %>
+                    <span class="badge badge-info">
+                      <%= private_store.admin_private_check %>
+                    </span>
+                  <% elsif private_store.admin_private_check == "個人店舗の申請中" %>
+                    <% if private_store.trial == "参加" %>
+                      <span class="badge badge-warning">トライアル参加申請中</span>
+                    <% end %>
+                    <span class="badge badge-info">
+                      <%= private_store.admin_private_check %>
+                    </span>
+                  <% end %>
                     <h5 class="card-title">お店の名前：<%= check_not_set(private_store.name) %></h5>
                     <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
                     <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
