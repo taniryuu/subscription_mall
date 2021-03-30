@@ -66,9 +66,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # 元々omniauth_callback_controller.rbにあるメッソド def callback_from(provider) # facebook, twitter ログイン用メソッドです
     def callback_from(provider) # facebook, twitter ログイン用メソッドです
       provider = provider.to_s
-
       @user = User.find_for_oauth(request.env['omniauth.auth'])
-
       if @user.persisted?
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
         sign_in_and_redirect @user, event: :authentication

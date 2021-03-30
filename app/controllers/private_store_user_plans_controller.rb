@@ -34,11 +34,11 @@ class PrivateStoreUserPlansController < ApplicationController
             payment_method_types: ['card'],
           customer_email: current_user.email,
             line_items: [{
-              price_data: {
-                currency: 'jpy',
-                product: @private_store.product_id,
+            price_data: {
+            currency: 'jpy',
+            product: @private_store.product_id,
             unit_amount: @private_store.price,
-              recurring: {interval: "month"}
+            recurring: {interval: "month"}
               },
               quantity: 1,
             }],
@@ -55,15 +55,15 @@ class PrivateStoreUserPlansController < ApplicationController
         if @private_store.ordinal == i + 1
           @private_store_plan = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
-          customer_email: current_user.email,
+            customer_email: current_user.email,
             line_items: [{
-              price_data: {
-                currency: 'jpy',
-                product: @private_store.product_id,
+            price_data: {
+            currency: 'jpy',
+            product: @private_store.product_id,
             unit_amount: @private_store.price,
-              recurring: {interval: "month"}
+            recurring: {interval: "month"}
               },
-              quantity: 1,
+            quantity: 1,
             }],
             mode: 'subscription',
             success_url: private_store_success_url,

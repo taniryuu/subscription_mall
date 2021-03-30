@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   before_action :set_user, only: %i(user_edit user_update)
   before_action :set_owner, only: %i(owner_edit owner_update private_owner_edit private_owner_update)
+  before_action :set_provate_store, only: %i(private_owner_edit private_owner_update)
   before_action :login_current_admin, only: %i(user_edit owner_edit)
 
   require 'rqrcode'
@@ -56,13 +57,11 @@ class AdminsController < ApplicationController
 
   # Owner商品編集アクション
   def private_owner_edit
-    @private_store = PrivateStore.find(params[:id])
   end
 
   def private_owner_update
-    @private_store = @owner.private_stores
     if @private_store.update(private_owner_params)
-      flash[:success] = "#{@owner.name}様の商品情報を更新しました。"
+      flash[:notice] = "#{@owner.name}様の商品情報を更新しました。"
       redirect_to admins_private_stores_index_url
     else
       render :private_owner_edit
@@ -77,6 +76,10 @@ class AdminsController < ApplicationController
 
     def set_owner
       @owner = Owner.find(params[:owner_id])
+    end
+
+    def set_provate_store
+      @private_store = PrivateStore.find(params[:id])
     end
 
     def admin_params
