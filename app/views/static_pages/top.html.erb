@@ -1160,6 +1160,7 @@
     </div>
     <hr class="border-solid-down" />
 
+    <div id="subscriptions" data-subscriptions-count="<%= @subscriptions.count.to_json %>"></div>
 
     <div class="autoplay">
       <% @subscriptions.each do |subscription| %>
@@ -1260,13 +1261,13 @@
           autoplay: true, //自動再生
           autoplaySpeed: 4000, //再生スピード
           });
-
-        var slidesToshow_val = 3;  //ここからオススメ画像スライダー   表示させるデフォルト画像表示枚数を設定
+        var subscriptions_count = $('#subscriptions').data("subscriptions-count");
+        var slidesToshow_val = 3;  //ここからオススメ画像スライダー   スライダーに表示させるデフォルト画像表示枚数
         var slidesToshow_val_breakpoint_1 = 2; // breakpoint1 960px時のデフォルト画像表示枚数
 
-        var slidesToshow_leng = $('.autoplay img').length;
-                //0,1,2 < 3枚 だったら
-        if(slidesToshow_leng < slidesToshow_val){
+        var slidesToshow_leng =  subscriptions_count;
+                // @subscriptions（おすすめ店舗）が0,1,2枚 < 3枚 だったら
+        if( subscriptions_count < slidesToshow_val){
           slidesToshow_val = 1;
           slidesToshow_val_breakpoint_1 = 1;
         }
