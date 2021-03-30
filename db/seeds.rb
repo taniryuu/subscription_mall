@@ -183,35 +183,35 @@ puts "Question Created"
 
 
 
-Subscription.create!(
-  owner_id: 1,
-  category_id: 7,
-  name: "炭焼牛タン　弁慶　淵野辺店",
-  recommend: true,
-  trial: "参加",
-  title: "サンプルタイトル1",
-  shop_introduction: "焼きたて",
-  detail: "食べ放題",
-  subscription_detail: "東京都",
-  price: "3000",
-  image_subscription: "karaage.jpeg",
-  address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
-)
+# Subscription.create!(
+#   owner_id: 1,
+#   category_id: 7,
+#   name: "炭焼牛タン　弁慶　淵野辺店",
+#   recommend: false,
+#   trial: "参加",
+#   title: "サンプルタイトル1",
+#   shop_introduction: "焼きたて",
+#   detail: "食べ放題",
+#   subscription_detail: "東京都",
+#   price: "3000",
+#   image_subscription: "karaage.jpeg",
+#   address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
+# )
 
-Subscription.create!(
-  owner_id: 2,
-  category_id: 7,
-  name: "炭焼牛タン　弁慶　古淵店",
-  recommend: true,
-  trial: "参加",
-  title: "サンプルタイトル2",
-  shop_introduction: "焼きたて2",
-  detail: "食べ放題2",
-  subscription_detail: "神奈川",
-  price: "9000",
-  image_subscription: "karaage.jpeg",
-  address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
-)
+# Subscription.create!(
+#   owner_id: 2,
+#   category_id: 7,
+#   name: "炭焼牛タン　弁慶　古淵店",
+#   recommend: false,
+#   trial: "参加",
+#   title: "サンプルタイトル2",
+#   shop_introduction: "焼きたて2",
+#   detail: "食べ放題2",
+#   subscription_detail: "神奈川",
+#   price: "9000",
+#   image_subscription: "karaage.jpeg",
+#   address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
+# )
 
 Subscription.create!(
   owner_id: 1,
@@ -247,7 +247,7 @@ Subscription.create!(
   owner_id: 1,
   category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
-  recommend: true,
+  recommend: false,
   trial: "参加",
   title: "サンプルタイトル5",
   shop_introduction: "焼きたて3",
@@ -263,7 +263,7 @@ Subscription.create!(
   owner_id: 1,
   category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 矢部店",
-  recommend: true,
+  recommend: false,
   trial: "非参加",
   title: "サンプルタイトル6",
   shop_introduction: "焼きたて3",

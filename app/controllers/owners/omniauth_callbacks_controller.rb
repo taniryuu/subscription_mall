@@ -66,15 +66,12 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def callback_from(provider) # facebook, twitter ログイン用メソッドです
     provider = provider.to_s
-
     @owner = Owner.find_for_oauth(request.env['omniauth.auth'])
-
     if @owner.persisted?
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @owner, event: :authentication
-      OwnerMailer.with(owner: @owner).welcome_email.deliver_now
-      OwnerMailer.with(owner: @owner).notice_owner_joining_email.deliver_now
     else
+      flash[:notice] = "既に別のSNSで登録されています"
       session["devise.#{provider}_data"] = request.env['omniauth.auth'].except("extra")
       redirect_to new_owner_registration_url
     end
