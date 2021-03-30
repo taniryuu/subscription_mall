@@ -40,7 +40,7 @@
                     <p></p>
                   <% end %><br>
               <% if @payment.present? %>
-                <% if @subscription.trial == "参加" %>
+                <% if @subscription.trial == "参加" && current_user.user_price == 1000 %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
                   <%= link_to "プランを変更する", edit_user_plan_path, class: "btn-gradient-3d-simple1" %>
                 <% elsif @subscription.trial == "非参加" && current_user.user_price == 1000 %>
