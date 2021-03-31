@@ -19,7 +19,7 @@ gem 'owlcarousel-rails'#カルーセル
 gem 'devise'
 gem 'paranoia', '~> 2.3', '>= 2.3.1'#論理削除
 gem 'font-awesome-rails'
-gem 'carrierwave', '~> 2.0'#複数画像投稿のgem
+gem 'carrierwave', '~> 2.2.1'#複数画像投稿のgem
 gem 'cloudinary'
 gem 'rmagick'#画像をリサイズしたりする
 gem 'rails-i18n'
