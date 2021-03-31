@@ -1169,7 +1169,16 @@
           <% if subscription.image_subscription.present? %>
             <%= image_tag subscription.image_subscription_url %>
             <div class="recommended-inner-box">
-              <div class="">
+              <div>
+                <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+              </div>
+            </div>
+          <% elsif subscription.image_subscription.blank? %>
+            <%= image_tag "no_img.png", :size => '300' %>
+            <div class="recommended-inner-box">
+              <div>
                 <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
                 <h3 class="dark-grey-text"><%= subscription.title %></h3>
                 <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
