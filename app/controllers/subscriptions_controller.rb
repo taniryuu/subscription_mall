@@ -90,6 +90,7 @@ class SubscriptionsController < ApplicationController
   def edit
     @categories = Category.all
     @subscription.images.build
+    @instablog = Instablog.new
   end
 
   # POST /subscriptions
@@ -164,7 +165,7 @@ class SubscriptionsController < ApplicationController
                                               :title,
                                               :address,
                                               :shop_introduction,
-                                              :detail, 
+                                              :detail,
                                               :qr_image,
                                               :image_subscription,
                                               :sub_image,
@@ -203,7 +204,7 @@ class SubscriptionsController < ApplicationController
         @owner = Owner.find(params[:owner_id]) if @owner.blank?
         unless current_owner?(@owner) or current_admin.present?
           redirect_to owner_subscriptions_url(current_owner), notice: '他の経営者様のページへ移動できません。'
-        end  
+        end
       end
       # 現在ログインしている経営者を許可します。
       def set_owner_subscription

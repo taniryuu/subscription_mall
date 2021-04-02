@@ -76,6 +76,7 @@ class PrivateStoresController < ApplicationController
   def edit
     @categories = Category.all
     @private_store.images.build
+    @private_store_instablog = PrivateStoreInstablog.new
   end
 
   # POST /private_stores

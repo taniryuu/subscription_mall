@@ -26,7 +26,7 @@
     <%= form.label :商品説明 %> <span class="must">必須</span>
     <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
   </div>
-  
+
   <div class="field">
     <%= form.label :"LINE@QRコード画像", for: "file-input", type:"file" %><span class="must">必須</span><br/>
     <%= form.file_field :qr_image, id: "file-input" %>
@@ -106,7 +106,26 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
+<% end %></br>
+
+<h1>instagram 投稿</h1>
+
+<%= form_with(model: @instablog, url: instablogs_path, local: true) do |form| %>
+
+  <%= form.hidden_field :subscription_id, :value => @subscription.id %>
+
+  <div class="field">
+    <%= form.label :埋め込みコード %>
+    <%= form.text_area :insta_content, placeholder: "こちらにコピーしたinstagram埋め込みコードを添付してください。", class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "投稿する" %>
+  </div>
+
+  <%= "※instagram埋め込みコードの取得方法がわからない場合はこちらを参照して下さい。" %> <%= link_to '➡︎(参照資料)', 'https://appllio.com/instagram-embed-code-post', target: :_blank %>
+
+<% end %></br>
 
 <div class="mt-5 mb-8">
   <%= link_to '詳細', owner_subscription_path(@subscription, owner_id: @owner.id), class: "btn btn-brand" %>
@@ -120,6 +139,6 @@
     <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
       <% t.label   { t.check_box + t.text } %>
     <% end %>
-  </div> 
+  </div>
 <%
 =end%>
