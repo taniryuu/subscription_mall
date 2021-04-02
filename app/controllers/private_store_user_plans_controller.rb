@@ -18,7 +18,6 @@ class PrivateStoreUserPlansController < ApplicationController
   end
 
   # サブスクプラン新規登録
-  # トライアルプラン
   def new
     @private_store = PrivateStore.find(params[:id])
 
@@ -74,9 +73,9 @@ class PrivateStoreUserPlansController < ApplicationController
       end
     end
 
-
-
   end
+
+
 
     #@trial_plan = Stripe::Checkout::Session.create(
     #  payment_method_types: ['card'],

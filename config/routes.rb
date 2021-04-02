@@ -192,4 +192,6 @@ Rails.application.routes.draw do
 
   get 'admins/private_stores_index'
 
+  get "trial_plan", to: "user_plans#trial_plan"
+
 end
