@@ -1,9 +1,10 @@
 <% if current_user.issue_ticket_day.present? %> <%#これまでにチケットが発券した事があるかどうか%>
 <div class="container my-5">
   <section class="text-center dark-grey-text">
-    <% if @subscription.trial %>
+    <% if @subscription.trial == "参加" && current_user.price == 1000 %>
       <span class="badge badge-warning">トライアル</span>
-    <% else %>
+      <span class="badge badge-success">加盟店</span>
+    <% elsif @subscription.trial == "非参加" %>
       <span class="badge badge-success">加盟店</span>
     <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
@@ -24,7 +25,7 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ発券できます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度発券すると当日は他のお店では使用できません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケット発券は0時にリセットされます。</p>
-                <% if @subscription.trial %>
+                <% if @subscription.trial == "参加" && current_user.user_price == 1000 %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.user_price}円です。"%></p>
                 <% else %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.user_price}円です。"%></p>
@@ -138,7 +139,7 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は他のお店では使用できません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
-                <% if @subscription.trial %>
+                <% if @subscription.trial == "参加" && current_user.user_price == 1000 %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.user_price}円です。"%></p>
                 <% else %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.user_price}円です。"%></p>  

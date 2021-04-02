@@ -216,8 +216,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
-    t.integer "category_private_stores_id"
-    t.integer "private_stores_id"
+    t.integer "category_private_store_id"
+    t.integer "private_store_id"
     t.index ["category_id"], name: "index_private_stores_on_category_id"
     t.index ["owner_id"], name: "index_private_stores_on_owner_id"
     t.index ["user_id"], name: "index_private_stores_on_user_id"
@@ -315,7 +315,6 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.date "use_ticket_day_log"
     t.integer "price"
     t.string "trial"
-    t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner_name"
@@ -327,7 +326,6 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "subscription_fee"
     t.date "issue_ticket_day"
     t.bigint "user_id"
-    t.index ["ticket_id"], name: "index_ticket_logs_on_ticket_id"
   end
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -406,6 +404,5 @@ ActiveRecord::Schema.define(version: 20210328072325) do
   add_foreign_key "subscriptions", "users"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
-  add_foreign_key "ticket_logs", "tickets"
   add_foreign_key "tickets", "users"
 end

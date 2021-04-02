@@ -18,12 +18,15 @@ class SubscriptionsController < ApplicationController
     @subscriptions = @owner.subscriptions
   end
 
+  def subscription_all_shop
+    @subscriptions = Subscription.all
+  end
+
   def show
     gon.subscriptions = @subscription
     @sub_images = @subscription.images
     @reviews = @subscription.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
-
   end
 
   def like_lunch
