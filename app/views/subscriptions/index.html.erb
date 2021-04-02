@@ -9,6 +9,12 @@
   <% else %>
     <thead>
       <div class="row">
+        <div class ="col-sm-1">
+          ID
+	</div>
+	<div class="col-sm-1">
+	  ordinal
+        </div>
         <div class="col-sm-2">
           トライアル状態
         </div>
@@ -24,7 +30,13 @@
   <tbody>
     <% @subscriptions.each do |subscription| %>
     <hr class="tool-bar">
-      <div class="row">
+    <div class="row">
+	<div class="col-sm-1">
+          <%= subscription.id %>
+        </div>
+        <div class="col-sm-1">
+          <%= subscription.ordinal %>
+        </div>
         <div class="col-sm-2">
           <%= subscription.trial %>
         </div>

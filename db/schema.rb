@@ -216,8 +216,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.datetime "updated_at", null: false
     t.string "insta_blog"
     t.boolean "recommend", default: true
-    t.integer "category_private_stores_id"
-    t.integer "private_stores_id"
+    t.integer "category_private_store_id"
+    t.integer "private_store_id"
     t.index ["category_id"], name: "index_private_stores_on_category_id"
     t.index ["owner_id"], name: "index_private_stores_on_owner_id"
     t.index ["user_id"], name: "index_private_stores_on_user_id"
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ordinal"
     t.string "name"
     t.string "title"
     t.text "detail"

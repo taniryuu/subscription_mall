@@ -214,6 +214,7 @@ puts "Question Created"
 # )
 
 Subscription.create!(
+  ordinal: 1,
   owner_id: 1,
   category_id:  7,
   name: "個室居酒屋　たすき　相模原店",
@@ -229,6 +230,7 @@ Subscription.create!(
 )
 
 Subscription.create!(
+  ordinal: 2,
   owner_id: 1,
   category_id:  7,
   name: "個室居酒屋　たすき　天王町駅前店",
@@ -244,6 +246,7 @@ Subscription.create!(
 )
 
 Subscription.create!(
+  ordinal: 3,
   owner_id: 1,
   category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
@@ -260,6 +263,7 @@ Subscription.create!(
 )
 
 Subscription.create!(
+  ordinal: 4,
   owner_id: 1,
   category_id:  3,
   name: "拉麺一匠 DEAD OR ALIVE 矢部店",
@@ -276,6 +280,7 @@ Subscription.create!(
 )
 
 Subscription.create!(
+  ordinal: 5,
   owner_id: 1,
   category_id:  7,
   name: "木村屋本店　 町田駅前店",
@@ -291,6 +296,7 @@ Subscription.create!(
 )
 
 Subscription.create!(
+  ordinal: 6,
   owner_id: 1,
   category_id:  13,
   name: "北海道BEER&BBQ 小田急町田",

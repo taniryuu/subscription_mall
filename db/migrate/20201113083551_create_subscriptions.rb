@@ -1,6 +1,7 @@
 class CreateSubscriptions < ActiveRecord::Migration[5.1]
   def change
     create_table :subscriptions do |t|
+      t.integer :ordinal
       t.string :name
       t.string :title
       t.text :detail
