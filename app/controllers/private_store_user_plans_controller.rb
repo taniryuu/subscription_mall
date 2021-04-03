@@ -21,18 +21,12 @@ class PrivateStoreUserPlansController < ApplicationController
   # トライアルプラン
   def new
     @private_store = PrivateStore.find(params[:id])
-
-    #product_key = ENV['PRODUCT_KEY']
-    #unit_amount_key = ENV['UNIT_AMOUNT_KEY']
-
-    #product_array = product_key.split
-    #unit_amount_array = unit_amount_key.split
     if Rails.env.development? || Rails.env.test?
       PrivateStore.count.times do |i|
         if @private_store.ordinal == i + 1
           @private_store_plan = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
-          customer_email: current_user.email,
+            customer_email: current_user.email,
             line_items: [{
             price_data: {
             currency: 'jpy',
@@ -73,28 +67,7 @@ class PrivateStoreUserPlansController < ApplicationController
         end
       end
     end
-
-
-
   end
-
-    #@trial_plan = Stripe::Checkout::Session.create(
-    #  payment_method_types: ['card'],
-    #  customer_email: current_user.email,
-    #  line_items: [{
-    #    price_data: {
-    #      currency: 'jpy',
-    #      product: 'prod_J40qfUcRXSInGo', #'prod_J3NbUHqtOpmfgT',
-    #      unit_amount: 1000,
-    #      recurring: {interval: "month"}
-    #    },
-    #    quantity: 1,
-    #  }],
-    #  mode: 'subscription',
-    #  success_url: success_url,
-    #  cancel_url: cancel_url,
-    #)
-    #current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
 
   # サブスク新規登録確認画面
   def confirm

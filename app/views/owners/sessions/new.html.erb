@@ -44,11 +44,15 @@
         <% end %>
     </div>
 
-    <div class="box-line"></br>
+    <%
+=begin%>
+ <div class="box-line"></br>
         <%= link_to owners_auth_line_path do %>
         <i class="fa fa-mobile"></i> LINEでログイン
         <% end %>
-    </div> 
+    </div>  
+<%
+=end%>
 
     <div class="box-twitter"></br>
         <%= link_to('/devise/auth/twitter_owner') do %>

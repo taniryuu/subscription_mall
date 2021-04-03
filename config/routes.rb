@@ -152,6 +152,7 @@ Rails.application.routes.draw do
   end
   get 'categories/trial_shop', to: 'categories#trial_shop', as: :trial_shop#トライアルのお店一覧
   get 'private_stores/private_all_shop', to: 'private_stores#private_all_shop', as: :private_all_shop#個人店舗のお店一覧
+  get 'subscriptions/subscription_all_shop', to: 'subscriptions#subscription_all_shop', as: :subscription_all_shop#個人店舗のお店一覧
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
     collection do
