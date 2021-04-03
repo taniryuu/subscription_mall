@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>中野様、
+      <% if @new == "true" %>
+	新しい個人店舗が作成されました。
+      <% else %>
+	個人店舗が編集されました。
+      <% end %>
+    </h1>
+    <p>
+      <% if @new == "true" %>
+	個人店舗 <%= @private_store.name %> が新規作成されました。<br>
+	個人店舗の金額を確認して下さい。金額は<%= @private_store.price %>円です。<br>
+	よろしければ、個人店舗 <%= @private_store.name %> の商品IDを入力し、<br>
+	個人店舗の新規作成を完了してください。<br>
+      <% else %>
+	個人店舗 <%= @private_store.name %> が編集されました。<br>
+        個人店舗の金額を確認して下さい。金額は<%= @private_store.price %>円です。<br>
+      <% end %>
+    </p>
+  </body>
+</html>

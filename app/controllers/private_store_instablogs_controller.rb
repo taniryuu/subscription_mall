@@ -18,10 +18,10 @@ class PrivateStoreInstablogsController < ApplicationController
   def create
     @private_store_instablog = PrivateStoreInstablog.new(private_store_instablog_params)
     if @private_store_instablog.save
-        flash[:success] = "instagram投稿を作成できました"
-        redirect_to root_path
+        flash[:success] = "instagramを投稿しました"
+        redirect_to owner_private_stores_url(owner_id: current_owner.id)
       else
-        flash[:danger] = "作成に失敗しました"
+        flash[:danger] = "投稿に失敗しました"
         render :new
       end
   end
