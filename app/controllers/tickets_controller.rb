@@ -39,7 +39,7 @@ class TicketsController < ApplicationController
       ticket_trial = "トライアルではありません"
     end  
     if @ticket.update_attributes(use_ticket_params)
-      TicketLog.create(use_ticket_day_log: @ticket.use_ticket_day, ticket_id: @ticket.id, owner_name: @ticket.owner_name,
+      TicketLog.create(use_ticket_day_log: @ticket.use_ticket_day, owner_name: @ticket.owner_name,
 		       owner_email: @ticket.owner_email, owner_phone_number: @ticket.owner_phone_number, owner_store_information: @ticket.owner_store_information,
 		       subscription_name: @ticket.subscription_name, private_store_name: @ticket.private_store_name, subscription_fee: @ticket.subscription_fee,
 		       issue_ticket_day: @ticket.issue_ticket_day,user_id: @ticket.user_id, price: @ticket.price, trial: @ticket.trial_last_check)

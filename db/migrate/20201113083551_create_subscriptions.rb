@@ -30,7 +30,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.text :address
       t.float :latitude
       t.float :longitude
-      t.string :trial, default: "不参加"
+      t.string :trial, default: "非参加"
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true
