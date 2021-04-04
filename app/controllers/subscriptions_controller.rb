@@ -20,7 +20,6 @@ class SubscriptionsController < ApplicationController
 
   def subscription_all_shop
     @subscriptions = Subscription.all
-    current_user.update!(select_trial: false)
   end
 
   def show
