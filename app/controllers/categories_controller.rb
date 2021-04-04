@@ -16,11 +16,13 @@ class CategoriesController < ApplicationController
   def like_lunch
     @subscriptions = @category.subscriptions
     @private_stores = @category.private_stores.where(admin_private_check: "個人店舗データ反映済み")
+    current_user.update!(select_trial: false)
   end
 
   def trial_shop
     @subscriptions = Subscription.where(trial: "参加")
     @private_stores = PrivateStore.where(trial: "参加")
+    current_user.update!(select_trial: true)
   end
 
   def create

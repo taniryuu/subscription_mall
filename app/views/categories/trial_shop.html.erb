@@ -18,8 +18,8 @@
           </div>
         </div>
         <div class="col-lg-7 col-xl-8">
-        <span class="badge badge-success">加盟店</span>
-          <span class="badge badge-warning">トライアル</span>
+          <span class="badge badge-success">加盟店</span>
+          <span class="badge badge-warning">トライアルでも利用可能</span>
           <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
           <p class="dark-grey-text"><%= subscription.title %></p>
           <%= link_to "詳細", owner_subscription_path(subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
@@ -44,11 +44,11 @@
           </div>
         </div>
         <div class="col-lg-7 col-xl-8">
-        <span class="badge badge-primary">個人店舗</span>
-          <span class="badge badge-warning">トライアル</span>
+          <span class="badge badge-primary">個人店舗</span>
+          <span class="badge badge-warning">トライアルでも利用可能</span>
           <h4 class="font-weight-bold mb-3"><strong><%= private_store.name %></strong></h4>
           <p class="dark-grey-text"><%= private_store.title %></p>
-          <%= link_to "詳細", owner_subscription_path(subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
+          <%= link_to "詳細", owner_subscription_path(private_store.id, owner_id: private_store.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
         </div>
       </div>
       <hr class="my-3">

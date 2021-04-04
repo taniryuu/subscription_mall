@@ -36,6 +36,7 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.float :longitude
       t.string :product_id
       t.string :trial, default: "非参加"
+      t.boolean :select_trial, default: false
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true

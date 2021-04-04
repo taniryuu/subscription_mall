@@ -1,7 +1,7 @@
 <% if current_user.issue_ticket_day.present? %> <%#これまでにチケットが発券した事があるかどうか%>
 <div class="container my-5">
   <section class="text-center dark-grey-text">
-    <% if @subscription.trial == "参加" && current_user.price == 1000 %>
+    <% if @subscription.trial == "参加" %>
       <span class="badge badge-warning">トライアル</span>
       <span class="badge badge-success">加盟店</span>
     <% elsif @subscription.trial == "非参加" %>

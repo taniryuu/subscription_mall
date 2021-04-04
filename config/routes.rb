@@ -197,4 +197,6 @@ Rails.application.routes.draw do
 
   get "trial_plan", to: "user_plans#trial_plan"
 
+  get "subscription_plans", to: "user_plans#subscription_plans" #加盟店の一覧へ
+
 end

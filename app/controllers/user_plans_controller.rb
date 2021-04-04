@@ -1,6 +1,6 @@
 class UserPlansController < ApplicationController
   before_action :set_plan, only: %i(confirm update_confirm)
-  before_action :set_plans, only: %i(new edit confirm update_confirm)
+  before_action :set_plans, only: %i(new edit confirm update_confirm subscription_plans)
 
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
@@ -22,7 +22,7 @@ class UserPlansController < ApplicationController
   def new
     @subscription = Subscription.find(params[:id])
 
-    if @subscription.trial == "参加"
+    if @subscription.trial == "参加" && current_user.select_trial
       if Rails.env.development? || Rails.env.test?
         @trial_plan = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],
@@ -59,7 +59,7 @@ class UserPlansController < ApplicationController
           success_url: success_url,
           cancel_url: cancel_url,
         )
-        current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal)
+        current_user.update!(session_id: @trial_plan.id, session_price: @trial_plan.amount_subtotal, used_trial: true)
       end
 
     else
@@ -111,6 +111,12 @@ class UserPlansController < ApplicationController
       end
     end
   end
+
+  def subscription_plans
+
+  end
+
+
 
   def trial_plan
     if Rails.env.development? || Rails.env.test?
@@ -251,7 +257,11 @@ class UserPlansController < ApplicationController
 	p "planは#{plan}"
 	p "plan.idは#{plan.id}"
 	p "plan.metadtaは#{plan.metadata}"
-	@plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
+	if Rails.env.development? || Rails.env.test?
+	  @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
+	elsif Rails.env.production?
+	  @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
+	end
       end
     end
 end

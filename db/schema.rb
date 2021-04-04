@@ -209,7 +209,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.string "product_id"
-    t.string "trial", default: "不参加"
+    t.string "trial", default: "非参加"
+    t.boolean "select_trial", default: false
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -286,7 +287,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
-    t.string "trial", default: "不参加"
+    t.string "trial", default: "非参加"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -374,6 +375,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
+    t.boolean "select_trial", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_price"

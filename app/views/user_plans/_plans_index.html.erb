@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card">
     <div class="card-body subscription-bg">
-      <% if @subscription.trial == "非参加" %>
+      <% if (@subscription.trial == "非参加") || (@subscription.trial == "参加" && !current_user.select_trial) %>
         <h5 class="mb-4">加盟店プラン</h5>
         <div class="d-flex justify-content-center">
           <img
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<% if (Rails.env.development? || Rails.env.test?) && @subscription.trial == "参加" %>
+<% if (Rails.env.development? || Rails.env.test?) && @subscription.trial == "参加" && current_user.select_trial %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
@@ -51,7 +51,7 @@
       });
     });
   </script>
-<% elsif (Rails.env.development? || Rails.env.test?) && @subscription.trial == "非参加"%>
+<% elsif (Rails.env.development? || Rails.env.test?) && (@subscription.trial == "非参加" || (@subscription.trial == "参加" && !current_user.select_trial)) %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
@@ -66,7 +66,7 @@
   </script>
 
 
-<% elsif Rails.env.production? && @subscription.trial == "参加"%>
+<% elsif Rails.env.production? && @subscription.trial == "参加" && current_user.select_trial %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
@@ -79,7 +79,7 @@
       });
     });
   </script>
-<% elsif Rails.env.production? && @subscription.trial == "非参加"%>
+<% elsif Rails.env.production? && (@subscription.trial == "非参加" || (@subscription.trial == "参加" && !current_user.select_trial)) %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
