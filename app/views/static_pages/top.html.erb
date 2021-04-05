@@ -894,46 +894,67 @@
     <%# ここからおすすめスライダー %>
     <div id="subscriptions" data-subscriptions-count="<%= @subscriptions.count.to_json %>"></div>
     <% if @subscriptions.length == 0 %>
-      <div></div>
+       <p></p>
+
     <% elsif @subscriptions.length == 1 %>
-
-    <% elsif @subscriptions.length == 2 %>
-    <div class="row justify-content-center">
-      <% @subscriptions.each do |subscription| %>
-        <div class="recommended-outer-box-2 col-12 col-sm-8 col-md-4">
-      
-          <div class="recommended-box-2 not-slider" style="background-color: pink; border-right: double 10px #0000ff; d-flex justify-content-center;">
-                <% if subscription.image_subscription.present? %>
-                  <%= image_tag subscription.image_subscription_url %>
-                  <div class="recommended-inner-box-2" style="background-color: #99cc00;">
-                    <div>
-                      <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
-                      <h3 class="dark-grey-text"><%= subscription.title %></h3>
-                      <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
-                    </div>
-                  </div>
-                <% elsif subscription.image_subscription.blank? %>
-                  <%= image_tag "no_img.png" %>
-                  <div class="recommended-inner-box-2 col-6">
-                    <div>
-                      <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
-                      <h3 class="dark-grey-text"><%= subscription.title %></h3>
-                      <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
-                    </div>
-                  </div>
-                <% end %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %> 
+          <div class="recommended-box-2 not-slider d-flex justify-content-center">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box-2">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
               </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png" %>
+              <div class="recommended-inner-box-2 col-6">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.length == 2 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-outer-box-2 col-12 col-sm-8 col-md-4">
+        
+            <div class="recommended-box-2 not-slider" style="background-color: pink; border-right: double 10px #0000ff; d-flex justify-content-center;">
+              <% if subscription.image_subscription.present? %>
+                <%= image_tag subscription.image_subscription_url %>
+                <div class="recommended-inner-box-2" style="background-color: #99cc00;">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% elsif subscription.image_subscription.blank? %>
+                <%= image_tag "no_img.png" %>
+                <div class="recommended-inner-box-2 col-6">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
 
-
-        </div>
-      <% end%>
-    </div>
-    
-
-
-
-
+          </div>
+        <% end%>
+      </div>
     <% elsif @subscriptions.count >= 3 %>
+
+
 
     <% end %>
 
