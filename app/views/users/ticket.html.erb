@@ -1,11 +1,11 @@
 <% if current_user.issue_ticket_day.present? %> <%#これまでにチケットが発券した事があるかどうか%>
 <div class="container my-5">
   <section class="text-center dark-grey-text">
+    <span class="badge badge-success">加盟店</span>
     <% if @subscription.trial == "参加" %>
-      <span class="badge badge-success">加盟店</span>
-      <span class="badge badge-warning">トライアル</span>
+      <span class="badge badge-warning">トライアルでも利用可能</span>
     <% elsif @subscription.trial == "非参加" %>
-      <span class="badge badge-success">加盟店</span>
+      <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
     <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
     <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
@@ -24,7 +24,8 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ発券できます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度発券すると当日は他のお店では使用できません。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケット発券は0時にリセットされます。</p>
+		<p class="mt-2"><i class="fa fa-check-circle fa"></i> チケット発券は0時にリセットされます。</p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
                 <% if @subscription.trial == "参加" && current_user.select_trial %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.user_price}円です。"%></p>
                 <% else %>
@@ -43,7 +44,7 @@
                           <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                          <%= f.hidden_field :subscription_name, :value => @subscription.name %>
+			  <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                           <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                           <%= f.hidden_field :user_id, :value => current_user.id %>
                           <%= f.hidden_field :trial_count, :value => 2 %>
@@ -58,7 +59,7 @@
                           <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                          <%= f.hidden_field :subscription_name, :value => @subscription.name %>
+			  <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                           <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                           <%= f.hidden_field :user_id, :value => current_user.id %>
                           <%= f.hidden_field :trial_count, :value => 3 %>
@@ -75,7 +76,7 @@
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :trial_count, :value => 3 %>
@@ -95,7 +96,7 @@
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :price, :value => current_user.user_price %>
@@ -114,12 +115,12 @@
 <% else %> <%#初めてチケットを発券する%>
 <div class="container my-5">
     <section class="text-center dark-grey-text">
+    <span class="badge badge-success">加盟店</span>
     <% if @subscription.trial == "参加" %>
-      <span class="badge badge-success">加盟店</span>
-      <span class="badge badge-warning">トライアル</span>
-    <% else %>
-      <span class="badge badge-success">加盟店</span>
-    <% end %>
+      <span class="badge badge-warning">トライアルでも利用可能</span>
+    <% elsif @subscription.trial == "非参加" %>
+      <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+    <% end %>    
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
     <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
     <div class="row">
@@ -152,7 +153,7 @@
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :trial_count, :value => 1 %>
@@ -169,7 +170,7 @@
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :price, :value => current_user.user_price %>
