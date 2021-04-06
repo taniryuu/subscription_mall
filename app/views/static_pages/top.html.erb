@@ -858,34 +858,18 @@
         <div class="box26">
           <div class="center">
             <div class="recommend-shop">
-              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+              <% if @subscriptions.length != 0 %>
+                <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
+                  おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+                <% end %>
               <% end %>
-            <div class="category-list">
-              <% @subscriptions.each do |subscription| %>
-              <div>
-                <hr class="tool-bar">
-                  <div class="row align-items-center">
-                    <div class="col-lg-5 col-xl-3">
-                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                        <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300' %>
-                        <% else %>
-                          <p></p>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-12">
-                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
-                      <p class="dark-grey-text"><%= subscription.title %></p>
-                      <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
-                    </div>
-                  </div>
-              </div>
-              <% end%>
-            </div>
             </div>
           </div>
+
+
+
+
+          
         </div>
       </div>
     </div>
@@ -926,10 +910,10 @@
         <% @subscriptions.each do |subscription| %>
           <div class="recommended-outer-box-2 col-12 col-sm-8 col-md-4">
         
-            <div class="recommended-box-2 not-slider" style="background-color: pink; border-right: double 10px #0000ff; d-flex justify-content-center;">
+            <div class="recommended-box-2 not-slider">
               <% if subscription.image_subscription.present? %>
                 <%= image_tag subscription.image_subscription_url %>
-                <div class="recommended-inner-box-2" style="background-color: #99cc00;">
+                <div class="recommended-inner-box-2">
                   <div>
                     <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
                     <h3 class="dark-grey-text"><%= subscription.title %></h3>
