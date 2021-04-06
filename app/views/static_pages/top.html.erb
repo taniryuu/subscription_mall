@@ -852,28 +852,17 @@
     <%# google map %>
     <%= render "maps/top" %>
 
-    <hr class="border-solid-down" />
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <div class="recommend-shop">
-              <% if @subscriptions.length != 0 %>
-                <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-                  おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
 
 
 
-
-          
-        </div>
+    <% if @subscriptions.length != 0 %>
+      <div class="d-flex justify-content-center my-5">
+        <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue mt-6 mb-5" do%>
+          おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        <% end %>
       </div>
-    </div>
-    <hr class="border-solid-down" />
+    <% end %>
+
 
     <%# ここからおすすめスライダー %>
     <div id="subscriptions" data-subscriptions-count="<%= @subscriptions.count.to_json %>"></div>
@@ -965,7 +954,7 @@
     <%# ここまでおすすめスライダー %>
 
 
-    <div class="center">
+    <div class="center mt-8 mb-6">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
 
