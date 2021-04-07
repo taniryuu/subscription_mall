@@ -23,6 +23,9 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.string :sub_image10
       t.string :sub_image11
       t.string :sub_image12
+      t.string :admin_private_check
+      t.string :trial_check
+      t.string :trial_last_check
       t.integer :category_id, index: true, foreign_key: true
       #t.integer :monthly_fee
       t.text :blog
@@ -32,6 +35,7 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.float :latitude
       t.float :longitude
       t.string :product_id
+      t.string :trial, default: "非参加"
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true

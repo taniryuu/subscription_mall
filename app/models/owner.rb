@@ -55,21 +55,26 @@ class Owner < ApplicationRecord
 
   def self.find_for_oauth(auth) # facebook, twitter ログイン用メソッドです
     owner = Owner.where(uid: auth.uid, provider: auth.provider).first
-    unless owner
+    if owner.blank?
       begin
-        owner = Owner.create(
+        owner = Owner.new(
           uid:      auth.uid,
           provider: auth.provider,
           email:    auth.info.email,
           name:  auth.info.name,
           password: Devise.friendly_token[0, 20]
         )
-        owner.save(:validate => false)
+        if owner.save!(:validate => false)
+          OwnerMailer.with(owner: @owner).welcome_email.deliver_now
+          OwnerMailer.with(owner: @owner).notice_owner_joining_email.deliver_now
+        end
       rescue StandardError => error
+        error.full_message
         owner
       end
+    else
+      owner
     end
-    owner
   end
 
   has_many :social_profiles, dependent: :destroy # ここから44行目までline ログイン用メソッドです

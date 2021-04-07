@@ -33,6 +33,7 @@
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :trial_count, :value => 2 %>
+                    <%= f.hidden_field :trial_check, :value => @private_store.trial %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
             <% elsif (Date.today.wday != 6) && (Date.today.wday != 0) && (current_user.user_price === 1000) && (current_user.trial_count === 2) %> <%#プランが1000かつ土日でない場合かつトライアルの利用回数が2の場合%>
@@ -46,6 +47,7 @@
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :trial_count, :value => 3 %>
+                    <%= f.hidden_field :trial_check, :value => @private_store.trial %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
             <% elsif ((Date.today.wday == 6) || (Date.today.wday == 0)) && (current_user.user_price < 18000) %> <%#プランが18000以下かつ土日の場合%>
@@ -103,7 +105,7 @@
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <%= f.hidden_field :owner_payee, :value => @owner.payee %>
-		    <%= f.hidden_field :private_store_name, :value => @private_store.name %>
+                    <%= f.hidden_field :private_store_name, :value => @private_store.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :trial_count, :value => 1 %>

@@ -16,6 +16,11 @@
         </div>
         <div class="col-lg-7 col-xl-8">
         <span class="badge badge-success">加盟店</span>
+          <% if subscription.trial == "参加" %>
+            <span class="badge badge-warning">トライアルでも利用可能</span>
+          <% elsif subscription.trial == "非参加" %>
+            <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+          <% end %>
           <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
           <p class="dark-grey-text"><%= subscription.title %></p>
           <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
@@ -40,6 +45,11 @@
         </div>
         <div class="col-lg-7 col-xl-8">
         <span class="badge badge-primary">個人店舗</span>
+          <% if private_store.trial == "参加" %>
+            <span class="badge badge-warning">トライアルでも利用可能</span>
+          <% elsif private_store.trial == "非参加" %>
+            <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+          <% end %>
           <h4 class="font-weight-bold mb-3"><strong><%= private_store.name %></strong></h4>
           <p class="dark-grey-text"><%= private_store.title %></p>
           <%= link_to "詳細", owner_private_store_path(id: private_store.id, owner_id: private_store.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>

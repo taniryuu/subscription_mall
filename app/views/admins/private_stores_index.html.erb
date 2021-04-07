@@ -10,7 +10,8 @@
       <thead>
         <tr>
         　<th>ID</th>
-          <th>ordinal</th> 
+        　<th>店舗状況</th>
+          <th>トライアル状態</th> 
           <th>個人店舗名</th>
           <th>金額</th>
           <th>商品ID</th>
@@ -23,9 +24,14 @@
       <% @private_stores.each do |private_store| %>
         <tr>
           <td><%= private_store.id %></td>
-          <td><%= private_store.ordinal %></td>
+          <td>
+            <span class="badge badge-info">
+              <%= private_store.admin_private_check %>
+            </span>
+          </td>
+          <td><%= private_store.trial %></td>
           <td><%= private_store.name %></td>
-          <td><%= private_store.price %></td>
+          <td><%= link_to "#{private_store.price}", private_owner_edit_admin_path(owner_id: private_store.owner_id, id: private_store.id) %></td>
           <td><%= link_to "#{private_store.product_id}", private_owner_edit_admin_path(owner_id: private_store.owner_id, id: private_store.id) %></td>
           <td><%= private_store.owner.id %></td>
           <td><%= private_store.owner.email %></td>

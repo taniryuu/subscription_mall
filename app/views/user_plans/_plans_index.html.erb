@@ -24,6 +24,12 @@
   </div>
 <% end %>
 
+<%
+=begin%>
+ <% if current_user.used_trial === false %>  <%#トライアルプランが使用済みかどうかの判定 %> 
+<%
+=end%>
+
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card">
     <div class="card-body subscription-bg">
@@ -72,3 +78,9 @@
   });
 </script>
 <% end %>
+
+<%
+=begin%>
+ <% end %> 
+<%
+=end%>

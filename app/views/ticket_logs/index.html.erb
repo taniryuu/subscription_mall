@@ -7,12 +7,13 @@
       <table class="table mb-8">
         <thead class="thead-light">
           <tr>
-            <th>チケットID</th>
             <th>店舗オーナー名</th>
             <th>店舗オーナーEmail</th>
             <th>店舗オーナーTEL</th>
             <th>店舗情報</th>
             <th>サブスク名</th>
+            <th>金額</th>
+            <th>トライアル</th>
             <th>利用ユーザー</th>
             <th>利用日</th>
           </tr>
@@ -21,7 +22,6 @@
         <tbody>
           <% @ticket_logs.each do |ticket_log| %>
             <tr>
-              <td><%= ticket_log.ticket_id %></td>
               <td><%= ticket_log.owner_name %></td>
               <td><%= ticket_log.owner_email %></td>
               <td><%= ticket_log.owner_phone_number %></td>
@@ -31,6 +31,8 @@
               <% elsif ticket_log.private_store_name.present? %>
                 <td><%= ticket_log.private_store_name %></td>
               <% end %>
+              <td><%= ticket_log.price %></td>
+              <td><%= ticket_log.trial %></td>
               <td><%= User.find(ticket_log.user_id).name if ticket_log.user_id.present? %></td>
               <td><%= ticket_log.use_ticket_day_log %></td>
             </tr>

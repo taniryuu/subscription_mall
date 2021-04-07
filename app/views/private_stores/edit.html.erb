@@ -99,13 +99,37 @@
 
   <div class="field">
     <%= form.label :商品_ID %>
-    <%= form.text_field :product_id, class: 'form-control' %>
+    <%= form.text_field :product_id, placeholder: "管理者入力項目なので空欄のままでお願いします", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trial %>
+    <%= form.select :trial, [['非参加'],['参加']], { selected: '非参加' }, class: 'form-control' %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
+<% end %></br>
+
+<h1>instagram 投稿</h1>
+
+<%= form_with(model: @private_store_instablog, url: private_store_instablogs_path, local: true) do |form| %>
+
+  <%= form.hidden_field :private_store_id, :value => @private_store.id %>
+
+  <div class="field">
+    <%= form.label :埋め込みコード %>
+    <%= form.text_area :insta_content, placeholder: "こちらにコピーしたinstagram埋め込みコードを添付してください。", class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "投稿する" %>
+  </div>
+
+  <%= "※instagram埋め込みコードの取得方法がわからない場合はこちらを参照して下さい。" %> <%= link_to '➡︎(参照資料)', 'https://appllio.com/instagram-embed-code-post', target: :_blank %>
+
+<% end %></br>
 
 <div class="mt-5 mb-8">
   <%= link_to '詳細', owner_private_store_path(@private_store, owner_id: @owner.id), class: "btn btn-brand" %>

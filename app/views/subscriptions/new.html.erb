@@ -102,6 +102,11 @@
     <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :trial %>
+    <%= form.select :trial, [['非参加'],['参加']], { selected: '非参加' }, class: 'form-control' %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
