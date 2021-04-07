@@ -20,6 +20,7 @@ class SubscriptionsController < ApplicationController
 
   def subscription_all_shop
     @subscriptions = Subscription.all
+    current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
   end
 
   def show

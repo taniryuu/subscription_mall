@@ -10,6 +10,11 @@ class PrivateStoreUserPlansController < ApplicationController
   # stripe決済成功時
   def success
     current_user.update!(customer_id: current_user.session_id, session_id: "", user_price: current_user.session_price, session_price: "")
+    if current_user.select_trial && current_user.user_price == 1000
+      current_user.update!(trial_stripe_success: true)
+    else
+      current_user.update!(trial_stripe_success: false)
+    end
   end
 
   # stripe決済失敗時

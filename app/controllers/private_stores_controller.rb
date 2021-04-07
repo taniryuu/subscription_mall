@@ -18,6 +18,7 @@ class PrivateStoresController < ApplicationController
   def private_all_shop
     @private_stores = PrivateStore.where(admin_private_check: "個人店舗データ反映済み")
     @private_stores_count = PrivateStore.where(admin_private_check: "個人店舗データ反映済み").count
+    current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
   end
 
   def owner_private_stores

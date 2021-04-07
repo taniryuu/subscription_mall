@@ -27,7 +27,7 @@
         />
         </div>
         <h2 class="font-weight-bold my-4"><%= "￥#{@trial_plan.amount_subtotal.to_s(:delimited)}/月" %></h2>
-        <p class="grey-text"><%= @trial_plan.metadata.detail %></p>
+        <p class="grey-text"><!--%= @trial_plan.metadata.detail %--></p>
         <% if @pay.present? && @trial_plan.amount_subtotal == @payment.amount_total %>
           <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
         <% else %>
