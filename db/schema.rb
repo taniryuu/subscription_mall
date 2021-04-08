@@ -383,6 +383,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.boolean "select_trial", default: false
+    t.boolean "plan_canceled", default: false
+    t.boolean "trial_stripe_success", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_price"

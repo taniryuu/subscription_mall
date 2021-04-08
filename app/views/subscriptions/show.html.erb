@@ -45,7 +45,7 @@
                 <% if @subscription.trial == true && current_user.user_price == 1000 %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
                 <% elsif @subscription.trial == false && current_user.user_price == 1000 %>
-                  <%= link_to "トライアルを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "トライアルを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% elsif @subscription.price.to_i < current_user.user_price %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>

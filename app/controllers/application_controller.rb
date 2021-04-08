@@ -72,6 +72,9 @@ class ApplicationController < ActionController::Base
         Stripe::Subscription.delete(@payment.subscription)
         current_user.update!(customer_id: "", user_price: "")
       end
+      if current_user.trial_stripe_success
+	current_user.update!(trial_stripe_success: false)
+      end
     end
   end
 
