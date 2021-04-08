@@ -87,6 +87,8 @@ Rails.application.routes.draw do
     member do
       get 'private_owner_edit'
       patch 'private_owner_update'
+      get 'subscription_owner_edit'
+      patch 'subscription_owner_update'
       # patch 'private_stores/:private_stores_id/private_owner_update', to: 'admins#private_owner_update', as: :private_owner_update
       get 'owner_edit' #個人情報編集
       patch 'owner_update' #個人情報編集
@@ -116,6 +118,7 @@ Rails.application.routes.draw do
   resources :owners do
     get :search, on: :collection #オーナーの名前であいまい検索 追加分
     get :subscription_private_store_select, on: :member #加盟店か個人店かの選択
+    get :subscription_private_store_judging_select, on: :member #加盟店か個人店かの選択と審査の選択
     member do
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
@@ -152,7 +155,15 @@ Rails.application.routes.draw do
   end
   get 'categories/trial_shop', to: 'categories#trial_shop', as: :trial_shop#トライアルのお店一覧
   get 'private_stores/private_all_shop', to: 'private_stores#private_all_shop', as: :private_all_shop#個人店舗のお店一覧
-  get 'subscriptions/subscription_all_shop', to: 'subscriptions#subscription_all_shop', as: :subscription_all_shop#個人店舗のお店一覧
+  get 'subscriptions/subscription_all_shop', to: 'subscriptions#subscription_all_shop', as: :subscription_all_shop#加盟店舗のお店一覧
+  post 'subscriptions/subscription_confirm', to: 'subscriptions#subscription_confirm', as: :subscription_confirm#加盟店舗の審査の確認画面
+  patch 'subscriptions/subscription_judging', to: 'subscriptions#subscription_judging'#加盟店舗の審査
+  post 'subscriptions/subscription_judging', to: 'subscriptions#subscription_judging'#加盟店舗の審査
+  
+  post 'private_stores/private_store_confirm', to: 'private_stores#private_store_confirm', as: :private_store_confirm#個人店舗の審査の確認画面
+  patch 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
+  post 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
+  
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
     collection do
@@ -194,5 +205,6 @@ Rails.application.routes.draw do
   get 'admins/owner_private_store_select' #経営者様管理か個人店舗管理かの選択
 
   get 'admins/private_stores_index'
+  get 'admins/subscriptions_index'
 
 end

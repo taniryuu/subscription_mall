@@ -9,22 +9,22 @@
 
   <div class="field">
     <%= form.label :お店の名前 %> <span class="must">必須</span>
-    <%= form.text_field :name, id: :subscription_name, placeholder: "例)", class: 'form-control form_border' %>
+    <%= form.text_field :name, id: :subscription_name, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :サブスク料理名 %> <span class="must">必須</span>
-    <%= form.text_field :title, id: :subscription_title, placeholder: "例)", class: 'form-control form_border' %>
+    <%= form.text_field :title, id: :subscription_title, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :お店の住所 %> <span class="must">必須</span>
-    <%= form.text_field :address, placeholder: "例)", class: 'form-control form_border' %>
+    <%= form.text_field :address, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :商品説明 %> <span class="must">必須</span>
-    <%= form.text_area :detail, id: :subscription_detail, placeholder: "例)", class: 'form-control form_border' %>
+    <%= form.text_area :detail, id: :subscription_detail, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
@@ -99,7 +99,7 @@
 
   <div class="field">
     <%= form.label :trial %>
-    <%= form.select :trial, [['非参加'],['参加']], { selected: '非参加' }, class: 'form-control' %>
+    <%= form.select :trial, [['不参加', false],['参加', true]], { selected: false }, class: 'form-control' %>
   </div>
 
 

@@ -199,17 +199,20 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "sub_image11"
     t.string "sub_image12"
     t.string "admin_private_check"
+    t.string "situation"
+    t.string "admin_last_check"
     t.string "trial_check"
     t.string "trial_last_check"
     t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
+    t.text "site"
     t.string "qr_image"
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.string "product_id"
-    t.string "trial", default: "不参加"
+    t.boolean "trial"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -276,16 +279,20 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
+    t.string "admin_subscription_check"
+    t.string "situation"
+    t.string "admin_last_check"
     t.string "trial_check"
     t.string "trial_last_check"
     t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
+    t.text "site"
     t.string "qr_image"
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
-    t.string "trial", default: "不参加"
+    t.boolean "trial"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false

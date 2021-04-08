@@ -10,7 +10,7 @@
     <thead>
       <div class="row">
         <div class="col-sm-2">
-          個人店舗の状況
+          個人店の状況
         </div>
         <div class="col-sm-2">
           トライアル状態
@@ -31,11 +31,17 @@
       <div class="row">
         <div class="col-sm-2">
           <span class="badge badge-info">
-            <%= private_store.admin_private_check %>
+            <%= private_store.situation %>
           </span>
         </div>
-        <div class="col-sm-1">
-          <%= private_store.trial %>
+        <div class="col-sm-2">
+        <% if private_store.admin_private_check == "承認" %>
+          <% if private_store.trial == false %>
+            <%= "不参加" %>
+          <% else %>
+            <%= "参加" %>
+          <% end %>
+        <% end %>
         </div>
         <div class="col-sm-2">
           <%= private_store.name %>
@@ -67,6 +73,6 @@
 <br>
 
 <% if current_owner.present? %>
-  <%= link_to 'サブスクショップ開設', new_owner_private_store_path, class: "btn btn-lg btn-brand mb-8" %>
+  <%= link_to '個人店審査', new_owner_private_store_path, class: "btn btn-lg btn-brand mb-8" %>
 <% end %>
 

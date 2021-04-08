@@ -1,0 +1,64 @@
+<% provide(:title, '加盟店サブスク管理') %>
+
+<p id="notice"><%= notice %></p>
+<div>
+  <h1 class="brand-color display-4 mt-6 mb-6">加盟店舗一覧</h1>
+
+  <div class="col-sm-12">
+
+    <table class="table table-condensed table-hover my-5" id="table-users">
+      <thead>
+        <tr>
+        　<th>ID</th>
+        　<th>店舗状況</th>
+          <th></th> 
+          <th>トライアル状態</th> 
+          <th>加盟店舗名</th>
+          <th>金額</th>
+          <th>オーナ―ID</th>
+          <th>オーナーE-mail</th>
+          <th>オーナー名</th>
+        </tr>
+      </thead>
+
+      <% @subscriptions.each do |subscription| %>
+        <tr>
+          <td><%= subscription.id %></td>
+          <td>
+            <span class="badge badge-info">
+              <% if subscription.situation == "加盟店承認済み" %>
+                <%= subscription.situation %>
+              <% elsif subscription.situation == "加盟店否認済み" %>
+                <%= subscription.situation %>
+              <% elsif subscription.situation == "加盟店舗の申請中" %>
+                <%= subscription.situation %>
+              <% end %>
+            </span>
+          </td>
+          <td><%= link_to "審査", subscription_owner_edit_admin_path(owner_id: subscription.owner_id, id: subscription.id), class: "btn-gradient-3d-simple" %></td>
+          <td>
+            <% if subscription.admin_subscription_check == "承認" %>
+              <% if subscription.trial == false %>
+                <%= "不参加" %>
+              <% else %>
+                <%= "参加" %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to "#{subscription.name}", subscription_owner_edit_admin_path(owner_id: subscription.owner_id, id: subscription.id) %></td>
+          <td><%= link_to "#{subscription.price}", subscription_owner_edit_admin_path(owner_id: subscription.owner_id, id: subscription.id) %></td>
+          <td><%= subscription.owner.id %></td>
+          <td><%= subscription.owner.email %></td>
+          <td><%= subscription.owner.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="private-store-show-btn">
+    <%= link_to admins_owner_private_store_select_path, class: "btn btn--blue btn-md btn--shadow" do %>
+      <i class="fas fa-reply"> 戻る</i>
+    <% end %>
+  </div>
+  <%= will_paginate(@subscriptions, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+

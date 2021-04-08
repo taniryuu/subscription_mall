@@ -1,0 +1,20 @@
+<% provide(:title, "Edit") %>
+
+<h1><%= @owner.name %>様の加盟店内容確認</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 mx-auto">
+    <%= form_with(model: @subscription, url: subscriptions_subscription_judging_path(owner_id: @owner.id, id: @subscription), local: true) do |f| %>
+      <%= f.hidden_field :owner_id, :value => @owner.id %>
+      <%= f.hidden_field :situation, :value => "加盟店舗の申請中" %>
+      <div class="field">
+        <%= f.label :name %><%= f.text_field :name, value: @subscription.name, readonly: true, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :site %><%= f.text_field :site, value: @subscription.site, readonly: true, class: 'form-control' %>
+      </div>
+      <div class="field mb-3">
+        <%= f.submit "送信", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>
