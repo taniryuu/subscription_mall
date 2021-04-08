@@ -6,20 +6,20 @@
   <body>
     <h1>中野様、
       <% if @new == "true" %>
-	新しい個人店舗が作成されました。
+        新しく個人店舗の審査の申し込みがあります。
       <% else %>
-	個人店舗が編集されました。
+        個人店舗が編集されました。
       <% end %>
     </h1>
     <p>
       <% if @new == "true" %>
-	個人店舗 <%= @private_store.name %> が新規作成されました。<br>
-	個人店舗の金額を確認して下さい。金額は<%= @private_store.price %>円です。<br>
-	よろしければ、個人店舗 <%= @private_store.name %> の商品IDを入力し、<br>
-	個人店舗の新規作成を完了してください。<br>
+        個人店舗 <%= @private_store.name %> から審査申し込みがありました。<br>
+        お店URL<%= @private_store.site %> <br>
+        個人店舗の審査を完了させてください。<br>
+        <%= @url %>
       <% else %>
-	個人店舗 <%= @private_store.name %> が編集されました。<br>
-        個人店舗の金額を確認して下さい。金額は<%= @private_store.price %>円です。<br>
+        個人店舗 <%= @private_store.name %> が編集されました。<br>
+        お店URL<%= @private_store.site %> <br>
       <% end %>
     </p>
   </body>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @owner.name %>様、
+      <% if @subscription.admin_subscription_check == "承認" %>
+        新しく加盟店舗の審査が<%= @subscription.admin_subscription_check %>されました。
+      <% else %>
+        加盟店舗の申請が<%= @subscription.admin_subscription_check %>されました。
+      <% end %>
+    </h1>
+    <p>
+      <% if @subscription.admin_subscription_check == "承認" %>
+        加盟店舗 <%= @subscription.name %> の審査が<br>
+        <%= @subscription.admin_subscription_check %> されました。<br>
+        さっそくお店のカスタマイズしましょう。<br>
+        <%= @url %>
+      <% else %>
+        加盟店舗 <%= @subscription.name %> が<br>
+        <%= @subscription.admin_subscription_check %> されました。<br>
+      <% end %>
+    </p>
+  </body>
+</html>

@@ -1,7 +1,8 @@
 class PrivateStoresController < ApplicationController
-  before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend]
+  before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
+  before_action :create, only: [:private_store_judging]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
   before_action :sub_current_owner, only: %i(edit index)
@@ -16,8 +17,8 @@ class PrivateStoresController < ApplicationController
   end
 
   def private_all_shop
-    @private_stores = PrivateStore.where(admin_private_check: "個人店舗データ反映済み")
-    @private_stores_count = PrivateStore.where(admin_private_check: "個人店舗データ反映済み").count
+    @private_stores = PrivateStore.where(admin_last_check: "個人承認審査済み")
+    @private_stores_count = PrivateStore.where(admin_last_check: "個人承認審査済み").count
   end
 
   def owner_private_stores
@@ -68,16 +69,23 @@ class PrivateStoresController < ApplicationController
   # GET /private_stores/new
   def new
     @private_store = PrivateStore.new
-    @private_store.images.build
+    # @private_store.images.build
     @categories = Category.all
   end
 
-  # GET /private_stores/1/edit
-  def edit
-    @categories = Category.all
-    @private_store.images.build
-    @private_store_instablog = PrivateStoreInstablog.new
+  #審査申込確認画面
+  def private_store_confirm
+    if @private_store = PrivateStore.new(private_store_params)
+      render :private_store_confirm
+    else
+     render :new
+    end
   end
+
+  #審査申込完了画面
+  def private_store_judging
+  end
+
 
   # POST /private_stores
   # POST /private_stores.json
@@ -87,14 +95,21 @@ class PrivateStoresController < ApplicationController
     respond_to do |format|
       if @private_store.save
         @private_store.update(ordinal: PrivateStore.count)
-	PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
-        format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
+        PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
+        format.html { render :private_store_judging, notice: '個人店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @private_store }
       else
         format.html { render :new }
         format.json { render json: @private_store.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /private_stores/1/edit
+  def edit
+    @categories = Category.all
+    @private_store.images.build
+    @private_store_instablog = PrivateStoreInstablog.new
   end
 
   # PATCH/PUT /private_stores/1
@@ -104,7 +119,7 @@ class PrivateStoresController < ApplicationController
     @categories = Category.all
     respond_to do |format|
       if @private_store.update!(private_store_params)
-	PrivateStoreMailer.with(private_store: @private_store, new: "false").notification_email.deliver_now
+        PrivateStoreMailer.with(private_store: @private_store, new: "false").notification_email.deliver_now
         format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @private_store }
       else
@@ -117,13 +132,10 @@ class PrivateStoresController < ApplicationController
   # DELETE /private_stores/1
   # DELETE /private_stores/1.json
   def destroy
-
     targets = PrivateStore.where(ordinal: (@private_store.ordinal + 1)..Float::INFINITY)
-
     targets.each do |target|
       target.update(ordinal: target.ordinal - 1)
     end
-
     @private_store.destroy
     respond_to do |format|
       format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを削除しました' }
@@ -179,10 +191,12 @@ class PrivateStoresController < ApplicationController
                                               :admin_private_check,
                                               :private_store_detail,
                                               :price,
+                                              :situation,
+                                              :site,
                                               :category_id,
                                               :owner_id,
                                               :product_id,
-					      :trial,
+                                              :trial,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
                                               #{ :category_ids=> [] }
                                             )
@@ -207,6 +221,7 @@ class PrivateStoresController < ApplicationController
           redirect_to owner_private_stores_url(current_owner), notice: '他の経営者様のページへ移動できません。'
         end
       end
+
       # 現在ログインしている経営者を許可します。
       def set_owner_private_store
         @owner = Owner.find(params[:owner_id])

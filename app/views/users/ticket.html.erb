@@ -4,7 +4,7 @@
     <% if @subscription.trial == "参加" && current_user.price == 1000 %>
       <span class="badge badge-warning">トライアル</span>
       <span class="badge badge-success">加盟店</span>
-    <% elsif @subscription.trial == "非参加" %>
+    <% elsif @subscription.trial == "不参加" %>
       <span class="badge badge-success">加盟店</span>
     <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
