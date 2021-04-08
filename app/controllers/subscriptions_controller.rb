@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :edit_favorite, :update_favorite]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend]
-  # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
+  before_action :set_subscription, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend, :subscription_confirm, :subscription_judging]
+  before_action :create, only: [:subscription_judging]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
   before_action :sub_current_owner, only: %i(edit index)
@@ -19,7 +19,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_all_shop
-    @subscriptions = Subscription.all
+    @subscriptions = Subscription.where(admin_last_check: "加盟承認審査済み")
+    @subscriptions_count = Subscription.where(admin_last_check: "加盟承認審査済み").count
     current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
   end
 
@@ -57,26 +58,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  # def favorite
-  #   @subscriptions = @user.subscriptions.where(favorite: true, user_id: current_user.id)
-  # end
-
-  # def edit_favorite
-  # end
-
-  # def update_favorite
-  #   if @subscription.favorite == false
-  #     if @subscription.update(favorite: true, user_id: current_user.id)
-  #       flash[:success] = "お気に入り店舗に加えました。"
-  #     end
-  #   elsif @subscription.favorite == true
-  #     if @subscription.update(favorite: false, user_id: nil)
-  #       flash[:success] = "お気に入り店舗に加えました。"
-  #     end
-  #   end
-  #   redirect_to user_account_user_url(current_user)
-  # end
-
   # GET /subscriptions/1
   # GET /subscriptions/1.json
 
@@ -86,15 +67,21 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @subscription = Subscription.new
-    @subscription.images.build
+    # @subscription.images.build
     @categories = Category.all
   end
 
-  # GET /subscriptions/1/edit
-  def edit
-    @categories = Category.all
-    @subscription.images.build
-    @instablog = Instablog.new
+  #審査申込確認画面
+  def subscription_confirm
+    if @subscription = Subscription.new(subscription_params)
+      render :subscription_confirm
+    else
+     render :new
+    end
+  end
+
+  #審査申込完了画面
+  def subscription_judging
   end
 
   # POST /subscriptions
@@ -104,14 +91,22 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
-	@subscription.update(ordinal: Subscription.count)
-        format.html { redirect_to owner_subscriptions_url(owner_id: @owner.id), notice: 'サブスクショップを開設しました' }
+	      @subscription.update(ordinal: Subscription.count)
+        SubscriptionMailer.with(subscription: @subscription, new: "true").notification_email.deliver_now
+        format.html { render :subscription_judging, notice: '加盟店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /subscriptions/1/edit
+  def edit
+    @categories = Category.all
+    @subscription.images.build
+    @instablog = Instablog.new
   end
 
   # PATCH/PUT /subscriptions/1
@@ -189,14 +184,21 @@ class SubscriptionsController < ApplicationController
                                               :sub_image7,
                                               :sub_image8,
                                               :sub_image9,
+                                              :admin_subscription_check,
                                               :subscription_detail,
                                               :price,
+                                              :site,
+                                              :situation,
                                               :category_id,
                                               :owner_id,
                                               :trial,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
                                               # { :category_ids=> [] }
                                             )
+      end
+
+      def judging_params
+        params.require(:subscription).permit(:name, :owner_id, :site, :admin_subscription_check)
       end
 
       def recommend_params

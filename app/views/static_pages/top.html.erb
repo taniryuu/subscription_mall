@@ -21,7 +21,7 @@
   <div class="center">
       <div class="comment-text">スマホで簡単注文・テイクアウト・並ばず受け取れる<br>店内での飲食も出来新しいお店に出会えて定期的でお財布にも安心</div>
   </div>
-  <hr class="border-solid-down" />
+  <hr class="border-solid-down"/>
 
   <div class="center">
     <h1 class="concept">巡グルメの特徴</h1>
@@ -87,46 +87,150 @@
     <%# google map %>
     <%= render "maps/top" %>
 
-    <hr class="border-solid-down" />
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <div class="recommend-shop">
-              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-              <% end %>
-            <div class="category-list">
-              <% @subscriptions.each do |subscription| %>
-              <div>
-                <hr class="tool-bar">
-                  <div class="row align-items-center">
-                    <div class="col-lg-5 col-xl-3">
-                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                        <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300' %>
-                        <% else %>
-                          <p></p>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-12">
-                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
-                      <p class="dark-grey-text"><%= subscription.title %></p>
-                      <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
-                    </div>
-                  </div>
-              </div>
-              <% end%>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr class="border-solid-down" />
 
-    <div class="center">
+    <% if @subscriptions.length != 0 %>
+      <div class="d-flex justify-content-center my-5">
+        <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue mt-6 mb-5" do%>
+          おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    <%# ここからおすすめスライダー %>
+    <div id="subscriptions" data-subscriptions-count="<%= @subscriptions.count.to_json %>"></div>
+    <% if @subscriptions.length == 0 %>
+       <p></p>
+    <% elsif @subscriptions.length == 1 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %> 
+          <div class="recommended-box-2 not-slider d-flex justify-content-center">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box-2">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png" %>
+              <div class="recommended-inner-box-2 col-6">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.length == 2 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-outer-box-2 col-12 col-sm-8 col-md-4">
+        
+            <div class="recommended-box-2 not-slider">
+              <% if subscription.image_subscription.present? %>
+                <%= image_tag subscription.image_subscription_url %>
+                <div class="recommended-inner-box-2">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% elsif subscription.image_subscription.blank? %>
+                <%= image_tag "no_img.png" %>
+                <div class="recommended-inner-box-2 col-6">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.count >= 3 %>
+      <div class="autoplay">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-box">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png", :size => '300' %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% end %>
+    <%# ここまでおすすめスライダー %>
+
+
+    <script>
+      $(function() {
+        $('#slider').slick({
+          dots: true, //スライドの下にドットのナビゲーションを表示
+          autoplay: true, //自動再生
+          autoplaySpeed: 4000, //再生スピード
+          });
+        var subscriptions_count = $('#subscriptions').data("subscriptions-count");
+        var slidesToshow_val = 3;  //ここからオススメ画像スライダー   スライダーに表示させるデフォルト画像表示枚数
+        var slidesToshow_val_breakpoint_1 = 2; // breakpoint1 960px時のデフォルト画像表示枚数
+
+        var slidesToshow_leng =  subscriptions_count;
+                // @subscriptions（おすすめ店舗）が0,1,2枚 < 3枚 だったら
+        if( subscriptions_count < slidesToshow_val){
+          slidesToshow_val = 1;
+          slidesToshow_val_breakpoint_1 = 1;
+        }
+
+        $('.autoplay').slick({  
+          slidesToShow: slidesToshow_val,
+          slidesToScroll: 1,
+          centerMode: true, //要素を中央寄せにする
+          autoplay: true,
+          infinite: true,
+          autoplaySpeed: 2000,
+          responsive: [{
+                        breakpoint: 960,  //画面幅960pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: slidesToshow_val_breakpoint_1,
+                                  slidesToScroll: 1,
+                        }
+                    },{
+                        breakpoint: 720,   //画面幅720pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: 1,
+                                  slidesToScroll: 1,
+                              }
+                        }
+                    ]
+        });
+      });                     //ここまでオススメ画像スライダー
+    </script>
+
+    <div class="center mt-8 mb-6">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
 
@@ -413,46 +517,108 @@
     <%# google map %>
     <%= render "maps/top" %>
 
-    <hr class="border-solid-down" />
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <div class="recommend-shop">
-              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-              <% end %>
-            <div class="category-list">
-              <% @subscriptions.each do |subscription| %>
-              <div>
-                <hr class="tool-bar">
-                  <div class="row align-items-center">
-                    <div class="col-lg-5 col-xl-3">
-                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                        <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300' %>
-                        <% else %>
-                          <p></p>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-12">
-                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
-                      <p class="dark-grey-text"><%= subscription.title %></p>
-                      <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
-                    </div>
-                  </div>
-              </div>
-              <% end%>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr class="border-solid-down" />
 
-    <div class="center">
+    <% if @subscriptions.length != 0 %>
+      <div class="d-flex justify-content-center my-5">
+        <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue mt-6 mb-5" do%>
+          おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    <%# ここからおすすめスライダー %>
+    <div id="subscriptions" data-subscriptions-count="<%= @subscriptions.count.to_json %>"></div>
+    <% if @subscriptions.length == 0 %>
+       <p></p>
+    <% elsif @subscriptions.length == 1 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %> 
+          <div class="recommended-box-2 not-slider d-flex justify-content-center">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box-2">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png" %>
+              <div class="recommended-inner-box-2 col-6">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.length == 2 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-outer-box-2 col-12 col-sm-8 col-md-4">
+        
+            <div class="recommended-box-2 not-slider">
+              <% if subscription.image_subscription.present? %>
+                <%= image_tag subscription.image_subscription_url %>
+                <div class="recommended-inner-box-2">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% elsif subscription.image_subscription.blank? %>
+                <%= image_tag "no_img.png" %>
+                <div class="recommended-inner-box-2 col-6">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.count >= 3 %>
+      <div class="autoplay">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-box">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png", :size => '300' %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% end %>
+    <%# ここまでおすすめスライダー %>
+
+
+    <div class="center mt-8 mb-6">
+
       <h1 class="concept">使い方３ステップ</h1>
     </div>
 
@@ -523,9 +689,41 @@
           autoplay: true, //自動再生
           autoplaySpeed: 4000, //再生スピード
           });
+        var subscriptions_count = $('#subscriptions').data("subscriptions-count"); //ここからオススメ画像スライダー
+        var slidesToshow_val = 3;  //スライダーに表示させるデフォルト画像表示枚数
+        var slidesToshow_val_breakpoint_1 = 2; // breakpoint1 960px時のデフォルト画像表示枚数
+
+        var slidesToshow_leng =  subscriptions_count;
+                // @subscriptions（おすすめ店舗）が0,1,2枚 < 3枚 だったら
+        if( subscriptions_count < slidesToshow_val){
+          slidesToshow_val = 1;
+          slidesToshow_val_breakpoint_1 = 1;
+        }
+
+        $('.autoplay').slick({  
+          slidesToShow: slidesToshow_val,
+          slidesToScroll: 1,
+          centerMode: true, //要素を中央寄せにする
+          autoplay: true,
+          infinite: true,
+          autoplaySpeed: 2000,
+          responsive: [{
+                        breakpoint: 960,  //画面幅960pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: slidesToshow_val_breakpoint_1,
+                                  slidesToScroll: 1,
+                        }
+                    },{
+                        breakpoint: 720,   //画面幅720pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: 1,
+                                  slidesToScroll: 1,
+                              }
+                        }
+                    ]
+        }); //ここまでオススメ画像スライダー
       });
     </script>
-
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <div class="f-container">
@@ -737,46 +935,106 @@
     <%# google map %>
     <%= render "maps/top" %>
 
-    <hr class="border-solid-down" />
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <div class="recommend-shop">
-              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-              <% end %>
-            <div class="category-list">
-              <% @subscriptions.each do |subscription| %>
-              <div>
-                <hr class="tool-bar">
-                  <div class="row align-items-center">
-                    <div class="col-lg-5 col-xl-3">
-                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                        <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300' %>
-                        <% else %>
-                          <p></p>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-12">
-                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
-                      <p class="dark-grey-text"><%= subscription.title %></p>
-                      <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
-                    </div>
-                  </div>
-              </div>
-              <% end%>
-            </div>
-            </div>
-          </div>
-        </div>
+    <% if @subscriptions.length != 0 %>
+      <div class="d-flex justify-content-center my-5">
+        <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue mt-6 mb-5" do%>
+          おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        <% end %>
       </div>
-    </div>
-    <hr class="border-solid-down" />
+    <% end %>
 
-    <div class="center">
+
+    <%# ここからおすすめスライダー %>
+    <div id="subscriptions" data-subscriptions-count="<%= @subscriptions.count.to_json %>"></div>
+    <% if @subscriptions.length == 0 %>
+       <p></p>
+    <% elsif @subscriptions.length == 1 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %> 
+          <div class="recommended-box-2 not-slider d-flex justify-content-center">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box-2">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png" %>
+              <div class="recommended-inner-box-2 col-6">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.length == 2 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-outer-box-2 col-12 col-sm-8 col-md-4">
+        
+            <div class="recommended-box-2 not-slider">
+              <% if subscription.image_subscription.present? %>
+                <%= image_tag subscription.image_subscription_url %>
+                <div class="recommended-inner-box-2">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% elsif subscription.image_subscription.blank? %>
+                <%= image_tag "no_img.png" %>
+                <div class="recommended-inner-box-2 col-6">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.count >= 3 %>
+      <div class="autoplay">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-box">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png", :size => '300' %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% end %>
+    <%# ここまでおすすめスライダー %>
+
+
+    <div class="center mt-8 mb-6">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
 
@@ -809,9 +1067,42 @@
           autoplay: true, //自動再生
           autoplaySpeed: 4000, //再生スピード
           });
+          
+        var subscriptions_count = $('#subscriptions').data("subscriptions-count"); //ここからオススメ画像スライダー
+        var slidesToshow_val = 3;  //スライダーに表示させるデフォルト画像表示枚数
+        var slidesToshow_val_breakpoint_1 = 2; // breakpoint1 960px時のデフォルト画像表示枚数
+
+        var slidesToshow_leng =  subscriptions_count;
+                // @subscriptions（おすすめ店舗）が0,1,2枚 < 3枚 だったら
+        if( subscriptions_count < slidesToshow_val){
+          slidesToshow_val = 1;
+          slidesToshow_val_breakpoint_1 = 1;
+        }
+
+        $('.autoplay').slick({  
+          slidesToShow: slidesToshow_val,
+          slidesToScroll: 1,
+          centerMode: true, //要素を中央寄せにする
+          autoplay: true,
+          infinite: true,
+          autoplaySpeed: 2000,
+          responsive: [{
+                        breakpoint: 960,  //画面幅960pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: slidesToshow_val_breakpoint_1,
+                                  slidesToScroll: 1,
+                        }
+                    },{
+                        breakpoint: 720,   //画面幅720pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: 1,
+                                  slidesToScroll: 1,
+                              }
+                        }
+                    ]
+        }); //ここまでオススメ画像スライダー
       });
     </script>
-
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <div class="insta-title">
@@ -1064,44 +1355,106 @@
     <%# google map %>
     <%= render "maps/top" %>
 
-    <hr class="border-solid-down" />
-    <div class="f-container">
-      <div class="f-item">
-        <div class="box26">
-          <div class="center">
-            <div class="recommend-shop">
-              <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue" do%>
-                おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
-              <% end %>
-            <div class="category-list">
-              <% @subscriptions.each do |subscription| %>
-              <div>
-                <hr class="tool-bar">
-                  <div class="row align-items-center">
-                    <div class="col-lg-5 col-xl-3">
-                      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                        <% if subscription.image_subscription.present? %>
-                          <%= image_tag subscription.image_subscription_url, width: '300' %>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-12">
-                      <h4 class="font-weight-bold ms-3"><strong><%= subscription.name %></strong></h4>
-                      <p class="dark-grey-text"><%= subscription.title %></p>
-                      <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-primary btn-rounded text-primary' %>
-                    </div>
-                  </div>
-              </div>
-              <% end%>
-            </div>
-            </div>
-          </div>
-        </div>
+    <% if @subscriptions.length != 0 %>
+      <div class="d-flex justify-content-center my-5">
+        <%= link_to recommend_categories_path, class: "btn-gradient-radius-blue mt-6 mb-5" do%>
+          おすすめ店舗はこちら&nbsp;<i class="fas fa-chevron-circle-right"></i>
+        <% end %>
       </div>
-    </div>
-    <hr class="border-solid-down" />
+    <% end %>
 
-    <div class="center">
+
+    <%# ここからおすすめスライダー %>
+    <div id="subscriptions" data-subscriptions-count="<%= @subscriptions.count.to_json %>"></div>
+    <% if @subscriptions.length == 0 %>
+       <p></p>
+    <% elsif @subscriptions.length == 1 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %> 
+          <div class="recommended-box-2 not-slider d-flex justify-content-center">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box-2">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png" %>
+              <div class="recommended-inner-box-2 col-6">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.length == 2 %>
+      <div class="row justify-content-center">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-outer-box-2 col-12 col-sm-8 col-md-4">
+        
+            <div class="recommended-box-2 not-slider">
+              <% if subscription.image_subscription.present? %>
+                <%= image_tag subscription.image_subscription_url %>
+                <div class="recommended-inner-box-2">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% elsif subscription.image_subscription.blank? %>
+                <%= image_tag "no_img.png" %>
+                <div class="recommended-inner-box-2 col-6">
+                  <div>
+                    <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                    <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                    <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        <% end%>
+      </div>
+    <% elsif @subscriptions.count >= 3 %>
+      <div class="autoplay">
+        <% @subscriptions.each do |subscription| %>
+          <div class="recommended-box">
+            <% if subscription.image_subscription.present? %>
+              <%= image_tag subscription.image_subscription_url %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% elsif subscription.image_subscription.blank? %>
+              <%= image_tag "no_img.png", :size => '300' %>
+              <div class="recommended-inner-box">
+                <div>
+                  <h2 class="font-weight-bold text-dark mb-4"><strong><%= subscription.name %></strong></h2>
+                  <h3 class="dark-grey-text"><%= subscription.title %></h3>
+                  <%= link_to "詳細", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: 'btn btn-outline-dark' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end%>
+      </div>
+    <% end %>
+    <%# ここまでおすすめスライダー %>
+
+
+    <div class="center mt-8 mb-6">
       <h1 class="concept">使い方３ステップ</h1>
     </div>
 
@@ -1172,6 +1525,39 @@
           autoplay: true, //自動再生
           autoplaySpeed: 4000, //再生スピード
           });
+        var subscriptions_count = $('#subscriptions').data("subscriptions-count"); //ここからオススメ画像スライダー
+        var slidesToshow_val = 3;  //スライダーに表示させるデフォルト画像表示枚数
+        var slidesToshow_val_breakpoint_1 = 2; // breakpoint1 960px時のデフォルト画像表示枚数
+
+        var slidesToshow_leng =  subscriptions_count;
+                // @subscriptions（おすすめ店舗）が0,1,2枚 < 3枚 だったら
+        if( subscriptions_count < slidesToshow_val){
+          slidesToshow_val = 1;
+          slidesToshow_val_breakpoint_1 = 1;
+        }
+
+        $('.autoplay').slick({  
+          slidesToShow: slidesToshow_val,
+          slidesToScroll: 1,
+          centerMode: true, //要素を中央寄せにする
+          autoplay: true,
+          infinite: true,
+          autoplaySpeed: 2000,
+          responsive: [{
+                        breakpoint: 960,  //画面幅960pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: slidesToshow_val_breakpoint_1,
+                                  slidesToScroll: 1,
+                        }
+                    },{
+                        breakpoint: 720,   //画面幅720pxで以下のセッティング
+                              settings: {
+                                  slidesToShow: 1,
+                                  slidesToScroll: 1,
+                              }
+                        }
+                    ]
+        }); //ここまでオススメ画像スライダー
       });
     </script>
 
