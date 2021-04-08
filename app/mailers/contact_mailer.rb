@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-  default from: 'megurume@subscription.com'# 送信元アドレス
+  default from: ENV['SEND_MAIL']# 送信元アドレス
 
   # 利用者へお問い合わせサンキューメール送信
   def contact_email(contact)
@@ -10,6 +10,6 @@ class ContactMailer < ApplicationMailer
   # 管理者へお問い合わせが入った通知メール送信
   def get_contact_email(contact)
     @contact = contact
-    mail(:to => 'megurume@subscription.com', :subject => 'お問い合わせが入りました。ご確認をお願いいたします。')
+    mail(:to => ENV['SEND_MAIL'], :subject => 'お問い合わせが入りました。ご確認をお願いいたします。')
   end 
 end

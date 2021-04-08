@@ -17,14 +17,16 @@
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
+                <% if @subscription.category.present? %>
                   <span class="badge badge-success">
                   <%= @subscription.category.name %>
                   </span>
+                <% end %>
                 <br>
                 <span class="badge badge-success">加盟店</span>
                 <% if @subscription.trial == "参加" %>
                   <span class="badge badge-warning">トライアルでも利用可能</span>
-                <% elsif @subscription.trial == "非参加" %>
+                <% elsif @subscription.trial == "不参加" %>
                   <span class="badge badge-warning">トライアルチケットでは利用できません。加盟店プランをお買い求めください。</span>
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
@@ -40,9 +42,9 @@
                     <p></p>
                   <% end %><br>
               <% if @payment.present? %>
-                <% if @subscription.trial == "参加" && current_user.user_price == 1000 %>
+                <% if @subscription.trial == true && current_user.user_price == 1000 %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
-                <% elsif @subscription.trial == "非参加" && current_user.user_price == 1000 %>
+                <% elsif @subscription.trial == false && current_user.user_price == 1000 %>
                   <%= link_to "トライアルを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% elsif @subscription.price.to_i < current_user.user_price %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>

@@ -170,8 +170,8 @@ class PrivateStoreUserPlansController < ApplicationController
 
       # サブスク登録
       @private_store_plan = Stripe::Checkout::Session.create(
-	success_url: private_store_success_url,
-	cancel_url: private_store_cancel_url,
+        success_url: private_store_success_url,
+        cancel_url: private_store_cancel_url,
         payment_method_types: ['card'],
         customer_email: current_user.email,
         line_items: [{
