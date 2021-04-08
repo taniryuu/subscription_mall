@@ -91,6 +91,8 @@ ja:
           latitude: 経度
           longitude: 緯度
           owner_id: 経営者紐付け
+          site: サイトURL
+          admin_subscription_check: 審査状況
           trial: トライアル
         private_store:
           id: ID
@@ -130,6 +132,9 @@ ja:
           owner_id: 経営者紐付け
           insta_blog: インスタグラム
           recommend: おすすめ店舗
+          site: サイトURL
+          private_store_detail: 店舗情報
+          admin_private_check: 審査状況
           product_id: 商品ID
           trial: トライアル
         media:

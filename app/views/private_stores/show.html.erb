@@ -17,14 +17,16 @@
               <% end %>
             <div class="mask rgba-black-gradient d-md-flex align-items-end">
               <div class="text-bottom white-text p-4">
+                <% if @private_store.category.present? %>
                   <span class="badge badge-success">
                     <%= @private_store.category.name %>
                   </span>
+                <% end %>
                 <br>
                 <span class="badge badge-primary">個人店舗</span>
                 <% if @private_store.trial == "参加" %>
                   <span class="badge badge-warning">トライアルでも利用可能</span>
-                <% elsif @private_store.trial == "非参加" %>
+                <% elsif @private_store.trial == "不参加" %>
                   <span class="badge badge-warning">トライアルチケットでは利用できません。個人店プランをお買い求めください。</span>
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>

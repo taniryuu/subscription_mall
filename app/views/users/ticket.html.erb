@@ -2,10 +2,16 @@
 <div class="container my-5">
   <section class="text-center dark-grey-text">
     <span class="badge badge-success">加盟店</span>
-    <% if @subscription.trial == "参加" %>
+    <% if @subscription.trial == true %>
       <span class="badge badge-warning">トライアルでも利用可能</span>
     <% elsif @subscription.trial == "非参加" %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+    <% end %>
+    <% if @subscription.trial == true && current_user.price == 1000 %>
+      <span class="badge badge-warning">トライアル</span>
+      <span class="badge badge-success">加盟店</span>
+    <% elsif @subscription.trial == false %>
+      <span class="badge badge-success">加盟店</span>
     <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
     <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
@@ -26,7 +32,7 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度発券すると当日は他のお店では使用できません。</p>
 		<p class="mt-2"><i class="fa fa-check-circle fa"></i> チケット発券は0時にリセットされます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
-                <% if @subscription.trial == "参加" && current_user.select_trial %>
+                <% if @subscription.trial == true && current_user.select_trial %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.user_price}円です。"%></p>
                 <% else %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.user_price}円です。"%></p>
@@ -116,9 +122,9 @@
 <div class="container my-5">
     <section class="text-center dark-grey-text">
     <span class="badge badge-success">加盟店</span>
-    <% if @subscription.trial == "参加" %>
+    <% if @subscription.trial == true %>
       <span class="badge badge-warning">トライアルでも利用可能</span>
-    <% elsif @subscription.trial == "非参加" %>
+    <% elsif @subscription.trial == false %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
     <% end %>    
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
@@ -141,7 +147,7 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は他のお店では使用できません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
-                <% if @subscription.trial == "参加" && current_user.select_trial %>
+                <% if @subscription.trial == true && current_user.select_trial %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.user_price}円です。"%></p>
                 <% else %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.user_price}円です。"%></p>  
