@@ -1,133 +1,24 @@
 <% provide(:title, "個人店舗サブスクページ作成") %>
 
-<h1>個人店舗サブスクショップ開設</h1>
+<h1>個人店サブスクショップ審査</h1>
 
-<%= form_with(model: @private_store, url: owner_private_stores_path(@private_store, owner_id: @owner.id), multipart: true, local: true) do |form| %>
+<%= form_with(model: @private_store, url: private_store_confirm_path(@private_store, owner_id: @owner.id), method: :post, multipart: true, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @private_store %>
-
-  <%= form.hidden_field :owner_id, :value => @owner.id %>
-  <%= form.hidden_field :admin_private_check, :value => "個人店舗の申請中" %>
 
   <div class="field">
     <%= form.label :お店の名前 %> <span class="must">必須</span><br/>
-    <%= form.text_field :name, id: :private_store_name, placeholder: "例)", class: 'form-control' %>
+    <%= form.text_field :name, :required => true, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :お店の住所 %> <span class="must">必須</span>
-    <%= form.text_field :address, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店紹介 %> <span class="must">必須</span><br/>
-    <%= form.text_field :shop_introduction, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブスク料理名 %> <span class="must">必須</span><br/>
-    <%= form.text_field :title, id: :private_store_title, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :商品説明 %> <span class="must">必須</span><br/>
-    <%= form.text_area :detail, id: :private_store_detail, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :お店トップ紹介写真 %> <span class="must">必須</span><br/>
-    <%= form.file_field :image_private_store, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :"LINE@QRコード画像",for: "file-input", type:"file" %> <span class="must">必須</span><br/>
-    <%= form.file_field :qr_image, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :店舗情報 %> <span class="must">必須</span><br/>
-    <%= form.text_area :private_store_detail, id: :private_store_private_store_detail, placeholder: "例)", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真2, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image2, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真3, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image3, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真4, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image4, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真5, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image5, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真6, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image6, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真7, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image7, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真8, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image8, id: "file-input" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :サブのお店紹介写真9, for: "file-input", type:"file" %><br/>
-    <%= form.file_field :sub_image9, id: "file-input"%>
-  </div>
-
-  <div class="field">
-    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
-    <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリを選択してください", class: 'form-control') %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %> <span class="must">必須</span> <span>※（あとから変更はできませんのでご注意ください。個人店舗の場合ショップデータ反映まで1日かかります。）</span><br/>
-    <%= form.number_field :price, id: :private_store_price, class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :商品_ID %>
-    <%= form.text_field :product_id, placeholder: "管理者入力項目なので空欄のままでお願いします", class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :trial %>
-    <%= form.select :trial, [['非参加', '非参加'],['参加', '参加']], { selected: '非参加' }, class: 'form-control' %>
+    <%= form.label :サイトURL %> <span class="must">必須</span><br/>
+    <%= form.text_field :site, :required => true, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit "個人店舗登録の申請" %>
+    <%= form.submit "個人店登録の審査申請" %>
   </div>
 <% end %>
 <%= link_to 'トップ', root_path %> |
 
-<%= link_to '一覧へ', owner_private_stores_path %>
-
- <%
-=begin%>
- <div class="field">
-    <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
-    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, multiple: true)  do |t| %>
-      <% t.label   { t.check_box + t.text } %>
-    <% end %>
-  </div>
-<%
-=end%>
+<%= link_to '一覧へ', owner_private_stores_path(current_owner) %>

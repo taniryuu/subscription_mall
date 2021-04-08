@@ -1,8 +1,8 @@
-<% @plans.each.with_index(1) do |plan, i| %>
-  <div class="col-lg-4 col-md-12 mb-4">
-    <div class="card">
-      <div class="card-body subscription-bg">
-        <h5 class="mb-4"><%= "プラン#{i}" %></h5>
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+    <div class="card-body subscription-bg">
+      <% if (@subscription.trial == "非参加") || (@subscription.trial == "参加" && !current_user.select_trial) %>
+        <h5 class="mb-4">加盟店プラン</h5>
         <div class="d-flex justify-content-center">
           <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
@@ -10,46 +10,35 @@
           height="120"
         />
         </div>
-        <h2 class="font-weight-bold my-4"><%= "￥#{plan.amount.to_s(:delimited)}/月" %></h2>
-        <p class="grey-text"><%= plan.metadata.detail %></p> 
-        <% if @pay.present? && plan.amount == @payment.amount_total %>
+        <h2 class="font-weight-bold my-4"><%= "￥#{@subscription_plan.amount_subtotal.to_s(:delimited)}/月" %></h2>
+        <p class="grey-text"><!--%= @subscription_plan.metadata.detail %--></p>
+        <% if @pay.present? && @subscription_plan.amount_subtotal == @payment.amount_total %>
           <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
-        <% elsif current_user.customer_id.present? %>
-          <%= link_to "詳細", update_confirm_user_plan_path(session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
         <% else %>
-          <%= link_to "詳細", confirm_user_plan_path(session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
+          <button type="button" id="subscription-plan" class="btn btn-outline-success btn-rounded waves-effect">詳細</button>
         <% end %>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<%
-=begin%>
- <% if current_user.used_trial === false %>  <%#トライアルプランが使用済みかどうかの判定 %> 
-<%
-=end%>
-
-<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card">
-    <div class="card-body subscription-bg">
-      <h5 class="mb-4">トライアルプラン</h5>
-      <div class="d-flex justify-content-center">
-        <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
-        width="120"
-        height="120"
-      />
-      </div>
-
-      <h2 class="font-weight-bold my-4">￥1000/3回</h2>
-      <p>お試し価格で巡グルメを体験</p>
-      <button type="button" id="trial-plan" class="btn btn-outline-success btn-rounded waves-effect">詳細</button>
+      <% else %>
+	<h5 class="mb-4">トライアルプラン</h5>
+        <div class="d-flex justify-content-center">
+          <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
+          width="120"
+          height="120"
+        />
+        </div>
+        <h2 class="font-weight-bold my-4"><%= "￥#{@trial_plan.amount_subtotal.to_s(:delimited)}/月" %></h2>
+        <p class="grey-text"><%= @trial_plan.metadata.detail %></p>
+        <% if @pay.present? && @trial_plan.amount_subtotal == @payment.amount_total %>
+          <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+        <% else %>
+          <button type="button" id="trial-plan" class="btn btn-outline-success btn-rounded waves-effect">詳細</button>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
 
-<% if Rails.env.development? || Rails.env.test? %>
+<% if (Rails.env.development? || Rails.env.test?) && @subscription.trial == "参加" && current_user.select_trial %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
@@ -62,25 +51,45 @@
       });
     });
   </script>
-<% end %>
+<% elsif (Rails.env.development? || Rails.env.test?) && (@subscription.trial == "非参加" || (@subscription.trial == "参加" && !current_user.select_trial)) %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
+    var checkoutButton = document.getElementById('subscription-plan');
 
-<% if Rails.env.production? %>
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-  var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
-  var checkoutButton = document.getElementById('trial-plan');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @trial_plan.id %>'
-    }).then(function (result) {
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @subscription_plan.id %>'
+      }).then(function (result) {
+      });
     });
-  });
-</script>
-<% end %>
+  </script>
 
-<%
-=begin%>
- <% end %> 
-<%
-=end%>
+
+<% elsif Rails.env.production? && @subscription.trial == "参加" && current_user.select_trial %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
+    var checkoutButton = document.getElementById('trial-plan');
+
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @trial_plan.id %>'
+      }).then(function (result) {
+      });
+    });
+  </script>
+<% elsif Rails.env.production? && (@subscription.trial == "非参加" || (@subscription.trial == "参加" && !current_user.select_trial)) %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
+    var checkoutButton = document.getElementById('subscription-plan');
+
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @subscription_plan.id %>'
+      }).then(function (result) {
+      });
+    });
+  </script>
+<% end %>

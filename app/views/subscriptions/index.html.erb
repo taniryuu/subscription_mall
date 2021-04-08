@@ -9,6 +9,15 @@
   <% else %>
     <thead>
       <div class="row">
+        <div class ="col-sm-1">
+          ID
+	</div>
+	<div class="col-sm-1">
+	  ordinal
+        </div>
+        <div class="col-sm-2">
+          加盟店の状況
+        </div>
         <div class="col-sm-2">
           トライアル状態
         </div>
@@ -24,9 +33,26 @@
   <tbody>
     <% @subscriptions.each do |subscription| %>
     <hr class="tool-bar">
-      <div class="row">
+    <div class="row">
+	<div class="col-sm-1">
+          <%= subscription.id %>
+        </div>
+        <div class="col-sm-1">
+          <%= subscription.ordinal %>
+        </div>
         <div class="col-sm-2">
-          <%= subscription.trial %>
+          <span class="badge badge-info">
+            <%= subscription.admin_last_check %>
+          </span>
+        </div>
+        <div class="col-sm-2">
+        <% if subscription.admin_subscription_check == "承認" %>
+          <% if subscription.trial == false %>
+            <%= "不参加" %>
+          <% else %>
+            <%= "参加" %>
+          <% end %>
+        <% end %>
         </div>
         <div class="col-sm-2">
           <%= subscription.name %>
@@ -58,5 +84,5 @@
 <br>
 
 <% if current_owner.present? %>
-  <%= link_to 'サブスクショップ開設', new_owner_subscription_path, class: "btn btn-lg btn-brand mb-8" %>
+  <%= link_to '加盟店審査', new_owner_subscription_path, class: "btn btn-lg btn-brand mb-8" %>
 <% end %>

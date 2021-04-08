@@ -31,6 +31,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :customer_id, null: false, default: ""
       t.date :use_ticket_day
       t.date :issue_ticket_day
+      t.boolean :select_trial, default: false
       
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
