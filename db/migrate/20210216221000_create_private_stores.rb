@@ -38,7 +38,9 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.float :latitude
       t.float :longitude
       t.string :product_id
+      t.boolean :select_trial, default: false
       t.boolean :trial
+
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true

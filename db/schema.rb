@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.string "product_id"
+    t.boolean "select_trial", default: false
     t.boolean "trial"
     t.bigint "owner_id"
     t.bigint "user_id"
@@ -260,6 +261,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ordinal"
     t.string "name"
     t.string "title"
     t.text "detail"
@@ -380,6 +382,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
+    t.boolean "select_trial", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_price"

@@ -9,6 +9,12 @@
   <% else %>
     <thead>
       <div class="row">
+        <div class ="col-sm-1">
+          ID
+	</div>
+	<div class="col-sm-1">
+	  ordinal
+        </div>
         <div class="col-sm-2">
           加盟店の状況
         </div>
@@ -27,7 +33,13 @@
   <tbody>
     <% @subscriptions.each do |subscription| %>
     <hr class="tool-bar">
-      <div class="row">
+    <div class="row">
+	<div class="col-sm-1">
+          <%= subscription.id %>
+        </div>
+        <div class="col-sm-1">
+          <%= subscription.ordinal %>
+        </div>
         <div class="col-sm-2">
           <span class="badge badge-info">
             <%= subscription.admin_last_check %>

@@ -90,6 +90,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
+	      @subscription.update(ordinal: Subscription.count)
         SubscriptionMailer.with(subscription: @subscription, new: "true").notification_email.deliver_now
         format.html { render :subscription_judging, notice: '加盟店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @subscription }
@@ -126,6 +127,13 @@ class SubscriptionsController < ApplicationController
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
+    
+    targets = Subscription.where(ordinal: (@subscription.ordinal + 1)..Float::INFINITY)
+
+    targets.each do |target|
+      target.update(ordinal: target.ordinal - 1)
+    end
+	  
     @subscription.destroy
     respond_to do |format|
       format.html { redirect_to owner_subscriptions_url(owner_id: @owner.id), notice: 'サブスクショップを削除しました' }

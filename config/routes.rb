@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
   get 'private_store/:id/ticket', to: 'private_store_users#ticket', as: :private_store_use_ticket #private_store用チケット発行ページ
   get 'private_store/:id/new_ticket', to: 'private_store_user_plans#new', as: :private_store_new_ticket #private_store用サブスクを始める
-
+  get 'subscription/:id/new_ticket', to: 'user_plans#new', as: :subscription_new_ticket #subscription用サブスクを始める
 
   get '/subscriptions/:subscription_id/subscription_reviews', to: 'reviews#subscription_reviews', as: :subscription_reviews #サブスクレビューページ
   get '/private_stores/:private_store_id/private_store_reviews', to: 'reviews#private_store_reviews', as: :private_store_reviews #個人店舗レビューページ
@@ -206,5 +206,9 @@ Rails.application.routes.draw do
 
   get 'admins/private_stores_index'
   get 'admins/subscriptions_index'
+
+  get "trial_plan", to: "user_plans#trial_plan"
+
+  get "subscription_plans", to: "user_plans#subscription_plans" #加盟店の一覧へ
 
 end
