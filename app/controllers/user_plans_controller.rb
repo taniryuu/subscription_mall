@@ -5,6 +5,7 @@ class UserPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
+  before_action :current_user_email_present?, only: :new
   # before_action :sms_auth_false?, only: %i(new confirm destroy)
 
   # stripe決済成功時
@@ -22,7 +23,7 @@ class UserPlansController < ApplicationController
   # トライアルプラン
   def new
     if Rails.env.development? || Rails.env.test?
-        @trial_plan = Stripe::Checkout::Session.create(
+      @trial_plan = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         customer_email: current_user.email,
         line_items: [{
@@ -156,6 +157,13 @@ class UserPlansController < ApplicationController
       @plans = []
       Stripe::Plan.list.reverse_each do |plan|
         @plans.push(plan) if plan.object = "active"
+      end
+    end
+
+    # emailが空欄時(SNSログイン時)
+    def current_user_email_present?
+      unless current_user.email.present?
+        redirect_to edit_user_url(current_user), notice: "メールアドレスを登録してください"
       end
     end
 end
