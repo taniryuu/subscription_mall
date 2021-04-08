@@ -15,7 +15,7 @@ class UserPlansController < ApplicationController
     else 
       current_user.update!(trial_stripe_success: false)
     end 
-    #AdminMailer.send_payment_email(current_user).deliver_now
+    AdminMailer.send_payment_email(current_user).deliver_now
   end
 
   # stripe決済失敗時
