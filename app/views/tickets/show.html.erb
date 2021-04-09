@@ -4,7 +4,7 @@
     <p class="text-muted w-responsive mx-auto mb-5"></p>
     <div class="row">
       <% if @ticket.use_ticket_day == Date.today %>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4 mx-auto">
           <div class="card pricing-card">
             <div class="price header white-text indigo rounded-top">
               <h3 class="number">
@@ -53,7 +53,7 @@
       <% elsif @ticket.issue_ticket_day == Date.today %>
         <div class="col-lg-4 col-md-12 mb-4">
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4 mx-auto">
           <div class="card pricing-card">
             <div class="price header white-text indigo rounded-top">
               <h3 class="number">
@@ -117,7 +117,7 @@
           </div>
         </div>
       <% else @ticket.issue_ticket_day != Date.today %>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4 mx-auto">
           <div class="card pricing-card">
             <div class="card-body striped mb-1">
               <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
