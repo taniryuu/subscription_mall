@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<% if (Rails.env.development? || Rails.env.test?) && @private_store.trial == "参加" && current_user.select_trial %>
+<% if (Rails.env.development? || Rails.env.test?) && @private_store.trial == true && current_user.select_trial %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
@@ -66,7 +66,7 @@
   </script>
 
 
-<% elsif Rails.env.production? && @private_store.trial == "参加" && current_user.select_trial %>
+<% elsif Rails.env.production? && @private_store.trial == true && current_user.select_trial %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");

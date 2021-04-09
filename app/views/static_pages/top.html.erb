@@ -443,10 +443,16 @@
     <h1 class="trial center concept"><%= link_to "＼お試しプラン／のお店はこちら", trial_shop_path, class: "btn btn-link" %></h1>
     <div class="row">
       <div class="col-sm-12">
-        <div class="trial_plan">
+	<div class="trial_plan">
+        <% if current_user.user_price.blank? %>
           <div>
             <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2" %></span>
-          </div>
+	  </div>
+	<% else %>
+          <div>
+            <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2 disabled" %></span>
+	  <div>
+        <% end %>
         </div>
       </div>
     </div>

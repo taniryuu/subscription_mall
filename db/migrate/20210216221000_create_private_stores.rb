@@ -8,8 +8,8 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.string :image_private_store
       t.integer :price
       t.text :private_store_detail
-      #t.integer :category_name
-      t.integer :shop_id, foreign_key: true
+      t.string :email
+      t.string :phone_number
       t.string :script
       t.string :sub_image
       t.string :sub_image2
@@ -29,7 +29,6 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.string :trial_check
       t.string :trial_last_check
       t.integer :category_id, index: true, foreign_key: true
-      #t.integer :monthly_fee
       t.text :blog
       t.text :shop_introduction
       t.text :site
