@@ -24,9 +24,9 @@
                 <% end %>
                 <br>
                 <span class="badge badge-success">加盟店</span>
-                <% if @subscription.trial == "参加" %>
+                <% if @subscription.trial == true %>
                   <span class="badge badge-warning">トライアルでも利用可能</span>
-                <% elsif @subscription.trial == "不参加" %>
+                <% elsif @subscription.trial == false %>
                   <span class="badge badge-warning">トライアルチケットでは利用できません。加盟店プランをお買い求めください。</span>
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
@@ -276,6 +276,11 @@
                   <% else %>
                     <p>登録させていません。LINE@からお問い合わせください。</p>
                   <% end %>
+                  <% if @subscription.owner.email.present? %>
+                    　　　メール：<%= @subscription.owner.email %>
+                  <% else %>
+                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                  <% end %>
                   <% if @subscription.qr_image.present? %>
                     <%= image_tag @subscription.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                     <p>LINE@招待コード</p>
@@ -293,7 +298,12 @@
                     　　　テイクアウトTEL：<%= @subscription.owner.phone_number %>
                   <% else %>
                     <p>テイクアウトTEL：登録させていません。LINE@からお問い合わせください。</p>
-                  <% end %>
+                  <% end %><br>
+                  <% if @subscription.owner.email.present? %>
+                    　　　メール：<%= @subscription.owner.email %>
+                  <% else %>
+                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
                   <% if @subscription.qr_image.present? %>
                     <%= image_tag @subscription.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                     <p>LINE@招待コード</p>

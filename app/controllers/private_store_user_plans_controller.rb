@@ -21,7 +21,7 @@ class PrivateStoreUserPlansController < ApplicationController
   def new
     @private_store = PrivateStore.find(params[:id])
 
-    if @private_store.trial == "参加" && current_user.select_trial
+    if @private_store.trial == true && current_user.select_trial
       if Rails.env.development? || Rails.env.test?
         @trial_plan = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],

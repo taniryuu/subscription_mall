@@ -22,7 +22,7 @@ class UserPlansController < ApplicationController
   def new
     @subscription = Subscription.find(params[:id])
 
-    if @subscription.trial == "参加" && current_user.select_trial
+    if @subscription.trial == true && current_user.select_trial
       if Rails.env.development? || Rails.env.test?
         @trial_plan = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],

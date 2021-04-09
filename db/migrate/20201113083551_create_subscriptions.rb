@@ -8,6 +8,8 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.string :image_subscription
       t.integer :price
       t.text :subscription_detail
+      t.string :email
+      t.string :phone_number
       t.string :script
       t.string :sub_image
       t.string :sub_image2

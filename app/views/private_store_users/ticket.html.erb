@@ -2,7 +2,7 @@
 <div class="container my-5">
   <section class="text-center dark-grey-text">
     <span class="badge badge-primary">個人店舗</span>
-    <% if @private_store.trial == "参加" %>
+    <% if @private_store.trial == true %>
       <span class="badge badge-warning">トライアルでも利用可能</span>
     <% elsif @private_store.trial == "非参加" %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
@@ -25,7 +25,7 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ発券できます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度発券すると当日は他のお店では使用できません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケット発券は0時にリセットされます。</p>
-                <% if @private_store.trial == "参加" && current_user.select_trial %>
+                <% if @private_store.trial == true && current_user.select_trial %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
                 <% else %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.price}円です。"%></p>
@@ -115,7 +115,7 @@
 <div class="container my-5">
     <section class="text-center dark-grey-text">
     <span class="badge badge-primary">個人店舗</span>
-    <% if @private_store.trial == "参加" %>
+    <% if @private_store.trial == true %>
       <span class="badge badge-warning">トライアルでも利用可能</span>
     <% elsif @private_store.trial == "非参加" %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
@@ -140,7 +140,7 @@
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は他のお店では使用できません。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
-                <% if @private_store.trial == "参加" && current_user.select_trial %>
+                <% if @private_store.trial == true && current_user.select_trial %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
                 <% else %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.price}円です。"%></p>  

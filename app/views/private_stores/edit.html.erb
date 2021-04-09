@@ -13,8 +13,23 @@
   </div>
 
   <div class="field">
+    <%= form.label :サイトURL %> <span class="must">必須</span><br/>
+    <%= form.text_field :site, class: 'form-control' %>
+  </div>
+
+  <div class="field">
     <%= form.label :サブスク料理名 %> <span class="must">必須</span>
     <%= form.text_field :title, id: :private_store_title, class: 'form-control form_border' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :お店専用メールアドレス %><span class="must">お客様に公開されるメールアドレスです</span><br/>
+    <%= f.email_field :email, :required => true, autofocus: true, autocomplete: "email", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :お店専用の電話番号 %> <span>＊(ハイフンなし)連絡がつく番号でお願いします。</span><span class="must">お客様に公開される電話番号です</span><br/>
+    <%= f.telephone_field :phone_number, :required => true, class: 'form-control' %>
   </div>
 
   <div class="field">
