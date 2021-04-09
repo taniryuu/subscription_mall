@@ -184,7 +184,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "image_private_store"
     t.integer "price"
     t.text "private_store_detail"
-    t.integer "shop_id"
+    t.string "email"
+    t.string "phone_number"
     t.string "script"
     t.string "sub_image"
     t.string "sub_image2"
@@ -268,6 +269,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
+    t.string "email"
+    t.string "phone_number"
     t.string "script"
     t.string "sub_image"
     t.string "sub_image2"
@@ -387,7 +390,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.boolean "trial_stripe_success", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_price"
+    t.integer "price"
     t.integer "session_price"
     t.integer "private_store_id"
     t.datetime "deleted_at"

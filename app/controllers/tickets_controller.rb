@@ -39,7 +39,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find_by(user_id: params[:user_id])
     # @ticket_log = TicketLog.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)
     if @ticket.update_attributes(use_ticket_params)
-      if @ticket.trial_last_check == "参加"
+      if @ticket.trial_last_check == true
         ticket_trial = "利用"
       else
         ticket_trial = "-"
@@ -104,7 +104,7 @@ class TicketsController < ApplicationController
     #トライアルチケット削除
     def trial_period
       @ticket = Ticket.find(params[:id])
-      if @ticket.present? && current_user.user_price === 1000
+      if @ticket.present? && current_user.price === 1000
         if 
           @ticket.trial_count.nil? || @ticket.trial_count == 2
         elsif @ticket.trial_count === 3

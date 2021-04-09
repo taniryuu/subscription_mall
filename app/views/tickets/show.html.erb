@@ -10,7 +10,7 @@
               <h3 class="number">
 	      <% if @ticket.subscription_name.present? %>
                 <span class="badge badge-success">加盟店</span>
-		<% if @subscription.trial = "参加" %>
+		<% if @subscription.trial = true %>
 		  <span class="badge badge-warning">トライアルでも利用可能</span>
                 <% else %>
 		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
@@ -19,7 +19,7 @@
                 <%= @ticket.subscription_name %>
 	      <% elsif @ticket.private_store_name.present? %>
                 <span class="badge badge-primary">個人店舗</span>
-		<% if @private_store.trial = "参加" %>
+		<% if @private_store.trial = true %>
 		  <span class="badge badge-warning">トライアルでも利用可能</span>
                 <% else %>
 		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
@@ -38,13 +38,13 @@
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
-                  <% if (@ticket.subscription_name.present? && @subscription.trial == "参加" && current_user.select_trial) || 
-			(@ticket.private_store_name.present? && @private_store.trial == "参加" && current_user.select_trial) %>
-                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.user_price}円です。"%></p>
+                  <% if (@ticket.subscription_name.present? && @subscription.trial == true && current_user.select_trial) || 
+			(@ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial) %>
+                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
                   <% elsif @ticket.subscription_name.present? %>
-                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.user_price}円です。"%></p>
+                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.price}円です。"%></p>
                   <% elsif @ticket.private_store_name.present? %>
-                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.user_price}円です。"%></p>
+                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.price}円です。"%></p>
                   <% end %>
                   <h3 class="number"><%= "本日のチケットは使用しました" %></h3>
             </div>
@@ -59,7 +59,7 @@
               <h3 class="number">
 	      <% if @ticket.subscription_name.present? %>
                 <span class="badge badge-success">加盟店</span>
-		<% if @subscription.trial = "参加" %>
+		<% if @subscription.trial = true %>
 		  <span class="badge badge-warning">トライアルでも利用可能</span>
                 <% else %>
 		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
@@ -68,7 +68,7 @@
                 <%= @ticket.subscription_name %>
 	      <% elsif @ticket.private_store_name.present? %>
                 <span class="badge badge-primary">個人店舗</span>
-		<% if @private_store.trial = "参加" %>
+		<% if @private_store.trial = true %>
 		  <span class="badge badge-warning">トライアルでも利用可能</span>
                 <% else %>
 		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
@@ -87,26 +87,26 @@
               <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
               <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
               <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
-              <% if (@ticket.subscription_name.present? && @subscription.trial == "参加" && current_user.select_trial) || 
-		    (@ticket.private_store_name.present? && @private_store.trial == "参加" && current_user.select_trial) %>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.user_price}円です。"%></p>
+              <% if (@ticket.subscription_name.present? && @subscription.trial == true && current_user.select_trial) || 
+		    (@ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial) %>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
               <% elsif @ticket.subscription_name.present? %>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.user_price}円です。"%></p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.price}円です。"%></p>
               <% elsif @ticket.private_store_name.present? %>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.user_price}円です。"%></p>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.price}円です。"%></p>
               <% end %>
               <% if !current_user.select_trial %>
                 <%= form_with(model: @ticket,  url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :use_ticket_day, :value => Date.today %>
                     <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
                 <% end %>
-              <% elsif @ticket.subscription_name.present? && @subscription.trial == "参加" && current_user.select_trial %>
+              <% elsif @ticket.subscription_name.present? && @subscription.trial == true && current_user.select_trial %>
                 <%= form_with(model: @ticket, url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :use_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :trial_last_check, :value => @subscription.trial %>
                     <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
                 <% end %>
-              <% elsif @ticket.private_store_name.present? && @private_store.trial == "参加" && current_user.select_trial %>
+              <% elsif @ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial %>
                 <%= form_with(model: @ticket, url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :use_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :trial_last_check, :value => @private_store.trial %>
