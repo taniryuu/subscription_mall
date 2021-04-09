@@ -385,7 +385,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.boolean "select_trial", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_price"
+    t.integer "price"
     t.integer "session_price"
     t.integer "private_store_id"
     t.datetime "deleted_at"

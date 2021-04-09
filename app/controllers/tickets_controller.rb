@@ -104,7 +104,7 @@ class TicketsController < ApplicationController
     #トライアルチケット削除
     def trial_period
       @ticket = Ticket.find(params[:id])
-      if @ticket.present? && current_user.user_price === 1000
+      if @ticket.present? && current_user.price === 1000
         if 
           @ticket.trial_count.nil? || @ticket.trial_count == 2
         elsif @ticket.trial_count === 3
