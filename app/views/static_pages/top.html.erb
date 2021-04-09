@@ -444,7 +444,7 @@
     <div class="row">
       <div class="col-sm-12">
 	<div class="trial_plan">
-        <% if current_user.user_price.blank? %>
+        <% if current_user.price.blank? %>
           <div>
             <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2" %></span>
 	  </div>
@@ -1664,4 +1664,3 @@
     </table>
   <% end %>
 </main>
-
