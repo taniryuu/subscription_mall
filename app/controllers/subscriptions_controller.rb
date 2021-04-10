@@ -92,7 +92,7 @@ class SubscriptionsController < ApplicationController
     respond_to do |format|
       if @subscription.save
 	      @subscription.update(ordinal: Subscription.count)
-        SubscriptionMailer.with(subscription: @subscription, new: "true").notification_email.deliver_now
+        # SubscriptionMailer.with(subscription: @subscription, new: "true").notification_email.deliver_now
         format.html { render :subscription_judging, notice: '加盟店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
@@ -188,6 +188,8 @@ class SubscriptionsController < ApplicationController
                                               :subscription_detail,
                                               :price,
                                               :site,
+                                              :phone_number,
+                                              :email,
                                               :situation,
                                               :category_id,
                                               :owner_id,

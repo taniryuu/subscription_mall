@@ -96,7 +96,7 @@ class PrivateStoresController < ApplicationController
     respond_to do |format|
       if @private_store.save
         @private_store.update(ordinal: PrivateStore.count)
-        PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
+        # PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
         format.html { render :private_store_judging, notice: '個人店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @private_store }
       else
@@ -120,7 +120,7 @@ class PrivateStoresController < ApplicationController
     @categories = Category.all
     respond_to do |format|
       if @private_store.update!(private_store_params)
-        PrivateStoreMailer.with(private_store: @private_store, new: "false").notification_email.deliver_now
+        # PrivateStoreMailer.with(private_store: @private_store, new: "false").notification_email.deliver_now
         format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @private_store }
       else
@@ -194,6 +194,8 @@ class PrivateStoresController < ApplicationController
                                               :price,
                                               :situation,
                                               :site,
+                                              :phone_number,
+                                              :email,
                                               :category_id,
                                               :owner_id,
                                               :product_id,

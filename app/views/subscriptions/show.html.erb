@@ -36,8 +36,8 @@
                   <% else %>
                     <p></p>
                   <% end %> |
-                  <% if @subscription.owner.phone_number.present? %>
-                    テイクアウトTEL：<%= @subscription.owner.phone_number %>
+                  <% if @subscription.phone_number.present? %>
+                    テイクアウトTEL：<%= @subscription.phone_number %>
                   <% else %>
                     <p></p>
                   <% end %><br>
@@ -256,60 +256,101 @@
               <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
               <% if current_owner.present? %>
-                <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %><br>
+                <%= link_to "メール",users_user_subscription_email_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %><br>
+                  <% if @subscription.phone_number.present? %>
+                    　　　お店専用テイクアウトTEL：<%= @subscription.phone_number %>
+                  <% else %>
+                    <p>お店専用テイクアウトTEL：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @subscription.email.present? %>
+                    　　　お店専用メール：<%= @subscription.email %>
+                  <% else %>
+                    <p>お店専用メール：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
                 <% if @subscription.qr_image.present? %>
                   <%= image_tag @subscription.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                   <p>LINE@招待コード</p>
                 <% else %>
                   <p>お問い合わせ※QRコードが登録されていません</p>
-                <% end %>
+                <% end %><br>
               <% elsif current_user.present? %>
-                <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
-                <%= link_to "レビューを投稿する",subscription_reviews_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn btn-outline-warning btn-rounded" %><br>
+                <%= link_to "ブログ", instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "レビューを投稿する", subscription_reviews_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn btn-outline-warning btn-rounded" %>
+                  <% if @subscription.email.present? %>
+                    <%= link_to "メール", users_user_subscription_email_path(current_user, owner_id: @subscription.owner_id, id: @subscription.id), class: "btn btn-outline-info btn-rounded" %>
+                  <% end %><br>
                   <% if @subscription.address.present? %>
                     　　　住所：<%= @subscription.address %>
                   <% else %>
-                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                    <p>住所：登録されていません。LINE@からお問い合わせください。</p>
                   <% end %><br>
-                  <% if @subscription.owner.phone_number.present? %>
-                    　　　テイクアウトTEL：<%= @subscription.owner.phone_number %>
+                  <% if @subscription.phone_number.present? %>
+                    　　　お店専用テイクアウトTEL：<%= @subscription.phone_number %>
                   <% else %>
-                    <p>登録させていません。LINE@からお問い合わせください。</p>
-                  <% end %>
-                  <% if @subscription.owner.email.present? %>
-                    　　　メール：<%= @subscription.owner.email %>
+                    <p>お店専用テイクアウトTEL：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @subscription.email.present? %>
+                    　　　お店専用メール：<%= @subscription.email %>
                   <% else %>
-                    <p>登録させていません。LINE@からお問い合わせください。</p>
-                  <% end %>
+                    <p>お店専用メール：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
                   <% if @subscription.qr_image.present? %>
                     <%= image_tag @subscription.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                     <p>LINE@招待コード</p>
                   <% else %>
                     <p>お問い合わせ※QRコードが登録されていません</p>
-                  <% end %>
+                  <% end %><br>
+              <% elsif current_admin.present? %>
+                <%= link_to "ブログ", instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "レビューを投稿する", subscription_reviews_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn btn-outline-warning btn-rounded" %>
+                  <% if @subscription.email.present? %>
+                    <%= link_to "メール", users_user_subscription_email_path(owner_id: @subscription.owner_id, id: @subscription.id), class: "btn btn-outline-info btn-rounded" %>
+                  <% end %><br>
+                  <% if @subscription.address.present? %>
+                    　　　住所：<%= @subscription.address %>
+                  <% else %>
+                    <p>住所：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @subscription.phone_number.present? %>
+                    　　　お店専用テイクアウトTEL：<%= @subscription.phone_number %>
+                  <% else %>
+                    <p>お店専用テイクアウトTEL：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @subscription.email.present? %>
+                    　　　お店専用メール：<%= @subscription.email %>
+                  <% else %>
+                    <p>お店専用メール：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @subscription.qr_image.present? %>
+                    <%= image_tag @subscription.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
+                    <p>LINE@招待コード</p>
+                  <% else %>
+                    <p>お問い合わせ※QRコードが登録されていません</p>
+                  <% end %><br>
               <% else %>
-                <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %>
-                  <br><% if @subscription.owner.address.present? %>
-                    　　　住所：<%= @subscription.owner.address %>
+                <%= link_to "ブログ",instablog_path(@subscription.id), class: "btn btn-outline-success btn-rounded" %><br>
+                  <% if @subscription.address.present? %>
+                    　　　住所：<%= @subscription.address %>
                   <% else %>
-                    <p>住所：登録させていません。LINE@からお問い合わせください。</p>
+                    <p>住所：登録されていません。LINE@からお問い合わせください。</p>
                   <% end %><br>
-                  <% if @subscription.owner.phone_number.present? %>
-                    　　　テイクアウトTEL：<%= @subscription.owner.phone_number %>
+                  <% if @subscription.phone_number.present? %>
+                    　　　お店専用テイクアウトTEL：<%= @subscription.phone_number %>
                   <% else %>
-                    <p>テイクアウトTEL：登録させていません。LINE@からお問い合わせください。</p>
+                    <p>お店専用テイクアウトTEL：登録されていません。LINE@からお問い合わせください。</p>
                   <% end %><br>
-                  <% if @subscription.owner.email.present? %>
-                    　　　メール：<%= @subscription.owner.email %>
+                  <% if @subscription.email.present? %>
+                    　　　お店専用メール：<%= @subscription.email %>
                   <% else %>
-                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                    <p>お店専用メール：登録されていません。LINE@からお問い合わせください。</p>
                   <% end %><br>
                   <% if @subscription.qr_image.present? %>
                     <%= image_tag @subscription.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                     <p>LINE@招待コード</p>
                   <% else %>
                     <p>お問い合わせ※QRコードが登録されていません</p>
-                  <% end %>
+                  <% end %><br>
               <% end %>
             </div>
           </div>

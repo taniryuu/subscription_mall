@@ -45,7 +45,7 @@
               <% end %>
             <% end %>
           </td>
-          <td><%= link_to "#{subscription.name}", subscription_owner_edit_admin_path(owner_id: subscription.owner_id, id: subscription.id) %></td>
+          <td><%= link_to "#{subscription.name}", owner_subscription_path(owner_id: subscription.owner_id, id: subscription.id) %></td>
           <td><%= link_to "#{subscription.price}", subscription_owner_edit_admin_path(owner_id: subscription.owner_id, id: subscription.id) %></td>
           <td><%= subscription.owner.id %></td>
           <td><%= subscription.owner.email %></td>
