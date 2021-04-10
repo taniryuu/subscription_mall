@@ -11,11 +11,11 @@
         />
         </div>
         <h2 class="font-weight-bold my-4"><%= "￥#{@subscription_plan.amount_subtotal.to_s(:delimited)}/月" %></h2>
-        <p class="grey-text"><%= @subscription_plan.metadata.detail %></p>
+        <p class="grey-text"><!--%= @subscription_plan.metadata.detail %--></p>
         <% if @pay.present? && @subscription_plan.amount_subtotal == @payment.amount_total %>
           <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
         <% else %>
-          <button type="button" id="subscription-plan" class="btn btn-outline-success btn-rounded waves-effect">詳細</button>
+          <%= link_to "詳細", confirm_user_plan_path(session: @subscription_plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
         <% end %>
       <% else %>
         <h5 class="mb-4">トライアルプラン</h5>
@@ -27,11 +27,11 @@
         />
         </div>
         <h2 class="font-weight-bold my-4"><%= "￥#{@trial_plan.amount_subtotal.to_s(:delimited)}/月" %></h2>
-        <p class="grey-text"><%= @trial_plan.metadata.detail %></p>
+        <p class="grey-text"><!--%= @trial_plan.metadata.detail %--></p>
         <% if @pay.present? && @trial_plan.amount_subtotal == @payment.amount_total %>
           <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
         <% else %>
-          <button type="button" id="trial-plan" class="btn btn-outline-success btn-rounded waves-effect">詳細</button>
+          <%= link_to "詳細", confirm_user_plan_path(session: @trial_plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
         <% end %>
       <% end %>
     </div>
