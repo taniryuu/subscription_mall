@@ -119,7 +119,7 @@ class PrivateStoresController < ApplicationController
     @images = Image.where.not(id: nil)
     @categories = Category.all
     respond_to do |format|
-      if @private_store.update!(private_store_params)
+      if @private_store.update(private_store_params)
         # PrivateStoreMailer.with(private_store: @private_store, new: "false").notification_email.deliver_now
         format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @private_store }

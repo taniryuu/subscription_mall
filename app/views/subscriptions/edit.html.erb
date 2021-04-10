@@ -24,12 +24,12 @@
 
   <div class="field">
     <%= form.label :お店専用メールアドレス %><span class="must">お客様に公開されるメールアドレスです</span><br/>
-    <%= form.email_field :email, :required => true, placeholder: "sample@gmail.com", autofocus: true, autocomplete: "email", class: 'form-control' %>
+    <%= form.email_field :email, placeholder: "sample@gmail.com", autofocus: true, autocomplete: "email", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :お店専用の電話番号 %> <span>＊(ハイフンなし)連絡がつく番号でお願いします。</span><span class="must">お客様に公開される電話番号です</span><br/>
-    <%= form.telephone_field :phone_number, :required => true, class: 'form-control' %>
+    <%= form.telephone_field :phone_number, class: 'form-control' %>
   </div>
 
   <div class="field">

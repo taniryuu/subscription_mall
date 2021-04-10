@@ -13,17 +13,14 @@ class PrivateStore < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 50 }
-  # validates :site, presence: true
-  # validates :address, presence: true, length: { maximum: 1000 }
-  # validates :title, presence: true, length: { maximum: 100 }
-  # validates :detail, presence: true, length: { maximum: 100 }
-  # validates :shop_introduction, presence: true, length: { maximum: 1000 }
-  # validates :private_store_detail, presence: true, length: { maximum: 1000 }
-  # validates :image_private_store, presence: true, allow_blank: true
-  # validates :qr_image, presence: true, allow_blank: true
-  # validates :category_id, presence: true
-  # validates :price, presence: true
-  #validates :trial, presence: true
+  validates :address, presence: true, length: { maximum: 1000 }, on: :update
+  validates :title, presence: true, length: { maximum: 100 }, on: :update
+  validates :detail, presence: true, length: { maximum: 100 }, on: :update
+  validates :private_store_detail, presence: true, length: { maximum: 1000 }, on: :update
+  validates :image_private_store, presence: true, allow_blank: true, on: :update
+  validates :qr_image, presence: true, allow_blank: true, on: :update
+  validates :category_id, presence: true, on: :update
+  validates :price, presence: true, on: :update
   #validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
   validates :product_id, presence: true, allow_blank: true
 
