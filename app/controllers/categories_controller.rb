@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   def trial_shop
     @subscriptions = Subscription.where(trial: true)
     @private_stores = PrivateStore.where(trial: true)
-    current_user.update!(select_trial: true) if current_user.price.blank?
+    current_user.update!(select_trial: true) if current_user.user_price.blank?
   end
 
   def create

@@ -1,0 +1,31 @@
+<div class="container my-5">
+  <section class="text-center dark-grey-text">
+    <h1 class="font-weight-bold pb-2 mb-4">巡グルメ 加盟店プラン</h1>
+    <div class="row">
+      <% @plans.each.with_index(1) do |plan, i| %>
+        <div class="col-lg-4 col-md-12 mb-4">
+          <div class="card">
+            <div class="card-body subscription-bg">
+              <h5 class="mb-4"><%= "プラン#{i}" %></h5>
+              <div class="d-flex justify-content-center">
+                <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
+		width="120"
+                height="120"
+                />
+              </div>
+              <h2 class="font-weight-bold my-4"><%= "￥#{plan.amount.to_s(:delimited)}/月" %></h2>
+              <p class="grey-text"><!--%= plan.metadata.detail %--></p>
+              <% if @pay.present? && plan.amount == @payment.amount_total %>
+                <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
+              <% else %>
+                <%= link_to "詳細", confirm_user_plan_path(session: plan.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
+	      <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
+

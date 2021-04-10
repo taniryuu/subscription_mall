@@ -1,7 +1,6 @@
 class UserPlansController < ApplicationController
   before_action :set_plan, only: %i(confirm update_confirm)
-  before_action :set_plans, only: %i(new edit confirm update_confirm subscription_plan)
-  before_action :set_plan_by_price, only: :subscription_plan
+  before_action :set_plans, only: %i(new edit confirm update_confirm subscription_plans)
 
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
@@ -118,7 +117,7 @@ class UserPlansController < ApplicationController
     end
   end
 
-  def subscription_plan
+  def subscription_plans
 
   end
 
@@ -269,19 +268,6 @@ class UserPlansController < ApplicationController
 	elsif Rails.env.production?
 	  @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
 	end
-      end
-    end
-
-    def set_plan_by_price
-      Stripe::Plan.list.reverse_each do |plan|
-        p "planは#{plan}"
-        p "plan.idは#{plan.id}"
-        p "plan.metadtaは#{plan.metadata}"
-        if Rails.env.development? || Rails.env.test?
-	  @plan_by_price = plan if plan.product == "prod_Itdb3ZOVEaX3iU" && plan.amount == params[:price].to_i
-        elsif Rails.env.production?
-          @plan_by_price = plan if plan.product == "prod_Itdb3ZOVEaX3iU" && plan.amount == params[:price].to_i
-        end
       end
     end
 end
