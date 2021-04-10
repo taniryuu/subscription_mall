@@ -36,7 +36,7 @@
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.price}円です。"%></p>
                 <% end %>
             <% if current_user.select_trial %>  <%#チケット利用が2回目以降でプランが1000円の場合%>
-              <% if (Date.today.wday == "6" || Date.today.wday == "0") %> <%#チケット利用2回目以降でプランが1000円かつ土日の場合%>
+              <% if (Date.today.wday == 6 || Date.today.wday == 0) %> <%#チケット利用2回目以降でプランが1000円かつ土日の場合%>
                 <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
               <% else %>
                 <% if current_user.ticket.trial_count == "3" %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が3回終えたの場合%>
