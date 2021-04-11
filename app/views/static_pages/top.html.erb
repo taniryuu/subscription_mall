@@ -411,6 +411,24 @@
       </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
     </div>
 
+    <div class="center mb-3">
+      <h1 class="concept m-3">おすすめ店</h1>
+      <div class="category-list">
+        <% @recommend_in_range.each do |subscription| %><%# カテゴリーを全てeach %>
+          <div class="category-item">
+            <% if subscription.image_subscription.present? %>
+              <%= link_to image_tag(subscription.image_subscription_url, :size => '280x200'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "image-menu" %>
+            <% else %>
+              <%= link_to image_tag("no_img.png", :size => '280x200'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "image-menu" %>
+            <% end %>
+            <div class="category-shop-btn">
+              <%= link_to "#{category.name}", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <hr class="border-solid-down" />
     <div class="search">
       <%= form_with(model: @category, method: :get, local: true) do |f| %>
