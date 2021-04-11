@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :map_object, only: :top
+  before_action :map_object, :recommend_in_range, only: :top
 
   def top
     @blogs = Blog.all
@@ -58,6 +58,27 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  
   private
-
+  
+    # 近所かつ最新のチケットログのカテゴリー以外の飲食店を3店格納
+    def recommend_in_range
+      if current_user.present?
+        # 自分の住所の範囲内の飲食店取得
+        latlng = Geocoder.search(current_user.address).first.geometry
+        top = latlng["location"]["lng"] + 0.2
+        bottom = latlng["location"]["lng"] - 0.2
+        left = latlng["location"]["lat"] + 0.2
+        right = latlng["location"]["lat"] - 0.2 
+        subscriptions_in_range = Subscription.where(longitude: bottom..top).where(latitude: right..left)
+        # 最新のチケットログのジャンルから使用したことない飲食店取得
+        if current_user.ticket_logs.present?
+          @recommend_in_range = subscriptions_in_range.where.not(category_id: current_user.ticket_logs.last.category_id).order("RANDOM()").limit(3)
+        else
+          @recommend_in_range = subscriptions_in_range.order("RANDOM()").limit(3)
+        end
+      else
+        @recommend_in_range = subscriptions_in_range.order("RANDOM()").limit(3)
+      end
+    end
 end
