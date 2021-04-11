@@ -327,7 +327,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.date "use_ticket_day_log"
     t.integer "price"
     t.string "trial"
-    t.integer "subscription_category_id"
+    t.integer "category_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -351,7 +351,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "subscription_name"
     t.string "private_store_name"
     t.string "subscription_fee"
-    t.integer "subscription_category_id"
+    t.integer "category_id"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.boolean "trial"

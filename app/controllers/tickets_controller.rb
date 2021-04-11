@@ -51,7 +51,7 @@ class TicketsController < ApplicationController
         owner_phone_number: @ticket.owner_phone_number, 
         owner_store_information: @ticket.owner_store_information,
         subscription_name: @ticket.subscription_name, 
-        subscription_category_id: @ticket.subscription_category_id, 
+        category_id: @ticket.category_id, 
         private_store_name: @ticket.private_store_name, 
         subscription_fee: @ticket.subscription_fee,
         issue_ticket_day: @ticket.issue_ticket_day,
@@ -97,7 +97,7 @@ class TicketsController < ApplicationController
   private
 
     def ticket_params
-	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :subscription_name, :subscription_category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
+	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :subscription_name, :category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
     end
 
     def edit_user_ticket
@@ -109,7 +109,7 @@ class TicketsController < ApplicationController
     end
 
     def update_ticket_params
-	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :owner_payee, :subscription_name, :subscription_category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
+	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :owner_payee, :subscription_name, :category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
     end
 
     #トライアルチケット削除

@@ -4,7 +4,7 @@ class CreateTicketLogs < ActiveRecord::Migration[5.1]
       t.date :use_ticket_day_log
       t.integer :price
       t.string :trial
-      t.integer :subscription_category_id
+      t.integer :category_id
 
       t.references :user, foreign_key: true
 
