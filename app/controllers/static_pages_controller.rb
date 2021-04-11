@@ -18,6 +18,18 @@ class StaticPagesController < ApplicationController
     else 
       Category.order("RAND()").limit(6)
     end
+    @prices = []
+      Stripe::Plan.list.reverse_each do |plan|
+        p "planは#{plan}"
+        p "plan.idは#{plan.id}"
+        p "plan.priceは#{plan.amount}"
+        if Rails.env.development? || Rails.env.test?
+	  @prices.push(plan.amount) if plan.product == "prod_Itdb3ZOVEaX3iU"
+        elsif Rails.env.production?
+          @prices.push(plan.amount) if plan.product == "prod_Itdb3ZOVEaX3iU"
+        end
+      end
+      @prices.sort!
   end
 
   def top_owner
