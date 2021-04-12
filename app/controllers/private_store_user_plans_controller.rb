@@ -1,6 +1,7 @@
 class PrivateStoreUserPlansController < ApplicationController
   before_action :set_plan, only: %i(confirm update_confirm)
-  before_action :set_plans, only: %i(new edit confirm update_confirm)
+  before_action :set_plans, only: %i(new edit confirm update_confirm private_store_plan)
+  before_action :set_plan_by_price, only: :private_store_plan
 
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
@@ -191,7 +192,41 @@ class PrivateStoreUserPlansController < ApplicationController
     def set_plans
       @plans = []
       Stripe::Plan.list.reverse_each do |plan|
-        @plans.push(plan) if plan.object = "active"
+	p "planは#{plan}"
+        p "plan.idは#{plan.id}"
+        p "plan.metadtaは#{plan.metadata}"
+        if Rails.env.development? || Rails.env.test?
+          @plans.push(plan) if plan.product == "prod_JBsFLfsceVMW36"
+        elsif Rails.env.production?
+          @plans.push(plan) if plan.product == "prod_JBsFLfsceVMW36"
+        end
       end
     end
+    
+    def set_plan_by_price
+      if params[:private_store].to_i == -1
+        @private_store = nil
+      else
+        @private_store = Subscription.find(params[:private_store])
+      end
+      Stripe::Plan.list.reverse_each do |plan|
+        p "planは#{plan}"
+        p "plan.idは#{plan.id}"
+        p "plan.metadtaは#{plan.metadata}"
+        if Rails.env.development? || Rails.env.test?
+          if @private_store.present? && @private_store.trial == true && current_user.select_trial
+            @plan_by_price = plan if plan.product == "prod_J3NbUHqtOpmfgT"
+          else
+            @plan_by_price = plan if plan.product == "prod_JBsFLfsceVMW36" && plan.amount == params[:price].to_i
+          end
+        elsif Rails.env.production?
+          if @private_store.present? && @private_store.trial == true && current_user.select_trial
+            @plan_by_price = plan if plan.product == "prod_J3NbUHqtOpmfgT"
+          else
+            @plan_by_price = plan if plan.product == "prod_JBsFLfsceVMW36" && plan.amount == params[:price].to_i
+          end
+        end
+      end
+    end
+
 end

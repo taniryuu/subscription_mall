@@ -273,14 +273,27 @@ class UserPlansController < ApplicationController
     end
 
     def set_plan_by_price
+      if params[:subscription].to_i == -1
+        @subscription = nil
+      else
+	@subscription = Subscription.find(params[:subscription])
+      end
       Stripe::Plan.list.reverse_each do |plan|
         p "planは#{plan}"
         p "plan.idは#{plan.id}"
         p "plan.metadtaは#{plan.metadata}"
         if Rails.env.development? || Rails.env.test?
-	  @plan_by_price = plan if plan.product == "prod_Itdb3ZOVEaX3iU" && plan.amount == params[:price].to_i
+          if @subscription.present? && @subscription.trial == true && current_user.select_trial
+	    @plan_by_price = plan if plan.product == "prod_J3NbUHqtOpmfgT"
+	  else
+	    @plan_by_price = plan if plan.product == "prod_Itdb3ZOVEaX3iU" && plan.amount == params[:price].to_i
+	  end
         elsif Rails.env.production?
-          @plan_by_price = plan if plan.product == "prod_Itdb3ZOVEaX3iU" && plan.amount == params[:price].to_i
+	  if @subscription.present? && @subscription.trial == true && current_user.select_trial
+            @plan_by_price = plan if plan.product == "prod_J3NbUHqtOpmfgT"
+	  else
+            @plan_by_price = plan if plan.product == "prod_Itdb3ZOVEaX3iU" && plan.amount == params[:price].to_i
+	  end
         end
       end
     end
