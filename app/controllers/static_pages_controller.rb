@@ -73,9 +73,9 @@ class StaticPagesController < ApplicationController
         subscriptions_in_range = Subscription.where(longitude: bottom..top).where(latitude: right..left)
         # 最新のチケットログのジャンルから使用したことない飲食店取得
         if current_user.ticket_logs.present?
-          @recommend_in_range = subscriptions_in_range.where.not(category_id: current_user.ticket_logs.last.category_id).limit(3)
+          @recommend_in_range = subscriptions_in_range.where.not(category_id: current_user.ticket_logs.last.category_id).sample(3)
         else
-          @recommend_in_range = subscriptions_in_range.limit(3)
+          @recommend_in_range = subscriptions_in_range.sample(3)
         end
       end
     end

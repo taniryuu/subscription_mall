@@ -411,25 +411,28 @@
       </i><span>利用者様用のLINEのお問い合わせはこちら</span></a>
     </div>
 
-  <% if @recommend_in_range.present? %>
-    <div class="center mb-3">
-      <h1 class="concept m-3">おすすめ店</h1>
-      <div class="category-list">
-        <% @recommend_in_range.each do |subscription| %><%# カテゴリーを全てeach %>
-          <div class="category-item">
-            <% if subscription.image_subscription.present? %>
-              <%= link_to image_tag(subscription.image_subscription_url, :size => '280x200'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "image-menu" %>
-            <% else %>
-              <%= link_to image_tag("no_img.png", :size => '280x200'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "image-menu" %>
-            <% end %>
-            <div class="category-shop-btn">
-              <%= link_to "#{subscription.name}", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id) %>
+    <% if @recommend_in_range.present? %>
+      <div class="center">
+        <h1 class="concept m-3">おすすめ店</h1>
+        <div class="f-container">
+          <% @recommend_in_range.each do |subscription| %><%# カテゴリーを全てeach %>
+            <div class="f-item">
+              <div class="box26">
+                <div class="comment-text">
+                  <% if subscription.image_subscription.present? %>
+                    <%= link_to image_tag(subscription.image_subscription_url, :size => '280'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "plan-css" %>
+                  <% else %>
+                    <%= link_to image_tag("no_img.png", :size => '280'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "plan-css" %>
+                  <% end %>
+                </div>
+                <span class="comment-text1">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "#{subscription.name}", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id) %></span><br>
+                <span class="feature"></span>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
     <hr class="border-solid-down" />
     <div class="search">
@@ -463,15 +466,15 @@
     <h1 class="trial center concept"><%= link_to "＼お試しプラン／のお店はこちら", trial_shop_path, class: "btn btn-link" %></h1>
     <div class="row">
       <div class="col-sm-12">
-	<div class="trial_plan">
+        <div class="trial_plan">
         <% if current_user.price.blank? %>
           <div>
             <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2" %></span>
-	  </div>
-	<% else %>
+          </div>
+        <% else %>
           <div>
             <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2 disabled" %></span>
-	  <div>
+          <div>
         <% end %>
         </div>
       </div>
@@ -483,52 +486,52 @@
     </div>
     <div class="plan-list">
       <div class="plan-item">
-          <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '280x200'), subscription_plans_path %>
+        <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "お試しはこちら", subscription_plans_path %>
-          <%= link_to "3000円", subscription_plans_path %>
+          <%= link_to "3,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("don.jpeg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "気になる方はこちら", subscription_plans_path %>
-          <%= link_to "9000円", subscription_plans_path %>
+          <%= link_to "9,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "スタンダードはこちら", subscription_plans_path %>
-          <%= link_to "11000円", subscription_plans_path %>
+          <%= link_to "11,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2019/11/15/10/05/stalls-4628091__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "ちょっぴりグルメな方はこちら", subscription_plans_path %>
-          <%= link_to "18000円", subscription_plans_path %>
+          <%= link_to "18,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://media.istockphoto.com/photos/top-view-of-premium-rare-slices-many-parts-of-wagyu-a5-beef-with-on-picture-id1169410279?b=1&k=6&m=1169410279&s=170667a&w=0&h=CiQvMWUK7x73uERbummOpcLLwGYPt1W9Xi2VahlrYhE=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "グルメな方はこちら", subscription_plans_path %>
-            <%= link_to "25000円", subscription_plans_path %><br>
+          <%= link_to "25,000円", subscription_plans_path %><br>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "慣れてきた方はこちら", subscription_plans_path %>
-          <%= link_to "50000円", subscription_plans_path %>
+          <%= link_to "50,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2016/12/09/04/15/scotland-1893646__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "上級者はこちら", subscription_plans_path %>
-          <%= link_to "100000円", subscription_plans_path %>
+          <%= link_to "100,000円", subscription_plans_path %>
         </div>
       </div>
     </div>
@@ -904,49 +907,49 @@
           <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "お試しはこちら", subscription_plans_path %>
-          <%= link_to "3000円", subscription_plans_path %>
+          <%= link_to "3,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("don.jpeg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "気になる方はこちら", subscription_plans_path %>
-          <%= link_to "9000円", subscription_plans_path %>
+          <%= link_to "9,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "スタンダードはこちら", subscription_plans_path %>
-          <%= link_to "11000円", subscription_plans_path %>
+          <%= link_to "11,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2019/11/15/10/05/stalls-4628091__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "ちょっぴりグルメな方はこちら", subscription_plans_path %>
-          <%= link_to "18000円", subscription_plans_path %>
+          <%= link_to "18,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://media.istockphoto.com/photos/top-view-of-premium-rare-slices-many-parts-of-wagyu-a5-beef-with-on-picture-id1169410279?b=1&k=6&m=1169410279&s=170667a&w=0&h=CiQvMWUK7x73uERbummOpcLLwGYPt1W9Xi2VahlrYhE=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "グルメな方はこちら", subscription_plans_path %>
-            <%= link_to "25000円", subscription_plans_path %><br>
+            <%= link_to "25,000円", subscription_plans_path %><br>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "慣れてきた方はこちら", subscription_plans_path %>
-          <%= link_to "50000円", subscription_plans_path %>
+          <%= link_to "50,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2016/12/09/04/15/scotland-1893646__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "上級者はこちら", subscription_plans_path %>
-          <%= link_to "100000円", subscription_plans_path %>
+          <%= link_to "100,000円", subscription_plans_path %>
         </div>
       </div>
     </div>
@@ -1325,49 +1328,49 @@
           <%= link_to image_tag("https://media.gettyimages.com/photos/cup-of-latte-on-wooden-table-picture-id1035061554?k=6&m=1035061554&s=612x612&w=0&h=R5v_cne68naf73GAyFhFq54aUiD5hMd5x6lh_KQ_c0g=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "お試しはこちら", subscription_plans_path %>
-          <%= link_to "3000円", subscription_plans_path %>
+          <%= link_to "3,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("don.jpeg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "気になる方はこちら", subscription_plans_path %>
-          <%= link_to "9000円", subscription_plans_path %>
+          <%= link_to "9,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://media.istockphoto.com/photos/traditional-japanese-cuisine-picture-id1179688514?b=1&k=6&m=1179688514&s=170667a&w=0&h=BQPXTUoypII1Vkt7YdZph43vE1GvRIoVU-06r5FpUB4=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "スタンダードはこちら", subscription_plans_path %>
-          <%= link_to "11000円", subscription_plans_path %>
+          <%= link_to "11,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2019/11/15/10/05/stalls-4628091__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "ちょっぴりグルメな方はこちら", subscription_plans_path %>
-          <%= link_to "18000円", subscription_plans_path %>
+          <%= link_to "18,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://media.istockphoto.com/photos/top-view-of-premium-rare-slices-many-parts-of-wagyu-a5-beef-with-on-picture-id1169410279?b=1&k=6&m=1169410279&s=170667a&w=0&h=CiQvMWUK7x73uERbummOpcLLwGYPt1W9Xi2VahlrYhE=", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "グルメな方はこちら", subscription_plans_path %>
-            <%= link_to "25000円", subscription_plans_path %><br>
+            <%= link_to "25,000円", subscription_plans_path %><br>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2017/01/06/16/46/sushi-1958247__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "慣れてきた方はこちら", subscription_plans_path %>
-          <%= link_to "50000円", subscription_plans_path %>
+          <%= link_to "50,000円", subscription_plans_path %>
         </div>
       </div>
       <div class="plan-item">
         <%= link_to image_tag("https://cdn.pixabay.com/photo/2016/12/09/04/15/scotland-1893646__480.jpg", :size => '280x200'), subscription_plans_path %>
         <div class="plan-shop-btn">
           <%= link_to "上級者はこちら", subscription_plans_path %>
-          <%= link_to "100000円", subscription_plans_path %>
+          <%= link_to "100,000円", subscription_plans_path %>
         </div>
       </div>
     </div>
