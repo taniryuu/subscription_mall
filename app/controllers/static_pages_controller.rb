@@ -61,7 +61,7 @@ class StaticPagesController < ApplicationController
   
   private
   
-    # 近所かつ最新のチケットログのカテゴリー以外の飲食店を3店格納
+    # 近所かつ最新のチケットログのカテゴリーの飲食店を3店格納
     def recommend_in_range
       if current_user.present? && current_user.address.present?
         # 自分の住所の範囲内の飲食店取得
@@ -71,7 +71,7 @@ class StaticPagesController < ApplicationController
         left = latlng["location"]["lat"] + 0.2
         right = latlng["location"]["lat"] - 0.2 
         subscriptions_in_range = Subscription.where(longitude: bottom..top).where(latitude: right..left)
-        # 最新のチケットログのジャンルから使用したことない飲食店取得
+        # 最新のチケットログのジャンルから使用した飲食店取得
         if current_user.ticket_logs.present?
           @recommend_in_range = subscriptions_in_range.where(category_id: current_user.ticket_logs.last.category_id).sample(3)
         else
