@@ -39,7 +39,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find_by(user_id: params[:user_id])
     # @ticket_log = TicketLog.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)
     if @ticket.update_attributes(use_ticket_params)
-      if @ticket.trial_last_check == true
+      if @ticket.trial_last_check == "true"
         ticket_trial = "利用"
       else
         ticket_trial = "-"

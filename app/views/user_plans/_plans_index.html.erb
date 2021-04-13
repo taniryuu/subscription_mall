@@ -51,7 +51,7 @@
       });
     });
   </script>
-<% elsif (Rails.env.development? || Rails.env.test?) && (@subscription.trial == "非参加" || (@subscription.trial == "参加" && !current_user.select_trial)) %>
+<% elsif (Rails.env.development? || Rails.env.test?) && (@subscription.trial == false || (@subscription.trial == true && !current_user.select_trial)) %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
@@ -79,7 +79,7 @@
       });
     });
   </script>
-<% elsif Rails.env.production? && (@subscription.trial == "非参加" || (@subscription.trial == "参加" && !current_user.select_trial)) %>
+<% elsif Rails.env.production? && (@subscription.trial == false || (@subscription.trial == true && !current_user.select_trial)) %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");

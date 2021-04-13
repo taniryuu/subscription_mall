@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card">
     <div class="card-body subscription-bg">
-      <% if (@private_store.trial == "非参加") || (@private_store.trial == "参加" && !current_user.select_trial) %>
+      <% if (@private_store.trial == false) || (@private_store.trial == true && !current_user.select_trial) %>
         <h5 class="mb-4">加盟店プラン</h5>
         <div class="d-flex justify-content-center">
           <img
@@ -51,7 +51,7 @@
       });
     });
   </script>
-<% elsif (Rails.env.development? || Rails.env.test?) && (@private_store.trial == "非参加" || (@private_store.trial == "参加" && !current_user.select_trial)) %>
+<% elsif (Rails.env.development? || Rails.env.test?) && (@private_store.trial == false || (@private_store.trial == true && !current_user.select_trial)) %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
@@ -79,7 +79,7 @@
       });
     });
   </script>
-<% elsif Rails.env.production? && (@private_store.trial == "非参加" || (@private_store.trial == "参加" && !current_user.select_trial)) %>
+<% elsif Rails.env.production? && (@private_store.trial == false || (@private_store.trial == true && !current_user.select_trial)) %>
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");

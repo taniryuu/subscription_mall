@@ -4,7 +4,7 @@
     <span class="badge badge-success">加盟店</span>
     <% if @subscription.trial == true %>
       <span class="badge badge-warning">トライアルでも利用可能</span>
-    <% elsif @subscription.trial == "非参加" %>
+    <% elsif @subscription.trial == false %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
     <% end %>
     <% if @subscription.trial == true && current_user.price == 1000 %>

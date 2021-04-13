@@ -4,7 +4,7 @@
     <span class="badge badge-primary">個人店舗</span>
     <% if @private_store.trial == true %>
       <span class="badge badge-warning">トライアルでも利用可能</span>
-    <% elsif @private_store.trial == "非参加" %>
+    <% elsif @private_store.trial == false %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
     <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @private_store.name %></h3>
@@ -117,7 +117,7 @@
     <span class="badge badge-primary">個人店舗</span>
     <% if @private_store.trial == true %>
       <span class="badge badge-warning">トライアルでも利用可能</span>
-    <% elsif @private_store.trial == "非参加" %>
+    <% elsif @private_store.trial == false %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
     <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @private_store.name %></h3>

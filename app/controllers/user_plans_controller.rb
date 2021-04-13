@@ -278,10 +278,11 @@ class UserPlansController < ApplicationController
       else
 	@subscription = Subscription.find(params[:subscription])
       end
+      debugger
       Stripe::Plan.list.reverse_each do |plan|
         p "planは#{plan}"
         p "plan.idは#{plan.id}"
-        p "plan.metadtaは#{plan.metadata}"
+        p "plan.amountは#{plan.amount}"
         if Rails.env.development? || Rails.env.test?
           if @subscription.present? && @subscription.trial == true && current_user.select_trial
 	    @plan_by_price = plan if plan.product == "prod_J3NbUHqtOpmfgT"
