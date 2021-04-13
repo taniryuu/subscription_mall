@@ -420,9 +420,9 @@
               <div class="box26">
                 <div class="comment-text">
                   <% if subscription.image_subscription.present? %>
-                    <%= link_to image_tag(subscription.image_subscription_url, :size => '280'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "plan-css" %>
+                    <%= link_to image_tag(subscription.image_subscription_url, :size => '200'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "plan-css" %>
                   <% else %>
-                    <%= link_to image_tag("no_img.png", :size => '280'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "plan-css" %>
+                    <%= link_to image_tag("no_img.png", :size => '200'), owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id), class: "plan-css" %>
                   <% end %>
                 </div>
                 <span class="comment-text1">&nbsp;<i class="fas fa-utensils fa-lg"></i>&nbsp;<%= link_to "#{subscription.name}", owner_subscription_path(id: subscription.id, owner_id: subscription.owner_id) %></span><br>
