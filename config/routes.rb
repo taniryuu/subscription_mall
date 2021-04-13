@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'ticket_logs' => "ticket_logs#index", as: :ticket_logs#チケット使用履歴
+  delete "ticket_logs", to: "ticket_logs#destroy", as: 'logs_destroy'
+  get 'ticket' => "tickets#user_have_ticket", as: :user_have_ticket#チケット使用履歴
 
   root 'static_pages#top'#トップページ
   get 'paypaytest' => "static_pages#paypaytest"#paypaytest

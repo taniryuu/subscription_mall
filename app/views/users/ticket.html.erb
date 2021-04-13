@@ -46,8 +46,8 @@
                 <% elsif current_user.ticket.trial_count === 1 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が1回終えたの場合%>
                    <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @owner.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                          <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -61,8 +61,8 @@
                   <% elsif current_user.ticket.trial_count === 2 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が2回終えたの場合%>
                      <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @owner.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                          <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -78,8 +78,8 @@
             <% elsif (Date.today.wday != 6) && (Date.today.wday != 0) && current_user.select_trial && (current_user.trial_count === 2) %> <%#プランが1000かつ土日でない場合かつトライアルの利用回数が2の場合%>
                <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @owner.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
+                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -98,8 +98,8 @@
             <% else %> <%#当日にチケットが発券済みでなければ発券できる%>
                 <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @owner.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
+                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -155,8 +155,8 @@
               <% if (Date.today.wday != 6) && (Date.today.wday != 0) && current_user.select_trial %> <%#初めてのチケット発券でプランが1000かつ土日でない場合%>
                 <%= form_with(model: Ticket, url: user_tickets_path(current_user), local: true, method: :post) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @owner.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
+                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -172,8 +172,8 @@
               <% else %>
                 <%= form_with(model: Ticket, url: user_tickets_path(current_user), local: true, method: :post) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @owner.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
+                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
