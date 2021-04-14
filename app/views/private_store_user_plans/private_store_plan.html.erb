@@ -21,12 +21,12 @@
               height="120"
             />
             </div>
-            <h2 class="font-weight-bold my-4"><%= "￥#{@plan_by_price.amount.to_s(:delimited)}/月" %></h2>
+            <h2 class="font-weight-bold my-4"><%= "￥#{@plan_by_price.amount_total.to_s(:delimited)}/月" %></h2>
             <p class="grey-text"><!--%= @plan_by_price.metadata.detail %--></p>
-            <% if @pay.present? && @plan_by_price.amount == @payment.amount_total %>
+            <% if @pay.present? && @plan_by_price.amount_total == @payment.amount_total %>
               <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
             <% else %>
-              <%= link_to "詳細", confirm_user_plan_path(session: @plan_by_price.id), class: "btn btn-outline-success btn-rounded waves-effect" %>
+              <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
             <% end %>
 	  </div>
 	</div>
@@ -34,4 +34,55 @@
     </div>
   </section>
 </div>
+
+<%
+=begin%>
+ <script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
+  var checkoutButton = document.getElementById('user-checkout-button');
+
+  checkoutButton.addEventListener('click', function() {
+    stripe.redirectToCheckout({
+      sessionId: '<%= @plan_by_price.id %>'
+    }).then(function (result) {
+    });
+  });
+</script>
+<%
+=end%>
+
+<% if Rails.env.development? || Rails.env.test? %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
+    var checkoutButton = document.getElementById('user-checkout-button');
+
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @plan_by_price.id %>'
+      }).then(function (result) {
+      });
+    });
+  </script>
+<% end %>
+
+<% if Rails.env.production? %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_PRODUCTION_KEY']%>");
+    var checkoutButton = document.getElementById('user-checkout-button');
+
+    checkoutButton.addEventListener('click', function() {
+      stripe.redirectToCheckout({
+        sessionId: '<%= @plan_by_price.id %>'
+      }).then(function (result) {
+      });
+    });
+  </script>
+<% end %>
+
+
+
+
 

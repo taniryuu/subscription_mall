@@ -1,6 +1,6 @@
 class PrivateStoreUserPlansController < ApplicationController
-  before_action :set_plan, only: %i(confirm update_confirm)
-  before_action :set_plans, only: %i(new edit confirm update_confirm private_store_plan)
+  #before_action :set_plan, only: %i(confirm update_confirm)
+  before_action :set_plans, only: %i(new edit)
   before_action :set_plan_by_price, only: :private_store_plan
 
   before_action :authenticate_user!
@@ -209,24 +209,83 @@ class PrivateStoreUserPlansController < ApplicationController
       else
         @private_store = Subscription.find(params[:private_store])
       end
-      Stripe::Plan.list.reverse_each do |plan|
-        p "planは#{plan}"
-        p "plan.idは#{plan.id}"
-        p "plan.metadtaは#{plan.metadata}"
-        if Rails.env.development? || Rails.env.test?
-          if @private_store.present? && @private_store.trial == true && current_user.select_trial
-            @plan_by_price = plan if plan.product == "prod_J3NbUHqtOpmfgT"
-          else
-            @plan_by_price = plan if plan.product == "prod_JBsFLfsceVMW36" && plan.amount == params[:price].to_i
-          end
-        elsif Rails.env.production?
-          if @private_store.present? && @private_store.trial == true && current_user.select_trial
-            @plan_by_price = plan if plan.product == "prod_J3NbUHqtOpmfgT"
-          else
-            @plan_by_price = plan if plan.product == "prod_JBsFLfsceVMW36" && plan.amount == params[:price].to_i
-          end
+      if Rails.env.development? || Rails.env.test?
+        if @private_store.present? && @private_store.trial == true && current_user.select_trial
+          @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_J3NbUHqtOpmfgT',
+                unit_amount: 1000,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+        else
+          @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_JBsFLfsceVMW36',
+                unit_amount: params[:price].to_i,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+        end
+      elsif Rails.env.production?
+        if @private_store.present? && @private_store.trial == true && current_user.select_trial
+          @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_J3NbUHqtOpmfgT',
+                unit_amount: 1000,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+        else
+          @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_JBsFLfsceVMW36',
+                unit_amount: params[:price].to_i,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
         end
       end
     end
-
 end
+

@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
 
   def like_lunch
     @subscriptions = @category.subscriptions
-    @private_stores = @category.private_stores.where(admin_private_check: "個人店舗データ反映済み")
+    @private_stores = @category.private_stores.where(admin_private_check: "承認")
     current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
   end
 
