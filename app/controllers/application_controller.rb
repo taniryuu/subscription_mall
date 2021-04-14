@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
       # 現在の支払い情報
       @payment = Stripe::Checkout::Session.retrieve(@pay)
       # サブスクプラン更新用
-      @sub = Stripe::Subscription.retrieve(@payment.subscription)
+      #@sub = Stripe::Subscription.retrieve(@payment.subscription)
     end
   end
 
