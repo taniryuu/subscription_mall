@@ -12,18 +12,13 @@ class Subscription < ApplicationRecord
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
-  validates :name, presence: true, length: { maximum: 50 }
-  # validates :site, presence: true
-  # validates :address, presence: true, length: { maximum: 1000 }, on: :create
-  # validates :title, presence: true, length: { maximum: 100 }, on: :create
-  # validates :detail, presence: true, length: { maximum: 100 }, on: :create
-  # validates :shop_introduction, presence: true, length: { maximum: 1000 }, on: :create
-  # validates :subscription_detail, presence: true, length: { maximum: 1000 }, on: :create
-  # validates :image_subscription, presence: true, allow_blank: true, on: :create
-  # validates :qr_image, presence: true, allow_blank: true, on: :create
-  # validates :category_id, presence: true, allow_blank: true, on: :create
-  # validates :price, presence: true, on: :create
-  #validates :trial, presence: true
+  validates :name, length: { maximum: 50 }
+  validates :address, length: { maximum: 1000 }, on: :update
+  validates :title, length: { maximum: 100 }, on: :update
+  validates :detail, length: { maximum: 100 }, on: :update
+  validates :subscription_detail, length: { maximum: 1000 }, on: :update
+  # validates :category_id, presence: true, on: :update
+  # validates :price, presence: true, on: :update
 
 
   geocoded_by :address

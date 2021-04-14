@@ -103,7 +103,7 @@ class AdminsController < ApplicationController
     @private_store.update(private_owner_params)
     PrivateStoreMailer.with(private_store: @private_store, new: "承認").judging_email.deliver_now
     flash[:notice] = "#{@owner.name}様の加盟店申し込みを#{@private_store.admin_private_check}しました"
-    redirect_to admins_private_stores_index_url
+    redirect_to admins_private_stores_index_url and return
   end
 
   private

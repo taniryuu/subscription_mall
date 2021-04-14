@@ -188,6 +188,8 @@ class SubscriptionsController < ApplicationController
                                               :subscription_detail,
                                               :price,
                                               :site,
+                                              :phone_number,
+                                              :email,
                                               :situation,
                                               :category_id,
                                               :owner_id,

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:create, :show, :edit, :update, :destroy, :user_edit, :user_edit_update]
+  before_action :set_owner, only: %i(user_subscription_email user_private_store_email)
+  before_action :set_subscription, only: %i(user_subscription_email user_subscription_confirm user_subscription_thanks)
+  before_action :set_private_store, only: %i(user_private_store_email user_private_store_confirm user_private_store_thanks)
   before_action :payment_planning_delete, only: :destroy
   before_action :login_current_admin, only: %i(index)
   before_action :login_current_user, only: %i(user_account edit)
@@ -17,6 +20,31 @@ class UsersController < ApplicationController
   def update_deleted_users
     @user.with_deleted.find(params[:id]).restore
     redirect_to users_url
+  end
+
+  def user_subscription_email#利用者から経営者へメール
+  end
+
+  def user_subscription_confirm#利用者から経営者へメール確認画面
+    @subscription.update(params[:subscription].permit(:subject, :message))
+  end
+
+  def user_subscription_thanks#利用者から経営者へメールありがとう画面
+    @subscription.update(params[:subscription].permit(:subject, :message))
+    UserMailer.with(subscription: @subscription, user: current_user).user_subscription_email.deliver_now
+  end
+
+  def user_private_store_email
+
+  end
+
+  def user_private_store_confirm
+    @private_store.update(params[:private_store].permit(:subject, :message))
+  end
+
+  def user_private_store_thanks
+    @private_store.update(params[:private_store].permit(:subject, :message))
+    UserMailer.with(private_store: @private_store, user: current_user).user_private_store_email.deliver_now
   end
 
   def show
@@ -75,6 +103,18 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_owner
+      @owner = Owner.find(params[:id])
+    end
+
+    def set_private_store
+      @private_store = PrivateStore.find(params[:id])
+    end
+
+    def set_subscription
+      @subscription = Subscription.find(params[:id])
     end
 
     def user_params
