@@ -1,0 +1,23 @@
+<% provide(:title, "メール確認") %>
+
+<p id="notice"><%= notice %></p>
+<h1><%= @subscription.name %>様へメール確認</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 mx-auto">
+    <%= form_with(model: @subscription, url: users_user_subscription_thanks_path(id: @subscription), local: true) do |form| %>
+
+      <div class="field">
+        <%= form.label :お客様メールアドレス %>
+        <%= form.text_field :email, value: current_user.email, readonly: true, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :message %>
+        <%= form.text_area :message, value: @subscription.message, readonly: true, class: 'form-control' %>
+      </div>
+      <div class="field mb-3">
+        <%= form.submit "送信", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>

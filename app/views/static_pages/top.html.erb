@@ -443,17 +443,18 @@
     <h1 class="trial center concept"><%= link_to "＼お試しプラン／のお店はこちら", trial_shop_path, class: "btn btn-link" %></h1>
     <div class="row">
       <div class="col-sm-12">
-	<div class="trial_plan">
+
+	    <div class="trial_plan">
         <% if current_user.price.blank? %>
           <div>
             <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2" %></span>
-	  </div>
-	<% else %>
+	        </div>
+	      <% else %>
           <div>
             <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2 disabled" %></span>
-	  <div>
+	        </div>
         <% end %>
-        </div>
+       </div>
       </div>
     </div>
 
@@ -1110,7 +1111,7 @@
     </div>
     <div> <%# instagramデータ取得 %>
       <ul class="insta-list">
-        <% count = '6' %>
+ <% count = '6' %>
         <% id = '17841442005934576' %>
         <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
@@ -1139,7 +1140,7 @@
                   </div>
               <% end %>
             </li>
-          <% end %>
+          <% end %> 
       </ul>
     </div>
 

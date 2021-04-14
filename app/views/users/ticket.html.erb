@@ -60,8 +60,8 @@
 
                      <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @owner.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                          <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -77,8 +77,8 @@
 
                      <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @owner.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                          <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -95,6 +95,23 @@
               <% end %>
 
             <% elsif ((Date.today.wday === 6) || (Date.today.wday === 0)) && (current_user.price < 18000) %> <%#プランが18000以下かつ土日の場合%>
+                <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
+            <% elsif (Date.today.wday != 6) && (Date.today.wday != 0) && current_user.select_trial && (current_user.trial_count === 2) %> <%#プランが1000かつ土日でない場合かつトライアルの利用回数が2の場合%>
+               <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
+                    <%= f.hidden_field :owner_name, :value => @owner.name %>
+                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
+                    <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
+                    <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
+		                <%= f.hidden_field :subscription_name, :value => @subscription.name %>
+                    <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <%= f.hidden_field :trial_count, :value => 3 %>
+                    <%= f.hidden_field :price, :value => current_user.price %>
+                    <%= f.hidden_field :trial, :value => @subscription.trial %>
+                    <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
+                <% end %>
+            <% elsif ((Date.today.wday == 6) || (Date.today.wday == 0)) && (current_user.price < 18000) %> <%#プランが18000以下かつ土日の場合%>
                <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
 
             <% elsif current_user.issue_ticket_day == Date.today %> <%#当日にチケットが発券済みであるかどうか%>
@@ -105,8 +122,8 @@
 
                 <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @owner.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
+                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 		                <%= f.hidden_field :subscription_name, :value => @subscription.name %>
@@ -148,7 +165,6 @@
 
           <div class="col-lg-4 col-md-12 mb-4">
           </div>
-
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card pricing-card">
 
@@ -212,6 +228,7 @@
 
               </div>
 
+          
           </div>
         </div>
 

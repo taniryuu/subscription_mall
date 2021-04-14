@@ -8,15 +8,9 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="account-btn">
           <%= link_to "ショップ審査", subscription_private_store_select_owner_path(current_owner), class: "btn btn-lg btn-brand" %>
-        </div></br>
-        <div class="account-btn">
-          <%= link_to "なにか", subscription_private_store_judging_select_owner_path(current_owner), class: "btn btn-lg btn-brand" %>
-        </div></br>
-        <div class="account-btn">
+          <%= link_to "チケット発券状況", user_have_ticket_path, class: "btn-gradient-3d-simple" %>
+          <%= link_to "チケット使用履歴logs", ticket_logs_path, class: "btn-gradient-3d-simple" %>
           <%= link_to "マイアカウント編集", edit_owner_path(@owner), class: "btn-gradient-3d-simple" %>
-        </div></br>
-        <div class="account-btn">
-          <%= link_to "解約について", edit_owner_registration_path(@owner), class: "btn-gradient-3d-simple" %>
         </div></br>
         <table class="table table-bordered">
           <tr>
@@ -218,4 +212,7 @@
           <% end %></br>
       <% end %>
     </div>
+  <div class="account-btn">
+    <%= link_to "解約について", edit_owner_registration_path(@owner), class: "btn-gradient-3d-simple" %>
+  </div></br>
 </div>

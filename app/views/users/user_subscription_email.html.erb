@@ -1,0 +1,34 @@
+<% provide(:title, "メール作成") %>
+
+<p id="notice"><%= notice %></p>
+<h1><%= @subscription.name %> 様へメール作成</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 mx-auto">
+    <%= form_with(model: Subscription, url: users_user_subscription_confirm_path(current_user, id: @subscription), method: :patch, local: true) do |form| %>
+      <% if current_admin.present? %>
+        <div class="field">
+          <%= form.label :お客様メールアドレス %>
+          <%= form.text_field :email, value: current_admin.email, readonly: true, class: 'form-control' %>
+        </div>
+      <% elsif current_user.present? %>
+        <div class="field">
+          <%= form.label :お客様メールアドレス %>
+          <%= form.text_field :email, value: current_user.email, readonly: true, class: 'form-control' %>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= form.label :メッセージ %>
+        <%= form.text_area :message, :required => true, class: 'form-control', id: :contact_message %>
+      </div>
+      <% if current_admin.present? %>
+        <div class="field mb-3">
+          <%= form.submit "確認", disabled: true, class: "btn btn-primary btn-block" %>
+        </div>
+      <% elsif current_user.present? %>
+        <div class="field mb-3">
+          <%= form.submit "確認", class: "btn btn-primary btn-block" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

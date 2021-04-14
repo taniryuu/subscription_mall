@@ -26,11 +26,20 @@
       </table>
     </div>
   </div>
-  <div class="account-btn">
-    <%= link_to "編集", edit_admin_path, class: "btn-gradient-3d-simple" %>
-  </div></br>
-
-  <% if current_admin.present? %>
-    <%= link_to "チケット使用履歴", ticket_logs_path, class: "btn-gradient-3d-simple" %>
-  <% end %>
+    <div class="account-btn">
+      <%= link_to "編集", edit_admin_path(current_admin), class: "btn-gradient-3d-simple" %>
+    </div></br>
+    <div class="account-btn">
+      <%= link_to "チケット発券状況", user_have_ticket_path, class: "btn-gradient-3d-simple" %>
+    </div></br>
+    <%
+=begin%>
+ <div class="account-btn">
+      <%= link_to "チケット使用履歴", user_tickets_path(current_admin), class: "btn-gradient-3d-simple" %>
+    </div></br> 
+<%
+=end%>
+    <div class="account-btn">
+      <%= link_to "チケット使用履歴logs", ticket_logs_path, class: "btn-gradient-3d-simple" %>
+    </div></br>
 </div>
