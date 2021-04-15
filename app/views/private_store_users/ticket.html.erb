@@ -14,7 +14,7 @@
         <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
 
     <div class="row">
-
+      <div class="col-lg-4 col-md-6 mb-4 mx-auto">
       <div class="col-lg-4 col-md-12 mb-4">
       </div>
 
@@ -87,6 +87,7 @@
                 <% end %>
 
             <% elsif (Date.today.wday != 6) && (Date.today.wday != 0) && current_user.select_trial && (current_user.trial_count === 2) %> <%#プランが1000かつ土日でない場合かつトライアルの利用回数が2の場合%>
+
                <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
                     <%= f.hidden_field :owner_email, :value => @private_store.email %>
@@ -131,7 +132,6 @@
 
         </div>
       </div>
-
     </div>
 
     </section>
@@ -229,4 +229,3 @@
   </div>
 
 <% end %>
-

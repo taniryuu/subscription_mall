@@ -1,5 +1,5 @@
 class TicketLog < ApplicationRecord
-  # belongs_to :ticket
+  belongs_to :user
 
   def self.search(owner_name) #ここでのself.はTicketLog.を意味する
     if owner_name

@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:like_lunch]
   # before_action :set_subscription, only: [:show]
   before_action :categories_lock, only: %i(new edit)
+  before_action :current_user_email_present?, only: %i(trial_shop)
 
 
   def index
