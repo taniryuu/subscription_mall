@@ -16,47 +16,41 @@
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
     <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
     <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4 mx-auto">
-
+      <div class="col-lg-4 col-md-12 mb-4">
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
         <div class="card pricing-card">
           <div class="price header white-text indigo rounded-top">
-              <h2 class="number"></h2>
+            <h2 class="number"></h2>
             <div class="version">
               <h5 class="mb-0"><i class="fa fa-file-text-o fa-3x"></i></h5>
             </div>
           </div>
-
           <div class="card-body striped mb-1">
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ発券できます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度発券すると当日は他のお店では使用できません。</p>
-                <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケット発券は0時にリセットされます。</p>
+		<p class="mt-2"><i class="fa fa-check-circle fa"></i> チケット発券は0時にリセットされます。</p>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 3000円、9000円、11000円プランのユーザー様は土日でのチケットのご利用はできません。</p>
-
                 <% if @subscription.trial == true && current_user.select_trial %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
                 <% else %>
                   <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.price}円です。"%></p>
                 <% end %>
-
-            <% if current_user.select_trial %>  <%#チケット利用が2回目以降でプランがトライアルの場合%>
-
-              <% if (Date.today.wday === 6 || Date.today.wday === 0) %> <%#チケット利用2回目以降でプランがトライアルかつ土日の場合%>
+            <% if current_user.select_trial %>  <%#チケット利用が2回目以降でプランが1000円の場合%>
+              <% if (Date.today.wday === 6 || Date.today.wday === 0) %> <%#チケット利用2回目以降でプランが1000円かつ土日の場合%>
                 <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
               <% else %>
-
-                <% if current_user.ticket.trial_count === "3" %> <%#チケット利用2回目以降でプランがトライアルかつチケット利用が3回終えたの場合%>
+                <% if current_user.ticket.trial_count === 3 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が3回終えたの場合%>
                    <%= "トライアルプランは3回利用済みです。" %>
-                <% elsif current_user.ticket.trial_count === "1" %> <%#チケット利用2回目以降でプランがトライアルかつチケット利用が1回終えたの場合%>
-
-                     <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
+                <% elsif current_user.ticket.trial_count === 1 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が1回終えたの場合%>
+                   <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @subscription.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => @owner.email %>
+                          <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                          <%= f.hidden_field :category_id, :value => @subscription.category_id %>
                           <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                           <%= f.hidden_field :user_id, :value => current_user.id %>
                           <%= f.hidden_field :trial_count, :value => 2 %>
@@ -64,17 +58,14 @@
                           <%= f.hidden_field :trial, :value => @subscription.trial %>
                           <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                       <% end %>
-
-                  <% elsif current_user.ticket.trial_count === "2" %> <%#チケット利用2回目以降でプランがトライアルかつチケット利用が2回終えたの場合%>
-
+                  <% elsif current_user.ticket.trial_count === 2 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が2回終えたの場合%>
                      <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @subscription.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => @owner.email %>
+                          <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                          <%= f.hidden_field :category_id, :value => @subscription.category_id %>
                           <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                           <%= f.hidden_field :user_id, :value => current_user.id %>
                           <%= f.hidden_field :trial_count, :value => 3 %>
@@ -82,23 +73,16 @@
                           <%= f.hidden_field :trial, :value => @subscription.trial %>
                           <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                       <% end %>
-
                   <% end %>
-
-              <% end %>
-
-            <% elsif ((Date.today.wday === 6) || (Date.today.wday === 0)) && (current_user.price < 18000) %> <%#プランが18000以下かつ土日の場合%>
-                <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
+                <% end %>
             <% elsif (Date.today.wday != 6) && (Date.today.wday != 0) && current_user.select_trial && (current_user.trial_count === 2) %> <%#プランが1000かつ土日でない場合かつトライアルの利用回数が2の場合%>
-
                <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
+                    <%= f.hidden_field :owner_email, :value => @owner.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                    <%= f.hidden_field :category_id, :value => @subscription.category_id %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :trial_count, :value => 3 %>
@@ -108,41 +92,34 @@
                 <% end %>
             <% elsif ((Date.today.wday == 6) || (Date.today.wday == 0)) && (current_user.price < 18000) %> <%#プランが18000以下かつ土日の場合%>
                <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
-
             <% elsif current_user.issue_ticket_day == Date.today %> <%#当日にチケットが発券済みであるかどうか%>
                 <%= "本日のチケットは発券済みです。" %><br>
                 <%= link_to " Myアカウント", user_account_user_path(current_user) %>からチケットを確認してください。
-              <% else %> <%#当日にチケットが発券済みでなければ発券できる%>
-
+            <% else %> <%#当日にチケットが発券済みでなければ発券できる%>
                 <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @subscription.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @subscription.phone_number %>
+                    <%= f.hidden_field :owner_email, :value => @owner.email %>
+                    <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                    <%= f.hidden_field :category_id, :value => @subscription.category_id %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :price, :value => current_user.price %>
                     <%= f.hidden_field :trial, :value => @subscription.trial %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
-              <% end %>
-            </div>
-           <% end %>
-
+             <% end %>
           </div>
-
         </div>
       </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+      </div>
     </div>
-    </section>
-  </div>
-
+  </section>
+</div>
 <% else %> <%#初めてチケットを発券する%>
-
-  <div class="container my-5">
+<div class="container my-5">
     <section class="text-center dark-grey-text">
     <span class="badge badge-success">加盟店</span>
     <% if @subscription.trial == true %>
@@ -153,13 +130,16 @@
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
     <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
     <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4 mx-auto">
+      <div class="col-lg-4 col-md-12 mb-4">
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
         <div class="card pricing-card">
           <div class="price header white-text indigo rounded-top">
             <h2 class="number"></h2>
             <div class="version">
               <h5 class="mb-0"><i class="fa fa-file-text-o fa-3x"></i></h5>
             </div>
+          </div>
 
           <div class="card-body striped mb-1">
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
@@ -179,8 +159,7 @@
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                    <%= f.hidden_field :category_id, :value => @subscription.category_id %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :trial_count, :value => 1 %>
@@ -197,8 +176,7 @@
                     <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
-                    <%= f.hidden_field :category_id, :value => @subscription.category_id %>
+		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :price, :value => current_user.price %>
@@ -206,10 +184,11 @@
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
               <% end %>
-            </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+</div>
 <% end %>
+
