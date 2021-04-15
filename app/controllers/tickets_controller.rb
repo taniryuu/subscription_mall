@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :trial_period, only: :show
 
   def index
-    @tickets = Ticket.all # 案１みんなのチケットを表示
+    @tickets = Ticket.all.paginate(page: params[:page], per_page: 10) # 案１みんなのチケットを表示
     # @ticket = Ticket.find_by(user_id: params[:user_id]) # 案２　一人のチケットを表示
   end
 
@@ -13,6 +13,14 @@ class TicketsController < ApplicationController
       @subscription = Subscription.find_by(name: @ticket.subscription_name)
     elsif @ticket.private_store_name.present?
       @private_store = PrivateStore.find_by(name: @ticket.private_store_name)
+    end
+  end
+
+  def user_have_ticket##経営者が持っているお店の発券中のチケットを持っている利用者一覧
+    if current_owner.present?
+      @tickets = Ticket.where(owner_name: current_owner.name).order("created_at ASC").paginate(page: params[:page], per_page: 10)
+    elsif current_admin.present?
+      @tickets = Ticket.where.not(owner_name: nil).order("created_at ASC").paginate(page: params[:page], per_page: 10)
     end
   end
 
@@ -44,10 +52,21 @@ class TicketsController < ApplicationController
       else
         ticket_trial = "-"
       end
-      TicketLog.create(use_ticket_day_log: @ticket.use_ticket_day, owner_name: @ticket.owner_name,
-		       owner_email: @ticket.owner_email, owner_phone_number: @ticket.owner_phone_number, owner_store_information: @ticket.owner_store_information,
-		       subscription_name: @ticket.subscription_name, private_store_name: @ticket.private_store_name, subscription_fee: @ticket.subscription_fee,
-		       issue_ticket_day: @ticket.issue_ticket_day,user_id: @ticket.user_id, price: @ticket.price, trial: ticket_trial)
+      TicketLog.create(
+        use_ticket_day_log: @ticket.use_ticket_day, 
+        owner_name: @ticket.owner_name,
+        owner_email: @ticket.owner_email, 
+        owner_phone_number: @ticket.owner_phone_number, 
+        owner_store_information: @ticket.owner_store_information,
+        subscription_name: @ticket.subscription_name, 
+        category_id: @ticket.category_id, 
+        private_store_name: @ticket.private_store_name, 
+        subscription_fee: @ticket.subscription_fee,
+        issue_ticket_day: @ticket.issue_ticket_day,
+        user_id: @ticket.user_id, 
+        price: @ticket.price, 
+        trial: ticket_trial,
+      )
       TicketMailer.ticket_email(@ticket).deliver_now
       redirect_to ticket_success_path
     else
@@ -86,7 +105,7 @@ class TicketsController < ApplicationController
   private
 
     def ticket_params
-	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :subscription_name, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
+	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :subscription_name, :category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
     end
 
     def edit_user_ticket
@@ -98,7 +117,7 @@ class TicketsController < ApplicationController
     end
 
     def update_ticket_params
-	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :owner_payee, :subscription_name, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
+	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :owner_payee, :subscription_name, :category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
     end
 
     #トライアルチケット削除

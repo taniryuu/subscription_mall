@@ -6,6 +6,7 @@ class UserPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
+  before_action :current_user_email_present?, only: %i(new subscription_plans)
   # before_action :sms_auth_false?, only: %i(new confirm destroy)
 
   # stripe決済成功時
@@ -16,7 +17,7 @@ class UserPlansController < ApplicationController
     else 
       current_user.update!(trial_stripe_success: false)
     end 
-    AdminMailer.send_payment_email(current_user).deliver_now
+    # AdminMailer.send_payment_email(current_user).deliver_now
   end
 
   # stripe決済失敗時
@@ -119,10 +120,8 @@ class UserPlansController < ApplicationController
   end
 
   def subscription_plan
-
+  
   end
-
-
 
   def trial_plan
     if Rails.env.development? || Rails.env.test?
@@ -261,14 +260,14 @@ class UserPlansController < ApplicationController
     def set_plans
       @plans = []
       Stripe::Plan.list.reverse_each do |plan|
-	p "planは#{plan}"
-	p "plan.idは#{plan.id}"
-	p "plan.metadtaは#{plan.metadata}"
-	if Rails.env.development? || Rails.env.test?
-	  @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
-	elsif Rails.env.production?
-	  @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
-	end
+      p "planは#{plan}"
+      p "plan.idは#{plan.id}"
+      p "plan.metadtaは#{plan.metadata}"
+        if Rails.env.development? || Rails.env.test?
+          @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
+        elsif Rails.env.production?
+          @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
+        end
       end
     end
 
