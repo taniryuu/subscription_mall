@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'ticket_logs' => "ticket_logs#index", as: :ticket_logs#チケット使用履歴
+  delete "ticket_logs", to: "ticket_logs#destroy", as: 'logs_destroy'
+  get 'ticket' => "tickets#user_have_ticket", as: :user_have_ticket#チケット使用履歴
 
   root 'static_pages#top'#トップページ
   get 'paypaytest' => "static_pages#paypaytest"#paypaytest
@@ -122,8 +124,6 @@ Rails.application.routes.draw do
     member do
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
-      get 'user_email' #経営者から利用者へメール作成
-      post 'to_user_email'
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do
@@ -164,6 +164,16 @@ Rails.application.routes.draw do
   patch 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
   post 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
   
+  get 'users/user_subscription_email', to: 'users#user_subscription_email' #加盟店の利用者から経営者へメール
+  patch 'users/user_subscription_confirm', to: 'users#user_subscription_confirm'
+  patch 'users/user_subscription_thanks', to: 'users#user_subscription_thanks'
+  post 'users/user_subscription_thanks', to: 'users#user_subscription_thanks'
+
+  get 'users/user_private_store_email', to: 'users#user_private_store_email' #加盟店の利用者から経営者へメール
+  patch 'users/user_private_store_confirm', to: 'users#user_private_store_confirm'
+  patch 'users/user_private_store_thanks', to: 'users#user_private_store_thanks'
+  post 'users/user_private_store_thanks', to: 'users#user_private_store_thanks'
+
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
     collection do

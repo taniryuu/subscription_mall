@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :trial_period, only: :show
 
   def index
-    @tickets = Ticket.all # 案１みんなのチケットを表示
+    @tickets = Ticket.all.paginate(page: params[:page], per_page: 10) # 案１みんなのチケットを表示
     # @ticket = Ticket.find_by(user_id: params[:user_id]) # 案２　一人のチケットを表示
   end
 
@@ -13,6 +13,14 @@ class TicketsController < ApplicationController
       @subscription = Subscription.find_by(name: @ticket.subscription_name)
     elsif @ticket.private_store_name.present?
       @private_store = PrivateStore.find_by(name: @ticket.private_store_name)
+    end
+  end
+
+  def user_have_ticket##経営者が持っているお店の発券中のチケットを持っている利用者一覧
+    if current_owner.present?
+      @tickets = Ticket.where(owner_name: current_owner.name).order("created_at ASC").paginate(page: params[:page], per_page: 10)
+    elsif current_admin.present?
+      @tickets = Ticket.where.not(owner_name: nil).order("created_at ASC").paginate(page: params[:page], per_page: 10)
     end
   end
 

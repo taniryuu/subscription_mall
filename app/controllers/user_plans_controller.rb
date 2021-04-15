@@ -16,7 +16,7 @@ class UserPlansController < ApplicationController
     else 
       current_user.update!(trial_stripe_success: false)
     end 
-    AdminMailer.send_payment_email(current_user).deliver_now
+    # AdminMailer.send_payment_email(current_user).deliver_now
   end
 
   # stripe決済失敗時
@@ -258,14 +258,14 @@ class UserPlansController < ApplicationController
     def set_plans
       @plans = []
       Stripe::Plan.list.reverse_each do |plan|
-	p "planは#{plan}"
-	p "plan.idは#{plan.id}"
-	p "plan.metadtaは#{plan.metadata}"
-	if Rails.env.development? || Rails.env.test?
-	  @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
-	elsif Rails.env.production?
-	  @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
-	end
+      p "planは#{plan}"
+      p "plan.idは#{plan.id}"
+      p "plan.metadtaは#{plan.metadata}"
+        if Rails.env.development? || Rails.env.test?
+          @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
+        elsif Rails.env.production?
+          @plans.push(plan) if plan.product == "prod_Itdb3ZOVEaX3iU"
+        end
       end
     end
 end

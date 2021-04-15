@@ -1,0 +1,61 @@
+<% provide(:title, 'チケット発券一覧') %>
+
+<div>
+  <h1 class="brand-color display-4 mt-6 mb-6">本日の発券中チケット一覧</h1>
+  <div class="col-md-10 offset-md-1">
+    <% if @tickets.present? %>
+      <table class="table mb-8">
+        <thead class="thead-light">
+          <tr>
+            <th></th>
+            <th>店舗オーナー名</th>
+            <th>店舗mail</th>
+            <th>店舗TEL</th>
+            <th>お店の名前</th>
+            <th>金額</th>
+            <th>トライアル</th>
+            <th>利用ユーザー</th>
+            <th>発券中</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @tickets.each do |ticket| %>
+            <tr>
+              <% if  ticket.issue_ticket_day == Date.today && ticket.use_ticket_day != Date.today %>
+              <td>
+                <% if ticket.subscription_name.present? %>
+                  <span class="badge badge-success">加盟店</span>
+                <% elsif ticket.private_store_name.present? %>
+                  <span class="badge badge-primary">個人店舗</span>
+                <% end %>
+              </td>
+              <td><%= ticket.owner_name %></td>
+              <td><%= ticket.owner_email %></td>
+              <td><%= ticket.owner_phone_number %></td>
+              <% if ticket.subscription_name.present? %>
+                <td><%= ticket.subscription_name %></td>
+              <% elsif ticket.private_store_name.present? %>
+                <td><%= ticket.private_store_name %></td>
+              <% end %>
+              <td><%= ticket.price %></td>
+              <td>
+              <% if ticket.trial == false %>
+                <%= "不参加" %>
+              <% elsif ticket.trial == true %>
+                <%= "参加" %>
+              <% end %>
+              </td>
+              <td><%= User.find(ticket.user_id).name if ticket.user_id.present? %></td>
+              <td><%= ticket.issue_ticket_day %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else%>
+      <p class="mb-8">現在、チケット使用履歴はありません。
+    <% end %>
+  </div>
+  <%= will_paginate(@tickets, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>

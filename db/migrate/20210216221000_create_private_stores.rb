@@ -10,6 +10,8 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.text :private_store_detail
       t.string :email
       t.string :phone_number
+      t.string :subject
+      t.string :message
       t.string :script
       t.string :sub_image
       t.string :sub_image2

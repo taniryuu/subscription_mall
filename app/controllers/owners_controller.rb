@@ -17,19 +17,6 @@ class OwnersController < ApplicationController
     redirect_to owners_url
   end
 
-  def user_email#経営者から利用者へメール作成
-    @user = User.find(params[:id])
-  end
-
-  def to_user_email#経営者から利用者へメール送信アクション
-    user = User.find(params[:id])
-    owner = Owner.find(params[:id])
-    User.new(user_params)
-
-    OwnerMailer.owner_email(owner, user).deliver
-    redirect_to users_url
-  end
-
   def interviews_index
     # owner = Owner.find(params[:id])
     # @interviews = owner.interviews
