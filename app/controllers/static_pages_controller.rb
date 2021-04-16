@@ -14,11 +14,8 @@ class StaticPagesController < ApplicationController
     @owners = Owner.all.limit(5)
     # @category = Category.find_by(params[:id])
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
-    @categories = if params[:search]
-      Category.search(params[:search]).order("RAND()").limit(6)
-    else 
-      Category.order("RAND()").limit(6)
-    end
+    @category_all = Category.all
+    @categories = @category_all.sample(6)
     #@prices = []
     #  Stripe::Plan.list.reverse_each do |plan|
     #    p "planは#{plan}"
@@ -38,11 +35,8 @@ class StaticPagesController < ApplicationController
     @interviews = Interview.where.not(shop_name: nil)
     @questions = Question.all
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
-    @categories = if params[:search]
-      Category.search(params[:search]).order("RAND()").limit(6)
-    else 
-      Category.order("RAND()").limit(6)
-    end
+    @category_all = Category.all
+    @categories = @category_all.sample(6)
   end
 
   def megurume_line
