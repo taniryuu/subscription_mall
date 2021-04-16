@@ -1,6 +1,7 @@
 class UserPlansController < ApplicationController
-  before_action :set_plan, only: %i(confirm update_confirm)
-  before_action :set_plans, only: %i(new edit confirm update_confirm subscription_plans)
+  before_action :set_plan, only: %i()
+  before_action :set_plans, only: %i(new edit)
+  before_action :set_plan_by_price, only: :subscription_plan
 
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
@@ -118,7 +119,8 @@ class UserPlansController < ApplicationController
     end
   end
 
-  def subscription_plans
+  def subscription_plan
+  
   end
 
   def trial_plan
@@ -165,7 +167,7 @@ class UserPlansController < ApplicationController
 
   # サブスク新規登録確認画面
   def confirm
-    current_user.update!(session_id: @plan.id, session_price: @plan.amount_subtotal)
+    current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal)
   end
 
   # サブスクプラン更新確認画面
@@ -268,4 +270,90 @@ class UserPlansController < ApplicationController
         end
       end
     end
+
+    def set_plan_by_price
+      if params[:subscription].to_i == -1
+        @subscription = nil
+      else
+	@subscription = Subscription.find(params[:subscription])
+      end
+      if Rails.env.development? || Rails.env.test?
+        if @subscription.present? && @subscription.trial == true && current_user.select_trial
+	  @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_J3NbUHqtOpmfgT',
+                unit_amount: 1000,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+	else
+	  @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_Itdb3ZOVEaX3iU',
+                unit_amount: params[:price].to_i,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+	end
+      elsif Rails.env.production?
+	if @subscription.present? && @subscription.trial == true && current_user.select_trial
+	  @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_J3NbUHqtOpmfgT',
+                unit_amount: 1000,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+	else
+	  @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product: 'prod_Itdb3ZOVEaX3iU',
+                unit_amount: params[:price].to_i,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+        end
+      end
+    end
 end
+

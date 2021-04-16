@@ -16,6 +16,18 @@ class StaticPagesController < ApplicationController
     @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
     @category_all = Category.all
     @categories = @category_all.sample(6)
+    #@prices = []
+    #  Stripe::Plan.list.reverse_each do |plan|
+    #    p "planは#{plan}"
+    #    p "plan.idは#{plan.id}"
+    #    p "plan.priceは#{plan.amount}"
+    #    if Rails.env.development? || Rails.env.test?
+    #    @prices.push(plan.amount) if plan.product == "prod_Itdb3ZOVEaX3iU"
+    #    elsif Rails.env.production?
+    #      @prices.push(plan.amount) if plan.product == "prod_Itdb3ZOVEaX3iU"
+    #    end
+    #  end
+    #  @prices.sort!
   end
 
   def top_owner
