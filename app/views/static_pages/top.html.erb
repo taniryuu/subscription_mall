@@ -62,10 +62,7 @@
 
     <hr class="border-solid-down" />
     <div class="search">
-      <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
-      <% end %>
+      <%= render partial: "categories/select", locals: {categories: @category_all} %>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
@@ -436,10 +433,7 @@
 
     <hr class="border-solid-down" />
     <div class="search">
-      <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
-      <% end %>
+      <%= render partial: "categories/select", locals: {categories: @category_all} %>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
@@ -860,10 +854,7 @@
     </div>
     <hr class="border-solid-down" />
     <div class="search">
-      <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
-      <% end %>
+      <%= render partial: "categories/select", locals: {categories: @category_all} %>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
@@ -1281,10 +1272,7 @@
   <% else %> <%# ログインしてない %>
     <hr class="border-solid-down" />
     <div class="search">
-      <%= form_with(model: @category, method: :get, local: true) do |f| %>
-        <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-        <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
-      <% end %>
+      <%= render partial: "categories/select", locals: {categories: @category_all} %>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>

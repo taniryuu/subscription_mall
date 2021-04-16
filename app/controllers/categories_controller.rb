@@ -6,12 +6,7 @@ class CategoriesController < ApplicationController
 
 
   def index
-    @categories = if params[:search]
-      Category.search(params[:search]).order("RAND()")
-    else
-      Category.order("RAND()").all
-    end
-    @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
+    @category_all = Category.all
   end
 
   def like_lunch
@@ -62,7 +57,11 @@ class CategoriesController < ApplicationController
   end
 
   def search
-    @categories = Category.where.not(name: nil)
+    if params[:category_id].present?
+      redirect_to like_lunch_category_url(params[:category_id])
+    else
+      redirect_to categories_url
+    end
   end
 
 
