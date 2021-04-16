@@ -4,7 +4,7 @@
       <div class="col-lg-4 col-md-12 mb-4 mx-auto">
         <div class="card">
           <div class="card-body subscription-bg">
-            <h5 class="mb-4"><%= @confirm_plan.nickname %></h5>
+            <h5 class="mb-4"><%= @plan_by_price.nickname %></h5>
             <div class="d-flex justify-content-center">
               <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPf1fl_6GCRJUByMI9OSkIz02ssTC23yXJTQ&usqp=CAU"
@@ -12,15 +12,12 @@
               height="120"
             />
             </div>
-            <h2 class="font-weight-bold my-4">￥<%= @confirm_plan.amount %>/月</h2>
-            <p class="grey-text"><%= @confirm_plan.metadata.detail %></p>
+            <h2 class="font-weight-bold my-4">￥<%= @plan_by_price.amount %>/月</h2>
+            <p class="grey-text"><!--%= @confirm_plan.metadata.detail %--></p>
             <% if @payment.present? && @payment.amount_subtotal == @plan.amount_subtotal %>
               <button style="pointer-events: none;" class="btn btn-outline-success btn-rounded waves-effect">すでに購入されています</button>
             <% elsif current_user.customer_id.present? %>
-              <%=
-                link_to "変更する", user_plan_path(value: @confirm_plan.id),
-                method: :patch, data: { confirm: "【確認】プランを変更してしてよろしいでしょうか？" }, class: "btn btn-outline-success btn-rounded waves-effect"
-              %>
+	      <p>プラン変更は出来ません。</p>
             <% else %>
               <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
             <% end %>

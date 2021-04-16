@@ -219,6 +219,9 @@ Rails.application.routes.draw do
 
   get "trial_plan", to: "user_plans#trial_plan"
 
-  get "subscription_plans", to: "user_plans#subscription_plans" #加盟店の一覧へ
+  get "subscriptions/:subscription/prices/:price/subscription_plan", to: "user_plans#subscription_plan", as: :subscription_plan#価格に応じた加盟店のプランへ
+  get "private_stores/:private_store/prices/:price/private_store_plan", to: "private_store_user_plans#private_store_plan", as: :private_store_plan#価格に応じた個人店のプランへ
+
+
 
 end
