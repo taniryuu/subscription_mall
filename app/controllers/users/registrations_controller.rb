@@ -34,6 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in @user
       UserMailer.with(user: @user).welcome_email.deliver_now
       UserMailer.with(user: @user).notice_user_joining_email.deliver_now
+      redirect_to root_url
     else
       flash[:worning] = "メールアドレスが既に登録されています"
       redirect_to new_user_session_url

@@ -54,4 +54,3 @@ class PrivateStore < ApplicationRecord
     end
   end
 end
-
