@@ -1,13 +1,26 @@
 class PrivateStoreMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: ENV['SEND_MAIL']
 
   def notification_email
     @private_store = params[:private_store]
     @new = params[:new]
+    @url  = 'https://www.megurumee.com/'
     if @new == "true"
-      mail(to: 'megurumee@gmail.com', subject: '個人店舗が新規作成されました')
+      mail(to: ENV['SEND_MAIL'], subject: '個人店舗が審査申請されました')
     else
-      mail(to: 'megurumee@gmail.com', subject: '個人店舗が編集されました')
+      mail(to: ENV['SEND_MAIL'], subject: '個人店舗が編集されました')
+    end
+  end
+
+  def judging_email
+    @private_store = params[:private_store]
+    @owner = Owner.find_by(id: @private_store.owner_id)
+    @new = params[:new]
+    @url  = 'https://www.megurumee.com/'
+    if @new == "承認"
+      mail(to: @owner.email, subject: '審査結果報告')
+    else
+      mail(to: @owner.email, subject: '個人店舗が編集されました')
     end
   end
 

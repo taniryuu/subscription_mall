@@ -184,7 +184,10 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "image_private_store"
     t.integer "price"
     t.text "private_store_detail"
-    t.integer "shop_id"
+    t.string "email"
+    t.string "phone_number"
+    t.string "subject"
+    t.string "message"
     t.string "script"
     t.string "sub_image"
     t.string "sub_image2"
@@ -199,17 +202,21 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "sub_image11"
     t.string "sub_image12"
     t.string "admin_private_check"
+    t.string "situation"
+    t.string "admin_last_check"
     t.string "trial_check"
     t.string "trial_last_check"
     t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
+    t.text "site"
     t.string "qr_image"
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.string "product_id"
-    t.string "trial", default: "非参加"
+    t.boolean "select_trial", default: false
+    t.boolean "trial"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -257,12 +264,17 @@ ActiveRecord::Schema.define(version: 20210328072325) do
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ordinal"
     t.string "name"
     t.string "title"
     t.text "detail"
     t.string "image_subscription"
     t.integer "price"
     t.text "subscription_detail"
+    t.string "email"
+    t.string "phone_number"
+    t.string "subject"
+    t.string "message"
     t.string "script"
     t.string "sub_image"
     t.string "sub_image2"
@@ -276,16 +288,20 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "sub_image10"
     t.string "sub_image11"
     t.string "sub_image12"
+    t.string "admin_subscription_check"
+    t.string "situation"
+    t.string "admin_last_check"
     t.string "trial_check"
     t.string "trial_last_check"
     t.integer "category_id"
     t.text "blog"
     t.text "shop_introduction"
+    t.text "site"
     t.string "qr_image"
     t.text "address"
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
-    t.string "trial", default: "非参加"
+    t.boolean "trial"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -315,6 +331,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.date "use_ticket_day_log"
     t.integer "price"
     t.string "trial"
+    t.integer "category_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner_name"
@@ -325,7 +343,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "private_store_name"
     t.string "subscription_fee"
     t.date "issue_ticket_day"
-    t.bigint "user_id"
+    t.index ["user_id"], name: "index_ticket_logs_on_user_id"
   end
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -337,6 +355,7 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "subscription_name"
     t.string "private_store_name"
     t.string "subscription_fee"
+    t.integer "category_id"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.boolean "trial"
@@ -373,9 +392,12 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "customer_id", default: "", null: false
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
+    t.boolean "select_trial", default: false
+    t.boolean "plan_canceled", default: false
+    t.boolean "trial_stripe_success", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_price"
+    t.integer "price"
     t.integer "session_price"
     t.integer "private_store_id"
     t.datetime "deleted_at"
@@ -404,5 +426,6 @@ ActiveRecord::Schema.define(version: 20210328072325) do
   add_foreign_key "subscriptions", "users"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
+  add_foreign_key "ticket_logs", "users"
   add_foreign_key "tickets", "users"
 end

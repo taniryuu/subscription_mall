@@ -1,5 +1,5 @@
 class TicketMailer < ApplicationMailer
-  default from: 'megurumee@gmail.com'
+  default from: ENV['SEND_MAIL']
 
   def ticket_email(ticket)
     @ticket = ticket

@@ -85,12 +85,18 @@ ja:
           qr_image: LINE@QRコード画像
           price: 金額
           address: お店の住所
+          email: お店専用メールアドレス
+          phone_number: お店専用電話番号
+          subject: 件名
+          message: メッセージ
           category_id: カテゴリ
           created_at: 作成日
           updated_at: 更新日
           latitude: 経度
           longitude: 緯度
           owner_id: 経営者紐付け
+          site: サイトURL
+          admin_subscription_check: 審査状況
           trial: トライアル
         private_store:
           id: ID
@@ -120,6 +126,8 @@ ja:
           price: 金額
           category_id: カテゴリ
           address: お店の住所
+          email: お店専用メールアドレス
+          phone_number: お店専用電話番号
           created_at: 作成日
           updated_at: 更新日
           shop_id: お店のID
@@ -130,6 +138,11 @@ ja:
           owner_id: 経営者紐付け
           insta_blog: インスタグラム
           recommend: おすすめ店舗
+          site: サイトURL
+          subject: 件名
+          message: メッセージ
+          private_store_detail: 店舗情報
+          admin_private_check: 審査状況
           product_id: 商品ID
           trial: トライアル
         media:

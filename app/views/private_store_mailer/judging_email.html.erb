@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @owner.name %>様、
+      <% if @private_store.admin_private_check == "承認" %>
+        新しく個人店舗の審査が<%= @private_store.admin_private_check %>されました。
+      <% else %>
+        個人店舗の申請が<%= @private_store.admin_private_check %>されました。
+      <% end %>
+    </h1>
+    <p>
+      <% if @private_store.admin_private_check == "承認" %>
+        個人店舗 <%= @private_store.name %> の審査が<br>
+        <%= @private_store.admin_private_check %>されました。<br>
+        さっそくお店のカスタマイズしましょう。<br>
+        <%= @url %>
+      <% else %>
+        個人店舗 <%= @private_store.name %> が<br>
+        <%= @private_store.admin_private_check %>されました。 <br>
+      <% end %>
+    </p>
+  </body>
+</html>

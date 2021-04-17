@@ -73,7 +73,10 @@ class ApplicationController < ActionController::Base
       if current_user.customer_id.present?
         @payment = Stripe::Checkout::Session.retrieve(current_user.customer_id)
         Stripe::Subscription.delete(@payment.subscription)
-        current_user.update!(customer_id: "", user_price: "")
+        current_user.update!(customer_id: "", price: "")
+      end
+      if current_user.trial_stripe_success
+	current_user.update!(trial_stripe_success: false)
       end
     end
   end
@@ -137,6 +140,13 @@ class ApplicationController < ActionController::Base
       authenticate_owner!
     else
       redirect_to root_url, notice: 'ログインしている経営者様のみ確認可能なページです。'
+    end
+  end
+
+  # emailが空欄時(SNSログイン時)
+  def current_user_email_present?
+    unless current_user.email.present?
+      redirect_to edit_user_url(current_user), notice: "メールアドレスを登録してください"
     end
   end
 

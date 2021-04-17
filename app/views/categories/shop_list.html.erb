@@ -16,9 +16,9 @@
         </div>
         <div class="col-lg-7 col-xl-8">
         <span class="badge badge-success">加盟店</span>
-          <% if subscription.trial == "参加" %>
+          <% if subscription.trial == true %>
             <span class="badge badge-warning">トライアルでも利用可能</span>
-          <% elsif subscription.trial == "非参加" %>
+          <% elsif subscription.trial == false %>
             <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
           <% end %>
           <h4 class="font-weight-bold mb-3"><strong><%= subscription.name %></strong></h4>
@@ -45,9 +45,9 @@
         </div>
         <div class="col-lg-7 col-xl-8">
         <span class="badge badge-primary">個人店舗</span>
-          <% if private_store.trial == "参加" %>
+          <% if private_store.trial == true %>
             <span class="badge badge-warning">トライアルでも利用可能</span>
-          <% elsif private_store.trial == "非参加" %>
+          <% elsif private_store.trial == false %>
             <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
           <% end %>
           <h4 class="font-weight-bold mb-3"><strong><%= private_store.name %></strong></h4>

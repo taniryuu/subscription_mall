@@ -2,16 +2,30 @@
 
 <div>
   <h1 class="brand-color display-4 mt-6 mb-6">チケット使用履歴</h1>
-  <div class="col-md-10 offset-md-1">
+
+
+  <div class="col-ms-12 offset-ms-2">
+  <!--ここから先が検索機能-->
+  <% if current_admin.present? %>
+    <div class="row justify-content-end">
+      <div class="col-ms-6">
+        <%= form_with method: :get, local: true do |f| %>
+          <%= f.text_field :owner_name, :class => 'form_border', placeholder: "名前で経営者様を検索" %>
+          <%= f.submit "検索", class: "btn btn-lg btn-brand float-right mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <!--ここまで-->
     <% if @ticket_logs.present? %>
       <table class="table mb-8">
         <thead class="thead-light">
           <tr>
+            <th></th>
             <th>店舗オーナー名</th>
-            <th>店舗オーナーEmail</th>
-            <th>店舗オーナーTEL</th>
-            <th>店舗情報</th>
-            <th>サブスク名</th>
+            <th>店舗Email</th>
+            <th>店舗TEL</th>
+            <th>お店の名前</th>
             <th>金額</th>
             <th>トライアル</th>
             <th>利用ユーザー</th>
@@ -22,10 +36,16 @@
         <tbody>
           <% @ticket_logs.each do |ticket_log| %>
             <tr>
+              <td>
+                <% if ticket_log.subscription_name.present? %>
+                  <span class="badge badge-success">加盟店</span>
+                <% elsif ticket_log.private_store_name.present? %>
+                  <span class="badge badge-primary">個人店舗</span>
+                <% end %>
+              </td>
               <td><%= ticket_log.owner_name %></td>
               <td><%= ticket_log.owner_email %></td>
               <td><%= ticket_log.owner_phone_number %></td>
-              <td><%= ticket_log.owner_store_information %></td>
               <% if ticket_log.subscription_name.present? %>
                 <td><%= ticket_log.subscription_name %></td>
               <% elsif ticket_log.private_store_name.present? %>
@@ -43,4 +63,5 @@
       <p class="mb-8">現在、チケット使用履歴はありません。
     <% end %>
   </div>
+  <%= will_paginate(@ticket_logs, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>

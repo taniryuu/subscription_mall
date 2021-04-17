@@ -1,6 +1,5 @@
 class PrivateStore < ApplicationRecord
   belongs_to :owner
-  # belongs_to :shop
   belongs_to :category, optional: true#belongs_toの外部キーのnilを許可
   #has_many :category_private_stores, dependent: :destroy
   #has_many :categories, through: :category_private_stores
@@ -13,26 +12,17 @@ class PrivateStore < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :address, presence: true, length: { maximum: 1000 }
-  validates :title, presence: true, length: { maximum: 100 }
-  validates :detail, presence: true, length: { maximum: 100 }
-  # validates :shop_introduction, presence: true, length: { maximum: 1000 }
-  validates :private_store_detail, presence: true, length: { maximum: 1000 }
-  validates :image_private_store, presence: true, allow_blank: true
-  validates :qr_image, presence: true, allow_blank: true
-  validates :category_id, presence: true
-  validates :price, presence: true
-  #validates :trial, presence: true
-  #validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
-  validates :product_id, presence: true, allow_blank: true
+  validates :address, length: { maximum: 1000 }, on: :update
+  validates :title, length: { maximum: 100 }, on: :update
+  validates :detail, length: { maximum: 100 }, on: :update
+  validates :private_store_detail, length: { maximum: 1000 }, on: :update
+  # validates :category_id, presence: true, on: :update
+  # validates :ordinal, presence: true, uniqueness: true, numericality: :only_integer
+  # validates :product_id, presence: true, allow_blank: true
 
   geocoded_by :address
   after_validation :geocode
-
-   #enum category_name: { "和食"=> 1, "洋食"=> 2, "中華"=> 3, "イタリアン"=> 4, "フレンチ"=> 5, "ハワイアン"=> 6, "東南アジア料理"=> 7, "鍋"=> 8, "丼モノ"=> 9, "韓国料理"=> 10, "スイーツ"=> 11, "その他"=> 12}, _prefix: true
-  #enum category_genre: { "カフェ"=> 1, "らーめん"=> 2, "パン屋"=> 3, "カレー"=> 4, "居酒屋"=> 5, "バー"=> 6, "ケーキ"=> 7, "焼肉"=> 8, "定食屋"=> 9, "ハンバーガー"=> 10, "レストラン"=> 11, "お好み焼き"=> 12, "唐揚げ"=> 13, "餃子"=> 14, "うどん"=> 15, "そば"=> 16}, _prefix: true
   #enum price: { "3000"=> 1, "9000"=> 2, "11000"=> 3, "18000"=> 4, "25000"=> 5, "50000"=> 6, "100000"=> 7}, _prefix: true
-  # attachment :image_subscription
   mount_uploader :image_private_store, PrivateStoreUploader
   mount_uploader :sub_image, PrivateStoreUploader
   mount_uploader :sub_image2, PrivateStoreUploader
@@ -47,9 +37,6 @@ class PrivateStore < ApplicationRecord
   mount_uploader :sub_image11, PrivateStoreUploader
   mount_uploader :sub_image12, PrivateStoreUploader
   mount_uploader :qr_image, PrivateStoreUploader
-
-
-  #validates :category_name, presence: true
 
   def avg_score
     unless self.reviews.empty?
@@ -67,4 +54,3 @@ class PrivateStore < ApplicationRecord
     end
   end
 end
-
