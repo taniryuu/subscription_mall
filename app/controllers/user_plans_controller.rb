@@ -228,7 +228,6 @@ class UserPlansController < ApplicationController
   end
 
   def destroy
-    current_user.update!(plan_canceled: true)
     flash[:danger] = "正常に解除されました"
     redirect_to root_url
   end

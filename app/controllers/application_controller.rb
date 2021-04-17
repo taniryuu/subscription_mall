@@ -75,6 +75,9 @@ class ApplicationController < ActionController::Base
       if current_user.trial_stripe_success
 	current_user.update!(trial_stripe_success: false)
       end
+      if current_user.select_trial
+	current_user.update!(plan_canceled: true)
+      end
     end
   end
 
