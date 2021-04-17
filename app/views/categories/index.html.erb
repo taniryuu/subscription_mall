@@ -8,12 +8,11 @@
   <% end %>
 </div>
 
-<%= form_with(model: @category, method: :get, local: true) do |f| %>
-  <%= f.collection_select(:search, @categories_name, :name, :name, {include_blank: "キーワードからカテゴリーを検索してみよう", class: "form-control"}) %>
-  <!--%= text_field_tag :search, "",placeholder: "キーワードからカテゴリーを検索してみよう" %--><%= submit_tag '検索', :name => nil %>
-<% end %>
+<div class="search">
+  <%= render partial: "categories/select", locals: {categories: @category_all} %>
+</div>
 <div class="category-list">
-  <% @categories.each do |category| %><%# カテゴリーを全てeach %>
+  <% @category_all.each do |category| %><%# カテゴリーを全てeach %>
     <div class="category-item">
       <%= link_to image_tag(category.image_category, :size => '280x200'), like_lunch_category_path(category), class: "image-menu" %>
       <div class="category-shop-btn">
