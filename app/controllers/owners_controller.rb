@@ -73,6 +73,17 @@ class OwnersController < ApplicationController
   def participating_private_select
   end
 
+  def private_store_ticket_buyer_list
+    @private_store_ticket_buyer_list =   []
+    private_stores = PrivateStore.where(owner_id: params[:owners])
+    private_stores.each {|private_store|
+      users =  User.where.not(issue_ticket_day: nil).where.not(private_store_id: nil).where(use_ticket_day: nil)
+      users.each {|user|
+        @private_store_ticket_buyer_list.push(user) if user.private_store_id == private_store.id
+      }
+    }
+  end
+
   private
 
     def set_owner

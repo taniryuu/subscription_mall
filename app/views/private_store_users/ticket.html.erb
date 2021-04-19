@@ -204,7 +204,7 @@
                         <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
                         <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                         <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
-                        <%= f.hidden_field :private_store_name, :value => @private_store.name %>
+			<%= f.hidden_field :private_store_name, :value => @private_store.name %>
                         <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
                         <%= f.hidden_field :user_id, :value => current_user.id %>
                         <%= f.hidden_field :price, :value => current_user.price %>

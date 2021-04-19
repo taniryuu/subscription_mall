@@ -1,0 +1,48 @@
+<% provide(:title, '個人店チケット購買者リスト') %>
+
+<p id="notice"><%= notice %></p>
+<div>
+  <h1 class="brand-color display-4 mt-6 mb-6">個人店チケット購買者リスト</h1>
+
+  <div class="col-sm-12">
+
+    <table class="table table-condensed table-hover my-5" id="table-users">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ユーザー名</th>
+          <th>トライアル状態</th> 
+          <th>個人店舗名</th>
+          <th>金額</th>
+        </tr>
+      </thead>
+
+      <% @private_store_ticket_buyer_list.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+	  <td><%= user.name %></td>
+          <td>
+            <!--% if private_store.admin_private_check == "承認" %-->
+              <!--% if private_store.trial == false %-->
+                <!--%= "不参加" %-->
+              <!--% elsif private_store.trial == true %-->
+                <!--%= "参加" %-->
+              <!--% else %-->
+                <!--%= "未設定" %-->
+              <!--% end %-->
+            <!--% end %-->
+          </td>
+          <td></td>
+          <td><%= user.price%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="private-store-show-btn">
+    <%= link_to "#", class: "btn btn--blue btn-md btn--shadow" do %>
+      <i class="fas fa-reply"> 戻る</i>
+    <% end %>
+  </div>
+  <!--%= will_paginate(@private_stores, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %!-->
+</div>
+
