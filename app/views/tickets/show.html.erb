@@ -4,75 +4,26 @@
     <p class="text-muted w-responsive mx-auto mb-5"></p>
     <div class="row">
       <% if @ticket.use_ticket_day == Date.today %>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4 mx-auto">
           <div class="card pricing-card">
             <div class="price header white-text indigo rounded-top">
               <h3 class="number">
-	      <% if @ticket.subscription_name.present? %>
+              <% if @ticket.subscription_name.present? %>
                 <span class="badge badge-success">加盟店</span>
-		<% if @subscription.trial = true %>
-		  <span class="badge badge-warning">トライアルでも利用可能</span>
+                <% if @subscription.trial == true %>
+                  <span class="badge badge-warning">トライアルでも利用可能</span>
                 <% else %>
-		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
-	        <% end %>
+                  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+                <% end %>
                 <br>
                 <%= @ticket.subscription_name %>
-	      <% elsif @ticket.private_store_name.present? %>
+              <% elsif @ticket.private_store_name.present? %>
                 <span class="badge badge-primary">個人店舗</span>
-		<% if @private_store.trial = true %>
-		  <span class="badge badge-warning">トライアルでも利用可能</span>
+                <% if @private_store.trial == true %>
+                  <span class="badge badge-warning">トライアルでも利用可能</span>
                 <% else %>
-		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
-	        <% end %>
-                <br>
-                <%= @ticket.private_store_name %>
-              <% end %>
-              </h3>
-              <div class="version">
-                <h5 class="mb-0"><i class="fa fa-ticket fa-3x"></i></h5>
-              </div>
-            </div>
-            <div class="card-body striped mb-1">
-                  <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
-                  <p class="mt-2"><i class="fa fa-check-circle fa"></i> こちらの画面をスタッフにご提示ください！</p>
-                  <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
-                  <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
-                  <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
-                  <% if (@ticket.subscription_name.present? && @subscription.trial == true && current_user.select_trial) || 
-			(@ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial) %>
-                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
-                  <% elsif @ticket.subscription_name.present? %>
-                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.price}円です。"%></p>
-                  <% elsif @ticket.private_store_name.present? %>
-                    <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.price}円です。"%></p>
-                  <% end %>
-                  <h3 class="number"><%= "本日のチケットは使用しました" %></h3>
-            </div>
-          </div>
-        </div>
-      <% elsif @ticket.issue_ticket_day == Date.today %>
-        <div class="col-lg-4 col-md-12 mb-4">
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card pricing-card">
-            <div class="price header white-text indigo rounded-top">
-              <h3 class="number">
-	      <% if @ticket.subscription_name.present? %>
-                <span class="badge badge-success">加盟店</span>
-		<% if @subscription.trial = true %>
-		  <span class="badge badge-warning">トライアルでも利用可能</span>
-                <% else %>
-		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
-	        <% end %>
-	        <br>         
-                <%= @ticket.subscription_name %>
-	      <% elsif @ticket.private_store_name.present? %>
-                <span class="badge badge-primary">個人店舗</span>
-		<% if @private_store.trial = true %>
-		  <span class="badge badge-warning">トライアルでも利用可能</span>
-                <% else %>
-		  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
-	        <% end %>
+                  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+                <% end %>
                 <br>
                 <%= @ticket.private_store_name %>
               <% end %>
@@ -88,7 +39,54 @@
               <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
               <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
               <% if (@ticket.subscription_name.present? && @subscription.trial == true && current_user.select_trial) || 
-		    (@ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial) %>
+                (@ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial) %>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
+              <% elsif @ticket.subscription_name.present? %>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.price}円です。"%></p>
+              <% elsif @ticket.private_store_name.present? %>
+                <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の個人店舗プラン料金は<%= "#{current_user.price}円です。"%></p>
+              <% end %>
+              <h3 class="number"><%= "本日のチケットは使用しました" %></h3>
+            </div>
+          </div>
+        </div>
+      <% elsif @ticket.issue_ticket_day == Date.today %>
+        <div class="col-lg-4 col-md-6 mb-4 mx-auto">
+          <div class="card pricing-card">
+            <div class="price header white-text indigo rounded-top">
+              <h3 class="number">
+              <% if @ticket.subscription_name.present? %>
+                <span class="badge badge-success">加盟店</span>
+                <% if @subscription.trial == true %>
+                  <span class="badge badge-warning">トライアルでも利用可能</span>
+                <% else %>
+                  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+                <% end %>
+                <br>         
+                <%= @ticket.subscription_name %>
+              <% elsif @ticket.private_store_name.present? %>
+                <span class="badge badge-primary">個人店舗</span>
+                <% if @private_store.trial == true %>
+                  <span class="badge badge-warning">トライアルでも利用可能</span>
+                <% else %>
+                  <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
+                <% end %>
+                <br>
+                <%= @ticket.private_store_name %>
+              <% end %>
+              </h3>
+              <div class="version">
+                <h5 class="mb-0"><i class="fa fa-ticket fa-3x"></i></h5>
+              </div>
+            </div>
+            <div class="card-body striped mb-1">
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> こちらの画面をスタッフにご提示ください！</p>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは1日に一回のみ使用できます。</p>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> 一度使用すると当日は使用できません。</p>
+              <p class="mt-2"><i class="fa fa-check-circle fa"></i> チケットは0時にリセットされます。</p>
+              <% if (@ticket.subscription_name.present? && @subscription.trial == true && current_user.select_trial) || 
+                (@ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial) %>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中のトライアル料金は<%= "#{current_user.price}円です。"%></p>
               <% elsif @ticket.subscription_name.present? %>
                 <p class="mt-2"><i class="fa fa-check-circle fa"></i> あなたの使用中の加盟店プラン料金は<%= "#{current_user.price}円です。"%></p>
@@ -97,27 +95,27 @@
               <% end %>
               <% if !current_user.select_trial %>
                 <%= form_with(model: @ticket,  url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
-                    <%= f.hidden_field :use_ticket_day, :value => Date.today %>
-                    <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
+                  <%= f.hidden_field :use_ticket_day, :value => Date.today %>
+                  <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
                 <% end %>
               <% elsif @ticket.subscription_name.present? && @subscription.trial == true && current_user.select_trial %>
                 <%= form_with(model: @ticket, url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
-                    <%= f.hidden_field :use_ticket_day, :value => Date.today %>
-                    <%= f.hidden_field :trial_last_check, :value => @subscription.trial %>
-                    <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
+                  <%= f.hidden_field :use_ticket_day, :value => Date.today %>
+                  <%= f.hidden_field :trial_last_check, :value => @subscription.trial %>
+                  <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
                 <% end %>
               <% elsif @ticket.private_store_name.present? && @private_store.trial == true && current_user.select_trial %>
                 <%= form_with(model: @ticket, url: user_ticket_path(current_user), local: true, method: :patch) do |f| %>
-                    <%= f.hidden_field :use_ticket_day, :value => Date.today %>
-                    <%= f.hidden_field :trial_last_check, :value => @private_store.trial %>
-                    <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
+                  <%= f.hidden_field :use_ticket_day, :value => Date.today %>
+                  <%= f.hidden_field :trial_last_check, :value => @private_store.trial %>
+                  <%= f.submit "チケット使用", class: "btn btn-outline-success btn-rounded waves-effect", data: { confirm: "チケットを利用してもよろしいですか？"} %>
                 <% end %>
               <% end %>
             </div>
           </div>
         </div>
       <% else @ticket.issue_ticket_day != Date.today %>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4 mx-auto">
           <div class="card pricing-card">
             <div class="card-body striped mb-1">
               <p class="mt-2"><i class="fa fa-check-circle fa"></i> 注意事項</p>

@@ -36,11 +36,11 @@
                   <% else %>
                     <p></p>
                   <% end %> |
-                  <% if @private_store.owner.phone_number.present? %>
-                    テイクアウトTEL：<%= @private_store.owner.phone_number %>
+                  <% if @private_store.phone_number.present? %>
+                    テイクアウトTEL：<%= @private_store.phone_number %>
                   <% else %>
                     <p></p>
-                  <% end %>
+                  <% end %><br>
               <% if @payment.present? %>
                 <% if @private_store.price.to_i < current_user.price %>
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
@@ -49,12 +49,12 @@
                   <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% elsif @private_store.trial == true && current_user.price == 1000 %>
                   <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
-                  <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% else %>
-                  <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスク決済を始める", private_store_new_ticket_path(@private_store), class: "btn-gradient-3d-simple1", method: :get %>
+                <%= link_to "サブスク決済を始める", private_store_plan_path(@private_store, @private_store.price), class: "btn-gradient-3d-simple1", method: :get %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_private_stores_path(current_owner), class: "btn-gradient-3d-simple1" %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple1" %>
@@ -235,8 +235,6 @@
         <div class="font-weight-normal">
 
           <p class="ml-xl-0 ml-4">
-            <strong>お店紹介: </strong><%= @private_store.shop_introduction %></p>
-          <p class="ml-xl-0 ml-4">
             <strong>商品紹介: </strong><%= @private_store.detail %></p>
           <p class="ml-xl-0 ml-4">
             <strong>店舗情報: </strong><%= @private_store.private_store_detail %></p>
@@ -263,16 +261,51 @@
               <% elsif current_user.present? %>
                 <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
                 <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn btn-outline-warning btn-rounded" %><br>
-                  <% if @private_store.owner.address.present? %>
-                    　　　住所：<%= @private_store.owner.address %>
+                <% if @private_store.email.present? %>
+                  <%= link_to "メール", users_user_private_store_email_path(current_user, owner_id: @private_store.owner_id, id: @private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <% end %><br>
+                  <% if @private_store.address.present? %>
+                    　　　住所：<%= @private_store.address %>
                   <% else %>
-                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                    <p>住所：登録されていません。LINE@からお問い合わせください。</p>
                   <% end %><br>
-                  <% if @private_store.owner.phone_number.present? %>
-                    　　　テイクアウトTEL：<%= @private_store.owner.phone_number %>
+                  <% if @private_store.phone_number.present? %>
+                    　　　お店専用テイクアウトTEL：<%= @private_store.phone_number %>
                   <% else %>
-                    <p>登録させていません。LINE@からお問い合わせください。</p>
+                    <p>お店専用テイクアウトTEL：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @private_store.email.present? %>
+                    　　　お店専用メール：<%= @private_store.email %>
+                  <% else %>
+                    <p>お店専用メール：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @private_store.qr_image.present? %>
+                    <%= image_tag @private_store.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
+                    <p>LINE@招待コード</p>
+                  <% else %>
+                    <p>お問い合わせ※QRコードが登録されていません</p>
                   <% end %>
+              <% elsif current_admin.present? %>
+                <%= link_to "ブログ",private_store_instablog_path(@private_store.id), class: "btn btn-outline-success btn-rounded" %>
+                <%= link_to "レビューを投稿する",private_store_reviews_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn btn-outline-warning btn-rounded" %>
+                <% if @private_store.email.present? %>
+                  <%= link_to "メール", users_user_private_store_email_path(current_admin, owner_id: @private_store.owner_id, id: @private_store.id), class: "btn btn-outline-info btn-rounded" %>
+                <% end %><br>
+                  <% if @private_store.address.present? %>
+                    　　　住所：<%= @private_store.address %>
+                  <% else %>
+                    <p>住所：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @private_store.phone_number.present? %>
+                    　　　お店専用テイクアウトTEL：<%= @private_store.phone_number %>
+                  <% else %>
+                    <p>お店専用テイクアウトTEL：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
+                  <% if @private_store.email.present? %>
+                    　　　お店専用メール：<%= @private_store.email %>
+                  <% else %>
+                    <p>お店専用メール：登録されていません。LINE@からお問い合わせください。</p>
+                  <% end %><br>
                   <% if @private_store.qr_image.present? %>
                     <%= image_tag @private_store.qr_image ,size: '300', alt: "QR_Code", class: "img-fluid" %>
                     <p>LINE@招待コード</p>
@@ -286,8 +319,8 @@
                   <% else %>
                     <p>住所：登録させていません。LINE@からお問い合わせください。</p>
                   <% end %><br>
-                  <% if @private_store.owner.phone_number.present? %>
-                    　　　テイクアウトTEL：<%= @private_store.owner.phone_number %>
+                  <% if @private_store.phone_number.present? %>
+                    　　　テイクアウトTEL：<%= @private_store.phone_number %>
                   <% else %>
                     <p>テイクアウトTEL：登録させていません。LINE@からお問い合わせください。</p>
                   <% end %>

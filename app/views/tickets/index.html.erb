@@ -20,11 +20,11 @@
           <tr>
             <td><%= ticket.owner_name %></td>
             <td><%= ticket.owner_payee %></td>
-	    <% if ticket.subscription_name.present? %>
-	      <td><%= ticket.subscription_name %></td>
-	    <% elsif ticket.private_store_name.present? %>
-	      <td><%= ticket.private_store_name %></td>
-	    <% end %>
+            <% if ticket.subscription_name.present? %>
+              <td><%= ticket.subscription_name %></td>
+            <% elsif ticket.private_store_name.present? %>
+              <td><%= ticket.private_store_name %></td>
+            <% end %>
             <td><%= ticket.user.name %></td>
             <td><%= ticket.use_ticket_day %></td>
           </tr>
@@ -33,4 +33,5 @@
       </table>
     <% end %>
   </div>
+  <%= will_paginate(@tickets, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>

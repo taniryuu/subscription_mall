@@ -2,27 +2,25 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:like_lunch]
   # before_action :set_subscription, only: [:show]
   before_action :categories_lock, only: %i(new edit)
+  before_action :current_user_email_present?, only: %i(trial_shop)
 
 
   def index
-    @categories = if params[:search]
-      Category.search(params[:search]).order("RAND()")
-    else
-      Category.order("RAND()").all
-    end
-    @categories_name = Category.where.not(name: nil)#検索機能が選択ボックスだったら使う
+    @category_all = Category.all
   end
 
   def like_lunch
     @subscriptions = @category.subscriptions
-    @private_stores = @category.private_stores.where(admin_private_check: "個人店舗データ反映済み")
-    current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+    @private_stores = @category.private_stores.where(admin_private_check: "承認")
+    if current_user.present?
+      current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+    end
   end
 
   def trial_shop
     @subscriptions = Subscription.where(trial: true)
     @private_stores = PrivateStore.where(trial: true)
-    current_user.update!(select_trial: true) if current_user.user_price.blank?
+    current_user.update!(select_trial: true) if current_user.price.blank?
   end
 
   def create
@@ -59,13 +57,17 @@ class CategoriesController < ApplicationController
   end
 
   def search
-    @categories = Category.where.not(name: nil)
+    if params[:category_id].present?
+      redirect_to like_lunch_category_url(params[:category_id])
+    else
+      redirect_to categories_url
+    end
   end
 
 
   def shop_list
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).where(admin_private_check: "個人店舗データ反映済み").order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
   end
 
   def recommend

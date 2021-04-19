@@ -9,6 +9,7 @@ class CreateTickets < ActiveRecord::Migration[5.1]
       t.string :subscription_name
       t.string :private_store_name
       t.string :subscription_fee
+      t.integer :category_id
       t.date :use_ticket_day
       t.date :issue_ticket_day
       t.boolean :trial

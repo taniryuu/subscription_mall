@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'ticket_logs' => "ticket_logs#index", as: :ticket_logs#チケット使用履歴
+  delete "ticket_logs", to: "ticket_logs#destroy", as: 'logs_destroy'
+  get 'ticket' => "tickets#user_have_ticket", as: :user_have_ticket#チケット使用履歴
 
   root 'static_pages#top'#トップページ
   get 'paypaytest' => "static_pages#paypaytest"#paypaytest
@@ -122,8 +124,6 @@ Rails.application.routes.draw do
     member do
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
-      get 'user_email' #経営者から利用者へメール作成
-      post 'to_user_email'
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do
@@ -151,7 +151,8 @@ Rails.application.routes.draw do
   end
   resources :maps
   resources :categories, only: %i(index) do
-      get 'like_lunch', on: :member
+    get 'like_lunch', on: :member
+    post 'search', on: :collection
   end
   get 'categories/trial_shop', to: 'categories#trial_shop', as: :trial_shop#トライアルのお店一覧
   get 'private_stores/private_all_shop', to: 'private_stores#private_all_shop', as: :private_all_shop#個人店舗のお店一覧
@@ -163,6 +164,16 @@ Rails.application.routes.draw do
   post 'private_stores/private_store_confirm', to: 'private_stores#private_store_confirm', as: :private_store_confirm#個人店舗の審査の確認画面
   patch 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
   post 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
+
+  get 'users/user_subscription_email', to: 'users#user_subscription_email' #加盟店の利用者から経営者へメール
+  patch 'users/user_subscription_confirm', to: 'users#user_subscription_confirm'
+  patch 'users/user_subscription_thanks', to: 'users#user_subscription_thanks'
+  post 'users/user_subscription_thanks', to: 'users#user_subscription_thanks'
+
+  get 'users/user_private_store_email', to: 'users#user_private_store_email' #加盟店の利用者から経営者へメール
+  patch 'users/user_private_store_confirm', to: 'users#user_private_store_confirm'
+  patch 'users/user_private_store_thanks', to: 'users#user_private_store_thanks'
+  post 'users/user_private_store_thanks', to: 'users#user_private_store_thanks'
 
   get 'users/deleted_users'##論理削除された利用者
   resources :users do
@@ -209,6 +220,9 @@ Rails.application.routes.draw do
 
   get "trial_plan", to: "user_plans#trial_plan"
 
-  get "subscription_plans", to: "user_plans#subscription_plans" #加盟店の一覧へ
+  get "subscriptions/:subscription/prices/:price/subscription_plan", to: "user_plans#subscription_plan", as: :subscription_plan#価格に応じた加盟店のプランへ
+  get "private_stores/:private_store/prices/:price/private_store_plan", to: "private_store_user_plans#private_store_plan", as: :private_store_plan#価格に応じた個人店のプランへ
+
+
 
 end

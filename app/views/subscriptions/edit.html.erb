@@ -9,37 +9,37 @@
 
   <div class="field">
     <%= form.label :お店の名前 %> <span class="must">必須</span>
-    <%= form.text_field :name, id: :subscription_name, class: 'form-control form_border' %>
+    <%= form.text_field :name, :required => true, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :サイトURL %> <span class="must">必須</span><br/>
-    <%= form.text_field :site, class: 'form-control' %>
+    <%= form.text_field :site, :required => true, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :サブスク料理名 %> <span class="must">必須</span>
-    <%= form.text_field :title, id: :subscription_title, class: 'form-control form_border' %>
+    <%= form.text_field :title, :required => true, id: :subscription_title, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
-    <%= f.label :お店専用メールアドレス %><span class="must">お客様に公開されるメールアドレスです</span><br/>
-    <%= f.email_field :email, :required => true, placeholder: "sample@gmail.com", autofocus: true, autocomplete: "email", class: 'form-control' %>
+    <%= form.label :お店専用メールアドレス %><span class="must">お客様に公開されるメールアドレスです</span><br/>
+    <%= form.email_field :email, :required => true, placeholder: "sample@gmail.com", autofocus: true, autocomplete: "email", class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= f.label :お店専用の電話番号 %> <span>＊(ハイフンなし)連絡がつく番号でお願いします。</span><span class="must">お客様に公開される電話番号です</span><br/>
-    <%= f.telephone_field :phone_number, :required => true, class: 'form-control' %>
+    <%= form.label :お店専用の電話番号 %> <span>＊(ハイフンなし)連絡がつく番号でお願いします。</span><span class="must">お客様に公開される電話番号です</span><br/>
+    <%= form.telephone_field :phone_number, :required => true, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :お店の住所 %> <span class="must">必須</span>
-    <%= form.text_field :address, class: 'form-control form_border' %>
+    <%= form.text_field :address, :required => true, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
     <%= form.label :商品説明 %> <span class="must">必須</span>
-    <%= form.text_area :detail, id: :subscription_detail, class: 'form-control form_border' %>
+    <%= form.text_area :detail, :required => true, class: 'form-control form_border' %>
   </div>
 
   <div class="field">
@@ -54,7 +54,7 @@
 
   <div class="field">
     <%= form.label :店舗情報 %>
-    <%= form.text_area :subscription_detail, id: :subscription_subscription_detail, placeholder: "例)", class: 'form-control' %>
+    <%= form.text_area :subscription_detail, :required => true, placeholder: "例)", class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -104,7 +104,7 @@
 
   <div class="field">
     <%= form.label :カテゴリ %> <span class="must">必須</span><br/>
-    <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリを選択してください", class: 'form-control') %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリを選択してください", :required => true, class: 'form-control') %>
   </div>
 
   <div class="field">
