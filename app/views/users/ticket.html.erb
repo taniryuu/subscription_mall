@@ -52,7 +52,7 @@
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                           <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
-                          <%= f.hidden_field :user_id, :value => current_user.id %>
+                          <!--%= f.hidden_field :user_id, :value => current_user.id %-->
                           <%= f.hidden_field :trial_count, :value => 2 %>
                           <%= f.hidden_field :price, :value => current_user.price %>
                           <%= f.hidden_field :trial, :value => @subscription.trial %>
@@ -67,7 +67,7 @@
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                           <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                           <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
-                          <%= f.hidden_field :user_id, :value => current_user.id %>
+                          <!--%= f.hidden_field :user_id, :value => current_user.id %-->
                           <%= f.hidden_field :trial_count, :value => 3 %>
                           <%= f.hidden_field :price, :value => current_user.price %>
                           <%= f.hidden_field :trial, :value => @subscription.trial %>
@@ -104,7 +104,7 @@
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 		    <%= f.hidden_field :subscription_name, :value => @subscription.name %>
                     <%= f.hidden_field :issue_ticket_day, :value => Date.today %>
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <!--%= f.hidden_field :user_id, :value => current_user.id %-->
                     <%= f.hidden_field :price, :value => current_user.price %>
                     <%= f.hidden_field :trial, :value => @subscription.trial %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
