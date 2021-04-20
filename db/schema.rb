@@ -302,6 +302,9 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.boolean "trial"
+    t.boolean "takeout", default: false
+    t.datetime "started_at"
+    t.datetime "finished_at"
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
