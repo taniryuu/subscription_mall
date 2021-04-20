@@ -132,6 +132,7 @@ Rails.application.routes.draw do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
         get '/owner_subscriptions', to: "subscriptions#owner_subscriptions", as: :owner_subscriptions
+        post :takeout
       end
     end
     resources :private_stores do

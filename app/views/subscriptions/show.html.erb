@@ -44,13 +44,12 @@
               <% if @payment.present? %>
                 <% if @subscription.trial == true && current_user.price == 1000 %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
+                  <%= render "takeout" %>
                 <% elsif @subscription.trial == false && current_user.price == 1000 %>
                   <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
-                <% elsif @subscription.price.to_i < current_user.price %>
+                <% elsif @subscription.price.to_i <= current_user.price %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
-                  <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
-                <% elsif @subscription.price.to_i == current_user.price %>
-                  <%= link_to "チケットを発券する", use_ticket_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple1" %>
+                  <%= render "takeout" %>
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% else %>
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>

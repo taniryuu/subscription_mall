@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @subscription.name %>様</h1>
+    <p><%= @subscription.title %>の注文が入りました。</p>
+
+    <p>------------------</p>
+    <p>お客様情報</p>
+    <p>名前: <%= @user.name %></p>
+    <p>電話番号: <%= @user.phone_number %></p>
+    <p>メールアドレス: <%= @user.email %></p>
+
+    <p>------------------</p>
+  </body>
+</html>

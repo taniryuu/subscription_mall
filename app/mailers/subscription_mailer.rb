@@ -25,6 +25,10 @@ class SubscriptionMailer < ApplicationMailer
     end
   end
 
-
-  
+  def takeout_email
+    @user = current_user
+    @owner = Owner.find(params[:owner_id])
+    @subscription = Subscription.find(params[:id])
+    mail(to: @subscription.email, subject: "テイクアウトの注文が入りました")
+  end
 end

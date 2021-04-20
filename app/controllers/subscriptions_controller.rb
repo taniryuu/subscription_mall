@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend, :subscription_confirm, :subscription_judging]
+  before_action :set_subscription, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :takeout]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend, :subscription_confirm, :subscription_judging, :takeout]
   before_action :create, only: [:subscription_judging]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
@@ -148,6 +148,24 @@ class SubscriptionsController < ApplicationController
   def company_profile
   end
 
+  # テイクアウト注文時(POST)
+  def takeout
+    ticket = Ticket.create!(
+      owner_name: @owner.name,
+      owner_email: @owner.email,
+      owner_phone_number: @owner.email,
+      owner_store_information: @owner.store_information,
+      price: @subscription.price,
+      subscription_name: @subscription.name,
+      category_id: @subscription.category_id,
+      private_store_name: @subscription.private_store_name,
+      issue_ticket_day: Date.today,
+      user_id: current_user.id,
+    )
+    redirect_to user_ticket_url(ticket, user_id: current_user.id)
+    # SubscriptionMailer.takeout_email.deliver_now
+  end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_subscription
@@ -232,4 +250,3 @@ class SubscriptionsController < ApplicationController
       end
 
 end
-

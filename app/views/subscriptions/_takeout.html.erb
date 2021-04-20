@@ -1,0 +1,39 @@
+<!-- Button trigger modal -->
+<a type="button" class="btn-gradient-3d-simple1" data-toggle="modal" data-target="#exampleModalCenter">
+  テイクアウト
+</a>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">注文内容</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with(url: takeout_owner_subscription_path(@subscription, owner_id: @owner.id), method: :post, local: true) do |f| %>
+        <div class="modal-body">
+          <div class="form-group row">
+            <div class="d-flex align-items-start">
+              <%= image_tag @subscription.image_subscription_url if @subscription.image_subscription.present? %>
+            </div>
+            <div class="d-flex align-items-center justify-content-center col-sm-12">
+              <%= @subscription.title %> ×1点
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "発券する", class: "btn btn-lg btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
