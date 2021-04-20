@@ -18,21 +18,22 @@
       </thead>
 
       <% @private_store_ticket_buyer_list.each do |user| %>
+	<% private_store = PrivateStore.find(user.private_store_id) %>
         <tr>
           <td><%= user.id %></td>
 	  <td><%= user.name %></td>
           <td>
-            <!--% if private_store.admin_private_check == "承認" %-->
-              <!--% if private_store.trial == false %-->
-                <!--%= "不参加" %-->
-              <!--% elsif private_store.trial == true %-->
-                <!--%= "参加" %-->
-              <!--% else %-->
-                <!--%= "未設定" %-->
-              <!--% end %-->
-            <!--% end %-->
+            <% if private_store.admin_private_check == "承認" %>
+              <% if private_store.trial == true && user.select_trial == true %>
+                <%= "参加" %>
+	      <% else %>
+		-
+	      <% end %>
+            <% else %>
+	      -
+            <% end %>
           </td>
-          <td></td>
+	  <td><%= private_store.name %> </td>
           <td><%= user.price%></td>
         </tr>
       <% end %>
