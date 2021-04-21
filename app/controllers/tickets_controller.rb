@@ -36,7 +36,7 @@ class TicketsController < ApplicationController
        private_store = PrivateStore.find_by(name: params[:ticket][:private_store_name])
        current_user.update!(issue_ticket_day: Date.today, private_store_id: private_store.id)
      else 
-       current_user.update(issue_ticket_day: Date.today)
+       current_user.update!(issue_ticket_day: Date.today)
      end
      flash[:success] = "チケットを発券しました"
      redirect_to user_account_user_path(current_user), notice: 'チケットを発券しました。Myアカウントからチケット確認ボタンを押してチケットを使ってみましょう！'
@@ -100,7 +100,7 @@ class TicketsController < ApplicationController
         private_store = PrivateStore.find_by(name: params[:ticket][:private_store_name])
         current_user.update!(issue_ticket_day: Date.today, private_store_id: private_store.id, use_ticket_day: nil)
       else
-	current_user.update(issue_ticket_day: Date.today)
+	current_user.update!(issue_ticket_day: Date.today)
       end
       flash[:success] = "チケットを発券しました"
       redirect_to user_account_user_path(current_user)
