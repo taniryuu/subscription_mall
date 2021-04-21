@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'subscriptions/show_sample', to: 'subscriptions#show_sample', as: :show_sample_subscriptions
   get 'subscriptions/shop_case', to: 'subscriptions#shop_case', as: :shop_case#ショップ事例
 
-  get 'user/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
+  get 'subscriptions/:id/ticket', to: 'users#ticket', as: :use_ticket #チケット発行ページ
   get 'private_store/:id/ticket', to: 'private_store_users#ticket', as: :private_store_use_ticket #private_store用チケット発行ページ
   get 'private_store/:id/new_ticket', to: 'private_store_user_plans#new', as: :private_store_new_ticket #private_store用サブスクを始める
   get 'subscription/:id/new_ticket', to: 'user_plans#new', as: :subscription_new_ticket #subscription用サブスクを始める
@@ -161,11 +161,11 @@ Rails.application.routes.draw do
   post 'subscriptions/subscription_confirm', to: 'subscriptions#subscription_confirm', as: :subscription_confirm#加盟店舗の審査の確認画面
   patch 'subscriptions/subscription_judging', to: 'subscriptions#subscription_judging'#加盟店舗の審査
   post 'subscriptions/subscription_judging', to: 'subscriptions#subscription_judging'#加盟店舗の審査
-  
+
   post 'private_stores/private_store_confirm', to: 'private_stores#private_store_confirm', as: :private_store_confirm#個人店舗の審査の確認画面
   patch 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
   post 'private_stores/private_store_judging', to: 'private_stores#private_store_judging'#個人店舗の審査
-  
+
   get 'users/user_subscription_email', to: 'users#user_subscription_email' #加盟店の利用者から経営者へメール
   patch 'users/user_subscription_confirm', to: 'users#user_subscription_confirm'
   patch 'users/user_subscription_thanks', to: 'users#user_subscription_thanks'
