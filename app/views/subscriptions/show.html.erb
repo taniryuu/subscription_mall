@@ -226,7 +226,7 @@
 
       <div class="col-lg-5 text-center text-md-left">
 
-        <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4"><%= @subscription.name %></h2>
+        <h1 class="display-5 h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4"><%= @subscription.name %></h1>
         <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">NEW</span>
 
         <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
@@ -237,12 +237,12 @@
 
         <div class="font-weight-normal">
 
-          <p class="ml-xl-0 ml-4">
-            <strong>商品紹介: </strong><%= @subscription.detail %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>店舗情報: </strong><%= @subscription.subscription_detail %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>加入プラン: </strong><%= @subscription.price %></p>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>商品紹介: </strong><%= @subscription.detail %></h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>店舗情報: </strong><%= @subscription.subscription_detail %></h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>加入プラン: </strong><%= @subscription.price %></h2>
 
           <%# google map %>
           <%= render "maps/subsc" %>
