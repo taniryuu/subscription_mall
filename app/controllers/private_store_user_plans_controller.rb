@@ -6,6 +6,7 @@ class PrivateStoreUserPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
+  before_action :current_user_email_present?, only: %i(new subscription_plans set_plan_by_price)
   # before_action :sms_auth_false?, only: %i(new confirm destroy)
 
   # stripe決済成功時

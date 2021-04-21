@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     user = User.new(
      name: "testname",
      email: "testname@example.com",
-     password: "password",
+     password: "password1",
      )
      # オブジェクトをexpectに渡した時に、有効である(be valid)という意味になります
      expect(user).to be_valid
@@ -35,5 +35,6 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:email]).to include(I18n.t('errors.messages.taken'))
   end
+
 
 end

@@ -148,8 +148,10 @@ class ApplicationController < ActionController::Base
 
   # emailが空欄時(SNSログイン時)
   def current_user_email_present?
-    unless current_user.email.present?
-      redirect_to edit_user_url(current_user), notice: "メールアドレスを登録してください"
+    if current_user.present?
+      unless current_user.email.present?
+        redirect_to edit_user_url(current_user), notice: "メールアドレスを登録してください"
+      end
     end
   end
 

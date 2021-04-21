@@ -32,7 +32,12 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
    if @ticket.save
-     current_user.update(issue_ticket_day: Date.today)
+     if params[:ticket][:private_store_name].present?
+       private_store = PrivateStore.find_by(name: params[:ticket][:private_store_name])
+       current_user.update!(issue_ticket_day: Date.today, private_store_id: private_store.id)
+     else 
+       current_user.update!(issue_ticket_day: Date.today)
+     end
      flash[:success] = "チケットを発券しました"
      redirect_to user_account_user_path(current_user), notice: 'チケットを発券しました。Myアカウントからチケット確認ボタンを押してチケットを使ってみましょう！'
    else
@@ -47,6 +52,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find_by(user_id: current_user.id)
     # @ticket_log = TicketLog.new(ticket_id: @ticket.id, use_ticket_day_log: use_ticket_params)
     if @ticket.update_attributes(use_ticket_params)
+      current_user.update!(use_ticket_day: params[:ticket][:use_ticket_day]) if params[:ticket][:use_ticket_day].present?
       if @ticket.trial_last_check == "true"
         ticket_trial = "利用"
       else
@@ -90,13 +96,18 @@ class TicketsController < ApplicationController
   def ticket_update_after_second_time
     @ticket = Ticket.find_by(user_id: current_user.id)
     if @ticket.update_attributes(update_ticket_params)
+      if params[:ticket][:private_store_name].present?
+        private_store = PrivateStore.find_by(name: params[:ticket][:private_store_name])
+        current_user.update!(issue_ticket_day: Date.today, private_store_id: private_store.id, use_ticket_day: nil)
+      else
+	current_user.update!(issue_ticket_day: Date.today)
+      end
       flash[:success] = "チケットを発券しました"
       redirect_to user_account_user_path(current_user)
     else
-      flash[:danger] = "チケットが発見できませんでした"
+      flash[:danger] = "チケットが発券できませんでした"
       redirect_to root_path
     end
-    current_user.update(issue_ticket_day: Date.today)
   end
 
   def ticket_success
