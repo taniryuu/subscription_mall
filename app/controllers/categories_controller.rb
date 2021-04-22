@@ -69,7 +69,7 @@ class CategoriesController < ApplicationController
 
   def shop_list
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @private_stores = PrivateStore.all.order(created_at: :asc).paginate(page: params[:page], per_page: 10)
   end
 
   def recommend
