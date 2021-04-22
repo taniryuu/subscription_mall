@@ -213,37 +213,37 @@ puts "Question Created"
 #   address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
 # )
 
-# Subscription.create!(
-#   ordinal: 1,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "個室居酒屋　たすき　相模原店",
-#   recommend: true,
-#   trial: true,
-#   title: "サンプルタイトル3",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "11000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
-# )
+Subscription.create!(
+  ordinal: 1,
+  owner_id: 1,
+  category_id:  7,
+  name: "個室居酒屋　たすき　相模原店",
+  recommend: true,
+  trial: true,
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "11000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
+)
 
-# Subscription.create!(
-#   ordinal: 2,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "個室居酒屋　たすき　天王町駅前店",
-#   recommend: true,
-#   trial: true,
-#   title: "サンプルタイトル4",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "18000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
-# )
+Subscription.create!(
+  ordinal: 2,
+  owner_id: 1,
+  category_id:  7,
+  name: "個室居酒屋　たすき　天王町駅前店",
+  recommend: true,
+  trial: true,
+  title: "サンプルタイトル4",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "18000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
+)
 
 # Subscription.create!(
 #   ordinal: 3,
@@ -279,21 +279,21 @@ puts "Question Created"
 #   recommend: false,
 # )
 
-# Subscription.create!(
-#   ordinal: 5,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "木村屋本店　 町田駅前店",
-#   recommend: true,
-#   trial: false,
-#   title: "サンプルタイトル7",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "100000",
-#   image_subscription: "karaage.jpeg",
-#   address: "東京都町田市原町田6-13-15",
-# )
+Subscription.create!(
+  ordinal: 5,
+  owner_id: 1,
+  category_id:  7,
+  name: "木村屋本店　 町田駅前店",
+  recommend: true,
+  trial: false,
+  title: "サンプルタイトル7",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "100000",
+  image_subscription: "karaage.jpeg",
+  address: "東京都町田市原町田6-13-15",
+)
 
 Subscription.create!(
   ordinal: 6,

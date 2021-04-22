@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include ApplicationHelper
+  include CategoriesHelper
   #本番環境ででErrorが発生したらrescue500,rescue404で処理を行う
   if Rails.env.production?
     rescue_from StandardError, with: :rescue500
@@ -142,8 +143,10 @@ class ApplicationController < ActionController::Base
 
   # emailが空欄時(SNSログイン時)
   def current_user_email_present?
-    unless current_user.email.present?
-      redirect_to edit_user_url(current_user), notice: "メールアドレスを登録してください"
+    if current_user.present?
+      unless current_user.email.present?
+        redirect_to edit_user_url(current_user), notice: "メールアドレスを登録してください"
+      end
     end
   end
 

@@ -21,7 +21,9 @@ class SubscriptionsController < ApplicationController
   def subscription_all_shop
     @subscriptions = Subscription.where(admin_last_check: "加盟承認審査済み")
     @subscriptions_count = Subscription.where(admin_last_check: "加盟承認審査済み").count
-    current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+    if current_user.present?
+      current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+    end
   end
 
   def show
@@ -92,7 +94,7 @@ class SubscriptionsController < ApplicationController
     respond_to do |format|
       if @subscription.save
 	      @subscription.update(ordinal: Subscription.count)
-        SubscriptionMailer.with(subscription: @subscription, new: "true").notification_email.deliver_now
+        # SubscriptionMailer.with(subscription: @subscription, new: "true").notification_email.deliver_now
         format.html { render :subscription_judging, notice: '加盟店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @subscription }
       else
