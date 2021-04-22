@@ -20,21 +20,24 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       if current_admin.present?
-        account_admin_url
+        # account_admin_url
+        root_url
       else
         flash[:danger] = "ログインしてください"
         root_url
       end
     when User
       if current_user.present?
-        user_account_user_url(resource)
+        # user_account_user_url(resource)
+        root_url
       else
         flash[:danger] = "ログインしてください"
         root_url
       end
     when Owner
       if current_owner.present?
-        owner_account_owner_url(resource)
+        # owner_account_owner_url(resource)
+        root_url
       else
         flash[:danger] = "ログインしてください"
         root_url
@@ -75,6 +78,9 @@ class ApplicationController < ActionController::Base
       end
       if current_user.trial_stripe_success
 	current_user.update!(trial_stripe_success: false)
+      end
+      if current_user.select_trial
+	current_user.update!(plan_canceled: true)
       end
     end
   end
