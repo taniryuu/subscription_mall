@@ -227,6 +227,8 @@ Subscription.create!(
   price: "11000",
   image_subscription: "karaage.jpeg",
   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
+  takeout: true,
+  preparation_time: 15,
 )
 
 Subscription.create!(

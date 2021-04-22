@@ -24,4 +24,9 @@ class PrivateStoreMailer < ApplicationMailer
     end
   end
 
+  def takeout_email
+    @user = User.find(params[:id])
+    @private_store = PrivateStore.find(params[:private_store_id])
+    mail(to: @private_store.email, subject: "テイクアウトの注文が入りました")
+  end
 end

@@ -40,8 +40,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.float :longitude
       t.boolean :trial
       t.boolean :takeout, default: false
-      t.datetime :started_at
-      t.datetime :finished_at
+      t.integer :preparation_time, default: 0
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true

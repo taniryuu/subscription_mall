@@ -147,6 +147,7 @@ Rails.application.routes.draw do
               #patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
         #delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
         get '/owner_private_stores', to: "private_stores#owner_private_stores", as: :owner_private_stores
+        post :takeout
       end
     end
   end

@@ -150,20 +150,38 @@ class SubscriptionsController < ApplicationController
 
   # テイクアウト注文時(POST)
   def takeout
-    ticket = Ticket.create!(
-      owner_name: @owner.name,
-      owner_email: @owner.email,
-      owner_phone_number: @owner.email,
-      owner_store_information: @owner.store_information,
-      price: @subscription.price,
-      subscription_name: @subscription.name,
-      category_id: @subscription.category_id,
-      private_store_name: @subscription.private_store_name,
-      issue_ticket_day: Date.today,
-      user_id: current_user.id,
-    )
-    redirect_to user_ticket_url(ticket, user_id: current_user.id)
-    # SubscriptionMailer.takeout_email.deliver_now
+    if @subscription.takeout?
+      ticket = Ticket.find_by(user_id: current_user.id)
+      if ticket.present?
+        ticket.update!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @subscription.price,
+          subscription_name: @subscription.name,
+          category_id: @subscription.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      else
+        ticket = Ticket.create!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @subscription.price,
+          subscription_name: @subscription.name,
+          category_id: @subscription.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      end
+      redirect_to user_ticket_url(ticket, user_id: current_user.id)
+      SubscriptionMailer.with(id: current_user.id, subscription_id: @subscription.id).takeout_email.deliver_now
+    else
+      redirect_to like_lunch_category_url(@subscription.category_id)
+    end
   end
 
     private
@@ -212,6 +230,8 @@ class SubscriptionsController < ApplicationController
                                               :category_id,
                                               :owner_id,
                                               :trial,
+                                              :takeout,
+                                              :preparation_time,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
                                               # { :category_ids=> [] }
                                             )
