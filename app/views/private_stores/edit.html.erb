@@ -122,6 +122,16 @@
     <%= form.select :trial, [['不参加', false],['参加', true]], { selected: false }, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label "テイクアウト" %><br>
+    <%= form.select :takeout, [['不可', false],['可', true]], { selected: @private_store.takeout }, class: 'form-control col-sm-1' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "準備にかかる時間の目安(分)" %>
+    <%= form.number_field :preparation_time, value: @private_store.preparation_time, class: 'form-control col-sm-1' %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
@@ -161,4 +171,3 @@
   </div>
 <%
 =end%>
-

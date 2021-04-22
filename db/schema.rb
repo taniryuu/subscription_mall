@@ -217,6 +217,8 @@ ActiveRecord::Schema.define(version: 20210328072325) do
     t.string "product_id"
     t.boolean "select_trial", default: false
     t.boolean "trial"
+    t.boolean "takeout", default: false
+    t.integer "preparation_time", default: 0
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
