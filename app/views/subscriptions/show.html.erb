@@ -56,16 +56,16 @@
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスク決済を始める", subscription_plan_path(@subscription, @subscription.price), class: "btn-gradient-3d-simple1" %>
+                <%= link_to "サブスク決済を始める", subscription_plan_path(current_user, @subscription, @subscription.price), class: "btn-gradient-3d-simple1" %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_subscriptions_path(current_owner), class: "btn-gradient-3d-simple1" %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_subscription_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple1" %>
               <% elsif current_admin.present? %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_subscription_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple1" %>
                 <% if @subscription.recommend == true %>
-                  <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "おすすめ店舗から削除", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
                 <% elsif @subscription.recommend == false %>
-                  <%= link_to "おすすめ店舗に加える", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "おすすめ店舗に追加", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% else %>
                 <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple1" %>

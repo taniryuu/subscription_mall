@@ -12,6 +12,9 @@
       <div class="field">
         <%= f.label :site %><%= f.text_field :site, value: @private_store.site, readonly: true, class: 'form-control' %>
       </div>
+      <div class="field">
+        <%= f.label :登録したい商品の金額 %><%= f.number_field :price, value: @private_store.price, readonly: true, class: 'form-control' %>
+      </div>
       <div class="field mb-3">
         <%= f.submit "審査確認する", class: "btn btn-primary btn-block" %>
       </div>

@@ -1177,7 +1177,7 @@
     </div>
     <div> <%# instagramデータ取得 %>
       <ul class="insta-list">
- <% count = '6' %>
+      <% count = '6' %>
         <% id = '17841442005934576' %>
         <% token = 'EAA3flx2Ol48BADbLvmLs9ZAVsr7sQUd4AHKG9yl6XJz6zNUOr2tqZCz1Pzs1JLpZC7D04M81qyXAw6obSjXsEcAcdb8je1RBZBzj0nAdAXpfCb94HABP19UwP1qZCjbT1yLoOQLfnPxt2cD1H3HUUf3gBz4rfAevy3POkWZAsBwAZDZD' %>
         <% res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/#{id}?fields=name%2Cmedia.limit(#{count})%7Bcaption%2Cmedia_url%2Cthumbnail_url%2Cpermalink%7D&access_token=#{token}"))%>
@@ -1397,7 +1397,7 @@
         <%= link_to image_tag("https://media.istockphoto.com/photos/top-view-of-premium-rare-slices-many-parts-of-wagyu-a5-beef-with-on-picture-id1169410279?b=1&k=6&m=1169410279&s=170667a&w=0&h=CiQvMWUK7x73uERbummOpcLLwGYPt1W9Xi2VahlrYhE=", :size => '280x200'), subscription_plan_path(-1, 25000) , class: "btn btn-link box2 disabled" %>
         <div class="plan-shop-btn">
           <%= link_to "グルメな方はこちら", subscription_plan_path(-1, 25000) , class: "btn btn-link box2 disabled" %>
-            <%= link_to "25000円", subscription_plan_path(-1, 25000) , class: "btn btn-link box2 disabled" %><br>
+          <%= link_to "25000円", subscription_plan_path(-1, 25000) , class: "btn btn-link box2 disabled" %><br>
         </div>
       </div>
       <div class="plan-item">

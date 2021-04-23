@@ -57,16 +57,16 @@
                   <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスク決済を始める", private_store_plan_path(@private_store, @private_store.price), class: "btn-gradient-3d-simple1", method: :get %>
+                <%= link_to "サブスク決済を始める", private_store_plan_path(current_user, @private_store, @private_store.price), class: "btn-gradient-3d-simple1", method: :get %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_private_stores_path(current_owner), class: "btn-gradient-3d-simple1" %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple1" %>
               <% elsif current_admin.present? %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_private_store_path(@private_store, @owner, owner_id: @private_store.owner_id), class: "btn-gradient-3d-simple1" %>
                 <% if @private_store.recommend == true %>
-                  <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_private_store_path(current_admin), class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "おすすめ店舗から削除", edit_recommend_owner_private_store_path(current_admin), class: "btn-gradient-3d-simple1" %>
                 <% elsif @private_store.recommend == false %>
-                  <%= link_to "おすすめ店舗に加える", edit_recommend_owner_private_store_path(current_admin), class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "おすすめ店舗に追加", edit_recommend_owner_private_store_path(current_admin), class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% else %>
                 <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple1" %>
@@ -392,5 +392,5 @@
        </tbody>
      </table>
   </section>
-        <%= will_paginate(@reviews, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  <%= will_paginate(@reviews, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>

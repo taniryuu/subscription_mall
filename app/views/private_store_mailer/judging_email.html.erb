@@ -13,7 +13,8 @@
     </h1>
     <p>
       <% if @private_store.admin_private_check == "承認" %>
-        個人店舗 <%= @private_store.name %> の審査が<br>
+        個人店舗 <%= @private_store.name %> 、<br>
+                <%= @private_store.price %>審査が<br>
         <%= @private_store.admin_private_check %>されました。<br>
         さっそくお店のカスタマイズしましょう。<br>
         <%= @url %>

@@ -2,33 +2,37 @@
 <p id="notice"><%= notice %></p>
 
 <h1 class="brand-color display-4 mt-6 mb-6">メディア一覧</h1>
-<table class="mb-8">
-  <tbody>
-    <% if current_admin.present? %>
-      <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
-    <% end %>
-    <% @medias.each do |media| %>
-    <hr class="tool-bar">
-      <div class="row">
-        <div class="col-sm-2">
-          <%= media.media_name %>
-        </div><br>
-        <div class="col-sm-4">
-        <% if media.media_image.present? %>
-          <div class="grid-item-image"><%= image_tag media.media_image,:size => '300x200' %></div>
-        <% else %>
-        
+<% if @medias_count < 1 %>
+  <h1>まだ登録されていません</h1>
+<% else %>
+  <table class="mb-8">
+    <tbody>
+      <% if current_admin.present? %>
+        <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
+      <% end %>
+      <% @medias.each do |media| %>
+      <hr class="tool-bar">
+        <div class="row">
+          <div class="col-sm-2">
+            <%= media.media_name %>
+          </div><br>
+          <div class="col-sm-4">
+          <% if media.media_image.present? %>
+            <div class="grid-item-image"><%= image_tag media.media_image,:size => '300x200' %></div>
+          <% else %>
+          
+          <% end %>
+          </div>
+        <% if current_admin.present? %>
+          <div class="col-sm-2">
+            <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
+          </div>
+          <div class="col-sm-2">
+            <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
+          </div>
         <% end %>
         </div>
-      <% if current_admin.present? %>
-        <div class="col-sm-2">
-          <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
-        </div>
-        <div class="col-sm-2">
-          <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
-        </div>
       <% end %>
-      </div>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
