@@ -47,7 +47,7 @@
               <% end %>
             <% end %>
           </td>
-          <td><%= private_store.name %></td>
+          <td><%= link_to "#{private_store.name}", owner_private_store_path(owner_id: private_store.owner_id, id: private_store.id) %></td>
           <td><%= link_to "#{private_store.price}", private_owner_edit_admin_path(owner_id: private_store.owner_id, id: private_store.id) %></td>
           <td><%= private_store.owner.id %></td>
           <td><%= private_store.owner.email %></td>

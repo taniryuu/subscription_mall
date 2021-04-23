@@ -208,7 +208,7 @@ class PrivateStoreUserPlansController < ApplicationController
       if params[:private_store].to_i == -1
         @private_store = nil
       else
-        @private_store = Subscription.find(params[:private_store])
+        @private_store = PrivateStore.find(params[:private_store])
       end
       if Rails.env.development? || Rails.env.test?
         if @private_store.present? && @private_store.trial == true && current_user.select_trial

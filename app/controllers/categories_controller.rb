@@ -10,8 +10,10 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
-    @subscriptions = @category.subscriptions
+    @subscriptions = @category.subscriptions.where(admin_subscription_check: "承認")
     @private_stores = @category.private_stores.where(admin_private_check: "承認")
+    @subscriptions = @category.subscriptions
+    @private_stores = @category.private_stores
     if current_user.present?
       current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
     end
@@ -20,7 +22,9 @@ class CategoriesController < ApplicationController
   def trial_shop
     @subscriptions = Subscription.where(trial: true)
     @private_stores = PrivateStore.where(trial: true)
-    current_user.update!(select_trial: true) if current_user.present? && current_user.price.blank?
+    if current_user.present?
+      current_user.update!(select_trial: true) if current_user.price.blank?
+    end
   end
 
   def create
@@ -67,7 +71,7 @@ class CategoriesController < ApplicationController
 
   def shop_list
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @private_stores = PrivateStore.all.order(created_at: :asc).paginate(page: params[:page], per_page: 10)
   end
 
   def recommend

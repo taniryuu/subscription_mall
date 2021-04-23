@@ -54,7 +54,7 @@
         </tbody>
       </table>
     <% else%>
-      <p class="mb-8">現在、チケット使用履歴はありません。
+      <p class="mb-8">現在、発券されているチケットはありません。
     <% end %>
   </div>
   <%= will_paginate(@tickets, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>

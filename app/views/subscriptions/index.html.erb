@@ -12,9 +12,13 @@
         <div class ="col-sm-1">
           ID
 	</div>
-	<div class="col-sm-1">
+	<%
+=begin%>
+ <div class="col-sm-1">
 	  ordinal
-        </div>
+        </div> 
+<%
+=end%>
         <div class="col-sm-2">
           加盟店の状況
         </div>
@@ -34,23 +38,38 @@
     <% @subscriptions.each do |subscription| %>
     <hr class="tool-bar">
     <div class="row">
-	<div class="col-sm-1">
-          <%= subscription.id %>
-        </div>
         <div class="col-sm-1">
-          <%= subscription.ordinal %>
+          <%= subscription.id %>
         </div>
         <div class="col-sm-2">
           <span class="badge badge-info">
-            <%= subscription.admin_last_check %>
+            <% if subscription.admin_subscription_check == "承認" %>
+              <% if subscription.trial == true %>
+                <span class="badge badge-warning">トライアル参加済み</span>
+              <% end %>
+              <span class="badge badge-info">
+                <%= subscription.admin_last_check %>
+              </span>
+            <% elsif subscription.admin_subscription_check == "否認" %>
+              <span class="badge badge-info">
+                <%= subscription.admin_last_check %>
+              </span>
+            <% elsif subscription.situation == "加盟店舗の申請中" %>
+              <% if subscription.trial == true %>
+                <span class="badge badge-warning">トライアル参加申請中</span>
+              <% end %>
+              <span class="badge badge-info">
+                <%= subscription.situation %>
+              </span>
+            <% end %>
           </span>
         </div>
         <div class="col-sm-2">
         <% if subscription.admin_subscription_check == "承認" %>
           <% if subscription.trial == false %>
-            <%= "不参加" %>
+            <span class="badge badge-warning"><%= "不参加" %></span>
           <% else %>
-            <%= "参加" %>
+             <span class="badge badge-warning"><%= "参加" %></span>
           <% end %>
         <% end %>
         </div>

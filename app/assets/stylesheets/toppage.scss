@@ -765,14 +765,16 @@
   }
   @media screen and (max-width: 991px) {
     .category-item {
-      width: 250px;
+      width: 280px;
       height: 220px;
+      margin: 15px auto;
       }
     }
   @media screen and (max-width: 730px) {
   .category-item {
-    width: 220px;
+    width: 280px;
     height: 220px;
+    margin: 15px auto;
     }
   }
       /* toppage 中央 category ここまで */

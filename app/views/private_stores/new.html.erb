@@ -15,6 +15,11 @@
     <%= form.text_field :site, :required => true, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :登録したい商品の金額 %> あとから変更できません、ご注意ください <span class="must">必須</span><br/>
+    <%= form.number_field :price, :required => true, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= form.submit "個人店登録の審査申請" %>
   </div>

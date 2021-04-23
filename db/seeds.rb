@@ -213,37 +213,39 @@ puts "Question Created"
 #   address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
 # )
 
-# Subscription.create!(
-#   ordinal: 1,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "個室居酒屋　たすき　相模原店",
-#   recommend: true,
-#   trial: true,
-#   title: "サンプルタイトル3",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "11000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
-# )
+Subscription.create!(
+  ordinal: 1,
+  owner_id: 1,
+  category_id:  7,
+  name: "個室居酒屋　たすき　相模原店",
+  recommend: true,
+  trial: true,
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "11000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
+  takeout: true,
+  preparation_time: 15,
+)
 
-# Subscription.create!(
-#   ordinal: 2,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "個室居酒屋　たすき　天王町駅前店",
-#   recommend: true,
-#   trial: true,
-#   title: "サンプルタイトル4",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "18000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
-# )
+Subscription.create!(
+  ordinal: 2,
+  owner_id: 1,
+  category_id:  7,
+  name: "個室居酒屋　たすき　天王町駅前店",
+  recommend: true,
+  trial: true,
+  title: "個室居酒屋セット",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "18000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
+)
 
 # Subscription.create!(
 #   ordinal: 3,
@@ -279,21 +281,21 @@ puts "Question Created"
 #   recommend: false,
 # )
 
-# Subscription.create!(
-#   ordinal: 5,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "木村屋本店　 町田駅前店",
-#   recommend: true,
-#   trial: false,
-#   title: "サンプルタイトル7",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "100000",
-#   image_subscription: "karaage.jpeg",
-#   address: "東京都町田市原町田6-13-15",
-# )
+Subscription.create!(
+  ordinal: 5,
+  owner_id: 1,
+  category_id:  7,
+  name: "木村屋本店　 町田駅前店",
+  recommend: true,
+  trial: false,
+  title: "木村屋セット",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "100000",
+  image_subscription: "karaage.jpeg",
+  address: "東京都町田市原町田6-13-15",
+)
 
 Subscription.create!(
   ordinal: 6,
@@ -302,7 +304,7 @@ Subscription.create!(
   name: "北海道BEER&BBQ 小田急町田",
   recommend: true,
   trial: false,
-  title: "サンプルタイトル8",
+  title: "北海道BEER&BBQセット",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -382,4 +384,3 @@ Category.create!(name: "その他",
     image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
     )
 puts "Category Created"
-

@@ -4,6 +4,7 @@ class MediasController < ApplicationController
 
   def index
     @medias = Medium.all
+    @medias_count = Medium.all.count
   end
 
   def new

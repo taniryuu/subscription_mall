@@ -1,6 +1,6 @@
 class PrivateStoresController < ApplicationController
-  before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging]
+  before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :takeout]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging, :takeout]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :create, only: [:private_store_judging]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
@@ -19,7 +19,10 @@ class PrivateStoresController < ApplicationController
   def private_all_shop
     @private_stores = PrivateStore.where(admin_last_check: "個人承認審査済み")
     @private_stores_count = PrivateStore.where(admin_last_check: "個人承認審査済み").count
-    current_user.update!(select_trial: false)  if current_user.present? && (current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial))
+    @private_stores = PrivateStore.all
+    if current_user.present?
+      current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+    end
   end
 
   def owner_private_stores
@@ -96,7 +99,7 @@ class PrivateStoresController < ApplicationController
     respond_to do |format|
       if @private_store.save
         @private_store.update(ordinal: PrivateStore.count)
-        PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
+        # PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
         format.html { render :private_store_judging, notice: '個人店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @private_store }
       else
@@ -120,7 +123,7 @@ class PrivateStoresController < ApplicationController
     @categories = Category.all
     respond_to do |format|
       if @private_store.update(private_store_params)
-        # PrivateStoreMailer.with(private_store: @private_store, new: "false").notification_email.deliver_now
+        PrivateStoreMailer.with(private_store: @private_store, new: "false").notification_email.deliver_now
         format.html { redirect_to owner_private_stores_url(owner_id: @owner.id), notice: 'サブスクショップを更新しました' }
         format.json { render :show, status: :ok, location: @private_store }
       else
@@ -148,6 +151,41 @@ class PrivateStoresController < ApplicationController
   end
 
   def company_profile
+  end
+
+  def takeout
+    if @private_store.takeout?
+      ticket = Ticket.find_by(user_id: current_user.id)
+      if ticket.present?
+        ticket.update!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @private_store.price,
+          subscription_name: @private_store.name,
+          category_id: @private_store.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      else
+        ticket = Ticket.create!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @private_store.price,
+          subscription_name: @private_store.name,
+          category_id: @private_store.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      end
+      redirect_to user_ticket_url(ticket, user_id: current_user.id)
+      PrivateStoreMailer.with(id: current_user.id, private_store_id: @private_store.id).takeout_email.deliver_now
+    else
+      redirect_to like_lunch_category_url(@private_store.category_id)
+    end
   end
 
     private
@@ -200,6 +238,8 @@ class PrivateStoresController < ApplicationController
                                               :owner_id,
                                               :product_id,
                                               :trial,
+                                              :takeout,
+                                              :preparation_time,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
                                               #{ :category_ids=> [] }
                                             )
@@ -235,4 +275,3 @@ class PrivateStoresController < ApplicationController
       end
 
 end
-
