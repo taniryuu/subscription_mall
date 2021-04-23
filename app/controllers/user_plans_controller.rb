@@ -274,11 +274,11 @@ class UserPlansController < ApplicationController
       if params[:subscription].to_i == -1
         @subscription = nil
       else
-	@subscription = Subscription.find(params[:subscription])
+        @subscription = Subscription.find(params[:subscription])
       end
       if Rails.env.development? || Rails.env.test?
         if @subscription.present? && @subscription.trial == true && current_user.select_trial
-	  @plan_by_price = Stripe::Checkout::Session.create(
+          @plan_by_price = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
             customer_email: current_user.email,
             line_items: [{
@@ -295,8 +295,8 @@ class UserPlansController < ApplicationController
             cancel_url: cancel_url,
           )
           current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
-	else
-	  @plan_by_price = Stripe::Checkout::Session.create(
+        else
+          @plan_by_price = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
             customer_email: current_user.email,
             line_items: [{
@@ -313,10 +313,10 @@ class UserPlansController < ApplicationController
             cancel_url: cancel_url,
           )
           current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
-	end
+        end
       elsif Rails.env.production?
-	if @subscription.present? && @subscription.trial == true && current_user.select_trial
-	  @plan_by_price = Stripe::Checkout::Session.create(
+        if @subscription.present? && @subscription.trial == true && current_user.select_trial
+          @plan_by_price = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
             customer_email: current_user.email,
             line_items: [{
@@ -333,8 +333,8 @@ class UserPlansController < ApplicationController
             cancel_url: cancel_url,
           )
           current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
-	else
-	  @plan_by_price = Stripe::Checkout::Session.create(
+        else
+          @plan_by_price = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
             customer_email: current_user.email,
             line_items: [{
