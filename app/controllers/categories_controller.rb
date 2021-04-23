@@ -10,8 +10,10 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
-    @subscriptions = @category.subscriptions
+    @subscriptions = @category.subscriptions.where(admin_subscription_check: "承認")
     @private_stores = @category.private_stores.where(admin_private_check: "承認")
+    @subscriptions = @category.subscriptions
+    @private_stores = @category.private_stores
     if current_user.present?
       current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
     end

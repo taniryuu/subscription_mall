@@ -19,6 +19,7 @@ class PrivateStoresController < ApplicationController
   def private_all_shop
     @private_stores = PrivateStore.where(admin_last_check: "個人承認審査済み")
     @private_stores_count = PrivateStore.where(admin_last_check: "個人承認審査済み").count
+    @private_stores = PrivateStore.all
     if current_user.present?
       current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
     end
@@ -98,7 +99,7 @@ class PrivateStoresController < ApplicationController
     respond_to do |format|
       if @private_store.save
         @private_store.update(ordinal: PrivateStore.count)
-        PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
+        # PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
         format.html { render :private_store_judging, notice: '個人店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @private_store }
       else
