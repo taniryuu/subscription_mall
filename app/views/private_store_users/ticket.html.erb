@@ -1,3 +1,13 @@
+<% if @private_store.email.present? %>
+  <% email = @private_store.email %>
+<% else %>
+  <% email = @owner.email %>
+<% end %>
+<% if @private_store.phone_number.present? %>
+  <% phone_number = @private_store.phone_number %>
+<% else %>
+  <% phone_number = @owner.phone_number %>
+<% end %>
 <% if current_user.issue_ticket_day.present? %> <%#これまでにチケットが発券した事があるかどうか%>
 <div class="container my-5">
   <section class="text-center dark-grey-text">
@@ -48,8 +58,8 @@
 
                    <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @private_store.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @private_store.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => email %>
+                          <%= f.hidden_field :owner_phone_number, :value => phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 			  <%= f.hidden_field :private_store_name, :value => @private_store.name %>
@@ -65,8 +75,8 @@
 
                      <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
-                          <%= f.hidden_field :owner_email, :value => @private_store.email %>
-                          <%= f.hidden_field :owner_phone_number, :value => @private_store.phone_number %>
+                          <%= f.hidden_field :owner_email, :value => email %>
+                          <%= f.hidden_field :owner_phone_number, :value => phone_number %>
                           <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                           <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 			  <%= f.hidden_field :private_store_name, :value => @private_store.name %>
@@ -86,8 +96,8 @@
 
                <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @private_store.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @private_store.phone_number %>
+                    <%= f.hidden_field :owner_email, :value => email %>
+                    <%= f.hidden_field :owner_phone_number, :value => phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                     <%= f.hidden_field :private_store_name, :value => @private_store.name %>
@@ -110,8 +120,8 @@
 
                 <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
-                    <%= f.hidden_field :owner_email, :value => @private_store.email %>
-                    <%= f.hidden_field :owner_phone_number, :value => @private_store.phone_number %>
+                    <%= f.hidden_field :owner_email, :value => email %>
+                    <%= f.hidden_field :owner_phone_number, :value => phone_number %>
                     <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                     <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 		    <%= f.hidden_field :private_store_name, :value => @private_store.name %>
@@ -180,8 +190,8 @@
 
                     <%= form_with(model: Ticket, url: user_tickets_path(current_user), local: true, method: :post) do |f| %>
                         <%= f.hidden_field :owner_name, :value => @owner.name %>
-                        <%= f.hidden_field :owner_email, :value => @owner.email %>
-                        <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
+                        <%= f.hidden_field :owner_email, :value => email %>
+                        <%= f.hidden_field :owner_phone_number, :value => phone_number%>
                         <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                         <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
                         <%= f.hidden_field :private_store_name, :value => @private_store.name %>
@@ -200,8 +210,8 @@
 
                     <%= form_with(model: Ticket, url: user_tickets_path(current_user), local: true, method: :post) do |f| %>
                         <%= f.hidden_field :owner_name, :value => @owner.name %>
-                        <%= f.hidden_field :owner_email, :value => @owner.email %>
-                        <%= f.hidden_field :owner_phone_number, :value => @owner.phone_number%>
+                        <%= f.hidden_field :owner_email, :value => email %>
+                        <%= f.hidden_field :owner_phone_number, :value => phone_number%>
                         <%= f.hidden_field :owner_store_information, :value => @owner.store_information %>
                         <!--%= f.hidden_field :owner_payee, :value => @owner.payee %-->
 			<%= f.hidden_field :private_store_name, :value => @private_store.name %>
