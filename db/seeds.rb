@@ -227,6 +227,8 @@ Subscription.create!(
   price: "11000",
   image_subscription: "karaage.jpeg",
   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
+  takeout: true,
+  preparation_time: 15,
 )
 
 Subscription.create!(
@@ -236,7 +238,7 @@ Subscription.create!(
   name: "個室居酒屋　たすき　天王町駅前店",
   recommend: true,
   trial: true,
-  title: "サンプルタイトル4",
+  title: "個室居酒屋セット",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -286,7 +288,7 @@ Subscription.create!(
   name: "木村屋本店　 町田駅前店",
   recommend: true,
   trial: false,
-  title: "サンプルタイトル7",
+  title: "木村屋セット",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -302,7 +304,7 @@ Subscription.create!(
   name: "北海道BEER&BBQ 小田急町田",
   recommend: true,
   trial: false,
-  title: "サンプルタイトル8",
+  title: "北海道BEER&BBQセット",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -382,4 +384,3 @@ Category.create!(name: "その他",
     image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
     )
 puts "Category Created"
-

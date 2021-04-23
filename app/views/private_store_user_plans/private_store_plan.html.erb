@@ -6,7 +6,7 @@
       <h1 class="font-weight-bold pb-2 mb-4">巡グルメ 個人店プラン</h1>
     <% end %>
     <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4">
+      <div class="col-lg-4 col-md-6 mb-4 mx-auto">
         <div class="card">
 	  <div class="card-body subscription-bg">
             <% if @private_store.present? && @private_store.trial == true && current_user.select_trial %>
@@ -81,8 +81,3 @@
     });
   </script>
 <% end %>
-
-
-
-
-
