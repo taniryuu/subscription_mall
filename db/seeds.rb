@@ -113,187 +113,189 @@ answer: "ログイン後、マイカウント下の「解約について」ボ�
 
 puts "Question Created"
 
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 1,
-#                               subscription_id: 1,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 2,
-#                               subscription_id: 1,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 1,
-#                               subscription_id: 2,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 2,
-#                             subscription_id: 2,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 3,
-#                             subscription_id: 3,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 4,
-#                           subscription_id: 3,
-#                         )
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 1,
+                              subscription_id: 1,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 2,
+                              subscription_id: 1,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 1,
+                              subscription_id: 2,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                            category_id: 2,
+                            subscription_id: 2,
+                          )
+CategorySubscription.create!(owner_id: 1,
+                            category_id: 3,
+                            subscription_id: 3,
+                          )
+CategorySubscription.create!(owner_id: 1,
+                          category_id: 4,
+                          subscription_id: 3,
+                        )
 
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 3,
-#                               subscription_id: 4,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 4,
-#                               subscription_id: 4,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 5,
-#                               subscription_id: 5,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 6,
-#                             subscription_id: 5,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 5,
-#                             subscription_id: 6,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 6,
-#                           subscription_id: 6,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 13,
-#                           subscription_id: 7,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 14,
-#                           subscription_id: 7,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 15,
-#                           subscription_id: 8,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                         category_id: 16,
-#                         subscription_id: 8,
-#                       )
-# puts "CategorySubscription Created"
-
-
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 3,
+                              subscription_id: 4,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 4,
+                              subscription_id: 4,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                              category_id: 5,
+                              subscription_id: 5,
+                            )
+CategorySubscription.create!(owner_id: 1,
+                            category_id: 6,
+                            subscription_id: 5,
+                          )
+CategorySubscription.create!(owner_id: 1,
+                            category_id: 5,
+                            subscription_id: 6,
+                          )
+CategorySubscription.create!(owner_id: 1,
+                          category_id: 6,
+                          subscription_id: 6,
+                        )
+CategorySubscription.create!(owner_id: 1,
+                          category_id: 13,
+                          subscription_id: 7,
+                        )
+CategorySubscription.create!(owner_id: 1,
+                          category_id: 14,
+                          subscription_id: 7,
+                        )
+CategorySubscription.create!(owner_id: 1,
+                          category_id: 15,
+                          subscription_id: 8,
+                        )
+CategorySubscription.create!(owner_id: 1,
+                        category_id: 16,
+                        subscription_id: 8,
+                      )
+puts "CategorySubscription Created"
 
 
-# Subscription.create!(
-#   owner_id: 1,
-#   category_id: 7,
-#   name: "炭焼牛タン　弁慶　淵野辺店",
-#   recommend: false,
-#   trial: true,
-#   title: "サンプルタイトル1",
-#   shop_introduction: "焼きたて",
-#   detail: "食べ放題",
-#   subscription_detail: "東京都",
-#   price: "3000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
-# )
 
-# Subscription.create!(
-#   owner_id: 2,
-#   category_id: 7,
-#   name: "炭焼牛タン　弁慶　古淵店",
-#   recommend: false,
-#   trial: true,
-#   title: "サンプルタイトル2",
-#   shop_introduction: "焼きたて2",
-#   detail: "食べ放題2",
-#   subscription_detail: "神奈川",
-#   price: "9000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
-# )
 
-# Subscription.create!(
-#   ordinal: 1,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "個室居酒屋　たすき　相模原店",
-#   recommend: true,
-#   trial: true,
-#   title: "サンプルタイトル3",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "11000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
-# )
+Subscription.create!(
+  owner_id: 1,
+  category_id: 7,
+  name: "炭焼牛タン　弁慶　淵野辺店",
+  recommend: false,
+  trial: true,
+  title: "炭焼牛タン弁当",
+  shop_introduction: "焼きたて",
+  detail: "食べ放題",
+  subscription_detail: "東京都",
+  price: "3000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区淵野辺３-3-10　桃山ビル2F",
+)
 
-# Subscription.create!(
-#   ordinal: 2,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "個室居酒屋　たすき　天王町駅前店",
-#   recommend: true,
-#   trial: true,
-#   title: "サンプルタイトル4",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "18000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
-# )
+Subscription.create!(
+  owner_id: 2,
+  category_id: 7,
+  name: "炭焼牛タン　弁慶　古淵店",
+  recommend: false,
+  trial: true,
+  title: "炭焼牛タン弁当",
+  shop_introduction: "焼きたて2",
+  detail: "食べ放題2",
+  subscription_detail: "神奈川",
+  price: "9000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市南区古淵2-17-3 渋谷ビル B1F",
+)
 
-# Subscription.create!(
-#   ordinal: 3,
-#   owner_id: 1,
-#   category_id:  3,
-#   name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
-#   recommend: false,
-#   trial: true,
-#   title: "サンプルタイトル5",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "25000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
-#   recommend: false,
-# )
+Subscription.create!(
+  ordinal: 1,
+  owner_id: 1,
+  category_id:  7,
+  name: "個室居酒屋　たすき　相模原店",
+  recommend: true,
+  trial: true,
+  title: "サンプルタイトル3",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "11000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
+  takeout: true,
+  preparation_time: 15,
+)
 
-# Subscription.create!(
-#   ordinal: 4,
-#   owner_id: 1,
-#   category_id:  3,
-#   name: "拉麺一匠 DEAD OR ALIVE 矢部店",
-#   recommend: false,
-#   trial: false,
-#   title: "サンプルタイトル6",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "50000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
-#   recommend: false,
-# )
+Subscription.create!(
+  ordinal: 2,
+  owner_id: 1,
+  category_id:  7,
+  name: "個室居酒屋　たすき　天王町駅前店",
+  recommend: true,
+  trial: true,
+  title: "個室居酒屋セット",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "18000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
+)
 
-# Subscription.create!(
-#   ordinal: 5,
-#   owner_id: 1,
-#   category_id:  7,
-#   name: "木村屋本店　 町田駅前店",
-#   recommend: true,
-#   trial: false,
-#   title: "サンプルタイトル7",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "100000",
-#   image_subscription: "karaage.jpeg",
-#   address: "東京都町田市原町田6-13-15",
-# )
+Subscription.create!(
+  ordinal: 3,
+  owner_id: 1,
+  category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
+  recommend: false,
+  trial: true,
+  title: "個室居酒屋セット",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "25000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
+  recommend: false,
+)
+
+Subscription.create!(
+  ordinal: 4,
+  owner_id: 1,
+  category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 矢部店",
+  recommend: false,
+  trial: false,
+  title: "拉麺一匠セット",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "50000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
+  recommend: false,
+)
+
+Subscription.create!(
+  ordinal: 5,
+  owner_id: 1,
+  category_id:  7,
+  name: "木村屋本店　 町田駅前店",
+  recommend: true,
+  trial: false,
+  title: "木村屋セット",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "100000",
+  image_subscription: "karaage.jpeg",
+  address: "東京都町田市原町田6-13-15",
+)
 
 Subscription.create!(
   ordinal: 6,
@@ -302,7 +304,7 @@ Subscription.create!(
   name: "北海道BEER&BBQ 小田急町田",
   recommend: true,
   trial: false,
-  title: "サンプルタイトル8",
+  title: "北海道BEER&BBQセット",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -382,4 +384,3 @@ Category.create!(name: "その他",
     image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
     )
 puts "Category Created"
-

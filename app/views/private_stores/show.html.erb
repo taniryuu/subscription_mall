@@ -41,15 +41,18 @@
                   <% else %>
                     <p></p>
                   <% end %><br>
+                </p>
               <% if @payment.present? %>
                 <% if @private_store.price.to_i < current_user.price %>
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% elsif @private_store.price.to_i == current_user.price %>
-                  <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
-                  <%= link_to "個人店舗プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple1 mb-2" %>
+                  <%= render "takeout" if @private_store.takeout? %>
+                  <%= link_to "お店の登録を解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1 mb-2" %>
                 <% elsif @private_store.trial == true && current_user.price == 1000 %>
-                  <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple" %>
-                  <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "チケットを発券する", private_store_use_ticket_path(@private_store), class: "btn-gradient-3d-simple1 mb-2" %>
+                  <%= render "takeout" if @private_store.takeout? %>
+                  <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1 mb-2" %>
                 <% else %>
                   <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% end %>

@@ -1,6 +1,6 @@
 class PrivateStoresController < ApplicationController
-  before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging]
+  before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :takeout]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging, :takeout]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
   before_action :create, only: [:private_store_judging]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
@@ -150,6 +150,41 @@ class PrivateStoresController < ApplicationController
   def company_profile
   end
 
+  def takeout
+    if @private_store.takeout?
+      ticket = Ticket.find_by(user_id: current_user.id)
+      if ticket.present?
+        ticket.update!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @private_store.price,
+          subscription_name: @private_store.name,
+          category_id: @private_store.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      else
+        ticket = Ticket.create!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @private_store.price,
+          subscription_name: @private_store.name,
+          category_id: @private_store.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      end
+      redirect_to user_ticket_url(ticket, user_id: current_user.id)
+      PrivateStoreMailer.with(id: current_user.id, private_store_id: @private_store.id).takeout_email.deliver_now
+    else
+      redirect_to like_lunch_category_url(@private_store.category_id)
+    end
+  end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_private_store
@@ -200,6 +235,8 @@ class PrivateStoresController < ApplicationController
                                               :owner_id,
                                               :product_id,
                                               :trial,
+                                              :takeout,
+                                              :preparation_time,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
                                               #{ :category_ids=> [] }
                                             )
@@ -235,4 +272,3 @@ class PrivateStoresController < ApplicationController
       end
 
 end
-
