@@ -118,7 +118,7 @@ class PrivateStoreUserPlansController < ApplicationController
       end
     end
   end
-	  
+
   # サブスク新規登録確認画面
   def confirm
     current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
@@ -193,7 +193,7 @@ class PrivateStoreUserPlansController < ApplicationController
     def set_plans
       @plans = []
       Stripe::Plan.list.reverse_each do |plan|
-	p "planは#{plan}"
+        p "planは#{plan}"
         p "plan.idは#{plan.id}"
         p "plan.metadtaは#{plan.metadata}"
         if Rails.env.development? || Rails.env.test?
